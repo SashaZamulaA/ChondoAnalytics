@@ -9,6 +9,7 @@ import android.util.Log
 import android.widget.Toast
 import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.ui.main.MainActivity
+import kotlinx.android.synthetic.main.view_login.*
 
 class LoginActivity : AppCompatActivity() {
 

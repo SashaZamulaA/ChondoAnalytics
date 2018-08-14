@@ -6,7 +6,9 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.Toast
+import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.ui.main.MainActivity
+import kotlinx.android.synthetic.main.view_signup.*
 
 
 class SignupActivity : AppCompatActivity() {
