@@ -21,4 +21,9 @@ class MainActivity: BaseActivity() {
         super.onDetachedFromWindow()
         presenter.unbindView(this)
     }
+
+    override fun onBackPressed() {
+        return
+    }
+
 }

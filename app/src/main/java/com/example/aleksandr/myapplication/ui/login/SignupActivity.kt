@@ -4,20 +4,29 @@ import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.text.TextUtils
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import com.example.aleksandr.myapplication.R
+import com.example.aleksandr.myapplication.R.string.email
 import com.example.aleksandr.myapplication.ui.main.MainActivity
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.view_signup.*
 
 
 class SignupActivity : AppCompatActivity() {
 
+    private var auth: FirebaseAuth? = null
+
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.view_signup)
-
-        btn_signup.setOnClickListener { signup() }
+        auth = FirebaseAuth.getInstance()
+//        btn_signup.setOnClickListener { signup() }
 
         link_login.setOnClickListener {
             val intent = Intent(applicationContext, LoginActivity::class.java)
@@ -25,6 +34,50 @@ class SignupActivity : AppCompatActivity() {
             finish()
             overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out)
         }
+
+        btn_signup.setOnClickListener(View.OnClickListener {
+            val name = input_name.text.toString().trim()
+            val address = input_address.text.toString().trim()
+            val email = editText_email.text.toString().trim()
+            val password = input_password.text.toString().trim()
+            val reEnterPassword = input_reEnterPassword.text.toString().trim()
+
+            if (TextUtils.isEmpty(email)) {
+                Toast.makeText(applicationContext, "Enter email address!", Toast.LENGTH_SHORT).show()
+                return@OnClickListener
+            }
+
+            if (TextUtils.isEmpty(password)) {
+                Toast.makeText(applicationContext, "Enter password!", Toast.LENGTH_SHORT).show()
+                return@OnClickListener
+            }
+
+            if (password.length < 6) {
+                Toast.makeText(applicationContext, "Password too short, enter minimum 6 characters!", Toast.LENGTH_SHORT).show()
+                return@OnClickListener
+            }
+
+            val progressDialog = ProgressDialog(this@SignupActivity)
+            progressDialog.isIndeterminate = true
+            progressDialog.setMessage("Creating Account...")
+            progressDialog.show()
+            //create user
+            auth?.createUserWithEmailAndPassword(email, password)
+                    ?.addOnCompleteListener(this@SignupActivity) { task ->
+                        Toast.makeText(this@SignupActivity, "createUserWithEmail:onComplete:" + task.isSuccessful, Toast.LENGTH_SHORT).show()
+                        progressDialog.dismiss()
+                        // If sign in fails, display a message to the user. If sign in succeeds
+                        // the auth state listener will be notified and logic to handle the
+                        // signed in user can be handled in the listener.
+                        if (!task.isSuccessful) {
+                            Toast.makeText(this@SignupActivity, "Authentication failed." + task.exception!!,
+                                    Toast.LENGTH_SHORT).show()
+                        } else {
+                            startActivity(Intent(this@SignupActivity, MainActivity::class.java))
+                            finish()
+                        }
+                    }
+        })
     }
 
     fun signup() {
@@ -45,7 +98,7 @@ class SignupActivity : AppCompatActivity() {
         val name = input_name.text.toString()
         val address = input_address.text.toString()
 //        val email = input_email.text.toString()
-        val mobile = input_mobile.text.toString()
+        val mobile = editText_email.text.toString()
         val password = input_password.text.toString()
         val reEnterPassword = input_reEnterPassword.text.toString()
 
@@ -82,7 +135,7 @@ class SignupActivity : AppCompatActivity() {
         val name = input_name.text.toString()
         val address = input_address.text.toString()
 //        val email = input_email.text.toString()
-        val mobile = input_mobile.text.toString()
+        val mobile = editText_email.text.toString()
         val password = input_password.text.toString()
         val reEnterPassword = input_reEnterPassword.text.toString()
 
@@ -109,10 +162,10 @@ class SignupActivity : AppCompatActivity() {
 //        }
 
         if (mobile.isEmpty() || mobile.length != 10) {
-            input_mobile.error = "Enter Valid Mobile Number"
+            editText_email.error = "Enter Valid Mobile Number"
             valid = false
         } else {
-            input_mobile.error = null
+            editText_email.error = null
         }
 
         if (password.isEmpty() || password.length < 4 || password.length > 10) {
@@ -130,6 +183,10 @@ class SignupActivity : AppCompatActivity() {
         }
 
         return valid
+    }
+
+    override fun onResume() {
+        super.onResume()
     }
 
     companion object {
