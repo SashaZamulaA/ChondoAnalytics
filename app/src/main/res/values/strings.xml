@@ -2,7 +2,7 @@
     <string name="app_name">M3A-Analytics
     </string>
 
-    <string name="my_pets">My pets</string>
+    <string name="note">My note</string>
 
     // LOGIN vs REGISTRATION
     <string name="login_slang">M3A Analytics</string>

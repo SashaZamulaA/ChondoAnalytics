@@ -17,7 +17,7 @@
         android:roundIcon="@mipmap/analytics"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.login.LoginActivity">
+        <activity android:name=".ui.splash.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,6 +26,7 @@
 
 
         </activity>
+        <activity android:name=".ui.login.LoginActivity"/>
         <activity android:name=".ui.login.SignupActivity" />
         <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".ui.info.InfoView" />

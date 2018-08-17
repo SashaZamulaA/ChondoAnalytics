@@ -22,7 +22,7 @@
             <TextView
                 android:id="@+id/title_list_pets"
                 style="@style/Toolbar.TitleText"
-                android:text="@string/my_pets" />
+                android:text="@string/note" />
 
             <android.support.v7.widget.SearchView
                 android:layout_width="wrap_content"

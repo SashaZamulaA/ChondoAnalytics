@@ -9,28 +9,27 @@ import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.example.aleksandr.myapplication.BaseActivity
 import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.ui.main.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.view_login.*
 
 class LoginActivity : AppCompatActivity() {
-
+    private lateinit var presenter: LoginPresenter
     private var auth: FirebaseAuth? = null
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.view_login)
-
+        presenter = LoginPresenter(this, application)
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance()
 
-//        btn_login.setOnClickListener { login() }
-
-        if (auth?.currentUser != null) {
-            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-            finish()
-        }
+//        if (auth?.currentUser != null) {
+//            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+//            finish()
+//        }
         link_signup.setOnClickListener {
 
             val intent = Intent(applicationContext, SignupActivity::class.java)
@@ -84,56 +83,47 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-    fun login() {
-        Log.d(TAG, "Login")
+//    fun login() {
+//        Log.d(TAG, "Login")
+//
+//        if (!validate()) {
+//            onLoginFailed()
+//            return
+//        }
+//
+//        btn_login.isEnabled = false
+//
+//        val progressDialog = ProgressDialog(this@LoginActivity) // TODO: I can add style
+//        progressDialog.isIndeterminate = true
+//        progressDialog.setMessage("Login...")
+//        progressDialog.show()
+//
+////        val email = input_email.text.toString()
+//        val password = input_password.text.toString()
+//
+//        // TODO: Implement your own authentication logic here.
+//
+//        android.os.Handler().postDelayed(
+//                {
+//                    // On complete call either onLoginSuccess or onLoginFailed
+//                    onLoginSuccess()
+//                    // onLoginFailed();
+//                    progressDialog.dismiss()
+//                }, 3000)
+//    }
+//
 
-        if (!validate()) {
-            onLoginFailed()
-            return
-        }
 
-        btn_login.isEnabled = false
-
-        val progressDialog = ProgressDialog(this@LoginActivity) // TODO: I can add style
-        progressDialog.isIndeterminate = true
-        progressDialog.setMessage("Login...")
-        progressDialog.show()
-
-//        val email = input_email.text.toString()
-        val password = input_password.text.toString()
-
-        // TODO: Implement your own authentication logic here.
-
-        android.os.Handler().postDelayed(
-                {
-                    // On complete call either onLoginSuccess or onLoginFailed
-                    onLoginSuccess()
-                    // onLoginFailed();
-                    progressDialog.dismiss()
-                }, 3000)
-    }
-
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
-        if (requestCode == REQUEST_SIGNUP) {
-            if (resultCode == Activity.RESULT_OK) {
-
-                // TODO: Implement successful signup logic here
-                // By default we just finish the Activity and log them in automatically
-                this.finish()
-            }
-        }
-    }
-
-    override fun onBackPressed() {
-        // Disable going back to the MainActivity
-        moveTaskToBack(true)
-    }
+//    override fun onBackPressed() {
+//        // Disable going back to the MainActivity
+////        moveTaskToBack(true)
+//    }
 
     private fun onLoginSuccess() {
         btn_login.isEnabled = true
 //        finish()
-        startActivity(Intent(this, MainActivity::class.java))
+        startActivity(Intent(this, BaseActivity::class.java))
+        finish()
     }
 
     private fun onLoginFailed() {

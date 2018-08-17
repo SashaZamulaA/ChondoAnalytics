@@ -5,6 +5,8 @@ import com.example.aleksandr.myapplication.di.module.AppModule
 import com.example.aleksandr.myapplication.di.module.NetModule
 import com.example.aleksandr.myapplication.ui.info.InfoPresenter
 import com.example.aleksandr.myapplication.ui.info.InfoView
+import com.example.aleksandr.myapplication.ui.login.LoginActivity
+import com.example.aleksandr.myapplication.ui.login.LoginPresenter
 import com.example.aleksandr.myapplication.ui.main.MainActivity
 import com.example.aleksandr.myapplication.ui.main.MainPresenter
 import dagger.Component
@@ -16,8 +18,10 @@ interface ApplicationComponent {
     // VIEW
     fun inject(infoView: InfoView)
     fun inject(mainView: MainActivity)
+    fun inject(mainView: LoginActivity)
 
     // PRESENTER
     fun inject(infoPresenter: InfoPresenter)
     fun inject(mainPresenter: MainPresenter)
+    fun inject(loginPresenter: LoginPresenter)
 }

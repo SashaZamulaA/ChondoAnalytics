@@ -1,12 +1,11 @@
-package com.example.aleksandr.myapplication.ui.main
+package com.example.aleksandr.myapplication.ui.login
 
 import android.app.Application
-import android.view.View
 import com.example.aleksandr.myapplication.AndroidApplication
 import com.example.aleksandr.myapplication.BasePresenter
-import com.example.aleksandr.myapplication.di.component.ApplicationComponent
+import com.example.aleksandr.myapplication.ui.main.MainActivity
 
-class MainPresenter(mainView: MainActivity, applicationComponent: Application): BasePresenter<MainActivity>(mainView){
+class LoginPresenter(loginView: LoginActivity, applicationComponent: Application): BasePresenter<LoginActivity>(loginView){
     init {
 
 

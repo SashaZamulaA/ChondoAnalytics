@@ -21,7 +21,7 @@ import com.example.aleksandr.myapplication.ui.main.MainActivity
 abstract class BaseActivity : AppCompatActivity(), IView, NavigationView.OnNavigationItemSelectedListener {
 
     internal lateinit var toolbar: Toolbar
-    private lateinit var drawer: DrawerLayout
+    lateinit var drawer: DrawerLayout
     private lateinit var navigationView: NavigationView
     private lateinit var toggle: ActionBarDrawerToggle
 
@@ -45,7 +45,7 @@ abstract class BaseActivity : AppCompatActivity(), IView, NavigationView.OnNavig
     }
 
     override fun onBackPressed() {
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
+         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START)
         } else {
             super.onBackPressed()
@@ -118,11 +118,11 @@ abstract class BaseActivity : AppCompatActivity(), IView, NavigationView.OnNavig
         }
 
         override fun onDestroy() {
-            super.onDestroy()
             System.gc()
             System.runFinalization()
             dismissProgress()
             mProgressDialog = null
+            super.onDestroy()
         }
     abstract fun init(savedInstanceState: Bundle?)
 
