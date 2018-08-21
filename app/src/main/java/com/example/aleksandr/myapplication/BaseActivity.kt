@@ -3,7 +3,6 @@ package com.example.aleksandr.myapplication
 import android.app.ProgressDialog
 import android.content.DialogInterface
 import android.content.Intent
-import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -15,6 +14,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.Toast
+import com.example.aleksandr.myapplication.ui.hdh.HDHView
 import com.example.aleksandr.myapplication.ui.info.InfoView
 import com.example.aleksandr.myapplication.ui.main.MainActivity
 
@@ -55,10 +55,12 @@ abstract class BaseActivity : AppCompatActivity(), IView, NavigationView.OnNavig
         val id = menuItem.itemId
         when (id) {
             R.id.nav_main -> startActivity(Intent(this, MainActivity::class.java))
-            R.id.nav_my_pet -> {
-                Toast.makeText(applicationContext, "You Clicked Options A", Toast.LENGTH_SHORT).show()
-                drawer.closeDrawer(GravityCompat.START)
-            }
+
+//            R.id.nav_hdh -> {
+//                startActivity(Intent(this, HDHView::class.java))
+//                Toast.makeText(applicationContext, "You Clicked Options A", Toast.LENGTH_SHORT).show()
+//                drawer.closeDrawer(GravityCompat.START)
+//            }
             R.id.nav_settings -> {
                 Toast.makeText(applicationContext, "You Clicked Options B", Toast.LENGTH_SHORT).show()
                 drawer.closeDrawer(GravityCompat.START)
@@ -74,14 +76,10 @@ abstract class BaseActivity : AppCompatActivity(), IView, NavigationView.OnNavig
                 startActivity(Intent.createChooser(sharingIntent, getString(R.string.share_by)))
             }
 
-            R.id.nav_send -> {
-                val uri = Uri.parse("mailto:vadym.adv@gmail.com")
-                val sendIntent = Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:"))
-                sendIntent.setData(uri)
-                startActivity(Intent.createChooser(sendIntent, "True Father Prayers"))
-            }
+                R.id.nav_info -> startActivity(Intent(this, InfoView::class.java))
 
-            R.id.nav_info -> startActivity(Intent(this, InfoView::class.java))
+                R.id.nav_hdh -> startActivity(Intent(this, HDHView::class.java))
+
         }
 
         drawer = findViewById<View>(R.id.drawer_layout) as DrawerLayout
