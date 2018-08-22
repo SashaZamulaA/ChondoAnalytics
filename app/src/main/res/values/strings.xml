@@ -52,4 +52,12 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ok">Click here</string>
+
+    <array name="category">
+        <item>faith</item>
+        <item>심청(heart)</item>
+        <item>blessing</item>
+
+    </array>
 </resources>

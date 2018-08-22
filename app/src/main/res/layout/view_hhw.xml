@@ -30,22 +30,26 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_test"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
             <EditText
                 android:id="@+id/editText_hhw"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:lines="5"/>
+
+            <Spinner
+                android:id="@+id/add_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/category" />
 
             <Button
                 android:id="@+id/btn_hdh"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:text="more" />
+                android:text="@string/ok" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
