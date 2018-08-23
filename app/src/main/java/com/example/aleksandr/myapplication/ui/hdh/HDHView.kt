@@ -1,21 +1,30 @@
 package com.example.aleksandr.myapplication.ui.hdh
 
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
-import android.widget.Toast
+import android.widget.*
 import com.example.aleksandr.myapplication.BaseActivity
 import com.example.aleksandr.myapplication.R
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DataSnapshot
+import com.example.aleksandr.myapplication.ui.hdh.model.HDH
+import com.google.firebase.database.ValueEventListener
+
+
 
 class HDHView : BaseActivity(), IHDHView {
+
+
 
     private lateinit var presenter: HDHPresenter
 
     var editTextName: EditText? = null
     var buttonSave: Button? = null
     var spinner: Spinner? = null
+    var databaseWord : DatabaseReference? = null
+    var listViewHDH :ListView? = null
+    var wordList: ArrayList<HDH>? = null
+
 
     override fun init(savedInstanceState: Bundle?) {
         super.setContentView(R.layout.view_hhw)
@@ -23,9 +32,11 @@ class HDHView : BaseActivity(), IHDHView {
         editTextName = findViewById(R.id.editText_hhw)
         buttonSave = findViewById(R.id.btn_hdh)
         spinner = findViewById(R.id.add_category)
+        listViewHDH = findViewById(R.id.listViewWord)
         buttonSave?.setOnClickListener {
             save()
         }
+        wordList = ArrayList<HDH>()
     }
 
     private fun save() {
@@ -44,6 +55,40 @@ class HDHView : BaseActivity(), IHDHView {
             Toast.makeText(applicationContext, "Successfully", Toast.LENGTH_LONG).show()
         }
     }
+
+    override fun onStart() {
+        super.onStart()
+        //attaching value event listener
+        databaseWord?.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                //clearing the previous artist list
+                wordList?.clear()
+
+
+                //iterating through all the nodes
+                for (postSnapshot in dataSnapshot.children) {
+                    //getting artist
+                    val artist = postSnapshot.getValue<HDH>(HDH::class.java)
+                    //adding artist to the list
+                    if (artist != null) {
+                        wordList?.add(artist)
+                    }
+                }
+
+                //creating adapter
+                val artistAdapter = wordList?.let { WordList(this@HDHView, it) }
+                //attaching adapter to the listview
+                listViewHDH?.adapter = artistAdapter
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+
+            }
+        })
+    }
+
+
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
