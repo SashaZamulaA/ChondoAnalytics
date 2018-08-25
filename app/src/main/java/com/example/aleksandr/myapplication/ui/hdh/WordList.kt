@@ -10,22 +10,20 @@ import android.widget.TextView
 import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.ui.hdh.model.HDHModel
 
-class ArtistList(private val context: Activity, private val wordList: ArrayList<HDHModel>) : ArrayAdapter<HDHModel>(context, R.layout.list_layout, wordList) {
+class ArtistList(private val context: Activity, private val artists: List<HDHModel>) : ArrayAdapter<HDHModel>(context, R.layout.item_is_word_list, artists) {
 
-    @SuppressLint("ViewHolder", "InflateParams")
+
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val inflater = context.layoutInflater
+        val listViewItem = inflater.inflate(R.layout.item_is_word_list, null, true)
 
-        val listViewItem = inflater.inflate(R.layout.list_layout, null, true)
+        val textViewName = listViewItem.findViewById<TextView>(R.id.name)
+        val textViewGenre = listViewItem.findViewById<TextView>(R.id.category)
 
-        val textViewName = listViewItem.findViewById<View>(R.id.editText_hhw) as TextView
-        val textViewCategory = listViewItem.findViewById<View>(R.id.add_category) as TextView
-
-        val hdh = wordList[position]
-        textViewName.text = hdh.name
-        textViewCategory.text = hdh.category
+        val artist = artists[position]
+        textViewName.text = artist.name
+        textViewGenre.text = artist.category
 
         return listViewItem
     }
-
 }
