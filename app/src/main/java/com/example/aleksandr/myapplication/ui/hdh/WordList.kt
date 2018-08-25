@@ -8,9 +8,9 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 
 import com.example.aleksandr.myapplication.R
-import com.example.aleksandr.myapplication.ui.hdh.model.HDH
+import com.example.aleksandr.myapplication.ui.hdh.model.HDHModel
 
-class WordList(private val context: Activity, private val wordList: ArrayList<HDH>) : ArrayAdapter<HDH>(context, R.layout.list_layout, wordList) {
+class ArtistList(private val context: Activity, private val wordList: ArrayList<HDHModel>) : ArrayAdapter<HDHModel>(context, R.layout.list_layout, wordList) {
 
     @SuppressLint("ViewHolder", "InflateParams")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {

@@ -13,7 +13,7 @@
 //import android.widget.Toast
 //
 //import com.example.aleksandr.myapplication.R
-//import com.example.aleksandr.myapplication.ui.hdh.model.HDH
+//import com.example.aleksandr.myapplication.ui.hdh.model.HDHModel
 //import com.example.aleksandr.myapplication.ui.main.MainActivity
 //import com.google.firebase.database.DataSnapshot
 //import com.google.firebase.database.DatabaseError
@@ -57,7 +57,7 @@
 //        textViewArtist = findViewById(R.id.textViewArtist) as TextView
 //        listViewTracks = findViewById(R.id.listViewTracks) as ListView
 //
-//        tracks = ArrayList<HDH>()
+//        tracks = ArrayList<HDHModel>()
 //
 //        textViewArtist.text = intent.getStringExtra(MainActivity.ARTIST_NAME)
 //
