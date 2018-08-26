@@ -29,7 +29,7 @@ class HDHView : BaseActivity(), IHDHView {
         editTextName = findViewById(R.id.editText_hhw)
         buttonSave = findViewById(R.id.btn_hdh)
         spinner = findViewById(R.id.add_category)
-        listViewArtists = findViewById(R.id.listViewArtists)
+        listViewArtists = findViewById(R.id.listViewWord)
 
         databaseWord = FirebaseDatabase.getInstance().getReference("word")
 
