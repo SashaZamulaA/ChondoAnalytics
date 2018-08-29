@@ -2,14 +2,15 @@ package com.example.aleksandr.myapplication.ui.hdh
 
 import android.os.Bundle
 import android.text.TextUtils
-import android.widget.*
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Spinner
+import android.widget.Toast
 import com.example.aleksandr.myapplication.BaseActivity
 import com.example.aleksandr.myapplication.R
-import com.google.firebase.database.*
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DataSnapshot
 import com.example.aleksandr.myapplication.ui.hdh.model.HDHModel
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.view_hhw.*
 
 class HDHView : BaseActivity(), IHDHView {
 
@@ -20,8 +21,9 @@ class HDHView : BaseActivity(), IHDHView {
     lateinit var buttonSave: Button
     lateinit var spinner: Spinner
     lateinit var databaseWord: DatabaseReference
-    lateinit var listViewArtists: ListView
-    lateinit var wordList: MutableList<HDHModel>
+    //    lateinit var listViewArtists: ListView
+    var wordList: MutableList<HDHModel> = emptyArray<HDHModel>().toMutableList()
+    lateinit var adapter: WordAdapter
 
     override fun init(savedInstanceState: Bundle?) {
         super.setContentView(R.layout.view_hhw)
@@ -29,11 +31,13 @@ class HDHView : BaseActivity(), IHDHView {
         editTextName = findViewById(R.id.editText_hhw)
         buttonSave = findViewById(R.id.btn_hdh)
         spinner = findViewById(R.id.add_category)
-        listViewArtists = findViewById(R.id.listViewWord)
-
+//        listViewArtists = findViewById(R.id.listViewWord)
         databaseWord = FirebaseDatabase.getInstance().getReference("word")
 
-        wordList = ArrayList()
+
+        adapter = WordAdapter(wordList, this)
+        listViewWord.adapter = adapter
+
         buttonSave.setOnClickListener {
             addArtist()
         }
@@ -57,10 +61,6 @@ class HDHView : BaseActivity(), IHDHView {
                         wordList.add(word)
                     }
                 }
-                //creating adapter
-                val artistAdapter = ArtistList(this@HDHView, wordList)
-                //attaching adapter to the listview
-                listViewArtists.adapter = artistAdapter
             }
             override fun onCancelled(databaseError: DatabaseError) {
             }
