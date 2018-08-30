@@ -36,7 +36,6 @@ class HDHView : BaseActivity(), IHDHView {
             showUpdateDialog(word.id, word.name)
             true
         }
-
         wordList = ArrayList()
         btn_hdh.setOnClickListener {
             addArtist()
@@ -74,6 +73,7 @@ class HDHView : BaseActivity(), IHDHView {
 
         val textViewName = dialogView.findViewById(R.id.editTextName) as EditText
         val buttonUpdate = dialogView.findViewById(R.id.buttonUpdate) as Button
+        val buttonDelete = dialogView.findViewById(R.id.buttonDelete) as Button
         val spinner = dialogView.findViewById(R.id.spinner_categories_dialog) as Spinner
 
         dialogBuilder.setTitle("Update Word- $word")
@@ -92,7 +92,19 @@ class HDHView : BaseActivity(), IHDHView {
             hideKeyboard()
 
         }
+
+        buttonDelete.setOnClickListener {
+            deleteWord(wordId)
+            alertDialog.dismiss()
+            hideKeyboard()
+        }
     }
+
+    private fun deleteWord(wordId: String) {
+        val dRDelete = FirebaseDatabase.getInstance().getReference("word").child(wordId)
+        dRDelete.removeValue()
+        Toast.makeText(this, "Word remove Successfully", Toast.LENGTH_LONG).show()
+        }
 
     private fun updateArtist(id: String, name: String, category: String): Boolean {
         val dR = FirebaseDatabase.getInstance().getReference("word").child(id)
