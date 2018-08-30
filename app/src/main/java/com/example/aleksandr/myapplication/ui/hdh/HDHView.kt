@@ -4,53 +4,33 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.text.TextUtils
-import android.view.LayoutInflater
 import android.view.View
-import android.widget.*
 import android.widget.AdapterView.OnItemLongClickListener
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Spinner
+import android.widget.Toast
 import com.example.aleksandr.myapplication.BaseActivity
 import com.example.aleksandr.myapplication.R
+import com.example.aleksandr.myapplication.hideKeyboard
 import com.example.aleksandr.myapplication.ui.hdh.model.HDHModel
 import com.google.firebase.database.*
-import android.widget.Toast
-import com.example.aleksandr.myapplication.hideKeyboard
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.DatabaseReference
-
-
+import kotlinx.android.synthetic.main.view_hhw.*
 
 
 class HDHView : BaseActivity(), IHDHView {
 
-
     private lateinit var presenter: HDHPresenter
-
-    lateinit var editTextName: EditText
-    lateinit var buttonSave: Button
-    lateinit var spinner: Spinner
-    lateinit var databaseWord: DatabaseReference
-    lateinit var listViewArtists: ListView
+    private lateinit var databaseWord: DatabaseReference
     lateinit var wordList: MutableList<HDHModel>
-    private lateinit var dialogBuilder: AlertDialog.Builder
-    lateinit var inflater: LayoutInflater
-    lateinit var dialogView: View
-    private lateinit var textViewName: EditText
-    lateinit var buttonUpdate: Button
-    private lateinit var alertDialog: AlertDialog
 
 
     override fun init(savedInstanceState: Bundle?) {
         super.setContentView(R.layout.view_hhw)
         presenter = HDHPresenter(this, application)
-        editTextName = findViewById(R.id.editText_hhw)
-        buttonSave = findViewById(R.id.btn_hdh)
-        spinner = findViewById(R.id.add_category)
-        listViewArtists = findViewById(R.id.listViewWord)
-
-
         databaseWord = FirebaseDatabase.getInstance().getReference("word")
 
-        listViewArtists.onItemLongClickListener = OnItemLongClickListener { _, _, i, _ ->
+        listViewWord.onItemLongClickListener = OnItemLongClickListener { _, _, i, _ ->
 
             val word = wordList[i]
             showUpdateDialog(word.id, word.name)
@@ -58,33 +38,25 @@ class HDHView : BaseActivity(), IHDHView {
         }
 
         wordList = ArrayList()
-        buttonSave.setOnClickListener {
+        btn_hdh.setOnClickListener {
             addArtist()
         }
     }
 
     override fun onStart() {
         super.onStart()
-        //attaching value event listener
         databaseWord.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
-                //clearing the previous artist list
                 wordList.clear()
-
-                //iterating through all the nodes
                 for (postSnapshot in dataSnapshot.children) {
-                    //getting artist
                     val word = postSnapshot.getValue<HDHModel>(HDHModel::class.java)
-                    //adding artist to the list
                     if (word != null) {
                         wordList.add(word)
                     }
                 }
-                //creating adapter
                 val artistAdapter = ArtistList(this@HDHView, wordList)
-                //attaching adapter to the listview
-                listViewArtists.adapter = artistAdapter
+                listViewWord.adapter = artistAdapter
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
@@ -94,17 +66,18 @@ class HDHView : BaseActivity(), IHDHView {
 
     @SuppressLint("InflateParams")
     private fun showUpdateDialog(wordId: String, word: String) {
-        dialogBuilder = AlertDialog.Builder(this)
-        inflater = layoutInflater
-        dialogView = inflater.inflate(R.layout.update_dialog, null)
+
+        val dialogBuilder = AlertDialog.Builder(this)
+        val inflater = layoutInflater
+        val dialogView = inflater.inflate(R.layout.update_dialog, null) as View
         dialogBuilder.setView(dialogView)
 
-        textViewName = dialogView.findViewById(R.id.editTextName)
-        buttonUpdate = dialogView.findViewById(R.id.buttonUpdate)
-        spinner = dialogView.findViewById(R.id.spinner_categories_dialog)
+        val textViewName = dialogView.findViewById(R.id.editTextName) as EditText
+        val buttonUpdate = dialogView.findViewById(R.id.buttonUpdate) as Button
+        val spinner = dialogView.findViewById(R.id.spinner_categories_dialog) as Spinner
 
         dialogBuilder.setTitle("Update Word- $word")
-        alertDialog = dialogBuilder.create()
+        val alertDialog = dialogBuilder.create()
         alertDialog.show()
 
         buttonUpdate.setOnClickListener {
@@ -112,7 +85,7 @@ class HDHView : BaseActivity(), IHDHView {
             val category: String = spinner.selectedItem.toString()
 
             if (TextUtils.isEmpty(name)) {
-                editTextName.setError("Name required")
+                editText_hhw.error = "Name required"
             }
             updateArtist(wordId, name, category)
             alertDialog.dismiss()
@@ -130,30 +103,19 @@ class HDHView : BaseActivity(), IHDHView {
     }
 
     private fun addArtist() {
-        //getting the values to save
-        val name = editTextName.text.toString().trim()
-        val category = spinner.selectedItem.toString()
+        val name = editText_hhw.text.toString().trim()
+        val category = add_category.selectedItem.toString()
 
-        //checking if the value is provided
         if (!TextUtils.isEmpty(name)) {
-
-            //getting a unique id using push().getKey() method
-            //it will create a unique id and we will use it as the Primary Key for our Artist
             val id = databaseWord.push().key
-
-            //creating an Artist Object
             val wordList = id?.let { HDHModel(it, name, category) }
 
-            //Saving the Artist
             id?.let { databaseWord.child(it).setValue(wordList) }
 
-            //setting edittext to blank again
-            editTextName.setText("")
+            editText_hhw.setText("")
 
-            //displaying a success toast
             Toast.makeText(this, "Artist added", Toast.LENGTH_LONG).show()
         } else {
-            //if the value is not given displaying a toast
             Toast.makeText(this, "Please enter a name", Toast.LENGTH_LONG).show()
         }
     }
