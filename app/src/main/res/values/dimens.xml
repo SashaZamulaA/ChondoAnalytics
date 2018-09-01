@@ -15,6 +15,10 @@
     <dimen name="space_26">26dp</dimen>
     <dimen name="space_36">36dp</dimen>
 
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="fab_margin">16dp</dimen>
     // TEXT SIZE
     <dimen name="caption_text_size">12sp</dimen>
     <dimen name="body1_text_size">14sp</dimen>

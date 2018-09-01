@@ -26,10 +26,10 @@ class LoginActivity : AppCompatActivity() {
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance()
 
-        if (auth?.currentUser != null) {
-            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-            finish()
-        }
+//        if (auth?.currentUser != null) {
+//            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+//            finish()
+//        }
         link_signup.setOnClickListener {
 
             val intent = Intent(applicationContext, SignupActivity::class.java)

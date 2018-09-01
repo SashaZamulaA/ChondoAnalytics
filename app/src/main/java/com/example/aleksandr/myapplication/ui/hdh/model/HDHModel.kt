@@ -12,9 +12,16 @@ class HDHModel {
         //this constructor is required
     }
 
+    constructor(id: String, name: String) {
+        this.id = id
+        this.name = name
+    }
     constructor(id: String, name: String, category: String) {
         this.id = id
         this.name = name
         this.category = category
     }
+
+    val payload: Map<String, Any>
+        get() = mapOf("name" to this.name)
 }
