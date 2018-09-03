@@ -1,6 +1,5 @@
 package com.example.aleksandr.myapplication.ui.hdh
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +16,7 @@ class ArtistList(private val context: Activity, private val artists: List<HDHMod
         val inflater = context.layoutInflater
         val listViewItem = inflater.inflate(R.layout.item_is_word_list, null, true)
 
-        val textViewName = listViewItem.findViewById<TextView>(R.id.name)
+        val textViewName = listViewItem.findViewById<TextView>(R.id.word)
         val textViewGenre = listViewItem.findViewById<TextView>(R.id.category)
 
         val artist = artists[position]

@@ -89,7 +89,7 @@
 //                    tracks.add(track)
 //                }
 //                val trackListAdapter = TrackList(this@ArtistActivity, tracks)
-//                listViewTracks.adapter = trackListAdapter
+//                listViewTracks.wordAdapter = trackListAdapter
 //            }
 //
 //            override fun onCancelled(databaseError: DatabaseError) {

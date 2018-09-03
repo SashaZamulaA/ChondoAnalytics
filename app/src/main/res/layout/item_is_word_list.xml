@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/listView"
+    android:layout_margin="@dimen/space_4"
     android:layout_height="75dp"
+    app:cardBackgroundColor="#FFFFE8"
     android:background="@drawable/background_selectable_item"
     android:foreground="?android:selectableItemBackground">
 
@@ -16,17 +19,19 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/category_pet"
+            android:id="@+id/title_id"
             style="@style/TextStyle_SubHeader_Accent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             tools:text="time" />
 
         <TextView
-            android:id="@+id/name"
+            android:id="@+id/word"
             style="@style/TextStyle_Body2_Primary_Dark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             tools:text="Word" />
 
         <TextView
@@ -34,12 +39,8 @@
             style="@style/TextStyle_Caption_Dark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             tools:text="Category" />
     </LinearLayout>
 
-    <View
-        style="@style/AppTheme.HorizontalViewDivider"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="92dp" />
-
-</RelativeLayout>
+    </android.support.v7.widget.CardView>

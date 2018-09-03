@@ -8,6 +8,7 @@ class HDHModel {
     var name: String = ""
     var category: String = ""
 
+
     constructor() {
         //this constructor is required
     }
