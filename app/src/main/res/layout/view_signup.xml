@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nestedScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    tools:context=".ui.login.RegistrationActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,7 +22,7 @@
             android:layout_marginBottom="@dimen/space_12"
             android:src="@drawable/analytics2" />
 
-        <TextView
+        <android.support.v7.widget.AppCompatTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
@@ -51,6 +54,7 @@
 
         <!-- Name Label -->
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_InputLayoutName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/space_8"
@@ -64,47 +68,44 @@
                 android:inputType="textPersonName" />
         </android.support.design.widget.TextInputLayout>
 
-        <!-- Address Label -->
-        <android.support.design.widget.TextInputLayout
+
+        <!--Город-->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/space_8"
-            android:layout_marginTop="@dimen/space_8">
+            android:layout_marginTop="@dimen/space_8"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/input_address"
+            <TextView
+                style="@style/TextStyle_SubHeader_Accent"
+                android:layout_marginBottom="@dimen/space_4"
+                android:layout_marginTop="@dimen/space_8"
+                android:text="@string/country" />
+
+            <Spinner
+                android:id="@+id/input_owner_city"
+                style="@style/TextStyle_Body2_Primary_Dark"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/country"
-                android:inputType="textPostalAddress" />
-        </android.support.design.widget.TextInputLayout>
+                android:layout_height="@dimen/space_20" />
+
+            <View
+                style="@style/AppTheme.HorizontalSpinnerDivider"
+                android:layout_marginTop="@dimen/space_8" />
+        </LinearLayout>
 
 
-        <!--  Email Label -->
-        <!--<android.support.design.widget.TextInputLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginBottom="@dimen/space_8"-->
-        <!--android:layout_marginTop="@dimen/space_8">-->
-
-        <!--<EditText-->
-        <!--android:id="@+id/input_email"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:hint="@string/email"-->
-        <!--android:inputType="textEmailAddress" />-->
-        <!--</android.support.design.widget.TextInputLayout>-->
-
-
-        <!-- mobile number -->
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_InputLayoutEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/space_8"
             android:layout_marginTop="@dimen/space_8">
 
             <EditText
-                android:id="@+id/editText_email"
+                android:id="@+id/input_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/email"
@@ -113,6 +114,7 @@
 
         <!-- Password Label -->
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_InputLayoutPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/space_8"
@@ -128,6 +130,7 @@
 
         <!-- Password Re-enter Label -->
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/textInputLayoutConfirmPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/space_8"
@@ -171,9 +174,14 @@
                 android:gravity="start"
                 android:singleLine="false" />
         </LinearLayout>
-
+        <TextView
+            android:id="@+id/checkbox_gdpr_error"
+            style="@style/TextAppearance.AppCompat.Small.ErrorStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="@string/checkbox_gdpr" />
         <!-- SignUp Button -->
-        <Button
+        <android.support.v7.widget.AppCompatButton
             android:id="@+id/btn_signup"
             style="@style/ButtonFillGreen"
             android:layout_width="match_parent"
@@ -183,7 +191,7 @@
             android:padding="@dimen/space_12"
             android:text="@string/create_account" />
 
-        <TextView
+        <android.support.v7.widget.AppCompatTextView
             android:id="@+id/link_login"
             style="@style/TextStyle_Body2_Link_Color"
             android:layout_width="match_parent"
@@ -193,4 +201,4 @@
             android:text="@string/login_member" />
 
     </LinearLayout>
-</ScrollView>
+</android.support.v4.widget.NestedScrollView>

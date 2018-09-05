@@ -164,4 +164,10 @@
         <item name="android:textColorSecondary">@color/ic_normal_dark</item>
     </style>
 
+    <!-- ERROR STYLES-->
+    <style name="TextAppearance.AppCompat.Small.ErrorStyle">
+        <item name="android:textColor">@color/text_error</item>
+        <item name="android:textSize">@dimen/caption_text_size</item>
+    </style>
+
 </resources>

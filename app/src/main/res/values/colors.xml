@@ -29,4 +29,11 @@
     <color name="text_primary_light">#FFF</color> <!--100% of white-->
     <color name="button_toolbar_pressed">#40FFFFFF</color> <!--25% of white-->
     <color name="black_effective">#2a2a2a</color>
+
+    <color name="text_error">#DEFF1744</color> <!--Red A400 87%-->
+
+
+    <color name="colorBackground">#413e4f</color>
+    <color name="colorText">#FFFFFF</color>
+    <color name="colorTextHint">#51d8c7</color>
 </resources>

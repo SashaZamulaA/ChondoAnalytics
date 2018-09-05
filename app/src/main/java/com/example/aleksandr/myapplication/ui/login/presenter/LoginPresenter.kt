@@ -1,9 +1,9 @@
-package com.example.aleksandr.myapplication.ui.login
+package com.example.aleksandr.myapplication.ui.login.presenter
 
 import android.app.Application
 import com.example.aleksandr.myapplication.AndroidApplication
 import com.example.aleksandr.myapplication.BasePresenter
-import com.example.aleksandr.myapplication.ui.main.MainActivity
+import com.example.aleksandr.myapplication.ui.login.LoginActivity
 
 class LoginPresenter(loginView: LoginActivity, applicationComponent: Application): BasePresenter<LoginActivity>(loginView){
     init {

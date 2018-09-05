@@ -1,154 +1,136 @@
 package com.example.aleksandr.myapplication.ui.login
 
-import android.app.Activity
-import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.Snackbar
+import android.support.design.widget.TextInputEditText
+import android.support.design.widget.TextInputLayout
+import android.support.v4.widget.NestedScrollView
 import android.support.v7.app.AppCompatActivity
-import android.text.TextUtils
-import android.util.Log
+import android.support.v7.widget.AppCompatButton
+import android.support.v7.widget.AppCompatTextView
 import android.view.View
-import android.widget.Toast
-import com.example.aleksandr.myapplication.BaseActivity
 import com.example.aleksandr.myapplication.R
+import com.example.aleksandr.myapplication.ui.login.helpers.InputValidation
+import com.example.aleksandr.myapplication.ui.login.presenter.LoginPresenter
+import com.example.aleksandr.myapplication.ui.login.sql.DatabaseHelper
 import com.example.aleksandr.myapplication.ui.main.MainActivity
-import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.view_login.*
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity(), View.OnClickListener {
+
+    private val activity = this@LoginActivity
+
     private lateinit var presenter: LoginPresenter
-    private var auth: FirebaseAuth? = null
+    private lateinit var nestedScrollView: NestedScrollView
+
+    private lateinit var textInputLayoutEmail: TextInputLayout
+    private lateinit var textInputLayoutPassword: TextInputLayout
+
+    private lateinit var textInputEditTextEmail: TextInputEditText
+    private lateinit var textInputEditTextPassword: TextInputEditText
+
+    private lateinit var appCompatButtonLogin: AppCompatButton
+
+    private lateinit var textViewLinkRegister: AppCompatTextView
+
+    private lateinit var inputValidation: InputValidation
+    private lateinit var databaseHelper: DatabaseHelper
+
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.view_login)
         presenter = LoginPresenter(this, application)
-        //Get Firebase auth instance
-        auth = FirebaseAuth.getInstance()
+      //        if (auth?.currentUser != null) {
+//            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+//            finish()
+//        }
+        initViews()
 
-        if (auth?.currentUser != null) {
-            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-            finish()
-        }
+        // initializing the listeners
+        initListeners()
+
+        // initializing the objects
+        initObjects()
+
         link_signup.setOnClickListener {
 
-            val intent = Intent(applicationContext, SignupActivity::class.java)
+            val intent = Intent(applicationContext, RegistrationActivity::class.java)
             startActivityForResult(intent, REQUEST_SIGNUP)
             finish()
         }
 
-        btn_login.setOnClickListener(View.OnClickListener {
-            val email = editText_email.text.toString()
-            val password = input_password.text.toString()
+    }
 
-            if (TextUtils.isEmpty(email)) {
-                Toast.makeText(applicationContext, "Enter email address!", Toast.LENGTH_SHORT).show()
-                return@OnClickListener
+    private fun initViews() {
+
+        nestedScrollView = findViewById<View>(R.id.nestedScrollView) as NestedScrollView
+
+        textInputLayoutEmail = findViewById<View>(R.id.textInputLayoutEmail) as TextInputLayout
+        textInputLayoutPassword = findViewById<View>(R.id.text_InputLayoutPassword) as TextInputLayout
+
+        textInputEditTextEmail = findViewById<View>(R.id.input_email) as TextInputEditText
+        textInputEditTextPassword = findViewById<View>(R.id.input_password) as TextInputEditText
+
+        appCompatButtonLogin = findViewById<View>(R.id.btn_login) as AppCompatButton
+
+        textViewLinkRegister = findViewById<View>(R.id.link_signup) as AppCompatTextView
+
+    }
+
+    private fun initListeners() {
+
+        appCompatButtonLogin.setOnClickListener(this)
+        textViewLinkRegister.setOnClickListener(this)
+    }
+    private fun initObjects() {
+
+        databaseHelper = DatabaseHelper(activity)
+        inputValidation = InputValidation(activity)
+
+    }
+
+    override fun onClick(v: View) {
+        when (v.id) {
+            R.id.btn_login -> verifyFromSQLite()
+            R.id.link_signup -> {
+                val intentRegister = Intent(applicationContext, RegistrationActivity::class.java)
+                startActivity(intentRegister)
             }
+        }
+    }
+    private fun verifyFromSQLite() {
 
-            if (TextUtils.isEmpty(password)) {
-                Toast.makeText(applicationContext, "Enter password!", Toast.LENGTH_SHORT).show()
-                return@OnClickListener
-            }
+        if (!inputValidation.isInputEditTextFilled(textInputEditTextEmail, textInputLayoutEmail, getString(R.string.error_message_email))) {
+            return
+        }
+        if (!inputValidation.isInputEditTextEmail(textInputEditTextEmail, textInputLayoutEmail, getString(R.string.error_message_email))) {
+            return
+        }
+        if (!inputValidation.isInputEditTextFilled(textInputEditTextPassword, textInputLayoutPassword, getString(R.string.error_message_email))) {
+            return
+        }
 
-            btn_login.isEnabled = false
-
-            val progressDialog = ProgressDialog(this@LoginActivity) // TODO: I can add style
-            progressDialog.isIndeterminate = true
-            progressDialog.setMessage("Login...")
-            progressDialog.show()
-
-            //authenticate user
-            auth?.signInWithEmailAndPassword(email, password)
-                    ?.addOnCompleteListener(this@LoginActivity) { task ->
-                        // If sign in fails, display a message to the user. If sign in succeeds
-                        // the auth state listener will be notified and logic to handle the
-                        // signed in user can be handled in the listener.
-                        progressDialog.dismiss()
-                        if (!task.isSuccessful) {
-                            // there was an error
-                            if (password.length < 6) {
-                                input_password.error = getString(R.string.minimum_password)
-                            } else {
-                                Toast.makeText(this@LoginActivity, getString(R.string.auth_failed), Toast.LENGTH_LONG).show()
-                            }
-                        } else {
-                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                            startActivity(intent)
-                            finish()
-                        }
-                    }
-        })
+        if (databaseHelper.checkUser(textInputEditTextEmail.text.toString().trim { it <= ' ' }, textInputEditTextPassword.text.toString().trim { it <= ' ' })) {
 
 
+            val accountsIntent = Intent(activity, MainActivity::class.java)
+            accountsIntent.putExtra("EMAIL", textInputEditTextEmail!!.text.toString().trim { it <= ' ' })
+            emptyInputEditText()
+            startActivity(accountsIntent)
+
+
+        } else {
+
+            // Snack Bar to show success message that record is wrong
+            Snackbar.make(nestedScrollView!!, getString(R.string.error_valid_email_password), Snackbar.LENGTH_LONG).show()
+        }
     }
 
-//    fun login() {
-//        Log.d(TAG, "Login")
-//
-//        if (!validate()) {
-//            onLoginFailed()
-//            return
-//        }
-//
-//        btn_login.isEnabled = false
-//
-//        val progressDialog = ProgressDialog(this@LoginActivity) // TODO: I can add style
-//        progressDialog.isIndeterminate = true
-//        progressDialog.setMessage("Login...")
-//        progressDialog.show()
-//
-////        val email = input_email.text.toString()
-//        val password = input_password.text.toString()
-//
-//        // TODO: Implement your own authentication logic here.
-//
-//        android.os.Handler().postDelayed(
-//                {
-//                    // On complete call either onLoginSuccess or onLoginFailed
-//                    onLoginSuccess()
-//                    // onLoginFailed();
-//                    progressDialog.dismiss()
-//                }, 3000)
-//    }
-//
-
-
-//    override fun onBackPressed() {
-//        // Disable going back to the MainActivity
-////        moveTaskToBack(true)
-//    }
-
-    private fun onLoginSuccess() {
-        btn_login.isEnabled = true
-//        finish()
-        startActivity(Intent(this, BaseActivity::class.java))
-        finish()
-    }
-
-    private fun onLoginFailed() {
-        Toast.makeText(baseContext, "Login failed", Toast.LENGTH_LONG).show()
-        btn_login.isEnabled = true
-    }
-
-    private fun validate(): Boolean {
-        var valid = true
-
-//        val email = input_email.text.toString()
-        val password = input_password.text.toString()
-
-//        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-//            input_email.error = "enter a valid email address"
-//            valid = false
-//        } else input_email.error = null
-
-        // TODO validate password
-//        if (password.isEmpty() || password.length < 4 || password.length > 10) {
-//            input_password.error = "between 4 and 10 alphanumeric characters"
-//            valid = false
-//        } else input_password.error = null
-
-        return valid
+    private fun emptyInputEditText() {
+        textInputEditTextEmail!!.text = null
+        textInputEditTextPassword!!.text = null
     }
 
     companion object {
