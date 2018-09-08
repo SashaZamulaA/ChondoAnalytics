@@ -37,7 +37,7 @@ class LoginPresenter(loginView: LoginActivity, applicationComponent: Application
             view?.setButtonLoginEnabled(false)
             isValidateSuccess = false
         }
-        if (isValidateSuccess) view?.verifyFromSQLite()
+        if (isValidateSuccess) view?.onLoginSuccess()
     }
 
     fun onResetError() {

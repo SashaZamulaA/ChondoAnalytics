@@ -5,7 +5,6 @@ interface ILoginActivity {
     fun onResetError()
     fun setButtonLoginEnabled(isEnable: Boolean)
     fun showInvalidValue(errorField: InvalidValue)
-    fun verifyFromSQLite()
 
     enum class InvalidValue {
         NO_EMAIL,

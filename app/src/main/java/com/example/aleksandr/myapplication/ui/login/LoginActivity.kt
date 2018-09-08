@@ -3,35 +3,33 @@ package com.example.aleksandr.myapplication.ui.login
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.setSimpleTextWatcher
 import com.example.aleksandr.myapplication.ui.login.presenter.LoginPresenter
-import com.example.aleksandr.myapplication.ui.login.sql.DatabaseHelper
 import com.example.aleksandr.myapplication.ui.main.MainActivity
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.view_login.*
+import kotlinx.android.synthetic.main.view_signup.*
 
 class LoginActivity : AppCompatActivity(), ILoginActivity {
 
     private val activity = this@LoginActivity
+    private var auth: FirebaseAuth? = null
 
     private lateinit var presenter: LoginPresenter
-
-    private lateinit var databaseHelper: DatabaseHelper
-
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.view_login)
+
         presenter = LoginPresenter(this, application)
-        //        if (auth?.currentUser != null) {
-//            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-//            finish()
-//        }
+        auth = FirebaseAuth.getInstance()
 
-        databaseHelper = DatabaseHelper(activity)
-
+        if (auth?.currentUser != null) {
+            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+            finish()
+        }
         input_email.setSimpleTextWatcher {
             presenter.onResetError()
             presenter.onUpdateOwnerEmail(it)
@@ -41,6 +39,7 @@ class LoginActivity : AppCompatActivity(), ILoginActivity {
             presenter.onResetError()
             presenter.onUpdateOwnerPassword(it)
         }
+
 
         btn_login.setOnClickListener { presenter.onValidateAndLogin() }
 
@@ -74,10 +73,10 @@ class LoginActivity : AppCompatActivity(), ILoginActivity {
 
     override fun showInvalidValue(errorField: ILoginActivity.InvalidValue) {
         when (errorField) {
-            ILoginActivity.InvalidValue.NO_EMAIL -> text_InputLayoutEmail.error = resources.getString(R.string.no_email)
-            ILoginActivity.InvalidValue.INVALID_EMAIL -> text_InputLayoutEmail.error = resources.getString(R.string.email_incorrect)
-            ILoginActivity.InvalidValue.NO_PASSWORD -> text_InputLayoutPassword.error = resources.getString(R.string.no_password)
-            ILoginActivity.InvalidValue.PASSWORD_TOO_SHORT -> text_InputLayoutPassword.error = resources.getString(R.string.password_too_short)
+            ILoginActivity.InvalidValue.NO_EMAIL -> text_InputLayoutEmail_login.error = resources.getString(R.string.no_email)
+            ILoginActivity.InvalidValue.INVALID_EMAIL -> text_InputLayoutEmail_login.error = resources.getString(R.string.email_incorrect)
+            ILoginActivity.InvalidValue.NO_PASSWORD -> text_InputLayoutPassword_login.error = resources.getString(R.string.no_password)
+            ILoginActivity.InvalidValue.PASSWORD_TOO_SHORT -> text_InputLayoutPassword_login.error = resources.getString(R.string.password_too_short)
         }
     }
 
@@ -86,32 +85,24 @@ class LoginActivity : AppCompatActivity(), ILoginActivity {
         progressDialog.isIndeterminate = true
         progressDialog.setMessage("Login...")
         progressDialog.show()
-        verifyFromSQLite()
+        val email = input_email_login.text.toString()
+        val password = input_password_login.text.toString()
+
+        auth?.signInWithEmailAndPassword(email, password)
+                ?.addOnCompleteListener(this@LoginActivity) { task ->
+                    // If sign in fails, display a message to the user. If sign in succeeds
+                    // the auth state listener will be notified and logic to handle the
+                    // signed in user can be handled in the listener.
+                    progressDialog.dismiss()
+                    if (!task.isSuccessful) {
+                        // there was an error
+
+                    } else {
+                        val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+                }
     }
 
-    override fun verifyFromSQLite() {
-        val progressDialog = ProgressDialog(this@LoginActivity)
-        progressDialog.isIndeterminate = true
-        progressDialog.setMessage("Login...")
-        progressDialog.show()
-
-        if (databaseHelper.checkUser(input_email.text.toString().trim { it <= ' ' }, input_password.text.toString().trim { it <= ' ' })) {
-
-            val accountsIntent = Intent(activity, MainActivity::class.java)
-            accountsIntent.putExtra("EMAIL", input_email.text.toString().trim { it <= ' ' })
-            progressDialog.dismiss()
-            startActivity(accountsIntent)
-
-
-        } else {
-            progressDialog.dismiss()
-
-            Snackbar.make(nestedScrollView!!, getString(R.string.error_valid_email_password), Snackbar.LENGTH_LONG).show()
-        }
-    }
-
-    companion object {
-        private val TAG = "LoginActivity"
-        private val REQUEST_SIGNUP = 0
-    }
- }
+}
