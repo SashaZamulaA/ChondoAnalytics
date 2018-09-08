@@ -19,7 +19,7 @@
     <string name="minimum_password">Password too short, enter minimum 6 characters!</string>
     <string name="auth_failed">Authentication failed, check your email and password or sign up</string>
     <string name="signup_successful">Registration successful</string>
-
+    <string name="incorrect_sing_in">Incorrect email or password. Please try again.</string>
     <string name="text_accounts">All Accounts</string>
     <string name="hint_name">Name</string>
     <string name="hint_email">Email</string>

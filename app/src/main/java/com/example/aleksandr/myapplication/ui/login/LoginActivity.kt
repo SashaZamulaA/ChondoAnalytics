@@ -4,21 +4,19 @@ import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.widget.Toast
 import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.setSimpleTextWatcher
+import com.example.aleksandr.myapplication.showMaterialDialogOk
 import com.example.aleksandr.myapplication.ui.login.presenter.LoginPresenter
 import com.example.aleksandr.myapplication.ui.main.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.view_login.*
-import kotlinx.android.synthetic.main.view_signup.*
 
 class LoginActivity : AppCompatActivity(), ILoginActivity {
 
-    private val activity = this@LoginActivity
     private var auth: FirebaseAuth? = null
-
     private lateinit var presenter: LoginPresenter
+
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +42,6 @@ class LoginActivity : AppCompatActivity(), ILoginActivity {
         btn_login.setOnClickListener { presenter.onValidateAndLogin() }
 
         link_signup.setOnClickListener {
-
             val intentRegister = Intent(applicationContext, RegistrationActivity::class.java)
             startActivity(intentRegister)
             finish()
@@ -79,7 +76,8 @@ class LoginActivity : AppCompatActivity(), ILoginActivity {
         }
     }
 
-    override fun onLoginSuccess() {
+
+    override fun onLoginSuccess(onOk: () -> Unit) {
         val progressDialog = ProgressDialog(this@LoginActivity)
         progressDialog.isIndeterminate = true
         progressDialog.setMessage("Login...")
@@ -89,13 +87,14 @@ class LoginActivity : AppCompatActivity(), ILoginActivity {
 
         auth?.signInWithEmailAndPassword(email, password)
                 ?.addOnCompleteListener(this@LoginActivity) { task ->
-                    // If sign in fails, display a message to the user. If sign in succeeds
-                    // the auth state listener will be notified and logic to handle the
-                    // signed in user can be handled in the listener.
                     progressDialog.dismiss()
                     if (!task.isSuccessful) {
-                        Toast.makeText(this@LoginActivity, "Authentication failed." + task.exception!!,
-                                Toast.LENGTH_SHORT).show()
+                        progressDialog.dismiss()
+                        showMaterialDialogOk(null, R.string.incorrect_sing_in, { onOk() })
+
+//                        progressDialog.isIndeterminate = true
+//                        progressDialog.setMessage("Diney...")
+//                        progressDialog.show()
 
                     } else {
                         val intent = Intent(this@LoginActivity, MainActivity::class.java)
@@ -104,5 +103,4 @@ class LoginActivity : AppCompatActivity(), ILoginActivity {
                     }
                 }
     }
-
 }

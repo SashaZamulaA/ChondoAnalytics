@@ -1,7 +1,7 @@
 package com.example.aleksandr.myapplication.ui.login
 
 interface ILoginActivity {
-    fun onLoginSuccess()
+    fun onLoginSuccess(onOk: () -> Unit)
     fun onResetError()
     fun setButtonLoginEnabled(isEnable: Boolean)
     fun showInvalidValue(errorField: InvalidValue)
