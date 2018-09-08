@@ -7,19 +7,20 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.setSimpleTextWatcher
-import com.example.aleksandr.myapplication.ui.login.model.User
 import com.example.aleksandr.myapplication.ui.login.presenter.RegistrationPresenter
-import com.example.aleksandr.myapplication.ui.login.sql.DatabaseHelper
 import com.example.aleksandr.myapplication.ui.main.MainActivity
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.view_signup.*
 
 
 class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
 
-    private val activity = this@RegistrationActivity
+    //    private val activity = this@RegistrationActivity
     lateinit var presenter: RegistrationPresenter
+    private var auth: FirebaseAuth? = null
 
     private val spinner_country = arrayOf(
             "Киев", "Харьков", "Днепропетровск", "Житомир", "Львов", "Одесса", "Чернигов"
@@ -109,17 +110,26 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
         progressDialog.isIndeterminate = true
         progressDialog.setMessage(resources.getString(R.string.signup_successful))
         progressDialog.show()
-
-
-
-        startActivity(Intent(this@RegistrationActivity, MainActivity::class.java))
-        finish()
+        val email = input_email.text.toString().trim()
+        val password = input_password.text.toString().trim()
+        auth?.createUserWithEmailAndPassword(email, password)
+                ?.addOnCompleteListener(this@RegistrationActivity) { task ->
+                    Toast.makeText(this@RegistrationActivity, "createUserWithEmail:onComplete:" + task.isSuccessful, Toast.LENGTH_SHORT).show()
+                    progressDialog.dismiss()
+                    // If sign in fails, display a message to the user. If sign in succeeds
+                    // the auth state listener will be notified and logic to handle the
+                    // signed in user can be handled in the listener.
+                    if (!task.isSuccessful) {
+                        Toast.makeText(this@RegistrationActivity, "Authentication failed." + task.exception!!,
+                                Toast.LENGTH_SHORT).show()
+                    } else {
+                        startActivity(Intent(this@RegistrationActivity, MainActivity::class.java))
+                        finish()
+                    }
+                }
     }
 
     override fun setButtonCreateEnabled(isEnabled: Boolean) {
         btn_signup.isEnabled = isEnabled
     }
-
 }
-
-

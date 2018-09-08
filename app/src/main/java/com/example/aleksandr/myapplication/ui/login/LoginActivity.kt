@@ -4,6 +4,7 @@ import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.widget.Toast
 import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.setSimpleTextWatcher
 import com.example.aleksandr.myapplication.ui.login.presenter.LoginPresenter
@@ -26,20 +27,19 @@ class LoginActivity : AppCompatActivity(), ILoginActivity {
         presenter = LoginPresenter(this, application)
         auth = FirebaseAuth.getInstance()
 
-        if (auth?.currentUser != null) {
-            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-            finish()
-        }
-        input_email.setSimpleTextWatcher {
+//        if (auth?.currentUser != null) {
+//            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+//            finish()
+//        }
+        input_email_login.setSimpleTextWatcher {
             presenter.onResetError()
             presenter.onUpdateOwnerEmail(it)
         }
 
-        input_password.setSimpleTextWatcher {
+        input_password_login.setSimpleTextWatcher {
             presenter.onResetError()
             presenter.onUpdateOwnerPassword(it)
         }
-
 
         btn_login.setOnClickListener { presenter.onValidateAndLogin() }
 
@@ -49,7 +49,6 @@ class LoginActivity : AppCompatActivity(), ILoginActivity {
             startActivity(intentRegister)
             finish()
         }
-
     }
 
     override fun onAttachedToWindow() {
@@ -63,8 +62,8 @@ class LoginActivity : AppCompatActivity(), ILoginActivity {
     }
 
     override fun onResetError() {
-        text_InputLayoutEmail.error = ""
-        text_InputLayoutPassword.error = ""
+        text_InputLayoutEmail_login.error = ""
+        text_InputLayoutPassword_login.error = ""
     }
 
     override fun setButtonLoginEnabled(isEnable: Boolean) {
@@ -95,7 +94,8 @@ class LoginActivity : AppCompatActivity(), ILoginActivity {
                     // signed in user can be handled in the listener.
                     progressDialog.dismiss()
                     if (!task.isSuccessful) {
-                        // there was an error
+                        Toast.makeText(this@LoginActivity, "Authentication failed." + task.exception!!,
+                                Toast.LENGTH_SHORT).show()
 
                     } else {
                         val intent = Intent(this@LoginActivity, MainActivity::class.java)
