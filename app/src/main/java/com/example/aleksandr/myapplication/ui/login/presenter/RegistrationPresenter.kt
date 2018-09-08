@@ -85,6 +85,6 @@ class RegistrationPresenter (registrationActivity: RegistrationActivity, applica
             view?.setButtonCreateEnabled(false)
             isValidateSuccess = false
         }
-//        if (isValidateSuccess) view?.onSignupSuccess()
+        if (isValidateSuccess) view?.onSignUpSuccess()
     }
 }

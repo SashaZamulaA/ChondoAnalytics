@@ -5,6 +5,7 @@ interface IRegistrationActivity {
     fun onResetError()
     fun setButtonCreateEnabled(isEnabled: Boolean)
     fun showInvalidValue(errorField: InvalidValue)
+    fun onSignUpSuccess()
 
     enum class InvalidValue {
         NO_NAME,

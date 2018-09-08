@@ -1,5 +1,6 @@
 package com.example.aleksandr.myapplication.ui.login
 
+import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -8,14 +9,18 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.setSimpleTextWatcher
+import com.example.aleksandr.myapplication.ui.login.model.User
 import com.example.aleksandr.myapplication.ui.login.presenter.RegistrationPresenter
+import com.example.aleksandr.myapplication.ui.login.sql.DatabaseHelper
+import com.example.aleksandr.myapplication.ui.main.MainActivity
 import kotlinx.android.synthetic.main.view_signup.*
 
 
 class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
 
+    private val activity = this@RegistrationActivity
     lateinit var presenter: RegistrationPresenter
-
+    lateinit var databaseHelper: DatabaseHelper
 
     private val spinner_country = arrayOf(
             "Киев", "Харьков", "Днепропетровск", "Житомир", "Львов", "Одесса", "Чернигов"
@@ -25,6 +30,7 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
         super.onCreate(savedInstanceState)
         super.setContentView(R.layout.view_signup)
         presenter = RegistrationPresenter(this, application)
+        databaseHelper = DatabaseHelper(activity)
 
         input_name.setSimpleTextWatcher {
             presenter.onResetError()
@@ -78,7 +84,7 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
     }
 
     override fun showInvalidValue(errorField: IRegistrationActivity.InvalidValue) {
-        when(errorField) {
+        when (errorField) {
             IRegistrationActivity.InvalidValue.NO_NAME -> text_InputLayoutName.error = resources.getString(R.string.no_name)
             IRegistrationActivity.InvalidValue.NO_EMAIL -> text_InputLayoutEmail.error = resources.getString(R.string.no_email)
             IRegistrationActivity.InvalidValue.INVALID_EMAIL -> text_InputLayoutEmail.error = resources.getString(R.string.email_incorrect)
@@ -99,8 +105,23 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
         checkbox_GDPR.text = ""
     }
 
-    override fun setButtonCreateEnabled(enable: Boolean) {
-        btn_signup.isEnabled = enable
+    override fun onSignUpSuccess() {
+        val progressDialog = ProgressDialog(this@RegistrationActivity)
+        progressDialog.isIndeterminate = true
+        progressDialog.setMessage(resources.getString(R.string.signup_successful))
+        progressDialog.show()
+
+        val user = User(name = input_name!!.text.toString().trim(),
+                email = input_email!!.text.toString().trim(),
+                password = input_password!!.text.toString().trim())
+
+        databaseHelper.addUser(user)
+        startActivity(Intent(this@RegistrationActivity, MainActivity::class.java))
+        finish()
+    }
+
+    override fun setButtonCreateEnabled(isEnabled: Boolean) {
+        btn_signup.isEnabled = isEnabled
     }
 
 }

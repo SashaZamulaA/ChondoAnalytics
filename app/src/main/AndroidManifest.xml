@@ -32,7 +32,7 @@
         <activity
             android:name=".TestForVisual"
             android:exported="true" />
-        <activity android:name=".ui.hdh.AddCommentActivity"></activity>
+
     </application>
 
 </manifest>
