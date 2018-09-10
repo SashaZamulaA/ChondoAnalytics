@@ -12,7 +12,7 @@
     <string name="go_create_account">No account yet? Create one</string>
     <string name="login_member">Already a member? Login</string>
     <string name="owner_name">Nik-Name</string>
-    <string name="country">Country</string>
+    <string name="city">City</string>
     <string name="re_enter_password">Re-enter password</string>
     <string name="create_account">Create account</string>
     <string name="please_agree">Please agree to the Terms of Use and Privacy Policy</string>
@@ -87,6 +87,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="ok">Click here</string>
+    <string name="registration">Registration</string>
 
     <array name="category">
         <item>faith</item>

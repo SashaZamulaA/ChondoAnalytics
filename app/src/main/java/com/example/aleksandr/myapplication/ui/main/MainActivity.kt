@@ -36,12 +36,12 @@ class MainActivity : BaseActivity() {
                      .setIcon(android.R.drawable.ic_dialog_alert)
                      .setTitle("Closing Activity")
                      .setMessage("Are you sure you want to close this activity?")
-                     .setPositiveButton("Yes", DialogInterface.OnClickListener { dialog, which ->
+                     .setPositiveButton("Yes") { _, _ ->
                          val intent = Intent(this, LoginActivity::class.java)
                          startActivity(intent)
                          finish()
 
-                     })
+                     }
                      .setNegativeButton("No", null)
                      .show()
          }

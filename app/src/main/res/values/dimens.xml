@@ -42,6 +42,7 @@
     <dimen name="toolbar_title_margin">72dp</dimen>
     <dimen name="toolbar_height">56dp</dimen>
     <dimen name="menu_icon_margin">8dp</dimen>
+    <dimen name="common_elevation">4dp</dimen>
 
     // Buttons
     <dimen name="icon_button_size">48dp</dimen>
@@ -50,6 +51,7 @@
     <dimen name="button88_width">88dp</dimen>
     <dimen name="padding_button_not_toolbar_8dp">8dp</dimen>
     <dimen name="button_drawable_padding">12dp</dimen>
+    <dimen name="icon_button_margin">12dp</dimen>
 
     // IMG
     <dimen name="logo">200dp</dimen>

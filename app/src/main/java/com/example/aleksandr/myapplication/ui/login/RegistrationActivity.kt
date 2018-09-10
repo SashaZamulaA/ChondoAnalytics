@@ -56,7 +56,7 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
             presenter.onValidateAndSave()
         }
 
-        link_login.setOnClickListener {
+        button_back.setOnClickListener {
             startActivity(Intent(applicationContext, LoginActivity::class.java))
             finish()
             overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out)
@@ -116,9 +116,7 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
                 ?.addOnCompleteListener(this@RegistrationActivity) { task ->
                     Toast.makeText(this@RegistrationActivity, "createUserWithEmail:onComplete:" + task.isSuccessful, Toast.LENGTH_SHORT).show()
                     progressDialog.dismiss()
-                    // If sign in fails, display a message to the user. If sign in succeeds
-                    // the auth state listener will be notified and logic to handle the
-                    // signed in user can be handled in the listener.
+
                     if (!task.isSuccessful) {
                         Toast.makeText(this@RegistrationActivity, "Authentication failed." + task.exception!!,
                                 Toast.LENGTH_SHORT).show()
