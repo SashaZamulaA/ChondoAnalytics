@@ -10,9 +10,14 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.setSimpleTextWatcher
+import com.example.aleksandr.myapplication.ui.hdh.model.HDHModel
+import com.example.aleksandr.myapplication.ui.login.model.User
 import com.example.aleksandr.myapplication.ui.login.presenter.RegistrationPresenter
 import com.example.aleksandr.myapplication.ui.main.MainActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.item_is_word_list.*
 import kotlinx.android.synthetic.main.view_signup.*
 
 
@@ -21,6 +26,7 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
     //    private val activity = this@RegistrationActivity
     lateinit var presenter: RegistrationPresenter
     private var auth: FirebaseAuth? = null
+    var databaseReference: DatabaseReference? = null
 
     private val spinner_country = arrayOf(
             "Киев", "Харьков", "Днепропетровск", "Житомир", "Львов", "Одесса", "Чернигов"
@@ -30,7 +36,8 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
         super.onCreate(savedInstanceState)
         super.setContentView(R.layout.view_signup)
         presenter = RegistrationPresenter(this, application)
-
+        databaseReference = FirebaseDatabase.getInstance().getReference("Word")
+        auth = FirebaseAuth.getInstance()
 
         input_name.setSimpleTextWatcher {
             presenter.onResetError()
@@ -73,6 +80,7 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
         }
     }
 
+
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         presenter.bindView(this)
@@ -112,22 +120,43 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
         progressDialog.show()
         val email = input_email.text.toString().trim()
         val password = input_password.text.toString().trim()
+        val name = input_name.text.toString().trim()
         auth?.createUserWithEmailAndPassword(email, password)
                 ?.addOnCompleteListener(this@RegistrationActivity) { task ->
-                    Toast.makeText(this@RegistrationActivity, "createUserWithEmail:onComplete:" + task.isSuccessful, Toast.LENGTH_SHORT).show()
                     progressDialog.dismiss()
+                    if (task.isSuccessful) {
 
-                    if (!task.isSuccessful) {
-                        Toast.makeText(this@RegistrationActivity, "Authentication failed." + task.exception!!,
-                                Toast.LENGTH_SHORT).show()
-                    } else {
+                        val user = User(name, email)
+                        val userId = auth!!.currentUser!!.uid
+                        val currentUserDb = databaseReference!!.child(userId)
+
+                        currentUserDb.child("firstName").setValue(user)
+//                    currentUserDb.child("lastName").setValue(input_owner_city)
+
                         startActivity(Intent(this@RegistrationActivity, MainActivity::class.java))
                         finish()
                     }
+                    }
                 }
-    }
 
-    override fun setButtonCreateEnabled(isEnabled: Boolean) {
-        btn_signup.isEnabled = isEnabled
+        private fun verifyEmail() {
+            val mUser = auth!!.currentUser
+            mUser!!.sendEmailVerification()
+                    .addOnCompleteListener(this) { task ->
+                        if (task.isSuccessful) {
+                            Toast.makeText(this@RegistrationActivity,
+                                    "Verification email sent to " + mUser.email,
+                                    Toast.LENGTH_SHORT).show()
+                        } else {
+//                            Log.e(TAG, "sendEmailVerification", task.exception)
+                            Toast.makeText(this@RegistrationActivity,
+                                    "Failed to send verification email.",
+                                    Toast.LENGTH_SHORT).show()
+                        }
+                    }
+        }
+
+        override fun setButtonCreateEnabled(isEnabled: Boolean) {
+            btn_signup.isEnabled = isEnabled
+        }
     }
-}

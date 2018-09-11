@@ -1,5 +1,17 @@
 package com.example.aleksandr.myapplication.ui.login.model
 
-data class User (val id: Int = -1, val name: String, val email: String, val password: String)
+class User {
+    lateinit var name: String
+    lateinit var email: String
 
+
+    constructor() {
+    }
+
+    constructor(name: String, email: String) {
+        this.name = name
+        this.email = email
+
+    }
+}
 
