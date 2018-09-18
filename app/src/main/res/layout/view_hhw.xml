@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
@@ -17,7 +18,7 @@
         <TextView
             android:id="@+id/title_list_pets"
             style="@style/Toolbar.TitleText"
-            android:text="@string/info" />
+            tools:text="@string/info" />
 
     </android.support.v7.widget.Toolbar>
 
@@ -49,7 +50,7 @@
                 android:text="@string/ok" />
         </LinearLayout>
 
-    <ListView
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/listViewWord"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

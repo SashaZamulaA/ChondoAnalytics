@@ -80,7 +80,6 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
         }
     }
 
-
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         presenter.bindView(this)
@@ -130,7 +129,7 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
                         val userId = auth!!.currentUser!!.uid
                         val currentUserDb = databaseReference!!.child(userId)
 
-                        currentUserDb.child("firstName").setValue(user)
+                        currentUserDb.setValue(user)
 //                    currentUserDb.child("lastName").setValue(input_owner_city)
 
                         startActivity(Intent(this@RegistrationActivity, MainActivity::class.java))
@@ -139,22 +138,6 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
                     }
                 }
 
-        private fun verifyEmail() {
-            val mUser = auth!!.currentUser
-            mUser!!.sendEmailVerification()
-                    .addOnCompleteListener(this) { task ->
-                        if (task.isSuccessful) {
-                            Toast.makeText(this@RegistrationActivity,
-                                    "Verification email sent to " + mUser.email,
-                                    Toast.LENGTH_SHORT).show()
-                        } else {
-//                            Log.e(TAG, "sendEmailVerification", task.exception)
-                            Toast.makeText(this@RegistrationActivity,
-                                    "Failed to send verification email.",
-                                    Toast.LENGTH_SHORT).show()
-                        }
-                    }
-        }
 
         override fun setButtonCreateEnabled(isEnabled: Boolean) {
             btn_signup.isEnabled = isEnabled

@@ -1,11 +1,17 @@
 package com.example.aleksandr.myapplication.ui.login.model
 
+import com.google.firebase.database.IgnoreExtraProperties
+import javax.inject.Singleton
+
+@Singleton
+@IgnoreExtraProperties
 class User {
-    lateinit var name: String
-    lateinit var email: String
+     var name: String? = null
+     var email: String? = null
 
 
-    constructor() {
+    constructor(name: String) {
+this.name = name
     }
 
     constructor(name: String, email: String) {

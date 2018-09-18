@@ -3,19 +3,28 @@ package com.example.aleksandr.myapplication.ui.hdh
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.text.TextUtils
 import android.view.View
+import android.widget.*
 import android.widget.AdapterView.OnItemLongClickListener
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
-import android.widget.Toast
 import com.example.aleksandr.myapplication.BaseActivity
 import com.example.aleksandr.myapplication.R
+import com.example.aleksandr.myapplication.R.id.*
 import com.example.aleksandr.myapplication.hideKeyboard
 import com.example.aleksandr.myapplication.ui.hdh.model.HDHModel
+import com.example.aleksandr.myapplication.ui.login.model.User
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.nav_header_main.*
+import kotlinx.android.synthetic.main.spinner_drop_down.view.*
 import kotlinx.android.synthetic.main.view_hhw.*
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.ValueEventListener
+
 
 
 class HDHView : BaseActivity(), IHDHView {
@@ -23,6 +32,11 @@ class HDHView : BaseActivity(), IHDHView {
     private lateinit var presenter: HDHPresenter
     private lateinit var databaseWord: DatabaseReference
     lateinit var wordList: MutableList<HDHModel>
+    lateinit var firebaseAuth: FirebaseAuth
+    lateinit var firebaseDatabase: FirebaseDatabase
+    lateinit var recyclerView: RecyclerView
+    lateinit var user: User
+
 
 
     override fun init(savedInstanceState: Bundle?) {
@@ -30,16 +44,28 @@ class HDHView : BaseActivity(), IHDHView {
         presenter = HDHPresenter(this, application)
         databaseWord = FirebaseDatabase.getInstance().getReference("word")
 
-        listViewWord.onItemLongClickListener = OnItemLongClickListener { _, _, i, _ ->
+        listViewWord.setHasFixedSize(true)
+        listViewWord.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
 
-            val word = wordList[i]
-            showUpdateDialog(word.id, word.name)
-            true
-        }
+
+
+//        listViewWord.onItemLongClickListener = OnItemLongClickListener { _, _, i, _ ->
+//
+//            val word = wordList[i]
+//            showUpdateDialog(word.id, word.name)
+//            true
+//        }
         wordList = ArrayList()
         btn_hdh.setOnClickListener {
             addArtist()
         }
+
+        firebaseAuth = FirebaseAuth.getInstance()
+        firebaseDatabase = FirebaseDatabase.getInstance()
+
+         databaseWord = firebaseDatabase.getReference(firebaseAuth.uid!!)
+
+
     }
 
     override fun onStart() {
@@ -47,7 +73,9 @@ class HDHView : BaseActivity(), IHDHView {
         databaseWord.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
-                wordList.clear()
+                val name = dataSnapshot.getValue<User>(User::class.java)
+                title_list_pets.text = name.run { name?.name }
+
                 for (postSnapshot in dataSnapshot.children) {
                     val word = postSnapshot.getValue<HDHModel>(HDHModel::class.java)
                     if (word != null) {
@@ -56,11 +84,41 @@ class HDHView : BaseActivity(), IHDHView {
                 }
                 val artistAdapter = ArtistList(this@HDHView, wordList)
                 listViewWord.adapter = artistAdapter
+
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
             }
         })
+    }
+
+//    override fun onStart() {
+//        super.onStart()
+//        databaseWord.addValueEventListener(object : ValueEventListener {
+//            override fun onDataChange(dataSnapshot: DataSnapshot) {
+//
+//                for (postSnapshot in dataSnapshot.children) {
+//                    val word = postSnapshot.getValue<HDHModel>(HDHModel::class.java)
+//                    if (word != null) {
+//                        wordList.add(word)
+//                    }
+//                }
+//                val artistAdapter = ArtistList(this@HDHView, wordList)
+//                listViewWord.adapter = artistAdapter
+//
+//            }
+//
+//            override fun onCancelled(databaseError: DatabaseError) {
+//            }
+//        })
+//    }
+
+
+
+    private fun writeNewUser(userId: String, name: String, email: String) {
+        val user = User(name, email)
+
+        databaseWord.child("users").child(userId).setValue(user)
     }
 
     @SuppressLint("InflateParams")
