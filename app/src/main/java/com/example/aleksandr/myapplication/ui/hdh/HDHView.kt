@@ -1,11 +1,10 @@
 package com.example.aleksandr.myapplication.ui.hdh
 
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.text.TextUtils
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
-import android.widget.Toast
+import android.widget.*
 import com.example.aleksandr.myapplication.BaseActivity
 import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.ui.hdh.model.HDHModel
@@ -16,61 +15,57 @@ class HDHView : BaseActivity(), IHDHView {
 
 
     private lateinit var presenter: HDHPresenter
-
-    lateinit var editTextName: EditText
-    lateinit var buttonSave: Button
-    lateinit var spinner: Spinner
     lateinit var databaseWord: DatabaseReference
-    //    lateinit var listViewArtists: ListView
-    var wordList: MutableList<HDHModel> = emptyArray<HDHModel>().toMutableList()
+    var wordList: ArrayList<HDHModel> = ArrayList()
     lateinit var adapter: WordAdapter
+
 
     override fun init(savedInstanceState: Bundle?) {
         super.setContentView(R.layout.view_hhw)
         presenter = HDHPresenter(this, application)
-        editTextName = findViewById(R.id.editText_hhw)
-        buttonSave = findViewById(R.id.btn_hdh)
-        spinner = findViewById(R.id.add_category)
-//        listViewArtists = findViewById(R.id.listViewWord)
+
         databaseWord = FirebaseDatabase.getInstance().getReference("word")
 
+        listViewWord.setHasFixedSize(true)
+        listViewWord.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
 
         adapter = WordAdapter(wordList, this)
         listViewWord.adapter = adapter
 
-        buttonSave.setOnClickListener {
+        btn_hdh.setOnClickListener {
             addArtist()
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        //attaching value event listener
-        databaseWord.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
+//    override fun onStart() {
+//        super.onStart()
+//        //attaching value event listener
+//        databaseWord.addValueEventListener(object : ValueEventListener {
+//            override fun onDataChange(dataSnapshot: DataSnapshot) {
+//
+//                //clearing the previous artist list
+//                wordList.clear()
+//
+//                //iterating through all the nodes
+//                for (postSnapshot in dataSnapshot.children) {
+//                    //getting artist
+//                    val word = postSnapshot.getValue<HDHModel>(HDHModel::class.java)
+//                    //adding artist to the list
+//                    if (word != null) {
+//                        wordList.add(word)
+//                    }
+//                }
+//            }
+//            override fun onCancelled(databaseError: DatabaseError) {
+//            }
+//        })
+//    }
 
-                //clearing the previous artist list
-                wordList.clear()
-
-                //iterating through all the nodes
-                for (postSnapshot in dataSnapshot.children) {
-                    //getting artist
-                    val word = postSnapshot.getValue<HDHModel>(HDHModel::class.java)
-                    //adding artist to the list
-                    if (word != null) {
-                        wordList.add(word)
-                    }
-                }
-            }
-            override fun onCancelled(databaseError: DatabaseError) {
-            }
-        })
-    }
 
     private fun addArtist() {
         //getting the values to save
-        val name = editTextName.text.toString().trim()
-        val category = spinner.selectedItem.toString()
+        val name = editText_hhw.text.toString().trim()
+        val category = add_category.selectedItem.toString()
 
         //checking if the value is provided
         if (!TextUtils.isEmpty(name)) {
@@ -86,7 +81,7 @@ class HDHView : BaseActivity(), IHDHView {
             id?.let { databaseWord.child(it).setValue(wordList) }
 
             //setting edittext to blank again
-            editTextName.setText("")
+            editText_hhw.setText("")
 
             //displaying a success toast
             Toast.makeText(this, "Artist added", Toast.LENGTH_LONG).show()
