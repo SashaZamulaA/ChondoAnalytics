@@ -12,6 +12,7 @@ import android.widget.Spinner
 import android.widget.Toast
 import com.example.aleksandr.myapplication.BaseActivity
 import com.example.aleksandr.myapplication.R
+import com.example.aleksandr.myapplication.R.id.*
 import com.example.aleksandr.myapplication.hideKeyboard
 import com.example.aleksandr.myapplication.ui.hdh.model.HDHModel
 import com.google.firebase.database.*
