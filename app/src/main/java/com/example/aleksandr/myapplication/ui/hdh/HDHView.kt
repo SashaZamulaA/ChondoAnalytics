@@ -15,8 +15,7 @@ class HDHView : BaseActivity(), IHDHView {
 
     private lateinit var presenter: HDHPresenter
     lateinit var databaseWord: DatabaseReference
-    lateinit var database: FirebaseDatabase
-    var wordList: ArrayList<HDHModel> = ArrayList()
+    var wordList: MutableList<HDHModel> = ArrayList()
     lateinit var adapter: WordAdapter
 
     override fun init(savedInstanceState: Bundle?) {
@@ -42,13 +41,15 @@ class HDHView : BaseActivity(), IHDHView {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
                 wordList.clear()
-
                 for (postSnapshot in dataSnapshot.children) {
                     val word = postSnapshot.getValue<HDHModel>(HDHModel::class.java)
                     if (word != null) {
                         wordList.add(word)
                     }
                 }
+                val wordAdapter = WordAdapter(wordList, this@HDHView)
+                listViewWord.adapter = wordAdapter
+
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
