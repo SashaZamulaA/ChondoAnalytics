@@ -24,9 +24,12 @@ class WordAdapter(private val wordList: List<HDHModel>,
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-        val singleWord = wordList[position]
         holder.bind(wordList[position])
+holder.itemView.setOnCreateContextMenuListener { menu, v, menuInfo ->
+    menu.add(holder.adapterPosition,0,0,"Delete")
+    menu.add(holder.adapterPosition,1,0,"Change")
 
+}
     }
 
     class VH(view: View?) : RecyclerView.ViewHolder(view) {

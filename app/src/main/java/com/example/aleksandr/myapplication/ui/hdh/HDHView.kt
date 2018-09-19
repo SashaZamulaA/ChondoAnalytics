@@ -56,24 +56,24 @@ class HDHView : BaseActivity(), IHDHView {
         })
     }
 
-//    fun updateList{
-//        databaseWord.addChildEventListener(object : ChildEventListener{
-//            override fun onCancelled(p0: DatabaseError) {
-//            }
-//
-//            override fun onChildMoved(p0: DataSnapshot, p1: String?) {
-//            }
-//
-//            override fun onChildChanged(p0: DataSnapshot, p1: String?) {
-//            }
-//
-//            override fun onChildAdded(p0: DataSnapshot, p1: String?) {
-//            }
-//
-//            override fun onChildRemoved(p0: DataSnapshot) {
-//            }
-//        })
-//    }
+    fun updateList(){
+        databaseWord.addChildEventListener(object : ChildEventListener{
+            override fun onCancelled(p0: DatabaseError) {
+            }
+
+            override fun onChildMoved(p0: DataSnapshot, p1: String?) {
+            }
+
+            override fun onChildChanged(p0: DataSnapshot, p1: String?) {
+            }
+
+            override fun onChildAdded(p0: DataSnapshot, p1: String?) {
+            }
+
+            override fun onChildRemoved(p0: DataSnapshot) {
+            }
+        })
+    }
 
     private fun addArtist() {
 
