@@ -16,6 +16,7 @@ class HDHView : BaseActivity(), IHDHView {
 
     private lateinit var presenter: HDHPresenter
     lateinit var databaseWord: DatabaseReference
+    lateinit var database: FirebaseDatabase
     var wordList: ArrayList<HDHModel> = ArrayList()
     lateinit var adapter: WordAdapter
 
@@ -23,6 +24,8 @@ class HDHView : BaseActivity(), IHDHView {
     override fun init(savedInstanceState: Bundle?) {
         super.setContentView(R.layout.view_hhw)
         presenter = HDHPresenter(this, application)
+
+//        database = FirebaseDatabase.getInstance()
 
         databaseWord = FirebaseDatabase.getInstance().getReference("word")
 
@@ -37,26 +40,45 @@ class HDHView : BaseActivity(), IHDHView {
         }
     }
 
-//    override fun onStart() {
-//        super.onStart()
-//        //attaching value event listener
-//        databaseWord.addValueEventListener(object : ValueEventListener {
-//            override fun onDataChange(dataSnapshot: DataSnapshot) {
-//
-//                //clearing the previous artist list
-//                wordList.clear()
-//
-//                //iterating through all the nodes
-//                for (postSnapshot in dataSnapshot.children) {
-//                    //getting artist
-//                    val word = postSnapshot.getValue<HDHModel>(HDHModel::class.java)
-//                    //adding artist to the list
-//                    if (word != null) {
-//                        wordList.add(word)
-//                    }
-//                }
+    override fun onStart() {
+        super.onStart()
+        //attaching value event listener
+        databaseWord.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                //clearing the previous artist list
+                wordList.clear()
+
+                //iterating through all the nodes
+                for (postSnapshot in dataSnapshot.children) {
+                    //getting artist
+                    val word = postSnapshot.getValue<HDHModel>(HDHModel::class.java)
+                    //adding artist to the list
+                    if (word != null) {
+                        wordList.add(word)
+                    }
+                }
+            }
+            override fun onCancelled(databaseError: DatabaseError) {
+            }
+        })
+    }
+
+//    fun updateList{
+//        databaseWord.addChildEventListener(object : ChildEventListener{
+//            override fun onCancelled(p0: DatabaseError) {
 //            }
-//            override fun onCancelled(databaseError: DatabaseError) {
+//
+//            override fun onChildMoved(p0: DataSnapshot, p1: String?) {
+//            }
+//
+//            override fun onChildChanged(p0: DataSnapshot, p1: String?) {
+//            }
+//
+//            override fun onChildAdded(p0: DataSnapshot, p1: String?) {
+//            }
+//
+//            override fun onChildRemoved(p0: DataSnapshot) {
 //            }
 //        })
 //    }
