@@ -3,6 +3,7 @@ package com.example.aleksandr.myapplication.ui.hdh
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.text.TextUtils
+import android.widget.AdapterView
 import android.widget.LinearLayout
 import android.widget.Toast
 import com.example.aleksandr.myapplication.BaseActivity
@@ -27,13 +28,17 @@ class HDHView : BaseActivity(), IHDHView {
         listViewWord.setHasFixedSize(true)
         listViewWord.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
 
-        adapter = WordAdapter(wordList, this)
-        listViewWord.adapter = adapter
+//        listViewWord.i = AdapterView.OnItemLongClickListener { _, _, i, _ ->
+//            val word = wordList[i]
+//            showUpdateDialog(word.id, word.name)
+//        }
+            adapter = WordAdapter(wordList, this)
+            listViewWord.adapter = adapter
 
-        btn_hdh.setOnClickListener {
-            addArtist()
+            btn_hdh.setOnClickListener {
+                addArtist()
+            }
         }
-    }
 
     override fun onStart() {
         super.onStart()
