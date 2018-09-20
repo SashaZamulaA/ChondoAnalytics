@@ -36,7 +36,12 @@ class HDHView : BaseActivity(), IHDHView {
 //        }
             adapter = WordAdapter(wordList, this)
             listViewWord.adapter = adapter
+            listViewWord.onItemLongClickListener = OnItemLongClickListener { _, _, i, _ ->
 
+            val word = wordList[i]
+            showUpdateDialog(word.id, word.name)
+            true
+        }
             btn_hdh.setOnClickListener {
                 addArtist()
             }
