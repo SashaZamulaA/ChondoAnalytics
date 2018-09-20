@@ -1,13 +1,15 @@
 package com.example.aleksandr.myapplication.ui.hdh
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import android.text.TextUtils
-import android.widget.AdapterView
-import android.widget.LinearLayout
-import android.widget.Toast
+import android.view.View
+import android.widget.*
 import com.example.aleksandr.myapplication.BaseActivity
 import com.example.aleksandr.myapplication.R
+import com.example.aleksandr.myapplication.hideKeyboard
 import com.example.aleksandr.myapplication.ui.hdh.model.HDHModel
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.view_hhw.*
@@ -98,6 +100,43 @@ class HDHView : BaseActivity(), IHDHView {
         } else {
             Toast.makeText(this, "Please enter a name", Toast.LENGTH_LONG).show()
         }
+    }
+    @SuppressLint("InflateParams")
+    private fun showUpdateDialog(wordId: String, word: String) {
+
+        val dialogBuilder = AlertDialog.Builder(this)
+        val inflater = layoutInflater
+        val dialogView = inflater.inflate(R.layout.update_dialog, null) as View
+        dialogBuilder.setView(dialogView)
+
+        val textViewName = dialogView.findViewById(R.id.editTextName) as EditText
+        val buttonUpdate = dialogView.findViewById(R.id.buttonUpdate) as Button
+        val buttonDelete = dialogView.findViewById(R.id.buttonDelete) as Button
+        val spinner = dialogView.findViewById(R.id.spinner_categories_dialog) as Spinner
+
+        dialogBuilder.setTitle("Update Word- $word")
+        val alertDialog = dialogBuilder.create()
+        alertDialog.show()
+
+        buttonUpdate.setOnClickListener {
+            val name: String = textViewName.text.toString().trim()
+            val category: String = spinner.selectedItem.toString()
+
+            if (TextUtils.isEmpty(name)) {
+                editText_hhw.error = "Name required"
+            }
+            updateArtist(wordId, name, category)
+            alertDialog.dismiss()
+            hideKeyboard()
+
+        }
+    }
+    private fun updateArtist(id: String, name: String, category: String): Boolean {
+        val dR = FirebaseDatabase.getInstance().getReference("word").child(id)
+        val word = HDHModel(id, name, category)
+        dR.setValue(word)
+        Toast.makeText(this, "Word Update Successfully", Toast.LENGTH_LONG).show()
+        return true
     }
 
     override fun onAttachedToWindow() {
