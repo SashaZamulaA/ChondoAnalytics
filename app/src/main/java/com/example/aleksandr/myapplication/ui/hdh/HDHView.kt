@@ -18,7 +18,7 @@ class HDHView : BaseActivity(), IHDHView {
 
     private lateinit var presenter: HDHPresenter
     lateinit var databaseWord: DatabaseReference
-    var wordList: MutableList<HDHModel> = ArrayList()
+    var wordList: ArrayList<HDHModel> = ArrayList()
     lateinit var adapter: WordAdapter
 
     override fun init(savedInstanceState: Bundle?) {
@@ -30,22 +30,13 @@ class HDHView : BaseActivity(), IHDHView {
         listViewWord.setHasFixedSize(true)
         listViewWord.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
 
-//        listViewWord.i = AdapterView.OnItemLongClickListener { _, _, i, _ ->
-//            val word = wordList[i]
-//            showUpdateDialog(word.id, word.name)
-//        }
-            adapter = WordAdapter(wordList, this)
-            listViewWord.adapter = adapter
-            listViewWord.onItemLongClickListener = OnItemLongClickListener { _, _, i, _ ->
+        adapter = WordAdapter(wordList, this)
+        listViewWord.adapter = adapter
 
-            val word = wordList[i]
-            showUpdateDialog(word.id, word.name)
-            true
+        btn_hdh.setOnClickListener {
+            addArtist()
         }
-            btn_hdh.setOnClickListener {
-                addArtist()
-            }
-        }
+    }
 
     override fun onStart() {
         super.onStart()
