@@ -8,7 +8,7 @@
     <color name="white">#FFF</color>
     <color name="accent_selected">#D7EDC1</color>
     <color name="accent_lighter">#F1F8E9</color> <!--Light Green 50-->
-    <color name="complementary_red">#FFCDD2</color>
+    <color name="complementary_red">#ffc6cb</color>
 
     <color name="complementary_darker">#E0E0E0</color> <!--Gray 300-->
     <color name="accent_backgr_color">#0F000000</color> <!--6% of black-->

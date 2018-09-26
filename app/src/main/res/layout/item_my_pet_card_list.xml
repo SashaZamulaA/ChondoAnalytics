@@ -33,7 +33,7 @@
             tools:text="Category" />
 
         <TextView
-            android:id="@+id/main_action"
+            android:id="@+id/achivement"
             style="@style/TextStyle_Body2_Primary_Dark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -53,6 +53,12 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="ok">Click here</string>
+    <string name="topic">Topic</string>
+    <string name="result">Result</string>
+    <string name="goal">Goal</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="dp_read">DP read</string>
 
     <array name="category">
         <item>faith</item>

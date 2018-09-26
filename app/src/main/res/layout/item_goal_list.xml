@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="75dp"
+    android:background="@drawable/background_selectable_item"
+    android:foreground="?android:selectableItemBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:orientation="horizontal">
+<FrameLayout
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@color/complementary_red">
+
+
+        <TextView
+            android:id="@+id/thema"
+            android:layout_width="90dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="@dimen/body2_text_size"
+            android:scaleType="center"
+            android:text="@string/dp_read"/>
+
+        <!--<ImageView-->
+            <!--android:id="@+id/img"-->
+            <!--android:layout_width="90dp"-->
+            <!--android:layout_height="60dp"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:scaleType="center"-->
+            <!--android:src="@mipmap/iheartdp"-->
+            <!--/>-->
+
+
+</FrameLayout>
+        <View
+            style="@style/AppTheme.VerticalViewDivider"
+            android:background="#6D9E3A"
+            />
+        <TextView
+            android:id="@+id/achivement"
+            style="@style/TextStyle_Body2_Primary_Dark"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:gravity="center_horizontal"
+            tools:text="21" />
+
+        <View
+            style="@style/AppTheme.VerticalViewDivider"
+            android:background="#6D9E3A"
+            />
+
+
+
+
+        <TextView
+            android:id="@+id/percentage"
+            style="@style/TextStyle_Body2_Primary_Dark"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            tools:text="100%" />
+
+        <View
+            style="@style/AppTheme.VerticalViewDivider"
+            android:background="#6D9E3A"
+            />
+
+        <TextView
+            android:id="@+id/goal"
+            style="@style/TextStyle_Body2_Primary_Dark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:gravity="center_horizontal"
+            tools:text="21" />
+
+    </LinearLayout>
+
+
+    <View
+        style="@style/AppTheme.HorizontalViewDivider"
+        android:layout_alignParentBottom="true"
+         />
+</RelativeLayout>
