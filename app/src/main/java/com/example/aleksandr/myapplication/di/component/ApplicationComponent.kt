@@ -3,6 +3,8 @@ package com.example.aleksandr.myapplication.di.component
 import com.example.aleksandr.myapplication.AndroidApplication
 import com.example.aleksandr.myapplication.di.module.AppModule
 import com.example.aleksandr.myapplication.di.module.NetModule
+import com.example.aleksandr.myapplication.ui.add_task.NewNoteActivity
+import com.example.aleksandr.myapplication.ui.add_task.RecyclerActivity
 import com.example.aleksandr.myapplication.ui.hdh.HDHPresenter
 import com.example.aleksandr.myapplication.ui.hdh.HDHView
 import com.example.aleksandr.myapplication.ui.info.InfoPresenter
@@ -22,6 +24,9 @@ interface ApplicationComponent {
     fun inject(mainView: MainActivity)
     fun inject(mainView: LoginActivity)
     fun inject(hdhView: HDHView)
+    fun inject(recView :RecyclerActivity)
+    fun inject(newNoteView : NewNoteActivity)
+
 
     // PRESENTER
     fun inject(infoPresenter: InfoPresenter)

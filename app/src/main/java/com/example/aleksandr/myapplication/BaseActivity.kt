@@ -14,7 +14,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.Toast
-import com.example.aleksandr.myapplication.ui.add_task.NewNoteActivity
+import com.example.aleksandr.myapplication.ui.add_task.RecyclerActivity
 import com.example.aleksandr.myapplication.ui.hdh.HDHView
 import com.example.aleksandr.myapplication.ui.info.InfoView
 import com.example.aleksandr.myapplication.ui.main.MainActivity
@@ -64,7 +64,7 @@ abstract class BaseActivity : AppCompatActivity(), IView, NavigationView.OnNavig
             }
 
             R.id.nav_task -> {
-                startActivity(Intent(this, NewNoteActivity::class.java))
+                startActivity(Intent(this, RecyclerActivity::class.java))
                 drawer.closeDrawer(GravityCompat.START)
             }
 

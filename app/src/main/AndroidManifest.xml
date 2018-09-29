@@ -29,10 +29,15 @@
         <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".ui.info.InfoView" />
         <activity android:name=".ui.hdh.HDHView" />
+        <activity android:name=".ui.add_task.NewNoteActivity"/>
+
         <activity
             android:name=".TestForVisual"
             android:exported="true" />
-        <activity android:name=".ui.add_task.NewNoteActivity"></activity>
+        <activity android:name=".ui.add_task.RecyclerActivity">
+
+
+        </activity>
     </application>
 
 </manifest>

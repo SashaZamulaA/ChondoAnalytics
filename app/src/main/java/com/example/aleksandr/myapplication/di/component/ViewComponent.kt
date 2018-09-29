@@ -1,6 +1,7 @@
 package com.example.aleksandr.myapplication.di.component
 
 import com.example.aleksandr.myapplication.AndroidApplication
+import com.example.aleksandr.myapplication.ui.add_task.NewNoteActivity
 import com.example.aleksandr.myapplication.ui.hdh.HDHView
 import com.example.aleksandr.myapplication.ui.info.InfoView
 import dagger.Component
@@ -18,4 +19,5 @@ internal interface ViewComponent {
     // VIEW
     fun inject(infoView: InfoView)
     fun inject(hdhView: HDHView)
+    fun inject(newNoteView : NewNoteActivity)
 }
