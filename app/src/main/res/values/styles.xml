@@ -27,6 +27,12 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="TextAppearance.ExpandedTitle"
+        parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/black_effective</item>
+    </style>
+
     <!--Toolbar-->
     <style name="Toolbar" parent="Base.ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:layout_width">match_parent</item>
@@ -38,7 +44,7 @@
 
     <style name="CollapsingToolbarLayoutExpandedTextStyle" parent="AppTheme">
         <item name="android:textColor">@android:color/transparent</item>
-        <item name="android:textSize">0sp</item>
+        <item name="android:textSize">12sp</item>
     </style>
 
     <style name="Toolbar.TitleText" parent="TextStyle.Heading">

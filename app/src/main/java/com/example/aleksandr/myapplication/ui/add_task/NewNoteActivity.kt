@@ -11,6 +11,10 @@ import com.example.aleksandr.myapplication.ui.add_task.note.model.Note
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_new_note.*
 import kotlinx.android.synthetic.main.activity_new_note_copy.*
+import android.support.design.widget.AppBarLayout
+import android.support.design.widget.CollapsingToolbarLayout
+
+
 
 
 class NewNoteActivity : BaseActivity() {
@@ -21,11 +25,26 @@ class NewNoteActivity : BaseActivity() {
 //        val intent = intent
 //        val cheeseName = intent.getStringExtra(EXTRA_NAME)
 
+//        appbar.addOnOffsetChangedListener(object : AppBarLayout.OnOffsetChangedListener {
+//            var isShow = true
+//            var scrollRange = -1
+//
+//            override fun onOffsetChanged(appBarLayout: AppBarLayout, verticalOffset: Int) {
+//                if (scrollRange == -1) {
+//                    scrollRange = appBarLayout.totalScrollRange
+//                }
+//                if (scrollRange + verticalOffset == 0) {
+//                    collapsing_toolbar.title = "Title"
+//                    isShow = true
+////                } else if (isShow) {
+////                    collapsing_toolbar.title = "DSDSDSDSDScxc"//carefull there should a space between double quote otherwise it wont work
+////                    isShow = false
+//                }
+//            }
+//        })
 //        collapsing_toolbar.title = cheeseName
-
-
-
-        button_add_client?.setOnClickListener {  saveNote()}
+//
+//        button_add_client?.setOnClickListener {  saveNote()}
     }
 
 

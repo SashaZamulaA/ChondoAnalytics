@@ -2,6 +2,7 @@
     <string name="app_name">M3A-Analytics
     </string>
 
+
     <string name="note">My note</string>
 
     // LOGIN vs REGISTRATION
@@ -33,7 +34,8 @@
     <string name="choose_photo">Choose photo</string>
     <string name="take_photo">Take photo</string>
     <string name="delete_item">Delete</string>
-
+    <string name="title_long">Чтобы идти свидетельствовать, вы должны хорошо изучить Принцип, проливать слезы и проявить полную посвященность. (20:345)</string>
+    <string name="t">This is a long title text displayed in multiple lines.</string>
 
     // INFO
     <string name="info_view"><b>What is MVP Design Pattern?</b>\nModel View Presenter is an architectural pattern used to encourage/facilitate separation of concern in software projects.

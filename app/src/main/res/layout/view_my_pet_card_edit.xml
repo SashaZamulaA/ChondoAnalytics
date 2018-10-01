@@ -74,7 +74,7 @@
                     android:layout_marginBottom="16dp"
                     android:orientation="vertical">
 
-                    <LinearLayout
+                    ><LinearLayout
                         android:id="@+id/represent_as_image_container"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -91,7 +91,7 @@
                                 android:layout_width="140dp"
                                 android:layout_height="140dp"
                                 tools:src="@drawable/ic_nophoto"
-                                tools:tint="@color/ic_normal_dark" />
+                                tools:tint="@color/ic_normal_dark" /
 
                             <ImageButton
                                 android:id="@+id/btn_remove_photo"
