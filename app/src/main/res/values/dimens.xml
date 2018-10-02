@@ -15,7 +15,7 @@
     <dimen name="space_26">26dp</dimen>
     <dimen name="space_36">36dp</dimen>
 
-    <dimen name="detail_backdrop_height">256dp</dimen>
+    <dimen name="detail_backdrop_height">156dp</dimen>
     <dimen name="card_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="list_item_avatar_size">40dp</dimen>
@@ -67,5 +67,6 @@
     <dimen name="margin_top">8dp</dimen>
     <dimen name="edge_margins">16dp</dimen>
     <dimen name="space8">8dp</dimen>
+    <dimen name="icon_barcode_size">48dp</dimen>
 
 </resources>
