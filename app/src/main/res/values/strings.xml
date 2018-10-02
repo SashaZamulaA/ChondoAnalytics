@@ -62,6 +62,7 @@
     <string name="description">Description</string>
     <string name="dp_read">DP read</string>
     <string name="name">Name</string>
+    <string name="period">Period</string>
 
     <array name="category">
         <item>faith</item>
