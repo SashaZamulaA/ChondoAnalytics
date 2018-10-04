@@ -63,11 +63,20 @@
     <string name="dp_read">DP read</string>
     <string name="name">Name</string>
     <string name="period">Period</string>
+    <string name="period_text">Period</string>
+    <string name="in_stock">0</string>
 
     <array name="category">
         <item>faith</item>
         <item>심청(heart)</item>
         <item>blessing</item>
+
+    </array>
+
+    <array name="time_period">
+        <item>Time</item>
+        <item>Quantity</item>
+        <item>Skip</item>
 
     </array>
 </resources>
