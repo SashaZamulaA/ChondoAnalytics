@@ -63,6 +63,24 @@
         <item name="android:textSize">16sp</item>
     </style>
 
+    <style name="TextStyle_SubHeader_charge" parent="AppTheme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily" tools:ignore="NewApi">sans-serif-medium</item>
+        <item name="android:textSize">@dimen/button_text_size</item>
+        <item name="android:textColor">@color/foreground_text_color_light</item>
+    </style>
+
+    <style name="ButtonBig_right" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:paddingStart">@dimen/padding_button_not_toolbar_8dp</item>
+        <item name="android:paddingEnd">@dimen/padding_button_not_toolbar_8dp</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">@dimen/button_text_size</item>
+        <item name="android:textColor">@color/foreground_text_color_light</item>
+        <item name="android:layout_height">@dimen/button_charge</item>
+    </style>
+
     <style name="TextStyle">
         <item name="android:layout_marginTop">2dp</item>
         <item name="android:layout_marginBottom">2dp</item>
@@ -211,4 +229,5 @@
         <item name="android:orientation">vertical</item>
     </style>
 
+    <dimen name="button_charge">48dp</dimen>
 </resources>
