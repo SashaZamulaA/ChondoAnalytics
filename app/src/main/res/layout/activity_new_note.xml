@@ -346,6 +346,7 @@
                         android:paddingStart="@dimen/space8">
 
                         <TextView
+
                             style="@style/TextStyle_SubHeader_charge"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -411,7 +412,7 @@
                                android:maxLines="1"
                                android:textAlignment="center"
                                android:textColor="@color/text_secondary_dark"
-                               android:text="13.13.414"
+                               android:text="13.13.2013"
                                tools:visibility="visible" />
                        </LinearLayout>
                 </LinearLayout>
