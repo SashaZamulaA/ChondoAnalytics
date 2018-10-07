@@ -2,6 +2,7 @@ package com.example.aleksandr.myapplication.ui.add_task
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
+import android.app.PendingIntent.getActivity
 import android.os.Bundle
 import android.support.design.widget.AppBarLayout
 import android.support.v4.view.ViewCompat
@@ -13,16 +14,26 @@ import android.widget.Spinner
 import android.widget.Toast
 import com.example.aleksandr.myapplication.BaseActivity
 import com.example.aleksandr.myapplication.R
+import com.example.aleksandr.myapplication.R.id.*
 import com.example.aleksandr.myapplication.getActivity
+import com.example.aleksandr.myapplication.toAndroidVisibility
 import kotlinx.android.synthetic.main.activity_new_note.*
 import java.util.*
 
 
-class NewNoteActivity : BaseActivity() {
+class NewNoteView : BaseActivity() , INewNote{
+
+    override fun setVisibility(isVisible: Boolean) {
+        container_quantity.visibility = isVisible.toAndroidVisibility()
+
+    }
+
+    private lateinit var presenter: NewNotePresenter
 
     @SuppressLint("SetTextI18n")
     override fun init(savedInstanceState: Bundle?) {
         super.setContentView(R.layout.activity_new_note)
+        presenter = NewNotePresenter(this, application)
 //        val EXTRA_NAME = "cheese_name"
 //        val intent = intent
 //        val cheeseName = intent.getStringExtra(EXTRA_NAME)
@@ -87,7 +98,7 @@ class NewNoteActivity : BaseActivity() {
                 override fun onItemSelected(parent: AdapterView<*>, view: View,
                                             position: Int, id: Long) {
                     if (position == 1) {
-
+                        presenter.updateInStockVisibility()
                     }
 
                 }
@@ -99,7 +110,15 @@ class NewNoteActivity : BaseActivity() {
 
     }
 
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
+        presenter.bindView(this)
+    }
 
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        presenter.unbindView(this)
+    }
 }
 
 //        collapsing_toolbar.title = cheeseName

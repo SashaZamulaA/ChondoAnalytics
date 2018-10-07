@@ -10,10 +10,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.view_goal_list.*
-import com.example.aleksandr.myapplication.ui.main.MainActivity
 import android.content.Intent
-import android.support.design.widget.FloatingActionButton
-import android.view.View
 
 
 class RecyclerActivity : BaseActivity() {
@@ -29,7 +26,7 @@ class RecyclerActivity : BaseActivity() {
 
 
         fab_add.setOnClickListener {
-            startActivity(Intent(this@RecyclerActivity, NewNoteActivity::class.java)) }
+            startActivity(Intent(this@RecyclerActivity, NewNoteView::class.java)) }
            }
 
     private fun setUpRecyclerView() {
