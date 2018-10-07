@@ -5,6 +5,12 @@ import android.app.DatePickerDialog
 import android.os.Bundle
 import android.support.design.widget.AppBarLayout
 import android.support.v4.view.ViewCompat
+import android.view.View
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemSelectedListener
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import android.widget.Toast
 import com.example.aleksandr.myapplication.BaseActivity
 import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.getActivity
@@ -42,7 +48,6 @@ class NewNoteActivity : BaseActivity() {
             }
         })
 
-
         val c = Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
         val month = c.get(Calendar.MONTH)
@@ -50,13 +55,51 @@ class NewNoteActivity : BaseActivity() {
 
         button_charge_start!!.setOnClickListener {
 
-            val dpd = DatePickerDialog(getActivity(), DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
-                // Display Selected date in textbox
+            val startTime = DatePickerDialog(getActivity(), DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+
                 total_field.text = "$dayOfMonth. $month. $year"
             }, year, month, day)
-            dpd.show()
+            startTime.show()
         }
+
+        button_charge_end.setOnClickListener {
+
+            val endTime = DatePickerDialog(getActivity(), DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+
+                total_field.text = "$dayOfMonth. $month. $year"
+            }, year, month, day)
+            endTime.show()
+        }
+
+        val spinner: Spinner = findViewById(R.id.spinner)
+// Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter.createFromResource(
+                this,
+                R.array.time_period,
+                android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner
+            spinner.adapter = adapter
+
+            spinner.onItemSelectedListener = object : OnItemSelectedListener {
+                override fun onItemSelected(parent: AdapterView<*>, view: View,
+                                            position: Int, id: Long) {
+                    if (position == 1) {
+
+                    }
+
+                }
+
+                override fun onNothingSelected(arg0: AdapterView<*>) {}
+            }
+
+        }
+
     }
+
+
 }
 
 //        collapsing_toolbar.title = cheeseName

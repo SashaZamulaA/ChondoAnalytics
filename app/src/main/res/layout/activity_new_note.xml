@@ -184,6 +184,7 @@
                     </RelativeLayout>
 
                     <RelativeLayout
+                        android:id="@+id/container_quantity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal">
@@ -199,7 +200,7 @@
                             android:text="@string/number" />
 
                         <android.support.design.widget.TextInputLayout
-                            android:id="@+id/container_quantity"
+                            android:id="@+id/text_imput_layout_quantity"
                             style="@style/TextStyle_Caption_Dark"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
