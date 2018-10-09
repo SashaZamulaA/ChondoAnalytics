@@ -2,7 +2,6 @@ package com.example.aleksandr.myapplication.ui.add_task
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
-import android.app.PendingIntent.getActivity
 import android.os.Bundle
 import android.support.design.widget.AppBarLayout
 import android.support.v4.view.ViewCompat
@@ -11,10 +10,8 @@ import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import android.widget.Spinner
-import android.widget.Toast
 import com.example.aleksandr.myapplication.BaseActivity
 import com.example.aleksandr.myapplication.R
-import com.example.aleksandr.myapplication.R.id.*
 import com.example.aleksandr.myapplication.getActivity
 import com.example.aleksandr.myapplication.toAndroidVisibility
 import kotlinx.android.synthetic.main.activity_new_note.*
@@ -22,10 +19,22 @@ import java.util.*
 
 
 class NewNoteView : BaseActivity() , INewNote{
+    override fun setSkipVisibility(isVisible: Boolean) {
+        container_skip.visibility = isVisible.toAndroidVisibility()
+        container_quantity.visibility = View.GONE
+        container_time.visibility = View.GONE
+    }
 
-    override fun setVisibility(isVisible: Boolean) {
+    override fun setTimeVisibility(isVisible: Boolean) {
+        container_time.visibility = isVisible.toAndroidVisibility()
+        container_quantity.visibility = View.GONE
+        container_skip.visibility = View.GONE
+    }
+
+    override fun setQuantityVisibility(isVisible: Boolean) {
         container_quantity.visibility = isVisible.toAndroidVisibility()
-
+        container_time.visibility = View.GONE
+        container_skip.visibility = View.GONE
     }
 
     private lateinit var presenter: NewNotePresenter
@@ -97,8 +106,10 @@ class NewNoteView : BaseActivity() , INewNote{
             spinner.onItemSelectedListener = object : OnItemSelectedListener {
                 override fun onItemSelected(parent: AdapterView<*>, view: View,
                                             position: Int, id: Long) {
-                    if (position == 1) {
-                        presenter.updateInStockVisibility()
+                   when(position){
+                       0 -> presenter.updateTime()
+                       1 -> presenter.updateQuantity()
+                       2 -> presenter.updateSkip()
                     }
 
                 }

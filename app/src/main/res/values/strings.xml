@@ -64,10 +64,14 @@
     <string name="name">Name</string>
     <string name="period">Period</string>
     <string name="period_text">Period</string>
-    <string name="in_stock">0</string>
+    <string name="zero">0</string>
     <string name="number">Number</string>
     <string name="start_data">Start Data</string>
     <string name="end_data">End data</string>
+    <string name="time">Time</string>
+    <string name="breakfast">Breakfast</string>
+    <string name="dinner">Dinner</string>
+    <string name="lunch">Lunch</string>
 
     <array name="category">
         <item>faith</item>

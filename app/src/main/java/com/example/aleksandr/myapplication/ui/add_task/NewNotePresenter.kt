@@ -9,14 +9,22 @@ class NewNotePresenter(newNotePresenter: NewNoteView, applicationComponent: Appl
         (applicationComponent as AndroidApplication).applicationComponent.inject(this)
 
     }
+
     override fun onBindView() {}
 
     override fun onUnbindView() {}
 
-    fun updateInStockVisibility() {
 
-        view?.setVisibility(true)
+    fun updateTime() {
+        view?.setTimeVisibility(true)
+    }
 
+    fun updateQuantity() {
+        view?.setQuantityVisibility(true)
+    }
+
+    fun updateSkip() {
+        view?.setSkipVisibility(true)
     }
 
 }
