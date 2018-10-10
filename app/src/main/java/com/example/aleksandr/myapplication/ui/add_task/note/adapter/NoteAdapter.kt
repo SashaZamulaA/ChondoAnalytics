@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.example.aleksandr.myapplication.R
-import com.example.aleksandr.myapplication.R.string.goal
 import com.example.aleksandr.myapplication.ui.add_task.note.model.Note
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
@@ -24,7 +23,7 @@ class NoteAdapter(options: FirestoreRecyclerOptions<Note>) : FirestoreRecyclerAd
     override fun onBindViewHolder(holder: NoteHolder, position: Int, model: Note) {
      holder.bind(model)
 //        holder.textViewTitle.text = model.title
-//        holder.textViewDescription.text = model.achivement.toString()
+//        holder.textViewDescription.text = model.result.toString()
 //        holder.textViewPriority.text = model.goal.toString()
     }
 
@@ -34,11 +33,11 @@ class NoteAdapter(options: FirestoreRecyclerOptions<Note>) : FirestoreRecyclerAd
             itemView.apply {
 
                 name.text = note.title
-                result_count.text = note.achivement.toString()
+                result_count.text = note.result.toString()
                 goal.text = note.goal.toString()
-//                percentage.text = ((note.achivement!!/note.goal!!)*100).toString()
-
-
+                start_time.text = note.start_period
+                end_time.text = note.end_period
+//                percentage.text = ((note.result!!/note.goal!!)*100).toString()
 
             }
         }

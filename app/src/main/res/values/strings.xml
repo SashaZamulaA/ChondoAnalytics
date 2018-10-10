@@ -73,7 +73,8 @@
     <string name="dinner">Dinner</string>
     <string name="lunch">Lunch</string>
     <string name="min">Min</string>
-    <string name="period_time">Period of time</string>
+    <string name="period_time">start_per</string>
+    <string name="end_time">end_per</string>
 
     <array name="category">
         <item>faith</item>
