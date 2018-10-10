@@ -24,78 +24,10 @@
                 style="@style/Toolbar.TitleText"
                 android:text="@string/note" />
 
-            <android.support.v7.widget.SearchView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                app:queryHint="Search"
-                app:searchIcon="@drawable/ic_search_white" />
+
         </RelativeLayout>
 
     </android.support.v7.widget.Toolbar>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:orientation="horizontal"
-        android:background="@color/accent_lighter">
-
-        <TextView
-            style="@style/TextStyle_Body2_Secondary_Dark"
-            android:layout_width="90dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:gravity="center_horizontal|center_vertical"
-            android:text="@string/topic"
-            android:textSize="18sp" />
-
-        <View
-            style="@style/AppTheme.VerticalViewDivider"
-            android:background="#6D9E3A" />
-
-        <TextView
-            android:id="@+id/achivement"
-            style="@style/TextStyle_Body2_Primary_Dark"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|center_horizontal"
-            android:gravity="center_horizontal"
-            android:textSize="18sp"
-            android:text="@string/result" />
-
-        <View
-            style="@style/AppTheme.VerticalViewDivider"
-            android:background="#6D9E3A" />
-
-
-        <TextView
-            android:id="@+id/percentage"
-            style="@style/TextStyle_Body2_Primary_Dark"
-
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:gravity="center"
-            android:textSize="@dimen/space_24"
-            android:text="%" />
-
-        <View
-            style="@style/AppTheme.VerticalViewDivider"
-            android:background="#6D9E3A" />
-
-        <TextView
-            android:id="@+id/goal"
-            style="@style/TextStyle_Body2_Primary_Dark"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|center_horizontal"
-            android:gravity="center_horizontal"
-            android:textSize="@dimen/space_18"
-            android:text="@string/goal" />
-    </LinearLayout>
-
-    <View style="@style/AppTheme.HorizontalSpinnerDivider" />
 
     <FrameLayout
         android:layout_width="match_parent"

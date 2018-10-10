@@ -73,11 +73,11 @@ class NewNoteView : BaseActivity() , INewNote{
         val month = c.get(Calendar.MONTH)
         val day = c.get(Calendar.DAY_OF_MONTH)
 
-        button_charge_start!!.setOnClickListener {
+        button_charge_start.setOnClickListener {
 
             val startTime = DatePickerDialog(getActivity(), DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
 
-                total_field.text = "$dayOfMonth. $month. $year"
+                total_field_start.text = "$dayOfMonth. $month. $year"
             }, year, month, day)
             startTime.show()
         }
@@ -86,7 +86,7 @@ class NewNoteView : BaseActivity() , INewNote{
 
             val endTime = DatePickerDialog(getActivity(), DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
 
-                total_field.text = "$dayOfMonth. $month. $year"
+                total_field_end.text = "$dayOfMonth. $month. $year"
             }, year, month, day)
             endTime.show()
         }

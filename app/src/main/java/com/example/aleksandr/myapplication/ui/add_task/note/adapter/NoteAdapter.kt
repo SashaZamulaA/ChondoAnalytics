@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.example.aleksandr.myapplication.R
+import com.example.aleksandr.myapplication.R.string.goal
 import com.example.aleksandr.myapplication.ui.add_task.note.model.Note
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
@@ -32,10 +33,10 @@ class NoteAdapter(options: FirestoreRecyclerOptions<Note>) : FirestoreRecyclerAd
         fun bind(note: Note) {
             itemView.apply {
 
-                thema.text = note.title
-                achivement.text = note.achivement.toString()
+                name.text = note.title
+                result_count.text = note.achivement.toString()
                 goal.text = note.goal.toString()
-                percentage.text = ((note.achivement!!/note.goal!!)*100).toString()
+//                percentage.text = ((note.achivement!!/note.goal!!)*100).toString()
 
 
 
