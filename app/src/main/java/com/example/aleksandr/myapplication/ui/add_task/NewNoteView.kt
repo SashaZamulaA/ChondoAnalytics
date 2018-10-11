@@ -10,43 +10,33 @@ import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import android.widget.Toast
 import com.example.aleksandr.myapplication.BaseActivity
 import com.example.aleksandr.myapplication.R
+import com.example.aleksandr.myapplication.R.id.*
 import com.example.aleksandr.myapplication.getActivity
 import com.example.aleksandr.myapplication.toAndroidVisibility
+import com.example.aleksandr.myapplication.ui.add_task.note.model.Note
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_new_note.*
 import java.util.*
 
 
 class NewNoteView : BaseActivity() , INewNote{
-    override fun setSkipVisibility(isVisible: Boolean) {
-        container_skip.visibility = isVisible.toAndroidVisibility()
-        container_quantity.visibility = View.GONE
-        container_time.visibility = View.GONE
-    }
 
-    override fun setTimeVisibility(isVisible: Boolean) {
-        container_time.visibility = isVisible.toAndroidVisibility()
-        container_quantity.visibility = View.GONE
-        container_skip.visibility = View.GONE
-    }
-
-    override fun setQuantityVisibility(isVisible: Boolean) {
-        container_quantity.visibility = isVisible.toAndroidVisibility()
-        container_time.visibility = View.GONE
-        container_skip.visibility = View.GONE
-    }
 
     private lateinit var presenter: NewNotePresenter
 
-    @SuppressLint("SetTextI18n")
+
+
+
     override fun init(savedInstanceState: Bundle?) {
         super.setContentView(R.layout.activity_new_note)
         presenter = NewNotePresenter(this, application)
 //        val EXTRA_NAME = "cheese_name"
 //        val intent = intent
 //        val cheeseName = intent.getStringExtra(EXTRA_NAME)
-
+        fab_confirm_goal.setOnClickListener {saveNote()}
 
         appbar.addOnOffsetChangedListener(object : AppBarLayout.OnOffsetChangedListener {
             var isShow = true
@@ -72,6 +62,8 @@ class NewNoteView : BaseActivity() , INewNote{
         val year = c.get(Calendar.YEAR)
         val month = c.get(Calendar.MONTH)
         val day = c.get(Calendar.DAY_OF_MONTH)
+
+
 
         button_charge_start.setOnClickListener {
 
@@ -107,8 +99,8 @@ class NewNoteView : BaseActivity() , INewNote{
                 override fun onItemSelected(parent: AdapterView<*>, view: View,
                                             position: Int, id: Long) {
                    when(position){
-                       0 -> presenter.updateTime()
-                       1 -> presenter.updateQuantity()
+                       0 -> {presenter.updateTime();}
+                       1 -> {presenter.updateQuantity();}
                        2 -> presenter.updateSkip()
                     }
 
@@ -130,36 +122,46 @@ class NewNoteView : BaseActivity() , INewNote{
         super.onDetachedFromWindow()
         presenter.unbindView(this)
     }
-}
+
+
 
 //        collapsing_toolbar.title = cheeseName
-//
-//        button_add_client?.setOnClickListener {  saveNote()}
+
+    private fun saveNote() {
+        var goal:String = ""
+        val name = et_item_name.text.toString()
+        val achiv = edit_text_achievement.toString()
+        val goalQuantity = et_quantity.text.toString()
+        val goalTime = et_time.text.toString()
 
 
-//    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-//        return when (item?.itemId) {
-//            R.id.save_note -> {
-//                saveNote()
-//                true
-//            }
-//            else -> super.onOptionsItemSelected(item)
-//        }
-//    }
+        if (name.trim { it <= ' ' }.isEmpty() || goal.trim { it <= ' ' }.isEmpty()) {
+            Toast.makeText(this, "Please insert a title and description", Toast.LENGTH_SHORT).show()
+            return
+        }
 
-//    private fun saveNote() {
-//        val title = edit_text_title.text.toString()
-//        val achiv = edit_text_achievement.text.toString()
-//        val goal = edit_text_goal.text.toString()
-//
-//        if (title.trim { it <= ' ' }.isEmpty() || achiv.trim { it <= ' ' }.isEmpty()) {
-//            Toast.makeText(this, "Please insert a title and description", Toast.LENGTH_SHORT).show()
-//            return
-//        }
-//
-//        val notebookRef = FirebaseFirestore.getInstance()
-//                .collection("Notebook")
-//        notebookRef.add(Note(title, achiv.toDouble(), goal.toDouble()))
-//        Toast.makeText(this, "Note added", Toast.LENGTH_SHORT).show()
-//        finish()
-//    }
+        val notebookRef = FirebaseFirestore.getInstance()
+                .collection("Notebook")
+        notebookRef.add(Note(name, goal))
+        Toast.makeText(this, "Note added", Toast.LENGTH_SHORT).show()
+        finish()
+    }
+    override fun setSkipVisibility(isVisible: Boolean) {
+        container_skip.visibility = isVisible.toAndroidVisibility()
+        container_quantity.visibility = View.GONE
+        container_time.visibility = View.GONE
+    }
+
+    override fun setTimeVisibility(isVisible: Boolean) {
+        container_time.visibility = isVisible.toAndroidVisibility()
+        container_quantity.visibility = View.GONE
+        container_skip.visibility = View.GONE
+    }
+
+    override fun setQuantityVisibility(isVisible: Boolean) {
+        container_quantity.visibility = isVisible.toAndroidVisibility()
+        container_time.visibility = View.GONE
+        container_skip.visibility = View.GONE
+    }
+
+}
