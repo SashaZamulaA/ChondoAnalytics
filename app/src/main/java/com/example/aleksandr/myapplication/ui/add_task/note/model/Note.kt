@@ -9,8 +9,8 @@ class Note {
     var endPeriod: String = ""
     private var mImageUrl: String? = null
 
-    constructor() {
-
+    constructor(mImageUrl: String) {
+        this.mImageUrl = mImageUrl
     }
 
     constructor(title: String, goal: String, startPeriod : String, endPeriod:String, mImageUrl: String) {
@@ -26,6 +26,8 @@ class Note {
         this.goal = goal
         this.result = achivement
     }
+
+    constructor(){}
 
     constructor(title: String, goal: String, startPeriod: String, endPeriod: String) {
         this.title = title
