@@ -27,10 +27,10 @@ class Note {
         this.result = achivement
     }
 
-    constructor(title: String, achivement: Double, procent: Double, goal: String) {
+    constructor(title: String, goal: String, startPeriod: String, endPeriod: String) {
         this.title = title
         this.goal = goal
-        this.procent = procent
-        this.result = achivement
+        this.startPeriod = startPeriod
+        this.endPeriod = endPeriod
     }
 }
