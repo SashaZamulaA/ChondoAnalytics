@@ -5,16 +5,18 @@ class Note {
     var result: Double? = null
     var goal: String? = null
     var procent: Double? = null
-    var start_period: String = ""
-    var end_period: String = ""
+    var startPeriod: String = ""
+    var endPeriod: String = ""
 
     constructor() {
 
     }
 
-    constructor(title: String, goal: String) {
+    constructor(title: String, goal: String, startPeriod : String, endPeriod:String) {
         this.title = title
         this.goal = goal
+        this.startPeriod = startPeriod
+        this.endPeriod = endPeriod
     }
 
     constructor(title: String, achivement: Double, goal: String) {

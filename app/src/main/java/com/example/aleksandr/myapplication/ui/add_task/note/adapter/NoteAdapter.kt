@@ -33,7 +33,8 @@ class NoteAdapter(options: FirestoreRecyclerOptions<Note>) : FirestoreRecyclerAd
             itemView.apply {
 
                 name.text = note.title
-
+                start_time.text = note.startPeriod
+                end_time.text = note.endPeriod
                 goal.text = note.goal
 
 //                percentage.text = ((note.result!!/note.goal!!)*100).toString()

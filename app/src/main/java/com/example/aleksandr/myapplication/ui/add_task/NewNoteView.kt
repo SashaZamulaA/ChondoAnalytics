@@ -128,11 +128,12 @@ class NewNoteView : BaseActivity() , INewNote{
 //        collapsing_toolbar.title = cheeseName
 
     private fun saveNote() {
-        var goal:String = ""
+
         val name = et_item_name.text.toString()
         val achiv = edit_text_achievement.toString()
-        val goalQuantity = et_quantity.text.toString()
-        val goalTime = et_time.text.toString()
+        val goal = et_time.text.toString()
+        val startPeriod = total_field_start.text.toString()
+        val endPeriod = total_field_end.text.toString()
 
 
         if (name.trim { it <= ' ' }.isEmpty() || goal.trim { it <= ' ' }.isEmpty()) {
@@ -142,25 +143,25 @@ class NewNoteView : BaseActivity() , INewNote{
 
         val notebookRef = FirebaseFirestore.getInstance()
                 .collection("Notebook")
-        notebookRef.add(Note(name, goal))
+        notebookRef.add(Note(name, goal, startPeriod, endPeriod))
         Toast.makeText(this, "Note added", Toast.LENGTH_SHORT).show()
         finish()
     }
     override fun setSkipVisibility(isVisible: Boolean) {
         container_skip.visibility = isVisible.toAndroidVisibility()
-        container_quantity.visibility = View.GONE
         container_time.visibility = View.GONE
     }
 
     override fun setTimeVisibility(isVisible: Boolean) {
         container_time.visibility = isVisible.toAndroidVisibility()
-        container_quantity.visibility = View.GONE
+        quantity_text.visibility = View.GONE
         container_skip.visibility = View.GONE
+        time_text.visibility = isVisible.toAndroidVisibility()
     }
 
     override fun setQuantityVisibility(isVisible: Boolean) {
-        container_quantity.visibility = isVisible.toAndroidVisibility()
-        container_time.visibility = View.GONE
+        quantity_text.visibility = isVisible.toAndroidVisibility()
+        time_text.visibility = View.GONE
         container_skip.visibility = View.GONE
     }
 
