@@ -1,6 +1,7 @@
 package com.example.aleksandr.myapplication.ui.add_task
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.support.design.widget.AppBarLayout
@@ -20,15 +21,21 @@ import com.example.aleksandr.myapplication.ui.add_task.note.model.Note
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_new_note.*
 import java.util.*
+import android.content.Intent
+import android.net.Uri
+import com.squareup.picasso.Picasso
+
+
+
+
 
 
 class NewNoteView : BaseActivity() , INewNote{
 
 
     private lateinit var presenter: NewNotePresenter
-
-
-
+    private val PICK_IMAGE_REQUEST = 1
+    private var mImageUri: Uri? = null
 
     override fun init(savedInstanceState: Bundle?) {
         super.setContentView(R.layout.activity_new_note)
@@ -37,6 +44,22 @@ class NewNoteView : BaseActivity() , INewNote{
 //        val intent = intent
 //        val cheeseName = intent.getStringExtra(EXTRA_NAME)
         fab_confirm_goal.setOnClickListener {saveNote()}
+
+
+
+        btn_choose_photo.setOnClickListener {
+            openFileChooser()
+            uploadFile()
+        }
+
+        fab_confirm_goal.setOnClickListener{
+
+        }
+//
+//        mTextViewShowUploads.setOnClickListener(View.OnClickListener { })
+
+
+
 
         appbar.addOnOffsetChangedListener(object : AppBarLayout.OnOffsetChangedListener {
             var isShow = true
@@ -123,9 +146,27 @@ class NewNoteView : BaseActivity() , INewNote{
         presenter.unbindView(this)
     }
 
+    private fun openFileChooser() {
+        val intent = Intent()
+        intent.type = "image/*"
+        intent.action = Intent.ACTION_GET_CONTENT
+        startActivityForResult(intent, PICK_IMAGE_REQUEST)
+    }
 
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK
+                && data != null && data.data != null) {
+            mImageUri = data.data
+
+            Picasso.with(this).load(mImageUri).into(image_view)
+        }
+    }
 //        collapsing_toolbar.title = cheeseName
+
+
 
     private fun saveNote() {
 

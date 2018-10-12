@@ -7,16 +7,18 @@ class Note {
     var procent: Double? = null
     var startPeriod: String = ""
     var endPeriod: String = ""
+    private var mImageUrl: String? = null
 
     constructor() {
 
     }
 
-    constructor(title: String, goal: String, startPeriod : String, endPeriod:String) {
+    constructor(title: String, goal: String, startPeriod : String, endPeriod:String, mImageUrl: String) {
         this.title = title
         this.goal = goal
         this.startPeriod = startPeriod
         this.endPeriod = endPeriod
+        this.mImageUrl = mImageUrl
     }
 
     constructor(title: String, achivement: Double, goal: String) {
