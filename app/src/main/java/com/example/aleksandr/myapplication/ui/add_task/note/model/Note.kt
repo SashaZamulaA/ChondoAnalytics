@@ -7,7 +7,7 @@ class Note {
     var procent: Double? = null
     var startPeriod: String = ""
     var endPeriod: String = ""
-    private var mImageUrl: String? = null
+    var mImageUrl: String? = null
 
     constructor(mImageUrl: String) {
         this.mImageUrl = mImageUrl

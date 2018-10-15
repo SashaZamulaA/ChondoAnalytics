@@ -47,15 +47,13 @@ class NewNoteView : BaseActivity(), INewNote {
 //        val EXTRA_NAME = "cheese_name"
 //        val intent = intent
 //        val cheeseName = intent.getStringExtra(EXTRA_NAME)
-        fab_confirm_goal.setOnClickListener { uploadFile() }
+        fab_confirm_goal.setOnClickListener { saveNote() }
         mStorageRef = FirebaseStorage.getInstance().getReference("Notebook")
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("Notebook")
-
 
         btn_choose_photo.setOnClickListener {
             openFileChooser()
         }
-
 
 //
 //        mTextViewShowUploads.setOnClickListener(View.OnClickListener { })
@@ -166,8 +164,7 @@ class NewNoteView : BaseActivity(), INewNote {
             mImageUri = data.data
 
             Picasso.with(this).load(mImageUri).into(image_view)
-
-            uploadFile()
+    uploadFile()
         }
     }
 
@@ -194,9 +191,7 @@ class NewNoteView : BaseActivity(), INewNote {
                         if (uploadId != null) {
                             mDatabaseRef?.child(uploadId)?.setValue(upload)
 
-
                         }
-
                     }
                     ?.addOnFailureListener {
                         Toast.makeText(this@NewNoteView, it.message, Toast.LENGTH_SHORT).show()
@@ -208,7 +203,7 @@ class NewNoteView : BaseActivity(), INewNote {
         } else {
             Toast.makeText(this, "No file selected", Toast.LENGTH_SHORT).show();
         }
-    }
+        }
 
     private fun saveNote() {
         val name = et_item_name.text.toString()

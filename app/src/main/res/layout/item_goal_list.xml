@@ -16,11 +16,11 @@
         android:padding="8dp">
 
         <ImageView
-            android:id="@+id/iv_icon"
+            android:id="@+id/image_icon"
             android:layout_width="@dimen/item_size_list"
             android:layout_height="@dimen/item_size_list"
             android:layout_centerVertical="true"
-            android:background="@color/divider_spinner_color"
+
 
             tools:tint="#FF8000" />
 
