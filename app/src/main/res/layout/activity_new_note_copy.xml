@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    tools:context=".ui.add_task.RecyclerActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="@style/Toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbar_height"
+        android:padding="0dp"
+        app:contentInsetEnd="0dp"
+        app:contentInsetStart="0dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/title_list_pets"
+                style="@style/Toolbar.TitleText"
+                android:text="@string/note" />
+
+            <ImageView
+                android:id="@+id/button_add_client"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/button_ripple_circle_green"
+                android:gravity="center_horizontal"
+                android:padding="@dimen/icon_button_padding"
+                android:src="@drawable/ic_save" />
+
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/til_item_name"
+        style="@style/TextStyle_Caption_Dark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_16"
+        android:layout_marginEnd="@dimen/space_16"
+        android:layout_marginTop="@dimen/margin_top"
+        android:hint="@string/name"
+        android:text="@string/name"
+        android:textColorHint="@color/text_secondary_dark"
+        app:errorEnabled="true"
+        app:errorTextAppearance="@style/TextAppearance.AppCompat.Small.ErrorStyle">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/edit_text_title"
+            style="@style/TextStyle_Body2_Primary_Dark"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:clickable="false"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:imeOptions="actionNext"
+            android:inputType="textCapSentences"
+            android:maxLength="64"
+            android:maxLines="1"
+            android:nextFocusDown="@+id/et_price"
+            android:nextFocusForward="@+id/et_price"
+            android:paddingTop="@dimen/space8"
+            app:backgroundTint="@color/divider_spinner_color"
+            tools:text="Name of Task" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <!--<EditText-->
+    <!--android:id="@+id/edit_text_title"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:hint="@string/title"-->
+    <!--android:inputType="text"-->
+    <!--android:autofillHints="" />-->
+
+    <EditText
+        android:id="@+id/edit_text_achievement"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/description"
+        android:inputType="textMultiLine"
+        android:autofillHints="" />
+
+    <EditText
+        android:id="@+id/edit_text_goal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/goal"
+        android:inputType="textMultiLine"
+        android:autofillHints="" />
+
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="Priority"-->
+    <!--android:textAppearance="@android:style/TextAppearance.Medium"/>-->
+
+    <!--<NumberPicker-->
+    <!--android:id="@+id/number_picker"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content" />-->
+    <!---->
+</LinearLayout>

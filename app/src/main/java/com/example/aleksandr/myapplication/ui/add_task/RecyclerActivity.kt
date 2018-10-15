@@ -11,11 +11,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.view_goal_list.*
 import android.content.Intent
-import android.view.View
-import android.widget.Toast
-import com.google.firebase.database.DatabaseError
-
-
 
 
 class RecyclerActivity : BaseActivity() {
@@ -28,6 +23,7 @@ class RecyclerActivity : BaseActivity() {
         setContentView(R.layout.view_goal_list)
 
         setUpRecyclerView()
+
 
         fab_add.setOnClickListener {
             startActivity(Intent(this@RecyclerActivity, NewNoteView::class.java)) }
@@ -44,12 +40,6 @@ class RecyclerActivity : BaseActivity() {
         recycler_view.setHasFixedSize(true)
         recycler_view.layoutManager = LinearLayoutManager(this)
         recycler_view.adapter = adapter
-        progress_circle.visibility = View.INVISIBLE
-    }
-
-    fun onCancelled(databaseError: DatabaseError) {
-        Toast.makeText(this@RecyclerActivity, databaseError.message, Toast.LENGTH_SHORT).show()
-        progress_circle.visibility = View.INVISIBLE
     }
 
     override fun onStart() {
