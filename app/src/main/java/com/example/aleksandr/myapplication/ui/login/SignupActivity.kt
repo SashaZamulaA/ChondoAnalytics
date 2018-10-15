@@ -10,10 +10,8 @@ import android.view.View
 import android.widget.Toast
 import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.R.string.email
+import com.example.aleksandr.myapplication.ui.main.LoginActivity
 import com.example.aleksandr.myapplication.ui.main.MainActivity
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.view_signup.*
 

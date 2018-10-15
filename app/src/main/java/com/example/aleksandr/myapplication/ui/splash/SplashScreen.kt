@@ -1,14 +1,11 @@
 package com.example.aleksandr.myapplication.ui.splash
 
-import android.support.v4.content.ContextCompat.startActivity
 import android.content.Intent
 import android.os.Bundle
-import android.app.Activity
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
-import android.view.Menu
 import com.example.aleksandr.myapplication.R
-import com.example.aleksandr.myapplication.ui.login.LoginActivity
+import com.example.aleksandr.myapplication.ui.main.LoginActivity
 
 
 class Splash : AppCompatActivity() {

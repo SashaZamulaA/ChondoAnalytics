@@ -1,17 +1,16 @@
-package com.example.aleksandr.myapplication.ui.login
+package com.example.aleksandr.myapplication.ui.main
 
-import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.example.aleksandr.myapplication.BaseActivity
 import com.example.aleksandr.myapplication.R
-import com.example.aleksandr.myapplication.ui.main.MainActivity
+import com.example.aleksandr.myapplication.ui.login.LoginPresenter
+import com.example.aleksandr.myapplication.ui.login.SignupActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.view_login.*
 

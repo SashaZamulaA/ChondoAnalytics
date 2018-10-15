@@ -10,7 +10,7 @@ import com.example.aleksandr.myapplication.ui.hdh.HDHPresenter
 import com.example.aleksandr.myapplication.ui.hdh.HDHView
 import com.example.aleksandr.myapplication.ui.info.InfoPresenter
 import com.example.aleksandr.myapplication.ui.info.InfoView
-import com.example.aleksandr.myapplication.ui.login.LoginActivity
+import com.example.aleksandr.myapplication.ui.main.LoginActivity
 import com.example.aleksandr.myapplication.ui.login.LoginPresenter
 import com.example.aleksandr.myapplication.ui.main.MainActivity
 import com.example.aleksandr.myapplication.ui.main.MainPresenter
