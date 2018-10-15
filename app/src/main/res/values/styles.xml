@@ -8,6 +8,18 @@
         <item name="colorAccent">@color/accent</item>
     </style>
 
+    <style name="TextStyle_Title_White" parent="TextStyle_Title_Black">
+        <item name="android:textColor">@color/text_primary_light</item>
+    </style>
+
+    <style name="TextStyle_Title_Black" parent="AppTheme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily" tools:ignore="NewApi">sans-serif-medium</item>
+        <item name="android:textSize">@dimen/title_text_size</item>
+        <item name="android:textColor">@color/foreground_text_color_dark</item>
+    </style>
+
     <style name="TextAppearance.AppCompat.Small.ErrorStyle">
         <item name="android:textColor">@color/text_error</item>
         <item name="android:textSize">@dimen/caption_text_size</item>
@@ -230,4 +242,14 @@
     </style>
 
     <dimen name="button_charge">48dp</dimen>
+
+
+        <style name="TextStyle_sp20_black87" parent="AppTheme">
+            <item name="android:layout_width">wrap_content</item>
+            <item name="android:layout_height">wrap_content</item>
+            <item name="android:fontFamily" tools:ignore="NewApi">sans-serif-medium</item>
+            <item name="android:textSize">@dimen/title_text_size</item>
+            <item name="android:textColor">@color/text_primary_dark</item>
+        </style>
+
 </resources>

@@ -74,4 +74,7 @@
     <dimen name="touchable_list_container">56dp</dimen>
     <dimen name="item_size_list">80dp</dimen>
 
+
+
+
 </resources>
