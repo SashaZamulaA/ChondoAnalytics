@@ -8,7 +8,7 @@ import com.example.aleksandr.myapplication.ui.login.IRegistrationActivity
 import com.example.aleksandr.myapplication.ui.login.RegistrationActivity
 
 class RegistrationPresenter (registrationActivity: RegistrationActivity, application: Application) : BasePresenter<RegistrationActivity>(registrationActivity) {
-    init { (application as AndroidApplication).applicationComponent.ingect(this) }
+    init { (application as AndroidApplication).applicationComponent.inject(this) }
     private var name = ""
     private var address = ""
     private var email = ""

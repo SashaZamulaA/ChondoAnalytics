@@ -96,6 +96,7 @@ class LoginActivity : AppCompatActivity(), ILoginActivity {
 //                        progressDialog.setMessage("Diney...")
 //                        progressDialog.show()
 
+
                     } else {
                         val intent = Intent(this@LoginActivity, MainActivity::class.java)
                         startActivity(intent)
