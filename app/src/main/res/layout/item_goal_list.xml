@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="8dp"
+    app:cardBackgroundColor="#FFFFE8">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/image_icon"
+            android:layout_width="@dimen/item_size_list"
+            android:layout_height="@dimen/item_size_list"
+            android:layout_centerVertical="true"
+
+
+            tools:tint="#FF8000" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start|end">
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textSize="@dimen/title_text_size"
+                    tools:text="@string/title" />
+
+                <TextView
+                    android:id="@+id/goal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="@dimen/space8"
+                    android:textColor="@color/text_secondary_dark"
+                    android:textSize="@dimen/body2_text_size"
+                    tools:text="21" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_4"
+                android:gravity="start|end">
+
+                <TextView
+                    android:id="@+id/start_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="@dimen/caption_text_size"
+                    tools:text="@string/start_time" />
+
+                <TextView
+                    android:id="@+id/start_end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:layout_toRightOf="@id/start_time"
+                    android:singleLine="true"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="@dimen/caption_text_size"
+                    android:text="@string/probel" />
+
+                <TextView
+                    android:id="@+id/end_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:layout_toRightOf="@+id/start_end"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="@dimen/caption_text_size"
+                    tools:text="@string/end_time" />
+
+
+                <TextView
+                    android:id="@+id/count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:textColor="@color/text_secondary_dark"
+                    android:textSize="@dimen/body2_text_size"
+                    tools:text=" (7days)" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start|end">
+
+                <TextView
+                    android:id="@+id/result"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="@dimen/body2_text_size"
+                    android:text="@string/result" />
+
+                <TextView
+                    android:id="@+id/result_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:textColor="@color/text_secondary_dark"
+                    android:textSize="@dimen/body2_text_size"
+                    tools:text="20" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

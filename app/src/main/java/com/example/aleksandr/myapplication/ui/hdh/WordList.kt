@@ -10,7 +10,7 @@ import android.widget.TextView
 import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.ui.hdh.model.HDHModel
 
-class ArtistList(private val context: Activity, private val artists: List<HDHModel>) : ArrayAdapter<HDHModel>(context, R.layout.item_is_word_list, artists) {
+class WordList(private val context: Activity, private val artists: List<HDHModel>) : ArrayAdapter<HDHModel>(context, R.layout.item_is_word_list, artists) {
 
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {

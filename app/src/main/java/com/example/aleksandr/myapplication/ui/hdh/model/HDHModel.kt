@@ -4,9 +4,9 @@ import com.google.firebase.database.IgnoreExtraProperties
 
 @IgnoreExtraProperties
 class HDHModel {
-    var id: String = ""
-    var name: String = ""
-    var category: String = ""
+    var id: String? = null
+    var name: String? = null
+    var category: String? = null
 
     constructor() {
         //this constructor is required

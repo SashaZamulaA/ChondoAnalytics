@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -15,13 +14,7 @@
         app:contentInsetEnd="0dp"
         app:contentInsetStart="0dp">
 
-        <TextView
-            android:id="@+id/title_list_pets"
-            style="@style/Toolbar.TitleText"
-            android:text="Main Screen" />
-
     </android.support.v7.widget.Toolbar>
-
 
     <TextView
         android:id="@+id/text_on_screen"

@@ -15,6 +15,11 @@
     <dimen name="space_26">26dp</dimen>
     <dimen name="space_36">36dp</dimen>
 
+    <dimen name="detail_backdrop_height">170dp</dimen>
+    <dimen name="card_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="list_item_avatar_size">40dp</dimen>
+
     // TEXT SIZE
     <dimen name="caption_text_size">12sp</dimen>
     <dimen name="body1_text_size">14sp</dimen>
@@ -29,7 +34,7 @@
     <dimen name="display2_text_size">45sp</dimen>
     <dimen name="larger_text">18sp</dimen>
     <dimen name="receipt_portrait_size">96dp</dimen>
-
+    <dimen name="negative_padding_edittext">-4dp</dimen>
     <dimen name="receipt_item_height">48dp</dimen>
     <dimen name="base_item_height">56dp</dimen>
     <dimen name="margin_16_24">16dp</dimen>
@@ -61,5 +66,12 @@
 
     // Card
     <dimen name="card_width">684dp</dimen>
+    <dimen name="margin_top">8dp</dimen>
+    <dimen name="edge_margins">16dp</dimen>
+    <dimen name="space8">8dp</dimen>
+    <dimen name="icon_barcode_size">38dp</dimen>
+    <dimen name="space12">12dp</dimen>
+    <dimen name="touchable_list_container">56dp</dimen>
+    <dimen name="item_size_list">80dp</dimen>
 
 </resources>

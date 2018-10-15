@@ -25,14 +25,19 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.login.LoginActivity" />
-        <activity android:name=".ui.login.RegistrationActivity" />
+        <activity android:name=".ui.login.SignupActivity" />
         <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".ui.info.InfoView" />
         <activity android:name=".ui.hdh.HDHView" />
+        <activity android:name=".ui.add_task.NewNoteView"/>
+
         <activity
             android:name=".TestForVisual"
             android:exported="true" />
+        <activity android:name=".ui.add_task.RecyclerActivity">
 
+
+        </activity>
     </application>
 
 </manifest>
