@@ -36,7 +36,7 @@ interface ApplicationComponent {
     fun inject(infoPresenter: InfoPresenter)
     fun inject(mainPresenter: MainPresenter)
     fun inject(loginPresenter: LoginPresenter)
-    fun ingect(registrationPresenter: RegistrationPresenter)
+    fun inject(registrationPresenter: RegistrationPresenter)
     fun inject(hdhPresenter: HDHPresenter)
     fun inject(newNotePresenter: NewNotePresenter)
 }
