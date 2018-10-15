@@ -127,5 +127,6 @@
         <string name="checkbox_gdpr">Please agree to the Terms of Use and Privacy Policy</string>
         <string name="no_internet">No internet connection</string>
         <string name="registration">Registration</string>
+    <string name="cancel">Cancel</string>
 
-    </resources>
+</resources>

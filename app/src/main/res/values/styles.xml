@@ -229,5 +229,17 @@
         <item name="android:orientation">vertical</item>
     </style>
 
+    <style name="TextStyle_Title_White" parent="TextStyle_Title_Black">
+        <item name="android:textColor">@color/text_primary_light</item>
+    </style>
+
+    <style name="TextStyle_Title_Black" parent="AppTheme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily" tools:ignore="NewApi">sans-serif-medium</item>
+        <item name="android:textSize">@dimen/title_text_size</item>
+        <item name="android:textColor">@color/foreground_text_color_dark</item>
+    </style>
+
     <dimen name="button_charge">48dp</dimen>
 </resources>
