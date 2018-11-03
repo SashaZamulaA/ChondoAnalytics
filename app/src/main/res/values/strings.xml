@@ -130,5 +130,9 @@
         <string name="no_internet">No internet connection</string>
         <string name="registration">Registration</string>
     <string name="cancel">Cancel</string>
+    <string name="mobile">mobile</string>
+    <string name="owner">owner</string>
+    <string name="notification">notification</string>
+    <string name="optional_settings">Optional settings</string>
 
 </resources>

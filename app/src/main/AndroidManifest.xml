@@ -30,6 +30,7 @@
         <activity android:name=".ui.info.InfoView" />
         <activity android:name=".ui.hdh.HDHView" />
         <activity android:name=".ui.add_task.NewNoteView"/>
+        <activity android:name=".ui.settings.SettingsView"/>
 
         <activity
             android:name=".TestForVisual"

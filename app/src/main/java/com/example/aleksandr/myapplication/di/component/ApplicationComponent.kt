@@ -16,6 +16,8 @@ import com.example.aleksandr.myapplication.ui.login.presenter.LoginPresenter
 import com.example.aleksandr.myapplication.ui.login.presenter.RegistrationPresenter
 import com.example.aleksandr.myapplication.ui.main.MainActivity
 import com.example.aleksandr.myapplication.ui.main.MainPresenter
+import com.example.aleksandr.myapplication.ui.settings.SettingsView
+import com.vadym.adv.myhomepet.ui.settings.SettingsPresenter
 import dagger.Component
 
 @Component(modules = [AppModule::class, NetModule::class, NetModule::class])
@@ -30,6 +32,7 @@ interface ApplicationComponent {
     fun inject(hdhView: HDHView)
     fun inject(recView :RecyclerActivity)
     fun inject(newNoteView : NewNoteView)
+    fun inject( settingsView: SettingsView)
 
 
     // PRESENTER
@@ -39,4 +42,5 @@ interface ApplicationComponent {
     fun inject(registrationPresenter: RegistrationPresenter)
     fun inject(hdhPresenter: HDHPresenter)
     fun inject(newNotePresenter: NewNotePresenter)
+    fun inject(settingsPresenter: SettingsPresenter)
 }

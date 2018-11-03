@@ -18,6 +18,7 @@ import com.example.aleksandr.myapplication.ui.add_task.RecyclerActivity
 import com.example.aleksandr.myapplication.ui.hdh.HDHView
 import com.example.aleksandr.myapplication.ui.info.InfoView
 import com.example.aleksandr.myapplication.ui.main.MainActivity
+import com.example.aleksandr.myapplication.ui.settings.SettingsView
 
 abstract class BaseActivity : AppCompatActivity(), IView, NavigationView.OnNavigationItemSelectedListener {
 
@@ -69,7 +70,7 @@ abstract class BaseActivity : AppCompatActivity(), IView, NavigationView.OnNavig
             }
 
             R.id.nav_settings -> {
-                Toast.makeText(applicationContext, "You Clicked Options B", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, SettingsView::class.java))
                 drawer.closeDrawer(GravityCompat.START)
             }
 
