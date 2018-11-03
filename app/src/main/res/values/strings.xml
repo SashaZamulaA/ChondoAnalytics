@@ -13,7 +13,7 @@
     <string name="go_create_account">No account yet? Create one</string>
     <string name="login_member">Already a member? Login</string>
     <string name="owner_name">Nik-Name</string>
-    <string name="country">Country</string>
+    <string name="country">Sity</string>
     <string name="re_enter_password">Re-enter password</string>
     <string name="create_account">Create account</string>
     <string name="please_agree">Please agree to the Terms of Use and Privacy Policy</string>
@@ -76,6 +76,8 @@
     <string name="start_time">start_per</string>
     <string name="end_time">end_per</string>
     <string name="probel"> - </string>
+
+
 
     <array name="category">
         <item>faith</item>

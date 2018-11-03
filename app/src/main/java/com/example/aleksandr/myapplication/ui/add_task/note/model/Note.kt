@@ -1,5 +1,9 @@
 package com.example.aleksandr.myapplication.ui.add_task.note.model
 
+import com.google.firebase.database.IgnoreExtraProperties
+
+@com.google.firebase.firestore.IgnoreExtraProperties
+
 class Note {
     var title: String = ""
     var result: Double? = null

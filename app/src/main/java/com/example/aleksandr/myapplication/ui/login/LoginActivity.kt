@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.setSimpleTextWatcher
+import com.example.aleksandr.myapplication.showMaterialDialogOk
 import com.example.aleksandr.myapplication.ui.login.presenter.LoginPresenter
 import com.example.aleksandr.myapplication.ui.main.MainActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -24,10 +25,10 @@ class LoginActivity : AppCompatActivity(), ILoginActivity {
         presenter = LoginPresenter(this, application)
         auth = FirebaseAuth.getInstance()
 
-//        if (auth?.currentUser != null) {
-//            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-//            finish()
-//        }
+        if (auth?.currentUser != null) {
+            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+            finish()
+        }
         input_email_login.setSimpleTextWatcher {
             presenter.onResetError()
             presenter.onUpdateOwnerEmail(it)
@@ -89,7 +90,7 @@ class LoginActivity : AppCompatActivity(), ILoginActivity {
                     progressDialog.dismiss()
                     if (!task.isSuccessful) {
                         progressDialog.dismiss()
-
+                        showMaterialDialogOk(null, R.string.incorrect_sing_in.toString(), { onOk() })
 //                        progressDialog.isIndeterminate = true
 //                        progressDialog.setMessage("Diney...")
 //                        progressDialog.show()

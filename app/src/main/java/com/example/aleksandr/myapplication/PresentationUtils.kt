@@ -8,6 +8,7 @@ import android.content.ContextWrapper
 import android.content.DialogInterface
 import android.support.design.widget.TextInputEditText
 import android.text.Editable
+import android.text.SpannableString
 import android.text.TextWatcher
 import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
@@ -55,12 +56,6 @@ fun Context.getActivity(): Activity? {
     return null
 }
 
-
-
-
-
-
-
 class SimpleLock {
     var isLocked = false
 
@@ -75,3 +70,8 @@ fun doNothing() {}
 
 private val PATTERN_EMAIL_ADDRESS_VALIDATOR = Pattern.compile("""(?:[a-z0-9!#${'$'}%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#${'$'}%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])""")
 fun String.isEmailAddressValid(): Boolean = PATTERN_EMAIL_ADDRESS_VALIDATOR.matcher(this.toLowerCase()).matches()
+
+fun Context.spannableResString(stringId: Int) = SpannableString(getText(stringId))
+fun Context.showMaterialDialogOk(title: String?, message: CharSequence, onOkClick: (DialogInterface) -> Unit) = showMaterialDialogPositiveButton(title, message, resources.getString(R.string.ok), onOkClick)
+fun Context.showMaterialDialogOk(titleResId: Int?, messageResId: Int, onOkClick: (DialogInterface) -> Unit) = showMaterialDialogOk(titleResId?.let { resources.getString(it) }, spannableResString(messageResId), onOkClick)
+

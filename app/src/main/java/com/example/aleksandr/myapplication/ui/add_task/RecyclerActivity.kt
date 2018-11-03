@@ -14,7 +14,8 @@ import android.content.Intent
 import android.view.View
 import android.widget.Toast
 import com.google.firebase.database.DatabaseError
-
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 
 
 
@@ -23,10 +24,9 @@ class RecyclerActivity : BaseActivity() {
     private val db = FirebaseFirestore.getInstance()
     private val notebookRef = db.collection("Notebook")
     private lateinit var adapter: NoteAdapter
-
+    private var mStorageRef: StorageReference? = null
     override fun init(savedInstanceState: Bundle?) {
         setContentView(R.layout.view_goal_list)
-
         setUpRecyclerView()
 
         fab_add.setOnClickListener {
@@ -34,11 +34,16 @@ class RecyclerActivity : BaseActivity() {
            }
 
     private fun setUpRecyclerView() {
-        val query = notebookRef.orderBy("goal", Query.Direction.DESCENDING)
+
+
+
+        val query = notebookRef.orderBy("goal", Query.Direction.ASCENDING)
 
         val options = FirestoreRecyclerOptions.Builder<Note>()
                 .setQuery(query, Note::class.java)
                 .build()
+
+
 
         adapter = NoteAdapter(options)
         recycler_view.setHasFixedSize(true)

@@ -219,6 +219,7 @@ class NewNoteView : BaseActivity(), INewNote {
         val notebookRef = FirebaseFirestore.getInstance().collection("Notebook")
 
         notebookRef.add(Note(name, goal, startPeriod, endPeriod))
+        notebookRef.add(Note(mImageUri.toString()))
         Toast.makeText(this, "Note added", Toast.LENGTH_SHORT).show()
         finish()
     }
