@@ -163,8 +163,8 @@ class NewNoteView : BaseActivity(), INewNote {
                 && data != null && data.data != null) {
             mImageUri = data.data
 
-            Picasso.with(this).load(mImageUri).into(image_view)
-    uploadFile()
+//            Picasso.with(this).load(mImageUri).into(image_view)
+//    uploadFile()
         }
     }
 

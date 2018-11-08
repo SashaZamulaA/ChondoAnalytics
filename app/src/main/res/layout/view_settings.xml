@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
@@ -13,19 +13,42 @@
         android:layout_height="@dimen/toolbar_height"
         android:padding="0dp"
         app:contentInsetEnd="0dp"
+        android:elevation="@dimen/common_elevation"
         app:contentInsetStart="0dp">
 
-        <TextView
-            android:id="@+id/toolbar_title"
-            style="@style/Toolbar.TitleText"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginStart="@dimen/space_20"
-            android:layout_toEndOf="@+id/button_back"
-            android:gravity="center_vertical"
-            android:text="@string/settings"
-            android:textColor="@color/white" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
+            <ImageButton
+                android:id="@+id/button_back"
+                android:layout_width="@dimen/icon_button_size"
+                android:layout_height="@dimen/icon_button_size"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/space4"
+                android:background="@drawable/button_ripple_circle_green"
+                android:padding="@dimen/icon_button_padding"
+                android:src="@drawable/ic_arrow_back_white" />
+            <TextView
+                android:id="@+id/tv_title"
+                style="@style/TextStyle_Title_White"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="56dp"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                tools:text="Settings" />
+            <Button
+                android:id="@+id/button_save_settings"
+                style="@style/ButtonToolbarWithStartEndPadding"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:text="@string/save" />
+        </RelativeLayout>
     </android.support.v7.widget.Toolbar>
 
     <!--OWNER-->
@@ -38,38 +61,50 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/parent_margin_edge"
-            android:layout_marginEnd="@dimen/parent_margin_edge"
             android:layout_marginStart="@dimen/parent_margin_edge"
+            android:layout_marginEnd="@dimen/parent_margin_edge"
+            android:layout_marginBottom="@dimen/parent_margin_edge"
             android:orientation="vertical">
 
             <TextView
                 style="@style/TextStyle_SubHeader_Accent"
-                android:layout_marginBottom="@dimen/space_4"
                 android:layout_marginTop="@dimen/space_8"
+                android:layout_marginBottom="@dimen/space_4"
                 android:text="@string/owner" />
 
             <LinearLayout
                 android:id="@+id/represent_as_image_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:layout_marginBottom="@dimen/parent_margin_edge"
                 android:layout_marginTop="@dimen/parent_margin_edge"
+                android:layout_marginBottom="@dimen/parent_margin_edge"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <FrameLayout
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:id="@+id/iv_pet_image"
+
+                    <Button
+                        android:id="@+id/selectphoto_button_register"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:padding="@dimen/space_16"
                         android:background="@drawable/circle_decorator"
-                        android:src="@drawable/ic_person" />
-                </FrameLayout>
+                        android:text="Select photo"
+                        android:textSize="10dp"/>
+
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/selectphoto_imageview_register"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_alignEnd="@+id/selectphoto_button_register"
+                        android:layout_marginEnd="0dp"
+                        app:civ_border_color="@color/blue"
+                        app:civ_border_width="2dp" />
+
+                </RelativeLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -113,7 +148,7 @@
                     android:layout_height="wrap_content"
                     android:text=": " />
 
-                <TextView
+                <EditText
                     android:id="@+id/settings_owner_name"
                     style="@style/TextStyle_Body2_Primary_Dark"
                     android:layout_width="0dp"
@@ -121,19 +156,12 @@
                     android:layout_weight="1"
                     android:text="Sasha" />
 
-                <Button
-                    android:id="@+id/edit_owner_name"
-                    style="@style/ButtonFillGreen"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_gravity="end|center_vertical"
-                    android:text="edit" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:gravity="center_vertical"
-                android:layout_height="48dp">
+                android:layout_height="48dp"
+                android:gravity="center_vertical">
 
                 <TextView
                     style="@style/TextStyle_Body2_Primary_Dark"
@@ -148,27 +176,20 @@
                     android:layout_height="wrap_content"
                     android:text=": " />
 
-                <TextView
+                <EditText
                     android:id="@+id/settings_owner_phone"
                     style="@style/TextStyle_Body2_Primary_Dark"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="+0933506836" />
+                    android:layout_weight="1"
+                    tools:text="+0933506836" />
 
-                <Button
-                    android:id="@+id/edit_owner_phone"
-                    style="@style/ButtonFillGreen"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_gravity="end|center_vertical"
-                    android:text="edit" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:gravity="center_vertical"
-                android:layout_height="48dp">
+                android:layout_height="48dp"
+                android:gravity="center_vertical">
 
                 <TextView
                     style="@style/TextStyle_Body2_Primary_Dark"
@@ -187,23 +208,16 @@
                     android:id="@+id/settings_owner_city"
                     style="@style/TextStyle_Body2_Primary_Dark"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="Kiev" />
 
-                <Button
-                    android:id="@+id/edit_owner_city"
-                    style="@style/ButtonFillGreen"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_gravity="end|center_vertical"
-                    android:text="edit" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:gravity="center_vertical"
-                android:layout_height="48dp">
+                android:layout_height="48dp"
+                android:gravity="center_vertical">
 
                 <TextView
                     style="@style/TextStyle_Body2_Primary_Dark"
@@ -218,21 +232,14 @@
                     android:layout_height="wrap_content"
                     android:text=": " />
 
-                <TextView
+                <EditText
                     android:id="@+id/settings_owner_password"
                     style="@style/TextStyle_Body2_Primary_Dark"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="******" />
 
-                <Button
-                    android:id="@+id/edit_owner_password"
-                    style="@style/ButtonFillGreen"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_gravity="end|center_vertical"
-                    android:text="edit" />
             </LinearLayout>
 
             <!--<android.support.design.widget.TextInputLayout-->
@@ -288,15 +295,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/parent_margin_edge"
-            android:layout_marginEnd="@dimen/parent_margin_edge"
             android:layout_marginStart="@dimen/parent_margin_edge"
+            android:layout_marginEnd="@dimen/parent_margin_edge"
+            android:layout_marginBottom="@dimen/parent_margin_edge"
             android:orientation="vertical">
 
             <TextView
                 style="@style/TextStyle_SubHeader_Accent"
-                android:layout_marginBottom="@dimen/space_4"
                 android:layout_marginTop="@dimen/space_8"
+                android:layout_marginBottom="@dimen/space_4"
                 android:text="@string/optional_settings" />
 
             <android.support.v7.widget.SwitchCompat

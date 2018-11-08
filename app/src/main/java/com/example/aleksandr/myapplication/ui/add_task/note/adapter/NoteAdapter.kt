@@ -42,12 +42,12 @@ class NoteAdapter(options: FirestoreRecyclerOptions<Note>) : FirestoreRecyclerAd
                 end_time.text = note.endPeriod
                 goal.text = note.goal
 
-                Picasso.with(image_icon.context)
-                        .load(note.mImageUrl)
-                        .placeholder(R.mipmap.analytics)
-                        .fit()
-                        .centerCrop()
-                        .into(image_icon)
+//                Picasso.with(image_icon.context)
+//                        .load(note.mImageUrl)
+//                        .placeholder(R.mipmap.analytics)
+//                        .fit()
+//                        .centerCrop()
+//                        .into(image_icon)
 
 
 //                percentage.text = ((note.result!!/note.goal!!)*100).toString()

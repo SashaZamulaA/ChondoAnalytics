@@ -22,12 +22,12 @@ class ImageAdapter(context:Context, uploads:List<Note>):RecyclerView.Adapter<Ima
    override fun onBindViewHolder(holder:ImageViewHolder, position:Int) {
         val uploadCurrent = mUploads[position]
        holder.textViewName.text = uploadCurrent.goal
-        Picasso.with(mContext)
-                .load(uploadCurrent.mImageUrl)
-                .placeholder(R.mipmap.ic_launcher)
-                .fit()
-                .centerCrop()
-                .into(holder.imageView)
+//        Picasso.with(mContext)
+//                .load(uploadCurrent.mImageUrl)
+//                .placeholder(R.mipmap.ic_launcher)
+//                .fit()
+//                .centerCrop()
+//                .into(holder.imageView)
     }
     inner class ImageViewHolder(itemView:View):RecyclerView.ViewHolder(itemView) {
         var textViewName:TextView = itemView.findViewById(R.id.name)

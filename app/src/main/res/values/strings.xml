@@ -134,5 +134,6 @@
     <string name="owner">owner</string>
     <string name="notification">notification</string>
     <string name="optional_settings">Optional settings</string>
+    <string name="save">Save</string>
 
 </resources>

@@ -36,6 +36,8 @@ fun TextInputEditText.setSimpleTextWatcher(watcher: (String) -> Unit): TextWatch
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         }.also { addTextChangedListener(it) }
 
+
+
 fun EditText.setTextSmartly(text: CharSequence) {
     if (getText().toString() != text) {
         text.length.also {

@@ -1,16 +1,15 @@
 package com.example.aleksandr.myapplication.ui.login.model
 
-class User {
+class Settings {
     lateinit var name: String
-    lateinit var email: String
+    lateinit var phone: String
 
     constructor()
 
-    constructor(name: String, email: String) {
+    constructor(name: String, phone: String) {
         this.name = name
-        this.email = email
+        this.phone = phone
 
     }
 }
-
 
