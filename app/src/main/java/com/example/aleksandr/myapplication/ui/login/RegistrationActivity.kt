@@ -9,15 +9,16 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.example.aleksandr.myapplication.R
+import com.example.aleksandr.myapplication.service.MyFirebaseInstanceIDService
 import com.example.aleksandr.myapplication.setSimpleTextWatcher
-import com.example.aleksandr.myapplication.ui.hdh.model.HDHModel
 import com.example.aleksandr.myapplication.ui.login.model.User
 import com.example.aleksandr.myapplication.ui.login.presenter.RegistrationPresenter
 import com.example.aleksandr.myapplication.ui.main.MainActivity
+import com.example.aleksandr.myapplication.util.FirestoreUtil
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.item_is_word_list.*
+import com.google.firebase.iid.FirebaseInstanceId
 import kotlinx.android.synthetic.main.view_signup.*
 
 
@@ -121,42 +122,46 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
         val email = input_email.text.toString().trim()
         val password = input_password.text.toString().trim()
         val name = input_name.text.toString().trim()
+        val regId = mutableListOf<String>()
         auth?.createUserWithEmailAndPassword(email, password)
                 ?.addOnCompleteListener(this@RegistrationActivity) { task ->
                     progressDialog.dismiss()
                     if (task.isSuccessful) {
 
-                        val user = User(name, email)
+                        val user = User(name, email, regId)
                         val userId = auth!!.currentUser!!.uid
                         val currentUserDb = databaseReference!!.child(userId)
 
                         currentUserDb.child("firstName").setValue(user)
 //                    currentUserDb.child("lastName").setValue(input_owner_city)
-
-                        startActivity(Intent(this@RegistrationActivity, MainActivity::class.java))
-                        finish()
-                    }
-                    }
-                }
-
-        private fun verifyEmail() {
-            val mUser = auth!!.currentUser
-            mUser!!.sendEmailVerification()
-                    .addOnCompleteListener(this) { task ->
-                        if (task.isSuccessful) {
-                            Toast.makeText(this@RegistrationActivity,
-                                    "Verification email sent to " + mUser.email,
-                                    Toast.LENGTH_SHORT).show()
-                        } else {
-//                            Log.e(TAG, "sendEmailVerification", task.exception)
-                            Toast.makeText(this@RegistrationActivity,
-                                    "Failed to send verification email.",
-                                    Toast.LENGTH_SHORT).show()
+                        FirestoreUtil.initCurrentUserIfFirstTime {
+                            startActivity(Intent(this@RegistrationActivity, MainActivity::class.java))
+                            finish()
+                            val registrationToken = FirebaseInstanceId.getInstance().token
+                            MyFirebaseInstanceIDService.addTokenToFirestore(registrationToken)
                         }
                     }
-        }
-
-        override fun setButtonCreateEnabled(isEnabled: Boolean) {
-            btn_signup.isEnabled = isEnabled
-        }
+                }
     }
+
+    private fun verifyEmail() {
+        val mUser = auth!!.currentUser
+        mUser!!.sendEmailVerification()
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        Toast.makeText(this@RegistrationActivity,
+                                "Verification email sent to " + mUser.email,
+                                Toast.LENGTH_SHORT).show()
+                    } else {
+//                            Log.e(TAG, "sendEmailVerification", task.exception)
+                        Toast.makeText(this@RegistrationActivity,
+                                "Failed to send verification email.",
+                                Toast.LENGTH_SHORT).show()
+                    }
+                }
+    }
+
+    override fun setButtonCreateEnabled(isEnabled: Boolean) {
+        btn_signup.isEnabled = isEnabled
+    }
+}
