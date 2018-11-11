@@ -1,5 +1,6 @@
 package com.example.aleksandr.myapplication.ui.settings
 
+import android.graphics.PorterDuff
 import android.net.Uri
 import android.os.Bundle
 import com.example.aleksandr.myapplication.BaseActivity
@@ -39,7 +40,7 @@ class SettingsView : BaseActivity(), ISettingsView {
     override fun init(savedInstanceState: Bundle?) {
         super.setContentView(R.layout.view_settings)
         presenter = SettingsPresenter(this, application)
-
+        settings_owner_name.background.mutate().setColorFilter(resources.getColor(R.color.white), PorterDuff.Mode.SRC_ATOP)
 //        mMessageReference = FirebaseFirestore.getInstance().document("message/info")
         button_save_settings.setOnClickListener {
 
@@ -80,12 +81,12 @@ class SettingsView : BaseActivity(), ISettingsView {
         val dataToSave = HashMap<String, Any>()
         dataToSave[QUOTE_KEY] = quoteText
         dataToSave[AUTHOR_KEY] = authorText
-        currentUserDocRef?.set(dataToSave)?.addOnSuccessListener {
+        currentUserDocRef.set(dataToSave).addOnSuccessListener {
         }
     }
 
     private fun fetchQuote() {
-        currentUserDocRef?.get()?.addOnSuccessListener { documentSnapshot ->
+        currentUserDocRef.get().addOnSuccessListener { documentSnapshot ->
             if (!documentSnapshot.exists()) {
 //                val myQuote = documentSnapshot.toObject(Settings::class.java)
 
