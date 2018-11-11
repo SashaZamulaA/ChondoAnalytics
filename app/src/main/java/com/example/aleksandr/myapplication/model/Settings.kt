@@ -1,4 +1,4 @@
-package com.example.aleksandr.myapplication.ui.login.model
+package com.example.aleksandr.myapplication.model
 
 class Settings {
     lateinit var name: String

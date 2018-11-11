@@ -11,13 +11,17 @@ import android.widget.Toast
 import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.service.MyFirebaseInstanceIDService
 import com.example.aleksandr.myapplication.setSimpleTextWatcher
-import com.example.aleksandr.myapplication.ui.login.model.User
+import com.example.aleksandr.myapplication.model.User
 import com.example.aleksandr.myapplication.ui.login.presenter.RegistrationPresenter
 import com.example.aleksandr.myapplication.ui.main.MainActivity
+import com.example.aleksandr.myapplication.ui.settings.SettingsView.Companion.AUTHOR_KEY
+import com.example.aleksandr.myapplication.ui.settings.SettingsView.Companion.QUOTE_KEY
 import com.example.aleksandr.myapplication.util.FirestoreUtil
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.iid.FirebaseInstanceId
 import kotlinx.android.synthetic.main.view_signup.*
 
@@ -29,6 +33,11 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
     private var auth: FirebaseAuth? = null
     var databaseReference: DatabaseReference? = null
 
+    private val firestoreInstanse: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
+    private val currentUserDocRef: DocumentReference
+        get() = firestoreInstanse.document("users/${FirebaseAuth.getInstance().uid
+                ?: throw NullPointerException("UID is null.")}")
+    var collection = currentUserDocRef.collection("users")
     private val spinner_country = arrayOf(
             "Киев", "Харьков", "Днепропетровск", "Житомир", "Львов", "Одесса", "Чернигов"
     )
@@ -64,7 +73,7 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
             presenter.onValidateAndSave()
         }
 
-        button_back.setOnClickListener {
+        button_back_registration.setOnClickListener {
             startActivity(Intent(applicationContext, LoginActivity::class.java))
             finish()
             overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out)
@@ -127,12 +136,11 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
                 ?.addOnCompleteListener(this@RegistrationActivity) { task ->
                     progressDialog.dismiss()
                     if (task.isSuccessful) {
-
-                        val user = User(name, email, regId)
-                        val userId = auth!!.currentUser!!.uid
-                        val currentUserDb = databaseReference!!.child(userId)
-
-                        currentUserDb.child("firstName").setValue(user)
+//                        val user = User(name, email, regId)
+//                        val userId = auth!!.currentUser!!.uid
+//                        val currentUserDb = databaseReference!!.child(userId)
+//
+//                        currentUserDb.child("firstName").setValue(user)
 //                    currentUserDb.child("lastName").setValue(input_owner_city)
                         FirestoreUtil.initCurrentUserIfFirstTime {
                             startActivity(Intent(this@RegistrationActivity, MainActivity::class.java))
@@ -140,8 +148,25 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
                             val registrationToken = FirebaseInstanceId.getInstance().token
                             MyFirebaseInstanceIDService.addTokenToFirestore(registrationToken)
                         }
+                        FirestoreUtil.updateCurrentUser(input_name.text.toString(),
+                                input_email.text.toString())
+                        saveQuote()
                     }
                 }
+    }
+
+    private fun saveQuote() {
+        val quoteText = input_name.text.toString()
+        val authorText = input_email.text.toString()
+
+        if (quoteText.isEmpty() || authorText.isEmpty()) {
+            return
+        }
+        val dataToSave = HashMap<String, Any>()
+        dataToSave[QUOTE_KEY] = quoteText
+        dataToSave[AUTHOR_KEY] = authorText
+        currentUserDocRef.set(dataToSave).addOnSuccessListener {
+        }
     }
 
     private fun verifyEmail() {

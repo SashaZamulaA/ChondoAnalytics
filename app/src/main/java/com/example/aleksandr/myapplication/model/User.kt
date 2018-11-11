@@ -1,4 +1,4 @@
-package com.example.aleksandr.myapplication.ui.login.model
+package com.example.aleksandr.myapplication.model
 
 data class User(var name: String,
                 var email: String,

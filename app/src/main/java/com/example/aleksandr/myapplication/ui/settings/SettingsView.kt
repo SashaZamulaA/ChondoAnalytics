@@ -4,16 +4,29 @@ import android.net.Uri
 import android.os.Bundle
 import com.example.aleksandr.myapplication.BaseActivity
 import com.example.aleksandr.myapplication.R
+import com.example.aleksandr.myapplication.R.id.settings_owner_name
+import com.example.aleksandr.myapplication.R.id.settings_owner_phone
+import com.example.aleksandr.myapplication.model.User
+import com.example.aleksandr.myapplication.ui.settings.SettingsView.Companion.AUTHOR_KEY
+import com.example.aleksandr.myapplication.ui.settings.SettingsView.Companion.QUOTE_KEY
+import com.example.aleksandr.myapplication.util.FirestoreUtil
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.vadym.adv.myhomepet.ui.settings.ISettingsView
 import com.vadym.adv.myhomepet.ui.settings.SettingsPresenter
 import kotlinx.android.synthetic.main.view_settings.*
+import org.jetbrains.anko.toast
 
 class SettingsView : BaseActivity(), ISettingsView {
 
-    private var mMessageReference: DocumentReference? = null
-
+    private val firestoreInstance: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
+    private var mDatabase: DatabaseReference? = null
+    private val currentUserDocRef: DocumentReference
+        get() = firestoreInstance.document("users/${FirebaseAuth.getInstance().uid
+                ?: throw NullPointerException("UID is null.")}")
+    private lateinit var selectImageBytes: ByteArray
 
     companion object {
         val TAG = "Setting"
@@ -27,8 +40,12 @@ class SettingsView : BaseActivity(), ISettingsView {
         super.setContentView(R.layout.view_settings)
         presenter = SettingsPresenter(this, application)
 
-        mMessageReference = FirebaseFirestore.getInstance().document("message/info")
+//        mMessageReference = FirebaseFirestore.getInstance().document("message/info")
         button_save_settings.setOnClickListener {
+
+                       FirestoreUtil.updateCurrentUser(settings_owner_name.text.toString(),
+                       settings_owner_phone.text.toString())
+                       toast("Saving")
             saveQuote()
             fetchQuote()
         }
@@ -37,19 +54,22 @@ class SettingsView : BaseActivity(), ISettingsView {
 
     override fun onStart() {
         super.onStart()
-        mMessageReference?.addSnapshotListener { documentSnapshot, firebaseFirestoreException ->
-            if (documentSnapshot?.exists()!!) {
-//                val myQuote = documentSnapshot.toObject(Settings::class.java)
+        currentUserDocRef.addSnapshotListener { documentSnapshot, firebaseFirestoreException ->
 
-                val quoteText = documentSnapshot.getString(QUOTE_KEY)
-                val authorText = documentSnapshot.getString(AUTHOR_KEY)
-                settings_owner_name.setText(quoteText)
-                settings_owner_phone.setText(authorText)
-            } else if (firebaseFirestoreException != null) {
+            FirestoreUtil.getCurrentUser { user ->
+                if (documentSnapshot?.exists()!!) {
+                    val myQuote = documentSnapshot.toObject(User::class.java)
+
+                    val quoteText = documentSnapshot.getString(QUOTE_KEY)
+                    val authorText = documentSnapshot.getString(AUTHOR_KEY)
+                    settings_owner_name.setText(quoteText)
+                    settings_owner_phone.setText(authorText)
+//                } else if (firebaseFirestoreException != null) {
+//                }
+                }
             }
         }
     }
-
     private fun saveQuote() {
         val quoteText = settings_owner_name.text.toString()
         val authorText = settings_owner_phone.text.toString()
@@ -60,12 +80,12 @@ class SettingsView : BaseActivity(), ISettingsView {
         val dataToSave = HashMap<String, Any>()
         dataToSave[QUOTE_KEY] = quoteText
         dataToSave[AUTHOR_KEY] = authorText
-        mMessageReference?.set(dataToSave)?.addOnSuccessListener {
+        currentUserDocRef?.set(dataToSave)?.addOnSuccessListener {
         }
     }
 
     private fun fetchQuote() {
-        mMessageReference?.get()?.addOnSuccessListener { documentSnapshot ->
+        currentUserDocRef?.get()?.addOnSuccessListener { documentSnapshot ->
             if (!documentSnapshot.exists()) {
 //                val myQuote = documentSnapshot.toObject(Settings::class.java)
 
