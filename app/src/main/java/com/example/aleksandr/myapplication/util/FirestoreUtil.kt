@@ -42,7 +42,6 @@ object FirestoreUtil {
 
     fun updateCurrentUser(name: String = "", email: String = "", profilePicturePath: String? = null) {
 
-
         val userFieldMap = mutableMapOf<String, Any>()
         if (name.isNotBlank()) userFieldMap[QUOTE_KEY] = name
         if (email.isNotBlank()) userFieldMap[AUTHOR_KEY] = email

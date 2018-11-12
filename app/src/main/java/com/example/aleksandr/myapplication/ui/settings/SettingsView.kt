@@ -30,8 +30,8 @@ class SettingsView : BaseActivity(), ISettingsView {
 
     companion object {
         val TAG = "Setting"
-        val AUTHOR_KEY = "phone"
-        val QUOTE_KEY = "name"
+        val AUTHOR_KEY = "name"
+        val QUOTE_KEY = "e_mail"
     }
 
     private lateinit var presenter: SettingsPresenter
@@ -45,7 +45,7 @@ class SettingsView : BaseActivity(), ISettingsView {
             if (::selectImageBytes.isInitialized)
                 StorageUtil.uploadProfilePhoto(selectImageBytes) { imagePath ->
                     FirestoreUtil.updateCurrentUser(settings_owner_name.text.toString(),
-                            settings_owner_phone.text.toString(), imagePath)
+                            setting_e_mail.text.toString(), imagePath)
 
                     toast("Saving")
 //                    saveQuote()
@@ -53,7 +53,7 @@ class SettingsView : BaseActivity(), ISettingsView {
                 }
             else
                 FirestoreUtil.updateCurrentUser(settings_owner_name.text.toString(),
-                        settings_owner_phone.text.toString(), null)
+                        setting_e_mail.text.toString(), null)
         }
         imageView_profile_picture.setOnClickListener {
             val intent = Intent().apply {
@@ -75,7 +75,7 @@ class SettingsView : BaseActivity(), ISettingsView {
                 val quoteText = documentSnapshot.getString(QUOTE_KEY)
                 val authorText = documentSnapshot.getString(AUTHOR_KEY)
                 settings_owner_name.setText(quoteText)
-                settings_owner_phone.setText(authorText)
+                setting_e_mail.text = authorText
 
                     if (!pictureJustChange && user.profilePicturePath != null)
                         GlideApp.with(this)
@@ -89,7 +89,7 @@ class SettingsView : BaseActivity(), ISettingsView {
     }
     private fun saveQuote() {
         val quoteText = settings_owner_name.text.toString()
-        val authorText = settings_owner_phone.text.toString()
+        val authorText = setting_e_mail.text.toString()
 
         if (quoteText.isEmpty() || authorText.isEmpty()) {
             return

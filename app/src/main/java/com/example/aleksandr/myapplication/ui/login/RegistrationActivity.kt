@@ -140,8 +140,8 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
                             val registrationToken = FirebaseInstanceId.getInstance().token
                             MyFirebaseInstanceIDService.addTokenToFirestore(registrationToken)
                         }
-                        FirestoreUtil.updateCurrentUser(input_name.text.toString(),
-                                input_email.text.toString())
+//                        FirestoreUtil.updateCurrentUser(input_name.text.toString(),
+//                                input_email.text.toString())
                         saveQuote()
                     }
                 }
