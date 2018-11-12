@@ -8,13 +8,8 @@ import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.R.id.settings_owner_name
 import com.example.aleksandr.myapplication.R.id.settings_owner_phone
 import com.example.aleksandr.myapplication.model.User
-import com.example.aleksandr.myapplication.ui.settings.SettingsView.Companion.AUTHOR_KEY
-import com.example.aleksandr.myapplication.ui.settings.SettingsView.Companion.QUOTE_KEY
 import com.example.aleksandr.myapplication.util.FirestoreUtil
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.firestore.DocumentReference
-import com.google.firebase.firestore.FirebaseFirestore
+import com.example.aleksandr.myapplication.util.FirestoreUtil.currentUserDocRef
 import com.vadym.adv.myhomepet.ui.settings.ISettingsView
 import com.vadym.adv.myhomepet.ui.settings.SettingsPresenter
 import kotlinx.android.synthetic.main.view_settings.*
@@ -22,11 +17,7 @@ import org.jetbrains.anko.toast
 
 class SettingsView : BaseActivity(), ISettingsView {
 
-    private val firestoreInstance: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
-    private var mDatabase: DatabaseReference? = null
-    private val currentUserDocRef: DocumentReference
-        get() = firestoreInstance.document("users/${FirebaseAuth.getInstance().uid
-                ?: throw NullPointerException("UID is null.")}")
+
     private lateinit var selectImageBytes: ByteArray
 
     companion object {
@@ -55,9 +46,9 @@ class SettingsView : BaseActivity(), ISettingsView {
 
     override fun onStart() {
         super.onStart()
-        currentUserDocRef.addSnapshotListener { documentSnapshot, firebaseFirestoreException ->
+        FirestoreUtil.currentUserDocRef.addSnapshotListener { documentSnapshot, firebaseFirestoreException ->
 
-            FirestoreUtil.getCurrentUser { user ->
+            FirestoreUtil.getCurrentUser {
                 if (documentSnapshot?.exists()!!) {
                     val myQuote = documentSnapshot.toObject(User::class.java)
 

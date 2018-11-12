@@ -10,7 +10,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 object FirestoreUtil {
     private val firestoreInstance: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
     private var mDatabase: DatabaseReference? = null
-    private val currentUserDocRef: DocumentReference
+    val currentUserDocRef: DocumentReference
         get() = firestoreInstance.document("users/${FirebaseAuth.getInstance().uid
                 ?: throw NullPointerException("UID is null.")}")
     private var user: FirebaseUser? = null

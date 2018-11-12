@@ -27,16 +27,10 @@ import kotlinx.android.synthetic.main.view_signup.*
 
 class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
 
-    //    private val activity = this@RegistrationActivity
     lateinit var presenter: RegistrationPresenter
     private var auth: FirebaseAuth? = null
     var databaseReference: DatabaseReference? = null
 
-    private val firestoreInstanse: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
-    private val currentUserDocRef: DocumentReference
-        get() = firestoreInstanse.document("users/${FirebaseAuth.getInstance().uid
-                ?: throw NullPointerException("UID is null.")}")
-    var collection = currentUserDocRef.collection("users")
     private val spinner_country = arrayOf(
             "Киев", "Харьков", "Днепропетровск", "Житомир", "Львов", "Одесса", "Чернигов"
     )
@@ -163,7 +157,7 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
         val dataToSave = HashMap<String, Any>()
         dataToSave[QUOTE_KEY] = quoteText
         dataToSave[AUTHOR_KEY] = authorText
-        currentUserDocRef.set(dataToSave).addOnSuccessListener {
+        FirestoreUtil.currentUserDocRef.set(dataToSave).addOnSuccessListener {
         }
     }
 
