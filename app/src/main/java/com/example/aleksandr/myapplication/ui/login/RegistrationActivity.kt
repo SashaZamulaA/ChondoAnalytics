@@ -11,7 +11,6 @@ import android.widget.Toast
 import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.service.MyFirebaseInstanceIDService
 import com.example.aleksandr.myapplication.setSimpleTextWatcher
-import com.example.aleksandr.myapplication.model.User
 import com.example.aleksandr.myapplication.ui.login.presenter.RegistrationPresenter
 import com.example.aleksandr.myapplication.ui.main.MainActivity
 import com.example.aleksandr.myapplication.ui.settings.SettingsView.Companion.AUTHOR_KEY
@@ -72,13 +71,6 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
         btn_signup.setOnClickListener {
             presenter.onValidateAndSave()
         }
-
-        button_back_registration.setOnClickListener {
-            startActivity(Intent(applicationContext, LoginActivity::class.java))
-            finish()
-            overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out)
-        }
-
         val spinnerCountryAdapter = ArrayAdapter(this, R.layout.spinner_simple_item, spinner_country)
         spinnerCountryAdapter.setDropDownViewResource(R.layout.spinner_drop_down)
         input_owner_city.adapter = spinnerCountryAdapter
@@ -86,10 +78,16 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 presenter.onUpdateOwnerAddress(spinner_country[position])
+
+                button_back_registration.setOnClickListener {
+                    startActivity(Intent(applicationContext, LoginActivity::class.java))
+                    finish()
+                    overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out)
+                }
+
             }
         }
     }
-
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
