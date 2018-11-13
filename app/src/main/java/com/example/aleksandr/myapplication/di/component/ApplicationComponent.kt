@@ -8,8 +8,8 @@ import com.example.aleksandr.myapplication.ui.add_task.NewNotePresenter
 import com.example.aleksandr.myapplication.ui.add_task.RecyclerActivity
 import com.example.aleksandr.myapplication.ui.hdh.HDHPresenter
 import com.example.aleksandr.myapplication.ui.hdh.HDHView
-import com.example.aleksandr.myapplication.ui.info.InfoPresenter
-import com.example.aleksandr.myapplication.ui.info.InfoView
+import com.example.aleksandr.myapplication.ui.result.ResultM3APresenter
+import com.example.aleksandr.myapplication.ui.result.ResultM3AView
 import com.example.aleksandr.myapplication.ui.login.LoginActivity
 import com.example.aleksandr.myapplication.ui.login.RegistrationActivity
 import com.example.aleksandr.myapplication.ui.login.presenter.LoginPresenter
@@ -25,7 +25,7 @@ interface ApplicationComponent {
     fun inject(modApplication: AndroidApplication)
 
     // VIEW
-    fun inject(infoView: InfoView)
+    fun inject(infoView: ResultM3AView)
     fun inject(mainView: MainActivity)
     fun inject(loginActivity: LoginActivity)
     fun inject(registrationActivity: RegistrationActivity)
@@ -36,7 +36,7 @@ interface ApplicationComponent {
 
 
     // PRESENTER
-    fun inject(infoPresenter: InfoPresenter)
+    fun inject(infoPresenter: ResultM3APresenter)
     fun inject(mainPresenter: MainPresenter)
     fun inject(loginPresenter: LoginPresenter)
     fun inject(registrationPresenter: RegistrationPresenter)

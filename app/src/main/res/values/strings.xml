@@ -135,5 +135,14 @@
     <string name="notification">notification</string>
     <string name="optional_settings">Optional settings</string>
     <string name="save">Save</string>
+    <string name="data">Date</string>
+    <string name="streat_time">Time on street</string>
+    <string name="introdaction">Introdaction</string>
+    <string name="approach">Approach</string>
+    <string name="lecture_on_streat">Lecture on street</string>
+    <string name="lecture_in_centre">Lecture in center</string>
+    <string name="one_day_seminar">One day seminar</string>
+    <string name="two_day_seminar">Two day seminar</string>
+    <string name="day21_seminar">21-day seminar</string>
 
 </resources>

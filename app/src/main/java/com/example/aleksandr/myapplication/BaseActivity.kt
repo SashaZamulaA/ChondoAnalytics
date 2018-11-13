@@ -16,7 +16,7 @@ import android.widget.FrameLayout
 import android.widget.Toast
 import com.example.aleksandr.myapplication.ui.add_task.RecyclerActivity
 import com.example.aleksandr.myapplication.ui.hdh.HDHView
-import com.example.aleksandr.myapplication.ui.info.InfoView
+import com.example.aleksandr.myapplication.ui.result.ResultM3AView
 import com.example.aleksandr.myapplication.ui.main.MainActivity
 import com.example.aleksandr.myapplication.ui.settings.SettingsView
 
@@ -85,7 +85,7 @@ abstract class BaseActivity : AppCompatActivity(), IView, NavigationView.OnNavig
                 startActivity(Intent.createChooser(sharingIntent, getString(R.string.share_by)))
             }
 
-                R.id.nav_info -> startActivity(Intent(this, InfoView::class.java))
+                R.id.nav_info -> startActivity(Intent(this, ResultM3AView::class.java))
 
                 R.id.nav_hdh -> startActivity(Intent(this, HDHView::class.java))
 

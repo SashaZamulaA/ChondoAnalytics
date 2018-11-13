@@ -1,10 +1,10 @@
-package com.example.aleksandr.myapplication.ui.info
+package com.example.aleksandr.myapplication.ui.result
 
 import android.app.Application
 import com.example.aleksandr.myapplication.AndroidApplication
 import com.example.aleksandr.myapplication.BasePresenter
 
-class InfoPresenter(infoView: InfoView, applicationComponent: Application) :BasePresenter<InfoView>(infoView) {
+class ResultM3APresenter(infoView: ResultM3AView, applicationComponent: Application) :BasePresenter<ResultM3AView>(infoView) {
 init {
     (applicationComponent as AndroidApplication).applicationComponent.inject(this)
 

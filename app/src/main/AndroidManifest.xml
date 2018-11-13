@@ -16,6 +16,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/analytics"
         android:supportsRtl="true"
+        android:windowSoftInputMode="stateUnchanged|adjustResize"
         android:theme="@style/AppTheme">
         <activity android:name=".ui.splash.Splash">
             <intent-filter>
@@ -27,7 +28,8 @@
         <activity android:name=".ui.login.LoginActivity" />
         <activity android:name=".ui.login.RegistrationActivity" />
         <activity android:name=".ui.main.MainActivity" />
-        <activity android:name=".ui.info.InfoView" />
+        <activity android:name=".ui.result.ResultM3AView"
+        android:windowSoftInputMode="stateUnchanged|adjustResize"/>
         <activity android:name=".ui.hdh.HDHView" />
         <activity android:name=".ui.add_task.NewNoteView"/>
         <activity android:name=".ui.settings.SettingsView"/>

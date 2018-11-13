@@ -20,7 +20,7 @@ object FirestoreUtil {
         currentUserDocRef.get().addOnSuccessListener { documentSnapshot ->
             if (!documentSnapshot.exists()) {
                 val newUser = User(FirebaseAuth.getInstance().currentUser?.displayName
-                        ?: "", "", null, mutableListOf())
+                        ?: "", "","", null, mutableListOf())
                 currentUserDocRef.set(newUser).addOnSuccessListener {
                     onComplete()
                 }
@@ -63,3 +63,4 @@ object FirestoreUtil {
                 }
     }
 }
+

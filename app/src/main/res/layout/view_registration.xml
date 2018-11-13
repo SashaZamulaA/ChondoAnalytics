@@ -131,7 +131,7 @@
                 android:text="@string/city" />
 
             <Spinner
-                android:id="@+id/input_owner_city"
+                android:id="@+id/registration_city"
                 style="@style/TextStyle_Body2_Primary_Dark"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/space_20" />

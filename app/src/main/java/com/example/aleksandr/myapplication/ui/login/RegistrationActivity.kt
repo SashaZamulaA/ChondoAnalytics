@@ -15,14 +15,13 @@ import com.example.aleksandr.myapplication.ui.login.presenter.RegistrationPresen
 import com.example.aleksandr.myapplication.ui.main.MainActivity
 import com.example.aleksandr.myapplication.ui.settings.SettingsView.Companion.AUTHOR_KEY
 import com.example.aleksandr.myapplication.ui.settings.SettingsView.Companion.QUOTE_KEY
+import com.example.aleksandr.myapplication.ui.settings.SettingsView.Companion.SPINNER
 import com.example.aleksandr.myapplication.util.FirestoreUtil
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.firestore.DocumentReference
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.iid.FirebaseInstanceId
-import kotlinx.android.synthetic.main.view_signup.*
+import kotlinx.android.synthetic.main.view_registration.*
 
 
 class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
@@ -37,7 +36,7 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        super.setContentView(R.layout.view_signup)
+        super.setContentView(R.layout.view_registration)
         presenter = RegistrationPresenter(this, application)
         databaseReference = FirebaseDatabase.getInstance().getReference("Word")
         auth = FirebaseAuth.getInstance()
@@ -67,8 +66,8 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
         }
         val spinnerCountryAdapter = ArrayAdapter(this, R.layout.spinner_simple_item, spinner_country)
         spinnerCountryAdapter.setDropDownViewResource(R.layout.spinner_drop_down)
-        input_owner_city.adapter = spinnerCountryAdapter
-        input_owner_city.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        registration_city.adapter = spinnerCountryAdapter
+        registration_city.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 presenter.onUpdateOwnerAddress(spinner_country[position])
@@ -150,13 +149,14 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
     private fun saveQuote() {
         val quoteText = input_name.text.toString()
         val authorText = input_email.text.toString()
-
+        val category = registration_city.selectedItem.toString()
         if (quoteText.isEmpty() || authorText.isEmpty()) {
             return
         }
         val dataToSave = HashMap<String, Any>()
         dataToSave[QUOTE_KEY] = quoteText
         dataToSave[AUTHOR_KEY] = authorText
+        dataToSave[SPINNER] = category
         FirestoreUtil.currentUserDocRef.set(dataToSave).addOnSuccessListener {
         }
     }

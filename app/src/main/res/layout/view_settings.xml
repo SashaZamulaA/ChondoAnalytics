@@ -119,6 +119,33 @@
                 android:layout_marginTop="-8dp"
                 android:layout_marginBottom="24dp"
                 tools:text="z.sasha1@1.com" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    style="@style/TextStyle_Body2_Primary_Dark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="@string/city" />
+
+                <TextView
+                    style="@style/TextStyle_Body2_Primary_Dark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=": " />
+
+                <TextView
+                    android:id="@+id/settings_owner_city"
+                    style="@style/TextStyle_Body2_Primary_Dark"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    tools:text="Lviv" />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

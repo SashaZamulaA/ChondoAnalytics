@@ -1,16 +1,16 @@
-package com.example.aleksandr.myapplication.ui.info
+package com.example.aleksandr.myapplication.ui.result
 
 import android.os.Bundle
 import com.example.aleksandr.myapplication.BaseActivity
 import com.example.aleksandr.myapplication.R
 
-class InfoView : BaseActivity(), IInfoView{
+class ResultM3AView : BaseActivity(), IResultM3AView{
 
-    private lateinit var presenter: InfoPresenter
+    private lateinit var presenter: ResultM3APresenter
 
     override fun init(savedInstantState:Bundle?){
-        super.setContentView(R.layout.view_info)
-        presenter = InfoPresenter(this, application)
+        super.setContentView(R.layout.view_m3a_result)
+        presenter = ResultM3APresenter(this, application)
     }
 
     override fun onAttachedToWindow() {

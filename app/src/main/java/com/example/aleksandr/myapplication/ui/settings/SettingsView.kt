@@ -31,6 +31,7 @@ class SettingsView : BaseActivity(), ISettingsView {
     companion object {
         val AUTHOR_KEY = "name"
         val QUOTE_KEY = "e_mail"
+        val SPINNER = "spinner"
     }
 
     private lateinit var presenter: SettingsPresenter
