@@ -29,18 +29,16 @@ class SettingsView : BaseActivity(), ISettingsView {
     private var pictureJustChange = false
 
     companion object {
-        val TAG = "Setting"
         val AUTHOR_KEY = "name"
         val QUOTE_KEY = "e_mail"
     }
 
     private lateinit var presenter: SettingsPresenter
-    var selectedPhotoUri: Uri? = null
+
     override fun init(savedInstanceState: Bundle?) {
         super.setContentView(R.layout.view_settings)
         presenter = SettingsPresenter(this, application)
         settings_owner_name.background.mutate().setColorFilter(resources.getColor(R.color.white), PorterDuff.Mode.SRC_ATOP)
-//        mMessageReference = FirebaseFirestore.getInstance().document("message/info")
         button_save_settings.setOnClickListener {
             if (::selectImageBytes.isInitialized)
                 StorageUtil.uploadProfilePhoto(selectImageBytes) { imagePath ->
@@ -48,8 +46,6 @@ class SettingsView : BaseActivity(), ISettingsView {
                             setting_e_mail.text.toString(), imagePath)
 
                     toast("Saving")
-//                    saveQuote()
-//                    fetchQuote()
                 }
             else
                 FirestoreUtil.updateCurrentUser(settings_owner_name.text.toString(),
@@ -67,7 +63,7 @@ class SettingsView : BaseActivity(), ISettingsView {
 
     override fun onStart() {
         super.onStart()
-        FirestoreUtil.currentUserDocRef.addSnapshotListener { documentSnapshot, firebaseFirestoreException ->
+        FirestoreUtil.currentUserDocRef.addSnapshotListener { documentSnapshot, _ ->
             FirestoreUtil.getCurrentUser { user ->
             if (documentSnapshot?.exists()!!) {
                 val myQuote = documentSnapshot.toObject(User::class.java)
@@ -87,33 +83,7 @@ class SettingsView : BaseActivity(), ISettingsView {
             }
         }
     }
-    private fun saveQuote() {
-        val quoteText = settings_owner_name.text.toString()
-        val authorText = setting_e_mail.text.toString()
 
-        if (quoteText.isEmpty() || authorText.isEmpty()) {
-            return
-        }
-        val dataToSave = HashMap<String, Any>()
-        dataToSave[QUOTE_KEY] = quoteText
-        dataToSave[AUTHOR_KEY] = authorText
-        currentUserDocRef.set(dataToSave).addOnSuccessListener {
-        }
-    }
-
-//    private fun fetchQuote() {
-//        currentUserDocRef.get().addOnSuccessListener { documentSnapshot ->
-//            if (!documentSnapshot.exists()) {
-////                val myQuote = documentSnapshot.toObject(Settings::class.java)
-//
-//                val quoteText = documentSnapshot.getString(QUOTE_KEY)
-//                val authorText = documentSnapshot.getString(AUTHOR_KEY)
-//                settings_owner_name.setText(quoteText)
-//                settings_owner_phone.setText(authorText)
-//
-//            }
-//        }
-//    }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == RC_SELECT_IMAGE && resultCode == Activity.RESULT_OK &&
                 data != null && data.data != null) {
