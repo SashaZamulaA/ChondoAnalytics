@@ -114,32 +114,32 @@
         </android.support.design.widget.TextInputLayout>
 
 
-        <!--Город-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/space_8"
-            android:layout_marginTop="@dimen/space_8"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:orientation="vertical">
+        <!--&lt;!&ndash;Город&ndash;&gt;-->
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginBottom="@dimen/space_8"-->
+            <!--android:layout_marginTop="@dimen/space_8"-->
+            <!--android:focusable="true"-->
+            <!--android:focusableInTouchMode="true"-->
+            <!--android:orientation="vertical">-->
 
-            <TextView
-                style="@style/TextStyle_SubHeader_Accent"
-                android:layout_marginBottom="@dimen/space_4"
-                android:layout_marginTop="@dimen/space_8"
-                android:text="@string/city" />
+            <!--<TextView-->
+                <!--style="@style/TextStyle_SubHeader_Accent"-->
+                <!--android:layout_marginBottom="@dimen/space_4"-->
+                <!--android:layout_marginTop="@dimen/space_8"-->
+                <!--android:text="@string/city" />-->
 
-            <Spinner
-                android:id="@+id/registration_city"
-                style="@style/TextStyle_Body2_Primary_Dark"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/space_20" />
+            <!--<Spinner-->
+                <!--android:id="@+id/registration_city"-->
+                <!--style="@style/TextStyle_Body2_Primary_Dark"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/space_20" />-->
 
-            <View
-                style="@style/AppTheme.HorizontalSpinnerDivider"
-                android:layout_marginTop="@dimen/space_8" />
-        </LinearLayout>
+            <!--<View-->
+                <!--style="@style/AppTheme.HorizontalSpinnerDivider"-->
+                <!--android:layout_marginTop="@dimen/space_8" />-->
+        <!--</LinearLayout>-->
 
 
         <android.support.design.widget.TextInputLayout

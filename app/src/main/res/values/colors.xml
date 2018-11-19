@@ -31,7 +31,7 @@
     <color name="text_primary_light">#FFF</color> <!--100% of white-->
     <color name="button_toolbar_pressed">#40FFFFFF</color> <!--25% of white-->
     <color name="black_effective">#2a2a2a</color>
-
+    <color name="background">#EEEEEE</color>
 
 
 

@@ -9,6 +9,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.example.aleksandr.myapplication.R
+import com.example.aleksandr.myapplication.model.User
 import com.example.aleksandr.myapplication.service.MyFirebaseInstanceIDService
 import com.example.aleksandr.myapplication.setSimpleTextWatcher
 import com.example.aleksandr.myapplication.ui.login.presenter.RegistrationPresenter
@@ -17,9 +18,12 @@ import com.example.aleksandr.myapplication.ui.settings.SettingsView.Companion.AU
 import com.example.aleksandr.myapplication.ui.settings.SettingsView.Companion.QUOTE_KEY
 import com.example.aleksandr.myapplication.ui.settings.SettingsView.Companion.SPINNER
 import com.example.aleksandr.myapplication.util.FirestoreUtil
+import com.example.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.iid.FirebaseInstanceId
 import kotlinx.android.synthetic.main.view_registration.*
 
@@ -29,7 +33,9 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
     lateinit var presenter: RegistrationPresenter
     private var auth: FirebaseAuth? = null
     var databaseReference: DatabaseReference? = null
+    private val chatChannelsCollectionRef = FirestoreUtil.firestoreInstance.collection("userssa")
 
+    private lateinit var currentChannelId: String
     private val spinner_country = arrayOf(
             "Киев", "Харьков", "Днепропетровск", "Житомир", "Львов", "Одесса", "Чернигов"
     )
@@ -64,22 +70,20 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
         btn_signup.setOnClickListener {
             presenter.onValidateAndSave()
         }
-        val spinnerCountryAdapter = ArrayAdapter(this, R.layout.spinner_simple_item, spinner_country)
-        spinnerCountryAdapter.setDropDownViewResource(R.layout.spinner_drop_down)
-        registration_city.adapter = spinnerCountryAdapter
-        registration_city.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                presenter.onUpdateOwnerAddress(spinner_country[position])
-
+//        val spinnerCountryAdapter = ArrayAdapter(this, R.layout.spinner_simple_item, spinner_country)
+//        spinnerCountryAdapter.setDropDownViewResource(R.layout.spinner_drop_down)
+//        registration_city.adapter = spinnerCountryAdapter
+//        registration_city.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+//            override fun onNothingSelected(parent: AdapterView<*>?) {}
+//            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+//                presenter.onUpdateOwnerAddress(spinner_country[position])
+//            }
+//        }
                 button_back_registration.setOnClickListener {
                     startActivity(Intent(applicationContext, LoginActivity::class.java))
                     finish()
                     overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out)
                 }
-
-            }
-        }
     }
 
     override fun onAttachedToWindow() {
@@ -149,18 +153,30 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
     private fun saveQuote() {
         val quoteText = input_name.text.toString()
         val authorText = input_email.text.toString()
-        val category = registration_city.selectedItem.toString()
+//        val category = registration_city.selectedItem.toString()
+
         if (quoteText.isEmpty() || authorText.isEmpty()) {
             return
         }
         val dataToSave = HashMap<String, Any>()
         dataToSave[QUOTE_KEY] = quoteText
         dataToSave[AUTHOR_KEY] = authorText
-        dataToSave[SPINNER] = category
-        FirestoreUtil.currentUserDocRef.set(dataToSave).addOnSuccessListener {
-        }
+//        dataToSave[SPINNER] = category
+
+//                   val currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
+//        val newChannel = chatChannelsCollectionRef.document()
+//        newChannel.set(dataToSave)
+
+
+            FirestoreUtil.currentUserDocRef.set(dataToSave)
     }
 
+
+    fun sendMessage(message: User, channelId: String) {
+        chatChannelsCollectionRef.document(channelId)
+                .collection("messages")
+                .add(message)
+    }
     private fun verifyEmail() {
         val mUser = auth!!.currentUser
         mUser!!.sendEmailVerification()

@@ -58,8 +58,8 @@ abstract class BaseActivity : AppCompatActivity(), IView, NavigationView.OnNavig
         when (id) {
             R.id.nav_main -> startActivity(Intent(this, MainActivity::class.java))
 
-            R.id.nav_hdh -> {
-                startActivity(Intent(this, HDHView::class.java))
+            R.id.chondo_result -> {
+                startActivity(Intent(this, ResultM3AView::class.java))
                 Toast.makeText(applicationContext, "You Clicked Options A", Toast.LENGTH_SHORT).show()
                 drawer.closeDrawer(GravityCompat.START)
             }
@@ -85,7 +85,7 @@ abstract class BaseActivity : AppCompatActivity(), IView, NavigationView.OnNavig
                 startActivity(Intent.createChooser(sharingIntent, getString(R.string.share_by)))
             }
 
-                R.id.nav_info -> startActivity(Intent(this, ResultM3AView::class.java))
+                R.id.nav_info -> startActivity(Intent(this, HDHView::class.java))
 
                 R.id.nav_hdh -> startActivity(Intent(this, HDHView::class.java))
 

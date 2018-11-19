@@ -4,16 +4,12 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.PorterDuff
-import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-
 import com.example.aleksandr.myapplication.BaseActivity
 import com.example.aleksandr.myapplication.R
-
 import com.example.aleksandr.myapplication.model.User
 import com.example.aleksandr.myapplication.util.FirestoreUtil
-import com.example.aleksandr.myapplication.util.FirestoreUtil.currentUserDocRef
 import com.example.aleksandr.myapplication.util.StorageUtil
 import com.example.aleksandr.tmbook.glade.GlideApp
 import com.vadym.adv.myhomepet.ui.settings.ISettingsView
@@ -66,13 +62,13 @@ class SettingsView : BaseActivity(), ISettingsView {
         super.onStart()
         FirestoreUtil.currentUserDocRef.addSnapshotListener { documentSnapshot, _ ->
             FirestoreUtil.getCurrentUser { user ->
-            if (documentSnapshot?.exists()!!) {
-                val myQuote = documentSnapshot.toObject(User::class.java)
+                if (documentSnapshot?.exists()!!) {
+                    val myQuote = documentSnapshot.toObject(User::class.java)
 
-                val quoteText = documentSnapshot.getString(QUOTE_KEY)
-                val authorText = documentSnapshot.getString(AUTHOR_KEY)
-                settings_owner_name.setText(quoteText)
-                setting_e_mail.text = authorText
+                    val quoteText = documentSnapshot.getString(QUOTE_KEY)
+                    val authorText = documentSnapshot.getString(AUTHOR_KEY)
+                    settings_owner_name.setText(quoteText)
+                    setting_e_mail.text = authorText
 
                     if (!pictureJustChange && user.profilePicturePath != null)
                         GlideApp.with(this)
@@ -104,6 +100,5 @@ class SettingsView : BaseActivity(), ISettingsView {
             pictureJustChange = true
         }
     }
-
 }
 

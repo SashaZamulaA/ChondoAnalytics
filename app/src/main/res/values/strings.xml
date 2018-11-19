@@ -148,5 +148,6 @@
     <string name="kharkiv">Kharkiv</string>
     <string name="lecture_on_streat_main">Street lectures</string>
     <string name="lecture_in_centre_main">Center lectures</string>
+    <string name="result_chondo">My chondo result</string>
 
 </resources>
