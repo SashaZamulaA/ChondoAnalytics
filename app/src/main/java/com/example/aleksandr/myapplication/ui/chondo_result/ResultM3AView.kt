@@ -1,4 +1,4 @@
-package com.example.aleksandr.myapplication.ui.result
+package com.example.aleksandr.myapplication.ui.chondo_result
 
 import android.os.Bundle
 import android.view.View
@@ -8,13 +8,11 @@ import com.example.aleksandr.myapplication.BaseActivity
 import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.model.City
 import com.example.aleksandr.myapplication.model.User
-import com.example.aleksandr.myapplication.ui.settings.SettingsView.Companion.AUTHOR_KEY
-import com.example.aleksandr.myapplication.ui.settings.SettingsView.Companion.QUOTE_KEY
 import com.example.aleksandr.myapplication.ui.settings.SettingsView.Companion.SPINNER
 import com.example.aleksandr.myapplication.util.FirestoreUtil
+import com.example.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.spinner_simple_item.*
 import kotlinx.android.synthetic.main.view_m3a_result.*
 import java.util.*
 
@@ -24,19 +22,14 @@ import java.util.*
 class ResultM3AView : BaseActivity(), IResultM3AView{
 
     private lateinit var presenter: ResultM3APresenter
-
+    private val chatChannelsCollectionRef = firestoreInstance.collection("City")
     private val spinner_country = arrayOf(
-            "Киев", "Харьков", "Днепропетровск", "Житомир", "Львов", "Одесса", "Чернигов"
+            "Kyiv", "Kharkiv", "Dnepr", "Zhytomyr", "Lviv", "Odessa", "Chernigov"
     )
 
     override fun init(savedInstantState:Bundle?){
         super.setContentView(R.layout.view_m3a_result)
         presenter = ResultM3APresenter(this, application)
-
-
-       val db = FirebaseFirestore.getInstance()
-        val weightCategory = db.collection("List Items")
-        var query = weightCategory.whereEqualTo("categoryId", "0")
 
         val spinnerCountryAdapter = ArrayAdapter(this, R.layout.spinner_simple_item, spinner_country)
         spinnerCountryAdapter.setDropDownViewResource(R.layout.spinner_drop_down)
@@ -47,7 +40,6 @@ class ResultM3AView : BaseActivity(), IResultM3AView{
                 presenter.onUpdateOwnerAddress(spinner_country[position])
             }
         }
-
 
         fab_confirm_goal.setOnClickListener {
             saveQuote()
@@ -82,14 +74,11 @@ class ResultM3AView : BaseActivity(), IResultM3AView{
 //        dataToSave[INRO] = intro
 //        dataToSave[ONEDAYWS] = oneDayWS
 
-        val data1 = HashMap<String, Any>()
-
-        data1["regions"] = Arrays.asList("Kyiv", "Kharkiv", "Lviv")
         dataToSave[SPINNER] = category
 
         FirestoreUtil.currentUserDocRef
-                .collection("users")
-                .document("City$dataToSave")
+                .collection("City")
+                .document(category)
                 .set(City(intro, oneDayWS))
     }
     companion object {
