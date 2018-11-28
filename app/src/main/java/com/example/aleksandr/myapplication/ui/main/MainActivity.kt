@@ -10,10 +10,7 @@ import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.ui.login.LoginActivity
 import com.example.aleksandr.myapplication.ui.main.Note.Note
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
-import io.opencensus.tags.Tag
 import kotlinx.android.synthetic.main.activity_main.*
-import java.lang.Exception
 
 
 class MainActivity : BaseActivity() {
@@ -159,19 +156,18 @@ class MainActivity : BaseActivity() {
         val title = edit_text_title.text.toString()
         val description = edit_text_description.text.toString()
 
-        if(edit_text_priority.length() == 0){
+        if (edit_text_priority.length() == 0) {
             edit_text_priority.setText("0")
         }
         val priority = Integer.parseInt(edit_text_priority.text.toString())
 
-        val note = Note("",title, description, priority)
+        val note = Note("", title, description, priority)
         noteRefCollection.add(note)
     }
 
     override fun onStart() {
         super.onStart()
-        noteRefCollection.
-                addSnapshotListener { queryDocumentSnapshots, _ ->
+        noteRefCollection.addSnapshotListener { queryDocumentSnapshots, _ ->
 
             var data = ""
 
@@ -181,7 +177,7 @@ class MainActivity : BaseActivity() {
 
                     val note = documentSnapshot.toObject(Note::class.java)
 
-                    val doc =   documentSnapshot.id
+                    val doc = documentSnapshot.id
                     val title = note.title
                     val description = note.description
                     val priority = note.priority
@@ -196,7 +192,7 @@ class MainActivity : BaseActivity() {
     private fun loadNotes() {
         noteRefCollection
                 .whereLessThan("priority", 2)
-                .orderBy("priority")
+                .whereEqualTo("title", "Sasha")
                 .limit(3)
                 .get()
                 .addOnSuccessListener { queryDocumentSnapshots ->
@@ -213,8 +209,8 @@ class MainActivity : BaseActivity() {
                         data += ("ID: $doc\nTitle: $title\nDescription: $description\nPriority:$priority\n\n")
                     }
                     text_view_data.text = data
-                }.addOnFailureListener { Exception ->
-
+                }.addOnFailureListener { e ->
+                    Log.d("What wrong", e.toString())
                 }
     }
 }
