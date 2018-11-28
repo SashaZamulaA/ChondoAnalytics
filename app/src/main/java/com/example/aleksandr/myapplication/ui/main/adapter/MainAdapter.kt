@@ -21,6 +21,7 @@ class MainAdapter(options: FirestoreRecyclerOptions<CityData>) : FirestoreRecycl
 
     override fun onBindViewHolder(holder: NoteHolder, position: Int, model: CityData) {
         holder.bind(model)
+
     }
 
     inner class NoteHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

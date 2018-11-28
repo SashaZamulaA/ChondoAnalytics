@@ -11,6 +11,7 @@ import com.example.aleksandr.myapplication.ui.login.LoginActivity
 import com.example.aleksandr.myapplication.ui.main.Note.Note
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 
 class MainActivity : BaseActivity() {
@@ -161,7 +162,11 @@ class MainActivity : BaseActivity() {
         }
         val priority = Integer.parseInt(edit_text_priority.text.toString())
 
-        val note = Note("", title, description, priority)
+        val tagInput = edit_text_tags.getText().toString()
+        val tagArray = tagInput.split("\\s*,\\s*".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+        val tags = Arrays.asList(tagArray)
+
+        val note = Note("", title, description, priority, tags)
         noteRefCollection.add(note)
     }
 
