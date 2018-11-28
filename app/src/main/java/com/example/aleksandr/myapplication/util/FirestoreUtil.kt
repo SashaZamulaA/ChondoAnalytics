@@ -3,28 +3,23 @@ package com.example.aleksandr.myapplication.util
 import com.example.aleksandr.myapplication.model.User
 import com.example.aleksandr.myapplication.ui.settings.SettingsView.Companion.AUTHOR_KEY
 import com.example.aleksandr.myapplication.ui.settings.SettingsView.Companion.QUOTE_KEY
-import com.example.aleksandr.myapplication.util.FirestoreUtil.currentUserDocRef
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 
 object FirestoreUtil {
     val firestoreInstance: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
-    private var mDatabase: DatabaseReference? = null
     val currentUserDocRef: DocumentReference
         get() = firestoreInstance.document("users/${FirebaseAuth.getInstance().uid
                 ?: throw NullPointerException("UID is null.")}")
-
-    private val chatChannelsCollectionRef = firestoreInstance.collection("city")
 
     private var user: FirebaseUser? = null
     fun initCurrentUserIfFirstTime(onComplete: () -> Unit) {
         currentUserDocRef.get().addOnSuccessListener { documentSnapshot ->
             if (!documentSnapshot.exists()) {
                 val newUser = User(FirebaseAuth.getInstance().currentUser?.displayName
-                        ?: "", "","", null, mutableListOf())
+                        ?: "", "", "", null, mutableListOf())
                 currentUserDocRef.set(newUser).addOnSuccessListener {
                     onComplete()
                 }
@@ -60,6 +55,7 @@ object FirestoreUtil {
         if (email.isNotBlank()) userFieldMap["email"] = email
         currentUserDocRef.update(userFieldMap)
     }
+
     fun getCurrentUser(onComplete: (User) -> Unit) {
         currentUserDocRef.get()
                 .addOnSuccessListener {

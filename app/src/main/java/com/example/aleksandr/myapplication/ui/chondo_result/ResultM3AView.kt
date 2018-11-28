@@ -6,30 +6,34 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.example.aleksandr.myapplication.BaseActivity
 import com.example.aleksandr.myapplication.R
+import com.example.aleksandr.myapplication.R.id.*
 import com.example.aleksandr.myapplication.model.City
 import com.example.aleksandr.myapplication.model.User
 import com.example.aleksandr.myapplication.ui.settings.SettingsView.Companion.SPINNER
 import com.example.aleksandr.myapplication.util.FirestoreUtil
-import com.example.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.view_m3a_result.*
 import java.util.*
 
 
-
-
-class ResultM3AView : BaseActivity(), IResultM3AView{
+class ResultM3AView : BaseActivity(), IResultM3AView {
 
     private lateinit var presenter: ResultM3APresenter
-    private val chatChannelsCollectionRef = firestoreInstance.collection("City")
+    val firestoreInstance: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
+    val currentUserDocRef: DocumentReference
+        get() = firestoreInstance.document("City/${FirebaseAuth.getInstance().uid
+                ?: throw NullPointerException("UID is null.")}")
+
     private val spinner_country = arrayOf(
             "Kyiv", "Kharkiv", "Dnepr", "Zhytomyr", "Lviv", "Odessa", "Chernigov"
     )
 
-    override fun init(savedInstantState:Bundle?){
+    override fun init(savedInstantState: Bundle?) {
         super.setContentView(R.layout.view_m3a_result)
         presenter = ResultM3APresenter(this, application)
+
 
         val spinnerCountryAdapter = ArrayAdapter(this, R.layout.spinner_simple_item, spinner_country)
         spinnerCountryAdapter.setDropDownViewResource(R.layout.spinner_drop_down)
@@ -68,19 +72,23 @@ class ResultM3AView : BaseActivity(), IResultM3AView{
         if (intro.isEmpty() || oneDayWS.isEmpty()) {
             return
         }
-        val user:User? = null
+        val user: User? = null
         val currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
         val dataToSave = HashMap<String, Any>()
 //        dataToSave[INRO] = intro
 //        dataToSave[ONEDAYWS] = oneDayWS
 
         dataToSave[SPINNER] = category
-
-        FirestoreUtil.currentUserDocRef
-                .collection("City")
+        val filename = UUID.randomUUID().toString()
+        FirestoreUtil.currentUserDocRef.collection("City")
                 .document(category)
-                .set(City(intro, oneDayWS))
+                .set(City(intro, oneDayWS, category))
+
+        firestoreInstance.collection("City")
+                .document(category)
+                .set(City(intro, oneDayWS, category))
     }
+
     companion object {
         val INRO = "intriduction"
         val ONEDAYWS = "oneDayWS"

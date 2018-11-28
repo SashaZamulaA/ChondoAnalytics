@@ -1,4 +1,4 @@
-package com.example.aleksandr.myapplication.ui.result
+package com.example.aleksandr.myapplication.ui.chondo_result
 
 import android.app.Application
 import com.example.aleksandr.myapplication.AndroidApplication

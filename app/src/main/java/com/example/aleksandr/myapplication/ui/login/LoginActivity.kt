@@ -25,10 +25,10 @@ class LoginActivity : AppCompatActivity(), ILoginActivity {
         presenter = LoginPresenter(this, application)
         auth = FirebaseAuth.getInstance()
 
-//        if (auth?.currentUser != null) {
-//            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-//            finish()
-//        }
+        if (auth?.currentUser != null) {
+            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+            finish()
+        }
 
         input_email_login.setSimpleTextWatcher {
             presenter.onResetError()

@@ -149,5 +149,10 @@
     <string name="lecture_on_streat_main">Street lectures</string>
     <string name="lecture_in_centre_main">Center lectures</string>
     <string name="result_chondo">My chondo result</string>
+    <string name="lviv">Lviv</string>
+    <string name="dnepr">Dnepr</string>
+    <string name="zhytomyr">Zhitomir</string>
+    <string name="odessa">Odessa</string>
+    <string name="chernigov">Chernigov</string>
 
 </resources>

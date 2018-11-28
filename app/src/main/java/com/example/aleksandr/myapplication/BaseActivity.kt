@@ -16,7 +16,7 @@ import android.widget.FrameLayout
 import android.widget.Toast
 import com.example.aleksandr.myapplication.ui.add_task.RecyclerActivity
 import com.example.aleksandr.myapplication.ui.hdh.HDHView
-import com.example.aleksandr.myapplication.ui.result.ResultM3AView
+import com.example.aleksandr.myapplication.ui.chondo_result.ResultM3AView
 import com.example.aleksandr.myapplication.ui.main.MainActivity
 import com.example.aleksandr.myapplication.ui.settings.SettingsView
 
@@ -87,7 +87,6 @@ abstract class BaseActivity : AppCompatActivity(), IView, NavigationView.OnNavig
 
                 R.id.nav_info -> startActivity(Intent(this, HDHView::class.java))
 
-                R.id.nav_hdh -> startActivity(Intent(this, HDHView::class.java))
 
         }
 

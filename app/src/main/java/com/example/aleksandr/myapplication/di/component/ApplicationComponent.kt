@@ -8,8 +8,8 @@ import com.example.aleksandr.myapplication.ui.add_task.NewNotePresenter
 import com.example.aleksandr.myapplication.ui.add_task.RecyclerActivity
 import com.example.aleksandr.myapplication.ui.hdh.HDHPresenter
 import com.example.aleksandr.myapplication.ui.hdh.HDHView
-import com.example.aleksandr.myapplication.ui.result.ResultM3APresenter
-import com.example.aleksandr.myapplication.ui.result.ResultM3AView
+import com.example.aleksandr.myapplication.ui.chondo_result.ResultM3APresenter
+import com.example.aleksandr.myapplication.ui.chondo_result.ResultM3AView
 import com.example.aleksandr.myapplication.ui.login.LoginActivity
 import com.example.aleksandr.myapplication.ui.login.RegistrationActivity
 import com.example.aleksandr.myapplication.ui.login.presenter.LoginPresenter

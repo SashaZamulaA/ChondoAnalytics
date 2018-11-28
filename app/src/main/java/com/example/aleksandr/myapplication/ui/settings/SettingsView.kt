@@ -12,6 +12,8 @@ import com.example.aleksandr.myapplication.model.User
 import com.example.aleksandr.myapplication.util.FirestoreUtil
 import com.example.aleksandr.myapplication.util.StorageUtil
 import com.example.aleksandr.tmbook.glade.GlideApp
+import com.google.android.gms.tasks.OnSuccessListener
+import com.google.firebase.firestore.QuerySnapshot
 import com.vadym.adv.myhomepet.ui.settings.ISettingsView
 import com.vadym.adv.myhomepet.ui.settings.SettingsPresenter
 import kotlinx.android.synthetic.main.view_settings.*
@@ -48,6 +50,9 @@ class SettingsView : BaseActivity(), ISettingsView {
                 FirestoreUtil.updateCurrentUser(settings_owner_name.text.toString(),
                         setting_e_mail.text.toString(), null)
         }
+
+
+
         imageView_profile_picture.setOnClickListener {
             val intent = Intent().apply {
                 type = "image/*"

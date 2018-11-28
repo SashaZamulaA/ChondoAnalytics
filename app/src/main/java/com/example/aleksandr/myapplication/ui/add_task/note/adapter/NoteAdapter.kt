@@ -25,9 +25,6 @@ class NoteAdapter(options: FirestoreRecyclerOptions<Note>) : FirestoreRecyclerAd
         holder.bind(model)
 
 
-//        holder.textViewTitle.text = model.title
-//        holder.textViewDescription.text = model.result.toString()
-//        holder.textViewPriority.text = model.goal.toString()
     }
 
     inner class NoteHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
