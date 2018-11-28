@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nestedScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".ui.login.RegistrationActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+       >
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_registration"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/toolbar_height"
+            android:background="@color/primary"
+            android:elevation="@dimen/common_elevation"
+            android:focusableInTouchMode="false"
+            android:isScrollContainer="false"
+            android:padding="0dp"
+            app:contentInsetStart="0dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/button_back_registration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/space_4"
+                    android:background="@drawable/button_ripple_circle_green"
+                    android:padding="@dimen/icon_button_margin"
+                    android:src="@drawable/ic_arrow_back_white" />
+
+                <TextView
+                    style="@style/TextStyle_Title_White"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/toolbar_height"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/toolbar_title_margin"
+                    android:gravity="center_vertical"
+                    android:text="@string/registration"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white" />
+
+            </RelativeLayout>
+        </android.support.v7.widget.Toolbar>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+        <LinearLayout
+            android:id="@+id/card_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_16_24"
+            android:layout_marginBottom="@dimen/space_24"
+            android:orientation="vertical">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_margin="@dimen/space_20"
+            android:text="@string/login_slang"
+            android:textAllCaps="true"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/banner_for_agree"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_24"
+            android:background="@color/complementary_red"
+            android:elevation="2dp"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/space_8"
+            android:paddingTop="@dimen/space_8"
+            android:visibility="gone">
+
+            <TextView
+                style="@style/TextStyle_Body2_Primary_Dark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:paddingEnd="@dimen/space_16"
+                android:paddingStart="@dimen/space_16"
+                android:text="@string/please_agree" />
+        </LinearLayout>
+
+        <!-- Name Label -->
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_InputLayoutName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/space_8"
+            android:layout_marginTop="@dimen/space_8">
+
+            <EditText
+                android:id="@+id/input_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/owner_name"
+                android:inputType="textPersonName" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <!--&lt;!&ndash;Город&ndash;&gt;-->
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginBottom="@dimen/space_8"-->
+            <!--android:layout_marginTop="@dimen/space_8"-->
+            <!--android:focusable="true"-->
+            <!--android:focusableInTouchMode="true"-->
+            <!--android:orientation="vertical">-->
+
+            <!--<TextView-->
+                <!--style="@style/TextStyle_SubHeader_Accent"-->
+                <!--android:layout_marginBottom="@dimen/space_4"-->
+                <!--android:layout_marginTop="@dimen/space_8"-->
+                <!--android:text="@string/city" />-->
+
+            <!--<Spinner-->
+                <!--android:id="@+id/registration_city"-->
+                <!--style="@style/TextStyle_Body2_Primary_Dark"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/space_20" />-->
+
+            <!--<View-->
+                <!--style="@style/AppTheme.HorizontalSpinnerDivider"-->
+                <!--android:layout_marginTop="@dimen/space_8" />-->
+        <!--</LinearLayout>-->
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_InputLayoutEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/space_8"
+            android:layout_marginTop="@dimen/space_8">
+
+            <EditText
+                android:id="@+id/input_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/email" />
+        </android.support.design.widget.TextInputLayout>
+
+        <!-- Password Label -->
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_InputLayoutPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/space_8"
+            android:layout_marginTop="@dimen/space_8">
+
+            <EditText
+                android:id="@+id/input_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/password"
+                android:inputType="textPassword" />
+        </android.support.design.widget.TextInputLayout>
+
+        <!-- Password Re-enter Label -->
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/textInputLayoutConfirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/space_8"
+            android:layout_marginTop="@dimen/space_8">
+
+            <EditText
+                android:id="@+id/input_reEnterPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/re_enter_password"
+                android:inputType="textPassword" />
+        </android.support.design.widget.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:id="@+id/checkbox_GDPR_touch_area"
+                android:layout_width="@dimen/checkbox_size"
+                android:layout_height="@dimen/checkbox_size"
+                android:layout_marginEnd="@dimen/space_4"
+                android:paddingStart="@dimen/space_8">
+
+                <CheckBox
+                    android:id="@+id/checkbox_GDPR"
+                    style="@style/CheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:checked="true" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/text_agreement_GDPR"
+                style="@style/TextStyle_Body2_Primary_Dark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="start"
+                android:singleLine="false" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/checkbox_gdpr_error"
+            style="@style/TextAppearance.AppCompat.Small.ErrorStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="@string/checkbox_gdpr" />
+        <!-- SignUp Button -->
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_signup"
+            style="@style/ButtonFillGreen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/space_24"
+            android:layout_marginTop="@dimen/space_24"
+            android:padding="@dimen/space_12"
+            android:text="@string/create_account" />
+
+        <!--<android.support.v7.widget.AppCompatTextView-->
+            <!--android:id="@+id/link_login"-->
+            <!--style="@style/TextStyle_Body2_Link_Color"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginBottom="@dimen/space_24"-->
+            <!--android:gravity="center"-->
+            <!--android:text="@string/login_member" />-->
+
+    </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</LinearLayout>

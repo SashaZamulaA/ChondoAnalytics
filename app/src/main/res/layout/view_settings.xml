@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="@style/Toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbar_height"
+        android:elevation="@dimen/common_elevation"
+        android:padding="0dp"
+        app:contentInsetEnd="0dp"
+        app:contentInsetStart="0dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:id="@+id/tv_title"
+                style="@style/TextStyle_Title_White"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="56dp"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                tools:text="Settings" />
+
+            <Button
+                android:id="@+id/button_save_settings"
+                style="@style/ButtonToolbarWithStartEndPadding"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:text="@string/save" />
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <!--OWNER-->
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/parent_margin_edge"
+        app:cardElevation="2dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/parent_margin_edge"
+            android:layout_marginEnd="@dimen/parent_margin_edge"
+            android:layout_marginBottom="@dimen/parent_margin_edge"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:id="@+id/represent_as_image_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/parent_margin_edge"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+
+                    <ImageView
+                        android:id="@+id/imageView_profile_picture"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        app:srcCompat="@drawable/ic_account_circle_black_24dp"
+                        tools:ignore="VectorDrawableCompat" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:gravity="center_vertical">
+
+
+                <EditText
+                    android:id="@+id/settings_owner_name"
+                    style="@style/TextStyle_Body2_Primary_Dark"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="21sp"
+                    tools:text="Sasha" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/setting_e_mail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="-8dp"
+                android:layout_marginBottom="24dp"
+                tools:text="z.sasha1@1.com" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    style="@style/TextStyle_Body2_Primary_Dark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="@string/city" />
+
+                <TextView
+                    style="@style/TextStyle_Body2_Primary_Dark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=": " />
+
+                <TextView
+                    android:id="@+id/settings_owner_city"
+                    style="@style/TextStyle_Body2_Primary_Dark"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    tools:text="Lviv" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    style="@style/TextStyle_Body2_Primary_Dark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="@string/mobile" />
+
+                <TextView
+                    style="@style/TextStyle_Body2_Primary_Dark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=": " />
+
+                <EditText
+                    android:id="@+id/settings_owner_phone"
+                    style="@style/TextStyle_Body2_Primary_Dark"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    tools:text="+0933506836" />
+
+            </LinearLayout>
+
+
+
+
+            <!--<android.support.design.widget.TextInputLayout-->
+            <!--style="@style/TextStyle_SubHeader_Accent"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginEnd="@dimen/negative_margin_edit_text"-->
+            <!--android:layout_marginStart="@dimen/negative_margin_edit_text"-->
+            <!--android:layout_marginTop="@dimen/space_8"-->
+            <!--android:hint="@string/owner_name"-->
+            <!--android:textColorHint="@color/text_secondary_dark">-->
+
+            <!--<android.support.design.widget.TextInputEditText-->
+            <!--android:id="@+id/owner_name"-->
+            <!--style="@style/TextStyle_Body2_Primary_Dark"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:imeOptions="actionNext"-->
+            <!--android:inputType="textPersonName"-->
+            <!--android:paddingBottom="@dimen/space_12"-->
+            <!--android:paddingTop="@dimen/space_8" />-->
+            <!--</android.support.design.widget.TextInputLayout>-->
+
+            <!--<android.support.design.widget.TextInputLayout-->
+            <!--style="@style/TextStyle_SubHeader_Accent"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginEnd="@dimen/negative_margin_edit_text"-->
+            <!--android:layout_marginStart="@dimen/negative_margin_edit_text"-->
+            <!--android:hint="@string/mobile"-->
+            <!--android:textColorHint="@color/text_secondary_dark">-->
+
+            <!--<android.support.design.widget.TextInputEditText-->
+            <!--android:id="@+id/owner_telephone"-->
+            <!--style="@style/TextStyle_Body2_Primary_Dark"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:imeOptions="actionNext"-->
+            <!--android:inputType="phone"-->
+            <!--android:paddingBottom="@dimen/space_12"-->
+            <!--android:paddingTop="@dimen/space_8" />-->
+            <!--</android.support.design.widget.TextInputLayout>-->
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <!--OPTIONAL SETTINGS-->
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/parent_margin_edge"
+        app:cardElevation="2dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/parent_margin_edge"
+            android:layout_marginEnd="@dimen/parent_margin_edge"
+            android:layout_marginBottom="@dimen/parent_margin_edge"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextStyle_SubHeader_Accent"
+                android:layout_marginTop="@dimen/space_8"
+                android:layout_marginBottom="@dimen/space_4"
+                android:text="@string/optional_settings" />
+
+            <android.support.v7.widget.SwitchCompat
+                android:id="@+id/sw_notification"
+                style="@style/TextStyle_Body2_Primary_Dark"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="@dimen/space_8"
+                android:text="@string/notification" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

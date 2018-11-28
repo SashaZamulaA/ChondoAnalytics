@@ -6,11 +6,33 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <!--<item name="colorAccent">@color/colorAccent</item>-->
         <item name="colorAccent">@color/accent</item>
+
+    </style>
+
+    <style name="TextAppearance.AppCompat.Small.ErrorStyle">
+        <item name="android:textColor">@color/text_error</item>
+        <item name="android:textSize">@dimen/caption_text_size</item>
+    </style>
+
+    <style name="AppTheme.VerticalViewDivider" parent="AppTheme">
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/divider_color</item>
+    </style>
+
+    <style name="TextStyle_Body2_Secondary_Dark" parent="TextStyle_Body2_Primary_Dark">
+        <item name="android:textColor">@color/text_primary_dark</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="TextAppearance.ExpandedTitle"
+        parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/black_effective</item>
+    </style>
 
     <!--Toolbar-->
     <style name="Toolbar" parent="Base.ThemeOverlay.AppCompat.Dark.ActionBar">
@@ -19,6 +41,11 @@
         <item name="android:minHeight">?attr/actionBarSize</item>
         <item name="colorControlNormal">@color/white</item>
         <item name="android:background">@color/colorPrimary</item>
+    </style>
+
+    <style name="CollapsingToolbarLayoutExpandedTextStyle" parent="AppTheme">
+        <item name="android:textColor">@android:color/transparent</item>
+        <item name="android:textSize">12sp</item>
     </style>
 
     <style name="Toolbar.TitleText" parent="TextStyle.Heading">
@@ -35,6 +62,24 @@
     <!--Text-->
     <style name="TextStyle.Heading" parent="TextStyle">
         <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="TextStyle_SubHeader_charge" parent="AppTheme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily" tools:ignore="NewApi">sans-serif-medium</item>
+        <item name="android:textSize">@dimen/button_text_size</item>
+        <item name="android:textColor">@color/foreground_text_color_light</item>
+    </style>
+
+    <style name="ButtonBig_right" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:paddingStart">@dimen/padding_button_not_toolbar_8dp</item>
+        <item name="android:paddingEnd">@dimen/padding_button_not_toolbar_8dp</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">@dimen/button_text_size</item>
+        <item name="android:textColor">@color/foreground_text_color_light</item>
+        <item name="android:layout_height">@dimen/button_charge</item>
     </style>
 
     <style name="TextStyle">
@@ -59,6 +104,7 @@
         <item name="android:fontFamily" tools:ignore="NewApi">sans-serif</item>
         <item name="android:textSize">@dimen/body2_text_size</item>
         <item name="android:textColor">@color/foreground_text_color_dark</item>
+
     </style>
 
     <style name="TextStyle_SubHeader_Primary_Dark" parent="AppTheme">
@@ -151,6 +197,13 @@
         <item name="android:background">@color/divider_color</item>
     </style>
 
+    <style name="FloatingActionButton_margin_24dp">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">24dp</item>
+        <item name="android:layout_gravity">bottom|end</item>
+    </style>
+
     <style name="AppTheme.HorizontalSpinnerDivider" parent="AppTheme">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1dp</item>
@@ -164,4 +217,31 @@
         <item name="android:textColorSecondary">@color/ic_normal_dark</item>
     </style>
 
+    <style name="Base.Theme.DesignDemo" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="colorPrimary">#673AB7</item>
+        <item name="colorPrimaryDark">#512DA8</item>
+        <item name="colorAccent">#FF4081</item>
+    </style>
+
+    <style name="Widget.CardContent" parent="android:Widget">
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:paddingTop">24dp</item>
+        <item name="android:paddingBottom">24dp</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="TextStyle_Title_White" parent="TextStyle_Title_Black">
+        <item name="android:textColor">@color/text_primary_light</item>
+    </style>
+
+    <style name="TextStyle_Title_Black" parent="AppTheme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily" tools:ignore="NewApi">sans-serif-medium</item>
+        <item name="android:textSize">@dimen/title_text_size</item>
+        <item name="android:textColor">@color/foreground_text_color_dark</item>
+    </style>
+
+    <dimen name="button_charge">48dp</dimen>
 </resources>

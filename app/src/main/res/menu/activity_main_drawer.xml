@@ -7,8 +7,13 @@
             android:icon="@drawable/ic_home"/>
 
         <item
-            android:id="@+id/nav_hdh"
+            android:id="@+id/chondo_result"
             android:icon="@drawable/ic_book"
+            android:title="@string/result_chondo" />
+
+        <item
+            android:id="@+id/nav_task"
+            android:icon="@drawable/ic_create_black_24dp"
             android:title="@string/note" />
 
         <item

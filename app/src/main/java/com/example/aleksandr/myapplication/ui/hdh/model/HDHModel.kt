@@ -2,14 +2,11 @@ package com.example.aleksandr.myapplication.ui.hdh.model
 
 import com.google.firebase.database.IgnoreExtraProperties
 
-//@IgnoreExtraProperties
-//class HDHModel(val id : String, val name: String, val category: String)
-
 @IgnoreExtraProperties
 class HDHModel {
-    var id: String = ""
-    var name: String = ""
-    var category: String = ""
+    var id: String? = null
+    var name: String? = null
+    var category: String? = null
 
     constructor() {
         //this constructor is required

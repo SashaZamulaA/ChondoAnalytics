@@ -50,12 +50,11 @@
                 android:text="@string/ok" />
         </LinearLayout>
 
-    <ListView
-        android:id="@+id/listViewArtists"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/listViewWord"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1">
-
-    </ListView>
+        android:layout_height="match_parent"
+        tools:listitem="@layout/item_is_word_list"
+        />
 
 </LinearLayout>

@@ -2,6 +2,7 @@
     <string name="app_name">M3A-Analytics
     </string>
 
+
     <string name="note">My note</string>
 
     // LOGIN vs REGISTRATION
@@ -12,7 +13,7 @@
     <string name="go_create_account">No account yet? Create one</string>
     <string name="login_member">Already a member? Login</string>
     <string name="owner_name">Nik-Name</string>
-    <string name="country">Country</string>
+    <string name="country">Sity</string>
     <string name="re_enter_password">Re-enter password</string>
     <string name="create_account">Create account</string>
     <string name="please_agree">Please agree to the Terms of Use and Privacy Policy</string>
@@ -33,7 +34,8 @@
     <string name="choose_photo">Choose photo</string>
     <string name="take_photo">Take photo</string>
     <string name="delete_item">Delete</string>
-
+    <string name="title_long">Чтобы идти свидетельствовать, вы должны хорошо изучить Принцип, проливать слезы и проявить полную посвященность. (20:345)</string>
+    <string name="t">This is a long title text displayed in multiple lines.</string>
 
     // INFO
     <string name="info_view"><b>What is MVP Design Pattern?</b>\nModel View Presenter is an architectural pattern used to encourage/facilitate separation of concern in software projects.
@@ -53,6 +55,29 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="ok">Click here</string>
+    <string name="topic">Topic</string>
+    <string name="result">Result</string>
+    <string name="goal">Goal</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="dp_read">DP read</string>
+    <string name="name">Name</string>
+    <string name="period">Period</string>
+    <string name="period_text">Period</string>
+    <string name="zero">0</string>
+    <string name="number">Number</string>
+    <string name="start_data">Start Data</string>
+    <string name="end_data">End data</string>
+    <string name="time">Quantity</string>
+    <string name="breakfast">Breakfast</string>
+    <string name="dinner">Dinner</string>
+    <string name="lunch">Lunch</string>
+    <string name="min">Min</string>
+    <string name="start_time">start_per</string>
+    <string name="end_time">end_per</string>
+    <string name="probel"> - </string>
+
+
 
     <array name="category">
         <item>faith</item>
@@ -60,4 +85,74 @@
         <item>blessing</item>
 
     </array>
+
+    <array name="time_period">
+        <item>Time</item>
+        <item>Quantity</item>
+        <item>Skip</item>
+    </array>
+
+        <string name="city">City</string>
+        <string name="signup_successful">Registration successful</string>
+        <string name="incorrect_sing_in">Incorrect email or password. Please try again.</string>
+        <string name="text_accounts">All Accounts</string>
+        <string name="hint_name">Name</string>
+        <string name="hint_email">Email</string>
+        <string name="hint_password">Password</string>
+        <string name="hint_confirm_password">Confirm Password</string>
+        <string name="text_login">Login</string>
+        <string name="text_register">Register</string>
+        <string name="error_message_name">Enter Full Name</string>
+        <string name="error_message_email">Enter Valid Email</string>
+        <string name="error_message_age">Enter Age</string>
+        <string name="error_message_password">Enter Password</string>
+        <string name="success_message">Registration Successful</string>
+        <string name="text_not_member">No account yet? Create one</string>
+        <string name="text_already_member">Already a member? Login</string>
+        <string name="error_email_exists">Email Already Exists</string>
+        <string name="error_password_match">Password Does Not Matches</string>
+        <string name="error_valid_email_password">Wrong Email or Password</string>
+        <string name="action_settings">Settings</string>
+        <string name="text_hello">Hello,</string>
+        <string name="text_title">Android Tutorials Hub</string>
+        <string name="gdpr_checkbox">I understand and agree to M3A Analytics</string>
+        // MENU
+
+        // INVALID VALUE
+        <string name="no_name">This field cannot be blank</string>
+        <string name="no_email">This field cannot be blank</string>
+        <string name="email_incorrect">Email incorrect</string>
+        <string name="email_exist">This email already exist</string>
+        <string name="no_password">This field cannot be blank</string>
+        <string name="password_too_short">The password too short</string>
+        <string name="repassword_wrong">This password value don`t compile with password</string>
+        <string name="checkbox_gdpr">Please agree to the Terms of Use and Privacy Policy</string>
+        <string name="no_internet">No internet connection</string>
+        <string name="registration">Registration</string>
+    <string name="cancel">Cancel</string>
+    <string name="mobile">mobile</string>
+    <string name="owner">owner</string>
+    <string name="notification">notification</string>
+    <string name="optional_settings">Optional settings</string>
+    <string name="save">Save</string>
+    <string name="data">Date</string>
+    <string name="streat_time">Time on street</string>
+    <string name="introdaction">Introduction</string>
+    <string name="approach">Approach</string>
+    <string name="lecture_on_streat">Lecture on street</string>
+    <string name="lecture_in_centre">Lecture in center</string>
+    <string name="one_day_seminar">One day seminar</string>
+    <string name="two_day_seminar">Two day seminar</string>
+    <string name="day21_seminar">21-day seminar</string>
+    <string name="kiev">Kyiv</string>
+    <string name="kharkiv">Kharkiv</string>
+    <string name="lecture_on_streat_main">Street lectures</string>
+    <string name="lecture_in_centre_main">Center lectures</string>
+    <string name="result_chondo">My chondo result</string>
+    <string name="lviv">Lviv</string>
+    <string name="dnepr">Dnepr</string>
+    <string name="zhytomyr">Zhitomir</string>
+    <string name="odessa">Odessa</string>
+    <string name="chernigov">Chernigov</string>
+
 </resources>

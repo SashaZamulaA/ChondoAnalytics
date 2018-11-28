@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nestedScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    tools:context=".ui.login.LoginActivity">
 
-    <LinearLayout
+    <android.support.v7.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -18,7 +22,7 @@
             android:layout_marginBottom="@dimen/space_12"
             android:src="@drawable/analytics" />
 
-        <TextView
+        <android.support.v7.widget.AppCompatTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
@@ -28,13 +32,14 @@
 
         <!--  Email Label -->
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_InputLayoutEmail_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/space_8"
             android:layout_marginTop="@dimen/space_8">
 
             <EditText
-                android:id="@+id/editText_email"
+                android:id="@+id/input_email_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/email" />
@@ -42,20 +47,21 @@
 
         <!--  Password Label -->
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_InputLayoutPassword_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/space_8"
             android:layout_marginTop="@dimen/space_8">
 
             <EditText
-                android:id="@+id/input_password"
+                android:id="@+id/input_password_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/password"
                 android:inputType="textPassword" />
         </android.support.design.widget.TextInputLayout>
 
-        <Button
+        <android.support.v7.widget.AppCompatButton
             android:id="@+id/btn_login"
             style="@style/ButtonFillGreen"
             android:layout_width="match_parent"
@@ -65,7 +71,7 @@
             android:padding="@dimen/space_12"
             android:text="@string/login" />
 
-        <TextView
+        <android.support.v7.widget.AppCompatTextView
             android:id="@+id/link_signup"
             style="@style/TextStyle_Body2_Link_Color"
             android:layout_width="match_parent"
@@ -73,5 +79,5 @@
             android:gravity="center"
             android:text="@string/go_create_account" />
 
-    </LinearLayout>
-</ScrollView>
+    </android.support.v7.widget.LinearLayoutCompat>
+</android.support.v4.widget.NestedScrollView>

@@ -14,9 +14,11 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.Toast
+import com.example.aleksandr.myapplication.ui.add_task.RecyclerActivity
 import com.example.aleksandr.myapplication.ui.hdh.HDHView
-import com.example.aleksandr.myapplication.ui.info.InfoView
+import com.example.aleksandr.myapplication.ui.chondo_result.ResultM3AView
 import com.example.aleksandr.myapplication.ui.main.MainActivity
+import com.example.aleksandr.myapplication.ui.settings.SettingsView
 
 abstract class BaseActivity : AppCompatActivity(), IView, NavigationView.OnNavigationItemSelectedListener {
 
@@ -56,15 +58,22 @@ abstract class BaseActivity : AppCompatActivity(), IView, NavigationView.OnNavig
         when (id) {
             R.id.nav_main -> startActivity(Intent(this, MainActivity::class.java))
 
-//            R.id.nav_hdh -> {
-//                startActivity(Intent(this, HDHView::class.java))
-//                Toast.makeText(applicationContext, "You Clicked Options A", Toast.LENGTH_SHORT).show()
-//                drawer.closeDrawer(GravityCompat.START)
-//            }
-            R.id.nav_settings -> {
-                Toast.makeText(applicationContext, "You Clicked Options B", Toast.LENGTH_SHORT).show()
+            R.id.chondo_result -> {
+                startActivity(Intent(this, ResultM3AView::class.java))
+                Toast.makeText(applicationContext, "You Clicked Options A", Toast.LENGTH_SHORT).show()
                 drawer.closeDrawer(GravityCompat.START)
             }
+
+            R.id.nav_task -> {
+                startActivity(Intent(this, RecyclerActivity::class.java))
+                drawer.closeDrawer(GravityCompat.START)
+            }
+
+            R.id.nav_settings -> {
+                startActivity(Intent(this, SettingsView::class.java))
+                drawer.closeDrawer(GravityCompat.START)
+            }
+
             R.id.nav_share -> {
                 val sharingIntent = Intent(Intent.ACTION_SEND)
                 val shareBody = getString(R.string.share_body)
@@ -76,9 +85,8 @@ abstract class BaseActivity : AppCompatActivity(), IView, NavigationView.OnNavig
                 startActivity(Intent.createChooser(sharingIntent, getString(R.string.share_by)))
             }
 
-                R.id.nav_info -> startActivity(Intent(this, InfoView::class.java))
+                R.id.nav_info -> startActivity(Intent(this, HDHView::class.java))
 
-                R.id.nav_hdh -> startActivity(Intent(this, HDHView::class.java))
 
         }
 

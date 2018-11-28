@@ -1,98 +1,138 @@
 package com.example.aleksandr.myapplication.ui.hdh
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
+import android.support.v7.widget.LinearLayoutManager
 import android.text.TextUtils
+import android.view.View
 import android.widget.*
 import com.example.aleksandr.myapplication.BaseActivity
 import com.example.aleksandr.myapplication.R
+import com.example.aleksandr.myapplication.hideKeyboard
 import com.example.aleksandr.myapplication.ui.hdh.model.HDHModel
 import com.google.firebase.database.*
-import java.util.*
-
+import kotlinx.android.synthetic.main.view_hhw.*
 
 class HDHView : BaseActivity(), IHDHView {
 
-
     private lateinit var presenter: HDHPresenter
-
-    lateinit var editTextName: EditText
-    lateinit var buttonSave: Button
-    lateinit var spinner: Spinner
     lateinit var databaseWord: DatabaseReference
-    lateinit var listViewArtists: ListView
-    lateinit var wordList: MutableList<HDHModel>
+    var wordList: ArrayList<HDHModel> = ArrayList()
+    lateinit var adapter: WordAdapter
 
     override fun init(savedInstanceState: Bundle?) {
         super.setContentView(R.layout.view_hhw)
         presenter = HDHPresenter(this, application)
-        editTextName = findViewById(R.id.editText_hhw)
-        buttonSave = findViewById(R.id.btn_hdh)
-        spinner = findViewById(R.id.add_category)
-        listViewArtists = findViewById(R.id.listViewArtists)
 
         databaseWord = FirebaseDatabase.getInstance().getReference("word")
 
-        wordList = ArrayList()
-        buttonSave.setOnClickListener {
+        listViewWord.setHasFixedSize(true)
+        listViewWord.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
+
+        adapter = WordAdapter(wordList, this)
+        listViewWord.adapter = adapter
+
+        btn_hdh.setOnClickListener {
             addArtist()
         }
     }
 
     override fun onStart() {
         super.onStart()
-        //attaching value event listener
         databaseWord.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
-                //clearing the previous artist list
                 wordList.clear()
-
-                //iterating through all the nodes
                 for (postSnapshot in dataSnapshot.children) {
-                    //getting artist
                     val word = postSnapshot.getValue<HDHModel>(HDHModel::class.java)
-                    //adding artist to the list
                     if (word != null) {
                         wordList.add(word)
                     }
                 }
-                //creating adapter
-                val artistAdapter = ArtistList(this@HDHView, wordList)
-                //attaching adapter to the listview
-                listViewArtists.adapter = artistAdapter
+                val wordAdapter = WordAdapter(wordList, this@HDHView)
+                listViewWord.adapter = wordAdapter
+
             }
+
             override fun onCancelled(databaseError: DatabaseError) {
             }
         })
     }
 
-    private fun addArtist() {
-        //getting the values to save
-        val name = editTextName.text.toString().trim()
-        val category = spinner.selectedItem.toString()
+    fun updateList(){
+        databaseWord.addChildEventListener(object : ChildEventListener{
+            override fun onCancelled(p0: DatabaseError) {
+            }
 
-        //checking if the value is provided
+            override fun onChildMoved(p0: DataSnapshot, p1: String?) {
+            }
+
+            override fun onChildChanged(p0: DataSnapshot, p1: String?) {
+            }
+
+            override fun onChildAdded(p0: DataSnapshot, p1: String?) {
+            }
+
+            override fun onChildRemoved(p0: DataSnapshot) {
+            }
+        })
+    }
+
+    private fun addArtist() {
+
+        val name = editText_hhw.text.toString().trim()
+        val category = add_category.selectedItem.toString()
+
         if (!TextUtils.isEmpty(name)) {
 
-            //getting a unique id using push().getKey() method
-            //it will create a unique id and we will use it as the Primary Key for our Artist
             val id = databaseWord.push().key
-
-            //creating an Artist Object
             val wordList = id?.let { HDHModel(it, name, category) }
-
-            //Saving the Artist
             id?.let { databaseWord.child(it).setValue(wordList) }
 
-            //setting edittext to blank again
-            editTextName.setText("")
+            editText_hhw.setText("")
 
-            //displaying a success toast
             Toast.makeText(this, "Artist added", Toast.LENGTH_LONG).show()
         } else {
-            //if the value is not given displaying a toast
             Toast.makeText(this, "Please enter a name", Toast.LENGTH_LONG).show()
         }
+    }
+    @SuppressLint("InflateParams")
+    private fun showUpdateDialog(wordId: String, word: String) {
+
+        val dialogBuilder = AlertDialog.Builder(this)
+        val inflater = layoutInflater
+        val dialogView = inflater.inflate(R.layout.update_dialog, null) as View
+        dialogBuilder.setView(dialogView)
+
+        val textViewName = dialogView.findViewById(R.id.editTextName) as EditText
+        val buttonUpdate = dialogView.findViewById(R.id.buttonUpdate) as Button
+        val buttonDelete = dialogView.findViewById(R.id.buttonDelete) as Button
+        val spinner = dialogView.findViewById(R.id.spinner_categories_dialog) as Spinner
+
+        dialogBuilder.setTitle("Update Word- $word")
+        val alertDialog = dialogBuilder.create()
+        alertDialog.show()
+
+        buttonUpdate.setOnClickListener {
+            val name: String = textViewName.text.toString().trim()
+            val category: String = spinner.selectedItem.toString()
+
+            if (TextUtils.isEmpty(name)) {
+                editText_hhw.error = "Name required"
+            }
+            updateArtist(wordId, name, category)
+            alertDialog.dismiss()
+            hideKeyboard()
+
+        }
+    }
+    private fun updateArtist(id: String, name: String, category: String): Boolean {
+        val dR = FirebaseDatabase.getInstance().getReference("word").child(id)
+        val word = HDHModel(id, name, category)
+        dR.setValue(word)
+        Toast.makeText(this, "Word Update Successfully", Toast.LENGTH_LONG).show()
+        return true
     }
 
     override fun onAttachedToWindow() {
