@@ -4,12 +4,12 @@ import com.example.aleksandr.myapplication.R
 import java.util.ArrayList
 
 data class City(
-                val intro : String? = "",
-                val onedayWS: String? = "",
-                val twoDayWS:String? = "",
+                val intro : String? = "0",
+                val onedayWS: String? = "0",
+                val twoDayWS:String? = "0",
                 val centers: String?= "")
                  {
-    constructor() : this("","", "")
+    constructor() : this("0","0", "0")
 }
 
 //class WeightEntryVH(itemView: View?)

@@ -2,16 +2,28 @@ package com.example.aleksandr.myapplication.ui.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.content.ContextCompat.startActivity
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.AlertDialog
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.util.ArrayMap
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import com.example.aleksandr.myapplication.BaseActivity
 import com.example.aleksandr.myapplication.R
-import com.example.aleksandr.myapplication.R.string.description
+import com.example.aleksandr.myapplication.R.id.*
 import com.example.aleksandr.myapplication.model.City
+import com.example.aleksandr.myapplication.model.CityData
 import com.example.aleksandr.myapplication.ui.login.LoginActivity
 import com.example.aleksandr.myapplication.ui.main.Note.Note
+import com.example.aleksandr.myapplication.util.FirestoreUtil
 import com.example.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter
+import com.firebase.ui.firestore.FirestoreRecyclerOptions
+import com.google.android.gms.tasks.OnSuccessListener
+import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -28,11 +40,8 @@ class MainActivity : BaseActivity() {
         super.setContentView(R.layout.activity_main)
         presenter = MainPresenter(this, application)
         loadKyiv()
-//        save_note.setOnClickListener { addNote() }
-        load_note.setOnClickListener {
-            loadKharkiv()
-        }
-
+        loadKharkiv()
+    }
 //        val recyclerView = findViewById<RecyclerView>(R.id.result_recycler)
 //        recyclerView.layoutManager = LinearLayoutManager(this)
 //
@@ -58,7 +67,7 @@ class MainActivity : BaseActivity() {
 //        }
 //        recyclerView.adapter = adapter
 //    }
-
+//
 //    private inner class ProductViewHolder internal constructor(view: View) : RecyclerView.ViewHolder(view) {
 //        internal fun setProductName(productName: String) {
 //
@@ -123,8 +132,8 @@ class MainActivity : BaseActivity() {
 //        super.onDetachedFromWindow()
 //        presenter.unbindView(this)
 //    }
-//
-    }
+
+
 
     override fun onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -198,24 +207,38 @@ class MainActivity : BaseActivity() {
                 .whereEqualTo("centers", "Kyiv")
                 .get()
                 .addOnSuccessListener { queryDocumentSnapshots ->
-                    var data = ""
+                    var sum = 0
 
                     queryDocumentSnapshots.forEach { documentSnapshot ->
-                        val note = documentSnapshot.toObject(Note::class.java)
 
                         val resultNote = documentSnapshot.toObject(City::class.java)
-                        val intro = resultNote.intro
+                        val intro = Integer.parseInt(resultNote.intro)
                         val oneD = resultNote.onedayWS
                         val twoD = resultNote.twoDayWS
 
+                        sum += intro
 
 
-                        main_intro_kyiv.text = intro
-                        main_one_day_kyiv.text = oneD
-                        main_two_day_kyiv.text = twoD
+                        if (sum == 0) {
+                            main_intro_kyiv.text = "0"
+                        } else {
+                            main_intro_kyiv.text = sum.toString()
+                        }
 
+                        if (oneD.isNullOrEmpty()) {
+                            main_one_day_kyiv.text = "0"
+
+                        } else {
+                            main_one_day_kyiv.text = oneD
+                        }
+
+                        if (twoD.isNullOrEmpty()) {
+                            main_two_day_kyiv.text = "0"
+                        } else {
+                            main_two_day_kyiv.text = twoD
+                        }
                     }
-                    text_view_data.text = data
+
                 }.addOnFailureListener { e ->
                     Log.d("What wrong", e.toString())
                 }
@@ -226,7 +249,6 @@ class MainActivity : BaseActivity() {
                 .whereEqualTo("centers", "Kharkiv")
                 .get()
                 .addOnSuccessListener { queryDocumentSnapshots ->
-                    var data = ""
 
                     queryDocumentSnapshots.forEach { documentSnapshot ->
                         val note = documentSnapshot.toObject(Note::class.java)
@@ -237,16 +259,26 @@ class MainActivity : BaseActivity() {
                         val oneD = resultNote.onedayWS
                         val twoD = resultNote.twoDayWS
 
+                        if (intro.isNullOrEmpty()) {
+                            main_intro_kharkiv.text = "0"
+                        } else {
+                            main_intro_kharkiv.text = intro
+                        }
 
+                        if (oneD.isNullOrEmpty()) {
+                            main_one_day_kharkiv.text = "0"
 
-                        main_intro_kharkiv.text = intro
-                        main_one_day_kharkiv.text = oneD
-                        main_two_day_kharkiv.text = twoD
+                        } else {
+                            main_one_day_kharkiv.text = oneD
+                        }
+
+                        if (twoD.isNullOrEmpty()) {
+                            main_two_day_kharkiv.text = "0"
+                        } else {
+                            main_two_day_kharkiv.text = twoD
+                        }
 
                     }
-                    main_one_day_kyiv.text = data
-                    main_intro_kyiv.text = data
-                    main_two_day_kyiv.text = data
 
                 }.addOnFailureListener { e ->
                     Log.d("What wrong", e.toString())
