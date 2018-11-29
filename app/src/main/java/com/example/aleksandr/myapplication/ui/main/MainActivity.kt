@@ -7,9 +7,11 @@ import android.support.v7.app.AlertDialog
 import android.util.Log
 import com.example.aleksandr.myapplication.BaseActivity
 import com.example.aleksandr.myapplication.R
+import com.example.aleksandr.myapplication.R.string.description
+import com.example.aleksandr.myapplication.model.City
 import com.example.aleksandr.myapplication.ui.login.LoginActivity
 import com.example.aleksandr.myapplication.ui.main.Note.Note
-import com.google.firebase.firestore.FirebaseFirestore
+import com.example.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -18,16 +20,18 @@ class MainActivity : BaseActivity() {
     private val KEY_TITLE = "title"
     private val KEY_DESCRIPTION = "description"
 
-    private val db = FirebaseFirestore.getInstance()
-    private val noteRefCollection = db.collection("Note")
-    private val noteRef = db.document("Note/My First Note")
+
+    private val noteRefCollection = firestoreInstance.collection("NewCity")
+    private val noteRef = firestoreInstance.document("ResultNote/My First ResultNote")
 
     override fun init(savedInstanceState: Bundle?) {
         super.setContentView(R.layout.activity_main)
         presenter = MainPresenter(this, application)
-
-        save_note.setOnClickListener { addNote() }
-        load_note.setOnClickListener { loadNotes() }
+        loadKyiv()
+//        save_note.setOnClickListener { addNote() }
+        load_note.setOnClickListener {
+            loadKharkiv()
+        }
 
 //        val recyclerView = findViewById<RecyclerView>(R.id.result_recycler)
 //        recyclerView.layoutManager = LinearLayoutManager(this)
@@ -151,49 +155,47 @@ class MainActivity : BaseActivity() {
         presenter.unbindView(this)
     }
 
-    private fun addNote() {
+//    private fun addNote() {
+//
+//        val title = edit_text_title.text.toString()
+//        val description = edit_text_description.text.toString()
+//
+//        if (edit_text_priority.length() == 0) {
+//            edit_text_priority.setText("0")
+//        }
+//        val priority = Integer.parseInt(edit_text_priority.text.toString())
+//
+//        val note = Note("", title, description, priority)
+//        noteRefCollection.add(note)
+//    }
 
-        val title = edit_text_title.text.toString()
-        val description = edit_text_description.text.toString()
+//    override fun onStart() {
+//        super.onStart()
+//        noteRefCollection.addSnapshotListener { queryDocumentSnapshots, _ ->
+//
+//            var data = ""
+//
+//            if (queryDocumentSnapshots != null) {
+//
+//                queryDocumentSnapshots.forEach { documentSnapshot ->
+//
+//                    val note = documentSnapshot.toObject(Note::class.java)
+//
+//                    val doc = documentSnapshot.id
+//                    val title = note.title
+//                    val description = note.description
+//                    val priority = note.priority
+//
+//                    data += ("ID: $doc\nTitle: $title\nDescription: $description\nPriority:$priority\n\n")
+//                }
+//            }
+//            text_view_data.text = data
+//        }
+//    }
 
-        if (edit_text_priority.length() == 0) {
-            edit_text_priority.setText("0")
-        }
-        val priority = Integer.parseInt(edit_text_priority.text.toString())
-
-        val note = Note("", title, description, priority)
-        noteRefCollection.add(note)
-    }
-
-    override fun onStart() {
-        super.onStart()
-        noteRefCollection.addSnapshotListener { queryDocumentSnapshots, _ ->
-
-            var data = ""
-
-            if (queryDocumentSnapshots != null) {
-
-                queryDocumentSnapshots.forEach { documentSnapshot ->
-
-                    val note = documentSnapshot.toObject(Note::class.java)
-
-                    val doc = documentSnapshot.id
-                    val title = note.title
-                    val description = note.description
-                    val priority = note.priority
-
-                    data += ("ID: $doc\nTitle: $title\nDescription: $description\nPriority:$priority\n\n")
-                }
-            }
-            text_view_data.text = data
-        }
-    }
-
-    private fun loadNotes() {
+    private fun loadKyiv() {
         noteRefCollection
-                .whereLessThan("priority", 2)
-                .whereEqualTo("title", "Sasha")
-                .limit(3)
+                .whereEqualTo("centers", "Kyiv")
                 .get()
                 .addOnSuccessListener { queryDocumentSnapshots ->
                     var data = ""
@@ -201,14 +203,51 @@ class MainActivity : BaseActivity() {
                     queryDocumentSnapshots.forEach { documentSnapshot ->
                         val note = documentSnapshot.toObject(Note::class.java)
 
-                        val doc = documentSnapshot.id
-                        val title = note.title
-                        val description = note.description
-                        val priority = note.priority
+                        val resultNote = documentSnapshot.toObject(City::class.java)
+                        val intro = resultNote.intro
+                        val oneD = resultNote.onedayWS
+                        val twoD = resultNote.twoDayWS
 
-                        data += ("ID: $doc\nTitle: $title\nDescription: $description\nPriority:$priority\n\n")
+
+
+                        main_intro_kyiv.text = intro
+                        main_one_day_kyiv.text = oneD
+                        main_two_day_kyiv.text = twoD
+
                     }
                     text_view_data.text = data
+                }.addOnFailureListener { e ->
+                    Log.d("What wrong", e.toString())
+                }
+    }
+
+    private fun loadKharkiv() {
+        noteRefCollection
+                .whereEqualTo("centers", "Kharkiv")
+                .get()
+                .addOnSuccessListener { queryDocumentSnapshots ->
+                    var data = ""
+
+                    queryDocumentSnapshots.forEach { documentSnapshot ->
+                        val note = documentSnapshot.toObject(Note::class.java)
+
+                        val resultNote = documentSnapshot.toObject(City::class.java)
+
+                        val intro = resultNote.intro
+                        val oneD = resultNote.onedayWS
+                        val twoD = resultNote.twoDayWS
+
+
+
+                        main_intro_kharkiv.text = intro
+                        main_one_day_kharkiv.text = oneD
+                        main_two_day_kharkiv.text = twoD
+
+                    }
+                    main_one_day_kyiv.text = data
+                    main_intro_kyiv.text = data
+                    main_two_day_kyiv.text = data
+
                 }.addOnFailureListener { e ->
                     Log.d("What wrong", e.toString())
                 }

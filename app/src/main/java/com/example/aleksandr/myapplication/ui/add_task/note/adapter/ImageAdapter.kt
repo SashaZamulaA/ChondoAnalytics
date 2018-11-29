@@ -7,13 +7,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.aleksandr.myapplication.R
-import com.example.aleksandr.myapplication.ui.add_task.note.model.Note
-import com.squareup.picasso.Picasso
-class ImageAdapter(context:Context, uploads:List<Note>):RecyclerView.Adapter<ImageAdapter.ImageViewHolder>() {
+import com.example.aleksandr.myapplication.ui.add_task.note.model.ResultNote
+
+class ImageAdapter(context:Context, uploads:List<ResultNote>):RecyclerView.Adapter<ImageAdapter.ImageViewHolder>() {
     override fun getItemCount() = mUploads.size
 
     private val mContext:Context = context
-    private val mUploads:List<Note> = uploads
+    private val mUploads:List<ResultNote> = uploads
 
     override fun onCreateViewHolder(parent:ViewGroup, viewType:Int):ImageViewHolder {
         val v = LayoutInflater.from(mContext).inflate(R.layout.item_goal_list, parent, false)

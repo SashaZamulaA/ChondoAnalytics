@@ -6,7 +6,6 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.example.aleksandr.myapplication.BaseActivity
 import com.example.aleksandr.myapplication.R
-import com.example.aleksandr.myapplication.R.id.*
 import com.example.aleksandr.myapplication.model.City
 import com.example.aleksandr.myapplication.model.User
 import com.example.aleksandr.myapplication.ui.settings.SettingsView.Companion.SPINNER
@@ -14,6 +13,7 @@ import com.example.aleksandr.myapplication.util.FirestoreUtil
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.item_is_word_list.view.*
 import kotlinx.android.synthetic.main.view_m3a_result.*
 import java.util.*
 
@@ -25,6 +25,8 @@ class ResultM3AView : BaseActivity(), IResultM3AView {
     val currentUserDocRef: DocumentReference
         get() = firestoreInstance.document("City/${FirebaseAuth.getInstance().uid
                 ?: throw NullPointerException("UID is null.")}")
+
+    private val noteRefCollection = firestoreInstance.collection("NewCity")
 
     private val spinner_country = arrayOf(
             "Kyiv", "Kharkiv", "Dnepr", "Zhytomyr", "Lviv", "Odessa", "Chernigov"
@@ -46,7 +48,7 @@ class ResultM3AView : BaseActivity(), IResultM3AView {
         }
 
         fab_confirm_goal.setOnClickListener {
-            saveQuote()
+            addNote()
         }
     }
 
@@ -65,13 +67,12 @@ class ResultM3AView : BaseActivity(), IResultM3AView {
     }
 
 
-    private fun saveQuote() {
+    private fun addNote() {
         val intro = introduction_edittext.text.toString()
         val oneDayWS = one_day_seminar_edittext.text.toString()
+        val twoDayWS = two_day_seminar_edittext.text.toString()
         val category = registration_city.selectedItem.toString()
-        if (intro.isEmpty() || oneDayWS.isEmpty()) {
-            return
-        }
+
         val user: User? = null
         val currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
         val dataToSave = HashMap<String, Any>()
@@ -82,11 +83,13 @@ class ResultM3AView : BaseActivity(), IResultM3AView {
         val filename = UUID.randomUUID().toString()
         FirestoreUtil.currentUserDocRef.collection("City")
                 .document(category)
-                .set(City(intro, oneDayWS, category))
+                .set(City(intro, oneDayWS, twoDayWS, category))
+
+        noteRefCollection.add(City(intro, oneDayWS, twoDayWS, category))
 
         firestoreInstance.collection("City")
                 .document(category)
-                .set(City(intro, oneDayWS, category))
+                .set(City(intro, oneDayWS, twoDayWS, category))
     }
 
     companion object {
@@ -94,5 +97,4 @@ class ResultM3AView : BaseActivity(), IResultM3AView {
         val ONEDAYWS = "oneDayWS"
 
     }
-
 }

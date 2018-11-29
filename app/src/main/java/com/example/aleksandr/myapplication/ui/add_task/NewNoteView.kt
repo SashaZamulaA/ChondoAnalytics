@@ -20,13 +20,12 @@ import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.R.id.edit_text_achievement
 import com.example.aleksandr.myapplication.getActivity
 import com.example.aleksandr.myapplication.toAndroidVisibility
-import com.example.aleksandr.myapplication.ui.add_task.note.model.Note
+import com.example.aleksandr.myapplication.ui.add_task.note.model.ResultNote
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_new_note.*
 import java.util.*
 
@@ -186,7 +185,7 @@ class NewNoteView : BaseActivity(), INewNote {
                         val handler = Handler()
                         handler.postDelayed({ progress_bar.progress = 0 }, 500)
                         Toast.makeText(this@NewNoteView, "Upload successful", Toast.LENGTH_LONG).show()
-                        val upload = Note(it.toString())
+                        val upload = ResultNote(it.toString())
                         val uploadId = mDatabaseRef?.push()?.key
                         if (uploadId != null) {
                             mDatabaseRef?.child(uploadId)?.setValue(upload)
@@ -218,9 +217,9 @@ class NewNoteView : BaseActivity(), INewNote {
         }
         val notebookRef = FirebaseFirestore.getInstance().collection("Notebook")
 
-        notebookRef.add(Note(name, goal, startPeriod, endPeriod))
-        notebookRef.add(Note(mImageUri.toString()))
-        Toast.makeText(this, "Note added", Toast.LENGTH_SHORT).show()
+        notebookRef.add(ResultNote(name, goal, startPeriod, endPeriod))
+        notebookRef.add(ResultNote(mImageUri.toString()))
+        Toast.makeText(this, "ResultNote added", Toast.LENGTH_SHORT).show()
         finish()
     }
 

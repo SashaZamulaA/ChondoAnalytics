@@ -5,7 +5,7 @@ import android.support.v7.widget.LinearLayoutManager
 import com.example.aleksandr.myapplication.BaseActivity
 import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.ui.add_task.note.adapter.NoteAdapter
-import com.example.aleksandr.myapplication.ui.add_task.note.model.Note
+import com.example.aleksandr.myapplication.ui.add_task.note.model.ResultNote
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
@@ -14,7 +14,6 @@ import android.content.Intent
 import android.view.View
 import android.widget.Toast
 import com.google.firebase.database.DatabaseError
-import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
 
@@ -39,8 +38,8 @@ class RecyclerActivity : BaseActivity() {
 
         val query = notebookRef.orderBy("goal", Query.Direction.ASCENDING)
 
-        val options = FirestoreRecyclerOptions.Builder<Note>()
-                .setQuery(query, Note::class.java)
+        val options = FirestoreRecyclerOptions.Builder<ResultNote>()
+                .setQuery(query, ResultNote::class.java)
                 .build()
 
 

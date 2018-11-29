@@ -4,7 +4,7 @@ import com.google.firebase.database.IgnoreExtraProperties
 
 @com.google.firebase.firestore.IgnoreExtraProperties
 
-class Note {
+class ResultNote {
     var title: String = ""
     var result: Double? = null
     var goal: String? = null

@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.model.CityData
-import com.example.aleksandr.myapplication.ui.add_task.note.model.Note
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import kotlinx.android.synthetic.main.item_goal_list.view.*

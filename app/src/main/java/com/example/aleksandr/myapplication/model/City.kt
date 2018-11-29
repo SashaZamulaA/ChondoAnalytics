@@ -4,9 +4,10 @@ import com.example.aleksandr.myapplication.R
 import java.util.ArrayList
 
 data class City(
-                val onedayWS: String?,
-                val twoDayWS:String?,
-                val centers: String?)
+                val intro : String? = "",
+                val onedayWS: String? = "",
+                val twoDayWS:String? = "",
+                val centers: String?= "")
                  {
     constructor() : this("","", "")
 }
