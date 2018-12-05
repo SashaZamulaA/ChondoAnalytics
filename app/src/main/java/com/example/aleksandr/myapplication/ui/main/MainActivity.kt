@@ -1,30 +1,27 @@
 package com.example.aleksandr.myapplication.ui.main
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
-import android.support.v4.content.ContextCompat.startActivity
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.AlertDialog
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.util.ArrayMap
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import com.example.aleksandr.myapplication.BaseActivity
 import com.example.aleksandr.myapplication.R
-import com.example.aleksandr.myapplication.R.id.*
 import com.example.aleksandr.myapplication.model.City
-import com.example.aleksandr.myapplication.model.CityData
 import com.example.aleksandr.myapplication.ui.login.LoginActivity
-import com.example.aleksandr.myapplication.ui.main.Note.Note
-import com.example.aleksandr.myapplication.util.FirestoreUtil
 import com.example.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter
-import com.firebase.ui.firestore.FirestoreRecyclerOptions
-import com.google.android.gms.tasks.OnSuccessListener
-import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.Timestamp
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.activity_main.*
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
+import java.util.*
+import javax.xml.datatype.DatatypeConstants.DAYS
+import java.util.concurrent.TimeUnit
 
 
 class MainActivity : BaseActivity() {
@@ -35,12 +32,16 @@ class MainActivity : BaseActivity() {
 
     private val noteRefCollection = firestoreInstance.collection("NewCity")
     private val noteRef = firestoreInstance.document("ResultNote/My First ResultNote")
-
+    private val sdf = SimpleDateFormat("2018.12.1")
+    private val fdf = SimpleDateFormat("2018.12.3")
     override fun init(savedInstanceState: Bundle?) {
         super.setContentView(R.layout.activity_main)
         presenter = MainPresenter(this, application)
         loadKyiv()
         loadKharkiv()
+
+        val doc = HashMap<String, Any>()
+        doc["timestamp"] = FieldValue.serverTimestamp()
     }
 //        val recyclerView = findViewById<RecyclerView>(R.id.result_recycler)
 //        recyclerView.layoutManager = LinearLayoutManager(this)
@@ -134,7 +135,6 @@ class MainActivity : BaseActivity() {
 //    }
 
 
-
     override fun onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START)
@@ -202,9 +202,15 @@ class MainActivity : BaseActivity() {
 //        }
 //    }
 
+var cutoff = Date().time - TimeUnit.MILLISECONDS.convert(30, TimeUnit.DAYS)
     private fun loadKyiv() {
         noteRefCollection
                 .whereEqualTo("centers", "Kyiv")
+//                    .whereEqualTo("time",Period.ofDays(7))
+//                .orderBy("time", Query.Direction.DESCENDING)
+//                .startAt(Date().time)
+//                .endAt(cutoff)
+//                .whereGreaterThanOrEqualTo("time",(1543935129000))
                 .get()
                 .addOnSuccessListener { queryDocumentSnapshots ->
                     var sum = 0
@@ -251,7 +257,6 @@ class MainActivity : BaseActivity() {
                 .addOnSuccessListener { queryDocumentSnapshots ->
 
                     queryDocumentSnapshots.forEach { documentSnapshot ->
-                        val note = documentSnapshot.toObject(Note::class.java)
 
                         val resultNote = documentSnapshot.toObject(City::class.java)
 
