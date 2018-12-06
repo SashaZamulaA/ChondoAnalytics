@@ -17,6 +17,7 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 
 
+
 class MainActivity : BaseActivity() {
     private lateinit var presenter: MainPresenter
     private val KEY_TITLE = "title"
@@ -201,6 +202,34 @@ class MainActivity : BaseActivity() {
         return calendar.time
     }
 
+    fun atEndOfDay(date: Date): Date {
+        val calendar = Calendar.getInstance()
+        calendar.time = date
+        calendar.set(Calendar.HOUR_OF_DAY, 23)
+        calendar.set(Calendar.MINUTE, 59)
+        calendar.set(Calendar.SECOND, 59)
+        calendar.set(Calendar.MILLISECOND, 999)
+        return calendar.time
+    }
+
+
+    fun atEndOfWeek(date: Date): Date {
+        val calendar = Calendar.getInstance()
+        calendar.time = date
+
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
+        calendar.add(Calendar.DAY_OF_WEEK, 7)
+
+        calendar.set(Calendar.HOUR_OF_DAY, 23)
+        calendar.set(Calendar.MINUTE, 59)
+        calendar.set(Calendar.SECOND, 59)
+        calendar.set(Calendar.MILLISECOND, 999)
+        return calendar.time
+    }
+
+
+
+    var c = GregorianCalendar.getInstance(Locale.UK)
 
     var onDayAgo = getNowMinus24Hours()
     val millis24Hours = (1000 * 60 * 60 * 24)
@@ -211,7 +240,7 @@ class MainActivity : BaseActivity() {
 //                .orderBy("time")
 //                .startAt(1543708800)
 //                .endAt(1544227200)
-                .whereGreaterThanOrEqualTo("time", System.currentTimeMillis() - millis24Hours)
+                .whereLessThanOrEqualTo("time", atEndOfWeek(Date()) )
                 .get()
                 .addOnSuccessListener { queryDocumentSnapshots ->
                     var sum = 0

@@ -83,13 +83,13 @@ class ResultM3AView : BaseActivity(), IResultM3AView {
         val filename = UUID.randomUUID().toString()
         FirestoreUtil.currentUserDocRef.collection("City")
                 .document(category)
-                .set(City(intro, oneDayWS, twoDayWS, category, time = System.currentTimeMillis() ))
+                .set(City(intro, oneDayWS, twoDayWS, category, Date() ))
 
-        noteRefCollection.add(City(intro, oneDayWS, twoDayWS, category, time = System.currentTimeMillis() ))
+        noteRefCollection.add(City(intro, oneDayWS, twoDayWS, category, Date() ))
 
         firestoreInstance.collection("City")
                 .document(category)
-                .set(City(intro, oneDayWS, twoDayWS, category,time = System.currentTimeMillis()))
+                .set(City(intro, oneDayWS, twoDayWS, category,Date()))
     }
 
     companion object {

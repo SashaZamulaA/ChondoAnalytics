@@ -14,9 +14,9 @@ data class City(
         val onedayWS: String?,
         val twoDayWS:String?,
         val centers: String?,
-        val time: Long = System.currentTimeMillis())
+        val time: Date)
 {
-    constructor() : this("0","0", "0", "", System.currentTimeMillis())
+    constructor() : this("0","0", "0", "", Date())
 }
 
 //class WeightEntryVH(itemView: View?)
