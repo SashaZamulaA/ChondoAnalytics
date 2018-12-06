@@ -1,7 +1,6 @@
 package com.example.aleksandr.myapplication.ui.main
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.AlertDialog
@@ -11,16 +10,10 @@ import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.model.City
 import com.example.aleksandr.myapplication.ui.login.LoginActivity
 import com.example.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
-import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FieldValue
-import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.activity_main.*
 import java.text.SimpleDateFormat
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
 import java.util.*
-import javax.xml.datatype.DatatypeConstants.DAYS
 import java.util.concurrent.TimeUnit
 
 
@@ -28,8 +21,8 @@ class MainActivity : BaseActivity() {
     private lateinit var presenter: MainPresenter
     private val KEY_TITLE = "title"
     private val KEY_DESCRIPTION = "description"
-
-
+    var cutoff = Date().time - TimeUnit.MILLISECONDS.convert(1, TimeUnit.DAYS)
+    val EXPORT_LAST_24_HOURS = 0
     private val noteRefCollection = firestoreInstance.collection("NewCity")
     private val noteRef = firestoreInstance.document("ResultNote/My First ResultNote")
     private val sdf = SimpleDateFormat("2018.12.1")
@@ -202,15 +195,23 @@ class MainActivity : BaseActivity() {
 //        }
 //    }
 
-var cutoff = Date().time - TimeUnit.MILLISECONDS.convert(30, TimeUnit.DAYS)
+    private fun getNowMinus24Hours(): Date {
+        val calendar = Calendar.getInstance(Locale.getDefault())
+        calendar.add(Calendar.DATE, -1)
+        return calendar.time
+    }
+
+
+    var onDayAgo = getNowMinus24Hours()
+    val millis24Hours = (1000 * 60 * 60 * 24)
     private fun loadKyiv() {
         noteRefCollection
                 .whereEqualTo("centers", "Kyiv")
-//                    .whereEqualTo("time",Period.ofDays(7))
-//                .orderBy("time", Query.Direction.DESCENDING)
-//                .startAt(Date().time)
-//                .endAt(cutoff)
-//                .whereGreaterThanOrEqualTo("time",(1543935129000))
+//                .whereEqualTo("time", 1544028925821)
+//                .orderBy("time")
+//                .startAt(1543708800)
+//                .endAt(1544227200)
+                .whereGreaterThanOrEqualTo("time", System.currentTimeMillis() - millis24Hours)
                 .get()
                 .addOnSuccessListener { queryDocumentSnapshots ->
                     var sum = 0
