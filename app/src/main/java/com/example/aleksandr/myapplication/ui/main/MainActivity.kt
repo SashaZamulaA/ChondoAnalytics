@@ -18,6 +18,7 @@ import java.util.concurrent.TimeUnit
 
 
 
+@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class MainActivity : BaseActivity() {
     private lateinit var presenter: MainPresenter
     private val KEY_TITLE = "title"
@@ -202,6 +203,16 @@ class MainActivity : BaseActivity() {
         return calendar.time
     }
 
+    fun startOfDay(date: Date): Date {
+        val calendar = Calendar.getInstance()
+        calendar.time = date
+        calendar.set(Calendar.HOUR_OF_DAY, 0)
+        calendar.set(Calendar.MINUTE, 0)
+        calendar.set(Calendar.SECOND, 0)
+        calendar.set(Calendar.MILLISECOND, 1)
+        return calendar.time
+    }
+
     fun atEndOfDay(date: Date): Date {
         val calendar = Calendar.getInstance()
         calendar.time = date
@@ -240,7 +251,8 @@ class MainActivity : BaseActivity() {
 //                .orderBy("time")
 //                .startAt(1543708800)
 //                .endAt(1544227200)
-                .whereLessThanOrEqualTo("time", atEndOfWeek(Date()) )
+                .whereLessThanOrEqualTo("time", atEndOfDay(Date()) )
+                .whereGreaterThanOrEqualTo("time", startOfDay(Date()))
                 .get()
                 .addOnSuccessListener { queryDocumentSnapshots ->
                     var sum = 0
