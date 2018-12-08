@@ -6,7 +6,6 @@ import android.support.v4.view.GravityCompat
 import android.support.v7.app.AlertDialog
 import android.util.Log
 import com.example.aleksandr.myapplication.BaseActivity
-import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.model.City
 import com.example.aleksandr.myapplication.ui.login.LoginActivity
 import com.example.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
@@ -15,7 +14,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
-
 
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
@@ -29,14 +27,39 @@ class MainActivity : BaseActivity() {
     private val noteRef = firestoreInstance.document("ResultNote/My First ResultNote")
     private val sdf = SimpleDateFormat("2018.12.1")
     private val fdf = SimpleDateFormat("2018.12.3")
+
+
     override fun init(savedInstanceState: Bundle?) {
-        super.setContentView(R.layout.activity_main)
+        super.setContentView(com.example.aleksandr.myapplication.R.layout.activity_main)
         presenter = MainPresenter(this, application)
-        loadKyiv()
+        loadKyivDay()
         loadKharkiv()
 
         val doc = HashMap<String, Any>()
         doc["timestamp"] = FieldValue.serverTimestamp()
+
+        bottom_navigation.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                com.example.aleksandr.myapplication.R.id.menu_year -> {
+
+                }
+                com.example.aleksandr.myapplication.R.id.menu_month -> {
+
+                }
+                com.example.aleksandr.myapplication.R.id.menu_week -> {
+                   loadKyivWeek()
+
+                }
+                com.example.aleksandr.myapplication.R.id.menu_day -> {
+                   loadKyivDay()
+                }
+                else -> {
+                }
+            }
+            true
+        }
+
+
     }
 //        val recyclerView = findViewById<RecyclerView>(R.id.result_recycler)
 //        recyclerView.layoutManager = LinearLayoutManager(this)
@@ -244,7 +267,55 @@ class MainActivity : BaseActivity() {
 
     var onDayAgo = getNowMinus24Hours()
     val millis24Hours = (1000 * 60 * 60 * 24)
-    private fun loadKyiv() {
+
+    private fun loadKyivWeek() {
+        noteRefCollection
+                .whereEqualTo("centers", "Kyiv")
+//                .whereEqualTo("time", 1544028925821)
+//                .orderBy("time")
+//                .startAt(1543708800)
+//                .endAt(1544227200)
+                .whereLessThanOrEqualTo("time", atEndOfWeek(Date()) )
+                .get()
+                .addOnSuccessListener { queryDocumentSnapshots ->
+                    var sum = 0
+
+                    queryDocumentSnapshots.forEach { documentSnapshot ->
+
+                        val resultNote = documentSnapshot.toObject(City::class.java)
+                        val intro = Integer.parseInt(resultNote.intro)
+                        val oneD = resultNote.onedayWS
+                        val twoD = resultNote.twoDayWS
+
+                        sum += intro
+
+
+                        if (sum == 0) {
+                            main_intro_kyiv.text = "0"
+                        } else {
+                            main_intro_kyiv.text = sum.toString()
+                        }
+
+                        if (oneD.isNullOrEmpty()) {
+                            main_one_day_kyiv.text = "0"
+
+                        } else {
+                            main_one_day_kyiv.text = oneD
+                        }
+
+                        if (twoD.isNullOrEmpty()) {
+                            main_two_day_kyiv.text = "0"
+                        } else {
+                            main_two_day_kyiv.text = twoD
+                        }
+                    }
+
+                }.addOnFailureListener { e ->
+                    Log.d("What wrong", e.toString())
+                }
+    }
+
+    private fun loadKyivDay() {
         noteRefCollection
                 .whereEqualTo("centers", "Kyiv")
 //                .whereEqualTo("time", 1544028925821)

@@ -32,7 +32,7 @@ holder.itemView.setOnCreateContextMenuListener { menu, v, menuInfo ->
 }
     }
 
-    class VH(view: View?) : RecyclerView.ViewHolder(view) {
+    class VH(view: View?) : RecyclerView.ViewHolder(view!!) {
 
 //        val listView = view?.findViewById<RelativeLayout>(R.id.listViewWord)
 
