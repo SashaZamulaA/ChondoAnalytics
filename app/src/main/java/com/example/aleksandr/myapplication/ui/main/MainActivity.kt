@@ -47,21 +47,20 @@ class MainActivity : BaseActivity() {
 
                 }
                 com.example.aleksandr.myapplication.R.id.menu_week -> {
-                   loadKyivWeek()
-
+                    loadKyivWeek()
                 }
                 com.example.aleksandr.myapplication.R.id.menu_day -> {
-                   loadKyivDay()
+                    loadKyivDay()
+
                 }
                 else -> {
                 }
             }
             true
         }
-
-
     }
-//        val recyclerView = findViewById<RecyclerView>(R.id.result_recycler)
+
+//            val recyclerView = findViewById<RecyclerView>(R.id.result_recycler)
 //        recyclerView.layoutManager = LinearLayoutManager(this)
 //
 //        val rootRef = FirestoreUtil.currentUserDocRef
@@ -141,16 +140,16 @@ class MainActivity : BaseActivity() {
 //        super.onStop()
 //        adapter.stopListening()
 //    }
-//
-//    override fun onAttachedToWindow() {
-//        super.onAttachedToWindow()
-//        presenter.bindView(this)
-//    }
-//
-//    override fun onDetachedFromWindow() {
-//        super.onDetachedFromWindow()
-//        presenter.unbindView(this)
-//    }
+
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
+        presenter.bindView(this)
+    }
+
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        presenter.unbindView(this)
+    }
 
 
     override fun onBackPressed() {
@@ -172,15 +171,6 @@ class MainActivity : BaseActivity() {
 
     }
 
-    override fun onAttachedToWindow() {
-        super.onAttachedToWindow()
-        presenter.bindView(this)
-    }
-
-    override fun onDetachedFromWindow() {
-        super.onDetachedFromWindow()
-        presenter.unbindView(this)
-    }
 
 //    private fun addNote() {
 //
@@ -262,7 +252,6 @@ class MainActivity : BaseActivity() {
     }
 
 
-
     var c = GregorianCalendar.getInstance(Locale.UK)
 
     var onDayAgo = getNowMinus24Hours()
@@ -275,7 +264,7 @@ class MainActivity : BaseActivity() {
 //                .orderBy("time")
 //                .startAt(1543708800)
 //                .endAt(1544227200)
-                .whereLessThanOrEqualTo("time", atEndOfWeek(Date()) )
+                .whereLessThanOrEqualTo("time", atEndOfWeek(Date()))
                 .get()
                 .addOnSuccessListener { queryDocumentSnapshots ->
                     var sum = 0
@@ -315,14 +304,15 @@ class MainActivity : BaseActivity() {
                 }
     }
 
-    private fun loadKyivDay() {
+    fun loadKyivDay() {
         noteRefCollection
                 .whereEqualTo("centers", "Kyiv")
 //                .whereEqualTo("time", 1544028925821)
 //                .orderBy("time")
 //                .startAt(1543708800)
 //                .endAt(1544227200)
-                .whereLessThanOrEqualTo("time", atEndOfDay(Date()) )
+
+                .whereLessThanOrEqualTo("time", atEndOfDay(Date()))
                 .whereGreaterThanOrEqualTo("time", startOfDay(Date()))
                 .get()
                 .addOnSuccessListener { queryDocumentSnapshots ->
@@ -336,7 +326,6 @@ class MainActivity : BaseActivity() {
                         val twoD = resultNote.twoDayWS
 
                         sum += intro
-
 
                         if (sum == 0) {
                             main_intro_kyiv.text = "0"
@@ -360,6 +349,7 @@ class MainActivity : BaseActivity() {
 
                 }.addOnFailureListener { e ->
                     Log.d("What wrong", e.toString())
+
                 }
     }
 

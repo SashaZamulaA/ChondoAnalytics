@@ -10,7 +10,7 @@ import java.time.format.FormatStyle
 import java.util.*
 
 data class City(
-        val intro : String?,
+        val intro : String? = "",
         val onedayWS: String?,
         val twoDayWS:String?,
         val centers: String?,
