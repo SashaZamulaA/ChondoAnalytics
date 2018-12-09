@@ -1,5 +1,6 @@
 package com.example.aleksandr.myapplication.ui.chondo_result
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -8,6 +9,7 @@ import com.example.aleksandr.myapplication.BaseActivity
 import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.model.City
 import com.example.aleksandr.myapplication.model.User
+import com.example.aleksandr.myapplication.ui.main.MainActivity
 import com.example.aleksandr.myapplication.ui.settings.SettingsView.Companion.SPINNER
 import com.example.aleksandr.myapplication.util.FirestoreUtil
 import com.google.firebase.auth.FirebaseAuth
@@ -90,6 +92,9 @@ class ResultM3AView : BaseActivity(), IResultM3AView {
         firestoreInstance.collection("City")
                 .document(category)
                 .set(City(intro, oneDayWS, twoDayWS, category,Date()))
+
+        startActivity(Intent(this@ResultM3AView, MainActivity::class.java))
+        finish()
     }
 
     companion object {

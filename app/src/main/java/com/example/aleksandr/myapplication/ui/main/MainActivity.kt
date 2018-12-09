@@ -11,22 +11,14 @@ import com.example.aleksandr.myapplication.ui.login.LoginActivity
 import com.example.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import com.google.firebase.firestore.FieldValue
 import kotlinx.android.synthetic.main.activity_main.*
-import java.text.SimpleDateFormat
 import java.util.*
-import java.util.concurrent.TimeUnit
 
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class MainActivity : BaseActivity() {
     private lateinit var presenter: MainPresenter
-    private val KEY_TITLE = "title"
-    private val KEY_DESCRIPTION = "description"
-    var cutoff = Date().time - TimeUnit.MILLISECONDS.convert(1, TimeUnit.DAYS)
-    val EXPORT_LAST_24_HOURS = 0
     private val noteRefCollection = firestoreInstance.collection("NewCity")
     private val noteRef = firestoreInstance.document("ResultNote/My First ResultNote")
-    private val sdf = SimpleDateFormat("2018.12.1")
-    private val fdf = SimpleDateFormat("2018.12.3")
 
 
     override fun init(savedInstanceState: Bundle?) {
