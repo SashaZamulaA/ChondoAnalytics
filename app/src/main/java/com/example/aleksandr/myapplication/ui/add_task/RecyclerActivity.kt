@@ -23,6 +23,7 @@ class RecyclerActivity : BaseActivity() {
     private val db = FirebaseFirestore.getInstance()
     private val notebookRef = db.collection("Notebook")
     private lateinit var adapter: NoteAdapter
+
     private var mStorageRef: StorageReference? = null
     override fun init(savedInstanceState: Bundle?) {
         setContentView(R.layout.view_goal_list)
@@ -33,7 +34,6 @@ class RecyclerActivity : BaseActivity() {
            }
 
     private fun setUpRecyclerView() {
-
 
 
         val query = notebookRef.orderBy("goal", Query.Direction.ASCENDING)

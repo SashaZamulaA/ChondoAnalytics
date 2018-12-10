@@ -10,13 +10,24 @@ import java.time.format.FormatStyle
 import java.util.*
 
 data class City(
+        val nameCity: String,
         val intro : String? = "",
         val onedayWS: String?,
         val twoDayWS:String?,
         val centers: String?,
         val time: Date)
 {
-    constructor() : this("0","0", "0", "", Date())
+    constructor() : this("","0","0", "0", "", Date())
+}
+
+enum class NameCity{
+    KYIV,
+    KHARKIV,
+    LVIV,
+    DNEPR,
+    ZHYTOMYR,
+    ODESSA,
+    CHERNIGOV
 }
 
 //class WeightEntryVH(itemView: View?)

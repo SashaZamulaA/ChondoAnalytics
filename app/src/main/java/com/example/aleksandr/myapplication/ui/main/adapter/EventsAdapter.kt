@@ -16,7 +16,7 @@ import java.util.*
 
 //
 //
-//class EventsAdapter(items: List<ListItem>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+//class EventsAdapter(items: List<ListItem>) : RecyclerView.Adapter5<RecyclerView.ViewHolder>() {
 //
 //    private val items = Collections.emptyList()
 //

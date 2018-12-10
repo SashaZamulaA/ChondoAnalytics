@@ -4,12 +4,23 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.AlertDialog
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.util.Log
+import android.widget.Adapter
 import com.example.aleksandr.myapplication.BaseActivity
+import com.example.aleksandr.myapplication.R
+import com.example.aleksandr.myapplication.R.id.*
+import com.example.aleksandr.myapplication.R.string.description
 import com.example.aleksandr.myapplication.model.City
+import com.example.aleksandr.myapplication.ui.add_task.note.adapter.NoteAdapter
+import com.example.aleksandr.myapplication.ui.add_task.note.model.ResultNote
+import com.example.aleksandr.myapplication.ui.hdh.model.HDHModel
 import com.example.aleksandr.myapplication.ui.login.LoginActivity
 import com.example.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
+import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
@@ -20,12 +31,13 @@ class MainActivity : BaseActivity() {
     private val noteRefCollection = firestoreInstance.collection("NewCity")
     private val noteRef = firestoreInstance.document("ResultNote/My First ResultNote")
 
+    var cityList: ArrayList<City> = ArrayList()
 
     override fun init(savedInstanceState: Bundle?) {
         super.setContentView(com.example.aleksandr.myapplication.R.layout.activity_main)
         presenter = MainPresenter(this, application)
-        loadKyivDay()
-        loadKharkiv()
+//        loadKyivDay()
+//        loadKharkiv()
 
         val doc = HashMap<String, Any>()
         doc["timestamp"] = FieldValue.serverTimestamp()
@@ -39,10 +51,10 @@ class MainActivity : BaseActivity() {
 
                 }
                 com.example.aleksandr.myapplication.R.id.menu_week -> {
-                    loadKyivWeek()
+//                    loadKyivWeek()
                 }
                 com.example.aleksandr.myapplication.R.id.menu_day -> {
-                    loadKyivDay()
+//                    loadKyivDay()
 
                 }
                 else -> {
@@ -50,10 +62,39 @@ class MainActivity : BaseActivity() {
             }
             true
         }
+
+        val query = noteRefCollection.orderBy("nameCity", Query.Direction.ASCENDING)
+
+        val options = FirestoreRecyclerOptions.Builder<City>()
+                .setQuery(query, City::class.java)
+                .build()
+
+          // Initiating Adapter5
+
+        recycler_main_activity.setHasFixedSize(true)
+        recycler_main_activity.layoutManager = LinearLayoutManager(this)
+        recycler_main_activity.adapter = adapter
+
+
+        // Adding some demo data(Call Objects).
+        // You can get them from your data server
+        cityList.add(City("Kiev", "","","","", Date()))
+        cityList.add(City("Kharkiv","","","","",Date()))
+        cityList.add(City("Dnepr","","","","",Date()))
+        cityList.add(City("Zhytomyr","","","","",Date()))
+        cityList.add(City("Lviv","","","","",Date()))
+        cityList.add(City("Odessa","","","","",Date()))
+        cityList.add(City("Chernigov","","","","",Date()))
+
+        val adapter = Adapter(cityList)
+
+        //now adding the adapter to recyclerview
+        _recyclerView.adapter = adapter
     }
 
-//            val recyclerView = findViewById<RecyclerView>(R.id.result_recycler)
-//        recyclerView.layoutManager = LinearLayoutManager(this)
+
+
+
 //
 //        val rootRef = FirestoreUtil.currentUserDocRef
 //
@@ -90,7 +131,7 @@ class MainActivity : BaseActivity() {
 //                .setQuery(query, CityData::class.java)
 //                .build()
 //
-//        adapter = MainAdapter(options)
+//        adapter = Adapter5(options)
 //        result_recycler.setHasFixedSize(true)
 //        result_recycler.layoutManager = LinearLayoutManager(this)
 //        result_recycler.adapter = adapter
@@ -249,139 +290,139 @@ class MainActivity : BaseActivity() {
     var onDayAgo = getNowMinus24Hours()
     val millis24Hours = (1000 * 60 * 60 * 24)
 
-    private fun loadKyivWeek() {
-        noteRefCollection
-                .whereEqualTo("centers", "Kyiv")
-//                .whereEqualTo("time", 1544028925821)
-//                .orderBy("time")
-//                .startAt(1543708800)
-//                .endAt(1544227200)
-                .whereLessThanOrEqualTo("time", atEndOfWeek(Date()))
-                .get()
-                .addOnSuccessListener { queryDocumentSnapshots ->
-                    var sum = 0
+//    private fun loadKyivWeek() {
+//        noteRefCollection
+//                .whereEqualTo("centers", "Kyiv")
+////                .whereEqualTo("time", 1544028925821)
+////                .orderBy("time")
+////                .startAt(1543708800)
+////                .endAt(1544227200)
+//                .whereLessThanOrEqualTo("time", atEndOfWeek(Date()))
+//                .get()
+//                .addOnSuccessListener { queryDocumentSnapshots ->
+//                    var sum = 0
+//
+//                    queryDocumentSnapshots.forEach { documentSnapshot ->
+//
+//                        val resultNote = documentSnapshot.toObject(City::class.java)
+//                        val intro = Integer.parseInt(resultNote.intro)
+//                        val oneD = resultNote.onedayWS
+//                        val twoD = resultNote.twoDayWS
+//
+//                        sum += intro
+//
+//
+//                        if (sum == 0) {
+//                            main_intro_kyiv.text = "0"
+//                        } else {
+//                            main_intro_kyiv.text = sum.toString()
+//                        }
+//
+//                        if (oneD.isNullOrEmpty()) {
+//                            main_one_day_kyiv.text = "0"
+//
+//                        } else {
+//                            main_one_day_kyiv.text = oneD
+//                        }
+//
+//                        if (twoD.isNullOrEmpty()) {
+//                            main_two_day_kyiv.text = "0"
+//                        } else {
+//                            main_two_day_kyiv.text = twoD
+//                        }
+//                    }
+//
+//                }.addOnFailureListener { e ->
+//                    Log.d("What wrong", e.toString())
+//                }
+//    }
 
-                    queryDocumentSnapshots.forEach { documentSnapshot ->
+//    fun loadKyivDay() {
+//        noteRefCollection
+//                .whereEqualTo("centers", "Kyiv")
+////                .whereEqualTo("time", 1544028925821)
+////                .orderBy("time")
+////                .startAt(1543708800)
+////                .endAt(1544227200)
+//
+//                .whereLessThanOrEqualTo("time", atEndOfDay(Date()))
+//                .whereGreaterThanOrEqualTo("time", startOfDay(Date()))
+//                .get()
+//                .addOnSuccessListener { queryDocumentSnapshots ->
+//                    var sum = 0
+//
+//                    queryDocumentSnapshots.forEach { documentSnapshot ->
+//
+//                        val resultNote = documentSnapshot.toObject(City::class.java)
+//                        val intro = Integer.parseInt(resultNote.intro)
+//                        val oneD = resultNote.onedayWS
+//                        val twoD = resultNote.twoDayWS
+//
+//                        sum += intro
+//
+//                        if (sum == 0) {
+//                            main_intro_kyiv.text = "0"
+//                        } else {
+//                            main_intro_kyiv.text = sum.toString()
+//                        }
+//
+//                        if (oneD.isNullOrEmpty()) {
+//                            main_one_day_kyiv.text = "0"
+//
+//                        } else {
+//                            main_one_day_kyiv.text = oneD
+//                        }
+//
+//                        if (twoD.isNullOrEmpty()) {
+//                            main_two_day_kyiv.text = "0"
+//                        } else {
+//                            main_two_day_kyiv.text = twoD
+//                        }
+//                    }
+//
+//                }.addOnFailureListener { e ->
+//                    Log.d("What wrong", e.toString())
+//
+//                }
+//    }
 
-                        val resultNote = documentSnapshot.toObject(City::class.java)
-                        val intro = Integer.parseInt(resultNote.intro)
-                        val oneD = resultNote.onedayWS
-                        val twoD = resultNote.twoDayWS
-
-                        sum += intro
-
-
-                        if (sum == 0) {
-                            main_intro_kyiv.text = "0"
-                        } else {
-                            main_intro_kyiv.text = sum.toString()
-                        }
-
-                        if (oneD.isNullOrEmpty()) {
-                            main_one_day_kyiv.text = "0"
-
-                        } else {
-                            main_one_day_kyiv.text = oneD
-                        }
-
-                        if (twoD.isNullOrEmpty()) {
-                            main_two_day_kyiv.text = "0"
-                        } else {
-                            main_two_day_kyiv.text = twoD
-                        }
-                    }
-
-                }.addOnFailureListener { e ->
-                    Log.d("What wrong", e.toString())
-                }
-    }
-
-    fun loadKyivDay() {
-        noteRefCollection
-                .whereEqualTo("centers", "Kyiv")
-//                .whereEqualTo("time", 1544028925821)
-//                .orderBy("time")
-//                .startAt(1543708800)
-//                .endAt(1544227200)
-
-                .whereLessThanOrEqualTo("time", atEndOfDay(Date()))
-                .whereGreaterThanOrEqualTo("time", startOfDay(Date()))
-                .get()
-                .addOnSuccessListener { queryDocumentSnapshots ->
-                    var sum = 0
-
-                    queryDocumentSnapshots.forEach { documentSnapshot ->
-
-                        val resultNote = documentSnapshot.toObject(City::class.java)
-                        val intro = Integer.parseInt(resultNote.intro)
-                        val oneD = resultNote.onedayWS
-                        val twoD = resultNote.twoDayWS
-
-                        sum += intro
-
-                        if (sum == 0) {
-                            main_intro_kyiv.text = "0"
-                        } else {
-                            main_intro_kyiv.text = sum.toString()
-                        }
-
-                        if (oneD.isNullOrEmpty()) {
-                            main_one_day_kyiv.text = "0"
-
-                        } else {
-                            main_one_day_kyiv.text = oneD
-                        }
-
-                        if (twoD.isNullOrEmpty()) {
-                            main_two_day_kyiv.text = "0"
-                        } else {
-                            main_two_day_kyiv.text = twoD
-                        }
-                    }
-
-                }.addOnFailureListener { e ->
-                    Log.d("What wrong", e.toString())
-
-                }
-    }
-
-    private fun loadKharkiv() {
-        noteRefCollection
-                .whereEqualTo("centers", "Kharkiv")
-                .get()
-                .addOnSuccessListener { queryDocumentSnapshots ->
-
-                    queryDocumentSnapshots.forEach { documentSnapshot ->
-
-                        val resultNote = documentSnapshot.toObject(City::class.java)
-
-                        val intro = resultNote.intro
-                        val oneD = resultNote.onedayWS
-                        val twoD = resultNote.twoDayWS
-
-                        if (intro.isNullOrEmpty()) {
-                            main_intro_kharkiv.text = "0"
-                        } else {
-                            main_intro_kharkiv.text = intro
-                        }
-
-                        if (oneD.isNullOrEmpty()) {
-                            main_one_day_kharkiv.text = "0"
-
-                        } else {
-                            main_one_day_kharkiv.text = oneD
-                        }
-
-                        if (twoD.isNullOrEmpty()) {
-                            main_two_day_kharkiv.text = "0"
-                        } else {
-                            main_two_day_kharkiv.text = twoD
-                        }
-
-                    }
-
-                }.addOnFailureListener { e ->
-                    Log.d("What wrong", e.toString())
-                }
-    }
+//    private fun loadKharkiv() {
+//        noteRefCollection
+//                .whereEqualTo("centers", "Kharkiv")
+//                .get()
+//                .addOnSuccessListener { queryDocumentSnapshots ->
+//
+//                    queryDocumentSnapshots.forEach { documentSnapshot ->
+//
+//                        val resultNote = documentSnapshot.toObject(City::class.java)
+//
+//                        val intro = resultNote.intro
+//                        val oneD = resultNote.onedayWS
+//                        val twoD = resultNote.twoDayWS
+//
+//                        if (intro.isNullOrEmpty()) {
+//                            main_intro_kharkiv.text = "0"
+//                        } else {
+//                            main_intro_kharkiv.text = intro
+//                        }
+//
+//                        if (oneD.isNullOrEmpty()) {
+//                            main_one_day_kharkiv.text = "0"
+//
+//                        } else {
+//                            main_one_day_kharkiv.text = oneD
+//                        }
+//
+//                        if (twoD.isNullOrEmpty()) {
+//                            main_two_day_kharkiv.text = "0"
+//                        } else {
+//                            main_two_day_kharkiv.text = twoD
+//                        }
+//
+//                    }
+//
+//                }.addOnFailureListener { e ->
+//                    Log.d("What wrong", e.toString())
+//                }
+//    }
 }

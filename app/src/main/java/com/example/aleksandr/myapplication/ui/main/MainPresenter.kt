@@ -13,10 +13,10 @@ class MainPresenter(mainView: MainActivity, applicationComponent: Application): 
         (applicationComponent as AndroidApplication).applicationComponent.inject(this)}
 
     override fun onBindView() {
-        view?.loadKyivDay()
+//        view?.loadKyivDay()
     }
 fun day(){
-    view?.loadKyivDay()
+//    view?.loadKyivDay()
 }
 
     override fun onUnbindView() {
