@@ -3,7 +3,7 @@ package com.example.aleksandr.myapplication.model
 import java.util.*
 
 data class City(
-        val intro : String?,
+        val intro : String? = "0",
         val onedayWS: String?,
         val twoDayWS: String?,
         val twOneDay: String?,
@@ -14,7 +14,7 @@ data class City(
         val lectCentr: String?,
         val time: Date
         ){
-    constructor() : this("","", "", "", "","","","","",Date())
+    constructor() : this("0","", "", "", "","","","","",Date())
 }
 
 //class WeightEntryVH(itemView: View?)

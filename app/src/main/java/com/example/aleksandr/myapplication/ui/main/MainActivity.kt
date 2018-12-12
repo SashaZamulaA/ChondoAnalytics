@@ -6,12 +6,12 @@ import android.support.v4.view.GravityCompat
 import android.support.v7.app.AlertDialog
 import android.util.Log
 import com.example.aleksandr.myapplication.BaseActivity
+import com.example.aleksandr.myapplication.R.string.approach
 import com.example.aleksandr.myapplication.model.City
 import com.example.aleksandr.myapplication.ui.login.LoginActivity
 import com.example.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import com.google.firebase.firestore.FieldValue
 import kotlinx.android.synthetic.main.activity_main.*
-import java.lang.NullPointerException
 import java.util.*
 
 
@@ -236,7 +236,6 @@ class MainActivity : BaseActivity() {
 
         calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
         calendar.add(Calendar.DAY_OF_WEEK, 7)
-
         calendar.set(Calendar.HOUR_OF_DAY, 23)
         calendar.set(Calendar.MINUTE, 59)
         calendar.set(Calendar.SECOND, 59)
@@ -256,6 +255,8 @@ class MainActivity : BaseActivity() {
                 .whereLessThanOrEqualTo("time", atEndOfWeek(Date()))
                 .get()
                 .addOnSuccessListener { queryDocumentSnapshots ->
+
+
                     var sumIntroKiev = 0
                     var sumOneD = 0
                     var sumTwoD = 0
@@ -266,7 +267,7 @@ class MainActivity : BaseActivity() {
                     var sumCenteLect = 0
 
                     queryDocumentSnapshots.forEach { documentSnapshot ->
-                        if (documentSnapshot !=null) {
+                        if (documentSnapshot.exists() && !queryDocumentSnapshots.isEmpty) {
                             val resultNote = documentSnapshot.toObject(City::class.java)
                             val intro = Integer.parseInt(resultNote.intro)
                             val onaDay = Integer.parseInt(resultNote.onedayWS)
@@ -304,7 +305,7 @@ class MainActivity : BaseActivity() {
 
     fun loadKyivDay() {
 
-            noteRefCollection
+        noteRefCollection
                 .whereEqualTo("centers", "Kyiv")
                 .whereLessThanOrEqualTo("time", atEndOfDay(Date()))
                 .whereGreaterThanOrEqualTo("time", startOfDay(Date()))
@@ -320,41 +321,52 @@ class MainActivity : BaseActivity() {
                     var sumCenteLect = 0
 
 
-
-
-
                     queryDocumentSnapshots.forEach { documentSnapshot ->
 
 
-                            val resultNote = documentSnapshot.toObject(City::class.java)
+                        val resultNote = documentSnapshot.toObject(City::class.java)
 
+                        if (!resultNote.intro.isNullOrEmpty()) {
                             val intro = (Integer.parseInt(resultNote.intro))
-                            val onaDay = Integer.parseInt(resultNote.onedayWS)
-                            val twoDay = Integer.parseInt(resultNote.twoDayWS)
-                            val twOneDay = Integer.parseInt(resultNote.twOneDay)
-                            val approach = Integer.parseInt(resultNote.approach)
-                            val timeStr = Integer.parseInt(resultNote.timeStr)
-                            val lectOnStr = Integer.parseInt(resultNote.lectOnStr)
-                            val lectCentr = Integer.parseInt(resultNote.lectCentr)
-
-
                             sumIntroKiev += intro
+                        }
+                        if (!resultNote.onedayWS.isNullOrEmpty()) {
+                            val onaDay = Integer.parseInt(resultNote.onedayWS)
                             sumOneD += onaDay
+                        }
+                        if (!resultNote.twoDayWS.isNullOrEmpty()) {
+                            val twoDay = Integer.parseInt(resultNote.twoDayWS)
                             sumTwoD += twoDay
+                        }
+                        if (!resultNote.twOneDay.isNullOrEmpty()) {
+                            val twOneDay = Integer.parseInt(resultNote.twOneDay)
                             sumTwent += twOneDay
-                            sumTimeStr += timeStr
+                        }
+                        if (!resultNote.approach.isNullOrEmpty()) {
+                            val approach = Integer.parseInt(resultNote.approach)
                             sumAppr += approach
+                        }
+                        if (!resultNote.timeStr.isNullOrEmpty()) {
+                            val timeStr = Integer.parseInt(resultNote.timeStr)
+                            sumTimeStr += timeStr
+                        }
+                        if (!resultNote.lectOnStr.isNullOrEmpty()) {
+                            val lectOnStr = Integer.parseInt(resultNote.lectOnStr)
                             sumStrLect += lectOnStr
+                        }
+                        if (!resultNote.lectCentr.isNullOrEmpty()) {
+                            val lectCentr = Integer.parseInt(resultNote.lectCentr)
                             sumCenteLect += lectCentr
+                        }
 
-                            main_intro_kyiv.text = sumIntroKiev.toString()
-                            main_one_day_kyiv.text = sumOneD.toString()
-                            main_two_day_kyiv.text = sumTwoD.toString()
-                            main_21_day_kyiv.text = sumTwent.toString()
-                            main_time_str_kyiv.text = sumTimeStr.toString()
-                            main_approach_kyiv.text = sumAppr.toString()
-                            main_street_lect_kyiv.text = sumStrLect.toString()
-                            main_lect_center_kyiv.text = sumCenteLect.toString()
+                        main_intro_kyiv.text = sumIntroKiev.toString()
+                        main_one_day_kyiv.text = sumOneD.toString()
+                        main_two_day_kyiv.text = sumTwoD.toString()
+                        main_21_day_kyiv.text = sumTwent.toString()
+                        main_time_str_kyiv.text = sumTimeStr.toString()
+                        main_approach_kyiv.text = sumAppr.toString()
+                        main_street_lect_kyiv.text = sumStrLect.toString()
+                        main_lect_center_kyiv.text = sumCenteLect.toString()
 
 
                     }
