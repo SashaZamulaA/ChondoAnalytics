@@ -1,22 +1,20 @@
 package com.example.aleksandr.myapplication.model
 
-import android.text.format.DateUtils
-import com.example.aleksandr.myapplication.R
-import java.time.DayOfWeek
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
 import java.util.*
 
 data class City(
-        val intro : String? = "",
+        val intro : String?,
         val onedayWS: String?,
-        val twoDayWS:String?,
+        val twoDayWS: String?,
+        val twOneDay: String?,
         val centers: String?,
-        val time: Date)
-{
-    constructor() : this("0","0", "0", "", Date())
+        val approach: String?,
+        val timeStr: String?,
+        val lectOnStr: String?,
+        val lectCentr: String?,
+        val time: Date
+        ){
+    constructor() : this("","", "", "", "","","","","",Date())
 }
 
 //class WeightEntryVH(itemView: View?)

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Spinner
 import com.example.aleksandr.myapplication.BaseActivity
 import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.model.City
@@ -15,7 +16,7 @@ import com.example.aleksandr.myapplication.util.FirestoreUtil
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.item_is_word_list.view.*
+import kotlinx.android.synthetic.main.notification_template_lines_media.view.*
 import kotlinx.android.synthetic.main.view_m3a_result.*
 import java.util.*
 
@@ -42,16 +43,30 @@ class ResultM3AView : BaseActivity(), IResultM3AView {
         val spinnerCountryAdapter = ArrayAdapter(this, R.layout.spinner_simple_item, spinner_country)
         spinnerCountryAdapter.setDropDownViewResource(R.layout.spinner_drop_down)
         registration_city.adapter = spinnerCountryAdapter
+        registration_city.setSelection(getIndex(registration_city, "Lviv"))
         registration_city.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 presenter.onUpdateOwnerAddress(spinner_country[position])
+
             }
         }
 
-        fab_confirm_goal.setOnClickListener {
+        result_fab_confirm_goal.setOnClickListener {
             addNote()
         }
+    }
+
+    private fun getIndex(spinner: Spinner, myString: String): Int {
+
+        var index = 0
+
+        for (i in 0 until spinner.count) {
+            if (spinner.getItemAtPosition(i) == myString) {
+                index = i
+            }
+        }
+        return index
     }
 
     override fun onAttachedToWindow() {
@@ -70,10 +85,16 @@ class ResultM3AView : BaseActivity(), IResultM3AView {
 
 
     private fun addNote() {
+        val centers = registration_city.selectedItem.toString()
         val intro = introduction_edittext.text.toString()
         val oneDayWS = one_day_seminar_edittext.text.toString()
         val twoDayWS = two_day_seminar_edittext.text.toString()
-        val category = registration_city.selectedItem.toString()
+        val twOneDay = day21_seminar_edittext.text.toString()
+        val approach = result_time_street_edit_text.text.toString()
+        val timeStr = result_approach_edit_text.text.toString()
+        val lectOnStr = result_lectures_on_street_edittext.text.toString()
+        val lectCentr = result_lectures_in_center_edittext.text.toString()
+
 
         val user: User? = null
         val currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
@@ -81,17 +102,17 @@ class ResultM3AView : BaseActivity(), IResultM3AView {
 //        dataToSave[INRO] = intro
 //        dataToSave[ONEDAYWS] = oneDayWS
 
-        dataToSave[SPINNER] = category
+        dataToSave[SPINNER] = centers
         val filename = UUID.randomUUID().toString()
         FirestoreUtil.currentUserDocRef.collection("City")
-                .document(category)
-                .set(City(intro, oneDayWS, twoDayWS, category, Date() ))
+                .document(centers)
+                .set(City(intro, oneDayWS, twoDayWS, twOneDay, centers, approach, timeStr, lectOnStr, lectCentr, Date()))
 
-        noteRefCollection.add(City(intro, oneDayWS, twoDayWS, category, Date() ))
+        noteRefCollection.add(City(intro, oneDayWS, twoDayWS, twOneDay, centers, approach, timeStr, lectOnStr, lectCentr, Date()))
 
         firestoreInstance.collection("City")
-                .document(category)
-                .set(City(intro, oneDayWS, twoDayWS, category,Date()))
+                .document(centers)
+                .set(City(intro, oneDayWS, twoDayWS, twOneDay, centers, approach, timeStr, lectOnStr, lectCentr, Date()))
 
         startActivity(Intent(this@ResultM3AView, MainActivity::class.java))
         finish()

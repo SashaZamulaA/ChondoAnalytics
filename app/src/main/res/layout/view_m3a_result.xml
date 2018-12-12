@@ -53,12 +53,12 @@
     </android.support.design.widget.AppBarLayout>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_confirm_goal"
+        android:id="@+id/result_fab_confirm_goal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
         android:clickable="true"
-        android:src="@drawable/ic_check_black_24dp"
+        app:srcCompat="@drawable/ic_check_black_24dp"
         app:layout_anchor="@id/appbar"
         app:layout_anchorGravity="bottom|right|end" />
 
@@ -415,7 +415,7 @@
                                 android:textDirection="inherit">
 
                                 <android.support.design.widget.TextInputEditText
-                                    android:id="@+id/ressult_lectures_on_street_edittext"
+                                    android:id="@+id/result_lectures_on_street_edittext"
                                     style="@style/TextStyle_Body2_Primary_Dark"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -507,7 +507,7 @@
                                 android:textDirection="inherit">
 
                                 <android.support.design.widget.TextInputEditText
-                                    android:id="@+id/ressult_lectures_in_center_edittext"
+                                    android:id="@+id/result_lectures_in_center_edittext"
                                     style="@style/TextStyle_Body2_Primary_Dark"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
