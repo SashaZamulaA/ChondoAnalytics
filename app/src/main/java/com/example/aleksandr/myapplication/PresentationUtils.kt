@@ -1,23 +1,17 @@
 package com.example.aleksandr.myapplication
 
 import android.app.Activity
-import android.app.AlertDialog
-import android.app.ProgressDialog.show
 import android.content.Context
 import android.content.ContextWrapper
 import android.content.DialogInterface
-import android.support.design.widget.TextInputEditText
 import android.text.Editable
 import android.text.SpannableString
 import android.text.TextWatcher
-import android.text.method.LinkMovementMethod
-import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
-import android.widget.TextView
 import java.util.regex.Pattern
-import java.util.Collections.replaceAll
+
 
 
 

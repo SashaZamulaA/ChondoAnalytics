@@ -1,12 +1,12 @@
 package com.example.aleksandr.myapplication.ui.main
 
 import android.content.Intent
+import android.icu.util.ULocale.ITALY
 import android.os.Bundle
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.AlertDialog
 import android.util.Log
 import com.example.aleksandr.myapplication.BaseActivity
-import com.example.aleksandr.myapplication.R.string.approach
 import com.example.aleksandr.myapplication.model.City
 import com.example.aleksandr.myapplication.ui.login.LoginActivity
 import com.example.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
@@ -37,7 +37,7 @@ class MainActivity : BaseActivity() {
 
                 }
                 com.example.aleksandr.myapplication.R.id.menu_month -> {
-
+                    loadKyivMonth()
                 }
                 com.example.aleksandr.myapplication.R.id.menu_week -> {
                     loadKyivWeek()
@@ -219,7 +219,7 @@ class MainActivity : BaseActivity() {
         return calendar.time
     }
 
-    fun atEndOfDay(date: Date): Date {
+    fun endOfDay(date: Date): Date {
         val calendar = Calendar.getInstance()
         calendar.time = date
         calendar.set(Calendar.HOUR_OF_DAY, 23)
@@ -229,11 +229,48 @@ class MainActivity : BaseActivity() {
         return calendar.time
     }
 
+   private fun getWeekStartDate(): Date {
+        val calendar = Calendar.getInstance()
+        while (calendar.get(Calendar.DAY_OF_WEEK) !== Calendar.MONDAY) {
+            calendar.add(Calendar.DATE, -1)
+        }
+        return calendar.time
+    }
 
+    private fun getWeekEndDate(): Date {
+        val calendar = Calendar.getInstance()
+        while (calendar.get(Calendar.DAY_OF_WEEK) !== Calendar.MONDAY) {
+            calendar.add(Calendar.DATE, 1)
+        }
+        calendar.add(Calendar.DATE, -1)
+        return calendar.time
+    }
+
+    fun atStartOfWeek(date: Date): Date {
+        val calendar = Calendar.getInstance()
+        calendar.time = date
+        calendar.add(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
+        calendar.set(Calendar.HOUR_OF_DAY, 0)
+        calendar.set(Calendar.MINUTE, 0)
+        calendar.set(Calendar.SECOND, 0)
+        calendar.set(Calendar.MILLISECOND, 1)
+        return calendar.time
+    }
     fun atEndOfWeek(date: Date): Date {
         val calendar = Calendar.getInstance()
         calendar.time = date
+        calendar.add(Calendar.DAY_OF_WEEK_IN_MONTH, Calendar.SUNDAY)
+        calendar.set(Calendar.HOUR_OF_DAY, 23)
+        calendar.set(Calendar.MINUTE, 59)
+        calendar.set(Calendar.SECOND, 59)
+        calendar.set(Calendar.MILLISECOND, 999)
+        return calendar.time
+    }
 
+    fun atEndOfMonth(date: Date): Date {
+        val calendar = Calendar.getInstance()
+        calendar.time = date
+        calendar.set(Calendar.MONTH, 1 )
         calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
         calendar.add(Calendar.DAY_OF_WEEK, 7)
         calendar.set(Calendar.HOUR_OF_DAY, 23)
@@ -243,16 +280,90 @@ class MainActivity : BaseActivity() {
         return calendar.time
     }
 
-
     var c = GregorianCalendar.getInstance(Locale.UK)
 
     var onDayAgo = getNowMinus24Hours()
     val millis24Hours = (1000 * 60 * 60 * 24)
 
+    fun loadKyivDay() {
+
+        noteRefCollection
+                .whereEqualTo("centers", "Kyiv")
+                .whereGreaterThanOrEqualTo("time", startOfDay(Date()))
+                .whereLessThanOrEqualTo("time", endOfDay(Date()))
+                .get()
+                .addOnSuccessListener { queryDocumentSnapshots ->
+                    var sumIntroKiev = 0
+                    var sumOneD = 0
+                    var sumTwoD = 0
+                    var sumTwent = 0
+                    var sumTimeStr = 0
+                    var sumAppr = 0
+                    var sumStrLect = 0
+                    var sumCenteLect = 0
+
+
+                    queryDocumentSnapshots.forEach { documentSnapshot ->
+
+
+                        val resultNote = documentSnapshot.toObject(City::class.java)
+
+
+                        if (!resultNote.intro.isNullOrEmpty()) {
+                            val intro = (Integer.parseInt(resultNote.intro))
+                            sumIntroKiev += intro
+                        }
+                        if (!resultNote.onedayWS.isNullOrEmpty()) {
+                            val onaDay = Integer.parseInt(resultNote.onedayWS)
+                            sumOneD += onaDay
+                        }
+                        if (!resultNote.twoDayWS.isNullOrEmpty()) {
+                            val twoDay = Integer.parseInt(resultNote.twoDayWS)
+                            sumTwoD += twoDay
+                        }
+                        if (!resultNote.twOneDay.isNullOrEmpty()) {
+                            val twOneDay = Integer.parseInt(resultNote.twOneDay)
+                            sumTwent += twOneDay
+                        }
+                        if (!resultNote.approach.isNullOrEmpty()) {
+                            val approach = Integer.parseInt(resultNote.approach)
+                            sumAppr += approach
+                        }
+                        if (!resultNote.timeStr.isNullOrEmpty()) {
+                            val timeStr = Integer.parseInt(resultNote.timeStr)
+                            sumTimeStr += timeStr
+                        }
+                        if (!resultNote.lectOnStr.isNullOrEmpty()) {
+                            val lectOnStr = Integer.parseInt(resultNote.lectOnStr)
+                            sumStrLect += lectOnStr
+                        }
+                        if (!resultNote.lectCentr.isNullOrEmpty()) {
+                            val lectCentr = Integer.parseInt(resultNote.lectCentr)
+                            sumCenteLect += lectCentr
+                        }
+
+                        main_intro_kyiv.text = sumIntroKiev.toString()
+                        main_one_day_kyiv.text = sumOneD.toString()
+                        main_two_day_kyiv.text = sumTwoD.toString()
+                        main_21_day_kyiv.text = sumTwent.toString()
+                        main_time_str_kyiv.text = sumTimeStr.toString()
+                        main_approach_kyiv.text = sumAppr.toString()
+                        main_street_lect_kyiv.text = sumStrLect.toString()
+                        main_lect_center_kyiv.text = sumCenteLect.toString()
+
+
+                    }
+                }.addOnFailureListener { e ->
+                    Log.d("What wrong", e.toString())
+
+                }
+    }
+
     private fun loadKyivWeek() {
         noteRefCollection
                 .whereEqualTo("centers", "Kyiv")
-                .whereLessThanOrEqualTo("time", atEndOfWeek(Date()))
+                .whereLessThanOrEqualTo("time", getWeekEndDate())
+                .whereGreaterThanOrEqualTo("time", getWeekStartDate())
                 .get()
                 .addOnSuccessListener { queryDocumentSnapshots ->
 
@@ -267,48 +378,63 @@ class MainActivity : BaseActivity() {
                     var sumCenteLect = 0
 
                     queryDocumentSnapshots.forEach { documentSnapshot ->
-                        if (documentSnapshot.exists() && !queryDocumentSnapshots.isEmpty) {
-                            val resultNote = documentSnapshot.toObject(City::class.java)
-                            val intro = Integer.parseInt(resultNote.intro)
-                            val onaDay = Integer.parseInt(resultNote.onedayWS)
-                            val twoDay = Integer.parseInt(resultNote.twoDayWS)
-                            val twOneDay = Integer.parseInt(resultNote.twOneDay)
-                            val approach = Integer.parseInt(resultNote.approach)
-                            val timeStr = Integer.parseInt(resultNote.timeStr)
-                            val lectOnStr = Integer.parseInt(resultNote.lectOnStr)
-                            val lectCentr = Integer.parseInt(resultNote.lectCentr)
 
+                        val resultNote = documentSnapshot.toObject(City::class.java)
+
+                        if (!resultNote.intro.isNullOrEmpty()) {
+                            val intro = (Integer.parseInt(resultNote.intro))
                             sumIntroKiev += intro
-                            sumOneD += onaDay
-                            sumTwoD += twoDay
-                            sumTwent += twOneDay
-                            sumTimeStr += timeStr
-                            sumAppr += approach
-                            sumStrLect += lectOnStr
-                            sumCenteLect += lectCentr
-
-                            main_intro_kyiv.text = sumIntroKiev.toString()
-                            main_one_day_kyiv.text = sumOneD.toString()
-                            main_two_day_kyiv.text = sumTwoD.toString()
-                            main_21_day_kyiv.text = sumTwent.toString()
-                            main_time_str_kyiv.text = sumTimeStr.toString()
-                            main_approach_kyiv.text = sumAppr.toString()
-                            main_street_lect_kyiv.text = sumStrLect.toString()
-                            main_lect_center_kyiv.text = sumCenteLect.toString()
-
                         }
+                        if (!resultNote.onedayWS.isNullOrEmpty()) {
+                            val onaDay = Integer.parseInt(resultNote.onedayWS)
+                            sumOneD += onaDay
+                        }
+                        if (!resultNote.twoDayWS.isNullOrEmpty()) {
+                            val twoDay = Integer.parseInt(resultNote.twoDayWS)
+                            sumTwoD += twoDay
+                        }
+                        if (!resultNote.twOneDay.isNullOrEmpty()) {
+                            val twOneDay = Integer.parseInt(resultNote.twOneDay)
+                            sumTwent += twOneDay
+                        }
+                        if (!resultNote.approach.isNullOrEmpty()) {
+                            val approach = Integer.parseInt(resultNote.approach)
+                            sumAppr += approach
+                        }
+                        if (!resultNote.timeStr.isNullOrEmpty()) {
+                            val timeStr = Integer.parseInt(resultNote.timeStr)
+                            sumTimeStr += timeStr
+                        }
+                        if (!resultNote.lectOnStr.isNullOrEmpty()) {
+                            val lectOnStr = Integer.parseInt(resultNote.lectOnStr)
+                            sumStrLect += lectOnStr
+                        }
+                        if (!resultNote.lectCentr.isNullOrEmpty()) {
+                            val lectCentr = Integer.parseInt(resultNote.lectCentr)
+                            sumCenteLect += lectCentr
+                        }
+
+                        main_intro_kyiv.text = sumIntroKiev.toString()
+                        main_one_day_kyiv.text = sumOneD.toString()
+                        main_two_day_kyiv.text = sumTwoD.toString()
+                        main_21_day_kyiv.text = sumTwent.toString()
+                        main_time_str_kyiv.text = sumTimeStr.toString()
+                        main_approach_kyiv.text = sumAppr.toString()
+                        main_street_lect_kyiv.text = sumStrLect.toString()
+                        main_lect_center_kyiv.text = sumCenteLect.toString()
+
+
                     }
                 }.addOnFailureListener { e ->
                     Log.d("What wrong", e.toString())
                 }
     }
 
-    fun loadKyivDay() {
+    fun loadKyivMonth() {
 
         noteRefCollection
                 .whereEqualTo("centers", "Kyiv")
-                .whereLessThanOrEqualTo("time", atEndOfDay(Date()))
-                .whereGreaterThanOrEqualTo("time", startOfDay(Date()))
+                .whereLessThanOrEqualTo("time", atEndOfMonth(Date()))
                 .get()
                 .addOnSuccessListener { queryDocumentSnapshots ->
                     var sumIntroKiev = 0
@@ -320,9 +446,7 @@ class MainActivity : BaseActivity() {
                     var sumStrLect = 0
                     var sumCenteLect = 0
 
-
                     queryDocumentSnapshots.forEach { documentSnapshot ->
-
 
                         val resultNote = documentSnapshot.toObject(City::class.java)
 

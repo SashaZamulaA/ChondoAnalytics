@@ -161,5 +161,7 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="hour">Hour</string>
+    <string name="quarter">Quarter</string>
 
 </resources>
