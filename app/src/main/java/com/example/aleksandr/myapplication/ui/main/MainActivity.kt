@@ -1,7 +1,6 @@
 package com.example.aleksandr.myapplication.ui.main
 
 import android.content.Intent
-import android.icu.util.ULocale.ITALY
 import android.os.Bundle
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.AlertDialog
@@ -17,16 +16,28 @@ import java.util.*
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class MainActivity : BaseActivity() {
+
     private lateinit var presenter: MainPresenter
     private val noteRefCollection = firestoreInstance.collection("NewCity")
     private val noteRef = firestoreInstance.document("ResultNote/My First ResultNote")
+    var sumIntroKiev = 0
+    var sumOneD = 0
+    var sumTwoD = 0
+    var sumTwent = 0
+    var sumTimeStr = 0
+    var sumAppr = 0
+    var sumStrLect = 0
+    var sumCenteLect = 0
+
+    companion object {
+        const val ONE = 1
+    }
 
     override fun init(savedInstanceState: Bundle?) {
         super.setContentView(com.example.aleksandr.myapplication.R.layout.activity_main)
         presenter = MainPresenter(this, application)
         loadKyivDay()
         loadKharkiv()
-
 
         val doc = HashMap<String, Any>()
         doc["timestamp"] = FieldValue.serverTimestamp()
@@ -52,6 +63,7 @@ class MainActivity : BaseActivity() {
             true
         }
     }
+
 
 //            val recyclerView = findViewById<RecyclerView>(R.id.result_recycler)
 //        recyclerView.layoutManager = LinearLayoutManager(this)
@@ -229,55 +241,140 @@ class MainActivity : BaseActivity() {
         return calendar.time
     }
 
-   private fun getWeekStartDate(): Date {
-        val calendar = Calendar.getInstance()
-        while (calendar.get(Calendar.DAY_OF_WEEK) !== Calendar.MONDAY) {
-            calendar.add(Calendar.DATE, -1)
+//   private fun getWeekStartDate(): Date {
+//        val calendar = Calendar.getInstance()
+//        while (calendar.get(Calendar.DAY_OF_WEEK) !== Calendar.MONDAY) {
+//            calendar.add(Calendar.DATE, -1)
+//        }
+//        return calendar.time
+//    }
+//
+//    private fun getWeekEndDate(): Date {
+//        val calendar = Calendar.getInstance()
+//        while (calendar.get(Calendar.DAY_OF_WEEK) !== Calendar.MONDAY) {
+//            calendar.add(Calendar.DATE, 1)
+//        }
+//        calendar.add(Calendar.DATE, -1)
+//        return calendar.time
+//    }
+//
+//    fun atStartOfWeek(date: Date): Date {
+//        val calendar = Calendar.getInstance()
+//        calendar.time = date
+//        calendar.add(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
+//        calendar.set(Calendar.HOUR_OF_DAY, 0)
+//        calendar.set(Calendar.MINUTE, 0)
+//        calendar.set(Calendar.SECOND, 0)
+//        calendar.set(Calendar.MILLISECOND, 1)
+//        return calendar.time
+//    }
+//
+//    fun atEndOfWeek(date: Date): Date {
+//        val calendar = Calendar.getInstance()
+//        calendar.time = date
+//        calendar.add(Calendar.DAY_OF_WEEK_IN_MONTH, Calendar.SUNDAY)
+//        calendar.set(Calendar.HOUR_OF_DAY, 23)
+//        calendar.set(Calendar.MINUTE, 59)
+//        calendar.set(Calendar.SECOND, 59)
+//        calendar.set(Calendar.MILLISECOND, 999)
+//        return calendar.time
+//    }
+//
+//    fun atEndOfMonth(date: Date): Date {
+//        val calendar = Calendar.getInstance()
+//        calendar.time = date
+//        calendar.set(Calendar.MONTH, 1)
+//        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
+//        calendar.add(Calendar.DAY_OF_WEEK, 7)
+//        calendar.set(Calendar.HOUR_OF_DAY, 23)
+//        calendar.set(Calendar.MINUTE, 59)
+//        calendar.set(Calendar.SECOND, 59)
+//        calendar.set(Calendar.MILLISECOND, 999)
+//        return calendar.time
+//    }
+
+
+    fun getDateStartWeek(): Date {
+        run {
+            val calend = getCalendarForNow()
+            calend.set(Calendar.DAY_OF_WEEK, calend.getActualMinimum(Calendar.DAY_OF_WEEK))
+            setTimeToBeginningOfDay(calend)
+            return calend.time
         }
-        return calendar.time
     }
 
-    private fun getWeekEndDate(): Date {
-        val calendar = Calendar.getInstance()
-        while (calendar.get(Calendar.DAY_OF_WEEK) !== Calendar.MONDAY) {
-            calendar.add(Calendar.DATE, 1)
+    fun getDateEndWeek(): Date {
+
+        run {
+            val calend = getCalendarForNow()
+            calend.set(Calendar.DAY_OF_WEEK,
+                    calend.getActualMaximum(Calendar.DAY_OF_WEEK))
+            setTimeToEndofDay(calend)
+            return calend.time
         }
-        calendar.add(Calendar.DATE, -1)
-        return calendar.time
     }
 
-    fun atStartOfWeek(date: Date): Date {
-        val calendar = Calendar.getInstance()
-        calendar.time = date
-        calendar.add(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
+    fun getDateStartMonth(): Date {
+        run {
+            val calend = getCalendarForNow()
+            calend.set(Calendar.DAY_OF_MONTH,
+                    calend.getActualMinimum(Calendar.DAY_OF_MONTH))
+            setTimeToBeginningOfDay(calend)
+            return calend.time
+        }
+    }
+
+    fun getDateEndMonth(): Date {
+
+        run {
+            val calend = getCalendarForNow()
+            calend.set(Calendar.DAY_OF_MONTH,
+                    calend.getActualMaximum(Calendar.DAY_OF_MONTH))
+            setTimeToEndofDay(calend)
+            return calend.time
+        }
+    }
+
+    fun getDateStartYear(): Date {
+        run {
+            val calend = getCalendarForNow()
+            calend.set(Calendar.DAY_OF_YEAR,
+                    calend.getActualMinimum(Calendar.DAY_OF_YEAR))
+            setTimeToBeginningOfDay(calend)
+            return calend.time
+        }
+    }
+
+    fun getDateEndYear(): Date {
+
+        run {
+            val calend = getCalendarForNow()
+            calend.set(Calendar.DAY_OF_YEAR,
+                    calend.getActualMaximum(Calendar.DAY_OF_YEAR))
+            setTimeToEndofDay(calend)
+            return calend.time
+        }
+    }
+
+
+    private fun getCalendarForNow(): Calendar {
+        val calendar = GregorianCalendar.getInstance()
+        calendar.time = Date()
+        return calendar
+    }
+
+    private fun setTimeToBeginningOfDay(calendar: Calendar) {
         calendar.set(Calendar.HOUR_OF_DAY, 0)
         calendar.set(Calendar.MINUTE, 0)
         calendar.set(Calendar.SECOND, 0)
-        calendar.set(Calendar.MILLISECOND, 1)
-        return calendar.time
-    }
-    fun atEndOfWeek(date: Date): Date {
-        val calendar = Calendar.getInstance()
-        calendar.time = date
-        calendar.add(Calendar.DAY_OF_WEEK_IN_MONTH, Calendar.SUNDAY)
-        calendar.set(Calendar.HOUR_OF_DAY, 23)
-        calendar.set(Calendar.MINUTE, 59)
-        calendar.set(Calendar.SECOND, 59)
-        calendar.set(Calendar.MILLISECOND, 999)
-        return calendar.time
+        calendar.set(Calendar.MILLISECOND, 0)
     }
 
-    fun atEndOfMonth(date: Date): Date {
-        val calendar = Calendar.getInstance()
-        calendar.time = date
-        calendar.set(Calendar.MONTH, 1 )
-        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
-        calendar.add(Calendar.DAY_OF_WEEK, 7)
+    private fun setTimeToEndofDay(calendar: Calendar) {
         calendar.set(Calendar.HOUR_OF_DAY, 23)
         calendar.set(Calendar.MINUTE, 59)
         calendar.set(Calendar.SECOND, 59)
         calendar.set(Calendar.MILLISECOND, 999)
-        return calendar.time
     }
 
     var c = GregorianCalendar.getInstance(Locale.UK)
@@ -293,14 +390,6 @@ class MainActivity : BaseActivity() {
                 .whereLessThanOrEqualTo("time", endOfDay(Date()))
                 .get()
                 .addOnSuccessListener { queryDocumentSnapshots ->
-                    var sumIntroKiev = 0
-                    var sumOneD = 0
-                    var sumTwoD = 0
-                    var sumTwent = 0
-                    var sumTimeStr = 0
-                    var sumAppr = 0
-                    var sumStrLect = 0
-                    var sumCenteLect = 0
 
 
                     queryDocumentSnapshots.forEach { documentSnapshot ->
@@ -362,8 +451,8 @@ class MainActivity : BaseActivity() {
     private fun loadKyivWeek() {
         noteRefCollection
                 .whereEqualTo("centers", "Kyiv")
-                .whereLessThanOrEqualTo("time", getWeekEndDate())
-                .whereGreaterThanOrEqualTo("time", getWeekStartDate())
+                .whereLessThanOrEqualTo("time", getDateEndWeek())
+                .whereGreaterThanOrEqualTo("time", getDateStartWeek())
                 .get()
                 .addOnSuccessListener { queryDocumentSnapshots ->
 
@@ -434,7 +523,79 @@ class MainActivity : BaseActivity() {
 
         noteRefCollection
                 .whereEqualTo("centers", "Kyiv")
-                .whereLessThanOrEqualTo("time", atEndOfMonth(Date()))
+                .whereLessThanOrEqualTo("time", getDateEndMonth())
+                .whereGreaterThanOrEqualTo("time", getDateStartMonth())
+                .get()
+                .addOnSuccessListener { queryDocumentSnapshots ->
+                    var sumIntroKiev = 0
+                    var sumOneD = 0
+                    var sumTwoD = 0
+                    var sumTwent = 0
+                    var sumTimeStr = 0
+                    var sumAppr = 0
+                    var sumStrLect = 0
+                    var sumCenteLect = 0
+
+                    queryDocumentSnapshots.forEach { documentSnapshot ->
+
+                        val resultNote = documentSnapshot.toObject(City::class.java)
+
+                        if (!resultNote.intro.isNullOrEmpty()) {
+                            val intro = (Integer.parseInt(resultNote.intro))
+                            sumIntroKiev += intro
+                        }
+                        if (!resultNote.onedayWS.isNullOrEmpty()) {
+                            val onaDay = Integer.parseInt(resultNote.onedayWS)
+                            sumOneD += onaDay
+                        }
+                        if (!resultNote.twoDayWS.isNullOrEmpty()) {
+                            val twoDay = Integer.parseInt(resultNote.twoDayWS)
+                            sumTwoD += twoDay
+                        }
+                        if (!resultNote.twOneDay.isNullOrEmpty()) {
+                            val twOneDay = Integer.parseInt(resultNote.twOneDay)
+                            sumTwent += twOneDay
+                        }
+                        if (!resultNote.approach.isNullOrEmpty()) {
+                            val approach = Integer.parseInt(resultNote.approach)
+                            sumAppr += approach
+                        }
+                        if (!resultNote.timeStr.isNullOrEmpty()) {
+                            val timeStr = Integer.parseInt(resultNote.timeStr)
+                            sumTimeStr += timeStr
+                        }
+                        if (!resultNote.lectOnStr.isNullOrEmpty()) {
+                            val lectOnStr = Integer.parseInt(resultNote.lectOnStr)
+                            sumStrLect += lectOnStr
+                        }
+                        if (!resultNote.lectCentr.isNullOrEmpty()) {
+                            val lectCentr = Integer.parseInt(resultNote.lectCentr)
+                            sumCenteLect += lectCentr
+                        }
+
+                        main_intro_kyiv.text = sumIntroKiev.toString()
+                        main_one_day_kyiv.text = sumOneD.toString()
+                        main_two_day_kyiv.text = sumTwoD.toString()
+                        main_21_day_kyiv.text = sumTwent.toString()
+                        main_time_str_kyiv.text = sumTimeStr.toString()
+                        main_approach_kyiv.text = sumAppr.toString()
+                        main_street_lect_kyiv.text = sumStrLect.toString()
+                        main_lect_center_kyiv.text = sumCenteLect.toString()
+
+
+                    }
+                }.addOnFailureListener { e ->
+                    Log.d("What wrong", e.toString())
+
+                }
+    }
+
+    fun loadKyivYear() {
+
+        noteRefCollection
+                .whereEqualTo("centers", "Kyiv")
+                .whereLessThanOrEqualTo("time", getDateEndYear())
+                .whereGreaterThanOrEqualTo("time", getDateStartYear())
                 .get()
                 .addOnSuccessListener { queryDocumentSnapshots ->
                     var sumIntroKiev = 0
@@ -539,4 +700,15 @@ class MainActivity : BaseActivity() {
                     Log.d("What wrong", e.toString())
                 }
     }
+
+    fun updateDescription() {
+//        val description = editTextDescription.getText().toString()
+//
+//        //Map<String, Object> note = new HashMap<>();
+//        //note.put(KEY_DESCRIPTION, description);
+//
+//        //noteRef.set(note, SetOptions.merge());
+//        noteRef.update(KEY_DESCRIPTION, description)
+    }
+
 }
