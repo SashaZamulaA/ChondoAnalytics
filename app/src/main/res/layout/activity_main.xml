@@ -576,6 +576,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
+                app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
                 android:background="?android:attr/windowBackground"
                 app:menu="@menu/bottom_navigation_main" />
         </LinearLayout>

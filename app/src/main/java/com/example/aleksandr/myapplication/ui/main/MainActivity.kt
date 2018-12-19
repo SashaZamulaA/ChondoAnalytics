@@ -6,12 +6,21 @@ import android.support.v4.view.GravityCompat
 import android.support.v7.app.AlertDialog
 import android.util.Log
 import com.example.aleksandr.myapplication.BaseActivity
+import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.model.City
 import com.example.aleksandr.myapplication.ui.login.LoginActivity
+import com.example.aleksandr.myapplication.util.*
 import com.example.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import com.google.firebase.firestore.FieldValue
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
+import android.support.design.widget.NavigationView
+import android.view.View
+import android.support.v4.view.ViewCompat.animate
+import android.R.attr.translationY
+import android.support.design.widget.BottomNavigationView
+
+
 
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
@@ -45,7 +54,7 @@ class MainActivity : BaseActivity() {
         bottom_navigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 com.example.aleksandr.myapplication.R.id.menu_year -> {
-
+                    loadKyivYear()
                 }
                 com.example.aleksandr.myapplication.R.id.menu_month -> {
                     loadKyivMonth()
@@ -145,7 +154,15 @@ class MainActivity : BaseActivity() {
 //        super.onStop()
 //        adapter.stopListening()
 //    }
+private fun hideBottomNavigationView(view: BottomNavigationView) {
+    view.clearAnimation()
+    view.animate().translationY(view.height.toFloat()).duration = 300
+}
 
+    fun showBottomNavigationView(view: BottomNavigationView) {
+        view.clearAnimation()
+        view.animate().translationY(0f).duration = 300
+    }
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         presenter.bindView(this)
@@ -215,25 +232,7 @@ class MainActivity : BaseActivity() {
 //        }
 //    }
 
-    fun startOfDay(date: Date): Date {
-        val calendar = Calendar.getInstance()
-        calendar.time = date
-        calendar.set(Calendar.HOUR_OF_DAY, 0)
-        calendar.set(Calendar.MINUTE, 0)
-        calendar.set(Calendar.SECOND, 0)
-        calendar.set(Calendar.MILLISECOND, 1)
-        return calendar.time
-    }
 
-    fun endOfDay(date: Date): Date {
-        val calendar = Calendar.getInstance()
-        calendar.time = date
-        calendar.set(Calendar.HOUR_OF_DAY, 23)
-        calendar.set(Calendar.MINUTE, 59)
-        calendar.set(Calendar.SECOND, 59)
-        calendar.set(Calendar.MILLISECOND, 999)
-        return calendar.time
-    }
 
 //   private fun getWeekStartDate(): Date {
 //        val calendar = Calendar.getInstance()
@@ -287,109 +286,10 @@ class MainActivity : BaseActivity() {
 //        return calendar.time
 //    }
 
-    fun getDateStartWeek(): Date {
-        run {
-            val calend = getCalendarForNow()
-            calend.set(Calendar.DAY_OF_WEEK, calend.getActualMinimum(Calendar.DAY_OF_WEEK))
-            setTimeToBeginningOfDay(calend)
-            return calend.time
-        }
-    }
-
-    fun getDateEndWeek(): Date {
-
-        run {
-            val calend = getCalendarForNow()
-            calend.set(Calendar.DAY_OF_WEEK,
-                    calend.getActualMaximum(Calendar.DAY_OF_WEEK))
-            setTimeToEndofDay(calend)
-            return calend.time
-        }
-    }
-
-    fun getDateStartMonth(): Date {
-        run {
-            val calend = getCalendarForNow()
-            calend.set(Calendar.DAY_OF_MONTH,
-                    calend.getActualMinimum(Calendar.DAY_OF_MONTH))
-            setTimeToBeginningOfDay(calend)
-            return calend.time
-        }
-    }
-
-    fun getDateEndMonth(): Date {
-
-        run {
-            val calend = getCalendarForNow()
-            calend.set(Calendar.DAY_OF_MONTH,
-                    calend.getActualMaximum(Calendar.DAY_OF_MONTH))
-            setTimeToEndofDay(calend)
-            return calend.time
-        }
-    }
-
-    fun getDateStartYear(): Date {
-        run {
-            val calend = getCalendarForNow()
-            calend.set(Calendar.DAY_OF_YEAR,
-                    calend.getActualMinimum(Calendar.DAY_OF_YEAR))
-            setTimeToBeginningOfDay(calend)
-            return calend.time
-        }
-    }
-
-    fun getDateEndYear(): Date {
-
-        run {
-            val calend = getCalendarForNow()
-            calend.set(Calendar.DAY_OF_YEAR,
-                    calend.getActualMaximum(Calendar.DAY_OF_YEAR))
-            setTimeToEndofDay(calend)
-            return calend.time
-        }
-    }
-
-    fun getDateStartDay(): Date {
-        run {
-            val calend = getCalendarForNow()
-            calend.set(Calendar.DATE,
-                    calend.getActualMinimum(Calendar.DATE))
-            setTimeToBeginningOfDay(calend)
-            return calend.time
-        }
-    }
-
-    fun getDateEndDay(): Date {
-
-        run {
-            val calend = getCalendarForNow()
-            calend.set(Calendar.DATE,
-                    calend.getActualMaximum(Calendar.DATE))
-            setTimeToEndofDay(calend)
-            return calend.time
-        }
-    }
 
 
-    private fun getCalendarForNow(): Calendar {
-        val calendar = GregorianCalendar.getInstance()
-        calendar.time = Date()
-        return calendar
-    }
 
-    private fun setTimeToBeginningOfDay(calendar: Calendar) {
-        calendar.set(Calendar.HOUR_OF_DAY, 0)
-        calendar.set(Calendar.MINUTE, 0)
-        calendar.set(Calendar.SECOND, 0)
-        calendar.set(Calendar.MILLISECOND, 0)
-    }
 
-    private fun setTimeToEndofDay(calendar: Calendar) {
-        calendar.set(Calendar.HOUR_OF_DAY, 23)
-        calendar.set(Calendar.MINUTE, 59)
-        calendar.set(Calendar.SECOND, 59)
-        calendar.set(Calendar.MILLISECOND, 999)
-    }
 
     fun loadKyivDay() {
         sumIntroKiev = 0
