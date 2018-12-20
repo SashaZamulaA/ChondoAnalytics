@@ -19,6 +19,13 @@ import android.view.View
 import android.support.v4.view.ViewCompat.animate
 import android.R.attr.translationY
 import android.support.design.widget.BottomNavigationView
+import android.support.v4.widget.NestedScrollView
+import android.support.v4.view.ViewCompat
+import android.support.annotation.NonNull
+import android.support.design.widget.CoordinatorLayout
+import com.example.aleksandr.myapplication.ui.main.MainActivity.BottomNavigationViewBehavior
+
+
 
 
 
@@ -51,6 +58,8 @@ class MainActivity : BaseActivity() {
         val doc = HashMap<String, Any>()
         doc["timestamp"] = FieldValue.serverTimestamp()
 
+        val layoutParams = bottom_navigation.layoutParams as CoordinatorLayout.LayoutParams
+        layoutParams.behavior = BottomNavigationViewBehavior()
         bottom_navigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 com.example.aleksandr.myapplication.R.id.menu_year -> {
@@ -73,7 +82,42 @@ class MainActivity : BaseActivity() {
         }
     }
 
+    inner class BottomNavigationViewBehavior : CoordinatorLayout.Behavior<BottomNavigationView>() {
 
+        private var height: Int = 0
+
+        override fun onLayoutChild(parent: CoordinatorLayout, child: BottomNavigationView, layoutDirection: Int): Boolean {
+            height = child.height
+            return super.onLayoutChild(parent, child, layoutDirection)
+        }
+
+        override fun onStartNestedScroll(coordinatorLayout: CoordinatorLayout,
+                                         child: BottomNavigationView, directTargetChild: View, target: View,
+                                         axes: Int, type: Int): Boolean {
+            return axes == ViewCompat.SCROLL_AXIS_VERTICAL
+        }
+
+        override fun onNestedScroll(coordinatorLayout: CoordinatorLayout, child: BottomNavigationView,
+                                    target: View, dxConsumed: Int, dyConsumed: Int,
+                                    dxUnconsumed: Int, dyUnconsumed: Int,
+                                    @ViewCompat.NestedScrollType type: Int) {
+            if (dyConsumed > 0) {
+                slideDown(child)
+            } else if (dyConsumed < 0) {
+                slideUp(child)
+            }
+        }
+
+        private fun slideUp(child: BottomNavigationView) {
+            child.clearAnimation()
+            child.animate().translationY(0f).duration = 200
+        }
+
+        private fun slideDown(child: BottomNavigationView) {
+            child.clearAnimation()
+            child.animate().translationY(height.toFloat()).duration = 200
+        }
+    }
 //            val recyclerView = findViewById<RecyclerView>(R.id.result_recycler)
 //        recyclerView.layoutManager = LinearLayoutManager(this)
 //
@@ -463,15 +507,7 @@ private fun hideBottomNavigationView(view: BottomNavigationView) {
         sumAppr = 0
         sumStrLect = 0
         sumCenteLect = 0
-        main_intro_kyiv.text = "0"
-        main_one_day_kyiv.text = "0"
-        main_two_day_kyiv.text = "0"
-        main_21_day_kyiv.text = "0"
-        main_time_str_kyiv.text = "0"
-        main_approach_kyiv.text = "0"
-        main_street_lect_kyiv.text = "0"
-        main_lect_center_kyiv.text = "0"
-        noteRefCollection
+              noteRefCollection
                 .whereEqualTo("centers", "Kyiv")
                 .whereLessThanOrEqualTo("time", getDateEndMonth())
                 .whereGreaterThanOrEqualTo("time", getDateStartMonth())
@@ -609,6 +645,8 @@ private fun hideBottomNavigationView(view: BottomNavigationView) {
 
                 }
     }
+
+
 
     private fun loadKharkiv() {
         noteRefCollection
