@@ -35,9 +35,18 @@ class ResultM3AView : BaseActivity(), IResultM3AView {
             "Kyiv", "Kharkiv", "Dnepr", "Zhytomyr", "Lviv", "Odessa", "Chernigov"
     )
 
+    private var category2: Array<String>? = null
+
     override fun init(savedInstantState: Bundle?) {
         super.setContentView(R.layout.view_m3a_result)
         presenter = ResultM3APresenter(this, application)
+
+        category2 = resources.getStringArray(R.array.City)
+        @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
+        val adapter2 = ArrayAdapter(this,
+                android.R.layout.simple_dropdown_item_1line, category2)
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
 
 
         val spinnerCountryAdapter = ArrayAdapter(this, R.layout.spinner_simple_item, spinner_country)

@@ -91,6 +91,17 @@
         <item>Skip</item>
     </array>
 
+    <array name="City">
+        <item>Kyiv</item>
+        <item>Kharkiv</item>
+        <item>Dnepr</item>
+        <item>Zhytomyr</item>
+        <item>Lviv</item>
+        <item>Odessa</item>
+        <item>Chernigov</item>
+    </array>
+
+
     <string name="city">City</string>
     <string name="signup_successful">Registration successful</string>
     <string name="incorrect_sing_in">Incorrect email or password. Please try again.</string>

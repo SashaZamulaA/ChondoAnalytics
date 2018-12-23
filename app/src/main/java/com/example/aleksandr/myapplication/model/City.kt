@@ -13,10 +13,24 @@ data class City(
         val lectOnStr: String?,
         val lectCentr: String?,
         val time: Date
+//        val method: List<Method>
         ){
     constructor() : this("","", "", "", "","","","","",Date())
 }
 
+
+
+
+
+enum class Method(val method: String) {
+    KYIV("KYIV"),
+    KHARKIV("KHARKIV"),
+    LVIV("LVIV"),
+    DNEPR("DNEPR"),
+    ZHYTOMYR("ZHYTOMYR"),
+    ODESSA("ODESSA"),
+    CHERNIGOV("CHERNIGOV"),
+}
 //class WeightEntryVH(itemView: View?)
 //    : RecyclerView.ViewHolder(itemView) {
 //    var weightView: TextView? =

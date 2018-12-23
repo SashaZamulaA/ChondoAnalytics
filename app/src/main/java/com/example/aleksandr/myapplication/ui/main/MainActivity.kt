@@ -6,7 +6,6 @@ import android.support.v4.view.GravityCompat
 import android.support.v7.app.AlertDialog
 import android.util.Log
 import com.example.aleksandr.myapplication.BaseActivity
-import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.model.City
 import com.example.aleksandr.myapplication.ui.login.LoginActivity
 import com.example.aleksandr.myapplication.util.*
@@ -14,20 +13,15 @@ import com.example.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import com.google.firebase.firestore.FieldValue
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
-import android.support.design.widget.NavigationView
 import android.view.View
-import android.support.v4.view.ViewCompat.animate
-import android.R.attr.translationY
 import android.support.design.widget.BottomNavigationView
-import android.support.v4.widget.NestedScrollView
 import android.support.v4.view.ViewCompat
-import android.support.annotation.NonNull
 import android.support.design.widget.CoordinatorLayout
-import com.example.aleksandr.myapplication.ui.main.MainActivity.BottomNavigationViewBehavior
+import android.support.v7.widget.LinearLayoutManager
 
-
-
-
+import com.example.aleksandr.myapplication.ui.main.adapter.MainAdapter
+import com.firebase.ui.firestore.FirestoreRecyclerOptions
+import com.google.firebase.firestore.Query
 
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
@@ -35,7 +29,9 @@ class MainActivity : BaseActivity() {
 
     private lateinit var presenter: MainPresenter
     private val noteRefCollection = firestoreInstance.collection("NewCity")
-    private val noteRef = firestoreInstance.document("ResultNote/My First ResultNote")
+
+    lateinit var adapter: MainAdapter
+
     var sumIntroKiev = 0
     var sumOneD = 0
     var sumTwoD = 0
@@ -52,6 +48,8 @@ class MainActivity : BaseActivity() {
     override fun init(savedInstanceState: Bundle?) {
         super.setContentView(com.example.aleksandr.myapplication.R.layout.activity_main)
         presenter = MainPresenter(this, application)
+        RecyclerInit()
+
         loadKyivDay()
         loadKharkiv()
 
@@ -81,6 +79,35 @@ class MainActivity : BaseActivity() {
             true
         }
     }
+
+    private fun RecyclerInit() {
+        val query = noteRefCollection.whereEqualTo("centers", "Kyiv")
+                .whereGreaterThanOrEqualTo("time", startOfDay(Date()))
+                .whereLessThanOrEqualTo("time", endOfDay(Date()))
+
+
+        val options = FirestoreRecyclerOptions.Builder<City>()
+
+                .setQuery(query, City::class.java)
+                .build()
+
+        adapter = MainAdapter(options)
+        list_main_adapter.setHasFixedSize(true)
+        list_main_adapter.layoutManager = LinearLayoutManager(this)
+        list_main_adapter.adapter = adapter
+    }
+
+    override fun onStart() {
+        super.onStart()
+        adapter.startListening()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        adapter.stopListening()
+    }
+
+
 
     inner class BottomNavigationViewBehavior : CoordinatorLayout.Behavior<BottomNavigationView>() {
 
@@ -277,64 +304,6 @@ private fun hideBottomNavigationView(view: BottomNavigationView) {
 //    }
 
 
-
-//   private fun getWeekStartDate(): Date {
-//        val calendar = Calendar.getInstance()
-//        while (calendar.get(Calendar.DAY_OF_WEEK) !== Calendar.MONDAY) {
-//            calendar.add(Calendar.DATE, -1)
-//        }
-//        return calendar.time
-//    }
-//
-//    private fun getWeekEndDate(): Date {
-//        val calendar = Calendar.getInstance()
-//        while (calendar.get(Calendar.DAY_OF_WEEK) !== Calendar.MONDAY) {
-//            calendar.add(Calendar.DATE, 1)
-//        }
-//        calendar.add(Calendar.DATE, -1)
-//        return calendar.time
-//    }
-//
-//    fun atStartOfWeek(date: Date): Date {
-//        val calendar = Calendar.getInstance()
-//        calendar.time = date
-//        calendar.add(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
-//        calendar.set(Calendar.HOUR_OF_DAY, 0)
-//        calendar.set(Calendar.MINUTE, 0)
-//        calendar.set(Calendar.SECOND, 0)
-//        calendar.set(Calendar.MILLISECOND, 1)
-//        return calendar.time
-//    }
-//
-//    fun atEndOfWeek(date: Date): Date {
-//        val calendar = Calendar.getInstance()
-//        calendar.time = date
-//        calendar.add(Calendar.DAY_OF_WEEK_IN_MONTH, Calendar.SUNDAY)
-//        calendar.set(Calendar.HOUR_OF_DAY, 23)
-//        calendar.set(Calendar.MINUTE, 59)
-//        calendar.set(Calendar.SECOND, 59)
-//        calendar.set(Calendar.MILLISECOND, 999)
-//        return calendar.time
-//    }
-//
-//    fun atEndOfMonth(date: Date): Date {
-//        val calendar = Calendar.getInstance()
-//        calendar.time = date
-//        calendar.set(Calendar.MONTH, 1)
-//        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
-//        calendar.add(Calendar.DAY_OF_WEEK, 7)
-//        calendar.set(Calendar.HOUR_OF_DAY, 23)
-//        calendar.set(Calendar.MINUTE, 59)
-//        calendar.set(Calendar.SECOND, 59)
-//        calendar.set(Calendar.MILLISECOND, 999)
-//        return calendar.time
-//    }
-
-
-
-
-
-
     fun loadKyivDay() {
         sumIntroKiev = 0
         sumOneD = 0
@@ -344,6 +313,9 @@ private fun hideBottomNavigationView(view: BottomNavigationView) {
         sumAppr = 0
         sumStrLect = 0
         sumCenteLect = 0
+
+        val city = City()
+        city.centers?.forEach {  }
         noteRefCollection
                 .whereEqualTo("centers", "Kyiv")
                 .whereGreaterThanOrEqualTo("time", startOfDay(Date()))
@@ -388,26 +360,26 @@ private fun hideBottomNavigationView(view: BottomNavigationView) {
                                 sumCenteLect += lectCentr
                             }
 
-                            main_intro_kyiv.text = sumIntroKiev.toString()
-                            main_one_day_kyiv.text = sumOneD.toString()
-                            main_two_day_kyiv.text = sumTwoD.toString()
-                            main_21_day_kyiv.text = sumTwent.toString()
-                            main_time_str_kyiv.text = sumTimeStr.toString()
-                            main_approach_kyiv.text = sumAppr.toString()
-                            main_street_lect_kyiv.text = sumStrLect.toString()
-                            main_lect_center_kyiv.text = sumCenteLect.toString()
+//                            main_intro_kyiv.text = sumIntroKiev.toString()
+//                            main_one_day_kyiv.text = sumOneD.toString()
+//                            main_two_day_kyiv.text = sumTwoD.toString()
+//                            main_21_day_kyiv.text = sumTwent.toString()
+//                            main_time_str_kyiv.text = sumTimeStr.toString()
+//                            main_approach_kyiv.text = sumAppr.toString()
+//                            main_street_lect_kyiv.text = sumStrLect.toString()
+//                            main_lect_center_kyiv.text = sumCenteLect.toString()
 
                             bottom_navigation.isEnabled = true
                         }
                     } else {
-                        main_intro_kyiv.text = "0"
-                        main_one_day_kyiv.text = "0"
-                        main_two_day_kyiv.text = "0"
-                        main_21_day_kyiv.text = "0"
-                        main_time_str_kyiv.text = "0"
-                        main_approach_kyiv.text = "0"
-                        main_street_lect_kyiv.text = "0"
-                        main_lect_center_kyiv.text = "0"
+//                        main_intro_kyiv.text = "0"
+//                        main_one_day_kyiv.text = "0"
+//                        main_two_day_kyiv.text = "0"
+//                        main_21_day_kyiv.text = "0"
+//                        main_time_str_kyiv.text = "0"
+//                        main_approach_kyiv.text = "0"
+//                        main_street_lect_kyiv.text = "0"
+//                        main_lect_center_kyiv.text = "0"
                     }
 
                 }.addOnFailureListener { e ->
@@ -472,25 +444,25 @@ private fun hideBottomNavigationView(view: BottomNavigationView) {
                                 sumCenteLect += lectCentr
                             }
 
-                            main_intro_kyiv.text = sumIntroKiev.toString()
-                            main_one_day_kyiv.text = sumOneD.toString()
-                            main_two_day_kyiv.text = sumTwoD.toString()
-                            main_21_day_kyiv.text = sumTwent.toString()
-                            main_time_str_kyiv.text = sumTimeStr.toString()
-                            main_approach_kyiv.text = sumAppr.toString()
-                            main_street_lect_kyiv.text = sumStrLect.toString()
-                            main_lect_center_kyiv.text = sumCenteLect.toString()
+//                            main_intro_kyiv.text = sumIntroKiev.toString()
+//                            main_one_day_kyiv.text = sumOneD.toString()
+//                            main_two_day_kyiv.text = sumTwoD.toString()
+//                            main_21_day_kyiv.text = sumTwent.toString()
+//                            main_time_str_kyiv.text = sumTimeStr.toString()
+//                            main_approach_kyiv.text = sumAppr.toString()
+//                            main_street_lect_kyiv.text = sumStrLect.toString()
+//                            main_lect_center_kyiv.text = sumCenteLect.toString()
 
                         }
                     } else {
-                        main_intro_kyiv.text = "0"
-                        main_one_day_kyiv.text = "0"
-                        main_two_day_kyiv.text = "0"
-                        main_21_day_kyiv.text = "0"
-                        main_time_str_kyiv.text = "0"
-                        main_approach_kyiv.text = "0"
-                        main_street_lect_kyiv.text = "0"
-                        main_lect_center_kyiv.text = "0"
+//                        main_intro_kyiv.text = "0"
+//                        main_one_day_kyiv.text = "0"
+//                        main_two_day_kyiv.text = "0"
+//                        main_21_day_kyiv.text = "0"
+//                        main_time_str_kyiv.text = "0"
+//                        main_approach_kyiv.text = "0"
+//                        main_street_lect_kyiv.text = "0"
+//                        main_lect_center_kyiv.text = "0"
                     }
                 }.addOnFailureListener { e ->
                     Log.d("What wrong", e.toString())
@@ -550,24 +522,24 @@ private fun hideBottomNavigationView(view: BottomNavigationView) {
                                 sumCenteLect += lectCentr
                             }
 
-                            main_intro_kyiv.text = sumIntroKiev.toString()
-                            main_one_day_kyiv.text = sumOneD.toString()
-                            main_two_day_kyiv.text = sumTwoD.toString()
-                            main_21_day_kyiv.text = sumTwent.toString()
-                            main_time_str_kyiv.text = sumTimeStr.toString()
-                            main_approach_kyiv.text = sumAppr.toString()
-                            main_street_lect_kyiv.text = sumStrLect.toString()
-                            main_lect_center_kyiv.text = sumCenteLect.toString()
+//                            main_intro_kyiv.text = sumIntroKiev.toString()
+//                            main_one_day_kyiv.text = sumOneD.toString()
+//                            main_two_day_kyiv.text = sumTwoD.toString()
+//                            main_21_day_kyiv.text = sumTwent.toString()
+//                            main_time_str_kyiv.text = sumTimeStr.toString()
+//                            main_approach_kyiv.text = sumAppr.toString()
+//                            main_street_lect_kyiv.text = sumStrLect.toString()
+//                            main_lect_center_kyiv.text = sumCenteLect.toString()
                         }
                     } else {
-                        main_intro_kyiv.text = "0"
-                        main_one_day_kyiv.text = "0"
-                        main_two_day_kyiv.text = "0"
-                        main_21_day_kyiv.text = "0"
-                        main_time_str_kyiv.text = "0"
-                        main_approach_kyiv.text = "0"
-                        main_street_lect_kyiv.text = "0"
-                        main_lect_center_kyiv.text = "0"
+//                        main_intro_kyiv.text = "0"
+//                        main_one_day_kyiv.text = "0"
+//                        main_two_day_kyiv.text = "0"
+//                        main_21_day_kyiv.text = "0"
+//                        main_time_str_kyiv.text = "0"
+//                        main_approach_kyiv.text = "0"
+//                        main_street_lect_kyiv.text = "0"
+//                        main_lect_center_kyiv.text = "0"
                     }
                 }.addOnFailureListener { e ->
                     Log.d("What wrong", e.toString())
@@ -629,14 +601,14 @@ private fun hideBottomNavigationView(view: BottomNavigationView) {
                             sumCenteLect += lectCentr
                         }
 
-                        main_intro_kyiv.text = sumIntroKiev.toString()
-                        main_one_day_kyiv.text = sumOneD.toString()
-                        main_two_day_kyiv.text = sumTwoD.toString()
-                        main_21_day_kyiv.text = sumTwent.toString()
-                        main_time_str_kyiv.text = sumTimeStr.toString()
-                        main_approach_kyiv.text = sumAppr.toString()
-                        main_street_lect_kyiv.text = sumStrLect.toString()
-                        main_lect_center_kyiv.text = sumCenteLect.toString()
+//                        main_intro_kyiv.text = sumIntroKiev.toString()
+//                        main_one_day_kyiv.text = sumOneD.toString()
+//                        main_two_day_kyiv.text = sumTwoD.toString()
+//                        main_21_day_kyiv.text = sumTwent.toString()
+//                        main_time_str_kyiv.text = sumTimeStr.toString()
+//                        main_approach_kyiv.text = sumAppr.toString()
+//                        main_street_lect_kyiv.text = sumStrLect.toString()
+//                        main_lect_center_kyiv.text = sumCenteLect.toString()
 
 
                     }
@@ -662,24 +634,24 @@ private fun hideBottomNavigationView(view: BottomNavigationView) {
                         val oneD = resultNote.onedayWS
                         val twoD = resultNote.twoDayWS
 
-                        if (intro.isNullOrEmpty()) {
-                            main_intro_kharkiv.text = "0"
-                        } else {
-                            main_intro_kharkiv.text = intro
-                        }
-
-                        if (oneD.isNullOrEmpty()) {
-                            main_one_day_kharkiv.text = "0"
-
-                        } else {
-                            main_one_day_kharkiv.text = oneD
-                        }
-
-                        if (twoD.isNullOrEmpty()) {
-                            main_two_day_kharkiv.text = "0"
-                        } else {
-                            main_two_day_kharkiv.text = twoD
-                        }
+//                        if (intro.isNullOrEmpty()) {
+//                            main_intro_kharkiv.text = "0"
+//                        } else {
+//                            main_intro_kharkiv.text = intro
+//                        }
+//
+//                        if (oneD.isNullOrEmpty()) {
+//                            main_one_day_kharkiv.text = "0"
+//
+//                        } else {
+//                            main_one_day_kharkiv.text = oneD
+//                        }
+//
+//                        if (twoD.isNullOrEmpty()) {
+//                            main_two_day_kharkiv.text = "0"
+//                        } else {
+//                            main_two_day_kharkiv.text = twoD
+//                        }
 
                     }
 

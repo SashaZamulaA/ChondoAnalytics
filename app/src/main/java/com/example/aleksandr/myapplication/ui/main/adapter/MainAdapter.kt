@@ -5,26 +5,53 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.aleksandr.myapplication.R
-import com.example.aleksandr.myapplication.model.CityData
+import com.example.aleksandr.myapplication.model.City
+import com.example.aleksandr.myapplication.ui.main.adapter.MainAdapter.CityHolder
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import kotlinx.android.synthetic.main.item_goal_list.view.*
+import kotlinx.android.synthetic.main.item_main_list.view.*
 
-class MainAdapter(options: FirestoreRecyclerOptions<CityData>) : FirestoreRecyclerAdapter<CityData, MainAdapter.NoteHolder>(options) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteHolder {
+class MainAdapter(options: FirestoreRecyclerOptions<City>) : FirestoreRecyclerAdapter<City, CityHolder>(options) {
+
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CityHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.item_main_list,
                 parent, false)
-        return NoteHolder(v)
+        return CityHolder(v)
     }
 
-    override fun onBindViewHolder(holder: NoteHolder, position: Int, model: CityData) {
+    override fun onBindViewHolder(holder: CityHolder, position: Int, model: City) {
         holder.bind(model)
+//         model.centers?.forEach { _ -> holder.bind(City()) }
+
     }
 
-    inner class NoteHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class CityHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(note: CityData) {
+        fun bind(note: City) {
+//            noteRefCollection
+//                    .whereEqualTo("centers", "Kyiv")
+//                    .whereGreaterThanOrEqualTo("time", startOfDay(Date()))
+//                    .whereLessThanOrEqualTo("time", endOfDay(Date()))
+//                    .get()
+//                    .addOnSuccessListener { queryDocumentSnapshots ->
+//                        if (!queryDocumentSnapshots.isEmpty) {
+//                            queryDocumentSnapshots.forEach { documentSnapshot ->
+//
+//                                val resultNote = documentSnapshot.toObject(City::class.java)
+//
+//                                if (!resultNote.intro.isNullOrEmpty()) {
+//                                    val intro = (Integer.parseInt(resultNote.intro))
+//                                    sumIntroKiev += intro
+//                                }
+                                itemView.result_city.text = note.centers
+//                            }
+//                        }
+//                    }
+        }
+        fun bind2(note: City) {
 
             itemView.apply {
                 name.text = note.centers
