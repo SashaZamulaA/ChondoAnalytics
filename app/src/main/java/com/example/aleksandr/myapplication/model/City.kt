@@ -16,6 +16,7 @@ data class City(
 //        val method: List<Method>
         ){
     constructor() : this("","", "", "", "","","","","",Date())
+    enum class Type { Kyiv, Kharkiv, Dnepr, Lviv }
 }
 
 

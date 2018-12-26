@@ -36,7 +36,7 @@
             android:layout_marginTop="@dimen/space8"
             android:layout_marginBottom="16dp"
             android:gravity="center"
-            android:text="@string/kiev"
+            tools:text="@string/kiev"
             android:textSize="@dimen/space_24" />
 
 
@@ -86,7 +86,7 @@
                     android:text="@string/streat_time" />
 
                 <TextView
-                    android:id="@+id/main_time_on_street"
+                    android:id="@+id/main_time_str"
                     style="@style/TextStyle_Body2_Primary_Dark"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -117,6 +117,7 @@
                     android:text="@string/one_day_seminar" />
 
                 <TextView
+                    android:id="@+id/main_one_day"
                     style="@style/TextStyle_Body2_Primary_Dark"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -141,6 +142,7 @@
                     android:text="@string/approach" />
 
                 <TextView
+                    android:id="@+id/main_approach"
                     style="@style/TextStyle_Body2_Primary_Dark"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -171,6 +173,7 @@
                     android:text="@string/two_day_seminar" />
 
                 <TextView
+                    android:id="@+id/main_two_day"
                     style="@style/TextStyle_Body2_Primary_Dark"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -195,6 +198,7 @@
                     android:text="@string/lecture_on_streat_main" />
 
                 <TextView
+                    android:id="@+id/main_street_lect"
                     style="@style/TextStyle_Body2_Primary_Dark"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -225,6 +229,7 @@
                     android:text="@string/day21_seminar" />
 
                 <TextView
+                    android:id="@+id/main_21_day"
                     style="@style/TextStyle_Body2_Primary_Dark"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -249,6 +254,7 @@
                     android:text="@string/lecture_in_centre_main" />
 
                 <TextView
+                    android:id="@+id/main_lect_center"
                     style="@style/TextStyle_Body2_Primary_Dark"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

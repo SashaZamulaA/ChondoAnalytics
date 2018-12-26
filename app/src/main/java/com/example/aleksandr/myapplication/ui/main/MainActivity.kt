@@ -21,16 +21,14 @@ import android.support.v7.widget.LinearLayoutManager
 
 import com.example.aleksandr.myapplication.ui.main.adapter.MainAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
-import com.google.firebase.firestore.Query
 
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class MainActivity : BaseActivity() {
 
     private lateinit var presenter: MainPresenter
+    private lateinit var adapter: MainAdapter
     private val noteRefCollection = firestoreInstance.collection("NewCity")
-
-    lateinit var adapter: MainAdapter
 
     var sumIntroKiev = 0
     var sumOneD = 0
@@ -48,6 +46,28 @@ class MainActivity : BaseActivity() {
     override fun init(savedInstanceState: Bundle?) {
         super.setContentView(com.example.aleksandr.myapplication.R.layout.activity_main)
         presenter = MainPresenter(this, application)
+
+        list_main_adapter.setHasFixedSize(true)
+        list_main_adapter.layoutManager = LinearLayoutManager(this)
+        val items: ArrayList<City> = ArrayList()
+
+        //adding some dummy data to the list
+        items.add(City("","", "", "", "KYIV","","","","",Date()))
+        items.add(City("","", "", "", "KHARKIV","","","","",Date()))
+        items.add(City("","", "", "", "DNEPR","","","","",Date()))
+        items.add(City("","", "", "", "ZHYTOMYR","","","","",Date()))
+        items.add(City("","", "", "", "LVIV","","","","",Date()))
+        items.add(City("","", "", "", "ODESSA","","","","",Date()))
+        items.add(City("","", "", "", "CHERNIGOV","","","","",Date()))
+
+        //creating our adapter
+        adapter = MainAdapter(items)
+
+        //now adding the adapter to recyclerview
+
+//        adapter = MainAdapter(options)
+
+        list_main_adapter.adapter = adapter
         RecyclerInit()
 
         loadKyivDay()
@@ -80,31 +100,33 @@ class MainActivity : BaseActivity() {
         }
     }
 
+
+
     private fun RecyclerInit() {
-        val query = noteRefCollection.whereEqualTo("centers", "Kyiv")
-                .whereGreaterThanOrEqualTo("time", startOfDay(Date()))
-                .whereLessThanOrEqualTo("time", endOfDay(Date()))
+//        val query = noteRefCollection
+//
+//
+//        val options = FirestoreRecyclerOptions.Builder<City>()
+//
+//                .setQuery(query, City::class.java)
+//                .build()
 
-
-        val options = FirestoreRecyclerOptions.Builder<City>()
-
-                .setQuery(query, City::class.java)
-                .build()
-
-        adapter = MainAdapter(options)
-        list_main_adapter.setHasFixedSize(true)
-        list_main_adapter.layoutManager = LinearLayoutManager(this)
-        list_main_adapter.adapter = adapter
     }
 
+
+
+
+
     override fun onStart() {
+
         super.onStart()
-        adapter.startListening()
+
+//        adapter.startListening()
     }
 
     override fun onStop() {
         super.onStop()
-        adapter.stopListening()
+//       adapter.stopListening()
     }
 
 
@@ -315,7 +337,7 @@ private fun hideBottomNavigationView(view: BottomNavigationView) {
         sumCenteLect = 0
 
         val city = City()
-        city.centers?.forEach {  }
+
         noteRefCollection
                 .whereEqualTo("centers", "Kyiv")
                 .whereGreaterThanOrEqualTo("time", startOfDay(Date()))

@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.model.City
-import com.example.aleksandr.myapplication.ui.main.adapter.MainAdapter.CityHolder
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter
-import com.firebase.ui.firestore.FirestoreRecyclerOptions
-import kotlinx.android.synthetic.main.item_goal_list.view.*
+import com.example.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
+import com.example.aleksandr.myapplication.util.endOfDay
+import com.example.aleksandr.myapplication.util.startOfDay
 import kotlinx.android.synthetic.main.item_main_list.view.*
+import java.util.*
 
 
 class MainAdapter(options: FirestoreRecyclerOptions<City>) : FirestoreRecyclerAdapter<City, CityHolder>(options) {
@@ -28,6 +28,7 @@ class MainAdapter(options: FirestoreRecyclerOptions<City>) : FirestoreRecyclerAd
 
     }
 
+    @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
     inner class CityHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(note: City) {
