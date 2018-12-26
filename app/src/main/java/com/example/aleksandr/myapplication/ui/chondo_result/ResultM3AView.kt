@@ -114,13 +114,13 @@ class ResultM3AView : BaseActivity(), IResultM3AView {
         dataToSave[SPINNER] = centers
         val filename = UUID.randomUUID().toString()
         FirestoreUtil.currentUserDocRef.collection("City")
-                .document(centers)
+                .document(centers).collection(filename).document()
                 .set(City(intro, oneDayWS, twoDayWS, twOneDay, centers, approach, timeStr, lectOnStr, lectCentr, Date()))
 
         noteRefCollection.add(City(intro, oneDayWS, twoDayWS, twOneDay, centers, approach, timeStr, lectOnStr, lectCentr, Date()))
 
         firestoreInstance.collection("City")
-                .document(centers)
+                .document(centers).collection(centers).document()
                 .set(City(intro, oneDayWS, twoDayWS, twOneDay, centers, approach, timeStr, lectOnStr, lectCentr, Date()))
 
         startActivity(Intent(this@ResultM3AView, MainActivity::class.java))
