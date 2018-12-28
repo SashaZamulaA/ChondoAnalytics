@@ -13,10 +13,9 @@ data class City(
         val lectOnStr: String?,
         val lectCentr: String?,
         val time: Date
-//        val method: List<Method>
         ){
     constructor() : this("","", "", "", "","","","","",Date())
-    enum class Type { Kyiv, Kharkiv, Dnepr, Lviv }
+
 }
 
 

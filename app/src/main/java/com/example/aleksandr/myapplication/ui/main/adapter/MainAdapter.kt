@@ -8,13 +8,38 @@ import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.model.City
 import com.example.aleksandr.myapplication.util.*
 import com.example.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
-import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.android.synthetic.main.item_main_list.view.*
 import java.util.*
 
+class MainAdapter(val list: ArrayList<City>) : RecyclerView.Adapter<MainAdapter.CityHolder>() {
 
-class MainAdapter(options: FirestoreRecyclerOptions<City>) : FirestoreRecyclerAdapter<City, CityHolder>(options) {
+    override fun getItemCount(): Int {
+        return list.size
+    }
+    private val noteRefCollection = firestoreInstance.collection("NewCity")
+
+    enum class ClickByFilter {
+        DAY, MONTH, WEEK, YEAR
+    }
+
+    var period = 0
+    fun perioSelected(periodSelected: MainAdapter.ClickByFilter) {
+        when (periodSelected) {
+            MainAdapter.ClickByFilter.DAY -> {
+                period = 1; notifyDataSetChanged()
+            }
+            MainAdapter.ClickByFilter.WEEK -> {
+                period = 2; notifyDataSetChanged()
+            }
+            MainAdapter.ClickByFilter.MONTH -> {
+                period = 3; notifyDataSetChanged()
+            }
+            MainAdapter.ClickByFilter.YEAR -> {
+                period = 4; notifyDataSetChanged()
+            }
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CityHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.item_main_list,
@@ -22,10 +47,8 @@ class MainAdapter(options: FirestoreRecyclerOptions<City>) : FirestoreRecyclerAd
         return CityHolder(v)
     }
 
-    override fun onBindViewHolder(holder: CityHolder, position: Int, model: City) {
-        holder.bind(model)
-//         model.centers?.forEach { _ -> holder.bind(City()) }
-
+    override fun onBindViewHolder(holder: CityHolder, position: Int) {
+          holder.bind()
     }
 
     @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
@@ -40,7 +63,7 @@ class MainAdapter(options: FirestoreRecyclerOptions<City>) : FirestoreRecyclerAd
             val sumAppr = 0
             val sumStrLect = 0
             val sumCenteLect = 0
-            itemView.result_city.text = "KYIV"
+
 
             clickByFilter(noteRefCollection, position, period).addOnSuccessListener { queryDocumentSnapshots ->
                 cityName(queryDocumentSnapshots, sumIntro, sumOneD, sumTwoD, sumTwent, sumAppr, sumTimeStr, sumStrLect, sumCenteLect)
@@ -50,6 +73,7 @@ class MainAdapter(options: FirestoreRecyclerOptions<City>) : FirestoreRecyclerAd
         }
 
         private fun cityName(queryDocumentSnapshots: QuerySnapshot, sumIntro: Int, sumOneD: Int, sumTwoD: Int, sumTwent: Int, sumAppr: Int, sumTimeStr: Int, sumStrLect: Int, sumCenteLect: Int) {
+            itemView.result_city.text = "d"
             var sumIntroKiev1 = sumIntro
             var sumOneD1 = sumOneD
             var sumTwoD1 = sumTwoD
@@ -112,7 +136,7 @@ class MainAdapter(options: FirestoreRecyclerOptions<City>) : FirestoreRecyclerAd
                         itemView.main_lect_center.text = "0"
                     }
 
-
+//                    itemView.result_city.text = model.centers.toString()
                     itemView.main_intro.text = sumIntroKiev1.toString()
                     itemView.main_one_day.text = sumOneD1.toString()
                     itemView.main_two_day.text = sumTwoD1.toString()
@@ -124,6 +148,7 @@ class MainAdapter(options: FirestoreRecyclerOptions<City>) : FirestoreRecyclerAd
 
                 }
             } else {
+//                itemView.result_city.text = model.centers.toString()
                 itemView.main_intro.text = "0"
                 itemView.main_one_day.text = "0"
                 itemView.main_two_day.text = "0"
@@ -132,6 +157,7 @@ class MainAdapter(options: FirestoreRecyclerOptions<City>) : FirestoreRecyclerAd
                 itemView.main_approach.text = "0"
                 itemView.main_street_lect.text = "0"
                 itemView.main_lect_center.text = "0"
+
             }
 
         }

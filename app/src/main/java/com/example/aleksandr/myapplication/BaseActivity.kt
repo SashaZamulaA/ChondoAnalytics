@@ -39,7 +39,7 @@ abstract class BaseActivity : AppCompatActivity(), IView, NavigationView.OnNavig
         drawer = findViewById<View>(R.id.drawer_layout) as DrawerLayout
         toggle = ActionBarDrawerToggle(this, drawer, toolbar, R.string.drawer_open, R.string.drawer_close)
         drawer.addDrawerListener(toggle)
-        toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white))
+        toggle.drawerArrowDrawable.color = resources.getColor(R.color.white)
         toggle.syncState()
 
         navigationView = findViewById<View>(R.id.nav_view) as NavigationView
