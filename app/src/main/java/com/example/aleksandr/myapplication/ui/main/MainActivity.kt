@@ -2,25 +2,24 @@ package com.example.aleksandr.myapplication.ui.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.BottomNavigationView
+import android.support.design.widget.CoordinatorLayout
 import android.support.v4.view.GravityCompat
+import android.support.v4.view.ViewCompat
 import android.support.v7.app.AlertDialog
+import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
+import android.view.View
 import com.example.aleksandr.myapplication.BaseActivity
+import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.model.City
 import com.example.aleksandr.myapplication.ui.login.LoginActivity
+import com.example.aleksandr.myapplication.ui.main.adapter.MainAdapter
 import com.example.aleksandr.myapplication.util.*
 import com.example.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import com.google.firebase.firestore.FieldValue
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
-import android.view.View
-import android.support.design.widget.BottomNavigationView
-import android.support.v4.view.ViewCompat
-import android.support.design.widget.CoordinatorLayout
-import android.support.v7.widget.LinearLayoutManager
-
-import com.example.aleksandr.myapplication.ui.main.adapter.MainAdapter
-import com.firebase.ui.firestore.FirestoreRecyclerOptions
 
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
@@ -52,13 +51,13 @@ class MainActivity : BaseActivity() {
         val items: ArrayList<City> = ArrayList()
 
         //adding some dummy data to the list
-        items.add(City("","", "", "", "KYIV","","","","",Date()))
-        items.add(City("","", "", "", "KHARKIV","","","","",Date()))
-        items.add(City("","", "", "", "DNEPR","","","","",Date()))
-        items.add(City("","", "", "", "ZHYTOMYR","","","","",Date()))
-        items.add(City("","", "", "", "LVIV","","","","",Date()))
-        items.add(City("","", "", "", "ODESSA","","","","",Date()))
-        items.add(City("","", "", "", "CHERNIGOV","","","","",Date()))
+        items.add(City("", "", "", "", "KYIV", "", "", "", "", Date()))
+        items.add(City("", "", "", "", "KHARKIV", "", "", "", "", Date()))
+        items.add(City("", "", "", "", "DNEPR", "", "", "", "", Date()))
+        items.add(City("", "", "", "", "ZHYTOMYR", "", "", "", "", Date()))
+        items.add(City("", "", "", "", "LVIV", "", "", "", "", Date()))
+        items.add(City("", "", "", "", "ODESSA", "", "", "", "", Date()))
+        items.add(City("", "", "", "", "CHERNIGOV", "", "", "", "", Date()))
 
         //creating our adapter
         adapter = MainAdapter(items)
@@ -76,21 +75,31 @@ class MainActivity : BaseActivity() {
         val doc = HashMap<String, Any>()
         doc["timestamp"] = FieldValue.serverTimestamp()
 
+        bottomMenu()
+    }
+
+    private fun bottomMenu() {
         val layoutParams = bottom_navigation.layoutParams as CoordinatorLayout.LayoutParams
         layoutParams.behavior = BottomNavigationViewBehavior()
         bottom_navigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
-                com.example.aleksandr.myapplication.R.id.menu_year -> {
+                R.id.menu_year -> {
                     loadKyivYear()
+                    adapter.re(MainAdapter.ClickByFilter.YEAR)
+
                 }
-                com.example.aleksandr.myapplication.R.id.menu_month -> {
+                R.id.menu_month -> {
                     loadKyivMonth()
+                    adapter.re(MainAdapter.ClickByFilter.MONTH)
                 }
-                com.example.aleksandr.myapplication.R.id.menu_week -> {
+                R.id.menu_week -> {
                     loadKyivWeek()
+                    adapter.re(MainAdapter.ClickByFilter.WEEK)
                 }
-                com.example.aleksandr.myapplication.R.id.menu_day -> {
+                R.id.menu_day -> {
                     loadKyivDay()
+                    adapter.re(MainAdapter.ClickByFilter.DAY)
+
                 }
                 else -> {
 
@@ -99,7 +108,6 @@ class MainActivity : BaseActivity() {
             true
         }
     }
-
 
 
     private fun RecyclerInit() {
@@ -114,9 +122,6 @@ class MainActivity : BaseActivity() {
     }
 
 
-
-
-
     override fun onStart() {
 
         super.onStart()
@@ -128,7 +133,6 @@ class MainActivity : BaseActivity() {
         super.onStop()
 //       adapter.stopListening()
     }
-
 
 
     inner class BottomNavigationViewBehavior : CoordinatorLayout.Behavior<BottomNavigationView>() {
@@ -167,7 +171,8 @@ class MainActivity : BaseActivity() {
             child.animate().translationY(height.toFloat()).duration = 200
         }
     }
-//            val recyclerView = findViewById<RecyclerView>(R.id.result_recycler)
+
+    //            val recyclerView = findViewById<RecyclerView>(R.id.result_recycler)
 //        recyclerView.layoutManager = LinearLayoutManager(this)
 //
 //        val rootRef = FirestoreUtil.currentUserDocRef
@@ -247,15 +252,16 @@ class MainActivity : BaseActivity() {
 //        super.onStop()
 //        adapter.stopListening()
 //    }
-private fun hideBottomNavigationView(view: BottomNavigationView) {
-    view.clearAnimation()
-    view.animate().translationY(view.height.toFloat()).duration = 300
-}
+    private fun hideBottomNavigationView(view: BottomNavigationView) {
+        view.clearAnimation()
+        view.animate().translationY(view.height.toFloat()).duration = 300
+    }
 
     fun showBottomNavigationView(view: BottomNavigationView) {
         view.clearAnimation()
         view.animate().translationY(0f).duration = 300
     }
+
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         presenter.bindView(this)
@@ -424,8 +430,8 @@ private fun hideBottomNavigationView(view: BottomNavigationView) {
 
         noteRefCollection
                 .whereEqualTo("centers", "Kyiv")
-                .whereLessThanOrEqualTo("time", getDateEndWeek())
-                .whereGreaterThanOrEqualTo("time", getDateStartWeek())
+                .whereLessThanOrEqualTo("time", endOfWeek())
+                .whereGreaterThanOrEqualTo("time", startOfWeek())
                 .get()
                 .addOnSuccessListener { queryDocumentSnapshots ->
                     if (!queryDocumentSnapshots.isEmpty) {
@@ -501,10 +507,10 @@ private fun hideBottomNavigationView(view: BottomNavigationView) {
         sumAppr = 0
         sumStrLect = 0
         sumCenteLect = 0
-              noteRefCollection
+        noteRefCollection
                 .whereEqualTo("centers", "Kyiv")
-                .whereLessThanOrEqualTo("time", getDateEndMonth())
-                .whereGreaterThanOrEqualTo("time", getDateStartMonth())
+                .whereLessThanOrEqualTo("time", endOfMonth())
+                .whereGreaterThanOrEqualTo("time", startOfMonth())
                 .get()
                 .addOnSuccessListener { queryDocumentSnapshots ->
                     if (!queryDocumentSnapshots.isEmpty) {
@@ -573,8 +579,8 @@ private fun hideBottomNavigationView(view: BottomNavigationView) {
 
         noteRefCollection
                 .whereEqualTo("centers", "Kyiv")
-                .whereLessThanOrEqualTo("time", getDateEndYear())
-                .whereGreaterThanOrEqualTo("time", getDateStartYear())
+                .whereLessThanOrEqualTo("time", endOfYear())
+                .whereGreaterThanOrEqualTo("time", startOfYear())
                 .get()
                 .addOnSuccessListener { queryDocumentSnapshots ->
                     var sumIntroKiev = 0
@@ -639,7 +645,6 @@ private fun hideBottomNavigationView(view: BottomNavigationView) {
 
                 }
     }
-
 
 
     private fun loadKharkiv() {

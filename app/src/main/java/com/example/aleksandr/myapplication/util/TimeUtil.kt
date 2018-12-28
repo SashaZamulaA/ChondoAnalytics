@@ -1,5 +1,8 @@
 package com.example.aleksandr.myapplication.util
 
+import com.google.android.gms.tasks.Task
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.QuerySnapshot
 import java.util.*
 
 fun startOfDay(date: Date): Date {
@@ -22,7 +25,7 @@ fun endOfDay(date: Date): Date {
     return calendar.time
 }
 
-fun getDateStartWeek(): Date {
+fun startOfWeek(): Date {
     run {
         val calend = getCalendarForNow()
         calend.set(Calendar.DAY_OF_WEEK, calend.getActualMinimum(Calendar.DAY_OF_WEEK))
@@ -31,7 +34,7 @@ fun getDateStartWeek(): Date {
     }
 }
 
-fun getDateEndWeek(): Date {
+fun endOfWeek(): Date {
 
     run {
         val calend = getCalendarForNow()
@@ -42,7 +45,7 @@ fun getDateEndWeek(): Date {
     }
 }
 
-fun getDateStartMonth(): Date {
+fun startOfMonth(): Date {
     run {
         val calend = getCalendarForNow()
         calend.set(Calendar.DAY_OF_MONTH,
@@ -52,7 +55,7 @@ fun getDateStartMonth(): Date {
     }
 }
 
-fun getDateEndMonth(): Date {
+fun endOfMonth(): Date {
 
     run {
         val calend = getCalendarForNow()
@@ -63,7 +66,7 @@ fun getDateEndMonth(): Date {
     }
 }
 
-fun getDateStartYear(): Date {
+fun startOfYear(): Date {
     run {
         val calend = getCalendarForNow()
         calend.set(Calendar.DAY_OF_YEAR,
@@ -73,7 +76,7 @@ fun getDateStartYear(): Date {
     }
 }
 
-fun getDateEndYear(): Date {
+fun endOfYear(): Date {
 
     run {
         val calend = getCalendarForNow()
@@ -101,4 +104,36 @@ private fun setTimeToEndofDay(calendar: Calendar) {
     calendar.set(Calendar.MINUTE, 59)
     calendar.set(Calendar.SECOND, 59)
     calendar.set(Calendar.MILLISECOND, 999)
+}
+
+fun clickByFilter(noteRefCollection: CollectionReference, city: Int, value: Int) : Task<QuerySnapshot> {
+    return noteRefCollection
+            .whereEqualTo("centers", when(city) {
+               0 -> "Kyiv"
+               1 -> "Kharkiv"
+               2 -> "Dnepr"
+               3 -> "Zhytomyr"
+               4 -> "Lviv"
+               5 -> "Odessa"
+               6 -> "Chernigov"
+                else -> null
+            }
+
+            )
+            .whereGreaterThanOrEqualTo("time", when (value) {
+                1 -> startOfDay(Date())
+                2 -> startOfWeek()
+                3 -> startOfMonth()
+                4 -> startOfYear()
+                else -> startOfDay(Date())
+            }) //startOfDay(Date())
+            .whereLessThanOrEqualTo("time", when (value){
+                1 -> endOfDay(Date())
+                2 -> endOfWeek()
+                3 -> endOfMonth()
+                4 -> endOfYear()
+                else -> startOfDay(Date())
+            })
+            .get()
+
 }
