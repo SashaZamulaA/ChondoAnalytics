@@ -104,12 +104,12 @@ class MainActivity : BaseActivity() {
 
         private fun slideUp(child: BottomNavigationView) {
             child.clearAnimation()
-            child.animate().translationY(0f).duration = 200
+            child.animate().translationY(0f).duration = 4000
         }
 
         private fun slideDown(child: BottomNavigationView) {
             child.clearAnimation()
-            child.animate().translationY(height.toFloat()).duration = 200
+            child.animate().translationY(height.toFloat()).duration = 4000
         }
     }
 

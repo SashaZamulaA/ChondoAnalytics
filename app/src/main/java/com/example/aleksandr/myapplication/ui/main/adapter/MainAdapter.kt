@@ -73,7 +73,7 @@ class MainAdapter(val list: ArrayList<City>) : RecyclerView.Adapter<MainAdapter.
         }
 
         private fun cityName(queryDocumentSnapshots: QuerySnapshot, sumIntro: Int, sumOneD: Int, sumTwoD: Int, sumTwent: Int, sumAppr: Int, sumTimeStr: Int, sumStrLect: Int, sumCenteLect: Int) {
-            itemView.result_city.text = "d"
+            itemView.result_city.text = "KYIV"
             var sumIntroKiev1 = sumIntro
             var sumOneD1 = sumOneD
             var sumTwoD1 = sumTwoD
