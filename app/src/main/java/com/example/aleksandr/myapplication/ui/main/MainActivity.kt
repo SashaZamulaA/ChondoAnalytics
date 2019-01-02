@@ -4,12 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.design.widget.CoordinatorLayout
-import android.support.v4.view.GravityCompat
 import android.support.v4.view.ViewCompat
 import android.support.v7.app.AlertDialog
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
-import com.example.aleksandr.myapplication.BaseActivity
 import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.model.City
 import com.example.aleksandr.myapplication.ui.login.LoginActivity
@@ -18,15 +17,14 @@ import com.google.firebase.firestore.FieldValue
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
+class MainActivity : AppCompatActivity() {
 
-@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-class MainActivity : BaseActivity() {
+   lateinit var presenter: MainPresenter
+   lateinit var adapter: MainAdapter
 
-    private lateinit var presenter: MainPresenter
-    private lateinit var adapter: MainAdapter
-
-    override fun init(savedInstanceState: Bundle?) {
-        super.setContentView(com.example.aleksandr.myapplication.R.layout.activity_main)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
         presenter = MainPresenter(this, application)
 
         list_main_adapter.setHasFixedSize(true)
@@ -124,21 +122,17 @@ class MainActivity : BaseActivity() {
     }
 
     override fun onBackPressed() {
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START)
-        } else {
-            AlertDialog.Builder(this)
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .setTitle("Closing Activity")
-                    .setMessage("Are you sure you want to close this activity?")
-                    .setPositiveButton("Yes") { _, _ ->
-                        val intent = Intent(this, LoginActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                    }
-                    .setNegativeButton("No", null)
-                    .show()
-        }
 
+        AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Closing Activity")
+                .setMessage("Are you sure you want to close this activity?")
+                .setPositiveButton("Yes") { _, _ ->
+                    val intent = Intent(this, LoginActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+                .setNegativeButton("No", null)
+                .show()
     }
 }
