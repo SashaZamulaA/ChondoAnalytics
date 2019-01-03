@@ -2,46 +2,32 @@ package com.example.aleksandr.myapplication.ui.main
 
 import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import androidx.coordinatorlayout.widget.CoordinatorLayout
-import com.google.android.material.navigation.NavigationView
-import androidx.core.view.ViewCompat
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.appcompat.widget.Toolbar
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.view.ViewCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.ui.NavigationUI
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.model.City
 import com.example.aleksandr.myapplication.ui.login.LoginActivity
 import com.example.aleksandr.myapplication.ui.main.adapter.MainAdapter
-import com.google.firebase.firestore.FieldValue
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
 
-    override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
-
-        menuItem.isChecked = true
-
-        drawerLayout.closeDrawers()
-
-        val id = menuItem.itemId
-
-        when (id) {
-
-            R.id.first -> navController.navigate(R.id.firstFragment)
 
 
-        }
-        return true
-
-    }
     lateinit var toolbar: Toolbar
 
     lateinit var drawerLayout: DrawerLayout
@@ -57,6 +43,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_main)
         presenter = MainPresenter(this, application)
 
+        adapterInit()
+
+        bottomMenu()
+    }
+
+    private fun adapterInit() {
         list_main_adapter.setHasFixedSize(true)
         list_main_adapter.layoutManager = LinearLayoutManager(this)
         val items: ArrayList<City> = ArrayList()
@@ -71,11 +63,24 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         adapter = MainAdapter(items)
         list_main_adapter.adapter = adapter
+    }
 
-        val doc = HashMap<String, Any>()
-        doc["timestamp"] = FieldValue.serverTimestamp()
+    override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
 
-        bottomMenu()
+        menuItem.isChecked = true
+
+        drawerLayout.closeDrawers()
+
+        val id = menuItem.itemId
+
+        when (id) {
+
+            R.id.first -> navController.navigate(R.id.defaultFragment)
+
+
+        }
+        return true
+
     }
 
     private fun bottomMenu() {
@@ -103,7 +108,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             true
         }
     }
-
+    override fun onSupportNavigateUp(): Boolean {
+        return NavigationUI.navigateUp(drawerLayout, Navigation.findNavController(this, R.id.nav_host_fragment))
+    }
     inner class BottomNavigationViewBehavior : CoordinatorLayout.Behavior<BottomNavigationView>() {
 
         private var height: Int = 0
@@ -132,12 +139,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         private fun slideUp(child: BottomNavigationView) {
             child.clearAnimation()
-            child.animate().translationY(0f).duration = 4000
+            child.animate().translationY(0f).duration = 200
         }
 
         private fun slideDown(child: BottomNavigationView) {
             child.clearAnimation()
-            child.animate().translationY(height.toFloat()).duration = 4000
+            child.animate().translationY(height.toFloat()).duration = 200
         }
     }
 
