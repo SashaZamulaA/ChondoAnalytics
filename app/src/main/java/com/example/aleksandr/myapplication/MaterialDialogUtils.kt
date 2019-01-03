@@ -3,7 +3,7 @@ package com.example.aleksandr.myapplication
 import android.app.ProgressDialog.show
 import android.content.Context
 import android.content.DialogInterface
-import android.support.v7.app.AlertDialog
+import androidx.appcompat.app.AlertDialog
 import android.text.method.LinkMovementMethod
 import android.widget.TextView
 

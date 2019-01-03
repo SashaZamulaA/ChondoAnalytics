@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,7 +9,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
-    <android.support.design.widget.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/detail_backdrop_height"
@@ -17,7 +17,7 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:elevation="2dp">
 
-        <android.support.design.widget.CollapsingToolbarLayout
+        <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -39,7 +39,7 @@
                 android:src="@mipmap/motivation"
                 app:layout_collapseMode="parallax" />
 
-            <android.support.v7.widget.Toolbar
+            <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
@@ -48,11 +48,11 @@
 
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-        </android.support.design.widget.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
 
-    </android.support.design.widget.AppBarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/result_fab_confirm_goal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -62,7 +62,7 @@
         app:layout_anchor="@id/appbar"
         app:layout_anchorGravity="bottom|right|end" />
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -73,7 +73,7 @@
             android:orientation="vertical">
 
             <!--MAIN CARD INFO-->
-            <android.support.v7.widget.CardView
+            <androidx.cardview.widget.CardView
                 android:id="@+id/cardView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -87,9 +87,9 @@
                 card_view:layout_constraintStart_toStartOf="parent"
                 card_view:layout_constraintTop_toTopOf="parent">
 
-            </android.support.v7.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
-            <android.support.v7.widget.CardView
+            <androidx.cardview.widget.CardView
                 android:id="@+id/cardView_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -133,9 +133,9 @@
                         style="@style/AppTheme.HorizontalSpinnerDivider"
                         android:layout_marginTop="@dimen/space_8" />
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
-            <android.support.v7.widget.CardView
+            <androidx.cardview.widget.CardView
                 android:id="@+id/cardView_period"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -174,7 +174,7 @@
                             android:layout_weight="1"
                             android:orientation="vertical">
 
-                            <android.support.design.widget.TextInputLayout
+                            <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/introduction"
                                 style="@style/TextStyle_Caption_Dark"
                                 android:layout_width="match_parent"
@@ -184,7 +184,7 @@
                                 android:textColorHint="@color/text_secondary_dark"
                                 android:textDirection="inherit">
 
-                                <android.support.design.widget.TextInputEditText
+                                <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/introduction_edittext"
                                     style="@style/TextStyle_Body2_Primary_Dark"
                                     android:layout_width="match_parent"
@@ -204,7 +204,7 @@
                                     app:backgroundTint="@color/divider_spinner_color"
                                     tools:text="10.00" />
 
-                            </android.support.design.widget.TextInputLayout>
+                            </com.google.android.material.textfield.TextInputLayout>
 
 
                         </LinearLayout>
@@ -217,7 +217,7 @@
                             android:layout_weight="1"
                             android:orientation="vertical">
 
-                            <android.support.design.widget.TextInputLayout
+                            <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/result_time_street"
                                 style="@style/TextStyle_Caption_Dark"
                                 android:layout_width="match_parent"
@@ -227,7 +227,7 @@
                                 android:textColorHint="@color/text_secondary_dark"
                                 android:textDirection="inherit">
 
-                                <android.support.design.widget.TextInputEditText
+                                <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/result_time_street_edit_text"
                                     style="@style/TextStyle_Body2_Primary_Dark"
                                     android:layout_width="match_parent"
@@ -247,7 +247,7 @@
                                     app:backgroundTint="@color/divider_spinner_color"
                                     tools:text="10.00" />
 
-                            </android.support.design.widget.TextInputLayout>
+                            </com.google.android.material.textfield.TextInputLayout>
 
 
                         </LinearLayout>
@@ -266,7 +266,7 @@
                             android:layout_weight="1"
                             android:orientation="vertical">
 
-                            <android.support.design.widget.TextInputLayout
+                            <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/one_day_seminar"
                                 style="@style/TextStyle_Caption_Dark"
                                 android:layout_width="match_parent"
@@ -276,7 +276,7 @@
                                 android:textColorHint="@color/text_secondary_dark"
                                 android:textDirection="inherit">
 
-                                <android.support.design.widget.TextInputEditText
+                                <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/one_day_seminar_edittext"
                                     style="@style/TextStyle_Body2_Primary_Dark"
                                     android:layout_width="match_parent"
@@ -297,7 +297,7 @@
                                     app:backgroundTint="@color/divider_spinner_color"
                                     tools:text="10.00" />
 
-                            </android.support.design.widget.TextInputLayout>
+                            </com.google.android.material.textfield.TextInputLayout>
 
 
                         </LinearLayout>
@@ -310,7 +310,7 @@
                             android:layout_weight="1"
                             android:orientation="vertical">
 
-                            <android.support.design.widget.TextInputLayout
+                            <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/result_approach"
                                 style="@style/TextStyle_Caption_Dark"
                                 android:layout_width="match_parent"
@@ -320,7 +320,7 @@
                                 android:textColorHint="@color/text_secondary_dark"
                                 android:textDirection="inherit">
 
-                                <android.support.design.widget.TextInputEditText
+                                <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/result_approach_edit_text"
                                     style="@style/TextStyle_Body2_Primary_Dark"
                                     android:layout_width="match_parent"
@@ -341,7 +341,7 @@
                                     app:backgroundTint="@color/divider_spinner_color"
                                     tools:text="10.00" />
 
-                            </android.support.design.widget.TextInputLayout>
+                            </com.google.android.material.textfield.TextInputLayout>
 
 
                         </LinearLayout>
@@ -359,7 +359,7 @@
                             android:layout_weight="1"
                             android:orientation="vertical">
 
-                            <android.support.design.widget.TextInputLayout
+                            <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/two_day_seminar"
                                 style="@style/TextStyle_Caption_Dark"
                                 android:layout_width="match_parent"
@@ -369,7 +369,7 @@
                                 android:textColorHint="@color/text_secondary_dark"
                                 android:textDirection="inherit">
 
-                                <android.support.design.widget.TextInputEditText
+                                <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/two_day_seminar_edittext"
                                     style="@style/TextStyle_Body2_Primary_Dark"
                                     android:layout_width="match_parent"
@@ -390,7 +390,7 @@
                                     app:backgroundTint="@color/divider_spinner_color"
                                     tools:text="10.00" />
 
-                            </android.support.design.widget.TextInputLayout>
+                            </com.google.android.material.textfield.TextInputLayout>
 
 
                         </LinearLayout>
@@ -402,7 +402,7 @@
                             android:layout_marginTop="@dimen/space8"
                             android:layout_weight="1"
                             android:orientation="vertical">
-                            <android.support.design.widget.TextInputLayout
+                            <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/ressult_lectures_on_street"
                                 style="@style/TextStyle_Caption_Dark"
                                 android:layout_width="match_parent"
@@ -412,7 +412,7 @@
                                 android:textColorHint="@color/text_secondary_dark"
                                 android:textDirection="inherit">
 
-                                <android.support.design.widget.TextInputEditText
+                                <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/result_lectures_on_street_edittext"
                                     style="@style/TextStyle_Body2_Primary_Dark"
                                     android:layout_width="match_parent"
@@ -433,7 +433,7 @@
                                     app:backgroundTint="@color/divider_spinner_color"
                                     tools:text="10.00" />
 
-                            </android.support.design.widget.TextInputLayout>
+                            </com.google.android.material.textfield.TextInputLayout>
 
 
                         </LinearLayout>
@@ -451,7 +451,7 @@
                             android:layout_weight="1"
                             android:orientation="vertical">
 
-                            <android.support.design.widget.TextInputLayout
+                            <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/day21_seminar"
                                 style="@style/TextStyle_Caption_Dark"
                                 android:layout_width="match_parent"
@@ -461,7 +461,7 @@
                                 android:textColorHint="@color/text_secondary_dark"
                                 android:textDirection="inherit">
 
-                                <android.support.design.widget.TextInputEditText
+                                <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/day21_seminar_edittext"
                                     style="@style/TextStyle_Body2_Primary_Dark"
                                     android:layout_width="match_parent"
@@ -482,7 +482,7 @@
                                     app:backgroundTint="@color/divider_spinner_color"
                                     tools:text="10.00" />
 
-                            </android.support.design.widget.TextInputLayout>
+                            </com.google.android.material.textfield.TextInputLayout>
 
 
                         </LinearLayout>
@@ -494,7 +494,7 @@
                             android:layout_marginTop="@dimen/space8"
                             android:layout_weight="1"
                             android:orientation="vertical">
-                            <android.support.design.widget.TextInputLayout
+                            <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/ressult_lectures_in_center"
                                 style="@style/TextStyle_Caption_Dark"
                                 android:layout_width="match_parent"
@@ -504,7 +504,7 @@
                                 android:textColorHint="@color/text_secondary_dark"
                                 android:textDirection="inherit">
 
-                                <android.support.design.widget.TextInputEditText
+                                <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/result_lectures_in_center_edittext"
                                     style="@style/TextStyle_Body2_Primary_Dark"
                                     android:layout_width="match_parent"
@@ -525,14 +525,14 @@
                                     app:backgroundTint="@color/divider_spinner_color"
                                     tools:text="10.00" />
 
-                            </android.support.design.widget.TextInputLayout>
+                            </com.google.android.material.textfield.TextInputLayout>
 
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
 
 
-            </android.support.v7.widget.CardView>
+            </androidx.cardview.widget.CardView>
             <!--<android.support.design.widget.FloatingActionButton-->
             <!--android:layout_height="wrap_content"-->
             <!--android:layout_width="wrap_content"-->
@@ -543,5 +543,5 @@
             <!--android:clickable="true"/>-->
 
         </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
-</android.support.design.widget.CoordinatorLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -2,10 +2,10 @@ package com.example.aleksandr.myapplication.ui.main.adapter
 
 import android.app.LauncherActivity.ListItem
 import android.text.format.DateUtils
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.support.annotation.NonNull
+import androidx.annotation.NonNull
 import android.view.View
 import java.util.Collections.emptyList
 import android.widget.TextView

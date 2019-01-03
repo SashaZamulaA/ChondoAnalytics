@@ -1,7 +1,7 @@
 package com.example.aleksandr.myapplication
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 
 class TestForVisual : AppCompatActivity() {
 

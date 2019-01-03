@@ -2,13 +2,18 @@ package com.example.aleksandr.myapplication.ui.main
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.BottomNavigationView
-import android.support.design.widget.CoordinatorLayout
-import android.support.v4.view.ViewCompat
-import android.support.v7.app.AlertDialog
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import com.google.android.material.navigation.NavigationView
+import androidx.core.view.ViewCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.appcompat.widget.Toolbar
+import android.view.MenuItem
 import android.view.View
+import androidx.navigation.NavController
 import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.model.City
 import com.example.aleksandr.myapplication.ui.login.LoginActivity
@@ -17,10 +22,35 @@ import com.google.firebase.firestore.FieldValue
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-   lateinit var presenter: MainPresenter
-   lateinit var adapter: MainAdapter
+
+    override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
+
+        menuItem.isChecked = true
+
+        drawerLayout.closeDrawers()
+
+        val id = menuItem.itemId
+
+        when (id) {
+
+            R.id.first -> navController.navigate(R.id.firstFragment)
+
+
+        }
+        return true
+
+    }
+    lateinit var toolbar: Toolbar
+
+    lateinit var drawerLayout: DrawerLayout
+
+    lateinit var navController: NavController
+
+    lateinit var navigationView: NavigationView
+    lateinit var presenter: MainPresenter
+    lateinit var adapter: MainAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

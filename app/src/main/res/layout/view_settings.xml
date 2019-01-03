@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         style="@style/Toolbar"
         android:layout_width="match_parent"
@@ -42,10 +42,10 @@
                 android:layout_centerVertical="true"
                 android:text="@string/save" />
         </RelativeLayout>
-    </android.support.v7.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
 
     <!--OWNER-->
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/parent_margin_edge"
@@ -210,10 +210,10 @@
             <!--android:paddingTop="@dimen/space_8" />-->
             <!--</android.support.design.widget.TextInputLayout>-->
         </LinearLayout>
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
     <!--OPTIONAL SETTINGS-->
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/parent_margin_edge"
@@ -233,7 +233,7 @@
                 android:layout_marginBottom="@dimen/space_4"
                 android:text="@string/optional_settings" />
 
-            <android.support.v7.widget.SwitchCompat
+            <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/sw_notification"
                 style="@style/TextStyle_Body2_Primary_Dark"
                 android:layout_width="match_parent"
@@ -241,5 +241,5 @@
                 android:layout_marginTop="@dimen/space_8"
                 android:text="@string/notification" />
         </LinearLayout>
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 </LinearLayout>

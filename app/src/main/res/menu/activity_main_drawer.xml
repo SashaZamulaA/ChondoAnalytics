@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
-        <item android:id="@+id/nav_main"
+        <item android:id="@+id/first"
             android:title="@string/main"
             android:icon="@drawable/ic_home"/>
 
@@ -11,10 +11,6 @@
             android:icon="@drawable/ic_book"
             android:title="@string/result_chondo" />
 
-        <item
-            android:id="@+id/nav_task"
-            android:icon="@drawable/ic_create_black_24dp"
-            android:title="@string/note" />
 
         <item
             android:id="@+id/nav_settings"
@@ -32,10 +28,7 @@
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_send"
                 android:title="@string/send" />
-            <item
-                android:id="@+id/nav_info"
-                android:icon="@drawable/ic_info"
-                android:title="@string/info" />
+
         </menu>
     </item>
 </menu>

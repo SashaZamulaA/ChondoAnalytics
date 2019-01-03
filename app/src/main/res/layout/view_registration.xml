@@ -14,7 +14,7 @@
         android:orientation="vertical"
        >
 
-        <android.support.v7.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_registration"
             android:layout_width="match_parent"
             android:layout_height="@dimen/toolbar_height"
@@ -51,7 +51,7 @@
                     android:textColor="@color/white" />
 
             </RelativeLayout>
-        </android.support.v7.widget.Toolbar>
+        </androidx.appcompat.widget.Toolbar>
 
         <ScrollView
             android:layout_width="match_parent"
@@ -66,7 +66,7 @@
             android:layout_marginBottom="@dimen/space_24"
             android:orientation="vertical">
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
@@ -98,7 +98,7 @@
         </LinearLayout>
 
         <!-- Name Label -->
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/text_InputLayoutName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -111,7 +111,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/owner_name"
                 android:inputType="textPersonName" />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
         <!--&lt;!&ndash;Город&ndash;&gt;-->
@@ -142,7 +142,7 @@
         <!--</LinearLayout>-->
 
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/text_InputLayoutEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -154,10 +154,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/email" />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Password Label -->
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/text_InputLayoutPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -170,10 +170,10 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/password"
                 android:inputType="textPassword" />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Password Re-enter Label -->
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayoutConfirmPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -186,7 +186,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/re_enter_password"
                 android:inputType="textPassword" />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -227,7 +227,7 @@
             tools:text="@string/checkbox_gdpr" />
         <!-- SignUp Button -->
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_signup"
             style="@style/ButtonFillGreen"
             android:layout_width="match_parent"

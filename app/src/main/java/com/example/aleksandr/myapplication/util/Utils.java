@@ -1,14 +1,5 @@
 package com.example.aleksandr.myapplication.util;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.support.design.widget.Snackbar;
-import android.view.View;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-import java.util.Locale;
-
 public class Utils {
     public static final String DEVICE_TYPE = "android";
     public static final int DAY_PERIOD = 0;
