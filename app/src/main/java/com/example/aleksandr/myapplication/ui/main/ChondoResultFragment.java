@@ -1,6 +1,5 @@
 package com.example.aleksandr.myapplication.ui.main;
 
-
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class FirstFragment extends Fragment {
+public class ChondoResultFragment extends Fragment {
 
     @Override
     public void onAttach(Context context) {

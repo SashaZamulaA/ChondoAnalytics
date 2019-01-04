@@ -12,4 +12,10 @@
         tools:layout="@layout/default_fragment" >
     </fragment>
 
+    <fragment
+        android:id="@+id/chondoFragment"
+        android:name="com.example.aleksandr.myapplication.ui.main.ChondoResultFragment"
+        android:label="First Fragment"
+        tools:layout="@layout/first_fragment" />
+
 </navigation>

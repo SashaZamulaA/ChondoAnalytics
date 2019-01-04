@@ -131,6 +131,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             R.id.first -> navController.navigate(R.id.defaultFragment)
 
+            R.id.chondo_result -> navController.navigate(R.id.chondoFragment)
         }
         return true
 

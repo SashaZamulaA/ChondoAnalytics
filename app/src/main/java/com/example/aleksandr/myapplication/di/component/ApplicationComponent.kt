@@ -3,6 +3,8 @@ package com.example.aleksandr.myapplication.di.component
 import com.example.aleksandr.myapplication.AndroidApplication
 import com.example.aleksandr.myapplication.di.module.AppModule
 import com.example.aleksandr.myapplication.di.module.NetModule
+import com.example.aleksandr.myapplication.ui.chondo_result.ResultM3APresenter
+import com.example.aleksandr.myapplication.ui.chondo_result.ResultM3AView
 import com.example.aleksandr.myapplication.ui.login.LoginActivity
 import com.example.aleksandr.myapplication.ui.login.RegistrationActivity
 import com.example.aleksandr.myapplication.ui.login.presenter.LoginPresenter
@@ -18,7 +20,7 @@ interface ApplicationComponent {
     fun inject(modApplication: AndroidApplication)
 
     // VIEW
-//    fun inject(infoView: ResultM3AView)
+    fun inject(infoView: ResultM3AView)
     fun inject(mainView: MainActivity)
     fun inject(loginActivity: LoginActivity)
     fun inject(registrationActivity: RegistrationActivity)
@@ -26,8 +28,7 @@ interface ApplicationComponent {
 
 
     // PRESENTER
-//    fun inject(infoPresenter: ResultM3APresenter)
-
+    fun inject(infoPresenter: ResultM3APresenter)
     fun inject(loginPresenter: LoginPresenter)
     fun inject(registrationPresenter: RegistrationPresenter)
     fun inject(settingsPresenter: SettingsPresenter)
