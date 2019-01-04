@@ -107,6 +107,7 @@ dependencies {
 
     implementation "android.arch.navigation:navigation-fragment:$nav_version"
     implementation "android.arch.navigation:navigation-ui:$nav_version"
+    implementation "android.arch.navigation:navigation-ui-ktx:$nav_version"
     //anko
     implementation "org.jetbrains.anko:anko-commons:0.10.4"
     implementation "org.jetbrains.anko:anko-design:0.10.4"

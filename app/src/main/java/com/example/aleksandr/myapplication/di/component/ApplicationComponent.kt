@@ -27,7 +27,7 @@ interface ApplicationComponent {
 
     // PRESENTER
 //    fun inject(infoPresenter: ResultM3APresenter)
-    fun inject(mainPresenter: MainPresenter)
+
     fun inject(loginPresenter: LoginPresenter)
     fun inject(registrationPresenter: RegistrationPresenter)
     fun inject(settingsPresenter: SettingsPresenter)

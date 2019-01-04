@@ -12,7 +12,7 @@ import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.android.synthetic.main.item_main_list.view.*
 import java.util.*
 
-class MainAdapter(val list: ArrayList<City>) : RecyclerView.Adapter<MainAdapter.CityHolder>() {
+class MainAdapter(private val list: ArrayList<City>) : RecyclerView.Adapter<MainAdapter.CityHolder>() {
 
     override fun getItemCount(): Int {
         return list.size

@@ -8,26 +8,24 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
+import androidx.navigation.ui.NavigationUI.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.aleksandr.myapplication.R
-import com.example.aleksandr.myapplication.model.City
-import com.example.aleksandr.myapplication.ui.login.LoginActivity
-import com.example.aleksandr.myapplication.ui.main.adapter.MainAdapter
-import com.google.android.material.bottomnavigation.BottomNavigationView
+
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-
-
-
-
     lateinit var toolbar: Toolbar
 
     lateinit var drawerLayout: DrawerLayout
@@ -35,34 +33,90 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     lateinit var navController: NavController
 
     lateinit var navigationView: NavigationView
-    lateinit var presenter: MainPresenter
-    lateinit var adapter: MainAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        presenter = MainPresenter(this, application)
+       setContentView(R.layout.activity_main)
+//        val finalHost = NavHostFragment.create(R.navigation.nav_graph)
+//        supportFragmentManager.beginTransaction()
+//                .replace(R.id.nav_host_fragment, finalHost)
+//                .setPrimaryNavigationFragment(finalHost)
+//                .commit()
 
-        adapterInit()
 
-        bottomMenu()
+        setSupportActionBar(toolbar2)
+
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.setDisplayShowHomeEnabled(true)
+
+        drawerLayout = findViewById(R.id.drawer_layout)
+
+        navigationView = findViewById(R.id.navigationView)
+
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment)
+
+//        NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
+//
+//        NavigationUI.setupWithNavController(navigationView, navController)
+
+        navigationView.setNavigationItemSelectedListener(this)
+
+//        setupNavigation()
+
     }
 
-    private fun adapterInit() {
-        list_main_adapter.setHasFixedSize(true)
-        list_main_adapter.layoutManager = LinearLayoutManager(this)
-        val items: ArrayList<City> = ArrayList()
+    private fun navigation() {
+        val navController = findNavController(this, R.id.nav_host_fragment)
 
-        items.add(City("", "", "", "", "KYIV", "", "", "", "", Date()))
-        items.add(City("", "", "", "", "KHARKIV", "", "", "", "", Date()))
-        items.add(City("", "", "", "", "DNEPR", "", "", "", "", Date()))
-        items.add(City("", "", "", "", "ZHYTOMYR", "", "", "", "", Date()))
-        items.add(City("", "", "", "", "LVIV", "", "", "", "", Date()))
-        items.add(City("", "", "", "", "ODESSA", "", "", "", "", Date()))
-        items.add(City("", "", "", "", "CHERNIGOV", "", "", "", "", Date()))
+        // Update action bar to reflect navigation
+        setupActionBarWithNavController(this, navController, drawerLayout)
 
-        adapter = MainAdapter(items)
-        list_main_adapter.adapter = adapter
+        // Handle nav drawer item clicks
+        navigationView.setNavigationItemSelectedListener { menuItem ->
+            menuItem.isChecked = true
+            drawerLayout.closeDrawers()
+            true
+        }
+
+        // Tie nav graph to items in nav drawer
+        setupWithNavController(navigationView, navController)
+    }
+
+    // Setting Up One Time Navigation
+    private fun setupNavigation() {
+
+        toolbar = findViewById(R.id.toolbar2)
+        setSupportActionBar(toolbar)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.setDisplayShowHomeEnabled(true)
+
+        drawerLayout = findViewById(R.id.drawer_layout)
+
+        navigationView = findViewById(R.id.navigationView)
+
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment)
+
+        NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
+
+        NavigationUI.setupWithNavController(navigationView, navController)
+
+        navigationView.setNavigationItemSelectedListener(this)
+
+    }
+
+    override fun onSupportNavigateUp()
+            = findNavController(this, R.id.nav_host_fragment).navigateUp()
+
+//    override fun onSupportNavigateUp(): Boolean {
+//        return NavigationUI.navigateUp(drawerLayout, Navigation.findNavController(this, R.id.nav_host_fragment))
+//    }
+
+    override fun onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START)
+        } else {
+            super.onBackPressed()
+        }
     }
 
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
@@ -77,99 +131,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             R.id.first -> navController.navigate(R.id.defaultFragment)
 
-
         }
         return true
 
-    }
-
-    private fun bottomMenu() {
-        val layoutParams = bottom_navigation.layoutParams as CoordinatorLayout.LayoutParams
-        layoutParams.behavior = BottomNavigationViewBehavior()
-        bottom_navigation.setOnNavigationItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.menu_year -> {
-                    adapter.perioSelected(MainAdapter.ClickByFilter.YEAR)
-
-                }
-                R.id.menu_month -> {
-                    adapter.perioSelected(MainAdapter.ClickByFilter.MONTH)
-                }
-                R.id.menu_week -> {
-                    adapter.perioSelected(MainAdapter.ClickByFilter.WEEK)
-                }
-                R.id.menu_day -> {
-                    adapter.perioSelected(MainAdapter.ClickByFilter.DAY)
-
-                }
-                else -> {
-                }
-            }
-            true
-        }
-    }
-    override fun onSupportNavigateUp(): Boolean {
-        return NavigationUI.navigateUp(drawerLayout, Navigation.findNavController(this, R.id.nav_host_fragment))
-    }
-    inner class BottomNavigationViewBehavior : CoordinatorLayout.Behavior<BottomNavigationView>() {
-
-        private var height: Int = 0
-
-        override fun onLayoutChild(parent: CoordinatorLayout, child: BottomNavigationView, layoutDirection: Int): Boolean {
-            height = child.height
-            return super.onLayoutChild(parent, child, layoutDirection)
-        }
-
-        override fun onStartNestedScroll(coordinatorLayout: CoordinatorLayout,
-                                         child: BottomNavigationView, directTargetChild: View, target: View,
-                                         axes: Int, type: Int): Boolean {
-            return axes == ViewCompat.SCROLL_AXIS_VERTICAL
-        }
-
-        override fun onNestedScroll(coordinatorLayout: CoordinatorLayout, child: BottomNavigationView,
-                                    target: View, dxConsumed: Int, dyConsumed: Int,
-                                    dxUnconsumed: Int, dyUnconsumed: Int,
-                                    @ViewCompat.NestedScrollType type: Int) {
-            if (dyConsumed > 0) {
-                slideDown(child)
-            } else if (dyConsumed < 0) {
-                slideUp(child)
-            }
-        }
-
-        private fun slideUp(child: BottomNavigationView) {
-            child.clearAnimation()
-            child.animate().translationY(0f).duration = 200
-        }
-
-        private fun slideDown(child: BottomNavigationView) {
-            child.clearAnimation()
-            child.animate().translationY(height.toFloat()).duration = 200
-        }
-    }
-
-    override fun onAttachedToWindow() {
-        super.onAttachedToWindow()
-        presenter.bindView(this)
-    }
-
-    override fun onDetachedFromWindow() {
-        super.onDetachedFromWindow()
-        presenter.unbindView(this)
-    }
-
-    override fun onBackPressed() {
-
-        AlertDialog.Builder(this)
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .setTitle("Closing Activity")
-                .setMessage("Are you sure you want to close this activity?")
-                .setPositiveButton("Yes") { _, _ ->
-                    val intent = Intent(this, LoginActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                }
-                .setNegativeButton("No", null)
-                .show()
     }
 }

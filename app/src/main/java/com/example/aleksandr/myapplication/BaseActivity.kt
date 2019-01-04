@@ -25,11 +25,7 @@ abstract class BaseActivity : AppCompatActivity(), IView{
     private lateinit var toggle: ActionBarDrawerToggle
 
     override fun setContentView(layoutResID: Int) {
-        val fullView = layoutInflater.inflate(R.layout.activity_nav_drawer, null) as DrawerLayout
-        val activityContainer = fullView.findViewById<View>(R.id.content_base) as FrameLayout
 
-        layoutInflater.inflate(layoutResID, activityContainer, true)
-        super.setContentView(fullView)
 
 //        toolbar = findViewById<View>(R.id.toolbar) as Toolbar
 //
