@@ -12,7 +12,7 @@ import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.android.synthetic.main.item_main_list.view.*
 import java.util.*
 
-class MainAdapter(private val list: ArrayList<City>) : RecyclerView.Adapter<MainAdapter.CityHolder>() {
+class MainAdapter(private var list: ArrayList<City>) : RecyclerView.Adapter<MainAdapter.CityHolder>() {
 
     override fun getItemCount(): Int {
         return list.size
@@ -49,6 +49,11 @@ class MainAdapter(private val list: ArrayList<City>) : RecyclerView.Adapter<Main
 
     override fun onBindViewHolder(holder: CityHolder, position: Int) {
           holder.bind()
+    }
+
+    fun updateList(list: ArrayList<City>) {
+        this.list = list
+        notifyDataSetChanged()
     }
 
     @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")

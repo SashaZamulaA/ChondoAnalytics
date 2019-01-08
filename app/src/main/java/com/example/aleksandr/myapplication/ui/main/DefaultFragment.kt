@@ -5,35 +5,38 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.Nullable
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.model.City
 import com.example.aleksandr.myapplication.ui.main.adapter.MainAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.android.synthetic.main.default_fragment.*
 import kotlinx.android.synthetic.main.default_fragment.view.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 class DefaultFragment : Fragment() {
 
     var adapter: MainAdapter? = null
-
-    override fun onViewCreated(view: View, @Nullable savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
+    var city: City? = null
+    private val items: ArrayList<City> = ArrayList()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(com.example.aleksandr.myapplication.R.layout.default_fragment, container, false)
         adapterInit(rootView)
         bottomMenuInit(rootView)
         return rootView
+    }
 
+    override fun onStart() {
+        super.onStart()
+        update(items)
 
+    }
+    fun update(items: ArrayList<City>) {
+        adapter?.updateList(items)
     }
 
     private fun bottomMenuInit(rootView: View) {
@@ -65,8 +68,6 @@ class DefaultFragment : Fragment() {
     private fun adapterInit(rootView: View) {
         rootView.list_main_adapter.setHasFixedSize(true)
         rootView.list_main_adapter.layoutManager = LinearLayoutManager(context)
-        val items: ArrayList<City> = ArrayList()
-
 
         items.add(City("", "", "", "", "KYIV", "", "", "", "", Date()))
         items.add(City("", "", "", "", "KHARKIV", "", "", "", "", Date()))
@@ -121,5 +122,4 @@ class DefaultFragment : Fragment() {
             child.animate().translationY(height.toFloat()).duration = 200
         }
     }
-
 }
