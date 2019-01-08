@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space8"
             android:layout_marginBottom="16dp"
-            tools:text="@string/day"
+
             android:gravity="center"
             android:textSize="24dp" />
 

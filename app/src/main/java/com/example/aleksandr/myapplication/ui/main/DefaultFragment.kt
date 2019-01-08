@@ -27,14 +27,17 @@ class DefaultFragment : Fragment() {
         val rootView = inflater.inflate(com.example.aleksandr.myapplication.R.layout.default_fragment, container, false)
         adapterInit(rootView)
         bottomMenuInit(rootView)
+        adapter?.perioSelected(MainAdapter.ClickByFilter.YEAR)
+        update(items)
         return rootView
     }
 
     override fun onStart() {
         super.onStart()
-        update(items)
+
 
     }
+
     fun update(items: ArrayList<City>) {
         adapter?.updateList(items)
     }
@@ -56,7 +59,6 @@ class DefaultFragment : Fragment() {
                 }
                 R.id.menu_day -> {
                     adapter?.perioSelected(MainAdapter.ClickByFilter.DAY)
-
                 }
                 else -> {
                 }
@@ -69,18 +71,17 @@ class DefaultFragment : Fragment() {
         rootView.list_main_adapter.setHasFixedSize(true)
         rootView.list_main_adapter.layoutManager = LinearLayoutManager(context)
 
-        items.add(City("", "", "", "", "KYIV", "", "", "", "", Date()))
-        items.add(City("", "", "", "", "KHARKIV", "", "", "", "", Date()))
-        items.add(City("", "", "", "", "DNEPR", "", "", "", "", Date()))
-        items.add(City("", "", "", "", "ZHYTOMYR", "", "", "", "", Date()))
-        items.add(City("", "", "", "", "LVIV", "", "", "", "", Date()))
-        items.add(City("", "", "", "", "ODESSA", "", "", "", "", Date()))
-        items.add(City("", "", "", "", "CHERNIGOV", "", "", "", "", Date()))
+        items.add(City("0", "0", "0", "0", "Kyiv", "0", "0", "0", "0", Date()))
+        items.add(City("0", "0", "0", "0", "Kharkiv", "0", "0", "0", "0", Date()))
+        items.add(City("0", "0", "0", "0", "Dnepr", "0", "0", "0", "0", Date()))
+        items.add(City("0", "0", "0", "0", "Zhytomyr", "0", "0", "0", "0", Date()))
+        items.add(City("0", "0", "0", "0", "Lviv", "0", "0", "0", "0", Date()))
+        items.add(City("0", "0", "0", "0", "Odessa", "0", "0", "0", "0", Date()))
+        items.add(City("0", "0", "0", "0", "Chernigov", "0", "0", "0", "0", Date()))
 
         adapter = MainAdapter(items)
         rootView.list_main_adapter.adapter = adapter
     }
-
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)

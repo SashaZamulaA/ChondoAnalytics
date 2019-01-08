@@ -1,22 +1,25 @@
 package com.example.aleksandr.myapplication.ui.main.adapter
 
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.model.City
-import com.example.aleksandr.myapplication.util.*
 import com.example.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
+import com.example.aleksandr.myapplication.util.clickByFilter
 import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.android.synthetic.main.item_main_list.view.*
 import java.util.*
 
 class MainAdapter(private var list: ArrayList<City>) : RecyclerView.Adapter<MainAdapter.CityHolder>() {
 
+    var city: City? = null
+
     override fun getItemCount(): Int {
         return list.size
     }
+
     private val noteRefCollection = firestoreInstance.collection("NewCity")
 
     enum class ClickByFilter {
@@ -48,7 +51,10 @@ class MainAdapter(private var list: ArrayList<City>) : RecyclerView.Adapter<Main
     }
 
     override fun onBindViewHolder(holder: CityHolder, position: Int) {
-          holder.bind()
+        holder.bind()
+
+//        val item = list[position]
+//        holder.itemView.result_city.text = item.centers
     }
 
     fun updateList(list: ArrayList<City>) {
@@ -60,33 +66,27 @@ class MainAdapter(private var list: ArrayList<City>) : RecyclerView.Adapter<Main
     inner class CityHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind() {
-            val sumIntro = 0
-            val sumOneD = 0
-            val sumTwoD = 0
-            val sumTwent = 0
-            val sumTimeStr = 0
-            val sumAppr = 0
-            val sumStrLect = 0
-            val sumCenteLect = 0
 
+            val item = list[position]
+            itemView.result_city.text = item.centers
 
             clickByFilter(noteRefCollection, position, period).addOnSuccessListener { queryDocumentSnapshots ->
-                cityName(queryDocumentSnapshots, sumIntro, sumOneD, sumTwoD, sumTwent, sumAppr, sumTimeStr, sumStrLect, sumCenteLect)
-
+                cityName(queryDocumentSnapshots)
 
             }
         }
 
-        private fun cityName(queryDocumentSnapshots: QuerySnapshot, sumIntro: Int, sumOneD: Int, sumTwoD: Int, sumTwent: Int, sumAppr: Int, sumTimeStr: Int, sumStrLect: Int, sumCenteLect: Int) {
-            itemView.result_city.text = "KYIV"
-            var sumIntroKiev1 = sumIntro
-            var sumOneD1 = sumOneD
-            var sumTwoD1 = sumTwoD
-            var sumTwent1 = sumTwent
-            var sumAppr1 = sumAppr
-            var sumTimeStr1 = sumTimeStr
-            var sumStrLect1 = sumStrLect
-            var sumCenteLect1 = sumCenteLect
+        private fun cityName(queryDocumentSnapshots: QuerySnapshot) {
+
+            var sumIntroKiev1 = 0
+            var sumOneD1 = 0
+            var sumTwoD1 = 0
+            var sumTwent1 = 0
+            var sumAppr1 = 0
+            var sumTimeStr1 = 0
+            var sumStrLect1 = 0
+            var sumCenteLect1 = 0
+
             if (!queryDocumentSnapshots.isEmpty) {
                 queryDocumentSnapshots.forEach { documentSnapshot ->
 
@@ -141,7 +141,6 @@ class MainAdapter(private var list: ArrayList<City>) : RecyclerView.Adapter<Main
                         itemView.main_lect_center.text = "0"
                     }
 
-//                    itemView.result_city.text = model.centers.toString()
                     itemView.main_intro.text = sumIntroKiev1.toString()
                     itemView.main_one_day.text = sumOneD1.toString()
                     itemView.main_two_day.text = sumTwoD1.toString()
