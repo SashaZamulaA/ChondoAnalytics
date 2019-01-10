@@ -20,19 +20,25 @@ import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import androidx.navigation.ui.NavigationUI.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.aleksandr.myapplication.R
+import com.example.aleksandr.myapplication.model.User
+import com.example.aleksandr.myapplication.ui.settings.SettingsView.Companion.AUTHOR_KEY
+import com.example.aleksandr.myapplication.ui.settings.SettingsView.Companion.QUOTE_KEY
+import com.example.aleksandr.myapplication.util.FirestoreUtil
+import com.example.aleksandr.myapplication.util.StorageUtil
+import com.example.aleksandr.tmbook.glade.GlideApp
 
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.header_layout.*
 import java.util.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+
     lateinit var toolbar: Toolbar
-
     lateinit var drawerLayout: DrawerLayout
-
     lateinit var navController: NavController
-
     lateinit var navigationView: NavigationView
+    private var pictureJustChange = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,6 +66,32 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 //        NavigationUI.setupWithNavController(navigationView, navController)
 
         navigationView.setNavigationItemSelectedListener(this)
+
+
+
+
+
+        navigationView.getHeaderView(0).apply {
+            FirestoreUtil.currentUserDocRef.addSnapshotListener { documentSnapshot, _ ->
+                FirestoreUtil.getCurrentUser { user ->
+                    if (documentSnapshot?.exists()!!) {
+                        val myQuote = documentSnapshot.toObject(User::class.java)
+
+                        val quoteText = documentSnapshot.getString(QUOTE_KEY)
+                        val authorText = documentSnapshot.getString(AUTHOR_KEY)
+                        header_name.setText(quoteText)
+                        header_email.text = authorText
+
+                        if (!pictureJustChange && user.profilePicturePath != null)
+                            GlideApp.with(this)
+                                    .load(StorageUtil.pathToReference(user.profilePicturePath))
+                                    .placeholder(R.drawable.ic_account_circle_black_24dp)
+                                    .circleCrop()
+                                    .into(header_profile_picture)
+                    }
+                }
+            }
+        }
 
 //        setupNavigation()
 

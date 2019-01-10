@@ -2,6 +2,7 @@ package com.example.aleksandr.myapplication.ui.main
 
 import android.content.Context
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.model.City
 import com.example.aleksandr.myapplication.ui.main.adapter.MainAdapter
+import com.google.android.gms.tasks.TaskCompletionSource
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.android.synthetic.main.default_fragment.*
 import kotlinx.android.synthetic.main.default_fragment.view.*
 import java.util.*
 import kotlin.collections.ArrayList
@@ -28,19 +31,29 @@ class DefaultFragment : Fragment() {
         adapterInit(rootView)
         bottomMenuInit(rootView)
         adapter?.perioSelected(MainAdapter.ClickByFilter.YEAR)
-        update(items)
+
+
+//        update(items)
         return rootView
     }
 
-    override fun onStart() {
-        super.onStart()
-
-
+    private fun showLoading() {
+        pb_loading.visibility = View.VISIBLE
     }
 
-    fun update(items: ArrayList<City>) {
-        adapter?.updateList(items)
+    private fun hideLoading() {
+        pb_loading.visibility = View.GONE
     }
+
+//    fun update(items: ArrayList<City>) {
+//        adapter?.updateList(items)
+//
+//    }
+
+
+
+// during onCreate:
+
 
     private fun bottomMenuInit(rootView: View) {
         val layoutParams = rootView.bottom_navigation.layoutParams as CoordinatorLayout.LayoutParams
@@ -48,8 +61,9 @@ class DefaultFragment : Fragment() {
         rootView.bottom_navigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.menu_year -> {
+//                    showLoading()
                     adapter?.perioSelected(MainAdapter.ClickByFilter.YEAR)
-
+//                    hideLoading()
                 }
                 R.id.menu_month -> {
                     adapter?.perioSelected(MainAdapter.ClickByFilter.MONTH)
@@ -81,10 +95,6 @@ class DefaultFragment : Fragment() {
 
         adapter = MainAdapter(items)
         rootView.list_main_adapter.adapter = adapter
-    }
-
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
     }
 
     inner class BottomNavigationViewBehavior : CoordinatorLayout.Behavior<BottomNavigationView>() {

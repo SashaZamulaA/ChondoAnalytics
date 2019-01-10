@@ -1,6 +1,8 @@
 package com.example.aleksandr.myapplication.util
 
+import android.view.View
 import com.google.android.gms.tasks.Task
+import com.google.android.gms.tasks.Tasks
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.QuerySnapshot
 import java.util.*
@@ -107,8 +109,7 @@ private fun setTimeToEndofDay(calendar: Calendar) {
 }
 
 fun clickByFilter(noteRefCollection: CollectionReference, city: Int, value: Int) : Task<QuerySnapshot> {
-    return noteRefCollection
-            .whereEqualTo("centers", when(city) {
+    return noteRefCollection.whereEqualTo("centers", when(city) {
                0 -> "Kyiv"
                1 -> "Kharkiv"
                2 -> "Dnepr"
@@ -117,23 +118,18 @@ fun clickByFilter(noteRefCollection: CollectionReference, city: Int, value: Int)
                5 -> "Odessa"
                6 -> "Chernigov"
                 else -> null
-            }
-
-            )
-            .whereGreaterThanOrEqualTo("time", when (value) {
+            }).whereGreaterThanOrEqualTo("time", when (value) {
                 1 -> startOfDay(Date())
                 2 -> startOfWeek()
                 3 -> startOfMonth()
                 4 -> startOfYear()
                 else -> startOfDay(Date())
-            }) //startOfDay(Date())
-            .whereLessThanOrEqualTo("time", when (value){
+            }).whereLessThanOrEqualTo("time", when (value){
                 1 -> endOfDay(Date())
                 2 -> endOfWeek()
                 3 -> endOfMonth()
                 4 -> endOfYear()
                 else -> startOfDay(Date())
-            })
-            .get()
+            }).get()
 
 }
