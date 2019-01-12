@@ -6,45 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        style="@style/Toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/toolbar_height"
-        android:elevation="@dimen/common_elevation"
-        android:padding="0dp"
-        app:contentInsetEnd="0dp"
-        app:contentInsetStart="0dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-
-            <TextView
-                android:id="@+id/tv_title"
-                style="@style/TextStyle_Title_White"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="56dp"
-                android:ellipsize="end"
-                android:gravity="center_vertical"
-                android:singleLine="true"
-                android:textColor="@color/white"
-                tools:text="Settings" />
-
-            <Button
-                android:id="@+id/button_save_settings"
-                style="@style/ButtonToolbarWithStartEndPadding"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:text="@string/save" />
-        </RelativeLayout>
-    </androidx.appcompat.widget.Toolbar>
-
-    <!--OWNER-->
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -59,12 +20,11 @@
             android:layout_marginBottom="@dimen/parent_margin_edge"
             android:orientation="vertical">
 
-
             <LinearLayout
                 android:id="@+id/represent_as_image_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/parent_margin_edge"
+                android:layout_marginTop="40dp"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -106,68 +66,66 @@
                 android:id="@+id/setting_e_mail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_marginTop="-8dp"
                 android:layout_marginBottom="24dp"
+                android:gravity="center"
                 tools:text="z.sasha1@1.com" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:gravity="center_vertical">
 
-                <TextView
-                    style="@style/TextStyle_Body2_Primary_Dark"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:text="@string/city" />
+            <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="48dp"-->
+            <!--android:gravity="center_vertical">-->
 
-                <TextView
-                    style="@style/TextStyle_Body2_Primary_Dark"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=": " />
+            <!--<TextView-->
+            <!--style="@style/TextStyle_Body2_Primary_Dark"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:text="@string/city" />-->
 
-                <TextView
-                    android:id="@+id/settings_owner_city"
-                    style="@style/TextStyle_Body2_Primary_Dark"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    tools:text="Lviv" />
+            <!--<TextView-->
+            <!--style="@style/TextStyle_Body2_Primary_Dark"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text=": " />-->
 
-            </LinearLayout>
+            <!--<TextView-->
+            <!--android:id="@+id/settings_owner_city"-->
+            <!--style="@style/TextStyle_Body2_Primary_Dark"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--tools:text="Lviv" />-->
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:gravity="center_vertical">
+            <!--</LinearLayout>-->
 
-                <TextView
-                    style="@style/TextStyle_Body2_Primary_Dark"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:text="@string/mobile" />
+            <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="48dp"-->
+            <!--android:gravity="center_vertical">-->
 
-                <TextView
-                    style="@style/TextStyle_Body2_Primary_Dark"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=": " />
+            <!--<TextView-->
+            <!--style="@style/TextStyle_Body2_Primary_Dark"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:text="@string/mobile" />-->
 
-                <EditText
-                    android:id="@+id/settings_owner_phone"
-                    style="@style/TextStyle_Body2_Primary_Dark"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    tools:text="+0933506836" />
+            <!--<TextView-->
+            <!--style="@style/TextStyle_Body2_Primary_Dark"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text=": " />-->
 
-            </LinearLayout>
+            <!--<EditText-->
+            <!--android:id="@+id/settings_owner_phone"-->
+            <!--style="@style/TextStyle_Body2_Primary_Dark"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--tools:text="+0933506836" />-->
 
-
-
+            <!--</LinearLayout>-->
 
             <!--<android.support.design.widget.TextInputLayout-->
             <!--style="@style/TextStyle_SubHeader_Accent"-->
@@ -242,4 +200,15 @@
                 android:text="@string/notification" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_add"
+            style="@style/FloatingActionButton"
+            app:backgroundTint="@color/link_color"
+            app:srcCompat="@drawable/ic_check_black_24dp" />
+    </FrameLayout>
 </LinearLayout>
