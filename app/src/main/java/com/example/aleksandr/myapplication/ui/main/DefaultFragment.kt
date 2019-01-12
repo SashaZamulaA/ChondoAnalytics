@@ -6,11 +6,11 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.Toolbar
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.model.City
 import com.example.aleksandr.myapplication.ui.main.adapter.MainAdapter
 import com.google.android.gms.tasks.TaskCompletionSource
@@ -19,17 +19,36 @@ import kotlinx.android.synthetic.main.default_fragment.*
 import kotlinx.android.synthetic.main.default_fragment.view.*
 import java.util.*
 import kotlin.collections.ArrayList
+import androidx.appcompat.app.AppCompatActivity
+
+
+
+
+
+
+
 
 class DefaultFragment : Fragment() {
-
+    var toolbar: Toolbar? = null
     var adapter: MainAdapter? = null
     var city: City? = null
     private val items: ArrayList<City> = ArrayList()
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        super.onViewCreated(view, savedInstanceState)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(com.example.aleksandr.myapplication.R.layout.default_fragment, container, false)
         adapterInit(rootView)
         bottomMenuInit(rootView)
+
+
+
+        toolbar = view?.findViewById(com.example.aleksandr.myapplication.R.id.toolbar)
+        (activity as AppCompatActivity).setSupportActionBar(toolbar)
+
         adapter?.perioSelected(MainAdapter.ClickByFilter.YEAR)
 
 
@@ -60,18 +79,18 @@ class DefaultFragment : Fragment() {
         layoutParams.behavior = BottomNavigationViewBehavior()
         rootView.bottom_navigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.menu_year -> {
+                com.example.aleksandr.myapplication.R.id.menu_year -> {
 //                    showLoading()
                     adapter?.perioSelected(MainAdapter.ClickByFilter.YEAR)
 //                    hideLoading()
                 }
-                R.id.menu_month -> {
+                com.example.aleksandr.myapplication.R.id.menu_month -> {
                     adapter?.perioSelected(MainAdapter.ClickByFilter.MONTH)
                 }
-                R.id.menu_week -> {
+                com.example.aleksandr.myapplication.R.id.menu_week -> {
                     adapter?.perioSelected(MainAdapter.ClickByFilter.WEEK)
                 }
-                R.id.menu_day -> {
+                com.example.aleksandr.myapplication.R.id.menu_day -> {
                     adapter?.perioSelected(MainAdapter.ClickByFilter.DAY)
                 }
                 else -> {

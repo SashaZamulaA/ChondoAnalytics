@@ -10,6 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
+
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/myAppBar"
             android:layout_width="match_parent"
@@ -19,7 +21,15 @@
             android:theme="@style/AppTheme.AppBarOverlay"
             app:elevation="0dp">
 
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/colorPrimary"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark" />
         </com.google.android.material.appbar.AppBarLayout>
+
 
 
 

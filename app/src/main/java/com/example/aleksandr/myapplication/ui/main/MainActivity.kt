@@ -29,7 +29,7 @@ import kotlinx.android.synthetic.main.header_layout.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    lateinit var toolbar: Toolbar
+//    lateinit var toolbar: Toolbar
     lateinit var drawerLayout: DrawerLayout
     lateinit var navController: NavController
     lateinit var navigationView: NavigationView
@@ -44,11 +44,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 //                .setPrimaryNavigationFragment(finalHost)
 //                .commit()
 
+//        toolbar = findViewById(R.id.toolbar)
+//        setSupportActionBar(toolbar)
 
-        setSupportActionBar(toolbar2)
-
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        supportActionBar!!.setDisplayShowHomeEnabled(true)
+//        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+//        supportActionBar!!.setDisplayShowHomeEnabled(true)
 
         drawerLayout = findViewById(R.id.drawer_layout)
 
@@ -112,8 +112,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     // Setting Up One Time Navigation
     private fun setupNavigation() {
 
-        toolbar = findViewById(R.id.toolbar2)
-        setSupportActionBar(toolbar)
+
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowHomeEnabled(true)
 
@@ -173,6 +172,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.first -> navController.navigate(R.id.defaultFragment)
             R.id.chondo_result -> navController.navigate(R.id.chondoFragment)
             R.id.nav_settings -> navController.navigate(R.id.settingsFragment)
+
         }
         return true
 
