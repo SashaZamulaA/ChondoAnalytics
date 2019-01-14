@@ -36,7 +36,7 @@ class IndividualResultFragment : Fragment() {
                 .build()
 
         adapter = IndividualResultAdapter(options)
-        rootView.list_individual_result_adapter.setHasFixedSize(true)
+//        rootView.list_individual_result_adapter.setHasFixedSize(true)
         rootView.list_individual_result_adapter.layoutManager = LinearLayoutManager(context)
         rootView.list_individual_result_adapter.adapter = adapter
 
