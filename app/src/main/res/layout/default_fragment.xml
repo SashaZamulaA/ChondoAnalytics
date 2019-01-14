@@ -11,7 +11,6 @@
         android:layout_height="match_parent">
 
 
-
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/myAppBar"
             android:layout_width="match_parent"
@@ -21,13 +20,56 @@
             android:theme="@style/AppTheme.AppBarOverlay"
             app:elevation="0dp">
 
-
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="@color/colorPrimary"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark" />
+                android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/button_back"
+                    style="@style/ButtonWithIcon"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/button_ripple_circle_green"
+                    app:srcCompat="@drawable/ic_arrow_back_white" />
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    style="@style/TextStyle_Title_White"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/toolbar_margin_title"
+                    android:gravity="center_vertical"
+                    tools:text="@string/tables" />
+
+
+                <ImageView
+                    android:id="@+id/button_common_result"
+                    android:layout_width="@dimen/toolbar_icon_size"
+                    android:layout_height="@dimen/toolbar_icon_size"
+                    android:layout_toLeftOf="@+id/button_individual_result"
+                    app:srcCompat="@drawable/ic_people_outline_white"
+                    android:padding="@dimen/icon_button_padding"
+                    android:gravity="center"
+                    android:text="@string/save" />
+
+                <ImageView
+                    android:id="@+id/button_individual_result"
+                    android:layout_width="@dimen/toolbar_icon_size"
+                    android:layout_height="@dimen/toolbar_icon_size"
+                    app:srcCompat="@drawable/ic_person"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="@dimen/space_12"
+                    android:padding="@dimen/icon_button_padding"
+                    android:gravity="center"
+                    android:text="@string/save" />
+            </RelativeLayout>
+            </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>
 
 
