@@ -1,131 +1,145 @@
 package com.example.aleksandr.myapplication.ui.main
 
+
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.BottomNavigationView
-import android.support.design.widget.CoordinatorLayout
-import android.support.v4.view.GravityCompat
-import android.support.v4.view.ViewCompat
-import android.support.v7.app.AlertDialog
-import android.support.v7.widget.LinearLayoutManager
-import android.view.View
-import com.example.aleksandr.myapplication.BaseActivity
+import android.view.MenuItem
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
+import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.example.aleksandr.myapplication.R
-import com.example.aleksandr.myapplication.model.City
+import com.example.aleksandr.myapplication.model.User
 import com.example.aleksandr.myapplication.ui.login.LoginActivity
-import com.example.aleksandr.myapplication.ui.main.adapter.MainAdapter
-import com.google.firebase.firestore.FieldValue
+import com.example.aleksandr.myapplication.ui.settings.SettingsView.Companion.AUTHOR_KEY
+import com.example.aleksandr.myapplication.ui.settings.SettingsView.Companion.QUOTE_KEY
+import com.example.aleksandr.myapplication.util.FirestoreUtil
+import com.example.aleksandr.myapplication.util.StorageUtil
+import com.example.aleksandr.tmbook.glade.GlideApp
+import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.*
+import kotlinx.android.synthetic.main.header_layout.*
+
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+
+//    lateinit var toolbar: Toolbar
+    lateinit var drawerLayout: DrawerLayout
+    lateinit var navController: NavController
+    lateinit var navigationView: NavigationView
+    private var pictureJustChange = false
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+//        val finalHost = NavHostFragment.create(R.navigation.nav_graph)
+//        supportFragmentManager.beginTransaction()
+//                .replace(R.id.nav_host_fragment, finalHost)
+//                .setPrimaryNavigationFragment(finalHost)
+//                .commit()
+
+//        toolbar = findViewById(R.id.toolbar)
+//        setSupportActionBar(toolbar)
+
+//        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+//        supportActionBar!!.setDisplayShowHomeEnabled(true)
+
+        drawerLayout = findViewById(R.id.drawer_layout)
+
+        navigationView = findViewById(R.id.navigationView)
+
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment)
+
+//        NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
+//
+//        NavigationUI.setupWithNavController(navigationView, navController)
+
+        navigationView.setNavigationItemSelectedListener(this)
 
 
-@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-class MainActivity : BaseActivity() {
 
-    private lateinit var presenter: MainPresenter
-    private lateinit var adapter: MainAdapter
 
-    override fun init(savedInstanceState: Bundle?) {
-        super.setContentView(com.example.aleksandr.myapplication.R.layout.activity_main)
-        presenter = MainPresenter(this, application)
 
-        list_main_adapter.setHasFixedSize(true)
-        list_main_adapter.layoutManager = LinearLayoutManager(this)
-        val items: ArrayList<City> = ArrayList()
+        navigationView.getHeaderView(0).apply {
+            FirestoreUtil.currentUserDocRef.addSnapshotListener { documentSnapshot, _ ->
+                FirestoreUtil.getCurrentUser { user ->
+                    if (documentSnapshot?.exists()!!) {
+                        val myQuote = documentSnapshot.toObject(User::class.java)
 
-        items.add(City("", "", "", "", "KYIV", "", "", "", "", Date()))
-        items.add(City("", "", "", "", "KHARKIV", "", "", "", "", Date()))
-        items.add(City("", "", "", "", "DNEPR", "", "", "", "", Date()))
-        items.add(City("", "", "", "", "ZHYTOMYR", "", "", "", "", Date()))
-        items.add(City("", "", "", "", "LVIV", "", "", "", "", Date()))
-        items.add(City("", "", "", "", "ODESSA", "", "", "", "", Date()))
-        items.add(City("", "", "", "", "CHERNIGOV", "", "", "", "", Date()))
+                        val quoteText = documentSnapshot.getString(QUOTE_KEY)
+                        val authorText = documentSnapshot.getString(AUTHOR_KEY)
+                        header_name.setText(quoteText)
+                        header_email.text = authorText
 
-        adapter = MainAdapter(items)
-        list_main_adapter.adapter = adapter
-
-        val doc = HashMap<String, Any>()
-        doc["timestamp"] = FieldValue.serverTimestamp()
-
-        bottomMenu()
-    }
-
-    private fun bottomMenu() {
-        val layoutParams = bottom_navigation.layoutParams as CoordinatorLayout.LayoutParams
-        layoutParams.behavior = BottomNavigationViewBehavior()
-        bottom_navigation.setOnNavigationItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.menu_year -> {
-                    adapter.perioSelected(MainAdapter.ClickByFilter.YEAR)
-
-                }
-                R.id.menu_month -> {
-                    adapter.perioSelected(MainAdapter.ClickByFilter.MONTH)
-                }
-                R.id.menu_week -> {
-                    adapter.perioSelected(MainAdapter.ClickByFilter.WEEK)
-                }
-                R.id.menu_day -> {
-                    adapter.perioSelected(MainAdapter.ClickByFilter.DAY)
-
-                }
-                else -> {
+                        if (!pictureJustChange && user.profilePicturePath != null)
+                            GlideApp.with(this)
+                                    .load(StorageUtil.pathToReference(user.profilePicturePath))
+                                    .placeholder(R.drawable.ic_account_circle_black_24dp)
+                                    .circleCrop()
+                                    .into(header_profile_picture)
+                    }
                 }
             }
+        }
+
+//        setupNavigation()
+
+    }
+
+    private fun navigation() {
+        val navController = findNavController(this, R.id.nav_host_fragment)
+
+        // Update action bar to reflect navigation
+        setupActionBarWithNavController(this, navController, drawerLayout)
+
+        // Handle nav drawer item clicks
+        navigationView.setNavigationItemSelectedListener { menuItem ->
+            menuItem.isChecked = true
+            drawerLayout.closeDrawers()
             true
         }
+
+        // Tie nav graph to items in nav drawer
+        setupWithNavController(navigationView, navController)
     }
 
-    inner class BottomNavigationViewBehavior : CoordinatorLayout.Behavior<BottomNavigationView>() {
+    // Setting Up One Time Navigation
+    private fun setupNavigation() {
 
-        private var height: Int = 0
 
-        override fun onLayoutChild(parent: CoordinatorLayout, child: BottomNavigationView, layoutDirection: Int): Boolean {
-            height = child.height
-            return super.onLayoutChild(parent, child, layoutDirection)
-        }
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.setDisplayShowHomeEnabled(true)
 
-        override fun onStartNestedScroll(coordinatorLayout: CoordinatorLayout,
-                                         child: BottomNavigationView, directTargetChild: View, target: View,
-                                         axes: Int, type: Int): Boolean {
-            return axes == ViewCompat.SCROLL_AXIS_VERTICAL
-        }
+        drawerLayout = findViewById(R.id.drawer_layout)
 
-        override fun onNestedScroll(coordinatorLayout: CoordinatorLayout, child: BottomNavigationView,
-                                    target: View, dxConsumed: Int, dyConsumed: Int,
-                                    dxUnconsumed: Int, dyUnconsumed: Int,
-                                    @ViewCompat.NestedScrollType type: Int) {
-            if (dyConsumed > 0) {
-                slideDown(child)
-            } else if (dyConsumed < 0) {
-                slideUp(child)
-            }
-        }
+        navigationView = findViewById(R.id.navigationView)
 
-        private fun slideUp(child: BottomNavigationView) {
-            child.clearAnimation()
-            child.animate().translationY(0f).duration = 4000
-        }
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment)
 
-        private fun slideDown(child: BottomNavigationView) {
-            child.clearAnimation()
-            child.animate().translationY(height.toFloat()).duration = 4000
-        }
+        NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
+
+        NavigationUI.setupWithNavController(navigationView, navController)
+
+        navigationView.setNavigationItemSelectedListener(this)
+
     }
 
-    override fun onAttachedToWindow() {
-        super.onAttachedToWindow()
-        presenter.bindView(this)
-    }
+    override fun onSupportNavigateUp() = findNavController(this, R.id.nav_host_fragment).navigateUp()
 
-    override fun onDetachedFromWindow() {
-        super.onDetachedFromWindow()
-        presenter.unbindView(this)
-    }
+//    override fun onSupportNavigateUp(): Boolean {
+//        return NavigationUI.navigateUp(drawerLayout, Navigation.findNavController(this, R.id.nav_host_fragment))
+//    }
 
     override fun onBackPressed() {
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START)
+
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START)
         } else {
             AlertDialog.Builder(this)
                     .setIcon(android.R.drawable.ic_dialog_alert)
@@ -139,6 +153,28 @@ class MainActivity : BaseActivity() {
                     .setNegativeButton("No", null)
                     .show()
         }
+    }
+
+//    override fun onBackPressed() {
+//        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+//            drawerLayout.closeDrawer(GravityCompat.START)
+//        } else {
+//            super.onBackPressed()
+//        }
+//    }
+
+    override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
+
+        menuItem.isChecked = true
+        drawerLayout.closeDrawers()
+        val id = menuItem.itemId
+        when (id) {
+            R.id.first -> navController.navigate(R.id.defaultFragment)
+            R.id.chondo_result -> navController.navigate(R.id.chondoFragment)
+            R.id.nav_settings -> navController.navigate(R.id.settingsFragment)
+
+        }
+        return true
 
     }
 }

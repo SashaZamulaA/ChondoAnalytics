@@ -2,12 +2,15 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <!--<item name="colorAccent">@color/colorAccent</item>-->
-        <item name="colorAccent">@color/accent</item>
-
+        <item name="colorAccent">@color/colorAccent</item>
+        <!--Removing actionbar-->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
+
 
     <style name="TextAppearance.AppCompat.Small.ErrorStyle">
         <item name="android:textColor">@color/text_error</item>
@@ -28,12 +31,17 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="TextAppearance.ExpandedTitle"
-        parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+    <style name="TextAppearance.ExpandedTitle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textSize">22sp</item>
         <item name="android:textColor">@color/black_effective</item>
     </style>
 
+    <style name="FloatingActionButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">16dp</item>
+        <item name="android:layout_gravity">bottom|right</item>
+    </style>
     <!--Toolbar-->
     <style name="Toolbar" parent="Base.ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:layout_width">match_parent</item>
@@ -125,7 +133,7 @@
         <item name="android:fontFamily" tools:ignore="NewApi">sans-serif</item>
         <item name="android:textSize">@dimen/body2_text_size</item>
         <item name="android:textColor">@color/link_color</item>
-        <item name="android:maxLines">1</item>
+
     </style>
 
     <style name="TextStyle_Caption_Accent" parent="TextStyle_Caption_Dark">

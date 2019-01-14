@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
+<androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/tools"
@@ -8,12 +8,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
-    android:layout_marginStart="8dp"
     android:layout_marginTop="8dp"
-    android:layout_marginEnd="8dp"
     android:elevation="2dp"
     android:orientation="horizontal"
-    app:cardBackgroundColor="@color/background"
+    app:cardBackgroundColor="@color/white"
     app:layout_constraintWidth_default="spread"
     app:layout_constraintWidth_max="@dimen/card_width"
     card_view:layout_constraintEnd_toEndOf="parent"
@@ -33,8 +31,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space8"
+            android:textColor="@color/accent"
+            android:background="@color/text_disabled_light"
             android:layout_marginBottom="16dp"
-            tools:text="@string/day"
             android:gravity="center"
             android:textSize="24dp" />
 
@@ -56,6 +55,7 @@
                     style="@style/TextStyle_Body2_Primary_Dark"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:textStyle="bold"
                     android:gravity="center_vertical"
                     android:text="@string/introdaction" />
 
@@ -65,9 +65,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical|end"
-                    tools:text="12" />
+                    android:textStyle="bold"
+                    android:text="0" />
 
             </LinearLayout>
+
+
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -89,11 +92,13 @@
                     style="@style/TextStyle_Body2_Primary_Dark"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:textStyle="bold"
                     android:gravity="center_vertical|end"
-                    tools:text="120" />
+                    android:text="0" />
             </LinearLayout>
         </LinearLayout>
-
+    <View
+       style="@style/AppTheme.HorizontalSpinnerDivider"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -113,6 +118,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
+                    android:textStyle="bold"
                     android:text="@string/one_day_seminar" />
 
                 <TextView
@@ -120,8 +126,9 @@
                     style="@style/TextStyle_Body2_Primary_Dark"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:textStyle="bold"
                     android:gravity="center_vertical|end"
-                    android:text="6" />
+                    android:text="0" />
 
             </LinearLayout>
 
@@ -146,10 +153,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical|end"
-                    android:text="21" />
+                    android:textStyle="bold"
+                    android:text="0" />
             </LinearLayout>
         </LinearLayout>
-
+    <View
+        style="@style/AppTheme.HorizontalSpinnerDivider"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -169,6 +178,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
+                    android:textStyle="bold"
                     android:text="@string/two_day_seminar" />
 
                 <TextView
@@ -176,8 +186,9 @@
                     style="@style/TextStyle_Body2_Primary_Dark"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:textStyle="bold"
                     android:gravity="center_vertical|end"
-                    android:text="3" />
+                    android:text="0" />
 
             </LinearLayout>
 
@@ -201,11 +212,13 @@
                     style="@style/TextStyle_Body2_Primary_Dark"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:textStyle="bold"
                     android:gravity="center_vertical|end"
-                    android:text="21" />
+                    android:text="0" />
             </LinearLayout>
         </LinearLayout>
-
+    <View
+        style="@style/AppTheme.HorizontalSpinnerDivider"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -225,6 +238,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
+                    android:textStyle="bold"
+                    android:textColor="@color/saddlebrown"
                     android:text="@string/day21_seminar" />
 
                 <TextView
@@ -233,7 +248,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical|end"
-                    android:text="2" />
+                    android:textStyle="bold"
+                    android:text="0" />
 
             </LinearLayout>
 
@@ -257,10 +273,11 @@
                     style="@style/TextStyle_Body2_Primary_Dark"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:textStyle="bold"
                     android:gravity="center_vertical|end"
-                    android:text="21" />
+                    android:text="0" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
-</android.support.v7.widget.CardView>
+</androidx.cardview.widget.CardView>

@@ -1,59 +1,59 @@
-package com.example.aleksandr.myapplication.ui.settings
+package com.example.aleksandr.myapplication.ui.main
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.PorterDuff
 import android.os.Bundle
 import android.provider.MediaStore
-import com.example.aleksandr.myapplication.BaseActivity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.model.User
+import com.example.aleksandr.myapplication.ui.settings.SettingsView.Companion.AUTHOR_KEY
+import com.example.aleksandr.myapplication.ui.settings.SettingsView.Companion.QUOTE_KEY
 import com.example.aleksandr.myapplication.util.FirestoreUtil
 import com.example.aleksandr.myapplication.util.StorageUtil
 import com.example.aleksandr.tmbook.glade.GlideApp
-import com.google.android.gms.tasks.OnSuccessListener
-import com.google.firebase.firestore.QuerySnapshot
-import com.vadym.adv.myhomepet.ui.settings.ISettingsView
-import com.vadym.adv.myhomepet.ui.settings.SettingsPresenter
 import kotlinx.android.synthetic.main.view_settings.*
-import org.jetbrains.anko.toast
+import kotlinx.android.synthetic.main.view_settings.view.*
 import java.io.ByteArrayOutputStream
 
-class SettingsView : BaseActivity(), ISettingsView {
+@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
+class SettingsFragment : Fragment() {
 
     private val RC_SELECT_IMAGE = 2
     private lateinit var selectImageBytes: ByteArray
     private var pictureJustChange = false
 
-    companion object {
-        val AUTHOR_KEY = "name"
-        val QUOTE_KEY = "e_mail"
-        val SPINNER = "spinner"
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
     }
 
-    private lateinit var presenter: SettingsPresenter
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val rootView = inflater.inflate(com.example.aleksandr.myapplication.R.layout.view_settings, container, false)
 
-    override fun init(savedInstanceState: Bundle?) {
-        super.setContentView(R.layout.view_settings)
-        presenter = SettingsPresenter(this, application)
-        settings_owner_name.background.mutate().setColorFilter(resources.getColor(R.color.white), PorterDuff.Mode.SRC_ATOP)
-        fab_add.setOnClickListener {
+
+        rootView.settings_owner_name.background.mutate().setColorFilter(resources.getColor(R.color.white), PorterDuff.Mode.SRC_ATOP)
+        rootView.fab_add.setOnClickListener {
             if (::selectImageBytes.isInitialized)
                 StorageUtil.uploadProfilePhoto(selectImageBytes) { imagePath ->
                     FirestoreUtil.updateCurrentUser(settings_owner_name.text.toString(),
-                            setting_e_mail.text.toString(), imagePath)
-
-                    toast("Saving")
+                            rootView.setting_e_mail.text.toString(), imagePath)
+                    startActivity(Intent(context, MainActivity::class.java))
                 }
             else
                 FirestoreUtil.updateCurrentUser(settings_owner_name.text.toString(),
-                        setting_e_mail.text.toString(), null)
+                        rootView.setting_e_mail.text.toString(), null)
+            startActivity(Intent(context, MainActivity::class.java))
         }
 
 
 
-        imageView_profile_picture.setOnClickListener {
+        rootView.imageView_profile_picture.setOnClickListener {
             val intent = Intent().apply {
                 type = "image/*"
                 action = Intent.ACTION_GET_CONTENT
@@ -61,6 +61,8 @@ class SettingsView : BaseActivity(), ISettingsView {
             }
             startActivityForResult(Intent.createChooser(intent, " Select Image"), RC_SELECT_IMAGE)
         }
+
+        return rootView
     }
 
     override fun onStart() {
@@ -91,7 +93,7 @@ class SettingsView : BaseActivity(), ISettingsView {
                 data != null && data.data != null) {
             val selectedImagePath = data.data
             val selectedImageBmp = MediaStore.Images.Media
-                    .getBitmap(contentResolver, selectedImagePath)
+                    .getBitmap(context?.contentResolver, selectedImagePath)
 
             val outputStream = ByteArrayOutputStream()
             selectedImageBmp.compress(Bitmap.CompressFormat.JPEG, 90, outputStream)

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/defaultFragment">
+
+    <fragment
+        android:id="@+id/defaultFragment"
+        android:name="com.example.aleksandr.myapplication.ui.main.DefaultFragment"
+        android:label="Default Fragment"
+        tools:layout="@layout/default_fragment" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/chondoFragment"
+        android:name="com.example.aleksandr.myapplication.ui.main.ChondoResultFragment"
+        android:label="First Fragment"
+        tools:layout="@layout/first_fragment" />
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.aleksandr.myapplication.ui.main.SettingsFragment"
+        android:label="First Fragment"
+        tools:layout="@layout/first_fragment" />
+
+</navigation>

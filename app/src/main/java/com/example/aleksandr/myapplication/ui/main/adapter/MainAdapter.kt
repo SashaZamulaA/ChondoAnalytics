@@ -1,22 +1,27 @@
 package com.example.aleksandr.myapplication.ui.main.adapter
 
-import android.support.v7.widget.RecyclerView
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.model.City
-import com.example.aleksandr.myapplication.util.*
 import com.example.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
+import com.example.aleksandr.myapplication.util.clickByFilter
+import com.google.android.gms.tasks.TaskCompletionSource
 import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.android.synthetic.main.item_main_list.view.*
 import java.util.*
 
-class MainAdapter(val list: ArrayList<City>) : RecyclerView.Adapter<MainAdapter.CityHolder>() {
+class MainAdapter(private var list: ArrayList<City>) : RecyclerView.Adapter<MainAdapter.CityHolder>() {
+
+    var city: City? = null
 
     override fun getItemCount(): Int {
         return list.size
     }
+
     private val noteRefCollection = firestoreInstance.collection("NewCity")
 
     enum class ClickByFilter {
@@ -25,6 +30,11 @@ class MainAdapter(val list: ArrayList<City>) : RecyclerView.Adapter<MainAdapter.
 
     var period = 0
     fun perioSelected(periodSelected: MainAdapter.ClickByFilter) {
+
+        val delaySource = TaskCompletionSource<View>()
+        val delayTask = delaySource.task
+        Handler().postDelayed({ delaySource.setResult(null) }, 5000)
+
         when (periodSelected) {
             MainAdapter.ClickByFilter.DAY -> {
                 period = 1; notifyDataSetChanged()
@@ -48,40 +58,43 @@ class MainAdapter(val list: ArrayList<City>) : RecyclerView.Adapter<MainAdapter.
     }
 
     override fun onBindViewHolder(holder: CityHolder, position: Int) {
-          holder.bind()
+        holder.bind()
+
+        val item = list[position]
+        holder.itemView.result_city.text = item.centers
     }
+
+//    fun updateList(list: ArrayList<City>) {
+//        this.list = list
+//        notifyDataSetChanged()
+//    }
 
     @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
     inner class CityHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind() {
-            val sumIntro = 0
-            val sumOneD = 0
-            val sumTwoD = 0
-            val sumTwent = 0
-            val sumTimeStr = 0
-            val sumAppr = 0
-            val sumStrLect = 0
-            val sumCenteLect = 0
-
+            val delaySource = TaskCompletionSource<View>()
+            val delayTask = delaySource.task
+            Handler().postDelayed({ delaySource.setResult(null) }, 10000)
+            val item = list[position]
+            itemView.result_city.text = item.centers
 
             clickByFilter(noteRefCollection, position, period).addOnSuccessListener { queryDocumentSnapshots ->
-                cityName(queryDocumentSnapshots, sumIntro, sumOneD, sumTwoD, sumTwent, sumAppr, sumTimeStr, sumStrLect, sumCenteLect)
-
-
+                cityName(queryDocumentSnapshots)
             }
         }
 
-        private fun cityName(queryDocumentSnapshots: QuerySnapshot, sumIntro: Int, sumOneD: Int, sumTwoD: Int, sumTwent: Int, sumAppr: Int, sumTimeStr: Int, sumStrLect: Int, sumCenteLect: Int) {
-            itemView.result_city.text = "KYIV"
-            var sumIntroKiev1 = sumIntro
-            var sumOneD1 = sumOneD
-            var sumTwoD1 = sumTwoD
-            var sumTwent1 = sumTwent
-            var sumAppr1 = sumAppr
-            var sumTimeStr1 = sumTimeStr
-            var sumStrLect1 = sumStrLect
-            var sumCenteLect1 = sumCenteLect
+        private fun cityName(queryDocumentSnapshots: QuerySnapshot) {
+
+            var sumIntro = 0
+            var sumOneD1 = 0
+            var sumTwoD1 = 0
+            var sumTwent1 = 0
+            var sumAppr = 0
+            var sumTimeStr = 0
+            var sumStrLect = 0
+            var sumCenteLect = 0
+
             if (!queryDocumentSnapshots.isEmpty) {
                 queryDocumentSnapshots.forEach { documentSnapshot ->
 
@@ -89,7 +102,7 @@ class MainAdapter(val list: ArrayList<City>) : RecyclerView.Adapter<MainAdapter.
 
                     if (!resultNote.intro.isNullOrEmpty()) {
                         val intro = (Integer.parseInt(resultNote.intro))
-                        sumIntroKiev1 += intro
+                        sumIntro += intro
                     } else {
                         itemView.main_intro.text = "0"
                     }
@@ -102,51 +115,48 @@ class MainAdapter(val list: ArrayList<City>) : RecyclerView.Adapter<MainAdapter.
                     if (!resultNote.twoDayWS.isNullOrEmpty()) {
                         val twoDay = Integer.parseInt(resultNote.twoDayWS)
                         sumTwoD1 += twoDay
-                    } else {
-                        itemView.main_two_day.text = "0"
                     }
                     if (!resultNote.twOneDay.isNullOrEmpty()) {
                         val twOneDay = Integer.parseInt(resultNote.twOneDay)
                         sumTwent1 += twOneDay
-                    } else {
-                        itemView.main_21_day.text = "0"
                     }
+
                     if (!resultNote.approach.isNullOrEmpty()) {
                         val approach = Integer.parseInt(resultNote.approach)
-                        sumAppr1 += approach
+                        sumAppr += approach
                     } else {
                         itemView.main_approach.text = "0"
                     }
                     if (!resultNote.timeStr.isNullOrEmpty()) {
                         val timeStr = Integer.parseInt(resultNote.timeStr)
-                        sumTimeStr1 += timeStr
+                        sumTimeStr += timeStr
                     } else {
                         itemView.main_time_str.text = "0"
                     }
                     if (!resultNote.lectOnStr.isNullOrEmpty()) {
                         val lectOnStr = Integer.parseInt(resultNote.lectOnStr)
-                        sumStrLect1 += lectOnStr
+                        sumStrLect += lectOnStr
                     } else {
                         itemView.main_street_lect.text = "0"
                     }
                     if (!resultNote.lectCentr.isNullOrEmpty()) {
                         val lectCentr = Integer.parseInt(resultNote.lectCentr)
-                        sumCenteLect1 += lectCentr
+                        sumCenteLect += lectCentr
                     } else {
                         itemView.main_lect_center.text = "0"
                     }
 
-//                    itemView.result_city.text = model.centers.toString()
-                    itemView.main_intro.text = sumIntroKiev1.toString()
-                    itemView.main_one_day.text = sumOneD1.toString()
-                    itemView.main_two_day.text = sumTwoD1.toString()
-                    itemView.main_21_day.text = sumTwent1.toString()
-                    itemView.main_time_str.text = sumTimeStr1.toString()
-                    itemView.main_approach.text = sumAppr1.toString()
-                    itemView.main_street_lect.text = sumStrLect1.toString()
-                    itemView.main_lect_center.text = sumCenteLect1.toString()
 
                 }
+                itemView.main_intro.text = sumIntro.toString()
+                itemView.main_one_day.text = sumOneD1.toString()
+                itemView.main_two_day.text = sumTwoD1.toString()
+                itemView.main_21_day.text = sumTwent1.toString()
+                itemView.main_time_str.text = sumTimeStr.toString()
+                itemView.main_approach.text = sumAppr.toString()
+                itemView.main_street_lect.text = sumStrLect.toString()
+                itemView.main_lect_center.text = sumCenteLect.toString()
+
             } else {
 //                itemView.result_city.text = model.centers.toString()
                 itemView.main_intro.text = "0"
@@ -159,7 +169,6 @@ class MainAdapter(val list: ArrayList<City>) : RecyclerView.Adapter<MainAdapter.
                 itemView.main_lect_center.text = "0"
 
             }
-
         }
     }
 }

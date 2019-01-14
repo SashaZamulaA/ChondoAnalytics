@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.aleksandr.myapplication">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.aleksandr.myapplication"
+  >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -17,7 +19,9 @@
         android:roundIcon="@mipmap/analytics"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:windowSoftInputMode="stateUnchanged|adjustResize">
+        android:windowSoftInputMode="stateUnchanged|adjustResize"
+        tools:replace="android:appComponentFactory"
+        android:appComponentFactory="@string/action_settings">
         <activity android:name=".ui.splash.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,16 +32,14 @@
         <activity android:name=".ui.login.LoginActivity" />
         <activity android:name=".ui.login.RegistrationActivity" />
         <activity android:name=".ui.main.MainActivity" />
-        <activity
-            android:name=".ui.chondo_result.ResultM3AView"
-            android:windowSoftInputMode="stateUnchanged|adjustResize" />
-        <activity android:name=".ui.hdh.HDHView" />
-        <activity android:name=".ui.add_task.NewNoteView" />
+        <!--<activity-->
+            <!--android:name=".ui.chondo_result.ResultM3AView"-->
+            <!--android:windowSoftInputMode="stateUnchanged|adjustResize" />-->
+
         <activity android:name=".ui.settings.SettingsView" />
         <activity
             android:name=".TestForVisual"
             android:exported="true" />
-        <activity android:name=".ui.add_task.RecyclerActivity" />
 
     </application>
 

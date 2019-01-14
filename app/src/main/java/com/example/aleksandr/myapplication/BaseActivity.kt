@@ -3,24 +3,21 @@ package com.example.aleksandr.myapplication
 import android.app.ProgressDialog
 import android.content.DialogInterface
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.support.design.widget.NavigationView
-import android.support.v4.view.GravityCompat
-import android.support.v4.widget.DrawerLayout
-import android.support.v7.app.ActionBarDrawerToggle
-import android.support.v7.widget.Toolbar
+import com.google.android.material.navigation.NavigationView
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.widget.Toolbar
 import android.view.MenuItem
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.Toast
-import com.example.aleksandr.myapplication.ui.add_task.RecyclerActivity
-import com.example.aleksandr.myapplication.ui.hdh.HDHView
-import com.example.aleksandr.myapplication.ui.chondo_result.ResultM3AView
 import com.example.aleksandr.myapplication.ui.main.MainActivity
 import com.example.aleksandr.myapplication.ui.settings.SettingsView
 
-abstract class BaseActivity : AppCompatActivity(), IView, NavigationView.OnNavigationItemSelectedListener {
+abstract class BaseActivity : AppCompatActivity(), IView{
 
     internal lateinit var toolbar: Toolbar
     lateinit var drawer: DrawerLayout
@@ -28,22 +25,18 @@ abstract class BaseActivity : AppCompatActivity(), IView, NavigationView.OnNavig
     private lateinit var toggle: ActionBarDrawerToggle
 
     override fun setContentView(layoutResID: Int) {
-        val fullView = layoutInflater.inflate(R.layout.activity_nav_drawer, null) as DrawerLayout
-        val activityContainer = fullView.findViewById<View>(R.id.content_base) as FrameLayout
 
-        layoutInflater.inflate(layoutResID, activityContainer, true)
-        super.setContentView(fullView)
 
-        toolbar = findViewById<View>(R.id.toolbar) as Toolbar
-
-        drawer = findViewById<View>(R.id.drawer_layout) as DrawerLayout
-        toggle = ActionBarDrawerToggle(this, drawer, toolbar, R.string.drawer_open, R.string.drawer_close)
-        drawer.addDrawerListener(toggle)
-        toggle.drawerArrowDrawable.color = resources.getColor(R.color.white)
-        toggle.syncState()
-
-        navigationView = findViewById<View>(R.id.nav_view) as NavigationView
-        navigationView.setNavigationItemSelectedListener(this)
+//        toolbar = findViewById<View>(R.id.toolbar) as Toolbar
+//
+//        drawer = findViewById<View>(R.id.drawer_layout) as DrawerLayout
+//        toggle = ActionBarDrawerToggle(this, drawer, toolbar, R.string.drawer_open, R.string.drawer_close)
+//        drawer.addDrawerListener(toggle)
+//        toggle.drawerArrowDrawable.color = resources.getColor(R.color.white)
+//        toggle.syncState()
+//
+//        navigationView = findViewById<View>(R.id.nav_view) as NavigationView
+//        navigationView.setNavigationItemSelectedListener(this)
     }
 
     override fun onBackPressed() {
@@ -53,47 +46,39 @@ abstract class BaseActivity : AppCompatActivity(), IView, NavigationView.OnNavig
             super.onBackPressed()
         }
     }
-    override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
-        val id = menuItem.itemId
-        when (id) {
-            R.id.nav_main -> startActivity(Intent(this, MainActivity::class.java))
-
-            R.id.chondo_result -> {
-                startActivity(Intent(this, ResultM3AView::class.java))
-                Toast.makeText(applicationContext, "You Clicked Options A", Toast.LENGTH_SHORT).show()
-                drawer.closeDrawer(GravityCompat.START)
-            }
-
-            R.id.nav_task -> {
-                startActivity(Intent(this, RecyclerActivity::class.java))
-                drawer.closeDrawer(GravityCompat.START)
-            }
-
-            R.id.nav_settings -> {
-                startActivity(Intent(this, SettingsView::class.java))
-                drawer.closeDrawer(GravityCompat.START)
-            }
-
-            R.id.nav_share -> {
-                val sharingIntent = Intent(Intent.ACTION_SEND)
-                val shareBody = getString(R.string.share_body)
-                sharingIntent.apply {
-                    type = "text/plain"
-                    putExtra(android.content.Intent.EXTRA_SUBJECT, "True Father Prayers")
-                    putExtra(android.content.Intent.EXTRA_TEXT, shareBody)
-                }
-                startActivity(Intent.createChooser(sharingIntent, getString(R.string.share_by)))
-            }
-
-                R.id.nav_info -> startActivity(Intent(this, HDHView::class.java))
-
-
-        }
-
-        drawer = findViewById<View>(R.id.drawer_layout) as DrawerLayout
-        drawer.closeDrawer(GravityCompat.START)
-        return true
-    }
+//    override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
+//        val id = menuItem.itemId
+//        when (id) {
+//            R.id.nav_main -> startActivity(Intent(this, MainActivity::class.java))
+//
+////            R.id.chondo_result -> {
+////                startActivity(Intent(this, ResultM3AView::class.java))
+////                Toast.makeText(applicationContext, "You Clicked Options A", Toast.LENGTH_SHORT).show()
+////                drawer.closeDrawer(GravityCompat.START)
+////            }
+//
+//
+//            R.id.nav_settings -> {
+//                startActivity(Intent(this, SettingsView::class.java))
+//                drawer.closeDrawer(GravityCompat.START)
+//            }
+//
+//            R.id.nav_share -> {
+//                val sharingIntent = Intent(Intent.ACTION_SEND)
+//                val shareBody = getString(R.string.share_body)
+//                sharingIntent.apply {
+//                    type = "text/plain"
+//                    putExtra(android.content.Intent.EXTRA_SUBJECT, "True Father Prayers")
+//                    putExtra(android.content.Intent.EXTRA_TEXT, shareBody)
+//                }
+//                startActivity(Intent.createChooser(sharingIntent, getString(R.string.share_by)))
+//            }
+//        }
+//
+//        drawer = findViewById<View>(R.id.drawer_layout) as DrawerLayout
+//        drawer.closeDrawer(GravityCompat.START)
+//        return true
+//    }
 
     fun setNavigationItemClicked(position: Int) {
         navigationView.menu.getItem(position).isChecked = true

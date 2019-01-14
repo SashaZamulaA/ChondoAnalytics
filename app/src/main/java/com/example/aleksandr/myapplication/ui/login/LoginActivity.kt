@@ -3,7 +3,7 @@ package com.example.aleksandr.myapplication.ui.login
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.setSimpleTextWatcher
 import com.example.aleksandr.myapplication.showMaterialDialogOk
