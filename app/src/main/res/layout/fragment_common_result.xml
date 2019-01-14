@@ -46,7 +46,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginStart="@dimen/toolbar_margin_title"
                     android:gravity="center_vertical"
-                    tools:text="@string/tables" />
+                    tools:text="@string/common_result" />
 
 
                 <ImageView
@@ -82,11 +82,11 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/list_main_adapter"
+                android:id="@+id/list_common_res_adapter"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                tools:listitem="@layout/item_main_list">
+                tools:listitem="@layout/item_common_result_list">
 
             </androidx.recyclerview.widget.RecyclerView>
 

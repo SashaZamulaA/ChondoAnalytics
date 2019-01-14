@@ -11,10 +11,10 @@ import com.example.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import com.example.aleksandr.myapplication.util.clickByFilter
 import com.google.android.gms.tasks.TaskCompletionSource
 import com.google.firebase.firestore.QuerySnapshot
-import kotlinx.android.synthetic.main.item_main_list.view.*
+import kotlinx.android.synthetic.main.item_common_result_list.view.*
 import java.util.*
 
-class DefaultAdapter(private var list: ArrayList<City>) : RecyclerView.Adapter<DefaultAdapter.CityHolder>() {
+class CommonResultAdapter(private var list: ArrayList<City>) : RecyclerView.Adapter<CommonResultAdapter.CityHolder>() {
 
     var city: City? = null
 
@@ -29,30 +29,30 @@ class DefaultAdapter(private var list: ArrayList<City>) : RecyclerView.Adapter<D
     }
 
     var period = 0
-    fun perioSelected(periodSelected: DefaultAdapter.ClickByFilter) {
+    fun perioSelected(periodSelected: CommonResultAdapter.ClickByFilter) {
 
         val delaySource = TaskCompletionSource<View>()
         val delayTask = delaySource.task
         Handler().postDelayed({ delaySource.setResult(null) }, 5000)
 
         when (periodSelected) {
-            DefaultAdapter.ClickByFilter.DAY -> {
+            CommonResultAdapter.ClickByFilter.DAY -> {
                 period = 1; notifyDataSetChanged()
             }
-            DefaultAdapter.ClickByFilter.WEEK -> {
+            CommonResultAdapter.ClickByFilter.WEEK -> {
                 period = 2; notifyDataSetChanged()
             }
-            DefaultAdapter.ClickByFilter.MONTH -> {
+            CommonResultAdapter.ClickByFilter.MONTH -> {
                 period = 3; notifyDataSetChanged()
             }
-            DefaultAdapter.ClickByFilter.YEAR -> {
+            CommonResultAdapter.ClickByFilter.YEAR -> {
                 period = 4; notifyDataSetChanged()
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CityHolder {
-        val v = LayoutInflater.from(parent.context).inflate(R.layout.item_main_list,
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.item_common_result_list,
                 parent, false)
         return CityHolder(v)
     }

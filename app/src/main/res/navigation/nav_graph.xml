@@ -9,7 +9,7 @@
         android:id="@+id/commonResultFragment"
         android:name="com.example.aleksandr.myapplication.ui.commonResult.CommonResultFragment"
         android:label="Default Fragment"
-        tools:layout="@layout/default_fragment" >
+        tools:layout="@layout/fragment_common_result" >
         <action
             android:id="@+id/action_commonResultFragment_to_individualResultFragment2"
             app:destination="@id/individualResultFragment" />
@@ -29,7 +29,7 @@
 
     <fragment
         android:id="@+id/individualResultFragment"
-        android:name="com.example.aleksandr.myapplication.ui.individuallResult.IndividualResultFragment"
+        android:name="com.example.aleksandr.myapplication.ui.individualResult.IndividualResultFragment"
         android:label="First Fragment"
         tools:layout="@layout/first_fragment" >
         <action

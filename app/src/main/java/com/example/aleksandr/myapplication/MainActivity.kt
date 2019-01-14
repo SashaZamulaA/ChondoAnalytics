@@ -20,7 +20,6 @@ import com.example.aleksandr.myapplication.util.FirestoreUtil
 import com.example.aleksandr.myapplication.util.StorageUtil
 import com.example.aleksandr.tmbook.glade.GlideApp
 import com.google.android.material.navigation.NavigationView
-import kotlinx.android.synthetic.main.default_fragment.*
 import kotlinx.android.synthetic.main.header_layout.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -57,10 +56,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 //        NavigationUI.setupWithNavController(navigationView, navController)
 
         navigationView.setNavigationItemSelectedListener(this)
-
-
-
-
 
         navigationView.getHeaderView(0).apply {
             FirestoreUtil.currentUserDocRef.addSnapshotListener { documentSnapshot, _ ->
