@@ -8,7 +8,7 @@ import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.setSimpleTextWatcher
 import com.example.aleksandr.myapplication.showMaterialDialogOk
 import com.example.aleksandr.myapplication.ui.login.presenter.LoginPresenter
-import com.example.aleksandr.myapplication.ui.main.MainActivity
+import com.example.aleksandr.myapplication.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.view_login.*
 

@@ -1,4 +1,4 @@
-package com.example.aleksandr.myapplication.ui.main
+package com.example.aleksandr.myapplication.ui.addResult
 
 import android.content.Context
 import android.content.Intent
@@ -10,6 +10,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.example.aleksandr.myapplication.R
 import androidx.fragment.app.Fragment
+import com.example.aleksandr.myapplication.MainActivity
 import com.example.aleksandr.myapplication.model.City
 import com.example.aleksandr.myapplication.model.User
 import com.example.aleksandr.myapplication.ui.settings.SettingsView.Companion.SPINNER
@@ -22,7 +23,7 @@ import kotlinx.android.synthetic.main.first_fragment.view.*
 import java.util.*
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-class ChondoResultFragment : Fragment() {
+class AddResultFragment : Fragment() {
 
     val firestoreInstance: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
     val currentUserDocRef: DocumentReference

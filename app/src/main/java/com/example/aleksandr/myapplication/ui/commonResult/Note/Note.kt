@@ -1,4 +1,4 @@
-package com.example.aleksandr.myapplication.ui.main.Note
+package com.example.aleksandr.myapplication.ui.commonResult.Note
 
 class Note(val id: String?,
            val title: String?,

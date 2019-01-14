@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
-        <item android:id="@+id/first"
+        <item android:id="@+id/commonResult"
             android:title="@string/main"
             android:icon="@drawable/ic_home"/>
 
         <item
-            android:id="@+id/chondo_result"
+            android:id="@+id/add_result"
             android:icon="@drawable/ic_book"
             android:title="@string/result_chondo" />
 

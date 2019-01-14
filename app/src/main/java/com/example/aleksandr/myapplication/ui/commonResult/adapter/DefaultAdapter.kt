@@ -1,4 +1,4 @@
-package com.example.aleksandr.myapplication.ui.main.adapter
+package com.example.aleksandr.myapplication.ui.commonResult.adapter
 
 import android.os.Handler
 import android.view.LayoutInflater
@@ -14,7 +14,7 @@ import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.android.synthetic.main.item_main_list.view.*
 import java.util.*
 
-class MainAdapter(private var list: ArrayList<City>) : RecyclerView.Adapter<MainAdapter.CityHolder>() {
+class DefaultAdapter(private var list: ArrayList<City>) : RecyclerView.Adapter<DefaultAdapter.CityHolder>() {
 
     var city: City? = null
 
@@ -29,23 +29,23 @@ class MainAdapter(private var list: ArrayList<City>) : RecyclerView.Adapter<Main
     }
 
     var period = 0
-    fun perioSelected(periodSelected: MainAdapter.ClickByFilter) {
+    fun perioSelected(periodSelected: DefaultAdapter.ClickByFilter) {
 
         val delaySource = TaskCompletionSource<View>()
         val delayTask = delaySource.task
         Handler().postDelayed({ delaySource.setResult(null) }, 5000)
 
         when (periodSelected) {
-            MainAdapter.ClickByFilter.DAY -> {
+            DefaultAdapter.ClickByFilter.DAY -> {
                 period = 1; notifyDataSetChanged()
             }
-            MainAdapter.ClickByFilter.WEEK -> {
+            DefaultAdapter.ClickByFilter.WEEK -> {
                 period = 2; notifyDataSetChanged()
             }
-            MainAdapter.ClickByFilter.MONTH -> {
+            DefaultAdapter.ClickByFilter.MONTH -> {
                 period = 3; notifyDataSetChanged()
             }
-            MainAdapter.ClickByFilter.YEAR -> {
+            DefaultAdapter.ClickByFilter.YEAR -> {
                 period = 4; notifyDataSetChanged()
             }
         }

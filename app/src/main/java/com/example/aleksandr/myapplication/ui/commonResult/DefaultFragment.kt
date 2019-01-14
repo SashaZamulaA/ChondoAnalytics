@@ -1,8 +1,6 @@
-package com.example.aleksandr.myapplication.ui.main
+package com.example.aleksandr.myapplication.ui.commonResult
 
-import android.content.Context
 import android.os.Bundle
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,8 +10,7 @@ import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.aleksandr.myapplication.model.City
-import com.example.aleksandr.myapplication.ui.main.adapter.MainAdapter
-import com.google.android.gms.tasks.TaskCompletionSource
+import com.example.aleksandr.myapplication.ui.commonResult.adapter.DefaultAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.default_fragment.*
 import kotlinx.android.synthetic.main.default_fragment.view.*
@@ -30,7 +27,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 class DefaultFragment : Fragment() {
     var toolbar: Toolbar? = null
-    var adapter: MainAdapter? = null
+    var adapter: DefaultAdapter? = null
     var city: City? = null
     private val items: ArrayList<City> = ArrayList()
 
@@ -49,7 +46,7 @@ class DefaultFragment : Fragment() {
         toolbar = view?.findViewById(com.example.aleksandr.myapplication.R.id.toolbar)
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
 
-        adapter?.perioSelected(MainAdapter.ClickByFilter.YEAR)
+        adapter?.perioSelected(DefaultAdapter.ClickByFilter.YEAR)
 
 
 //        update(items)
@@ -81,17 +78,17 @@ class DefaultFragment : Fragment() {
             when (item.itemId) {
                 com.example.aleksandr.myapplication.R.id.menu_year -> {
 //                    showLoading()
-                    adapter?.perioSelected(MainAdapter.ClickByFilter.YEAR)
+                    adapter?.perioSelected(DefaultAdapter.ClickByFilter.YEAR)
 //                    hideLoading()
                 }
                 com.example.aleksandr.myapplication.R.id.menu_month -> {
-                    adapter?.perioSelected(MainAdapter.ClickByFilter.MONTH)
+                    adapter?.perioSelected(DefaultAdapter.ClickByFilter.MONTH)
                 }
                 com.example.aleksandr.myapplication.R.id.menu_week -> {
-                    adapter?.perioSelected(MainAdapter.ClickByFilter.WEEK)
+                    adapter?.perioSelected(DefaultAdapter.ClickByFilter.WEEK)
                 }
                 com.example.aleksandr.myapplication.R.id.menu_day -> {
-                    adapter?.perioSelected(MainAdapter.ClickByFilter.DAY)
+                    adapter?.perioSelected(DefaultAdapter.ClickByFilter.DAY)
                 }
                 else -> {
                 }
@@ -112,7 +109,7 @@ class DefaultFragment : Fragment() {
         items.add(City("0", "0", "0", "0", "Odessa", "0", "0", "0", "0", Date()))
         items.add(City("0", "0", "0", "0", "Chernigov", "0", "0", "0", "0", Date()))
 
-        adapter = MainAdapter(items)
+        adapter = DefaultAdapter(items)
         rootView.list_main_adapter.adapter = adapter
     }
 

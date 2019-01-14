@@ -1,8 +1,8 @@
-package com.example.aleksandr.myapplication.ui.main
+package com.example.aleksandr.myapplication
 
 import android.app.Application
-import com.example.aleksandr.myapplication.AndroidApplication
 import com.example.aleksandr.myapplication.BasePresenter
+import com.example.aleksandr.myapplication.MainActivity
 
 
 abstract class MainPresenter(mainView: MainActivity, applicationComponent: Application): BasePresenter<MainActivity>(mainView){

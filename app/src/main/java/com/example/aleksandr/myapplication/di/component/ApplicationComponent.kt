@@ -7,7 +7,7 @@ import com.example.aleksandr.myapplication.ui.login.LoginActivity
 import com.example.aleksandr.myapplication.ui.login.RegistrationActivity
 import com.example.aleksandr.myapplication.ui.login.presenter.LoginPresenter
 import com.example.aleksandr.myapplication.ui.login.presenter.RegistrationPresenter
-import com.example.aleksandr.myapplication.ui.main.MainActivity
+import com.example.aleksandr.myapplication.MainActivity
 import com.example.aleksandr.myapplication.ui.settings.SettingsView
 import com.vadym.adv.myhomepet.ui.settings.SettingsPresenter
 import dagger.Component

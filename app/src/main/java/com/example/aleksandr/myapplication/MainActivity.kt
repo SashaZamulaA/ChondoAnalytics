@@ -1,4 +1,4 @@
-package com.example.aleksandr.myapplication.ui.main
+package com.example.aleksandr.myapplication
 
 
 import android.content.Intent
@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
@@ -15,7 +14,6 @@ import androidx.navigation.Navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import androidx.navigation.ui.NavigationUI.setupWithNavController
-import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.model.User
 import com.example.aleksandr.myapplication.ui.login.LoginActivity
 import com.example.aleksandr.myapplication.ui.settings.SettingsView.Companion.AUTHOR_KEY
@@ -24,12 +22,11 @@ import com.example.aleksandr.myapplication.util.FirestoreUtil
 import com.example.aleksandr.myapplication.util.StorageUtil
 import com.example.aleksandr.tmbook.glade.GlideApp
 import com.google.android.material.navigation.NavigationView
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.header_layout.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-//    lateinit var toolbar: Toolbar
+    //    lateinit var toolbar: Toolbar
     lateinit var drawerLayout: DrawerLayout
     lateinit var navController: NavController
     lateinit var navigationView: NavigationView
@@ -155,26 +152,23 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-//    override fun onBackPressed() {
+    //    override fun onBackPressed() {
 //        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
 //            drawerLayout.closeDrawer(GravityCompat.START)
 //        } else {
 //            super.onBackPressed()
 //        }
 //    }
-
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
 
         menuItem.isChecked = true
         drawerLayout.closeDrawers()
         val id = menuItem.itemId
         when (id) {
-            R.id.first -> navController.navigate(R.id.defaultFragment)
-            R.id.chondo_result -> navController.navigate(R.id.chondoFragment)
+            R.id.commonResult -> navController.navigate(R.id.commonResultFragment)
+            R.id.add_result -> navController.navigate(R.id.addResultFragment)
             R.id.nav_settings -> navController.navigate(R.id.settingsFragment)
-
         }
         return true
-
     }
 }

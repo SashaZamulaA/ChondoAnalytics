@@ -4,26 +4,19 @@ import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.model.User
 import com.example.aleksandr.myapplication.service.MyFirebaseInstanceIDService
 import com.example.aleksandr.myapplication.setSimpleTextWatcher
 import com.example.aleksandr.myapplication.ui.login.presenter.RegistrationPresenter
-import com.example.aleksandr.myapplication.ui.main.MainActivity
+import com.example.aleksandr.myapplication.MainActivity
 import com.example.aleksandr.myapplication.ui.settings.SettingsView.Companion.AUTHOR_KEY
 import com.example.aleksandr.myapplication.ui.settings.SettingsView.Companion.QUOTE_KEY
-import com.example.aleksandr.myapplication.ui.settings.SettingsView.Companion.SPINNER
 import com.example.aleksandr.myapplication.util.FirestoreUtil
-import com.example.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.firestore.DocumentReference
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.iid.FirebaseInstanceId
 import kotlinx.android.synthetic.main.view_registration.*
 

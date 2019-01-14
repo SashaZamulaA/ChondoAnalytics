@@ -1,4 +1,4 @@
-package com.example.aleksandr.myapplication.ui.main
+package com.example.aleksandr.myapplication.ui.settings
 
 import android.app.Activity
 import android.content.Context
@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.aleksandr.myapplication.MainActivity
 import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.model.User
 import com.example.aleksandr.myapplication.ui.settings.SettingsView.Companion.AUTHOR_KEY

@@ -31,7 +31,7 @@
         </activity>
         <activity android:name=".ui.login.LoginActivity" />
         <activity android:name=".ui.login.RegistrationActivity" />
-        <activity android:name=".ui.main.MainActivity" />
+        <activity android:name=".MainActivity" />
         <!--<activity-->
             <!--android:name=".ui.chondo_result.ResultM3AView"-->
             <!--android:windowSoftInputMode="stateUnchanged|adjustResize" />-->
