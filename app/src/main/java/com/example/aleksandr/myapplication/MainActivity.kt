@@ -11,9 +11,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.Navigation.findNavController
-import androidx.navigation.ui.NavigationUI
-import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
-import androidx.navigation.ui.NavigationUI.setupWithNavController
+import androidx.navigation.fragment.NavHostFragment
 import com.example.aleksandr.myapplication.model.User
 import com.example.aleksandr.myapplication.ui.login.LoginActivity
 import com.example.aleksandr.myapplication.ui.settings.SettingsView.Companion.AUTHOR_KEY
@@ -22,6 +20,7 @@ import com.example.aleksandr.myapplication.util.FirestoreUtil
 import com.example.aleksandr.myapplication.util.StorageUtil
 import com.example.aleksandr.tmbook.glade.GlideApp
 import com.google.android.material.navigation.NavigationView
+import kotlinx.android.synthetic.main.default_fragment.*
 import kotlinx.android.synthetic.main.header_layout.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -35,7 +34,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-//        val finalHost = NavHostFragment.create(R.navigation.nav_graph)
+        val finalHost = NavHostFragment.create(R.navigation.nav_graph)
 //        supportFragmentManager.beginTransaction()
 //                .replace(R.id.nav_host_fragment, finalHost)
 //                .setPrimaryNavigationFragment(finalHost)
@@ -93,7 +92,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val navController = findNavController(this, R.id.nav_host_fragment)
 
         // Update action bar to reflect navigation
-        setupActionBarWithNavController(this, navController, drawerLayout)
 
         // Handle nav drawer item clicks
         navigationView.setNavigationItemSelectedListener { menuItem ->
@@ -103,7 +101,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
         // Tie nav graph to items in nav drawer
-        setupWithNavController(navigationView, navController)
+
     }
 
     // Setting Up One Time Navigation
@@ -118,10 +116,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         navigationView = findViewById(R.id.navigationView)
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
-
-        NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
-
-        NavigationUI.setupWithNavController(navigationView, navController)
 
         navigationView.setNavigationItemSelectedListener(this)
 

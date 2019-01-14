@@ -4,11 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.model.City
 import com.example.aleksandr.myapplication.ui.commonResult.adapter.DefaultAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -16,28 +19,21 @@ import kotlinx.android.synthetic.main.default_fragment.*
 import kotlinx.android.synthetic.main.default_fragment.view.*
 import java.util.*
 import kotlin.collections.ArrayList
-import androidx.appcompat.app.AppCompatActivity
 
-
-
-
-
-
-
-
-class DefaultFragment : Fragment() {
+class CommonResultFragment : Fragment() {
     var toolbar: Toolbar? = null
     var adapter: DefaultAdapter? = null
     var city: City? = null
     private val items: ArrayList<City> = ArrayList()
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-        super.onViewCreated(view, savedInstanceState)
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(com.example.aleksandr.myapplication.R.layout.default_fragment, container, false)
+
+        rootView.button_individual_result.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_commonResultFragment_to_individualResultFragment2)
+        }
+
         adapterInit(rootView)
         bottomMenuInit(rootView)
 

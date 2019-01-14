@@ -41,7 +41,7 @@ dependencies {
     apply plugin: 'com.google.gms.google-services'
 //    implementation "android.arch.core:runtime:1.1.1"
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0-beta01'
@@ -105,9 +105,9 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
     def nav_version = "1.0.0-alpha06"
 
-    implementation "android.arch.navigation:navigation-fragment:$nav_version"
-    implementation "android.arch.navigation:navigation-ui:$nav_version"
-    implementation "android.arch.navigation:navigation-ui-ktx:$nav_version"
+    implementation 'android.arch.navigation:navigation-fragment:1.0.0-alpha09'
+    implementation 'android.arch.navigation:navigation-fragment-ktx:1.0.0-alpha05'
+    implementation 'android.arch.navigation:navigation-ui-ktx:1.0.0-alpha05'
     //anko
     implementation "org.jetbrains.anko:anko-commons:0.10.4"
     implementation "org.jetbrains.anko:anko-design:0.10.4"

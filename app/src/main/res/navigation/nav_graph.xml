@@ -7,9 +7,12 @@
 
     <fragment
         android:id="@+id/commonResultFragment"
-        android:name="com.example.aleksandr.myapplication.ui.commonResult.DefaultFragment"
+        android:name="com.example.aleksandr.myapplication.ui.commonResult.CommonResultFragment"
         android:label="Default Fragment"
         tools:layout="@layout/default_fragment" >
+        <action
+            android:id="@+id/action_commonResultFragment_to_individualResultFragment2"
+            app:destination="@id/individualResultFragment" />
     </fragment>
 
     <fragment
@@ -23,5 +26,15 @@
         android:name="com.example.aleksandr.myapplication.ui.settings.SettingsFragment"
         android:label="First Fragment"
         tools:layout="@layout/first_fragment" />
+
+    <fragment
+        android:id="@+id/individualResultFragment"
+        android:name="com.example.aleksandr.myapplication.ui.individuallResult.IndividualResultFragment"
+        android:label="First Fragment"
+        tools:layout="@layout/first_fragment" >
+        <action
+            android:id="@+id/action_individualResultFragment_to_commonResultFragment3"
+            app:destination="@id/commonResultFragment" />
+    </fragment>
 
 </navigation>
