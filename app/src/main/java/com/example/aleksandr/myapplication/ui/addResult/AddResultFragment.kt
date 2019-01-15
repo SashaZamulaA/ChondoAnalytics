@@ -47,7 +47,7 @@ class AddResultFragment : Fragment() {
 
         category2 = resources.getStringArray(R.array.City)
         @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-        val adapter2 = ArrayAdapter(context,android.R.layout.simple_dropdown_item_1line, category2)
+        val adapter2 = ArrayAdapter(context, android.R.layout.simple_dropdown_item_1line, category2)
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         val spinnerCountryAdapter = ArrayAdapter(context, R.layout.spinner_simple_item, spinner_country)
@@ -77,7 +77,7 @@ class AddResultFragment : Fragment() {
         val lectOnStr = result_lectures_on_street_edittext.text.toString()
         val lectCentr = result_lectures_in_center_edittext.text.toString()
 
-        val user: User? = null
+//        val user: User? = null
         val currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
         val dataToSave = HashMap<String, Any>()
 //        dataToSave[INRO] = intro
@@ -85,15 +85,15 @@ class AddResultFragment : Fragment() {
 
         dataToSave[SPINNER] = centers
         val filename = UUID.randomUUID().toString()
-        FirestoreUtil.currentUserDocRef.collection("City")
-                .document(centers).collection(filename).document()
-                .set(City(intro, oneDayWS, twoDayWS, twOneDay, centers, approach, timeStr, lectOnStr, lectCentr, Date()))
+//        FirestoreUtil.currentUserDocRef.collection("City")
+//                .document(centers).collection(filename).document()
+//                .set(City(currentUserId, intro, oneDayWS, twoDayWS, twOneDay, centers, approach, timeStr, lectOnStr, lectCentr, Date()))
 
-        noteRefCollection.add(City(intro, oneDayWS, twoDayWS, twOneDay, centers, approach, timeStr, lectOnStr, lectCentr, Date()))
+        noteRefCollection.add(City(currentUserId, intro, oneDayWS, twoDayWS, twOneDay, centers, approach, timeStr, lectOnStr, lectCentr, Date()))
 
-        firestoreInstance.collection("City")
-                .document(centers).collection(centers).document()
-                .set(City(intro, oneDayWS, twoDayWS, twOneDay, centers, approach, timeStr, lectOnStr, lectCentr, Date()))
+//        firestoreInstance.collection("City")
+//                .document(centers).collection(centers).document()
+//                .set(City(currentUserId, intro, oneDayWS, twoDayWS, twOneDay, centers, approach, timeStr, lectOnStr, lectCentr, Date()))
 
         startActivity(Intent(context, MainActivity::class.java))
 

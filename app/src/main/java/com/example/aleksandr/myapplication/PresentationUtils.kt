@@ -10,6 +10,7 @@ import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import android.widget.Toast
 import java.util.regex.Pattern
 
 
@@ -25,7 +26,6 @@ fun EditText.setSimpleTextWatcher(watcher: (String) -> Unit): TextWatcher =
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         }.also { addTextChangedListener(it) }
-
 
 fun EditText.setTextSmartly(text: CharSequence) {
     if (getText().toString() != text) {

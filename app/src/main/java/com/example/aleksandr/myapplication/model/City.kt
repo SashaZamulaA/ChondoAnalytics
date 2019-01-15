@@ -3,6 +3,7 @@ package com.example.aleksandr.myapplication.model
 import java.util.*
 
 data class City(
+        val id : String?,
         val intro : String?,
         val onedayWS: String?,
         val twoDayWS: String?,
@@ -14,13 +15,9 @@ data class City(
         val lectCentr: String?,
         val time: Date
         ){
-    constructor() : this("","", "", "", "","","","","",Date())
+    constructor() : this("","","", "", "", "","","","","",Date())
 
 }
-
-
-
-
 
 enum class Method(val method: String) {
     KYIV("KYIV"),
@@ -31,10 +28,3 @@ enum class Method(val method: String) {
     ODESSA("ODESSA"),
     CHERNIGOV("CHERNIGOV"),
 }
-//class WeightEntryVH(itemView: View?)
-//    : RecyclerView.ViewHolder(itemView) {
-//    var weightView: TextView? =
-//            itemView?.findViewById(R.id.one_day_seminar_edittext)
-//    var timeView: TextView? =
-//            itemView?.findViewById(R.id.two_day_seminar_edittext)
-//}

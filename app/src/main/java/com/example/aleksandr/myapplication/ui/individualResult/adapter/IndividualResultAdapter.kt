@@ -12,8 +12,6 @@ import kotlinx.android.synthetic.main.item_individual_result_list.view.*
 
 class IndividualResultAdapter(options: FirestoreRecyclerOptions<City>) : FirestoreRecyclerAdapter<City, IndividualResultAdapter.NoteHolder>(options) {
 
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.item_individual_result_list,
                 parent, false)
@@ -25,12 +23,10 @@ class IndividualResultAdapter(options: FirestoreRecyclerOptions<City>) : Firesto
     }
 
     inner class NoteHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
         fun bind(note: City) {
 
             itemView.apply {
                 result_city.text = note.centers
-
             }
         }
     }

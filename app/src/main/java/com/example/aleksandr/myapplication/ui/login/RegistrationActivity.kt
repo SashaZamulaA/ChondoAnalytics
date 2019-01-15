@@ -26,7 +26,7 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
     lateinit var presenter: RegistrationPresenter
     private var auth: FirebaseAuth? = null
     var databaseReference: DatabaseReference? = null
-    private val chatChannelsCollectionRef = FirestoreUtil.firestoreInstance.collection("userssa")
+    private val chatChannelsCollectionRef = FirestoreUtil.firestoreInstance.collection("users")
 
     private lateinit var currentChannelId: String
     private val spinner_country = arrayOf(

@@ -108,8 +108,8 @@ private fun setTimeToEndofDay(calendar: Calendar) {
     calendar.set(Calendar.MILLISECOND, 999)
 }
 
-fun clickByFilter(noteRefCollection: CollectionReference, city: Int, value: Int) : Task<QuerySnapshot> {
-    return noteRefCollection.whereEqualTo("centers", when(city) {
+fun clickByFilter(noteRefCollection: CollectionReference, position: Int, value: Int) : Task<QuerySnapshot> {
+    return noteRefCollection.whereEqualTo("centers", when(position) {
                0 -> "Kyiv"
                1 -> "Kharkiv"
                2 -> "Dnepr"
