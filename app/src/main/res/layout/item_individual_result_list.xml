@@ -11,7 +11,7 @@
     android:layout_marginTop="8dp"
     android:elevation="2dp"
     android:orientation="horizontal"
-    app:cardBackgroundColor="@color/complementary_red"
+    app:cardBackgroundColor="@color/white"
     app:layout_constraintWidth_default="spread"
     app:layout_constraintWidth_max="@dimen/card_width"
     card_view:layout_constraintEnd_toEndOf="parent"
@@ -26,15 +26,33 @@
         android:layout_marginRight="@dimen/space_16"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/result_city"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space8"
-            android:textColor="@color/accent"
-            android:background="@color/text_disabled_light"
-            android:textSize="@dimen/space_16"
-            tools:text="12.12.2019"/>
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/result_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space8"
+                android:textColor="@color/accent"
+                android:background="@color/text_disabled_light"
+                android:textSize="@dimen/space_16"
+                android:text="Kyiv"/>
+
+            <TextView
+                android:id="@+id/individual_time_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space8"
+                android:textColor="@color/black_effective"
+                android:gravity="center_vertical|end"
+                android:textStyle="bold"
+                android:background="@color/text_disabled_light"
+                android:textSize="@dimen/space12"
+                android:text="12.12.2019"/>
+        </LinearLayout>
+
 
 
         <LinearLayout

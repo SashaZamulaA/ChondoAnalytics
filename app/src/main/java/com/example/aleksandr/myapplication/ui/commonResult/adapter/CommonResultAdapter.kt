@@ -4,6 +4,7 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.model.City
@@ -14,7 +15,7 @@ import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.android.synthetic.main.item_common_result_list.view.*
 import java.util.*
 
-class CommonResultAdapter(private var list: ArrayList<City>) : RecyclerView.Adapter<CommonResultAdapter.CityHolder>() {
+class CommonResultAdapter(private var list: ArrayList<City>, private var fragmentCommunication: FragmentCommunication) : RecyclerView.Adapter<CommonResultAdapter.CityHolder>() {
 
     var city: City? = null
 
@@ -54,7 +55,7 @@ class CommonResultAdapter(private var list: ArrayList<City>) : RecyclerView.Adap
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CityHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.item_common_result_list,
                 parent, false)
-        return CityHolder(v)
+        return CityHolder(v, fragmentCommunication)
     }
 
     override fun onBindViewHolder(holder: CityHolder, position: Int) {
@@ -70,14 +71,26 @@ class CommonResultAdapter(private var list: ArrayList<City>) : RecyclerView.Adap
 //    }
 
     @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-    inner class CityHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class CityHolder(itemView: View, var fragmentCommunication: FragmentCommunication) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+
+        init{
+            itemView.setOnClickListener(this)
+        }
+
+        override fun onClick(v: View?) {
+            fragmentCommunication.respond(position)
+
+        }
 
         fun bind() {
+
             val delaySource = TaskCompletionSource<View>()
             val delayTask = delaySource.task
             Handler().postDelayed({ delaySource.setResult(null) }, 10000)
             val item = list[position]
             itemView.result_city.text = item.centers
+//            mFragmentCommunication.respond(adapterPosition)
+
 
             clickByFilter(noteRefCollection, position, period).addOnSuccessListener { queryDocumentSnapshots ->
                 cityName(queryDocumentSnapshots)
@@ -170,5 +183,10 @@ class CommonResultAdapter(private var list: ArrayList<City>) : RecyclerView.Adap
 
             }
         }
+
+    }
+
+    interface FragmentCommunication {
+        fun respond(position: Int)
     }
 }

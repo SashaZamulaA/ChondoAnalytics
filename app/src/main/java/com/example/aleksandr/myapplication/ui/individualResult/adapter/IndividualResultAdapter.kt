@@ -27,6 +27,7 @@ class IndividualResultAdapter(options: FirestoreRecyclerOptions<City>) : Firesto
 
             itemView.apply {
                 result_city.text = note.centers
+                individual_time_city.text = note.time.toString()
             }
         }
     }

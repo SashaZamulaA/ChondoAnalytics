@@ -16,6 +16,7 @@ import com.example.aleksandr.myapplication.ui.individualResult.adapter.Individua
 import com.example.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.fragment_individual_result.view.*
 
 
@@ -30,8 +31,8 @@ class IndividualResultFragment : Fragment() {
 
             val query = firestoreInstance.collection("NewCity")
                     .whereEqualTo("id", if ("${FirebaseAuth.getInstance().uid}" == FirebaseAuth.getInstance().currentUser!!.uid){ FirebaseAuth.getInstance().uid } else null )
+                    .orderBy("time", Query.Direction.ASCENDING)
 
-//                .orderBy("City", Query.Direction.ASCENDING)
             val options = FirestoreRecyclerOptions.Builder<City>()
                     .setQuery(query, City::class.java)
                     .build()

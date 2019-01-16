@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_commonResultFragment_to_individualResultFragment2"
             app:destination="@id/individualResultFragment" />
+        <action
+            android:id="@+id/action_commonResultFragment_to_eachCenterFragment"
+            app:destination="@id/eachCenterFragment" />
     </fragment>
 
     <fragment
@@ -34,6 +37,15 @@
         tools:layout="@layout/first_fragment" >
         <action
             android:id="@+id/action_individualResultFragment_to_commonResultFragment3"
+            app:destination="@id/commonResultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/eachCenterFragment"
+        android:name="com.example.aleksandr.myapplication.ui.eachCentersResult.EachCenterFragment"
+        android:label="EachCenterFragment"
+        tools:layout="@layout/fragment_each_senter">
+        <action
+            android:id="@+id/action_eachCenterFragment_to_commonResultFragment"
             app:destination="@id/commonResultFragment" />
     </fragment>
 

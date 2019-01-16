@@ -11,7 +11,6 @@ import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.model.City
 import com.example.aleksandr.myapplication.ui.commonResult.adapter.CommonResultAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -19,8 +18,26 @@ import kotlinx.android.synthetic.main.fragment_common_result.*
 import kotlinx.android.synthetic.main.fragment_common_result.view.*
 import java.util.*
 import kotlin.collections.ArrayList
+import android.R
+import android.content.Intent
+import android.widget.Toast
+import com.example.aleksandr.myapplication.ui.commonResult.adapter.CommonResultAdapter.FragmentCommunication
+import com.example.aleksandr.myapplication.ui.eachCentersResult.EachCenterFragment
+import com.example.aleksandr.myapplication.ui.individualResult.IndividualResultFragment
 
-class CommonResultFragment : Fragment() {
+
+class CommonResultFragment : Fragment(), CommonResultAdapter.FragmentCommunication {
+
+    override fun respond(position: Int) {
+//        items[position]
+        Toast.makeText(context,
+                "Verification email sent to $position",
+                Toast.LENGTH_SHORT).show()
+        Navigation.findNavController(this.view!!).navigate(com.example.aleksandr.myapplication.R.id.action_commonResultFragment_to_eachCenterFragment)
+
+//
+    }
+
     var toolbar: Toolbar? = null
     var adapter: CommonResultAdapter? = null
     var city: City? = null
@@ -30,7 +47,7 @@ class CommonResultFragment : Fragment() {
         val rootView = inflater.inflate(com.example.aleksandr.myapplication.R.layout.fragment_common_result, container, false)
 
         rootView.button_individual_result.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_commonResultFragment_to_individualResultFragment2)
+            Navigation.findNavController(it).navigate(com.example.aleksandr.myapplication.R.id.action_commonResultFragment_to_individualResultFragment2)
         }
 
         adapterInit(rootView)
@@ -45,6 +62,18 @@ class CommonResultFragment : Fragment() {
 //        update(items)
         return rootView
     }
+
+
+    var communication: FragmentCommunication = object : FragmentCommunication {
+        override fun respond(position: Int) {
+            val fragmentB = IndividualResultFragment()
+            val manager = fragmentManager
+            val transaction = manager!!.beginTransaction()
+            transaction.replace(R.id.list_container, fragmentB).commit()
+        }
+
+    }
+
 
     private fun showLoading() {
         pb_loading.visibility = View.VISIBLE
@@ -98,7 +127,7 @@ class CommonResultFragment : Fragment() {
         items.add(City("","0", "0", "0", "0", "Odessa", "0", "0", "0", "0", Date()))
         items.add(City("","0", "0", "0", "0", "Chernigov", "0", "0", "0", "0", Date()))
 
-        adapter = CommonResultAdapter(items)
+        adapter = CommonResultAdapter(items, this)
         rootView.list_common_res_adapter.adapter = adapter
     }
 

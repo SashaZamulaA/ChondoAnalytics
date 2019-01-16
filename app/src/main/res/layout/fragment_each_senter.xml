@@ -46,31 +46,8 @@
                     android:layout_height="match_parent"
                     android:layout_marginStart="@dimen/toolbar_margin_title"
                     android:gravity="center_vertical"
-                    tools:text="@string/common_result" />
+                    tools:text="@string/each_center_result" />
 
-
-                <ImageView
-                    android:id="@+id/button_common_result"
-                    android:layout_width="@dimen/toolbar_icon_size"
-                    android:layout_height="@dimen/toolbar_icon_size"
-                    android:background="@drawable/button_ripple_circle_green"
-                    android:layout_toLeftOf="@+id/button_individual_result"
-                    app:srcCompat="@drawable/ic_people_outline_white"
-                    android:padding="@dimen/icon_button_padding"
-                    android:gravity="center"
-                    android:text="@string/save" />
-
-                <ImageView
-                    android:id="@+id/button_individual_result"
-                    android:layout_width="@dimen/toolbar_icon_size"
-                    android:layout_height="@dimen/toolbar_icon_size"
-                    android:background="@drawable/button_ripple_circle_green"
-                    app:srcCompat="@drawable/ic_person"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="@dimen/space_12"
-                    android:padding="@dimen/icon_button_padding"
-                    android:gravity="center"
-                    android:text="@string/save" />
             </RelativeLayout>
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>
@@ -83,14 +60,14 @@
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/list_common_res_adapter"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                tools:listitem="@layout/item_common_result_list">
+            <!--<androidx.recyclerview.widget.RecyclerView-->
+                <!--android:id="@+id/list_common_res_adapter"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="vertical"-->
+                <!--tools:listitem="@layout/item_common_result_list">-->
 
-            </androidx.recyclerview.widget.RecyclerView>
+            <!--</androidx.recyclerview.widget.RecyclerView>-->
 
         </androidx.core.widget.NestedScrollView>
 
