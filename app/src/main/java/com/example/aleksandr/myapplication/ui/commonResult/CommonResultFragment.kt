@@ -19,23 +19,33 @@ import kotlinx.android.synthetic.main.fragment_common_result.view.*
 import java.util.*
 import kotlin.collections.ArrayList
 import android.R
-import android.content.Intent
 import android.widget.Toast
+import androidx.core.app.ActivityOptionsCompat
+import androidx.navigation.ActivityNavigator
+import androidx.navigation.findNavController
 import com.example.aleksandr.myapplication.ui.commonResult.adapter.CommonResultAdapter.FragmentCommunication
 import com.example.aleksandr.myapplication.ui.eachCentersResult.EachCenterFragment
 import com.example.aleksandr.myapplication.ui.individualResult.IndividualResultFragment
+import kotlinx.android.synthetic.main.spinner_drop_down.*
+import java.io.Serializable
+import androidx.navigation.fragment.FragmentNavigator
+import kotlinx.android.synthetic.main.spinner_simple_item.*
+import org.jetbrains.anko.bundleOf
 
 
-class CommonResultFragment : Fragment(), CommonResultAdapter.FragmentCommunication {
+class CommonResultFragment : Fragment(), CommonResultAdapter.FragmentCommunication, Serializable {
 
     override fun respond(position: Int) {
 //        items[position]
         Toast.makeText(context,
                 "Verification email sent to $position",
                 Toast.LENGTH_SHORT).show()
-        Navigation.findNavController(this.view!!).navigate(com.example.aleksandr.myapplication.R.id.action_commonResultFragment_to_eachCenterFragment)
+        val bundle = Bundle()
+        bundle.putInt("pas", position)
+        Navigation.findNavController(this.view!!).navigate(com.example.aleksandr.myapplication.R.id.action_commonResultFragment_to_eachCenterFragment, bundle)
 
-//
+
+
     }
 
     var toolbar: Toolbar? = null
@@ -45,6 +55,8 @@ class CommonResultFragment : Fragment(), CommonResultAdapter.FragmentCommunicati
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(com.example.aleksandr.myapplication.R.layout.fragment_common_result, container, false)
+
+
 
         rootView.button_individual_result.setOnClickListener {
             Navigation.findNavController(it).navigate(com.example.aleksandr.myapplication.R.id.action_commonResultFragment_to_individualResultFragment2)

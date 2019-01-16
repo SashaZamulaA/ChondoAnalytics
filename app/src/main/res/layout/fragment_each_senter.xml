@@ -60,14 +60,14 @@
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <!--<androidx.recyclerview.widget.RecyclerView-->
-                <!--android:id="@+id/list_common_res_adapter"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:orientation="vertical"-->
-                <!--tools:listitem="@layout/item_common_result_list">-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_each_center_res_adapter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                tools:listitem="@layout/item_each_center">
 
-            <!--</androidx.recyclerview.widget.RecyclerView>-->
+            </androidx.recyclerview.widget.RecyclerView>
 
         </androidx.core.widget.NestedScrollView>
 

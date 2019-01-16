@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="8dp"
+    app:cardBackgroundColor="@color/white">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/image_icon"
+            android:layout_width="@dimen/item_size_list"
+            android:layout_height="@dimen/item_size_list"
+            android:layout_centerVertical="true"
+            tools:tint="#FF8000" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space8"
+                android:gravity="start|end">
+
+                <TextView
+                    android:id="@+id/each_center_intr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_primary_dark"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textSize="@dimen/body2_text_size"
+                    android:text="@string/introdaction" />
+
+                <TextView
+                    android:id="@+id/each_center_intro_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:textColor="@color/text_secondary_dark"
+                    android:textSize="@dimen/body2_text_size"
+                    tools:text="21" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_4"
+                android:gravity="start|end">
+
+                <TextView
+                    android:id="@+id/start_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="@dimen/body2_text_size"
+                    tools:text="@string/one_day_seminar" />
+
+
+                <TextView
+                    android:id="@+id/count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:textColor="@color/text_secondary_dark"
+                    android:textSize="@dimen/body2_text_size"
+                    tools:text=" (7days)" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start|end">
+
+                <TextView
+                    android:id="@+id/result"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="@dimen/body2_text_size"
+                    android:text="@string/two_day_seminar" />
+
+                <TextView
+                    android:id="@+id/result_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:textColor="@color/text_secondary_dark"
+                    android:textSize="@dimen/body2_text_size"
+                    tools:text="20" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

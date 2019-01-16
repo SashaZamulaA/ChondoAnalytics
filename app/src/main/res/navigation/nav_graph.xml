@@ -47,6 +47,10 @@
         <action
             android:id="@+id/action_eachCenterFragment_to_commonResultFragment"
             app:destination="@id/commonResultFragment" />
+        <argument
+            android:name="pas"
+            android:defaultValue="0"
+            app:argType="integer" />
     </fragment>
 
 </navigation>
