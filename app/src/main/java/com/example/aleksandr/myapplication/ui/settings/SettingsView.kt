@@ -12,11 +12,9 @@ import com.example.aleksandr.myapplication.model.User
 import com.example.aleksandr.myapplication.util.FirestoreUtil
 import com.example.aleksandr.myapplication.util.StorageUtil
 import com.example.aleksandr.tmbook.glade.GlideApp
-import com.google.android.gms.tasks.OnSuccessListener
-import com.google.firebase.firestore.QuerySnapshot
 import com.vadym.adv.myhomepet.ui.settings.ISettingsView
 import com.vadym.adv.myhomepet.ui.settings.SettingsPresenter
-import kotlinx.android.synthetic.main.view_settings.*
+import kotlinx.android.synthetic.main.fragment_settings.*
 import org.jetbrains.anko.toast
 import java.io.ByteArrayOutputStream
 
@@ -35,7 +33,7 @@ class SettingsView : BaseActivity(), ISettingsView {
     private lateinit var presenter: SettingsPresenter
 
     override fun init(savedInstanceState: Bundle?) {
-        super.setContentView(R.layout.view_settings)
+        super.setContentView(R.layout.fragment_settings)
         presenter = SettingsPresenter(this, application)
         settings_owner_name.background.mutate().setColorFilter(resources.getColor(R.color.white), PorterDuff.Mode.SRC_ATOP)
         fab_add.setOnClickListener {
