@@ -38,6 +38,9 @@
         <action
             android:id="@+id/action_individualResultFragment_to_commonResultFragment3"
             app:destination="@id/commonResultFragment" />
+        <action
+            android:id="@+id/button_back"
+            app:destination="@id/commonResultFragment" />
     </fragment>
     <fragment
         android:id="@+id/eachCenterFragment"
@@ -51,6 +54,10 @@
             android:name="pas"
             android:defaultValue="0"
             app:argType="integer" />
+        <action
+            android:id="@+id/button_back"
+            app:destination="@id/commonResultFragment"
+            app:enterAnim="@anim/push_left_in" />
     </fragment>
 
 </navigation>

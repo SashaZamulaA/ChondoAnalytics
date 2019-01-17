@@ -20,17 +20,10 @@ import java.util.*
 import kotlin.collections.ArrayList
 import android.R
 import android.widget.Toast
-import androidx.core.app.ActivityOptionsCompat
-import androidx.navigation.ActivityNavigator
-import androidx.navigation.findNavController
 import com.example.aleksandr.myapplication.ui.commonResult.adapter.CommonResultAdapter.FragmentCommunication
-import com.example.aleksandr.myapplication.ui.eachCentersResult.EachCenterFragment
 import com.example.aleksandr.myapplication.ui.individualResult.IndividualResultFragment
-import kotlinx.android.synthetic.main.spinner_drop_down.*
 import java.io.Serializable
-import androidx.navigation.fragment.FragmentNavigator
-import kotlinx.android.synthetic.main.spinner_simple_item.*
-import org.jetbrains.anko.bundleOf
+
 
 
 class CommonResultFragment : Fragment(), CommonResultAdapter.FragmentCommunication, Serializable {

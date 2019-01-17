@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.model.City
 import com.example.aleksandr.myapplication.ui.commonResult.adapter.CommonResultAdapter
 import com.example.aleksandr.myapplication.ui.eachCentersResult.adapter.EachCenterAdapter
@@ -54,6 +56,9 @@ class EachCenterFragment : Fragment(), CommonResultAdapter.FragmentCommunication
         toolbar = view?.findViewById(com.example.aleksandr.myapplication.R.id.toolbar)
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
 
+        rootView.button_back.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.commonResultFragment)
+        }
 
         return rootView
     }

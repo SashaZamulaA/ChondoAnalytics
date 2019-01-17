@@ -46,7 +46,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginStart="@dimen/toolbar_margin_title"
                     android:gravity="center_vertical"
-                    tools:text="@string/common_result" />
+                    android:text="@string/common_result" />
 
 
                 <ImageView

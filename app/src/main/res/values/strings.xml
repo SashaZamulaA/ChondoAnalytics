@@ -175,6 +175,6 @@
     <string name="hour">Hour</string>
     <string name="quarter">Quarter</string>
     <string name="common_result">Common Result</string>
-    <string name="individual_result">Common Result</string>
+    <string name="individual_result">Individual Result</string>
     <string name="each_center_result">Center</string>
 </resources>

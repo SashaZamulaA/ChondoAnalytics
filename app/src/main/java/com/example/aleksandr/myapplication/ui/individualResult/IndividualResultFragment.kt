@@ -31,7 +31,7 @@ class IndividualResultFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(com.example.aleksandr.myapplication.R.layout.fragment_individual_result, container, false)
 
-
+        button_back
             val query = firestoreInstance.collection("NewCity")
                     .whereEqualTo("id", if ("${FirebaseAuth.getInstance().uid}" == FirebaseAuth.getInstance().currentUser!!.uid){ FirebaseAuth.getInstance().uid } else null )
                     .orderBy("time", Query.Direction.ASCENDING)
@@ -61,6 +61,9 @@ class IndividualResultFragment : Fragment() {
 
         rootView.button_common_result_from_ind.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_individualResultFragment_to_commonResultFragment3)
+        }
+        rootView.button_back.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.commonResultFragment)
         }
 
         toolbar = view?.findViewById(com.example.aleksandr.myapplication.R.id.toolbar)
