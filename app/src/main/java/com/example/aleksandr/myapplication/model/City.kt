@@ -13,9 +13,11 @@ data class City(
         val timeStr: String?,
         val lectOnStr: String?,
         val lectCentr: String?,
-        val time: Date
+        val time: Date,
+        val userPhotoPath: String?,
+        val name: String
         ){
-    constructor() : this("","","", "", "", "","","","","",Date())
+    constructor() : this("","","", "", "", "","","","","",Date(), "", "")
 
 }
 

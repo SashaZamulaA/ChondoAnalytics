@@ -12,25 +12,34 @@ import com.example.aleksandr.myapplication.R
 import androidx.fragment.app.Fragment
 import com.example.aleksandr.myapplication.MainActivity
 import com.example.aleksandr.myapplication.model.City
-import com.example.aleksandr.myapplication.model.User
+import com.example.aleksandr.myapplication.ui.settings.SettingsView.Companion.AUTHOR_KEY
+import com.example.aleksandr.myapplication.ui.settings.SettingsView.Companion.QUOTE_KEY
 import com.example.aleksandr.myapplication.ui.settings.SettingsView.Companion.SPINNER
+import com.example.aleksandr.myapplication.ui.settings.model.User
 import com.example.aleksandr.myapplication.util.FirestoreUtil
+import com.example.aleksandr.myapplication.util.StorageUtil
+import com.example.aleksandr.tmbook.glade.GlideApp
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.first_fragment.*
 import kotlinx.android.synthetic.main.first_fragment.view.*
+import kotlinx.android.synthetic.main.fragment_settings.*
 import java.util.*
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class AddResultFragment : Fragment() {
 
+    private var pictureJustChange = false
     val firestoreInstance: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
     val currentUserDocRef: DocumentReference
         get() = firestoreInstance.document("City/${FirebaseAuth.getInstance().uid
                 ?: throw NullPointerException("UID is null.")}")
 
     private val noteRefCollection = firestoreInstance.collection("NewCity")
+
+    var user : User? = null
 
     private val spinner_country = arrayOf(
             "Kyiv", "Kharkiv", "Dnepr", "Zhytomyr", "Lviv", "Odessa", "Chernigov"
@@ -62,8 +71,13 @@ class AddResultFragment : Fragment() {
 
         rootView.result_fab_confirm_goal.setOnClickListener {
             addNote(rootView)
+            addPicture()
         }
         return rootView
+    }
+
+    private fun addPicture() {
+
     }
 
     private fun addNote(rootView: View) {
@@ -76,12 +90,39 @@ class AddResultFragment : Fragment() {
         val timeStr = result_approach_edit_text.text.toString()
         val lectOnStr = result_lectures_on_street_edittext.text.toString()
         val lectCentr = result_lectures_in_center_edittext.text.toString()
+        var userPhotoPath = ""
+        var name = ""
 
-//        val user: User? = null
+
         val currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
+
+        val a = user?.profilePicturePath
+
         val dataToSave = HashMap<String, Any>()
 //        dataToSave[INRO] = intro
 //        dataToSave[ONEDAYWS] = oneDayWS
+
+
+        FirestoreUtil.currentUserDocRef.addSnapshotListener { documentSnapshot, _ ->
+            FirestoreUtil.getCurrentUser { user ->
+                if (documentSnapshot?.exists()!!) {
+
+                    name = documentSnapshot.getString(AUTHOR_KEY)?: ""
+
+                    if (!pictureJustChange && user.profilePicturePath != null) {
+
+                        userPhotoPath = user.profilePicturePath
+
+
+                    }
+
+                    noteRefCollection.add(City(currentUserId, intro, oneDayWS, twoDayWS, twOneDay, centers, approach, timeStr, lectOnStr, lectCentr, Date(), userPhotoPath, name))
+
+                }
+
+            }
+        }
+
 
         dataToSave[SPINNER] = centers
         val filename = UUID.randomUUID().toString()
@@ -89,7 +130,6 @@ class AddResultFragment : Fragment() {
 //                .document(centers).collection(filename).document()
 //                .set(City(currentUserId, intro, oneDayWS, twoDayWS, twOneDay, centers, approach, timeStr, lectOnStr, lectCentr, Date()))
 
-        noteRefCollection.add(City(currentUserId, intro, oneDayWS, twoDayWS, twOneDay, centers, approach, timeStr, lectOnStr, lectCentr, Date()))
 
 //        firestoreInstance.collection("City")
 //                .document(centers).collection(centers).document()

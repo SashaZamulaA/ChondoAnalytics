@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Toast
 import com.example.aleksandr.myapplication.R
-import com.example.aleksandr.myapplication.model.User
+import com.example.aleksandr.myapplication.ui.settings.model.User
 import com.example.aleksandr.myapplication.service.MyFirebaseInstanceIDService
 import com.example.aleksandr.myapplication.setSimpleTextWatcher
 import com.example.aleksandr.myapplication.ui.login.presenter.RegistrationPresenter

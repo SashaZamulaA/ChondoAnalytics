@@ -8,7 +8,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import com.example.aleksandr.myapplication.BaseActivity
 import com.example.aleksandr.myapplication.R
-import com.example.aleksandr.myapplication.model.User
+import com.example.aleksandr.myapplication.ui.settings.model.User
 import com.example.aleksandr.myapplication.util.FirestoreUtil
 import com.example.aleksandr.myapplication.util.StorageUtil
 import com.example.aleksandr.tmbook.glade.GlideApp

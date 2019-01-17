@@ -49,7 +49,7 @@ class EachCenterFragment : Fragment(), CommonResultAdapter.FragmentCommunication
         val options = FirestoreRecyclerOptions.Builder<City>()
                 .setQuery(query, City::class.java)
                 .build()
-        adapter = EachCenterAdapter(options)
+        adapter = EachCenterAdapter(this.context!!, options)
         rootView?.list_each_center_res_adapter?.layoutManager = LinearLayoutManager(context)
         rootView?.list_each_center_res_adapter?.adapter = adapter
 

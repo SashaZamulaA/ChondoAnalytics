@@ -1,6 +1,6 @@
 package com.example.aleksandr.myapplication.util
 
-import com.example.aleksandr.myapplication.model.User
+import com.example.aleksandr.myapplication.ui.settings.model.User
 import com.example.aleksandr.myapplication.ui.settings.SettingsView.Companion.AUTHOR_KEY
 import com.example.aleksandr.myapplication.ui.settings.SettingsView.Companion.QUOTE_KEY
 import com.google.firebase.auth.FirebaseAuth
@@ -47,6 +47,7 @@ object FirestoreUtil {
         if (profilePicturePath != null)
             userFieldMap["profilePicturePath"] = profilePicturePath
         currentUserDocRef.update(userFieldMap)
+
     }
 
     fun updateCurrentUserDuringRegistration(name: String = "", email: String = "") {
