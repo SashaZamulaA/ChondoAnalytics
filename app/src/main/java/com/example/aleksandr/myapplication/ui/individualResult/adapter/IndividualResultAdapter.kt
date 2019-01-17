@@ -22,6 +22,10 @@ class IndividualResultAdapter(options: FirestoreRecyclerOptions<City>) : Firesto
         holder.bind(model)
     }
 
+    fun deleteItem(position: Int){
+        snapshots.getSnapshot(position).reference.delete()
+    }
+
     inner class NoteHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(note: City) {
 

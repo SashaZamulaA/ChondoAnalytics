@@ -4,12 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.model.City
 import com.example.aleksandr.myapplication.ui.commonResult.adapter.CommonResultAdapter
 import com.example.aleksandr.myapplication.ui.eachCentersResult.adapter.EachCenterAdapter
@@ -17,8 +15,6 @@ import com.example.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.fragment_each_senter.view.*
-
-
 
 
 class EachCenterFragment : Fragment(), CommonResultAdapter.FragmentCommunication {
@@ -60,10 +56,6 @@ class EachCenterFragment : Fragment(), CommonResultAdapter.FragmentCommunication
 
 
         return rootView
-    }
-
-    private fun anapterInit(rootView: View) {
-
     }
 
     override fun onStart() {
