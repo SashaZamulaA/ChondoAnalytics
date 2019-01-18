@@ -11,26 +11,20 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.model.City
-import com.example.aleksandr.myapplication.ui.commonResult.adapter.CommonResultAdapter
 import com.example.aleksandr.myapplication.ui.eachCentersResult.adapter.EachCenterAdapter
 import com.example.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
+import com.example.aleksandr.myapplication.util.IFormatTime
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.fragment_each_senter.view.*
+import javax.inject.Inject
 
 
-class EachCenterFragment : Fragment(), CommonResultAdapter.FragmentCommunication {
-
-    override fun respond(position: Int) {
-
-           }
+class EachCenterFragment : Fragment() {
 
     var position: Int = 0
-    var initInt: CommonResultAdapter.FragmentCommunication? = null
-
-
-
     var toolbar: Toolbar? = null
+
     private lateinit var adapter: EachCenterAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -42,6 +36,11 @@ class EachCenterFragment : Fragment(), CommonResultAdapter.FragmentCommunication
                 .whereEqualTo("centers", when (name) {
                     0 -> "Kyiv"
                     1 -> "Kharkiv"
+                    2 -> "Dnepr"
+                    3 -> "Zhytomyr"
+                    4 -> "Lviv"
+                    5 -> "Odessa"
+                    6-> "Chernigov"
                     else -> null
                 })
                 .orderBy("time", Query.Direction.ASCENDING)

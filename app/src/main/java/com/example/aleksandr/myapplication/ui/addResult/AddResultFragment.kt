@@ -71,14 +71,12 @@ class AddResultFragment : Fragment() {
 
         rootView.result_fab_confirm_goal.setOnClickListener {
             addNote(rootView)
-            addPicture()
+
         }
         return rootView
     }
 
-    private fun addPicture() {
 
-    }
 
     private fun addNote(rootView: View) {
         val centers = registration_city.selectedItem.toString()
@@ -99,8 +97,8 @@ class AddResultFragment : Fragment() {
         val a = user?.profilePicturePath
 
         val dataToSave = HashMap<String, Any>()
-//        dataToSave[INRO] = intro
-//        dataToSave[ONEDAYWS] = oneDayWS
+        dataToSave[SPINNER] = centers
+        val timestamp = System.currentTimeMillis()
 
 
         FirestoreUtil.currentUserDocRef.addSnapshotListener { documentSnapshot, _ ->
@@ -116,7 +114,7 @@ class AddResultFragment : Fragment() {
 
                     }
 
-                    noteRefCollection.add(City(currentUserId, intro, oneDayWS, twoDayWS, twOneDay, centers, approach, timeStr, lectOnStr, lectCentr, Date(), userPhotoPath, name))
+                    noteRefCollection.add(City(currentUserId, intro, oneDayWS, twoDayWS, twOneDay, centers, approach, timeStr, lectOnStr, lectCentr, Date(),timestamp, userPhotoPath, name))
 
                 }
 

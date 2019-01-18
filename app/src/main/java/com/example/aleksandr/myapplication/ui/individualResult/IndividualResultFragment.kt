@@ -40,7 +40,7 @@ class IndividualResultFragment : Fragment() {
                     .setQuery(query, City::class.java)
                     .build()
 //        when(id){ id ->  FirebaseAuth.getInstance().currentUser.toString() else -> null}
-            adapter = IndividualResultAdapter(options)
+            adapter = IndividualResultAdapter(this.context!!,options)
 //        rootView.list_individual_result_adapter.setHasFixedSize(true)
             rootView.list_individual_result_adapter.layoutManager = LinearLayoutManager(context)
             rootView.list_individual_result_adapter.adapter = adapter

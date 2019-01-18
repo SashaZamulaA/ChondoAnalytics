@@ -1,10 +1,13 @@
 package com.example.aleksandr.myapplication.util
 
+import android.content.Context
 import android.view.View
+import android.text.format.DateFormat
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.QuerySnapshot
+
 import java.util.*
 
 fun startOfDay(date: Date): Date {
@@ -107,6 +110,7 @@ private fun setTimeToEndofDay(calendar: Calendar) {
     calendar.set(Calendar.SECOND, 59)
     calendar.set(Calendar.MILLISECOND, 999)
 }
+
 
 fun clickByFilter(noteRefCollection: CollectionReference, position: Int, value: Int) : Task<QuerySnapshot> {
     return noteRefCollection.whereEqualTo("centers", when(position) {

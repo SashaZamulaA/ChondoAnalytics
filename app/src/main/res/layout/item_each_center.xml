@@ -46,6 +46,16 @@
                     android:textSize="@dimen/larger_text"
                     tools:text="@string/name" />
 
+                <TextView
+                    android:id="@+id/each_center_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:gravity="center_vertical"
+                    android:layout_alignParentEnd="true"
+                    android:textColor="@color/accent_darker"
+                    android:textSize="@dimen/body1_text_size"
+                    android:text="21" />
 
 
 
@@ -95,11 +105,11 @@
                     android:singleLine="true"
                     android:textColor="@color/text_primary_dark"
                     android:textSize="@dimen/body2_text_size"
-                    tools:text="@string/one_day_seminar" />
+                    android:text="@string/one_day_seminar" />
 
 
                 <TextView
-                    android:id="@+id/count"
+                    android:id="@+id/each_center_one_day_seminar_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -131,7 +141,7 @@
                     android:textSize="@dimen/body2_text_size" />
 
                 <TextView
-                    android:id="@+id/result_count"
+                    android:id="@+id/each_center_two_day_seminar_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"

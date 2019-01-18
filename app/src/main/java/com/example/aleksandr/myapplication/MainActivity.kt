@@ -65,8 +65,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
                         val quoteText = documentSnapshot.getString(QUOTE_KEY)
                         val authorText = documentSnapshot.getString(AUTHOR_KEY)
-                        header_name.setText(quoteText)
-                        header_email.text = authorText
+                        header_name.text = authorText
+                        header_email.text = quoteText
 
                         if (!pictureJustChange && user.profilePicturePath != null)
                             GlideApp.with(this)

@@ -72,8 +72,9 @@ class SettingsFragment : Fragment() {
                 if (documentSnapshot?.exists()!!) {
                     val myQuote = documentSnapshot.toObject(User::class.java)
 
-                    val quoteText = documentSnapshot.getString(QUOTE_KEY)
                     val authorText = documentSnapshot.getString(AUTHOR_KEY)
+                    val quoteText = documentSnapshot.getString(QUOTE_KEY)
+
                     settings_owner_name.setText(quoteText)
                     setting_e_mail.text = authorText
 

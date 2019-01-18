@@ -1,6 +1,7 @@
 package com.example.aleksandr.myapplication.ui.eachCentersResult.adapter
 
 import android.content.Context
+import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,16 +14,24 @@ import com.example.aleksandr.tmbook.glade.GlideApp
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import kotlinx.android.synthetic.main.item_each_center.view.*
+import java.util.*
 
 
 class EachCenterAdapter(private val context: Context,
-        options: FirestoreRecyclerOptions<City>) : FirestoreRecyclerAdapter<City, VH>(options) {
+                        options: FirestoreRecyclerOptions<City>) : FirestoreRecyclerAdapter<City, VH>(options) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.item_each_center,
                 parent, false)
         return VH(v)
     }
+
+    private val dateFormatter = DateFormat.getDateFormat(context)
+    private val timeFormatter = DateFormat.getTimeFormat(context)
+
+    private fun formatDateAndTime(ts: Long): String = "${formatDate(ts)} ${formatTime(ts)}"
+    private fun formatDate(ts: Long): String = Calendar.getInstance().run { timeInMillis = ts; dateFormatter.format(time) }
+    private fun formatTime(ts: Long): String = Calendar.getInstance().run { timeInMillis = ts; timeFormatter.format(time) }
 
     override fun onBindViewHolder(holder: VH, position: Int, model: City) {
 
@@ -33,11 +42,16 @@ class EachCenterAdapter(private val context: Context,
                         .circleCrop()
                         .into(itemView.imageView_profile_picture)
             }
-            itemView.each_center_intro_num.text = model.intro
-
+            itemView.apply {
+                each_center_intro_num.text = model.intro
+                each_center_name.text = model.name
+                each_center_one_day_seminar_num.text = model.onedayWS
+                each_center_two_day_seminar_num.text = model.twoDayWS
+                each_center_time.text = formatDateAndTime(model.timestamp)
+            }
         }
     }
 
-   class VH(itemView: View) : RecyclerView.ViewHolder(itemView)
+    class VH(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-    }
+}
