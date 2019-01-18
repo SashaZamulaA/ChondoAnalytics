@@ -18,7 +18,7 @@ data class City(
         val userPhotoPath: String?,
         val name: String
         ){
-    constructor() : this("","","", "", "", "","","","","",Date(),0, "", "")
+    constructor() : this("0","0","0", "0", "0", "","","","","",Date(),0, "", "")
 
 }
 

@@ -8,12 +8,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.model.City
-import com.example.aleksandr.myapplication.ui.eachCentersResult.adapter.EachCenterAdapter
-import com.example.aleksandr.myapplication.util.StorageUtil
-import com.example.aleksandr.tmbook.glade.GlideApp
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
-import kotlinx.android.synthetic.main.item_each_center.view.*
 import kotlinx.android.synthetic.main.item_individual_result_list.view.*
 import java.util.*
 
@@ -30,11 +26,20 @@ class IndividualResultAdapter(context: Context, options: FirestoreRecyclerOption
             itemView.apply {
                 result_city.text = model.centers
                 individual_time_city.text = formatDateAndTime(model.timestamp)
+                individual_intro.text = model.intro
+                individual_one_day.text = model.onedayWS
+                individual_two_day.text = model.twoDayWS
+                individual_21_day.text = model.twOneDay
+                individual_time_str.text = model.timeStr
+                individual_approach.text = model.approach
+                individual_street_lect.text = model.lectOnStr
+                individual_lect_center.text = model.lectCentr
+
             }
         }
     }
 
-    fun deleteItem(position: Int){
+    fun deleteItem(position: Int) {
         snapshots.getSnapshot(position).reference.delete()
     }
 

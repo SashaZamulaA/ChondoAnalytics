@@ -43,11 +43,13 @@ class EachCenterAdapter(private val context: Context,
                         .into(itemView.imageView_profile_picture)
             }
             itemView.apply {
-                each_center_intro_num.text = model.intro
                 each_center_name.text = model.name
-                each_center_one_day_seminar_num.text = model.onedayWS
-                each_center_two_day_seminar_num.text = model.twoDayWS
                 each_center_time.text = formatDateAndTime(model.timestamp)
+                each_center_intro_num.text =  if (model.intro!!.isNotBlank()) model.intro else "0"
+                each_center_one_day_seminar_num.text =  if (model.onedayWS!!.isNotBlank()) model.onedayWS else "0"
+                each_center_two_day_seminar_num.text = if (model.twoDayWS!!.isNotBlank()) model.twoDayWS else "0"
+                each_center_two_one_day_seminar_num.text =  if (model.twOneDay!!.isNotBlank()) model.twOneDay else "0"
+
             }
         }
     }

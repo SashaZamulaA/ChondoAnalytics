@@ -9,6 +9,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
     android:layout_marginTop="8dp"
+    android:layout_marginBottom="@dimen/space4"
     android:elevation="2dp"
     android:orientation="horizontal"
     app:cardBackgroundColor="@color/white"
@@ -78,7 +79,7 @@
                     android:text="@string/introdaction" />
 
                 <TextView
-                    android:id="@+id/main_intro"
+                    android:id="@+id/individual_intro"
                     style="@style/TextStyle_Body2_Primary_Dark"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -106,7 +107,7 @@
                     android:text="@string/streat_time" />
 
                 <TextView
-                    android:id="@+id/main_time_str"
+                    android:id="@+id/individual_time_str"
                     style="@style/TextStyle_Body2_Primary_Dark"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -140,7 +141,7 @@
                     android:text="@string/one_day_seminar" />
 
                 <TextView
-                    android:id="@+id/main_one_day"
+                    android:id="@+id/individual_one_day"
                     style="@style/TextStyle_Body2_Primary_Dark"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -166,7 +167,7 @@
                     android:text="@string/approach" />
 
                 <TextView
-                    android:id="@+id/main_approach"
+                    android:id="@+id/individual_approach"
                     style="@style/TextStyle_Body2_Primary_Dark"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -200,7 +201,7 @@
                     android:text="@string/two_day_seminar" />
 
                 <TextView
-                    android:id="@+id/main_two_day"
+                    android:id="@+id/individual_two_day"
                     style="@style/TextStyle_Body2_Primary_Dark"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -226,7 +227,7 @@
                     android:text="@string/lecture_on_streat_main" />
 
                 <TextView
-                    android:id="@+id/main_street_lect"
+                    android:id="@+id/individual_street_lect"
                     style="@style/TextStyle_Body2_Primary_Dark"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -261,7 +262,7 @@
                     android:text="@string/day21_seminar" />
 
                 <TextView
-                    android:id="@+id/main_21_day"
+                    android:id="@+id/individual_21_day"
                     style="@style/TextStyle_Body2_Primary_Dark"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -287,7 +288,7 @@
                     android:text="@string/lecture_in_centre_main" />
 
                 <TextView
-                    android:id="@+id/main_lect_center"
+                    android:id="@+id/individual_lect_center"
                     style="@style/TextStyle_Body2_Primary_Dark"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
