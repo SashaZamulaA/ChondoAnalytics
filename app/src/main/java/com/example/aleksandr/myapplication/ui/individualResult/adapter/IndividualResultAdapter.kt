@@ -41,9 +41,9 @@ class IndividualResultAdapter(context: Context, options: FirestoreRecyclerOption
 
     private val dateFormatter = DateFormat.getDateFormat(context)
     private val timeFormatter = DateFormat.getTimeFormat(context)
-    private fun formatDateAndTime(ts: Long): String = "${formatDate(ts)} ${formatTime(ts)}"
+    private fun formatDateAndTime(ts: Long): String = formatDate(ts)
     private fun formatDate(ts: Long): String = Calendar.getInstance().run { timeInMillis = ts; dateFormatter.format(time) }
-    private fun formatTime(ts: Long): String = Calendar.getInstance().run { timeInMillis = ts; timeFormatter.format(time) }
+//    private fun formatTime(ts: Long): String = Calendar.getInstance().run { timeInMillis = ts; timeFormatter.format(time) }
 
     class VH(itemView: View) : RecyclerView.ViewHolder(itemView)
 }

@@ -41,17 +41,15 @@ class SettingsFragment : Fragment() {
         rootView.fab_add.setOnClickListener {
             if (::selectImageBytes.isInitialized)
                 StorageUtil.uploadProfilePhoto(selectImageBytes) { imagePath ->
-                    FirestoreUtil.updateCurrentUser(settings_owner_name.text.toString(),
+                    FirestoreUtil.updateCurrentUser(rootView.settings_owner_name.text.toString(),
                             rootView.setting_e_mail.text.toString(), imagePath)
                     startActivity(Intent(context, MainActivity::class.java))
                 }
             else
-                FirestoreUtil.updateCurrentUser(settings_owner_name.text.toString(),
+                FirestoreUtil.updateCurrentUser(rootView.settings_owner_name.text.toString(),
                         rootView.setting_e_mail.text.toString(), null)
             startActivity(Intent(context, MainActivity::class.java))
         }
-
-
 
         rootView.imageView_profile_picture.setOnClickListener {
             val intent = Intent().apply {
@@ -75,8 +73,8 @@ class SettingsFragment : Fragment() {
                     val authorText = documentSnapshot.getString(AUTHOR_KEY)
                     val quoteText = documentSnapshot.getString(QUOTE_KEY)
 
-                    settings_owner_name.setText(quoteText)
-                    setting_e_mail.text = authorText
+                    settings_owner_name.setText(authorText)
+                    setting_e_mail.text = quoteText
 
                     if (!pictureJustChange && user.profilePicturePath != null)
                         GlideApp.with(this)

@@ -43,7 +43,7 @@ class EachCenterFragment : Fragment() {
                     6-> "Chernigov"
                     else -> null
                 })
-                .orderBy("time", Query.Direction.ASCENDING)
+                .orderBy("time", Query.Direction.DESCENDING)
         //
         val options = FirestoreRecyclerOptions.Builder<City>()
                 .setQuery(query, City::class.java)
