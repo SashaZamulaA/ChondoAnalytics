@@ -22,6 +22,9 @@ data class City(
 
 }
 
+fun constructor() {
+    }
+
 enum class Method(val method: String) {
     KYIV("KYIV"),
     KHARKIV("KHARKIV"),
