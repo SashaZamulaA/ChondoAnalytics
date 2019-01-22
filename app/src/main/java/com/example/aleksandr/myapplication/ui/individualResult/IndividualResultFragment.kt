@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
@@ -15,34 +14,23 @@ import com.example.aleksandr.myapplication.*
 import com.example.aleksandr.myapplication.model.City
 import com.example.aleksandr.myapplication.ui.commonResult.adapter.IndividualAdapter
 import com.example.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
-import com.firebase.ui.firestore.FirestoreRecyclerOptions
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.android.synthetic.main.fragment_individual_result.*
 import kotlinx.android.synthetic.main.fragment_individual_result.view.*
-import android.provider.DocumentsContract.getDocumentId
-import com.google.firebase.firestore.QueryDocumentSnapshot
-import com.google.android.gms.tasks.OnSuccessListener
-
-
 
 
 class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunication {
     override fun respond(city: City) {
 
             context?.showMaterialDialogCancelDelete(
-                    title = resources.getText(R.string.delete).toString(),
-                    message = resources.getText(R.string.delete).toString(),
+                    title = resources.getText(R.string.delete_item_card_title).toString(),
+                    message = resources.getText(R.string.delete_select_item).toString(),
                     onNoClick = {},
                     onYesClick = {
 deleteNote(city)
-//                        presenter.onRemoveButtonClick()
-//                        adapter.selectNone()
                     }
             )?.addTo(dialogDisposable)
 
@@ -103,7 +91,7 @@ deleteNote(city)
         rootView.list_individual_result_adapter.setHasFixedSize(false)
         rootView.list_individual_result_adapter.layoutManager = LinearLayoutManager(context)
 
-        adapter = IndividualAdapter(items, this)
+        adapter = IndividualAdapter(this.context!!, items, this)
         rootView.list_individual_result_adapter.adapter = adapter
 
         val notesCollectionRef = firestoreInstance.collection("NewCity")

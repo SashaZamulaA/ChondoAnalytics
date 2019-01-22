@@ -1,5 +1,7 @@
 package com.example.aleksandr.myapplication.ui.commonResult.adapter
 
+import android.content.Context
+import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,15 +10,12 @@ import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.model.City
 import com.example.aleksandr.myapplication.ui.individualResult.IndividualResultFragment
 import com.example.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.Query
-import com.google.firebase.firestore.QuerySnapshot
-import kotlinx.android.synthetic.main.item_common_result_list.view.*
 import kotlinx.android.synthetic.main.item_individual_result_list.view.*
 import java.util.*
 
-class IndividualAdapter(private var list: ArrayList<City>, private var fragmentCommunication: IndividualResultFragment) : RecyclerView.Adapter<IndividualAdapter.CityHolder>() {
-
+class IndividualAdapter(context: Context,
+                        private var list: ArrayList<City>,
+                        private var fragmentCommunication: IndividualResultFragment) : RecyclerView.Adapter<IndividualAdapter.CityHolder>() {
 
 
     var city: City? = null
@@ -57,17 +56,18 @@ class IndividualAdapter(private var list: ArrayList<City>, private var fragmentC
     }
 
     override fun onBindViewHolder(holder: IndividualAdapter.CityHolder, position: Int) {
-//        holder.bind()
         val item = list[position]
         holder.apply {
-            itemView.individual_intro.text = item.intro
-            itemView.individual_one_day.text = item.onedayWS
-            itemView.individual_two_day.text = item.twoDayWS
-            itemView.individual_21_day.text = item.twOneDay
-            itemView.individual_time_str.text = item.timeStr
-            itemView.individual_approach.text = item.approach
-            itemView.individual_street_lect.text = item.lectOnStr
-            itemView.individual_lect_center.text = item.lectCentr
+            itemView.individual_result_city.text = item.centers
+            itemView.individual_time_city.text = formatDateAndTime(item.timestamp)
+            if (!item.intro.isNullOrEmpty()) itemView.individual_intro.text = item.intro else itemView.individual_intro.text = "0"
+            if (!item.onedayWS.isNullOrEmpty()) itemView.individual_one_day.text = item.onedayWS else itemView.individual_one_day.text = "0"
+            if (!item.twoDayWS.isNullOrEmpty()) itemView.individual_two_day.text = item.twoDayWS else itemView.individual_two_day.text = "0"
+            if (!item.twOneDay.isNullOrEmpty()) itemView.individual_21_day.text = item.twOneDay else itemView.individual_21_day.text = "0"
+            if (!item.timeStr.isNullOrEmpty()) itemView.individual_time_str.text = item.timeStr else itemView.individual_time_str.text = "0"
+            if (!item.approach.isNullOrEmpty()) itemView.individual_approach.text = item.approach else itemView.individual_approach.text = "0"
+            if (!item.lectOnStr.isNullOrEmpty()) itemView.individual_street_lect.text = item.lectOnStr else itemView.individual_street_lect.text = "0"
+            if (!item.lectOnStr.isNullOrEmpty()) itemView.individual_lect_center.text = item.lectCentr else itemView.individual_lect_center.text = "0"
         }
     }
 
@@ -76,22 +76,33 @@ class IndividualAdapter(private var list: ArrayList<City>, private var fragmentC
         notifyDataSetChanged()
     }
 
+    private val dateFormatter = DateFormat.getDateFormat(context)
+    private val timeFormatter = DateFormat.getTimeFormat(context)
+    private fun formatDateAndTime(ts: Long): String = formatDate(ts)
+    private fun formatDate(ts: Long): String = Calendar.getInstance().run { timeInMillis = ts; dateFormatter.format(time) }
+    private fun formatTime(ts: Long): String = Calendar.getInstance().run { timeInMillis = ts; timeFormatter.format(time) }
+
 //    fun updateList(list: ArrayList<City>) {
 //        this.list = list
 //        notifyDataSetChanged()
 //    }
 
     @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-    inner class CityHolder(itemView: View, var fragmentCommunication: IndividualResultFragment) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
-
-        init {
-            itemView.setOnClickListener(this)
-        }
-
-        override fun onClick(v: View?) {
+    inner class CityHolder(itemView: View, var fragmentCommunication: IndividualResultFragment) : RecyclerView.ViewHolder(itemView), View.OnLongClickListener {
+        override fun onLongClick(v: View?): Boolean {
             mSelectedNoteIndex = adapterPosition
             fragmentCommunication.respond(list[mSelectedNoteIndex])
+            return false
         }
+
+        init {
+            itemView.setOnLongClickListener(this)
+        }
+
+//        override fun onClick(v: View?) {
+//            mSelectedNoteIndex = adapterPosition
+//            fragmentCommunication.respond(list[mSelectedNoteIndex])
+//        }
 
 //        fun bind() {
 //

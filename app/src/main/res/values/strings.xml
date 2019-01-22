@@ -180,5 +180,7 @@
     <string name="just_now">Just now</string>
     <string name="ago">ago</string>
     <string name="intro">Intr.</string>
+    <string name="delete_item_card_title">Delete item</string>
+    <string name="delete_select_item">Are you sure you want to delete selected item?</string>
     <string name="delete">delete</string>
 </resources>

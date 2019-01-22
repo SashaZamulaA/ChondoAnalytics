@@ -19,7 +19,7 @@ class IndividualResultAdapter(context: Context, options: FirestoreRecyclerOption
     override fun onBindViewHolder(holder: NoteHolder, position: Int, model: City) {
         holder.apply {
             itemView.apply {
-                result_city.text = model.centers
+//                result_city.text = model.centers
                 individual_time_city.text = formatDateAndTime(model.timestamp)
                 individual_intro.text = model.intro
                 individual_one_day.text = model.onedayWS
