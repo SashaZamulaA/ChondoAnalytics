@@ -1,16 +1,21 @@
 package com.example.aleksandr.myapplication
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Context
 import android.content.ContextWrapper
 import android.content.DialogInterface
 import android.text.Editable
 import android.text.SpannableString
 import android.text.TextWatcher
+import android.text.method.LinkMovementMethod
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import java.lang.ref.WeakReference
 import java.util.regex.Pattern
 
 
@@ -66,3 +71,29 @@ fun Context.spannableResString(stringId: Int) = SpannableString(getText(stringId
 fun Context.showMaterialDialogOk(title: String?, message: CharSequence, onOkClick: (DialogInterface) -> Unit) = showMaterialDialogPositiveButton(title, message, resources.getString(R.string.ok), onOkClick)
 fun Context.showMaterialDialogOk(titleResId: Int?, messageResId: Int, onOkClick: (DialogInterface) -> Unit) = showMaterialDialogOk(titleResId?.let { resources.getString(it) }, spannableResString(messageResId), onOkClick)
 
+fun Context.showMaterialDialogCancelDelete(title: String?, message: String, onNoClick: (DialogInterface) -> Unit, onYesClick: (DialogInterface) -> Unit) = showMaterialDialog2Button(title, message, resources.getString(R.string.cancel), onNoClick, resources.getString(R.string.delete), onYesClick)
+
+fun Context.showMaterialDialog2Button(title: String?, message: CharSequence, buttonNeg: String, onClickNeg: (DialogInterface) -> Unit, buttonPos: String, onClickPos: (DialogInterface) -> Unit): AlertDialog =
+        AlertDialog.Builder(this).run {
+            setCancelable(false)
+            title?.let { setTitle(it) }
+            setMessage(message)
+            setNegativeButton(buttonNeg) { dialog, _ -> onClickNeg(dialog) }
+            setPositiveButton(buttonPos) { dialog, _ -> onClickPos(dialog) }
+            show().apply {
+                getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(resources.getColor(R.color.accent_darker))
+                getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(resources.getColor(R.color.accent_darker))
+                this.findViewById<TextView>(android.R.id.message)!!.run { movementMethod = LinkMovementMethod.getInstance(); setLinkTextColor(resources.getColor(R.color.blue)) }
+
+            }
+        }
+class DialogCompositeDisposable {
+
+private val dialogs: MutableList<WeakReference<Dialog>> = mutableListOf()
+
+fun addDialog(dialog: Dialog) {
+    dialogs.add(WeakReference(dialog))
+}
+}
+
+fun Dialog.addTo(disposable: DialogCompositeDisposable) = disposable.addDialog(this)

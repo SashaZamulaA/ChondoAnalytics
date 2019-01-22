@@ -3,6 +3,7 @@ package com.example.aleksandr.myapplication.model
 import java.util.*
 
 data class City(
+        val getId:String?,
         val id : String?,
         val intro : String?,
         val onedayWS: String?,
@@ -18,7 +19,7 @@ data class City(
         val userPhotoPath: String?,
         val name: String
         ){
-    constructor() : this("0","0","0", "0", "0", "","","","","",Date(),0, "", "")
+    constructor() : this("","0","0","0", "0", "0", "","","","","",Date(),0, "", "")
 
 }
 

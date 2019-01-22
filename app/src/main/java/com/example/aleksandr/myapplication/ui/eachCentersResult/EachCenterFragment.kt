@@ -13,11 +13,9 @@ import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.model.City
 import com.example.aleksandr.myapplication.ui.eachCentersResult.adapter.EachCenterAdapter
 import com.example.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
-import com.example.aleksandr.myapplication.util.IFormatTime
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.fragment_each_senter.view.*
-import javax.inject.Inject
 
 
 class EachCenterFragment : Fragment() {
@@ -55,7 +53,7 @@ class EachCenterFragment : Fragment() {
         toolbar = view?.findViewById(com.example.aleksandr.myapplication.R.id.toolbar)
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
 
-        rootView.button_back.setOnClickListener {
+        rootView.button_back2.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.commonResultFragment)
         }
 

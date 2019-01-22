@@ -39,7 +39,7 @@
             android:id="@+id/action_individualResultFragment_to_commonResultFragment3"
             app:destination="@id/commonResultFragment" />
         <action
-            android:id="@+id/button_back"
+            android:id="@+id/button_back2"
             app:destination="@id/commonResultFragment" />
     </fragment>
     <fragment
@@ -55,7 +55,7 @@
             android:defaultValue="0"
             app:argType="integer" />
         <action
-            android:id="@+id/button_back"
+            android:id="@+id/button_back2"
             app:destination="@id/commonResultFragment"
             app:enterAnim="@anim/push_left_in" />
     </fragment>

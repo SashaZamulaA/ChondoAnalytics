@@ -33,7 +33,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageButton
-                        android:id="@+id/button_back"
+                        android:id="@+id/button_back2"
                         style="@style/ButtonWithIcon"
                         android:layout_centerVertical="true"
                         android:background="@drawable/button_ripple_circle_green"
@@ -64,7 +64,15 @@
             </androidx.appcompat.widget.Toolbar>
 
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
+    <FrameLayout
+        android:id="@+id/fl_items_product_categories_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/list_individual_result_adapter"
@@ -74,6 +82,17 @@
 
             </androidx.recyclerview.widget.RecyclerView>
 
+    </FrameLayout>
+
+    <include
+        android:id="@+id/empty_kitchen_categories"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:visibility="gone"
+        layout="@layout/splash" />
+
+    </FrameLayout>
 </LinearLayout>
 
 

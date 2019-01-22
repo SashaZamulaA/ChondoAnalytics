@@ -37,7 +37,7 @@ class AddResultFragment : Fragment() {
         get() = firestoreInstance.document("City/${FirebaseAuth.getInstance().uid
                 ?: throw NullPointerException("UID is null.")}")
 
-    private val noteRefCollection = firestoreInstance.collection("NewCity")
+    private val noteRefCollection = firestoreInstance.collection("NewCity").document()
 
     var user : User? = null
 
@@ -100,6 +100,7 @@ class AddResultFragment : Fragment() {
         dataToSave[SPINNER] = centers
         val timestamp = System.currentTimeMillis()
 
+        val id = noteRefCollection.id
 
         FirestoreUtil.currentUserDocRef.addSnapshotListener { documentSnapshot, _ ->
             FirestoreUtil.getCurrentUser { user ->
@@ -114,7 +115,7 @@ class AddResultFragment : Fragment() {
 
                     }
 
-                    noteRefCollection.add(City(currentUserId, intro, oneDayWS, twoDayWS, twOneDay, centers, approach, timeStr, lectOnStr, lectCentr, Date(),timestamp, userPhotoPath, name))
+                    noteRefCollection.set(City(id,currentUserId, intro, oneDayWS, twoDayWS, twOneDay, centers, approach, timeStr, lectOnStr, lectCentr, Date(),timestamp, userPhotoPath, name))
 
                 }
 
