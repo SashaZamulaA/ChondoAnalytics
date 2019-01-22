@@ -25,6 +25,11 @@ import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.android.synthetic.main.fragment_individual_result.*
 import kotlinx.android.synthetic.main.fragment_individual_result.view.*
+import android.provider.DocumentsContract.getDocumentId
+import com.google.firebase.firestore.QueryDocumentSnapshot
+import com.google.android.gms.tasks.OnSuccessListener
+
+
 
 
 class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunication {
@@ -102,23 +107,32 @@ deleteNote(city)
         rootView.list_individual_result_adapter.adapter = adapter
 
         val notesCollectionRef = firestoreInstance.collection("NewCity")
-
-        notesCollectionRef.whereEqualTo("id", if ("${FirebaseAuth.getInstance().uid}" == FirebaseAuth.getInstance().currentUser!!.uid) {
+//        val notesQuery: Query?
+//        notesQuery = if (mLastQueriedDocument!=null) {
+//            notesCollectionRef
+//                    .whereEqualTo("id", if ("${FirebaseAuth.getInstance().uid}" == FirebaseAuth.getInstance().currentUser!!.uid) {
+//                        FirebaseAuth.getInstance().uid
+//                    } else null)
+//                    .orderBy("time", Query.Direction.DESCENDING)
+//                    .startAfter(mLastQueriedDocument!!)
+//        } else{
+            notesCollectionRef
+                    .whereEqualTo("id", if ("${FirebaseAuth.getInstance().uid}" == FirebaseAuth.getInstance().currentUser!!.uid) {
                         FirebaseAuth.getInstance().uid
                     } else null)
                     .orderBy("time", Query.Direction.DESCENDING)
 
-        notesCollectionRef.get().addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-               for (document in task.result!!) {
-                    val note = document.toObject<City>(City::class.java)
+        .get().addOnCompleteListener { querydocumentSnapshot ->
+            if (querydocumentSnapshot.isSuccessful) {
+               for (documentSnapshot in querydocumentSnapshot.result!!) {
+                    val note = documentSnapshot.toObject<City>(City::class.java)
                     items.add(note)
                     //                        Log.d(TAG, "onComplete: got a new note. Position: " + (mNotes.size() - 1));
                 }
 
-                if (task.result!!.size() != 0) {
+                if (querydocumentSnapshot.result!!.size() != 0) {
                     empty_kitchen_categories.visibility = View.GONE
-                    mLastQueriedDocument = task.result!!.documents[task.result!!.size() - 1]
+                    mLastQueriedDocument = querydocumentSnapshot.result!!.documents[querydocumentSnapshot.result!!.size() - 1]
                     adapter?.notifyDataSetChanged()
             } else{
                 empty_kitchen_categories.visibility = View.VISIBLE
@@ -170,6 +184,8 @@ deleteNote(city)
 //        }).attachToRecyclerView(rootView.list_individual_result_adapter)
 
     }
+
+
 
     fun refreshItems() {
         fragmentManager?.beginTransaction()

@@ -84,13 +84,8 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
 
         fun bind() {
 
-            val delaySource = TaskCompletionSource<View>()
-            val delayTask = delaySource.task
-            Handler().postDelayed({ delaySource.setResult(null) }, 10000)
             val item = list[position]
             itemView.result_city.text = item.centers
-//            mFragmentCommunication.respond(adapterPosition)
-
 
             clickByFilter(noteRefCollection, position, period).addOnSuccessListener { queryDocumentSnapshots ->
                 cityName(queryDocumentSnapshots)
