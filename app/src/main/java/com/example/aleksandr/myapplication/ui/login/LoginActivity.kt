@@ -17,7 +17,6 @@ class LoginActivity : AppCompatActivity(), ILoginActivity {
     private var auth: FirebaseAuth? = null
     private lateinit var presenter: LoginPresenter
 
-
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.view_login)
@@ -25,10 +24,10 @@ class LoginActivity : AppCompatActivity(), ILoginActivity {
         presenter = LoginPresenter(this, application)
         auth = FirebaseAuth.getInstance()
 
-//        if (auth?.currentUser != null) {
-//            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-//            finish()
-//        }
+        if (auth?.currentUser != null) {
+            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+            finish()
+        }
 
         input_email_login.setSimpleTextWatcher {
             presenter.onResetError()

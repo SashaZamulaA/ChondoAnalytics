@@ -10,18 +10,21 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import com.example.aleksandr.myapplication.MainActivity
-import com.example.aleksandr.myapplication.R
+import com.example.aleksandr.myapplication.*
+import com.example.aleksandr.myapplication.ui.login.LoginActivity
 import com.example.aleksandr.myapplication.ui.settings.model.User
 import com.example.aleksandr.myapplication.ui.settings.SettingsView.Companion.AUTHOR_KEY
 import com.example.aleksandr.myapplication.ui.settings.SettingsView.Companion.QUOTE_KEY
 import com.example.aleksandr.myapplication.util.FirestoreUtil
 import com.example.aleksandr.myapplication.util.StorageUtil
 import com.example.aleksandr.tmbook.glade.GlideApp
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_settings.*
 import kotlinx.android.synthetic.main.fragment_settings.view.*
 import java.io.ByteArrayOutputStream
+
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class SettingsFragment : Fragment() {
@@ -29,7 +32,9 @@ class SettingsFragment : Fragment() {
     private val RC_SELECT_IMAGE = 2
     private lateinit var selectImageBytes: ByteArray
     private var pictureJustChange = false
-
+    private val dialogDisposable = DialogCompositeDisposable()
+    private var auth: FirebaseAuth? = null
+    var key = 1
     override fun onAttach(context: Context?) {
         super.onAttach(context)
     }
@@ -37,7 +42,36 @@ class SettingsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(com.example.aleksandr.myapplication.R.layout.fragment_settings, container, false)
 
-        rootView.settings_owner_name.background.mutate().setColorFilter(resources.getColor(R.color.white), PorterDuff.Mode.SRC_ATOP)
+        rootView.logout_button.setOnClickListener {
+
+
+            context?.showMaterialDialogCancelDelete(
+                    title = resources.getText(R.string.delete_item_card_title).toString(),
+                    message = resources.getText(R.string.delete_select_item).toString(),
+                    onNoClick = {},
+                    onYesClick = {
+                        FirebaseAuth.getInstance().signOut()
+
+                        val intent = Intent(activity, LoginActivity::class.java)
+                     startActivity(intent)
+//                        startActivity(intent.putExtra("key", key))
+
+                        activity?.finish()
+                    }
+            )?.addTo(dialogDisposable)
+
+
+//            AlertDialog.Builder(context!!)
+//                    .setIcon(android.R.drawable.ic_dialog_alert)
+//                    .setTitle("Closing Activity")
+//                    .setMessage("Are you sure you want to close this activity?")
+//                    .setPositiveButton("Yes") { _, _ ->
+//                        val intent = Intent(activity, LoginActivity::class.java)
+//                        startActivity(intent)
+//                    }
+        }
+
+        rootView.settings_owner_name.background.mutate().setColorFilter(resources.getColor(com.example.aleksandr.myapplication.R.color.white), PorterDuff.Mode.SRC_ATOP)
         rootView.fab_add.setOnClickListener {
             if (::selectImageBytes.isInitialized)
                 StorageUtil.uploadProfilePhoto(selectImageBytes) { imagePath ->
@@ -79,7 +113,7 @@ class SettingsFragment : Fragment() {
                     if (!pictureJustChange && user.profilePicturePath != null)
                         GlideApp.with(this)
                                 .load(StorageUtil.pathToReference(user.profilePicturePath))
-                                .placeholder(R.drawable.ic_account_circle_black_24dp)
+                                .placeholder(com.example.aleksandr.myapplication.R.drawable.ic_account_circle_black_24dp)
                                 .circleCrop()
                                 .into(imageView_profile_picture)
                 }

@@ -1,16 +1,13 @@
 package com.example.aleksandr.myapplication.ui.commonResult.adapter
 
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.aleksandr.myapplication.R
 import com.example.aleksandr.myapplication.model.City
 import com.example.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import com.example.aleksandr.myapplication.util.clickByFilter
-import com.google.android.gms.tasks.TaskCompletionSource
 import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.android.synthetic.main.item_common_result_list.view.*
 import java.util.*
@@ -31,10 +28,6 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
 
     var period = 0
     fun perioSelected(periodSelected: CommonResultAdapter.ClickByFilter) {
-
-        val delaySource = TaskCompletionSource<View>()
-        val delayTask = delaySource.task
-        Handler().postDelayed({ delaySource.setResult(null) }, 5000)
 
         when (periodSelected) {
             CommonResultAdapter.ClickByFilter.DAY -> {
@@ -73,7 +66,7 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
     @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
     inner class CityHolder(itemView: View, var fragmentCommunication: FragmentCommunication) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
-        init{
+        init {
             itemView.setOnClickListener(this)
         }
 
@@ -153,8 +146,6 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
                     } else {
                         itemView.main_lect_center.text = "0"
                     }
-
-
                 }
                 itemView.main_intro.text = sumIntro.toString()
                 itemView.main_one_day.text = sumOneD1.toString()
@@ -178,7 +169,6 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
 
             }
         }
-
     }
 
     interface FragmentCommunication {

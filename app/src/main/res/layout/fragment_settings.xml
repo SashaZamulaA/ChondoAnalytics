@@ -201,14 +201,26 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="bottom">
+
+
+    <Button
+        android:id="@+id/logout_button"
+        style="@style/ButtonFillGray"
+        android:layout_width="120dp"
+        android:layout_gravity="bottom|center"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:text="@string/sign_out" />
+
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_add"
             style="@style/FloatingActionButton"
             app:backgroundTint="@color/link_color"
             app:srcCompat="@drawable/ic_check_black_24dp" />
-    </FrameLayout>
+</LinearLayout>
 </LinearLayout>

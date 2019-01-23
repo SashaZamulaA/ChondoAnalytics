@@ -5,12 +5,19 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/accent</item>
         <!--Removing actionbar-->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="ButtonFillGray" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/button_background_gray_bordered</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">@dimen/body1_text_size</item>
+        <item name="android:textColor">@color/foreground_text_color_dark</item>
+        <item name="android:layout_height">48dp</item>
+    </style>
 
     <style name="TextAppearance.AppCompat.Small.ErrorStyle">
         <item name="android:textColor">@color/text_error</item>

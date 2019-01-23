@@ -183,4 +183,5 @@
     <string name="delete_item_card_title">Delete item</string>
     <string name="delete_select_item">Are you sure you want to delete selected item?</string>
     <string name="delete">delete</string>
+    <string name="sign_out">Sign out</string>
 </resources>

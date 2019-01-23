@@ -126,7 +126,6 @@ deleteNote(city)
                 empty_kitchen_categories.visibility = View.VISIBLE
                 adapter?.notifyDataSetChanged()}
             } else {
-//
 
 // makeSnackBarMessage("Query Failed. Check Logs.")
             }
@@ -146,10 +145,6 @@ deleteNote(city)
 //                .setQuery(query, City::class.java)
 //                .build()
         //        when(id){ id ->  FirebaseAuth.getInstance().currentUser.toString() else -> null}
-
-
-
-
 
 //        val swipeHandler = object : SwipeToDeleteCallback(this.context!!) {
 //            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {

@@ -19,7 +19,7 @@
         android:roundIcon="@mipmap/analytics"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:windowSoftInputMode="stateUnchanged|adjustResize"
+        android:windowSoftInputMode="stateHidden|adjustResize"
         tools:replace="android:appComponentFactory"
         android:appComponentFactory="@string/action_settings">
         <activity android:name=".ui.splash.Splash">

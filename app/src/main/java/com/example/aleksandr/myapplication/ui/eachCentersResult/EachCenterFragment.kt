@@ -22,7 +22,6 @@ class EachCenterFragment : Fragment() {
 
     var position: Int = 0
     var toolbar: Toolbar? = null
-
     private lateinit var adapter: EachCenterAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

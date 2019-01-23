@@ -1,6 +1,7 @@
 package com.example.aleksandr.myapplication
 
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
@@ -12,10 +13,11 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import com.example.aleksandr.myapplication.ui.settings.model.User
+import com.example.aleksandr.myapplication.ui.commonResult.CommonResultFragment
 import com.example.aleksandr.myapplication.ui.login.LoginActivity
 import com.example.aleksandr.myapplication.ui.settings.SettingsView.Companion.AUTHOR_KEY
 import com.example.aleksandr.myapplication.ui.settings.SettingsView.Companion.QUOTE_KEY
+import com.example.aleksandr.myapplication.ui.settings.model.User
 import com.example.aleksandr.myapplication.util.FirestoreUtil
 import com.example.aleksandr.myapplication.util.StorageUtil
 import com.example.aleksandr.tmbook.glade.GlideApp
@@ -25,10 +27,12 @@ import kotlinx.android.synthetic.main.header_layout.*
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     //    lateinit var toolbar: Toolbar
+    val context: Context? = null
     lateinit var drawerLayout: DrawerLayout
     lateinit var navController: NavController
     lateinit var navigationView: NavigationView
     private var pictureJustChange = false
+    val commonFragment: CommonResultFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +48,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 //        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 //        supportActionBar!!.setDisplayShowHomeEnabled(true)
-
         drawerLayout = findViewById(R.id.drawer_layout)
 
         navigationView = findViewById(R.id.navigationView)
@@ -122,32 +125,43 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 //        return NavigationUI.navigateUp(drawerLayout, Navigation.findNavController(this, R.id.nav_host_fragment))
 //    }
 
-    override fun onBackPressed() {
-
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START)
-        } else {
-            AlertDialog.Builder(this)
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .setTitle("Closing Activity")
-                    .setMessage("Are you sure you want to close this activity?")
-                    .setPositiveButton("Yes") { _, _ ->
-                        val intent = Intent(this, LoginActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                    }
-                    .setNegativeButton("No", null)
-                    .show()
-        }
-    }
-
-    //    override fun onBackPressed() {
+//    override fun onBackPressed() {
 //        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
 //            drawerLayout.closeDrawer(GravityCompat.START)
 //        } else {
-//            super.onBackPressed()
+//            AlertDialog.Builder(this)
+//                    .setIcon(android.R.drawable.ic_dialog_alert)
+//                    .setTitle("Closing Activity")
+//                    .setMessage("Are you sure you want to close this activity?")
+//                    .setPositiveButton("Yes") { _, _ ->
+//                        val intent = Intent(this, LoginActivity::class.java)
+//                        startActivity(intent)
+//                        finish()
+//                    }
+//                    .setNegativeButton("No", null)
+//                    .show()
 //        }
 //    }
+
+//    override fun onBackPressed() {
+//
+//        val count = fragmentManager.backStackEntryCount
+//
+//        if (count == 0) {
+//            super.onBackPressed()
+//            //additional code
+//        } else {
+//            fragmentManager.popBackStack()
+//        }
+//    }
+
+        override fun onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START)
+        } else {
+            super.onBackPressed()
+        }
+    }
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
 
         menuItem.isChecked = true
