@@ -55,7 +55,7 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
         holder.bind()
 
         val item = list[position]
-        holder.itemView.result_city.text = item.centers
+        holder.itemView.individual_result_city.text = item.centers
     }
 
 //    fun updateList(list: ArrayList<City>) {
@@ -78,7 +78,7 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
         fun bind() {
 
             val item = list[position]
-            itemView.result_city.text = item.centers
+            itemView.individual_result_city.text = item.centers
 
             clickByFilter(noteRefCollection, position, period).addOnSuccessListener { queryDocumentSnapshots ->
                 cityName(queryDocumentSnapshots)
@@ -105,13 +105,13 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
                         val intro = (Integer.parseInt(resultNote.intro))
                         sumIntro += intro
                     } else {
-                        itemView.main_intro.text = "0"
+                        itemView.individual_intro.text = "0"
                     }
                     if (!resultNote.onedayWS.isNullOrEmpty()) {
                         val onaDay = Integer.parseInt(resultNote.onedayWS)
                         sumOneD1 += onaDay
                     } else {
-                        itemView.main_one_day.text = "0"
+                        itemView.individual_one_day.text = "0"
                     }
                     if (!resultNote.twoDayWS.isNullOrEmpty()) {
                         val twoDay = Integer.parseInt(resultNote.twoDayWS)
@@ -126,46 +126,46 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
                         val approach = Integer.parseInt(resultNote.approach)
                         sumAppr += approach
                     } else {
-                        itemView.main_approach.text = "0"
+                        itemView.individual_approach.text = "0"
                     }
                     if (!resultNote.timeStr.isNullOrEmpty()) {
                         val timeStr = Integer.parseInt(resultNote.timeStr)
                         sumTimeStr += timeStr
                     } else {
-                        itemView.main_time_str.text = "0"
+                        itemView.individual_time_str.text = "0"
                     }
                     if (!resultNote.lectOnStr.isNullOrEmpty()) {
                         val lectOnStr = Integer.parseInt(resultNote.lectOnStr)
                         sumStrLect += lectOnStr
                     } else {
-                        itemView.main_street_lect.text = "0"
+                        itemView.individual_street_lect.text = "0"
                     }
                     if (!resultNote.lectCentr.isNullOrEmpty()) {
                         val lectCentr = Integer.parseInt(resultNote.lectCentr)
                         sumCenteLect += lectCentr
                     } else {
-                        itemView.main_lect_center.text = "0"
+                        itemView.individual_lect_center.text = "0"
                     }
                 }
-                itemView.main_intro.text = sumIntro.toString()
-                itemView.main_one_day.text = sumOneD1.toString()
-                itemView.main_two_day.text = sumTwoD1.toString()
-                itemView.main_21_day.text = sumTwent1.toString()
-                itemView.main_time_str.text = sumTimeStr.toString()
-                itemView.main_approach.text = sumAppr.toString()
-                itemView.main_street_lect.text = sumStrLect.toString()
-                itemView.main_lect_center.text = sumCenteLect.toString()
+                itemView.individual_intro.text = sumIntro.toString()
+                itemView.individual_one_day.text = sumOneD1.toString()
+                itemView.individual_two_day.text = sumTwoD1.toString()
+                itemView.individual_21_day.text = sumTwent1.toString()
+                itemView.individual_time_str.text = sumTimeStr.toString()
+                itemView.individual_approach.text = sumAppr.toString()
+                itemView.individual_street_lect.text = sumStrLect.toString()
+                itemView.individual_lect_center.text = sumCenteLect.toString()
 
             } else {
 //                itemView.result_city.text = model.centers.toString()
-                itemView.main_intro.text = "0"
-                itemView.main_one_day.text = "0"
-                itemView.main_two_day.text = "0"
-                itemView.main_21_day.text = "0"
-                itemView.main_time_str.text = "0"
-                itemView.main_approach.text = "0"
-                itemView.main_street_lect.text = "0"
-                itemView.main_lect_center.text = "0"
+                itemView.individual_intro.text = "0"
+                itemView.individual_one_day.text = "0"
+                itemView.individual_two_day.text = "0"
+                itemView.individual_21_day.text = "0"
+                itemView.individual_time_str.text = "0"
+                itemView.individual_approach.text = "0"
+                itemView.individual_street_lect.text = "0"
+                itemView.individual_lect_center.text = "0"
 
             }
         }

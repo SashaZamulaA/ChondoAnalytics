@@ -45,10 +45,10 @@ class EachCenterAdapter(private val context: Context,
             itemView.apply {
                 each_center_name.text = model.name
                 each_center_time.text = formatDateAndTime(model.timestamp)
-                main_intro.text =  if (model.intro!!.isNotBlank()) model.intro else "0"
-                main_one_day.text =  if (model.onedayWS!!.isNotBlank()) model.onedayWS else "0"
-                main_two_day.text = if (model.twoDayWS!!.isNotBlank()) model.twoDayWS else "0"
-                main_21_day.text =  if (model.twOneDay!!.isNotBlank()) model.twOneDay else "0"
+                individual_intro.text =  if (model.intro!!.isNotBlank()) model.intro else "0"
+                individual_one_day.text =  if (model.onedayWS!!.isNotBlank()) model.onedayWS else "0"
+                individual_two_day.text = if (model.twoDayWS!!.isNotBlank()) model.twoDayWS else "0"
+                individual_21_day.text =  if (model.twOneDay!!.isNotBlank()) model.twOneDay else "0"
 
             }
         }

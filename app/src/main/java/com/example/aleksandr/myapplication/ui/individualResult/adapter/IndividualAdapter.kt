@@ -50,7 +50,7 @@ class IndividualAdapter(context: Context,
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CityHolder {
-        val v = LayoutInflater.from(parent.context).inflate(R.layout.item_individual_result_list,
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.item_individual_result_list2,
                 parent, false)
         return CityHolder(v, fragmentCommunication)
     }

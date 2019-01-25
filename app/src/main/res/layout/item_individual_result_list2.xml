@@ -156,11 +156,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
-            android:layout_marginEnd="8dp"
             android:text="City"
             android:textColor="@color/accent_darker"
-            android:textSize="@dimen/space_18"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="@dimen/space_16"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -244,6 +242,20 @@
             app:layout_constraintBottom_toBottomOf="@+id/textView9"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textView9" />
+
+        <TextView
+            android:id="@+id/individual_time_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:textSize="@dimen/body1_text_size"
+            android:text="time"
+            app:layout_constraintBottom_toBottomOf="@+id/individual_result_city"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/individual_result_city"
+            app:layout_constraintTop_toTopOf="@+id/individual_result_city" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
