@@ -52,9 +52,9 @@ class EachCenterFragment : Fragment() {
         toolbar = view?.findViewById(com.example.aleksandr.myapplication.R.id.toolbar)
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
 
-        rootView.button_back2.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.commonResultFragment)
-        }
+//        rootView.button_back2.setOnClickListener {
+//            Navigation.findNavController(it).navigate(R.id.commonResultFragment)
+//        }
 
         return rootView
     }

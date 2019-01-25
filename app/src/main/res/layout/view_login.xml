@@ -16,17 +16,19 @@
         android:paddingRight="@dimen/parent_margin_edge">
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="@dimen/logo"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="@dimen/space_12"
-            android:src="@drawable/analytics" />
+            android:layout_marginTop="@dimen/space_24"
+            android:layout_marginBottom="@dimen/space_24"
+            android:src="@drawable/advanced_predictive_analytics" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:text="@string/login_slang"
+            android:text="@string/app_name2"
+            android:layout_marginBottom="@dimen/space_24"
             android:textAllCaps="true"
             android:textStyle="bold" />
 

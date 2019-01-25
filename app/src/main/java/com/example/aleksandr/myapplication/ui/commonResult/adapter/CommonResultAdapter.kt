@@ -46,7 +46,7 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CityHolder {
-        val v = LayoutInflater.from(parent.context).inflate(R.layout.item_common_result_list,
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.item_common_result_list2,
                 parent, false)
         return CityHolder(v, fragmentCommunication)
     }

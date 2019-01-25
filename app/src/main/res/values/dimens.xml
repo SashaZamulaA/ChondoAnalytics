@@ -59,7 +59,7 @@
     <dimen name="icon_button_margin">12dp</dimen>
 
     // IMG
-    <dimen name="logo">200dp</dimen>
+    <dimen name="logo">120dp</dimen>
 
     // Drawer header
     <dimen name="drawer_logo">50dp</dimen>

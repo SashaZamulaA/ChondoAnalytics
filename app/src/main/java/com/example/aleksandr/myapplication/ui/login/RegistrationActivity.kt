@@ -56,10 +56,10 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
             presenter.onResetError()
             presenter.onUpdateOwnerRePassword(it)
         }
-        checkbox_GDPR.setOnCheckedChangeListener { _, isChecked ->
-            presenter.onResetError()
-            presenter.onUpdateCheckboxGdpr(isChecked)
-        }
+//        checkbox_GDPR.setOnCheckedChangeListener { _, isChecked ->
+//            presenter.onResetError()
+//            presenter.onUpdateCheckboxGdpr(isChecked)
+//        }
         btn_signup.setOnClickListener {
             presenter.onValidateAndSave()
         }
@@ -98,7 +98,7 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
             IRegistrationActivity.InvalidValue.NO_PASSWORD -> text_InputLayoutPassword.error = resources.getString(R.string.no_password)
             IRegistrationActivity.InvalidValue.PASSWORD_TOO_SHORT -> text_InputLayoutPassword.error = resources.getString(R.string.password_too_short)
             IRegistrationActivity.InvalidValue.REPASSWORD_WRONG -> text_InputLayoutPassword.error = resources.getString(R.string.repassword_wrong)
-            IRegistrationActivity.InvalidValue.CHECKBOX_DISABLE -> checkbox_gdpr_error.text = resources.getString(R.string.checkbox_gdpr)
+//            IRegistrationActivity.InvalidValue.CHECKBOX_DISABLE -> checkbox_gdpr_error.text = resources.getString(R.string.checkbox_gdpr)
             IRegistrationActivity.InvalidValue.NO_INTERNET -> resources.getString(R.string.no_internet)
         }
     }
@@ -108,7 +108,7 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
         text_InputLayoutEmail.error = ""
         text_InputLayoutPassword.error = ""
         textInputLayoutConfirmPassword.error = ""
-        checkbox_GDPR.text = ""
+//        checkbox_GDPR.text = ""
     }
 
     override fun onSignUpSuccess() {

@@ -72,7 +72,8 @@ fun Context.showMaterialDialogOk(title: String?, message: CharSequence, onOkClic
 fun Context.showMaterialDialogOk(titleResId: Int?, messageResId: Int, onOkClick: (DialogInterface) -> Unit) = showMaterialDialogOk(titleResId?.let { resources.getString(it) }, spannableResString(messageResId), onOkClick)
 
 fun Context.showMaterialDialogCancelDelete(title: String?, message: String, onNoClick: (DialogInterface) -> Unit, onYesClick: (DialogInterface) -> Unit) = showMaterialDialog2Button(title, message, resources.getString(R.string.cancel), onNoClick, resources.getString(R.string.delete), onYesClick)
-
+fun Context.showMaterialDialogCancelContinueCustom(title: String?, message: CharSequence, continueText: String, onCancelClick: (DialogInterface) -> Unit, onContinueClick: (DialogInterface) -> Unit) = showMaterialDialog2Button(title, message, resources.getString(R.string.cancel), onCancelClick, continueText, onContinueClick)
+fun Context.showMaterialDialogCancelContinueCustom(titleResId: Int?, messageResId: Int, continueTextResId: Int, onCancelClick: (DialogInterface) -> Unit, onContinueClick: (DialogInterface) -> Unit) = showMaterialDialogCancelContinueCustom(titleResId?.let { resources.getString(it) }, spannableResString(messageResId), resources.getString(continueTextResId), onCancelClick, onContinueClick)
 fun Context.showMaterialDialog2Button(title: String?, message: CharSequence, buttonNeg: String, onClickNeg: (DialogInterface) -> Unit, buttonPos: String, onClickPos: (DialogInterface) -> Unit): AlertDialog =
         AlertDialog.Builder(this).run {
             setCancelable(false)

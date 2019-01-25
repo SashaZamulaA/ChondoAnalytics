@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TM-Note
+    <string name="app_name">GFA-note
     </string>
 
 
@@ -7,6 +7,7 @@
 
     // LOGIN vs REGISTRATION
     <string name="login_slang">M3A Analytics</string>
+    <string name="app_name2">UMUA centers report</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
@@ -125,7 +126,7 @@
     <string name="action_settings">Settings</string>
     <string name="text_hello">Hello,</string>
     <string name="text_title">Android Tutorials Hub</string>
-    <string name="gdpr_checkbox">I understand and agree to M3A Analytics</string>
+
     // MENU
 
     // INVALID VALUE
@@ -184,4 +185,8 @@
     <string name="delete_select_item">Are you sure you want to delete selected item?</string>
     <string name="delete">delete</string>
     <string name="sign_out">Sign out</string>
+    <string name="sign_out_message">Are you sure you want to exit?</string>
+    <string name="gdpr_checkbox">I understand and agree to UMUA centers report</string>
+    <string name="terms_of_use">Terms of Use</string>
+    <string name="private_policy">Privacy Policy</string>
 </resources>

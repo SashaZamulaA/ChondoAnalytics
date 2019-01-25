@@ -80,11 +80,11 @@ class RegistrationPresenter (registrationActivity: RegistrationActivity, applica
             isValidateSuccess = false
         }
 
-        if (!cb_gdpr) {
-            view?.showInvalidValue(IRegistrationActivity.InvalidValue.CHECKBOX_DISABLE)
-            view?.setButtonCreateEnabled(false)
-            isValidateSuccess = false
-        }
+//        if (!cb_gdpr) {
+//            view?.showInvalidValue(IRegistrationActivity.InvalidValue.CHECKBOX_DISABLE)
+//            view?.setButtonCreateEnabled(false)
+//            isValidateSuccess = false
+//        }
         if (isValidateSuccess) view?.onSignUpSuccess()
     }
 }

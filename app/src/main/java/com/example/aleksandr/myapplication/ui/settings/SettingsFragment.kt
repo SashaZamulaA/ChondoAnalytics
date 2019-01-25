@@ -44,31 +44,13 @@ class SettingsFragment : Fragment() {
 
         rootView.logout_button.setOnClickListener {
 
+            context?.showMaterialDialogCancelContinueCustom(R.string.sign_out, R.string.sign_out_message, R.string.sign_out, {}, {
+                FirebaseAuth.getInstance().signOut()
 
-            context?.showMaterialDialogCancelDelete(
-                    title = resources.getText(R.string.delete_item_card_title).toString(),
-                    message = resources.getText(R.string.delete_select_item).toString(),
-                    onNoClick = {},
-                    onYesClick = {
-                        FirebaseAuth.getInstance().signOut()
-
-                        val intent = Intent(activity, LoginActivity::class.java)
-                     startActivity(intent)
-//                        startActivity(intent.putExtra("key", key))
-
-                        activity?.finish()
-                    }
-            )?.addTo(dialogDisposable)
-
-
-//            AlertDialog.Builder(context!!)
-//                    .setIcon(android.R.drawable.ic_dialog_alert)
-//                    .setTitle("Closing Activity")
-//                    .setMessage("Are you sure you want to close this activity?")
-//                    .setPositiveButton("Yes") { _, _ ->
-//                        val intent = Intent(activity, LoginActivity::class.java)
-//                        startActivity(intent)
-//                    }
+                val intent = Intent(activity, LoginActivity::class.java)
+                startActivity(intent)
+                activity?.finish()})
+                    ?.addTo(dialogDisposable)
         }
 
         rootView.settings_owner_name.background.mutate().setColorFilter(resources.getColor(com.example.aleksandr.myapplication.R.color.white), PorterDuff.Mode.SRC_ATOP)
