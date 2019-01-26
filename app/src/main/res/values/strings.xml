@@ -7,7 +7,7 @@
 
     // LOGIN vs REGISTRATION
     <string name="login_slang">M3A Analytics</string>
-    <string name="app_name2">UMUA centers report</string>
+    <string name="app_name2">UMUA c-report</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="login">Login</string>

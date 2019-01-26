@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/commonResultFragment"
-        android:name="com.example.aleksandr.myapplication.ui.commonResult.CommonResultFragment"
+        android:name="com.zamulaaleksandr.aleksandr.myapplication.ui.commonResult.CommonResultFragment"
         android:label="Default Fragment"
         tools:layout="@layout/fragment_common_result" >
         <action
@@ -20,19 +20,19 @@
 
     <fragment
         android:id="@+id/addResultFragment"
-        android:name="com.example.aleksandr.myapplication.ui.addResult.AddResultFragment"
+        android:name="com.zamulaaleksandr.aleksandr.myapplication.ui.addResult.AddResultFragment"
         android:label="First Fragment"
         tools:layout="@layout/first_fragment" />
 
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.aleksandr.myapplication.ui.settings.SettingsFragment"
+        android:name="com.zamulaaleksandr.aleksandr.myapplication.ui.settings.SettingsFragment"
         android:label="First Fragment"
         tools:layout="@layout/first_fragment" />
 
     <fragment
         android:id="@+id/individualResultFragment"
-        android:name="com.example.aleksandr.myapplication.ui.individualResult.IndividualResultFragment"
+        android:name="com.zamulaaleksandr.aleksandr.myapplication.ui.individualResult.IndividualResultFragment"
         android:label="First Fragment"
         tools:layout="@layout/first_fragment" >
         <action
@@ -44,7 +44,7 @@
     </fragment>
     <fragment
         android:id="@+id/eachCenterFragment"
-        android:name="com.example.aleksandr.myapplication.ui.eachCentersResult.EachCenterFragment"
+        android:name="com.zamulaaleksandr.aleksandr.myapplication.ui.eachCentersResult.EachCenterFragment"
         android:label="EachCenterFragment"
         tools:layout="@layout/fragment_each_senter">
         <action

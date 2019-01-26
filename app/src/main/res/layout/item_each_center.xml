@@ -80,11 +80,13 @@
 
         <View
             android:id="@+id/view"
-            style="@style/AppTheme.VerticalViewDivider_color_wight"
+            style="@style/AppTheme.VerticalViewDivider"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView_profile_picture"
             app:layout_constraintEnd_toEndOf="@+id/individual_two_day"
             app:layout_constraintStart_toEndOf="@+id/imageView_profile_picture"
-            app:layout_constraintTop_toTopOf="@+id/imageView_profile_picture" />
+            app:layout_constraintTop_toTopOf="@+id/individual_intro" />
 
         <TextView
 

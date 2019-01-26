@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.aleksandr.myapplication"
+    package="com.zamulaaleksandr.aleksandr.myapplication"
   >
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -9,36 +9,36 @@
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
 
     <application
-        android:name=".AndroidApplication"
+        android:name="com.zamulaaleksandr.aleksandr.myapplication.AndroidApplication"
         android:allowBackup="true"
         android:icon="@mipmap/analytics"
-        android:label="@string/app_name"
+        android:label="@string/app_name2"
         android:roundIcon="@mipmap/analytics"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:windowSoftInputMode="stateHidden|adjustResize"
         tools:replace="android:appComponentFactory"
         android:appComponentFactory="@string/action_settings">
-        <activity android:name=".ui.splash.Splash">
+        <activity android:name="com.zamulaaleksandr.aleksandr.myapplication.ui.splash.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.login.LoginActivity" />
-        <activity android:name=".ui.login.RegistrationActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name="com.zamulaaleksandr.aleksandr.myapplication.ui.login.LoginActivity" />
+        <activity android:name="com.zamulaaleksandr.aleksandr.myapplication.ui.login.RegistrationActivity" />
+        <activity android:name="com.zamulaaleksandr.aleksandr.myapplication.MainActivity" />
         <!--<activity-->
             <!--android:name=".ui.chondo_result.ResultM3AView"-->
             <!--android:windowSoftInputMode="stateUnchanged|adjustResize" />-->
 
-        <activity android:name=".ui.settings.SettingsView" />
+        <activity android:name="com.zamulaaleksandr.aleksandr.myapplication.ui.settings.SettingsView" />
         <activity
-            android:name=".TestForVisual"
+            android:name="com.zamulaaleksandr.aleksandr.myapplication.TestForVisual"
             android:exported="true" />
 
     </application>
