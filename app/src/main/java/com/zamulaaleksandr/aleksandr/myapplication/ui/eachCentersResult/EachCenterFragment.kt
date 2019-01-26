@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zamulaaleksandr.aleksandr.myapplication.model.City
 import com.zamulaaleksandr.aleksandr.myapplication.ui.eachCentersResult.adapter.EachCenterAdapter
@@ -24,6 +25,11 @@ class EachCenterFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(com.zamulaaleksandr.aleksandr.myapplication.R.layout.fragment_each_senter, container, false)
+
+        rootView.button_back3.setOnClickListener {
+            Navigation.findNavController(it).navigate(com.zamulaaleksandr.aleksandr.myapplication.R.id.commonResultFragment)
+        }
+
 
         val name = arguments?.getInt("pas", 0)
 

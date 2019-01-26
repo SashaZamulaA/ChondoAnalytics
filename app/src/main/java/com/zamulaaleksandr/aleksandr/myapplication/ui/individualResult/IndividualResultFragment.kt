@@ -83,8 +83,6 @@ deleteNote(city)
         }
     }
 
-
-
     private fun setUpRecyclerView(rootView: View) {
 
         rootView.list_individual_result_adapter.layoutManager = LinearLayoutManager(this.context, LinearLayout.VERTICAL, false)

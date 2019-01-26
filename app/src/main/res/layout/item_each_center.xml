@@ -19,8 +19,9 @@
             android:id="@+id/imageView_profile_picture"
             android:layout_width="86dp"
             android:layout_height="86dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:padding="@dimen/space_8"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -68,7 +69,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="8dp"
             android:ellipsize="end"
             android:maxLines="1"
             android:singleLine="true"
@@ -76,7 +77,7 @@
             android:textColor="@color/text_primary_dark"
             android:textSize="@dimen/body1_text_size"
             app:layout_constraintStart_toEndOf="@+id/imageView_profile_picture"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/each_center_name" />
 
         <View
             android:id="@+id/view"
@@ -94,15 +95,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
+            android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            tools:text="0"
             android:textColor="@color/text_secondary_dark"
             android:textSize="@dimen/body1_text_size"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/each_center_intr"
             app:layout_constraintEnd_toStartOf="@+id/view"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/each_center_intr"
             app:layout_constraintTop_toTopOf="@+id/each_center_intr"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="0" />
 
         <TextView
 
@@ -111,6 +115,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:ellipsize="end"
             android:maxLines="1"
@@ -119,7 +124,8 @@
             android:textColor="@color/text_primary_dark"
             android:textSize="@dimen/body1_text_size"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView_profile_picture" />
+            app:layout_constraintStart_toEndOf="@+id/imageView_profile_picture"
+            app:layout_constraintTop_toBottomOf="@+id/each_center_intr" />
 
         <TextView
             android:id="@+id/textView7"
@@ -131,13 +137,13 @@
             android:textSize="@dimen/body1_text_size"
             app:layout_constraintBottom_toBottomOf="@+id/individual_intro"
             app:layout_constraintStart_toEndOf="@+id/view"
-            app:layout_constraintTop_toTopOf="@+id/individual_intro"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toTopOf="@+id/individual_intro" />
 
         <TextView
             android:id="@+id/individual_one_day"
-            android:layout_width="8dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:text="0"
             android:textColor="@color/text_secondary_dark"
@@ -145,6 +151,8 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/each_center_one_day"
             app:layout_constraintEnd_toStartOf="@+id/view"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/each_center_one_day"
             app:layout_constraintTop_toTopOf="@+id/each_center_one_day"
             app:layout_constraintVertical_bias="0.0" />
 
@@ -166,9 +174,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:text="21-day WS"
             android:textColor="@color/text_primary_dark"
             android:textSize="@dimen/body1_text_size"
-            android:text="21-day WS"
             app:layout_constraintBottom_toBottomOf="@+id/individual_one_day"
             app:layout_constraintStart_toEndOf="@+id/view"
             app:layout_constraintTop_toTopOf="@+id/individual_one_day"
@@ -178,12 +186,16 @@
             android:id="@+id/individual_21_day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:text="0"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/each_center_21-d"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/each_center_21-d" />
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/each_center_21-d"
+            app:layout_constraintTop_toTopOf="@+id/each_center_21-d"
+            app:layout_constraintVertical_bias="0.0" />
 
         <!--<RelativeLayout-->
         <!--android:layout_width="match_parent"-->

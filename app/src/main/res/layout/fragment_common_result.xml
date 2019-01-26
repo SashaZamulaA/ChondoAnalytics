@@ -48,8 +48,6 @@
                     android:gravity="center_vertical"
                     android:text="@string/common_result" />
 
-
-
                 <ImageView
                     android:id="@+id/button_individual_result"
                     android:layout_width="@dimen/toolbar_icon_size"
@@ -64,9 +62,6 @@
             </RelativeLayout>
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>
-
-
-
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -88,6 +83,7 @@
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/space_36"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
         <ProgressBar
