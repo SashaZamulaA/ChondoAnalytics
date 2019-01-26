@@ -11,13 +11,13 @@ import com.zamulaaleksandr.aleksandr.myapplication.R
 import androidx.fragment.app.Fragment
 import com.zamulaaleksandr.aleksandr.myapplication.MainActivity
 import com.zamulaaleksandr.aleksandr.myapplication.model.City
-import com.zamulaaleksandr.aleksandr.myapplication.ui.settings.SettingsView.Companion.AUTHOR_KEY
-import com.zamulaaleksandr.aleksandr.myapplication.ui.settings.SettingsView.Companion.SPINNER
 import com.zamulaaleksandr.aleksandr.myapplication.ui.settings.model.User
 import com.zamulaaleksandr.aleksandr.myapplication.util.FirestoreUtil
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.zamulaaleksandr.aleksandr.myapplication.MainActivity.Companion.AUTHOR_KEY
+import com.zamulaaleksandr.aleksandr.myapplication.MainActivity.Companion.SPINNER
 import kotlinx.android.synthetic.main.first_fragment.*
 import kotlinx.android.synthetic.main.first_fragment.view.*
 import java.util.*

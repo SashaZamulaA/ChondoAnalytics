@@ -9,6 +9,5 @@ import javax.inject.Singleton
 internal interface ViewComponent {
 
     fun inject(application: AndroidApplication)
-//    fun inject(infoView: ResultM3AView)
 
 }

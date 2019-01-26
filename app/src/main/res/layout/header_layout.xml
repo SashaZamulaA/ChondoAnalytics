@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="176dp"
-    android:background="@mipmap/header_flag3">
+    android:background="@mipmap/graphline">
 
     <ImageView
         android:id="@+id/header_profile_picture"
@@ -28,9 +28,8 @@
         android:layout_marginStart="@dimen/space_16"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:textColor="@color/text_secondary_dark"
-        android:textSize="20sp"
+        android:textColor="@color/text_primary_dark"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/header_email"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,8 +44,8 @@
         android:layout_marginStart="@dimen/space_16"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="16dp"
-        android:textColor="@color/text_secondary_dark"
-        android:textSize="16sp"
+        android:textColor="@color/text_primary_dark"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

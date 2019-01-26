@@ -11,13 +11,13 @@ import com.zamulaaleksandr.aleksandr.myapplication.service.MyFirebaseInstanceIDS
 import com.zamulaaleksandr.aleksandr.myapplication.setSimpleTextWatcher
 import com.zamulaaleksandr.aleksandr.myapplication.ui.login.presenter.RegistrationPresenter
 import com.zamulaaleksandr.aleksandr.myapplication.MainActivity
-import com.zamulaaleksandr.aleksandr.myapplication.ui.settings.SettingsView.Companion.AUTHOR_KEY
-import com.zamulaaleksandr.aleksandr.myapplication.ui.settings.SettingsView.Companion.QUOTE_KEY
 import com.zamulaaleksandr.aleksandr.myapplication.util.FirestoreUtil
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.iid.FirebaseInstanceId
+import com.zamulaaleksandr.aleksandr.myapplication.MainActivity.Companion.AUTHOR_KEY
+import com.zamulaaleksandr.aleksandr.myapplication.MainActivity.Companion.QUOTE_KEY
 import kotlinx.android.synthetic.main.view_registration.*
 
 

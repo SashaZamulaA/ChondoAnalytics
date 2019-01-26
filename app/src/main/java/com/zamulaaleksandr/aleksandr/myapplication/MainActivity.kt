@@ -12,8 +12,6 @@ import androidx.navigation.Navigation
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.zamulaaleksandr.aleksandr.myapplication.ui.commonResult.CommonResultFragment
-import com.zamulaaleksandr.aleksandr.myapplication.ui.settings.SettingsView.Companion.AUTHOR_KEY
-import com.zamulaaleksandr.aleksandr.myapplication.ui.settings.SettingsView.Companion.QUOTE_KEY
 import com.zamulaaleksandr.aleksandr.myapplication.ui.settings.model.User
 import com.zamulaaleksandr.aleksandr.myapplication.util.FirestoreUtil
 import com.zamulaaleksandr.aleksandr.myapplication.util.StorageUtil
@@ -23,7 +21,11 @@ import kotlinx.android.synthetic.main.header_layout.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    //    lateinit var toolbar: Toolbar
+    companion object {
+        val AUTHOR_KEY = "name"
+        val QUOTE_KEY = "e_mail"
+        val SPINNER = "spinner"
+    }
     val context: Context? = null
     lateinit var drawerLayout: DrawerLayout
     lateinit var navController: NavController

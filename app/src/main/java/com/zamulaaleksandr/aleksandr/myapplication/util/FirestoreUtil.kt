@@ -1,12 +1,12 @@
 package com.zamulaaleksandr.aleksandr.myapplication.util
 
 import com.zamulaaleksandr.aleksandr.myapplication.ui.settings.model.User
-import com.zamulaaleksandr.aleksandr.myapplication.ui.settings.SettingsView.Companion.AUTHOR_KEY
-import com.zamulaaleksandr.aleksandr.myapplication.ui.settings.SettingsView.Companion.QUOTE_KEY
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.zamulaaleksandr.aleksandr.myapplication.MainActivity.Companion.AUTHOR_KEY
+import com.zamulaaleksandr.aleksandr.myapplication.MainActivity.Companion.QUOTE_KEY
 
 object FirestoreUtil {
     val firestoreInstance: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }

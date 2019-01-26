@@ -14,12 +14,12 @@ import androidx.fragment.app.Fragment
 import com.zamulaaleksandr.aleksandr.myapplication.*
 import com.zamulaaleksandr.aleksandr.myapplication.ui.login.LoginActivity
 import com.zamulaaleksandr.aleksandr.myapplication.ui.settings.model.User
-import com.zamulaaleksandr.aleksandr.myapplication.ui.settings.SettingsView.Companion.AUTHOR_KEY
-import com.zamulaaleksandr.aleksandr.myapplication.ui.settings.SettingsView.Companion.QUOTE_KEY
 import com.zamulaaleksandr.aleksandr.myapplication.util.FirestoreUtil
 import com.zamulaaleksandr.aleksandr.myapplication.util.StorageUtil
 import com.zamulaaleksandr.aleksandr.tmbook.glade.GlideApp
 import com.google.firebase.auth.FirebaseAuth
+import com.zamulaaleksandr.aleksandr.myapplication.MainActivity.Companion.AUTHOR_KEY
+import com.zamulaaleksandr.aleksandr.myapplication.MainActivity.Companion.QUOTE_KEY
 import kotlinx.android.synthetic.main.fragment_settings.*
 import kotlinx.android.synthetic.main.fragment_settings.view.*
 import java.io.ByteArrayOutputStream
