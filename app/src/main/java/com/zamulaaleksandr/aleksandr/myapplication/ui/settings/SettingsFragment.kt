@@ -1,7 +1,6 @@
 package com.zamulaaleksandr.aleksandr.myapplication.ui.settings
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.PorterDuff
@@ -11,19 +10,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.google.firebase.auth.FirebaseAuth
 import com.zamulaaleksandr.aleksandr.myapplication.*
+import com.zamulaaleksandr.aleksandr.myapplication.MainActivity.Companion.AUTHOR_KEY
+import com.zamulaaleksandr.aleksandr.myapplication.MainActivity.Companion.QUOTE_KEY
 import com.zamulaaleksandr.aleksandr.myapplication.ui.login.LoginActivity
 import com.zamulaaleksandr.aleksandr.myapplication.ui.settings.model.User
 import com.zamulaaleksandr.aleksandr.myapplication.util.FirestoreUtil
 import com.zamulaaleksandr.aleksandr.myapplication.util.StorageUtil
 import com.zamulaaleksandr.aleksandr.tmbook.glade.GlideApp
-import com.google.firebase.auth.FirebaseAuth
-import com.zamulaaleksandr.aleksandr.myapplication.MainActivity.Companion.AUTHOR_KEY
-import com.zamulaaleksandr.aleksandr.myapplication.MainActivity.Companion.QUOTE_KEY
 import kotlinx.android.synthetic.main.fragment_settings.*
 import kotlinx.android.synthetic.main.fragment_settings.view.*
 import java.io.ByteArrayOutputStream
-
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class SettingsFragment : Fragment() {
@@ -32,23 +30,19 @@ class SettingsFragment : Fragment() {
     private lateinit var selectImageBytes: ByteArray
     private var pictureJustChange = false
     private val dialogDisposable = DialogCompositeDisposable()
-    private var auth: FirebaseAuth? = null
-    var key = 1
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-    }
+    private var petImagePath: String = ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(com.zamulaaleksandr.aleksandr.myapplication.R.layout.fragment_settings, container, false)
 
         rootView.logout_button.setOnClickListener {
-
             context?.showMaterialDialogCancelContinueCustom(R.string.sign_out, R.string.sign_out_message, R.string.sign_out, {}, {
                 FirebaseAuth.getInstance().signOut()
 
                 val intent = Intent(activity, LoginActivity::class.java)
                 startActivity(intent)
-                activity?.finish()})
+                activity?.finish()
+            })
                     ?.addTo(dialogDisposable)
         }
 
@@ -59,6 +53,7 @@ class SettingsFragment : Fragment() {
                     FirestoreUtil.updateCurrentUser(rootView.settings_owner_name.text.toString(),
                             rootView.setting_e_mail.text.toString(), imagePath)
                     startActivity(Intent(context, MainActivity::class.java))
+
                 }
             else
                 FirestoreUtil.updateCurrentUser(rootView.settings_owner_name.text.toString(),
@@ -66,7 +61,7 @@ class SettingsFragment : Fragment() {
             startActivity(Intent(context, MainActivity::class.java))
         }
 
-        rootView.imageView_profile_picture.setOnClickListener {
+        rootView.settings_imageView_profile_picture.setOnClickListener {
             val intent = Intent().apply {
                 type = "image/*"
                 action = Intent.ACTION_GET_CONTENT
@@ -96,7 +91,7 @@ class SettingsFragment : Fragment() {
                                 .load(StorageUtil.pathToReference(user.profilePicturePath))
                                 .placeholder(com.zamulaaleksandr.aleksandr.myapplication.R.drawable.ic_account_circle_black_24dp)
                                 .circleCrop()
-                                .into(imageView_profile_picture)
+                                .into(settings_imageView_profile_picture)
                 }
             }
         }
@@ -116,7 +111,7 @@ class SettingsFragment : Fragment() {
             GlideApp.with(this)
                     .load(selectImageBytes)
                     .circleCrop()
-                    .into(imageView_profile_picture)
+                    .into(settings_imageView_profile_picture)
 
             pictureJustChange = true
         }

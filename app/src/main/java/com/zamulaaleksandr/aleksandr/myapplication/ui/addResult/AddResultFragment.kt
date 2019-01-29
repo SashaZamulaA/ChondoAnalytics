@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.zamulaaleksandr.aleksandr.myapplication.R
@@ -18,8 +19,9 @@ import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.zamulaaleksandr.aleksandr.myapplication.MainActivity.Companion.AUTHOR_KEY
 import com.zamulaaleksandr.aleksandr.myapplication.MainActivity.Companion.SPINNER
-import kotlinx.android.synthetic.main.first_fragment.*
-import kotlinx.android.synthetic.main.first_fragment.view.*
+import com.zamulaaleksandr.aleksandr.myapplication.getActivity
+import kotlinx.android.synthetic.main.fragment_add_result.*
+import kotlinx.android.synthetic.main.fragment_add_result.view.*
 import java.util.*
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
@@ -41,7 +43,7 @@ class AddResultFragment : Fragment() {
     private var category2: Array<String>? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val rootView = inflater.inflate(com.zamulaaleksandr.aleksandr.myapplication.R.layout.first_fragment, container, false)
+        val rootView = inflater.inflate(com.zamulaaleksandr.aleksandr.myapplication.R.layout.fragment_add_result, container, false)
 
         category2 = resources.getStringArray(R.array.City)
         @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")

@@ -1,71 +1,45 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_content"
+    android:id="@+id/common_result_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:orientation="vertical">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbar"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/detail_backdrop_height"
-        android:fitsSystemWindows="true"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:elevation="2dp">
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/collapsing_toolbar"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
-            app:elevation="2dp"
-            app:expandedTitleMarginEnd="64dp"
-            app:expandedTitleMarginStart="48dp"
-            app:expandedTitleTextAppearance="@style/CollapsingToolbarLayoutExpandedTextStyle"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/backdrop"
-                android:layout_width="match_parent"
+            <ImageButton
+                android:id="@+id/button_back3"
+                style="@style/ButtonWithIcon"
+                android:layout_centerVertical="true"
+                android:background="@drawable/button_ripple_circle_green"
+                app:srcCompat="@drawable/ic_arrow_back_white" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                style="@style/TextStyle_Title_White"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:elevation="2dp"
-                android:fitsSystemWindows="true"
-                android:scaleType="centerCrop"
-                android:src="@mipmap/motivation"
-                app:layout_collapseMode="parallax" />
+                android:layout_marginStart="@dimen/toolbar_margin_title"
+                android:gravity="center_vertical"
+                tools:text="@string/each_center_result" />
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:elevation="2dp"
-                app:layout_collapseMode="pin"
-
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/result_fab_confirm_goal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
-        app:backgroundTint="@color/link_color"
-        android:clickable="true"
-        app:srcCompat="@drawable/ic_check_black_24dp"
-        app:layout_anchor="@id/appbar"
-        app:layout_anchorGravity="bottom|right|end" />
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
@@ -110,29 +84,21 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/space_8"
-                    android:layout_marginTop="@dimen/space_8"
                     android:layout_marginStart="@dimen/space_16"
+                    android:layout_marginTop="@dimen/space_8"
                     android:layout_marginEnd="@dimen/space_16"
+                    android:layout_marginBottom="@dimen/space_8"
                     android:focusable="true"
                     android:focusableInTouchMode="true"
                     android:orientation="vertical">
 
                     <TextView
-                        style="@style/TextStyle_SubHeader_Accent"
-                        android:layout_marginBottom="@dimen/space_4"
-                        android:layout_marginTop="@dimen/space_8"
-                        android:text="@string/city" />
-
-                    <Spinner
-                        android:id="@+id/registration_city"
                         style="@style/TextStyle_Body2_Primary_Dark"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/space_20" />
+                        android:layout_marginTop="@dimen/space_8"
 
-                    <View
-                        style="@style/AppTheme.HorizontalSpinnerDivider"
-                        android:layout_marginTop="@dimen/space_8" />
+                        android:text="@string/year_goal" />
+
+
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -141,7 +107,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp"
+
                 android:layout_marginBottom="@dimen/space8"
                 android:elevation="2dp"
                 android:orientation="horizontal"
@@ -157,15 +123,13 @@
                     android:id="@+id/price_scu_barcode_block"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_marginLeft="@dimen/space_16"
                     android:layout_marginRight="@dimen/space_16"
-                    >
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/space8"
                         android:gravity="bottom"
                         android:orientation="horizontal">
 
@@ -257,7 +221,6 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/space8"
                         android:gravity="bottom"
                         android:orientation="horizontal">
 
@@ -343,206 +306,34 @@
                                     tools:text="10.00" />
 
                             </com.google.android.material.textfield.TextInputLayout>
-
-
                         </LinearLayout>
                     </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/space8"
-                        android:gravity="bottom"
-                        android:orientation="horizontal">
 
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <com.google.android.material.textfield.TextInputLayout
-                                android:id="@+id/two_day_seminar"
-                                style="@style/TextStyle_Caption_Dark"
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/touchable_list_container"
-                                android:hint="@string/two_day_seminar"
-                                android:text="@string/two_day_seminar"
-                                android:textColorHint="@color/text_secondary_dark"
-                                android:textDirection="inherit">
-
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/two_day_seminar_edittext"
-                                    style="@style/TextStyle_Body2_Primary_Dark"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="@dimen/negative_padding_edittext"
-                                    android:layout_marginEnd="@dimen/negative_padding_edittext"
-                                    android:ellipsize="end"
-                                    android:focusable="true"
-                                    android:gravity="start"
-                                    android:imeOptions="actionNext"
-                                    android:inputType="numberDecimal"
-                                    android:maxLines="1"
-                                    android:nextFocusDown="@+id/et_sku"
-                                    android:nextFocusForward="@+id/et_sku"
-                                    android:selectAllOnFocus="true"
-                                    android:textAlignment="gravity"
-                                    android:textDirection="inherit"
-                                    app:backgroundTint="@color/divider_spinner_color"
-                                    tools:text="10.00" />
-
-                            </com.google.android.material.textfield.TextInputLayout>
-
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="40dp"
-                            android:layout_marginTop="@dimen/space8"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-                            <com.google.android.material.textfield.TextInputLayout
-                                android:id="@+id/ressult_lectures_on_street"
-                                style="@style/TextStyle_Caption_Dark"
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/touchable_list_container"
-                                android:hint="@string/lecture_on_streat"
-                                android:text="@string/lecture_on_streat"
-                                android:textColorHint="@color/text_secondary_dark"
-                                android:textDirection="inherit">
-
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/result_lectures_on_street_edittext"
-                                    style="@style/TextStyle_Body2_Primary_Dark"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="@dimen/negative_padding_edittext"
-                                    android:layout_marginEnd="@dimen/negative_padding_edittext"
-                                    android:ellipsize="end"
-                                    android:focusable="true"
-                                    android:gravity="start"
-                                    android:imeOptions="actionNext"
-                                    android:inputType="numberDecimal"
-                                    android:maxLines="1"
-                                    android:nextFocusDown="@+id/et_sku"
-                                    android:nextFocusForward="@+id/et_sku"
-                                    android:selectAllOnFocus="true"
-                                    android:textAlignment="gravity"
-                                    android:textDirection="inherit"
-                                    app:backgroundTint="@color/divider_spinner_color"
-                                    tools:text="10.00" />
-
-                            </com.google.android.material.textfield.TextInputLayout>
-
-
-                        </LinearLayout>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/space8"
-                        android:gravity="bottom"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <com.google.android.material.textfield.TextInputLayout
-                                android:id="@+id/day21_seminar"
-                                style="@style/TextStyle_Caption_Dark"
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/touchable_list_container"
-                                android:hint="@string/day21_seminar"
-                                android:text="@string/day21_seminar"
-                                android:textColorHint="@color/text_secondary_dark"
-                                android:textDirection="inherit">
-
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/day21_seminar_edittext"
-                                    style="@style/TextStyle_Body2_Primary_Dark"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="@dimen/negative_padding_edittext"
-                                    android:layout_marginEnd="@dimen/negative_padding_edittext"
-                                    android:ellipsize="end"
-                                    android:focusable="true"
-                                    android:gravity="start"
-                                    android:imeOptions="actionNext"
-                                    android:inputType="numberDecimal"
-                                    android:maxLines="1"
-                                    android:nextFocusDown="@+id/et_sku"
-                                    android:nextFocusForward="@+id/et_sku"
-                                    android:selectAllOnFocus="true"
-                                    android:textAlignment="gravity"
-                                    android:textDirection="inherit"
-                                    app:backgroundTint="@color/divider_spinner_color"
-                                    tools:text="10.00" />
-
-                            </com.google.android.material.textfield.TextInputLayout>
-
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="40dp"
-                            android:layout_marginTop="@dimen/space8"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-                            <com.google.android.material.textfield.TextInputLayout
-                                android:id="@+id/ressult_lectures_in_center"
-                                style="@style/TextStyle_Caption_Dark"
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/touchable_list_container"
-                                android:hint="@string/lecture_in_centre"
-                                android:text="@string/lecture_in_centre"
-                                android:textColorHint="@color/text_secondary_dark"
-                                android:textDirection="inherit">
-
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/result_lectures_in_center_edittext"
-                                    style="@style/TextStyle_Body2_Primary_Dark"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="@dimen/negative_padding_edittext"
-                                    android:layout_marginEnd="@dimen/negative_padding_edittext"
-                                    android:ellipsize="end"
-                                    android:focusable="true"
-                                    android:gravity="start"
-                                    android:imeOptions="actionNext"
-                                    android:inputType="numberDecimal"
-                                    android:maxLines="1"
-                                    android:nextFocusDown="@+id/et_sku"
-                                    android:nextFocusForward="@+id/et_sku"
-                                    android:selectAllOnFocus="true"
-                                    android:textAlignment="gravity"
-                                    android:textDirection="inherit"
-                                    app:backgroundTint="@color/divider_spinner_color"
-                                    tools:text="10.00" />
-
-                            </com.google.android.material.textfield.TextInputLayout>
-
-                        </LinearLayout>
-                    </LinearLayout>
                 </LinearLayout>
 
 
             </androidx.cardview.widget.CardView>
             <!--<android.support.design.widget.FloatingActionButton-->
             <!--android:layout_height="wrap_content"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--app:layout_anchor="@id/appbar"-->
-            <!--app:layout_anchorGravity="bottom|right|end"-->
+            <!--android:layout_width="wrap_content"-ayout_anchorGravity="bottom|right|end"-->
             <!--android:src="@drawable/ic_add_gray"-->
             <!--android:layout_margin="@dimen/fab_margin"-->
             <!--android:clickable="true"/>-->
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:orientation="vertical">
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/result_fab_confirm_goal"
+            style="@style/FloatingActionButton"
+            app:backgroundTint="@color/link_color"
+            app:srcCompat="@drawable/ic_check_black_24dp" />
+    </LinearLayout>
+</LinearLayout>

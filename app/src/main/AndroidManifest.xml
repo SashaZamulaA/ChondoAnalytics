@@ -36,8 +36,7 @@
             <!--android:name=".ui.chondo_result.ResultM3AView"-->
             <!--android:windowSoftInputMode="stateUnchanged|adjustResize" />-->
 
-        <activity android:name="com.zamulaaleksandr.aleksandr.myapplication.ui.settings.SettingsView" />
-        <activity
+    <activity
             android:name="com.zamulaaleksandr.aleksandr.myapplication.TestForVisual"
             android:exported="true" />
 
