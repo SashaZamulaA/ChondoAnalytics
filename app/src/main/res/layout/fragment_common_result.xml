@@ -30,22 +30,15 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageButton
-                    android:id="@+id/button_back2"
-                    style="@style/ButtonWithIcon"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/button_ripple_circle_green"
-                    app:srcCompat="@drawable/ic_arrow_back_white" />
+                android:layout_height="match_parent">
 
                 <TextView
                     android:id="@+id/tv_title"
                     style="@style/TextStyle_Title_White"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="@dimen/toolbar_margin_title"
-                    android:gravity="center_vertical"
+                    android:layout_marginStart="@dimen/touchable_list_container"
+                    android:gravity="center"
                     android:text="@string/common_result" />
 
                 <ImageView

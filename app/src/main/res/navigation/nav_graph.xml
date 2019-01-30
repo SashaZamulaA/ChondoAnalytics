@@ -32,7 +32,7 @@
 
     <fragment
         android:id="@+id/goalFragment"
-        android:name="com.zamulaaleksandr.aleksandr.myapplication.ui.goal.GoalFragment"
+        android:name="com.zamulaaleksandr.aleksandr.myapplication.ui.addGoal.GoalFragment"
         android:label="First Fragment"
         tools:layout="@layout/fragment_add_goal" />
 
@@ -45,7 +45,7 @@
             android:id="@+id/action_individualResultFragment_to_commonResultFragment3"
             app:destination="@id/commonResultFragment" />
         <action
-            android:id="@+id/button_back2"
+            android:id="@+id/individual_button_back"
             app:destination="@id/commonResultFragment" />
     </fragment>
     <fragment

@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import com.google.firebase.auth.FirebaseAuth
 import com.zamulaaleksandr.aleksandr.myapplication.*
 import com.zamulaaleksandr.aleksandr.myapplication.MainActivity.Companion.AUTHOR_KEY
@@ -19,6 +20,7 @@ import com.zamulaaleksandr.aleksandr.myapplication.ui.settings.model.User
 import com.zamulaaleksandr.aleksandr.myapplication.util.FirestoreUtil
 import com.zamulaaleksandr.aleksandr.myapplication.util.StorageUtil
 import com.zamulaaleksandr.aleksandr.tmbook.glade.GlideApp
+import kotlinx.android.synthetic.main.fragment_individual_result.view.*
 import kotlinx.android.synthetic.main.fragment_settings.*
 import kotlinx.android.synthetic.main.fragment_settings.view.*
 import java.io.ByteArrayOutputStream
@@ -34,6 +36,10 @@ class SettingsFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(com.zamulaaleksandr.aleksandr.myapplication.R.layout.fragment_settings, container, false)
+
+        rootView.settings_button_back.setOnClickListener {
+            Navigation.findNavController(it).navigate(com.zamulaaleksandr.aleksandr.myapplication.R.id.commonResultFragment)
+        }
 
         rootView.logout_button.setOnClickListener {
             context?.showMaterialDialogCancelContinueCustom(R.string.sign_out, R.string.sign_out_message, R.string.sign_out, {}, {
@@ -83,8 +89,10 @@ class SettingsFragment : Fragment() {
                     val authorText = documentSnapshot.getString(AUTHOR_KEY)
                     val quoteText = documentSnapshot.getString(QUOTE_KEY)
 
-                    settings_owner_name.setText(authorText)
-                    setting_e_mail.text = quoteText
+                    if (!authorText.isNullOrBlank())
+                        settings_owner_name.setText(authorText)
+                    if (!quoteText.isNullOrBlank())
+                        setting_e_mail.text = quoteText
 
                     if (!pictureJustChange && user.profilePicturePath != null)
                         GlideApp.with(this)
@@ -105,7 +113,7 @@ class SettingsFragment : Fragment() {
                     .getBitmap(context?.contentResolver, selectedImagePath)
 
             val outputStream = ByteArrayOutputStream()
-            selectedImageBmp.compress(Bitmap.CompressFormat.JPEG, 90, outputStream)
+            selectedImageBmp.compress(Bitmap.CompressFormat.JPEG, 20, outputStream)
             selectImageBytes = outputStream.toByteArray()
 
             GlideApp.with(this)

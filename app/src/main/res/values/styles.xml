@@ -11,6 +11,8 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+
+
     <style name="ButtonFillGray" parent="Widget.AppCompat.Button.Borderless">
         <item name="android:background">@drawable/button_background_gray_bordered</item>
         <item name="android:textAllCaps">true</item>
@@ -112,7 +114,7 @@
     </style>
 
     <style name="TextStyle_Caption_Dark" parent="AppTheme">
-        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily" tools:ignore="NewApi">sans-serif</item>
         <item name="android:textSize">@dimen/caption_text_size</item>
@@ -120,12 +122,21 @@
     </style>
 
     <style name="TextStyle_Body2_Primary_Dark" parent="AppTheme">
-        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily" tools:ignore="NewApi">sans-serif</item>
         <item name="android:textSize">@dimen/body2_text_size</item>
         <item name="android:textColor">@color/foreground_text_color_dark</item>
 
+    </style>
+
+    <style name="ButtonFlatToolbarWhite" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/body1_text_size</item>
+        <item name="android:paddingStart">@dimen/margin_16_24</item>
+        <item name="android:paddingEnd">@dimen/margin_16_24</item>
+        <item name="android:layout_height">@dimen/toolbar_height</item>
     </style>
 
     <style name="TextStyle_Body2_Primary_Dark_size14" parent="AppTheme">

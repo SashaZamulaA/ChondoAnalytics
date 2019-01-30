@@ -33,7 +33,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageButton
-                        android:id="@+id/button_back2"
+                        android:id="@+id/individual_button_back"
                         style="@style/ButtonWithIcon"
                         android:layout_centerVertical="true"
                         android:background="@drawable/button_ripple_circle_green"

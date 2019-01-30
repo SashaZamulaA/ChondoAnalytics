@@ -26,6 +26,7 @@ import java.io.Serializable
 
 
 
+
 class CommonResultFragment : Fragment(), CommonResultAdapter.FragmentCommunication, Serializable {
 
     override fun respond(position: Int) {
@@ -48,7 +49,6 @@ class CommonResultFragment : Fragment(), CommonResultAdapter.FragmentCommunicati
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(com.zamulaaleksandr.aleksandr.myapplication.R.layout.fragment_common_result, container, false)
-
 
 
         rootView.button_individual_result.setOnClickListener {

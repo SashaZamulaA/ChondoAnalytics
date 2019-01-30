@@ -1,26 +1,15 @@
-package com.zamulaaleksandr.aleksandr.myapplication.ui.goal
+package com.zamulaaleksandr.aleksandr.myapplication.ui.addGoal
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import com.zamulaaleksandr.aleksandr.myapplication.R
 import androidx.fragment.app.Fragment
-import com.zamulaaleksandr.aleksandr.myapplication.MainActivity
-import com.zamulaaleksandr.aleksandr.myapplication.model.City
-import com.zamulaaleksandr.aleksandr.myapplication.ui.settings.model.User
-import com.zamulaaleksandr.aleksandr.myapplication.util.FirestoreUtil
+import androidx.navigation.Navigation
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
-import com.zamulaaleksandr.aleksandr.myapplication.MainActivity.Companion.AUTHOR_KEY
-import com.zamulaaleksandr.aleksandr.myapplication.MainActivity.Companion.SPINNER
-import kotlinx.android.synthetic.main.fragment_add_result.*
-import kotlinx.android.synthetic.main.fragment_add_result.view.*
-import java.util.*
+import kotlinx.android.synthetic.main.fragment_add_goal.view.*
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class GoalFragment : Fragment() {
@@ -36,8 +25,8 @@ class GoalFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(com.zamulaaleksandr.aleksandr.myapplication.R.layout.fragment_add_goal, container, false)
 
-        rootView.result_fab_confirm_goal.setOnClickListener {
-//            addNote()
+        rootView.button_back_goal.setOnClickListener {
+            Navigation.findNavController(it).navigate(com.zamulaaleksandr.aleksandr.myapplication.R.id.commonResultFragment)
         }
         return rootView
     }

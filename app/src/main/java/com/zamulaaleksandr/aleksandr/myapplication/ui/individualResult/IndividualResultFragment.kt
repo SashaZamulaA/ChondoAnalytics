@@ -10,14 +10,17 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.zamulaaleksandr.aleksandr.myapplication.*
-import com.zamulaaleksandr.aleksandr.myapplication.model.City
-import com.zamulaaleksandr.aleksandr.myapplication.ui.commonResult.adapter.IndividualAdapter
-import com.zamulaaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.zamulaaleksandr.aleksandr.myapplication.DialogCompositeDisposable
+import com.zamulaaleksandr.aleksandr.myapplication.R
+import com.zamulaaleksandr.aleksandr.myapplication.addTo
+import com.zamulaaleksandr.aleksandr.myapplication.model.City
+import com.zamulaaleksandr.aleksandr.myapplication.showMaterialDialogCancelDelete
+import com.zamulaaleksandr.aleksandr.myapplication.ui.commonResult.adapter.IndividualAdapter
+import com.zamulaaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import kotlinx.android.synthetic.main.fragment_individual_result.*
 import kotlinx.android.synthetic.main.fragment_individual_result.view.*
 
@@ -25,21 +28,21 @@ import kotlinx.android.synthetic.main.fragment_individual_result.view.*
 class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunication {
     override fun respond(city: City) {
 
-            context?.showMaterialDialogCancelDelete(
-                    title = resources.getText(R.string.delete_item_card_title).toString(),
-                    message = resources.getText(R.string.delete_select_item).toString(),
-                    onNoClick = {},
-                    onYesClick = {
-deleteNote(city)
-                    }
-            )?.addTo(dialogDisposable)
+        context?.showMaterialDialogCancelDelete(
+                title = resources.getText(R.string.delete_item_card_title).toString(),
+                message = resources.getText(R.string.delete_select_item).toString(),
+                onNoClick = {},
+                onYesClick = {
+                    deleteNote(city)
+                }
+        )?.addTo(dialogDisposable)
 
     }
 
     var toolbar: Toolbar? = null
     var adapter: IndividualAdapter? = null
     private val noteRefCollection = firestoreInstance.collection("NewCity")
-    var city: City? =null
+    var city: City? = null
     private val items: ArrayList<City> = ArrayList()
     private var mLastQueriedDocument: DocumentSnapshot? = null
     private val dialogDisposable = DialogCompositeDisposable()
@@ -47,13 +50,12 @@ deleteNote(city)
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(com.zamulaaleksandr.aleksandr.myapplication.R.layout.fragment_individual_result, container, false)
 
-        button_back2
         setUpRecyclerView(rootView)
 
         rootView.button_individual_result_ind_res.setOnClickListener {
             Navigation.findNavController(it).navigate(com.zamulaaleksandr.aleksandr.myapplication.R.id.action_individualResultFragment_to_commonResultFragment3)
         }
-        rootView.button_back2.setOnClickListener {
+        rootView.individual_button_back.setOnClickListener {
             Navigation.findNavController(it).navigate(com.zamulaaleksandr.aleksandr.myapplication.R.id.commonResultFragment)
         }
 
@@ -62,7 +64,6 @@ deleteNote(city)
 
         return rootView
     }
-
 
 
     private fun deleteNote(city: City?) {
@@ -102,32 +103,33 @@ deleteNote(city)
 //                    .orderBy("time", Query.Direction.DESCENDING)
 //                    .startAfter(mLastQueriedDocument!!)
 //        } else{
-            notesCollectionRef
-                    .whereEqualTo("id", if ("${FirebaseAuth.getInstance().uid}" == FirebaseAuth.getInstance().currentUser!!.uid) {
-                        FirebaseAuth.getInstance().uid
-                    } else null)
-                    .orderBy("time", Query.Direction.DESCENDING)
+        notesCollectionRef
+                .whereEqualTo("id", if ("${FirebaseAuth.getInstance().uid}" == FirebaseAuth.getInstance().currentUser!!.uid) {
+                    FirebaseAuth.getInstance().uid
+                } else null)
+                .orderBy("time", Query.Direction.DESCENDING)
 
-        .get().addOnCompleteListener { querydocumentSnapshot ->
-            if (querydocumentSnapshot.isSuccessful) {
-               for (documentSnapshot in querydocumentSnapshot.result!!) {
-                    val note = documentSnapshot.toObject<City>(City::class.java)
-                    items.add(note)
-                    //                        Log.d(TAG, "onComplete: got a new note. Position: " + (mNotes.size() - 1));
-                }
+                .get().addOnCompleteListener { querydocumentSnapshot ->
+                    if (querydocumentSnapshot.isSuccessful) {
+                        for (documentSnapshot in querydocumentSnapshot.result!!) {
+                            val note = documentSnapshot.toObject<City>(City::class.java)
+                            items.add(note)
+                            //                        Log.d(TAG, "onComplete: got a new note. Position: " + (mNotes.size() - 1));
+                        }
 
-                if (querydocumentSnapshot.result!!.size() != 0) {
-                    empty_kitchen_categories.visibility = View.GONE
-                    mLastQueriedDocument = querydocumentSnapshot.result!!.documents[querydocumentSnapshot.result!!.size() - 1]
-                    adapter?.notifyDataSetChanged()
-            } else{
-                empty_kitchen_categories.visibility = View.VISIBLE
-                adapter?.notifyDataSetChanged()}
-            } else {
+                        if (querydocumentSnapshot.result!!.size() != 0) {
+                            empty_kitchen_categories.visibility = View.GONE
+                            mLastQueriedDocument = querydocumentSnapshot.result!!.documents[querydocumentSnapshot.result!!.size() - 1]
+                            adapter?.notifyDataSetChanged()
+                        } else {
+                            empty_kitchen_categories.visibility = View.VISIBLE
+                            adapter?.notifyDataSetChanged()
+                        }
+                    } else {
 
 // makeSnackBarMessage("Query Failed. Check Logs.")
-            }
-        }
+                    }
+                }
 //        val query = firestoreInstance.collection("NewCity")
 //                .whereEqualTo("id", if ("${FirebaseAuth.getInstance().uid}" == FirebaseAuth.getInstance().currentUser!!.uid) {
 //                    FirebaseAuth.getInstance().uid
@@ -165,7 +167,6 @@ deleteNote(city)
 //        }).attachToRecyclerView(rootView.list_individual_result_adapter)
 
     }
-
 
 
     fun refreshItems() {

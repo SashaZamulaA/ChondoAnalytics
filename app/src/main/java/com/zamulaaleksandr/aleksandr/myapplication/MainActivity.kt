@@ -19,6 +19,8 @@ import com.zamulaaleksandr.aleksandr.myapplication.util.FirestoreUtil
 import com.zamulaaleksandr.aleksandr.myapplication.util.StorageUtil
 import com.zamulaaleksandr.aleksandr.tmbook.glade.GlideApp
 import kotlinx.android.synthetic.main.header_layout.*
+import androidx.appcompat.app.ActionBarDrawerToggle
+
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -31,18 +33,30 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     val context: Context? = null
     lateinit var drawerLayout: DrawerLayout
     lateinit var navController: NavController
+
     lateinit var navigationView: NavigationView
     private var pictureJustChange = false
-    val commonFragment: CommonResultFragment? = null
 
+    val commonFragment: CommonResultFragment? = null
+    var toggle: ActionBarDrawerToggle? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val finalHost = NavHostFragment.create(R.navigation.nav_graph)
 
+//        toggle = object : ActionBarDrawerToggle(
+//                this,
+//                drawerLayout,
+//                R.string.navigation_drawer_open,
+//                R.string.navigation_drawer_close
+//        ) {
+//        }
+//        drawerLayout.setDrawerListener(toggle)
+//        toggle?.syncState()
+//
+//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+//        supportActionBar?.setHomeButtonEnabled(true)
 
-//        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-//        supportActionBar!!.setDisplayShowHomeEnabled(true)
         drawerLayout = findViewById(R.id.drawer_layout)
 
         navigationView = findViewById(R.id.navigationView)
@@ -63,8 +77,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
                         val quoteText = documentSnapshot.getString(QUOTE_KEY)
                         val authorText = documentSnapshot.getString(AUTHOR_KEY)
-                        header_name.text = authorText
-                        header_email.text = quoteText
+
+                        if (!authorText.isNullOrBlank())
+                            header_name.text = authorText
+                        if (!quoteText.isNullOrBlank())
+                            header_email.text = quoteText
 
                         if (!pictureJustChange && user.profilePicturePath != null)
                             GlideApp.with(this)
@@ -97,7 +114,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.commonResult -> navController.navigate(R.id.commonResultFragment)
             R.id.add_result -> navController.navigate(R.id.addResultFragment)
             R.id.nav_settings -> navController.navigate(R.id.settingsFragment)
-            R.id.add_goal -> navController.navigate(R.id.goalFragment)
+//            R.id.add_goal -> navController.navigate(R.id.goalFragment)
         }
         return true
     }

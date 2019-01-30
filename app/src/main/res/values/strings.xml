@@ -191,4 +191,9 @@
     <string name="private_policy">Privacy Policy</string>
     <string name="year_goal">Goal of year</string>
     <string name="add_goal">Add goal</string>
+    <string name="people_in_nwet">People_in_team</string>
+    <string name="month_goal">Goal of month</string>
+    <string name="week_goal">Goal of week</string>
+    <string name="navigation_drawer_open">open</string>
+    <string name="navigation_drawer_close">close</string>
 </resources>

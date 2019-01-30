@@ -17,10 +17,10 @@
             android:icon="@drawable/ic_settings"
             android:title="@string/settings" />
 
-        <item
-            android:id="@+id/add_goal"
-            android:icon="@drawable/ic_create_black_24dp"
-            android:title="@string/add_goal" />
+        <!--<item-->
+            <!--android:id="@+id/add_goal"-->
+            <!--android:icon="@drawable/ic_create_black_24dp"-->
+            <!--android:title="@string/add_goal" />-->
     </group>
 
     </menu>
