@@ -177,6 +177,7 @@
     <string name="quarter">Quarter</string>
     <string name="common_result">Common Result</string>
     <string name="individual_result">Individual Result</string>
+    <string name="ind_list_is_empty">Individual result list is empty</string>
     <string name="each_center_result">Center</string>
     <string name="just_now">Just now</string>
     <string name="ago">ago</string>

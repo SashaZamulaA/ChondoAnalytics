@@ -5,9 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.appcompat.widget.Toolbar
 import com.zamulaaleksandr.aleksandr.myapplication.R
 import androidx.fragment.app.Fragment
 import com.zamulaaleksandr.aleksandr.myapplication.MainActivity
@@ -19,9 +19,10 @@ import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.zamulaaleksandr.aleksandr.myapplication.MainActivity.Companion.AUTHOR_KEY
 import com.zamulaaleksandr.aleksandr.myapplication.MainActivity.Companion.SPINNER
-import com.zamulaaleksandr.aleksandr.myapplication.getActivity
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_add_result.*
 import kotlinx.android.synthetic.main.fragment_add_result.view.*
+import org.jetbrains.anko.design.collapsingToolbarLayout
 import java.util.*
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
@@ -63,6 +64,12 @@ class AddResultFragment : Fragment() {
         }
         return rootView
     }
+
+    override fun onResume() {
+        super.onResume()
+        (this.activity!!.toolbar as Toolbar).title = "Add result"
+    }
+
 
     private fun addNote() {
         val centers = registration_city.selectedItem.toString()

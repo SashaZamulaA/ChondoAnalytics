@@ -9,6 +9,7 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.google.firebase.auth.FirebaseAuth
@@ -20,7 +21,7 @@ import com.zamulaaleksandr.aleksandr.myapplication.ui.settings.model.User
 import com.zamulaaleksandr.aleksandr.myapplication.util.FirestoreUtil
 import com.zamulaaleksandr.aleksandr.myapplication.util.StorageUtil
 import com.zamulaaleksandr.aleksandr.tmbook.glade.GlideApp
-import kotlinx.android.synthetic.main.fragment_individual_result.view.*
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_settings.*
 import kotlinx.android.synthetic.main.fragment_settings.view.*
 import java.io.ByteArrayOutputStream
@@ -37,9 +38,9 @@ class SettingsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(com.zamulaaleksandr.aleksandr.myapplication.R.layout.fragment_settings, container, false)
 
-        rootView.settings_button_back.setOnClickListener {
-            Navigation.findNavController(it).navigate(com.zamulaaleksandr.aleksandr.myapplication.R.id.commonResultFragment)
-        }
+//        rootView.settings_button_back.setOnClickListener {
+//            Navigation.findNavController(it).navigate(com.zamulaaleksandr.aleksandr.myapplication.R.id.commonResultFragment)
+//        }
 
         rootView.logout_button.setOnClickListener {
             context?.showMaterialDialogCancelContinueCustom(R.string.sign_out, R.string.sign_out_message, R.string.sign_out, {}, {
@@ -78,7 +79,10 @@ class SettingsFragment : Fragment() {
 
         return rootView
     }
-
+    override fun onResume() {
+        super.onResume()
+        (this.activity!!.toolbar as Toolbar).title = "Settings"
+    }
     override fun onStart() {
         super.onStart()
         FirestoreUtil.currentUserDocRef.addSnapshotListener { documentSnapshot, _ ->

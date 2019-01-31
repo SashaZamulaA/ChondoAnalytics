@@ -22,9 +22,8 @@ import android.R
 import android.widget.Toast
 import com.zamulaaleksandr.aleksandr.myapplication.ui.commonResult.adapter.CommonResultAdapter.FragmentCommunication
 import com.zamulaaleksandr.aleksandr.myapplication.ui.individualResult.IndividualResultFragment
+import kotlinx.android.synthetic.main.activity_main.*
 import java.io.Serializable
-
-
 
 
 class CommonResultFragment : Fragment(), CommonResultAdapter.FragmentCommunication, Serializable {
@@ -38,11 +37,9 @@ class CommonResultFragment : Fragment(), CommonResultAdapter.FragmentCommunicati
         bundle.putInt("pas", position)
         Navigation.findNavController(this.view!!).navigate(com.zamulaaleksandr.aleksandr.myapplication.R.id.action_commonResultFragment_to_eachCenterFragment, bundle)
 
-
-
     }
 
-    var toolbar: Toolbar? = null
+//    var toolbar: Toolbar? = null
     var adapter: CommonResultAdapter? = null
     var city: City? = null
     private val items: ArrayList<City> = ArrayList()
@@ -51,15 +48,15 @@ class CommonResultFragment : Fragment(), CommonResultAdapter.FragmentCommunicati
         val rootView = inflater.inflate(com.zamulaaleksandr.aleksandr.myapplication.R.layout.fragment_common_result, container, false)
 
 
-        rootView.button_individual_result.setOnClickListener {
-            Navigation.findNavController(it).navigate(com.zamulaaleksandr.aleksandr.myapplication.R.id.action_commonResultFragment_to_individualResultFragment2)
-        }
+//        rootView.button_individual_result.setOnClickListener {
+//            Navigation.findNavController(it).navigate(com.zamulaaleksandr.aleksandr.myapplication.R.id.action_commonResultFragment_to_individualResultFragment2)
+//        }
 
         adapterInit(rootView)
         bottomMenuInit(rootView)
 
-        toolbar = view?.findViewById(com.zamulaaleksandr.aleksandr.myapplication.R.id.toolbar)
-        (activity as AppCompatActivity).setSupportActionBar(toolbar)
+//        toolbar = view?.findViewById(com.zamulaaleksandr.aleksandr.myapplication.R.id.toolbar)
+//        (activity as AppCompatActivity).setSupportActionBar(toolbar)
 
         adapter?.perioSelected(CommonResultAdapter.ClickByFilter.YEAR)
 
@@ -68,7 +65,10 @@ class CommonResultFragment : Fragment(), CommonResultAdapter.FragmentCommunicati
         return rootView
     }
 
-
+    override fun onResume() {
+        super.onResume()
+        (this.activity!!.toolbar as Toolbar).title = "Common result"
+    }
     var communication: FragmentCommunication = object : FragmentCommunication {
         override fun respond(position: Int) {
             val fragmentB = IndividualResultFragment()

@@ -12,49 +12,49 @@
         android:layout_height="match_parent">
 
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/myAppBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:descendantFocusability="beforeDescendants"
-            android:focusableInTouchMode="true"
-            android:theme="@style/AppTheme.AppBarOverlay"
-            app:elevation="0dp">
+        <!--<com.google.android.material.appbar.AppBarLayout-->
+            <!--android:id="@+id/myAppBar"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:descendantFocusability="beforeDescendants"-->
+            <!--android:focusableInTouchMode="true"-->
+            <!--android:theme="@style/AppTheme.AppBarOverlay"-->
+            <!--app:elevation="0dp">-->
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/colorPrimary"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark">
+            <!--<androidx.appcompat.widget.Toolbar-->
+                <!--android:id="@+id/toolbar"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="?attr/actionBarSize"-->
+                <!--android:background="@color/colorPrimary"-->
+                <!--android:theme="@style/ThemeOverlay.AppCompat.Dark">-->
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent">-->
 
-                <TextView
-                    android:id="@+id/tv_title"
-                    style="@style/TextStyle_Title_White"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="@dimen/touchable_list_container"
-                    android:gravity="center"
-                    android:text="@string/common_result" />
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_title"-->
+                    <!--style="@style/TextStyle_Title_White"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_marginStart="@dimen/touchable_list_container"-->
+                    <!--android:gravity="center"-->
+                    <!--android:text="@string/common_result" />-->
 
-                <ImageView
-                    android:id="@+id/button_individual_result"
-                    android:layout_width="@dimen/toolbar_icon_size"
-                    android:layout_height="@dimen/toolbar_icon_size"
-                    android:background="@drawable/button_ripple_circle_green"
-                    app:srcCompat="@drawable/ic_person"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="@dimen/space_12"
-                    android:padding="@dimen/icon_button_padding"
-                    android:gravity="center"
-                    android:text="@string/save" />
-            </RelativeLayout>
-            </androidx.appcompat.widget.Toolbar>
-        </com.google.android.material.appbar.AppBarLayout>
+                <!--<ImageView-->
+                    <!--android:id="@+id/button_individual_result"-->
+                    <!--android:layout_width="@dimen/toolbar_icon_size"-->
+                    <!--android:layout_height="@dimen/toolbar_icon_size"-->
+                    <!--android:background="@drawable/button_ripple_circle_green"-->
+                    <!--app:srcCompat="@drawable/ic_person"-->
+                    <!--android:layout_alignParentEnd="true"-->
+                    <!--android:layout_marginEnd="@dimen/space_12"-->
+                    <!--android:padding="@dimen/icon_button_padding"-->
+                    <!--android:gravity="center"-->
+                    <!--android:text="@string/save" />-->
+            <!--</RelativeLayout>-->
+            <!--</androidx.appcompat.widget.Toolbar>-->
+        <!--</com.google.android.material.appbar.AppBarLayout>-->
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"

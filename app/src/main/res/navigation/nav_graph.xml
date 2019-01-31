@@ -25,6 +25,12 @@
         tools:layout="@layout/fragment_add_result" />
 
     <fragment
+        android:id="@+id/addIndividualFragment"
+        android:name="com.zamulaaleksandr.aleksandr.myapplication.ui.individualResult.IndividualResultFragment"
+        android:label="First Fragment"
+        tools:layout="@layout/fragment_individual_result" />
+
+    <fragment
         android:id="@+id/settingsFragment"
         android:name="com.zamulaaleksandr.aleksandr.myapplication.ui.settings.SettingsFragment"
         android:label="First Fragment"

@@ -3,8 +3,12 @@
 
     <group android:checkableBehavior="single">
         <item android:id="@+id/commonResult"
-            android:title="@string/main"
+            android:title="@string/common_result"
             android:icon="@drawable/ic_home"/>
+
+        <item android:id="@+id/individualResult"
+            android:title="@string/individual_result"
+            android:icon="@drawable/ic_person_black_24dp"/>
 
         <item
             android:id="@+id/add_result"

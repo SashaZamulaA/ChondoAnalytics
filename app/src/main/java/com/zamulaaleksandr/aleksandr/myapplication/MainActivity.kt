@@ -4,6 +4,7 @@ package com.zamulaaleksandr.aleksandr.myapplication
 import android.content.Context
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -11,7 +12,6 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI
 import com.google.android.material.navigation.NavigationView
 import com.zamulaaleksandr.aleksandr.myapplication.ui.commonResult.CommonResultFragment
 import com.zamulaaleksandr.aleksandr.myapplication.ui.settings.model.User
@@ -20,6 +20,7 @@ import com.zamulaaleksandr.aleksandr.myapplication.util.StorageUtil
 import com.zamulaaleksandr.aleksandr.tmbook.glade.GlideApp
 import kotlinx.android.synthetic.main.header_layout.*
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.widget.Toolbar
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -30,19 +31,30 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val SPINNER = "spinner"
     }
 
+
     val context: Context? = null
     lateinit var drawerLayout: DrawerLayout
     lateinit var navController: NavController
-
-    lateinit var navigationView: NavigationView
     private var pictureJustChange = false
 
-    val commonFragment: CommonResultFragment? = null
-    var toggle: ActionBarDrawerToggle? = null
+    private lateinit var navigationView: NavigationView
+
+    private lateinit var toggle: ActionBarDrawerToggle
+    internal lateinit var toolbar: Toolbar
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val finalHost = NavHostFragment.create(R.navigation.nav_graph)
+
+
+        toolbar = findViewById<View>(R.id.toolbar) as Toolbar
+        drawerLayout = findViewById<View>(R.id.drawer_layout) as DrawerLayout
+        toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close)
+        drawerLayout.addDrawerListener(toggle)
+        toggle.drawerArrowDrawable.color = resources.getColor(R.color.white)
+        toggle.syncState()
 
 //        toggle = object : ActionBarDrawerToggle(
 //                this,
@@ -111,8 +123,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawerLayout.closeDrawers()
         val id = menuItem.itemId
         when (id) {
-            R.id.commonResult -> navController.navigate(R.id.commonResultFragment)
+            R.id.commonResult -> {navController.navigate(R.id.commonResultFragment)
+                (menuItem.title)
+            }
             R.id.add_result -> navController.navigate(R.id.addResultFragment)
+            R.id.individualResult -> navController.navigate(R.id.addIndividualFragment)
             R.id.nav_settings -> navController.navigate(R.id.settingsFragment)
 //            R.id.add_goal -> navController.navigate(R.id.goalFragment)
         }

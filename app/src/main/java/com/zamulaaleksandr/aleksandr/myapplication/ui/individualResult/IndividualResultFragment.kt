@@ -21,16 +21,20 @@ import com.zamulaaleksandr.aleksandr.myapplication.model.City
 import com.zamulaaleksandr.aleksandr.myapplication.showMaterialDialogCancelDelete
 import com.zamulaaleksandr.aleksandr.myapplication.ui.commonResult.adapter.IndividualAdapter
 import com.zamulaaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_individual_result.*
 import kotlinx.android.synthetic.main.fragment_individual_result.view.*
+
+
+
 
 
 class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunication {
     override fun respond(city: City) {
 
         context?.showMaterialDialogCancelDelete(
-                title = resources.getText(R.string.delete_item_card_title).toString(),
-                message = resources.getText(R.string.delete_select_item).toString(),
+                title = resources.getText(com.zamulaaleksandr.aleksandr.myapplication.R.string.delete_item_card_title).toString(),
+                message = resources.getText(com.zamulaaleksandr.aleksandr.myapplication.R.string.delete_select_item).toString(),
                 onNoClick = {},
                 onYesClick = {
                     deleteNote(city)
@@ -52,19 +56,23 @@ class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunica
 
         setUpRecyclerView(rootView)
 
-        rootView.button_individual_result_ind_res.setOnClickListener {
-            Navigation.findNavController(it).navigate(com.zamulaaleksandr.aleksandr.myapplication.R.id.action_individualResultFragment_to_commonResultFragment3)
-        }
-        rootView.individual_button_back.setOnClickListener {
-            Navigation.findNavController(it).navigate(com.zamulaaleksandr.aleksandr.myapplication.R.id.commonResultFragment)
-        }
+//        rootView.button_individual_result_ind_res.setOnClickListener {
+//            Navigation.findNavController(it).navigate(com.zamulaaleksandr.aleksandr.myapplication.R.id.action_individualResultFragment_to_commonResultFragment3)
+//        }
+//        rootView.individual_button_back.setOnClickListener {
+//            Navigation.findNavController(it).navigate(com.zamulaaleksandr.aleksandr.myapplication.R.id.commonResultFragment)
+//        }
 
-        toolbar = view?.findViewById(com.zamulaaleksandr.aleksandr.myapplication.R.id.toolbar)
-        (activity as AppCompatActivity).setSupportActionBar(toolbar)
-
+//        toolbar = view?.findViewById(com.zamulaaleksandr.aleksandr.myapplication.R.id.toolbar)
+//        (activity as AppCompatActivity).setSupportActionBar(toolbar)
+//        (activity as AppCompatActivity).supportActionBar!!.hide()
         return rootView
     }
 
+    override fun onResume() {
+        super.onResume()
+        (this.activity!!.toolbar as Toolbar).title = "Individual result"
+    }
 
     private fun deleteNote(city: City?) {
         val db = FirebaseFirestore.getInstance()

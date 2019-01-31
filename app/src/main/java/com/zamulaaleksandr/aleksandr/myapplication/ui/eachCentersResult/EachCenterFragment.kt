@@ -14,6 +14,7 @@ import com.zamulaaleksandr.aleksandr.myapplication.ui.eachCentersResult.adapter.
 import com.zamulaaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.Query
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_each_senter.view.*
 
 
@@ -26,9 +27,9 @@ class EachCenterFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(com.zamulaaleksandr.aleksandr.myapplication.R.layout.fragment_each_senter, container, false)
 
-        rootView.button_back3.setOnClickListener {
-            Navigation.findNavController(it).navigate(com.zamulaaleksandr.aleksandr.myapplication.R.id.commonResultFragment)
-        }
+//        rootView.button_back3.setOnClickListener {
+//            Navigation.findNavController(it).navigate(com.zamulaaleksandr.aleksandr.myapplication.R.id.commonResultFragment)
+//        }
 
 
         val name = arguments?.getInt("pas", 0)
@@ -61,6 +62,11 @@ class EachCenterFragment : Fragment() {
 //        }
 
         return rootView
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (this.activity!!.toolbar as Toolbar).title = "Each center result"
     }
 
     override fun onStart() {

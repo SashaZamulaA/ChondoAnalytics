@@ -6,7 +6,6 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.lang.NullPointerException
 import java.util.*
-import android.R.array
 import java.nio.ByteBuffer
 
 
