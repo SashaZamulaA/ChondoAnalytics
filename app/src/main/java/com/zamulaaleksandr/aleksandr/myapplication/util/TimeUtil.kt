@@ -107,16 +107,34 @@ private fun setTimeToEndofDay(calendar: Calendar) {
     calendar.set(Calendar.MILLISECOND, 999)
 }
 
+fun clickByFilterCommon(noteRefCollection: CollectionReference, position: Int, value: Int) : Task<QuerySnapshot> {
+    return noteRefCollection.whereGreaterThanOrEqualTo("time", when (value) {
+        1 -> startOfDay(Date())
+        2 -> startOfWeek()
+        3 -> startOfMonth()
+        4 -> startOfYear()
+        else -> startOfDay(Date())
+    }).whereLessThanOrEqualTo("time", when (value){
+        1 -> endOfDay(Date())
+        2 -> endOfWeek()
+        3 -> endOfMonth()
+        4 -> endOfYear()
+        else -> startOfDay(Date())
+    }).get()
+
+}
+
+
 
 fun clickByFilter(noteRefCollection: CollectionReference, position: Int, value: Int) : Task<QuerySnapshot> {
     return noteRefCollection.whereEqualTo("centers", when(position) {
-               0 -> "Kyiv"
-               1 -> "Kharkiv"
-               2 -> "Dnepr"
-               3 -> "Zhytomyr"
-               4 -> "Lviv"
-               5 -> "Odessa"
-               6 -> "Chernigov"
+               1 -> "Kyiv"
+               2 -> "Kharkiv"
+               3 -> "Dnepr"
+               4 -> "Zhytomyr"
+               5 -> "Lviv"
+               6 -> "Odessa"
+               7 -> "Chernigov"
                 else -> null
             }).whereGreaterThanOrEqualTo("time", when (value) {
                 1 -> startOfDay(Date())

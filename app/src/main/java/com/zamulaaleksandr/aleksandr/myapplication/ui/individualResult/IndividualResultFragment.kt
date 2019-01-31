@@ -5,17 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.zamulaaleksandr.aleksandr.myapplication.DialogCompositeDisposable
-import com.zamulaaleksandr.aleksandr.myapplication.R
 import com.zamulaaleksandr.aleksandr.myapplication.addTo
 import com.zamulaaleksandr.aleksandr.myapplication.model.City
 import com.zamulaaleksandr.aleksandr.myapplication.showMaterialDialogCancelDelete
@@ -24,9 +21,6 @@ import com.zamulaaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreI
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_individual_result.*
 import kotlinx.android.synthetic.main.fragment_individual_result.view.*
-
-
-
 
 
 class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunication {
@@ -122,7 +116,6 @@ class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunica
                         for (documentSnapshot in querydocumentSnapshot.result!!) {
                             val note = documentSnapshot.toObject<City>(City::class.java)
                             items.add(note)
-                            //                        Log.d(TAG, "onComplete: got a new note. Position: " + (mNotes.size() - 1));
                         }
 
                         if (querydocumentSnapshot.result!!.size() != 0) {
@@ -134,45 +127,8 @@ class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunica
                             adapter?.notifyDataSetChanged()
                         }
                     } else {
-
-// makeSnackBarMessage("Query Failed. Check Logs.")
                     }
                 }
-//        val query = firestoreInstance.collection("NewCity")
-//                .whereEqualTo("id", if ("${FirebaseAuth.getInstance().uid}" == FirebaseAuth.getInstance().currentUser!!.uid) {
-//                    FirebaseAuth.getInstance().uid
-//                } else null)
-//                .orderBy("time", Query.Direction.DESCENDING)
-
-//        query.addSnapshotListener{ querySnapshot, _ ->
-//            if(querySnapshot?.isEmpty!!){
-//                empty_kitchen_categories.visibility = isVisible.toAndroidVisibility()
-//            }
-//        }
-//        val options = FirestoreRecyclerOptions.Builder<City>()
-//                .setQuery(query, City::class.java)
-//                .build()
-        //        when(id){ id ->  FirebaseAuth.getInstance().currentUser.toString() else -> null}
-
-//        val swipeHandler = object : SwipeToDeleteCallback(this.context!!) {
-//            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-//                viewHolder.adapterPosition.let { adapter.deleteItem(it) }
-//
-//            }
-//        }
-//        ItemTouchHelper(swipeHandler).attachToRecyclerView(rootView.list_individual_result_adapter)
-
-
-//        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0,
-//                ItemTouchHelper.LEFT) {
-//            override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
-//                return false
-//            }
-//            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-//                adapter.(viewHolder.adapterPosition)
-//                refreshItems()
-//            }
-//        }).attachToRecyclerView(rootView.list_individual_result_adapter)
 
     }
 
@@ -183,9 +139,4 @@ class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunica
                 ?.attach(this)
                 ?.commit()
     }
-//    private fun deleteItem(position: Int) {
-//        val document = adapter.snapshots.getSnapshot(position).reference
-//        document.delete()
-//    }
-
 }

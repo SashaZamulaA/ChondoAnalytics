@@ -22,6 +22,7 @@ import com.zamulaaleksandr.aleksandr.myapplication.MainActivity.Companion.SPINNE
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_add_result.*
 import kotlinx.android.synthetic.main.fragment_add_result.view.*
+import kotlinx.android.synthetic.main.item_common_goal_and_result_list2.*
 import org.jetbrains.anko.design.collapsingToolbarLayout
 import java.util.*
 
@@ -81,6 +82,9 @@ class AddResultFragment : Fragment() {
         val timeStr = result_approach_edit_text.text.toString()
         val lectOnStr = result_lectures_on_street_edittext.text.toString()
         val lectCentr = result_lectures_in_center_edittext.text.toString()
+        val nwet = result_nwet_edittext.text.toString()
+        val dp = result_DP_edittext.text.toString()
+
         var userPhotoPath = ""
         var name = ""
 
@@ -98,7 +102,7 @@ class AddResultFragment : Fragment() {
                     if (!pictureJustChange && user.profilePicturePath != null) {
                         userPhotoPath = user.profilePicturePath
                     }
-                   noteRefCollection.set(City(id,currentUserId, intro, oneDayWS, twoDayWS, twOneDay, centers, approach, timeStr, lectOnStr, lectCentr, Date(),timestamp, userPhotoPath, name))
+                   noteRefCollection.set(City(id,currentUserId, intro, oneDayWS, twoDayWS, twOneDay, centers, approach, timeStr, lectOnStr, lectCentr, Date(),timestamp, userPhotoPath, name, nwet, dp))
                 }
             }
         }

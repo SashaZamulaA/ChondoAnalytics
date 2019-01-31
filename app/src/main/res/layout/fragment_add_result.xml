@@ -531,6 +531,98 @@
 
                         </LinearLayout>
                     </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/space8"
+                        android:gravity="bottom"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/result_nwet"
+                                style="@style/TextStyle_Caption_Dark"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/touchable_list_container"
+                                android:hint="@string/nwet"
+                                android:text="@string/nwet"
+                                android:textColorHint="@color/text_secondary_dark"
+                                android:textDirection="inherit">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/result_nwet_edittext"
+                                    style="@style/TextStyle_Body2_Primary_Dark"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/negative_padding_edittext"
+                                    android:layout_marginEnd="@dimen/negative_padding_edittext"
+                                    android:ellipsize="end"
+                                    android:focusable="true"
+                                    android:gravity="start"
+                                    android:imeOptions="actionNext"
+                                    android:inputType="numberDecimal"
+                                    android:maxLines="1"
+                                    android:nextFocusDown="@+id/et_sku"
+                                    android:nextFocusForward="@+id/et_sku"
+                                    android:selectAllOnFocus="true"
+                                    android:textAlignment="gravity"
+                                    android:textDirection="inherit"
+                                    app:backgroundTint="@color/divider_spinner_color"
+                                    tools:text="10.00" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="40dp"
+                            android:layout_marginTop="@dimen/space8"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/result_DP"
+                                style="@style/TextStyle_Caption_Dark"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/touchable_list_container"
+                                android:hint="@string/read_DP_pages"
+                                android:text="@string/read_DP_pages"
+                                android:textColorHint="@color/text_secondary_dark"
+                                android:textDirection="inherit">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/result_DP_edittext"
+                                    style="@style/TextStyle_Body2_Primary_Dark"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/negative_padding_edittext"
+                                    android:layout_marginEnd="@dimen/negative_padding_edittext"
+                                    android:ellipsize="end"
+                                    android:focusable="true"
+                                    android:gravity="start"
+                                    android:imeOptions="actionNext"
+                                    android:inputType="numberDecimal"
+                                    android:maxLines="1"
+                                    android:nextFocusDown="@+id/et_sku"
+                                    android:nextFocusForward="@+id/et_sku"
+                                    android:selectAllOnFocus="true"
+                                    android:textAlignment="gravity"
+                                    android:textDirection="inherit"
+                                    app:backgroundTint="@color/divider_spinner_color"
+                                    tools:text="10.00" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
+
                 </LinearLayout>
 
 

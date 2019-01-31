@@ -68,6 +68,9 @@ class IndividualAdapter(context: Context,
             if (!item.approach.isNullOrEmpty()) itemView.individual_approach.text = item.approach else itemView.individual_approach.text = "0"
             if (!item.lectOnStr.isNullOrEmpty()) itemView.individual_street_lect.text = item.lectOnStr else itemView.individual_street_lect.text = "0"
             if (!item.lectOnStr.isNullOrEmpty()) itemView.individual_lect_center.text = item.lectCentr else itemView.individual_lect_center.text = "0"
+            if (!item.nwet.isNullOrEmpty()) itemView.ind_nwet_num.text = item.nwet else itemView.ind_nwet_num.text = "0"
+            if (!item.dp.isNullOrEmpty()) itemView.ind_read_dp_num.text = item.lectCentr else itemView.ind_read_dp_num.text = "0"
+
         }
     }
 

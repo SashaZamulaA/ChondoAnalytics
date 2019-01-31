@@ -36,13 +36,13 @@ class EachCenterFragment : Fragment() {
 
         val query = firestoreInstance.collection("NewCity")
                 .whereEqualTo("centers", when (name) {
-                    0 -> "Kyiv"
-                    1 -> "Kharkiv"
-                    2 -> "Dnepr"
-                    3 -> "Zhytomyr"
-                    4 -> "Lviv"
-                    5 -> "Odessa"
-                    6-> "Chernigov"
+                    1 -> "Kyiv"
+                    2 -> "Kharkiv"
+                    3 -> "Dnepr"
+                    4 -> "Zhytomyr"
+                    5 -> "Lviv"
+                    6 -> "Odessa"
+                    7-> "Chernigov"
                     else -> null
                 })
                 .orderBy("time", Query.Direction.DESCENDING)
@@ -63,6 +63,9 @@ class EachCenterFragment : Fragment() {
 
         return rootView
     }
+
+
+
 
     override fun onResume() {
         super.onResume()

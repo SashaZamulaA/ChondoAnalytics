@@ -197,4 +197,12 @@
     <string name="week_goal">Goal of week</string>
     <string name="navigation_drawer_open">open</string>
     <string name="navigation_drawer_close">close</string>
+    <string name="common_team_result">Go to NWET</string>
+    <string name="remain_in_team">Now in NWET</string>
+    <string name="one_day_seminar_easy">1-dWS</string>
+    <string name="two_day_seminar_easy">2-dWS</string>
+    <string name="day21_seminar_easy">21-dWS</string>
+    <string name="common_res_and_goal">Common centers results</string>
+    <string name="nwet">NWET</string>
+    <string name="read_DP_pages">Read DP pages</string>
 </resources>
