@@ -58,6 +58,7 @@
     <string name="ok">Click here</string>
     <string name="topic">Topic</string>
     <string name="result">Result</string>
+    <string name="res">Res.</string>
     <string name="goal">Goal</string>
     <string name="title">Title</string>
     <string name="description">Description</string>
@@ -205,4 +206,7 @@
     <string name="common_res_and_goal">Common centers results</string>
     <string name="nwet">NWET</string>
     <string name="read_DP_pages">Read DP pages</string>
+    <string name="one_day_easy">1-d</string>
+    <string name="two_day_easy">2-d</string>
+    <string name="day21_easy">21-d</string>
 </resources>

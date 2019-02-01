@@ -33,7 +33,7 @@ class CommonResultFragment : Fragment(), CommonResultAdapter.FragmentCommunicati
         val bundle = Bundle()
         bundle.putInt("pas", position)
         Navigation.findNavController(this.view!!).navigate(com.zamulaaleksandr.aleksandr.myapplication.R.id.action_commonResultFragment_to_eachCenterFragment, bundle)
-
+items.clear()
     }
 
 //    var toolbar: Toolbar? = null
@@ -65,6 +65,20 @@ class CommonResultFragment : Fragment(), CommonResultAdapter.FragmentCommunicati
     override fun onResume() {
         super.onResume()
         (this.activity!!.toolbar as Toolbar).title = "Common result"
+    }
+
+    override fun onPause() {
+        adapter?.updateList(items)
+        super.onPause()
+    }
+
+    override fun onStart() {
+//       adapter?.clearProductItemList()
+       super.onStart()
+    }
+
+    override fun onDetach() {
+        super.onDetach()
     }
     var communication: FragmentCommunication = object : FragmentCommunication {
         override fun respond(position: Int) {

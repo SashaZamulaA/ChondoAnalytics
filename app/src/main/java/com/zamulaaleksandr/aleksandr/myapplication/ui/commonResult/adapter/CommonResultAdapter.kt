@@ -77,6 +77,14 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
         throw RuntimeException("there is no type that matches the type $viewType + make sure your using types correctly")
     }
 
+
+    fun clearProductItemList() {
+        val size = itemCount
+
+        this.notifyItemRangeRemoved(0,size)
+
+    }
+
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
         if (holder is CityHolder) {
@@ -90,10 +98,11 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
 
     }
 
-//        fun updateList(list: ArrayList<City>) {
-//        this.list = list
-//        notifyDataSetChanged()
-//    }
+        fun updateList(list: ArrayList<City>) {
+        this.list = list
+            list.size
+        notifyDataSetChanged()
+    }
     inner class VHHeader(itemView: View, var fragmentCommunication: FragmentCommunication) : RecyclerView.ViewHolder(itemView) {
 
         fun bind2() {
