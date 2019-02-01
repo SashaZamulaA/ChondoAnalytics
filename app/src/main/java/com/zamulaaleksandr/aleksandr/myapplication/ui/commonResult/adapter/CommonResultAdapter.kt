@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.QuerySnapshot
 import com.zamulaaleksandr.aleksandr.myapplication.model.City
+import com.zamulaaleksandr.aleksandr.myapplication.model.Goal
 import com.zamulaaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import com.zamulaaleksandr.aleksandr.myapplication.util.clickByFilter
 import com.zamulaaleksandr.aleksandr.myapplication.util.clickByFilterCommon
@@ -81,7 +82,7 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
     fun clearProductItemList() {
         val size = itemCount
 
-        this.notifyItemRangeRemoved(0,size)
+        this.notifyItemRangeRemoved(0, size)
 
     }
 
@@ -98,20 +99,161 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
 
     }
 
-        fun updateList(list: ArrayList<City>) {
+    fun updateList(list: ArrayList<City>) {
         this.list = list
-            list.size
+        list.size
         notifyDataSetChanged()
     }
+
     inner class VHHeader(itemView: View, var fragmentCommunication: FragmentCommunication) : RecyclerView.ViewHolder(itemView) {
 
         fun bind2() {
             clickByFilterCommon(noteRefCollection, position, period).addOnSuccessListener { queryDocumentSnapshots ->
-                cityName(queryDocumentSnapshots)
+                commonResult(queryDocumentSnapshots)
+            }
+            noteRefCollection.get().addOnSuccessListener { queryDocumentSnapshots ->
+                commonGoal(queryDocumentSnapshots)
+
             }
         }
 
-        private fun cityName(queryDocumentSnapshots: QuerySnapshot) {
+        private fun commonGoal(queryDocumentSnapshots: QuerySnapshot) {
+
+
+//year
+            var sumIntroyear = 0
+            var sumOneD1year = 0
+            var sumTwoD1year = 0
+            var sumTwent1year = 0
+            var sumNwetyear = 0
+//month
+            var sumIntromonth = 0
+            var sumOneD1month = 0
+            var sumTwoD1month = 0
+            var sumTwent1month = 0
+            var sumNwetmonth = 0
+//week
+            var sumIntroweek = 0
+            var sumOneD1week = 0
+            var sumTwoD1week = 0
+            var sumTwent1week = 0
+            var sumNwetweek = 0
+            if (!queryDocumentSnapshots.isEmpty) {
+                queryDocumentSnapshots.forEach { documentSnapshot ->
+                    val goalNote = documentSnapshot.toObject(Goal::class.java)
+
+//year
+                    if (!goalNote.yearIntro.isNullOrEmpty() && period == 4) {
+                        val intro = (Integer.parseInt(goalNote.yearIntro))
+                        sumIntroyear += intro
+                        itemView.goal_intro.text = sumIntroyear.toString()
+                    }
+
+
+                    if (!goalNote.yearOneDay.isNullOrEmpty() && period == 4) {
+                        val intro = (Integer.parseInt(goalNote.yearOneDay))
+                        sumOneD1year += intro
+                        itemView.common_goal_one_day_sem.text = sumOneD1year.toString()
+                    }
+
+
+                    if (!goalNote.yearTwoDay.isNullOrEmpty() && period == 4) {
+                        val intro = (Integer.parseInt(goalNote.yearTwoDay))
+                        sumTwoD1year += intro
+                        itemView.common_goal_year_two_day_sem.text = sumTwoD1year.toString()
+                    }
+
+
+                    if (!goalNote.yearTWOne.isNullOrEmpty() && period == 4) {
+                        val intro = (Integer.parseInt(goalNote.yearTWOne))
+                        sumTwent1year += intro
+                        itemView.common_goal_21_day.text = sumTwent1year.toString()
+                    }
+
+
+                    if (!goalNote.yearNWET.isNullOrEmpty() && period == 4) {
+                        val intro = (Integer.parseInt(goalNote.yearNWET))
+                        sumNwetyear += intro
+                        itemView.common_goal_year_nwet.text = sumNwetyear.toString()
+                    }
+
+
+//month
+
+                    if (!goalNote.monthIntro.isNullOrEmpty() && period == 3) {
+                        val intro = (Integer.parseInt(goalNote.monthIntro))
+                        sumIntromonth += intro
+                        itemView.goal_intro.text = sumIntromonth.toString()
+                    }
+
+
+                    if (!goalNote.monthOneDay.isNullOrEmpty() && period == 3) {
+                        val intro = (Integer.parseInt(goalNote.monthOneDay))
+                        sumOneD1month += intro
+                        itemView.common_goal_one_day_sem.text = sumOneD1month.toString()
+                    }
+
+
+                    if (!goalNote.monthTwoDay.isNullOrEmpty() && period == 3) {
+                        val intro = (Integer.parseInt(goalNote.monthTwoDay))
+                        sumTwoD1month += intro
+                        itemView.common_goal_year_two_day_sem.text = sumTwoD1month.toString()
+                    }
+
+
+                    if (!goalNote.monthTWOne.isNullOrEmpty() && period == 3) {
+                        val intro = (Integer.parseInt(goalNote.monthTWOne))
+                        sumTwent1month += intro
+                        itemView.common_goal_21_day.text = sumTwent1month.toString()
+                    }
+
+
+                    if (!goalNote.monthNWET.isNullOrEmpty() && period == 3) {
+                        val intro = (Integer.parseInt(goalNote.monthNWET))
+                        sumNwetmonth += intro
+                        itemView.common_goal_year_nwet.text = sumNwetmonth.toString()
+                    }
+
+
+//week
+                    if (!goalNote.weekIntro.isNullOrEmpty() && period == 2) {
+                        val intro = (Integer.parseInt(goalNote.weekIntro))
+                        sumIntroweek += intro
+                        itemView.goal_intro.text = sumIntroweek.toString()
+                    }
+
+
+                    if (!goalNote.weekOneDay.isNullOrEmpty() && period == 2) {
+                        val intro = (Integer.parseInt(goalNote.weekOneDay))
+                        sumOneD1week += intro
+                        itemView.common_goal_one_day_sem.text = sumOneD1week.toString()
+                    }
+
+
+                    if (!goalNote.weekTwoDay.isNullOrEmpty() && period == 2) {
+                        val intro = (Integer.parseInt(goalNote.weekTwoDay))
+                        sumTwoD1week += intro
+                        itemView.common_goal_year_two_day_sem.text = sumTwoD1week.toString()
+                    }
+
+
+                    if (!goalNote.weekTWOne.isNullOrEmpty() && period == 2) {
+                        val intro = (Integer.parseInt(goalNote.weekTWOne))
+                        sumTwent1week += intro
+                        itemView.common_goal_21_day.text = sumTwent1week.toString()
+                    }
+
+
+                    if (!goalNote.weekNWET.isNullOrEmpty() && period == 2) {
+                        val intro = (Integer.parseInt(goalNote.weekNWET))
+                        sumNwetweek += intro
+                        itemView.common_goal_year_nwet.text = sumNwetweek.toString()
+                    }
+                }
+            }
+        }
+
+        private fun commonResult(queryDocumentSnapshots: QuerySnapshot) {
 
             var sumIntro = 0
             var sumOneD1 = 0
@@ -124,6 +266,7 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
                 queryDocumentSnapshots.forEach { documentSnapshot ->
 
                     val resultNote = documentSnapshot.toObject(City::class.java)
+
 
                     if (!resultNote.intro.isNullOrEmpty()) {
                         val intro = (Integer.parseInt(resultNote.intro))

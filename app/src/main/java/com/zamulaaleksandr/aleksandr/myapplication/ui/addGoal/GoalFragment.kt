@@ -1,5 +1,6 @@
 package com.zamulaaleksandr.aleksandr.myapplication.ui.addGoal
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +10,17 @@ import androidx.navigation.Navigation
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.zamulaaleksandr.aleksandr.myapplication.MainActivity
+import com.zamulaaleksandr.aleksandr.myapplication.MainActivity.Companion.AUTHOR_KEY
+import com.zamulaaleksandr.aleksandr.myapplication.MainActivity.Companion.SPINNER
+import com.zamulaaleksandr.aleksandr.myapplication.model.City
+import com.zamulaaleksandr.aleksandr.myapplication.model.Goal
+import com.zamulaaleksandr.aleksandr.myapplication.util.FirestoreUtil
+import kotlinx.android.synthetic.main.fragment_add_goal.*
 import kotlinx.android.synthetic.main.fragment_add_goal.view.*
+import kotlinx.android.synthetic.main.fragment_add_result.*
+import kotlinx.android.synthetic.main.fragment_add_result.view.*
+import java.util.*
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class GoalFragment : Fragment() {
@@ -25,44 +36,51 @@ class GoalFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(com.zamulaaleksandr.aleksandr.myapplication.R.layout.fragment_add_goal, container, false)
 
+        rootView.button_save.setOnClickListener {
+            addNote()
+        }
+
+
         rootView.button_back_goal.setOnClickListener {
             Navigation.findNavController(it).navigate(com.zamulaaleksandr.aleksandr.myapplication.R.id.commonResultFragment)
         }
         return rootView
     }
-//
-//    private fun addNote() {
-//        val centers = registration_city.selectedItem.toString()
-//        val intro = introduction_edittext.text.toString()
-//        val oneDayWS = one_day_seminar_edittext.text.toString()
-//        val twoDayWS = two_day_seminar_edittext.text.toString()
-//        val twOneDay = day21_seminar_edittext.text.toString()
-//        val approach = result_time_street_edit_text.text.toString()
-//        val timeStr = result_approach_edit_text.text.toString()
-//        val lectOnStr = result_lectures_on_street_edittext.text.toString()
-//        val lectCentr = result_lectures_in_center_edittext.text.toString()
-//        var userPhotoPath = ""
-//        var name = ""
-//
-//        val currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
-//        val dataToSave = HashMap<String, Any>()
-//        dataToSave[SPINNER] = centers
-//        val timestamp = System.currentTimeMillis()
-//
-//        val id = noteRefCollection.id
-//
-//        FirestoreUtil.currentUserDocRef.addSnapshotListener { documentSnapshot, _ ->
-//            FirestoreUtil.getCurrentUser { user ->
-//                if (documentSnapshot?.exists()!!) {
-//                    name = documentSnapshot.getString(AUTHOR_KEY)?: ""
-//                    if (!pictureJustChange && user.profilePicturePath != null) {
-//                        userPhotoPath = user.profilePicturePath
-//                    }
-//                    noteRefCollection.set(City(id,currentUserId, intro, oneDayWS, twoDayWS, twOneDay, centers, approach, timeStr, lectOnStr, lectCentr, Date(),timestamp, userPhotoPath, name))
-//                }
-//            }
-//        }
-//        dataToSave[SPINNER] = centers
-//        startActivity(Intent(context, MainActivity::class.java))
-//    }
+
+    private fun addNote() {
+
+        val yearIntro = goal_year_introduction_edittext.text.toString()
+        val yearOneDay = goal_year_one_day_seminar_edittext.text.toString()
+        val yearTwoDay = goal_year_two_day_seminar_edit_text.text.toString()
+        val yearTWOne = goal_year_21day_edit_text.text.toString()
+        val tearNWET = goal_year_two_day_seminar_edittext.text.toString()
+
+        val monthIntro = goal_month_introduction_edittext.text.toString()
+        val monthOneDay = goal_month_one_day_seminar_edittext.text.toString()
+        val monthTwoDay = goal_month_two_day_seminar_edit_text.text.toString()
+        val monthTWOne = goal_month_21day_edit_text.text.toString()
+        val monthNWET = goal_month_team_edittext.text.toString()
+
+        val weekIntro = goal_week_introduction_edittext.text.toString()
+        val weekOneDay = goal_week_one_day_seminar_edittext.text.toString()
+        val weekTwoDay = goal_week_two_day_seminar_edit_text.text.toString()
+        val weekTWOne = goal_week_two_day_seminar_edit_text.text.toString()
+        val weekNWET = goal_weak_team_edittext.text.toString()
+
+        val currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
+        val dataToSave = HashMap<String, Any>()
+        val timestamp = System.currentTimeMillis()
+
+        val id = noteRefCollection.id
+
+        FirestoreUtil.currentUserDocRef.addSnapshotListener { documentSnapshot, _ ->
+            FirestoreUtil.getCurrentUser { user ->
+                if (documentSnapshot?.exists()!!) {
+
+        noteRefCollection.set(Goal(currentUserId, yearIntro, yearOneDay, yearTwoDay, yearTWOne, tearNWET, monthIntro, monthOneDay, monthTwoDay, monthTWOne, monthNWET, weekIntro, weekOneDay,weekTwoDay, weekTWOne, weekNWET))
+                }
+            }
+        }
+       startActivity(Intent(context, MainActivity::class.java))
+    }
 }

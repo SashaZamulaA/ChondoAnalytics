@@ -124,6 +124,23 @@ fun clickByFilterCommon(noteRefCollection: CollectionReference, position: Int, v
 
 }
 
+fun clickByFilterCommonGoal(noteRefCollection: CollectionReference, position: Int, period: Int) : Task<QuerySnapshot> {
+    return noteRefCollection.whereGreaterThanOrEqualTo("time", when (period) {
+        1 -> startOfDay(Date())
+        2 -> startOfWeek()
+        3 -> startOfMonth()
+        4 -> startOfYear()
+        else -> startOfDay(Date())
+    }).whereLessThanOrEqualTo("time", when (period){
+        1 -> endOfDay(Date())
+        2 -> endOfWeek()
+        3 -> endOfMonth()
+        4 -> endOfYear()
+        else -> startOfDay(Date())
+    }).get()
+
+}
+
 
 
 fun clickByFilter(noteRefCollection: CollectionReference, position: Int, value: Int) : Task<QuerySnapshot> {

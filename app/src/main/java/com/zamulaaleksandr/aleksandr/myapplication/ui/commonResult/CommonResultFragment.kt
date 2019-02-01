@@ -43,7 +43,7 @@ items.clear()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(com.zamulaaleksandr.aleksandr.myapplication.R.layout.fragment_common_result, container, false)
-
+        items.clear()
 //        rootView.button_individual_result.setOnClickListener {
 //            Navigation.findNavController(it).navigate(com.zamulaaleksandr.aleksandr.myapplication.R.id.action_commonResultFragment_to_individualResultFragment2)
 //        }

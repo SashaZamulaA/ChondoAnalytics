@@ -184,7 +184,7 @@
                                 android:textDirection="inherit">
 
                                 <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/goal_year_two_one_day_seminar_edit_text"
+                                    android:id="@+id/goal_year_two_day_seminar_edit_text"
                                     style="@style/TextStyle_Body2_Primary_Dark"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -272,7 +272,6 @@
                                 android:layout_height="@dimen/touchable_list_container"
                                 android:hint="@string/day21_seminar"
                                 android:text="@string/day21_seminar"
-
                                 android:textColorHint="@color/text_secondary_dark"
                                 android:textDirection="inherit">
 
@@ -459,7 +458,7 @@
                                 android:textDirection="inherit">
 
                                 <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/goal_month_two_one_day_seminar_edit_text"
+                                    android:id="@+id/goal_month_two_day_seminar_edit_text"
                                     style="@style/TextStyle_Body2_Primary_Dark"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"

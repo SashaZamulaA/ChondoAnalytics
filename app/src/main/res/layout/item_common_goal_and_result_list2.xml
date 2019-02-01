@@ -131,7 +131,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
         <TextView
-            android:id="@+id/textView17"
+            android:id="@+id/goal_intro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
@@ -141,7 +141,7 @@
             app:layout_constraintTop_toTopOf="@+id/textView16" />
 
         <TextView
-            android:id="@+id/textView19"
+            android:id="@+id/common_goal_one_day_sem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
@@ -151,7 +151,7 @@
             app:layout_constraintTop_toTopOf="@+id/textView16" />
 
         <TextView
-            android:id="@+id/textView20"
+            android:id="@+id/common_goal_year_two_day_sem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
@@ -161,7 +161,7 @@
             app:layout_constraintTop_toTopOf="@+id/textView16" />
 
         <TextView
-            android:id="@+id/textView21"
+            android:id="@+id/common_goal_21_day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
@@ -171,7 +171,7 @@
             app:layout_constraintTop_toTopOf="@+id/textView16" />
 
         <TextView
-            android:id="@+id/textView22"
+            android:id="@+id/common_goal_year_nwet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
