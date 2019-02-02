@@ -209,4 +209,5 @@
     <string name="one_day_easy">1-d</string>
     <string name="two_day_easy">2-d</string>
     <string name="day21_easy">21-d</string>
+    <string name="day_goal">Goal of day</string>
 </resources>

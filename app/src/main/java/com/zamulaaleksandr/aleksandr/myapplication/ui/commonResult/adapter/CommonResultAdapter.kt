@@ -119,7 +119,6 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
 
         private fun commonGoal(queryDocumentSnapshots: QuerySnapshot) {
 
-
 //year
             var sumIntroyear = 0
             var sumOneD1year = 0
@@ -136,8 +135,11 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
             var sumIntroweek = 0
             var sumOneD1week = 0
             var sumTwoD1week = 0
-            var sumTwent1week = 0
-            var sumNwetweek = 0
+//day
+            var sumIntroDay = 0
+            var sumOneDDay = 0
+            var sumTwoDDay = 0
+
             if (!queryDocumentSnapshots.isEmpty) {
                 queryDocumentSnapshots.forEach { documentSnapshot ->
                     val goalNote = documentSnapshot.toObject(Goal::class.java)
@@ -237,18 +239,38 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
                     }
 
 
-                    if (!goalNote.weekTWOne.isNullOrEmpty() && period == 2) {
-                        val intro = (Integer.parseInt(goalNote.weekTWOne))
-                        sumTwent1week += intro
-                        itemView.common_goal_21_day.text = sumTwent1week.toString()
+                    if (period == 2) {
+                        itemView.common_goal_21_day.text = ""
+                        itemView.common_goal_year_nwet.text = ""
+                    }
+
+//day
+
+                    if (!goalNote.dayIntro.isNullOrEmpty() && period == 1) {
+                        val intro = (Integer.parseInt(goalNote.dayIntro))
+                        sumIntroDay += intro
+                        itemView.goal_intro.text = sumIntroDay.toString()
                     }
 
 
-                    if (!goalNote.weekNWET.isNullOrEmpty() && period == 2) {
-                        val intro = (Integer.parseInt(goalNote.weekNWET))
-                        sumNwetweek += intro
-                        itemView.common_goal_year_nwet.text = sumNwetweek.toString()
+                    if (!goalNote.dayOneDay.isNullOrEmpty() && period == 1) {
+                        val intro = (Integer.parseInt(goalNote.dayOneDay))
+                        sumOneDDay += intro
+                        itemView.common_goal_one_day_sem.text = sumOneDDay.toString()
                     }
+
+
+                    if (!goalNote.dayTwoDay.isNullOrEmpty() && period == 1) {
+                        val intro = (Integer.parseInt(goalNote.dayTwoDay))
+                        sumTwoDDay += intro
+                        itemView.common_goal_year_two_day_sem.text = sumTwoDDay.toString()
+                    }
+
+                    if (period == 1) {
+                        itemView.common_goal_21_day.text = ""
+                        itemView.common_goal_year_nwet.text = ""
+                    }
+
                 }
             }
         }

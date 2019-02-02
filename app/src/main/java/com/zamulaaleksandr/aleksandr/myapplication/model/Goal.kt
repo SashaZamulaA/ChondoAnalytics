@@ -1,7 +1,5 @@
 package com.zamulaaleksandr.aleksandr.myapplication.model
 
-import java.util.*
-
 data class Goal(
         val currentUserId: String?,
         val yearIntro: String?,
@@ -18,7 +16,10 @@ data class Goal(
         val weekOneDay: String?,
         val weekTwoDay: String?,
         val weekTWOne: String?,
-        val weekNWET: String?
+        val weekNWET: String?,
+        val dayIntro: String?,
+        val dayOneDay: String?,
+        val dayTwoDay: String?
         ) {
     constructor() : this(
             currentUserId ="",
@@ -36,7 +37,10 @@ data class Goal(
             weekOneDay = "",
             weekTwoDay = "",
             weekTWOne = "",
-            weekNWET = ""
+            weekNWET = "",
+            dayIntro = "",
+            dayOneDay = "",
+            dayTwoDay = ""
     )
 
     fun constructor() {

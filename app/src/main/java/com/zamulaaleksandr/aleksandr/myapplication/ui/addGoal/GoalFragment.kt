@@ -67,6 +67,10 @@ class GoalFragment : Fragment() {
         val weekTWOne = goal_week_two_day_seminar_edit_text.text.toString()
         val weekNWET = goal_weak_team_edittext.text.toString()
 
+        val dayIntro = goal_day_introduction_edittext.text.toString()
+        val dayOneDay = goal_day_two_day_seminar_edit_text.text.toString()
+        val dayTwoDay = goal_day_two_day_seminar_edit_text.text.toString()
+
         val currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
         val dataToSave = HashMap<String, Any>()
         val timestamp = System.currentTimeMillis()
@@ -77,7 +81,7 @@ class GoalFragment : Fragment() {
             FirestoreUtil.getCurrentUser { user ->
                 if (documentSnapshot?.exists()!!) {
 
-        noteRefCollection.set(Goal(currentUserId, yearIntro, yearOneDay, yearTwoDay, yearTWOne, tearNWET, monthIntro, monthOneDay, monthTwoDay, monthTWOne, monthNWET, weekIntro, weekOneDay,weekTwoDay, weekTWOne, weekNWET))
+        noteRefCollection.set(Goal(currentUserId, yearIntro, yearOneDay, yearTwoDay, yearTWOne, tearNWET, monthIntro, monthOneDay, monthTwoDay, monthTWOne, monthNWET, weekIntro, weekOneDay,weekTwoDay, weekTWOne, weekNWET, dayIntro, dayOneDay, dayTwoDay))
                 }
             }
         }
