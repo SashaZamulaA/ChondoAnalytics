@@ -87,6 +87,12 @@ fun Context.showMaterialDialog2Button(title: String?, message: CharSequence, but
 
             }
         }
+
+fun Context.showMaterialDialogNoYes(title: String?, message: CharSequence, onNoClick: (DialogInterface) -> Unit, onYesClick: (DialogInterface) -> Unit) = showMaterialDialog2Button(title, message, resources.getString(R.string.no), onNoClick, resources.getString(R.string.yes), onYesClick)
+fun Context.showMaterialDialogNoYes(titleResId: Int?, messageResId: Int, onNoClick: (DialogInterface) -> Unit, onYesClick: (DialogInterface) -> Unit) = showMaterialDialogNoYes(titleResId?.let { resources.getString(it) }, spannableResString(messageResId), onNoClick, onYesClick)
+
+
+
 class DialogCompositeDisposable {
 
 private val dialogs: MutableList<WeakReference<Dialog>> = mutableListOf()

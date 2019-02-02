@@ -16,6 +16,7 @@ import com.zamulaaleksandr.aleksandr.myapplication.DialogCompositeDisposable
 import com.zamulaaleksandr.aleksandr.myapplication.addTo
 import com.zamulaaleksandr.aleksandr.myapplication.model.City
 import com.zamulaaleksandr.aleksandr.myapplication.showMaterialDialogCancelDelete
+import com.zamulaaleksandr.aleksandr.myapplication.showMaterialDialogNoYes
 import com.zamulaaleksandr.aleksandr.myapplication.ui.commonResult.adapter.IndividualAdapter
 import com.zamulaaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import kotlinx.android.synthetic.main.activity_main.*
@@ -129,14 +130,5 @@ class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunica
                     } else {
                     }
                 }
-
-    }
-
-
-    fun refreshItems() {
-        fragmentManager?.beginTransaction()
-                ?.detach(this)
-                ?.attach(this)
-                ?.commit()
     }
 }

@@ -10,7 +10,7 @@ import androidx.navigation.Navigation
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
-import com.zamulaaleksandr.aleksandr.myapplication.MainActivity
+import com.zamulaaleksandr.aleksandr.myapplication.*
 import com.zamulaaleksandr.aleksandr.myapplication.MainActivity.Companion.AUTHOR_KEY
 import com.zamulaaleksandr.aleksandr.myapplication.MainActivity.Companion.SPINNER
 import com.zamulaaleksandr.aleksandr.myapplication.model.City
@@ -24,7 +24,7 @@ import java.util.*
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class GoalFragment : Fragment() {
-
+    private val dialogDisposable = DialogCompositeDisposable()
     private var pictureJustChange = false
     val firestoreInstance: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
     val currentUserDocRef: DocumentReference
@@ -35,6 +35,19 @@ class GoalFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(com.zamulaaleksandr.aleksandr.myapplication.R.layout.fragment_add_goal, container, false)
+
+        context?.showMaterialDialogNoYes(
+                title = resources.getText(com.zamulaaleksandr.aleksandr.myapplication.R.string.change_goal).toString(),
+                message = resources.getText(com.zamulaaleksandr.aleksandr.myapplication.R.string.change_team_goals).toString(),
+                onNoClick = {
+                    Navigation.findNavController(this.view!!).navigate(com.zamulaaleksandr.aleksandr.myapplication.R.id.commonResultFragment)
+                },
+                onYesClick = {
+
+                }
+        )?.addTo(dialogDisposable)
+
+
 
         rootView.button_save.setOnClickListener {
             addNote()

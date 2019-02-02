@@ -210,4 +210,8 @@
     <string name="two_day_easy">2-d</string>
     <string name="day21_easy">21-d</string>
     <string name="day_goal">Goal of day</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="change_team_goals">Are you sure you want to change team goals?</string>
+    <string name="change_goal">Chondo common goal</string>
 </resources>
