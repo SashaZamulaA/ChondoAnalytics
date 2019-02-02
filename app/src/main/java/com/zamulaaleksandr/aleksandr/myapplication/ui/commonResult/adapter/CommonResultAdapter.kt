@@ -307,7 +307,7 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
                         sumTwent1 += twOneDay
                     }
                     if (!resultNote.nwet.isNullOrEmpty()) {
-                        val approach = Integer.parseInt(resultNote.approach)
+                        val approach = Integer.parseInt(resultNote.nwet)
                         sumNwet += approach
                     }
 
