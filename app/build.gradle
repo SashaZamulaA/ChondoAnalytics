@@ -18,11 +18,11 @@ androidExtensions {
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.zamulaaleksandr.aleksandr.myapplication"
+        applicationId "com.zaleksandr.aleksandr.myapplication"
         minSdkVersion 23
         targetSdkVersion 28
-        versionCode 4
-        versionName "4"
+        versionCode 5
+        versionName "5"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         vectorDrawables.useSupportLibrary = true
