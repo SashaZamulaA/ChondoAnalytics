@@ -48,28 +48,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val finalHost = NavHostFragment.create(R.navigation.nav_graph)
 
 
-//        val alert = AlertDialog.Builder(this)
-//        val input = EditText(this)
-//
-//        input.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-//
-//        alert.setView(input)    //edit text added to alert
-//        alert.setTitle("Password Required")   //title setted
 
-
-//        val data = findViewById<View>(R.id.Ok) as Button
-//        data.setOnClickListener(View.OnClickListener {
-//            val et = findViewById<View>(R.id.txtName) as EditText
-//            val theText = et.text.toString()
-//            prefs = getSharedPreferences(prefName, Context.MODE_PRIVATE)
-//            if (theText == prefs.getString("PASSWORD")) {
-//                val i = Intent(this@Enter, Data::class.java)
-//                startActivity(i)
-//            } else {
-//                showDialog(myDialogID)
-//            }
-//        })
-//
 
         toolbar = findViewById<View>(R.id.toolbar) as Toolbar
         drawerLayout = findViewById<View>(R.id.drawer_layout) as DrawerLayout

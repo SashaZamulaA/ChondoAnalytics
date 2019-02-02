@@ -10,16 +10,14 @@ import androidx.navigation.Navigation
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
-import com.zamulaaleksandr.aleksandr.myapplication.*
-import com.zamulaaleksandr.aleksandr.myapplication.MainActivity.Companion.AUTHOR_KEY
-import com.zamulaaleksandr.aleksandr.myapplication.MainActivity.Companion.SPINNER
-import com.zamulaaleksandr.aleksandr.myapplication.model.City
+import com.zamulaaleksandr.aleksandr.myapplication.DialogCompositeDisposable
+import com.zamulaaleksandr.aleksandr.myapplication.MainActivity
+import com.zamulaaleksandr.aleksandr.myapplication.addTo
 import com.zamulaaleksandr.aleksandr.myapplication.model.Goal
+import com.zamulaaleksandr.aleksandr.myapplication.showMaterialDialogNoYes
 import com.zamulaaleksandr.aleksandr.myapplication.util.FirestoreUtil
 import kotlinx.android.synthetic.main.fragment_add_goal.*
 import kotlinx.android.synthetic.main.fragment_add_goal.view.*
-import kotlinx.android.synthetic.main.fragment_add_result.*
-import kotlinx.android.synthetic.main.fragment_add_result.view.*
 import java.util.*
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
@@ -43,7 +41,6 @@ class GoalFragment : Fragment() {
                     Navigation.findNavController(this.view!!).navigate(com.zamulaaleksandr.aleksandr.myapplication.R.id.commonResultFragment)
                 },
                 onYesClick = {
-
                 }
         )?.addTo(dialogDisposable)
 
@@ -94,10 +91,10 @@ class GoalFragment : Fragment() {
             FirestoreUtil.getCurrentUser { user ->
                 if (documentSnapshot?.exists()!!) {
 
-        noteRefCollection.set(Goal(currentUserId, yearIntro, yearOneDay, yearTwoDay, yearTWOne, tearNWET, monthIntro, monthOneDay, monthTwoDay, monthTWOne, monthNWET, weekIntro, weekOneDay,weekTwoDay, weekTWOne, weekNWET, dayIntro, dayOneDay, dayTwoDay))
+                    noteRefCollection.set(Goal(currentUserId, yearIntro, yearOneDay, yearTwoDay, yearTWOne, tearNWET, monthIntro, monthOneDay, monthTwoDay, monthTWOne, monthNWET, weekIntro, weekOneDay, weekTwoDay, weekTWOne, weekNWET, dayIntro, dayOneDay, dayTwoDay))
                 }
             }
         }
-       startActivity(Intent(context, MainActivity::class.java))
+        startActivity(Intent(context, MainActivity::class.java))
     }
 }
