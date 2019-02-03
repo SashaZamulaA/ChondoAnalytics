@@ -214,4 +214,8 @@
     <string name="yes">Yes</string>
     <string name="change_team_goals">Are you sure you want to change team goals?</string>
     <string name="change_goal">Chondo common goal</string>
+    <string name="lect_on_streat">Lect. on str.</string>
+    <string name="lect_in_centre">Lect. in centr</string>
+    <string name="DP_pages">Read DP</string>
+    <string name="streat_t">Time on str.</string>
 </resources>

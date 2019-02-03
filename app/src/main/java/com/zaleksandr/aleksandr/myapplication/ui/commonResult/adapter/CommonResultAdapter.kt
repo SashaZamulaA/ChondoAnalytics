@@ -270,7 +270,6 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
                         itemView.common_goal_21_day.text = "0"
                         itemView.common_goal_year_nwet.text = "0"
                     }
-
                 }
             }
         }

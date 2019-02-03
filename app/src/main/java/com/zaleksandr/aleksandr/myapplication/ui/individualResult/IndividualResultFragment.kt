@@ -21,6 +21,9 @@ import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstan
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_individual_result.*
 import kotlinx.android.synthetic.main.fragment_individual_result.view.*
+import androidx.appcompat.app.AppCompatActivity
+
+
 
 
 class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunication {
@@ -47,7 +50,7 @@ class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunica
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(com.zaleksandr.aleksandr.myapplication.R.layout.fragment_individual_result, container, false)
-
+        (activity as AppCompatActivity).supportActionBar!!.hide()
         setUpRecyclerView(rootView)
 
 //        rootView.button_individual_result_ind_res.setOnClickListener {
@@ -63,9 +66,15 @@ class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunica
         return rootView
     }
 
+
+    override fun onStop() {
+        super.onStop()
+        (activity as AppCompatActivity).supportActionBar!!.show()
+    }
+
     override fun onResume() {
         super.onResume()
-        (this.activity!!.toolbar as Toolbar).title = "Individual result"
+//        (this.activity!!.toolbar as Toolbar).title = "Individual result"
     }
 
     private fun deleteNote(city: City?) {

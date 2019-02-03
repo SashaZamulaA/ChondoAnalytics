@@ -122,6 +122,11 @@ items.clear()
                 com.zaleksandr.aleksandr.myapplication.R.id.menu_day -> {
                     adapter?.perioSelected(CommonResultAdapter.ClickByFilter.DAY)
                 }
+                com.zaleksandr.aleksandr.myapplication.R.id.menu_ind_res -> {
+                  Navigation.findNavController(this.view!!).navigate(com.zaleksandr.aleksandr.myapplication.R.id.action_commonResultFragment_to_individualResultFragment2)
+                    adapter?.perioSelected(CommonResultAdapter.ClickByFilter.YEAR)
+//                    hideLoading()
+                }
                 else -> {
                 }
             }
