@@ -20,8 +20,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.zaleksandr.aleksandr.myapplication.MainActivity.Companion.AUTHOR_KEY
 import com.zaleksandr.aleksandr.myapplication.MainActivity.Companion.SPINNER
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_add_result.*
-import kotlinx.android.synthetic.main.fragment_add_result.view.*
+import kotlinx.android.synthetic.main.fragment_add_result2.*
+import kotlinx.android.synthetic.main.fragment_add_result2.view.*
 import java.util.*
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
@@ -77,6 +77,7 @@ class AddResultFragment : Fragment() {
         val twoDayWS = two_day_seminar_edittext.text.toString()
         val twOneDay = day21_seminar_edittext.text.toString()
         val approach = result_time_street_edit_text.text.toString()
+        val telCont = result_add_telephot.text.toString()
         val timeStr = result_approach_edit_text.text.toString()
         val lectOnStr = result_lectures_on_street_edittext.text.toString()
         val lectCentr = result_lectures_in_center_edittext.text.toString()
@@ -100,7 +101,7 @@ class AddResultFragment : Fragment() {
                     if (!pictureJustChange && user.profilePicturePath != null) {
                         userPhotoPath = user.profilePicturePath
                     }
-                   noteRefCollection.set(City(id,currentUserId, intro, oneDayWS, twoDayWS, twOneDay, centers, approach, timeStr, lectOnStr, lectCentr, Date(),timestamp, userPhotoPath, name, nwet, dp))
+                   noteRefCollection.set(City(id,currentUserId, intro, oneDayWS, twoDayWS, twOneDay, centers, approach,telCont, timeStr, lectOnStr, lectCentr, Date(),timestamp, userPhotoPath, name, nwet, dp))
                 }
             }
         }

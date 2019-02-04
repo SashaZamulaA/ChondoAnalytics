@@ -66,7 +66,7 @@ items.clear()
     }
 
     override fun onPause() {
-        adapter?.updateList(items)
+//        adapter?.updateList(items)
         super.onPause()
     }
 
@@ -122,11 +122,11 @@ items.clear()
                 com.zaleksandr.aleksandr.myapplication.R.id.menu_day -> {
                     adapter?.perioSelected(CommonResultAdapter.ClickByFilter.DAY)
                 }
-                com.zaleksandr.aleksandr.myapplication.R.id.menu_ind_res -> {
-                  Navigation.findNavController(this.view!!).navigate(com.zaleksandr.aleksandr.myapplication.R.id.action_commonResultFragment_to_individualResultFragment2)
-                    adapter?.perioSelected(CommonResultAdapter.ClickByFilter.YEAR)
-//                    hideLoading()
-                }
+//                com.zaleksandr.aleksandr.myapplication.R.id.menu_ind_res -> {
+//                  Navigation.findNavController(this.view!!).navigate(com.zaleksandr.aleksandr.myapplication.R.id.action_commonResultFragment_to_individualResultFragment2)
+//                    adapter?.perioSelected(CommonResultAdapter.ClickByFilter.YEAR)
+////                    hideLoading()
+//                }
                 else -> {
                 }
             }
@@ -138,13 +138,13 @@ items.clear()
         rootView.list_common_res_adapter.setHasFixedSize(true)
         rootView.list_common_res_adapter.layoutManager = LinearLayoutManager(context)
 
-        items.add(City("","","0", "0", "0", "0", "Kyiv", "0", "0", "0", "0", Date(),0, "","","",""))
-        items.add(City("","","0", "0", "0", "0", "Kharkiv", "0", "0", "0", "0", Date(),0,"","","",""))
-        items.add(City("","","0", "0", "0", "0", "Dnepr", "0", "0", "0", "0", Date(),0,"","","",""))
-        items.add(City("","","0", "0", "0", "0", "Zhytomyr", "0", "0", "0", "0", Date(),0,"","","",""))
-        items.add(City("","","0", "0", "0", "0", "Lviv", "0", "0", "0", "0", Date(),0,"","","",""))
-        items.add(City("","","0", "0", "0", "0", "Odessa", "0", "0", "0", "0", Date(),0,"","","",""))
-        items.add(City("","","0", "0", "0", "0", "Chernigov", "0", "0", "0", "0", Date(),0,"","","",""))
+        items.add(City("","","0", "0", "0", "0", "Kyiv", "0", "0","", "0", "0", Date(),0, "","","",""))
+        items.add(City("","","0", "0", "0", "0", "Kharkiv", "0", "0","", "0", "0", Date(),0, "","","",""))
+        items.add(City("","","0", "0", "0", "0", "Dnepr", "0", "0","0", "0", "0", Date(),0,"","","",""))
+        items.add(City("","","0", "0", "0", "0", "Zhytomyr", "0", "0","0", "0", "0", Date(),0,"","","",""))
+        items.add(City("","","0", "0", "0", "0", "Lviv", "0", "0","0", "0", "0", Date(),0,"","","",""))
+        items.add(City("","","0", "0", "0", "0", "Odessa", "0", "0","0", "0", "0", Date(),0,"","","",""))
+        items.add(City("","","0", "0", "0", "0", "Chernigov", "0", "0","0", "0", "0", Date(),0,"","","",""))
 
         adapter = CommonResultAdapter(items, this)
         rootView.list_common_res_adapter.adapter = adapter

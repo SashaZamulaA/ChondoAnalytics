@@ -50,7 +50,7 @@ class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunica
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(com.zaleksandr.aleksandr.myapplication.R.layout.fragment_individual_result, container, false)
-        (activity as AppCompatActivity).supportActionBar!!.hide()
+
         setUpRecyclerView(rootView)
 
 //        rootView.button_individual_result_ind_res.setOnClickListener {
@@ -69,7 +69,7 @@ class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunica
 
     override fun onStop() {
         super.onStop()
-        (activity as AppCompatActivity).supportActionBar!!.show()
+
     }
 
     override fun onResume() {

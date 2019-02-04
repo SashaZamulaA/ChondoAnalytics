@@ -12,6 +12,7 @@ import com.zaleksandr.aleksandr.myapplication.util.clickByFilter
 import com.zaleksandr.aleksandr.myapplication.util.clickByFilterCommon
 import kotlinx.android.synthetic.main.item_common_goal_and_result_list2.view.*
 import kotlinx.android.synthetic.main.item_common_result_list.view.*
+import kotlinx.android.synthetic.main.item_individual_result_list.view.*
 
 
 class CommonResultAdapter(private var list: ArrayList<City>, private var fragmentCommunication: FragmentCommunication) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -90,7 +91,7 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
 
         if (holder is CityHolder) {
             val item = getItem(position)
-            holder.itemView.individual_result_city.text = item.centers
+            holder.itemView.common_result_city.text = item.centers
             holder.bind()
         } else if (holder is VHHeader) {
             holder.bind2()
@@ -101,7 +102,7 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
 
     fun updateList(list: ArrayList<City>) {
         this.list = list
-        list.size
+        list.size+1
         notifyDataSetChanged()
     }
 
@@ -345,7 +346,7 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
         fun bind() {
 
             val item = getItem(position)
-            itemView.individual_result_city.text = item.centers
+            itemView.common_result_city.text = item.centers
 
             clickByFilter(noteRefCollection, position, period).addOnSuccessListener { queryDocumentSnapshots ->
                 cityName(queryDocumentSnapshots)
@@ -403,11 +404,11 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
                     } else {
                         itemView.individual_time_str.text = "0"
                     }
-                    if (!resultNote.lectOnStr.isNullOrEmpty()) {
+                    if (!resultNote.telCont.isNullOrEmpty()) {
                         val lectOnStr = Integer.parseInt(resultNote.lectOnStr)
                         sumStrLect += lectOnStr
                     } else {
-                        itemView.individual_street_lect.text = "0"
+                        itemView.individual_tel_contact.text = "0"
                     }
                     if (!resultNote.lectCentr.isNullOrEmpty()) {
                         val lectCentr = Integer.parseInt(resultNote.lectCentr)
@@ -422,7 +423,7 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
                 itemView.individual_21_day.text = sumTwent1.toString()
                 itemView.individual_time_str.text = sumTimeStr.toString()
                 itemView.individual_approach.text = sumAppr.toString()
-                itemView.individual_street_lect.text = sumStrLect.toString()
+//                itemView.individual_street_lect.text = sumStrLect.toString()
                 itemView.individual_lect_center.text = sumCenteLect.toString()
 
             } else {
@@ -433,7 +434,7 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
                 itemView.individual_21_day.text = "0"
                 itemView.individual_time_str.text = "0"
                 itemView.individual_approach.text = "0"
-                itemView.individual_street_lect.text = "0"
+//                itemView.individual_street_lect.text = "0"
                 itemView.individual_lect_center.text = "0"
 
             }

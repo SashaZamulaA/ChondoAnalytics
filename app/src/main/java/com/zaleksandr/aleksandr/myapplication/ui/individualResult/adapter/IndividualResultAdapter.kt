@@ -20,15 +20,15 @@ class IndividualResultAdapter(context: Context, options: FirestoreRecyclerOption
         holder.apply {
             itemView.apply {
 //                result_city.text = model.centers
-                individual_time_city.text = formatDateAndTime(model.timestamp)
-                individual_intro.text = model.intro
-                individual_one_day.text = model.onedayWS
-                individual_two_day.text = model.twoDayWS
-                individual_21_day.text = model.twOneDay
-                individual_time_str.text = model.timeStr
-                individual_approach.text = model.approach
-                individual_street_lect.text = model.lectOnStr
-                individual_lect_center.text = model.lectCentr
+//                individual_time_city.text = formatDateAndTime(model.timestamp)
+//                individual_intro.text = model.intro
+//                individual_one_day.text = model.onedayWS
+//                individual_two_day.text = model.twoDayWS
+//                individual_21_day.text = model.twOneDay
+//                individual_time_str.text = model.timeStr
+//                individual_approach.text = model.approach
+//                individual_street_lect.text = model.lectOnStr
+//                individual_lect_center.text = model.lectCentr
          }
         }
             }

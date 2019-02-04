@@ -22,7 +22,7 @@
         android:id="@+id/addResultFragment"
         android:name="com.zaleksandr.aleksandr.myapplication.ui.addResult.AddResultFragment"
         android:label="First Fragment"
-        tools:layout="@layout/fragment_add_result" />
+        tools:layout="@layout/fragment_add_result2" />
 
     <fragment
         android:id="@+id/addIndividualFragment"
@@ -34,7 +34,7 @@
         android:id="@+id/settingsFragment"
         android:name="com.zaleksandr.aleksandr.myapplication.ui.settings.SettingsFragment"
         android:label="First Fragment"
-        tools:layout="@layout/fragment_add_result" />
+        tools:layout="@layout/fragment_add_result2" />
 
     <fragment
         android:id="@+id/goalFragment"
@@ -46,7 +46,7 @@
         android:id="@+id/individualResultFragment"
         android:name="com.zaleksandr.aleksandr.myapplication.ui.individualResult.IndividualResultFragment"
         android:label="First Fragment"
-        tools:layout="@layout/fragment_add_result" >
+        tools:layout="@layout/fragment_add_result2" >
         <action
             android:id="@+id/action_individualResultFragment_to_commonResultFragment3"
             app:destination="@id/commonResultFragment" />

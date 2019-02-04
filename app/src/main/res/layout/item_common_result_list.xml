@@ -161,7 +161,7 @@
             app:layout_constraintTop_toTopOf="@+id/each_center_21-d" />
 
         <TextView
-            android:id="@+id/individual_result_city"
+            android:id="@+id/common_result_city"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -228,12 +228,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="@string/lecture_on_streat"
+            android:text="@string/tel_cont"
             app:layout_constraintStart_toEndOf="@+id/view"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
         <TextView
-            android:id="@+id/individual_street_lect"
+            android:id="@+id/individual_tel_contact"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"

@@ -60,16 +60,16 @@ class IndividualAdapter(context: Context,
         holder.apply {
             itemView.individual_result_city.text = item.centers
             itemView.individual_time_city.text = formatDateAndTime(item.timestamp)
-            if (!item.intro.isNullOrEmpty()) itemView.individual_intro.text = item.intro else itemView.individual_intro.text = "0"
-            if (!item.onedayWS.isNullOrEmpty()) itemView.individual_one_day.text = item.onedayWS else itemView.individual_one_day.text = "0"
-            if (!item.twoDayWS.isNullOrEmpty()) itemView.individual_two_day.text = item.twoDayWS else itemView.individual_two_day.text = "0"
-            if (!item.twOneDay.isNullOrEmpty()) itemView.individual_21_day.text = item.twOneDay else itemView.individual_21_day.text = "0"
-            if (!item.timeStr.isNullOrEmpty()) itemView.individual_time_str.text = item.timeStr else itemView.individual_time_str.text = "0"
-            if (!item.approach.isNullOrEmpty()) itemView.individual_approach.text = item.approach else itemView.individual_approach.text = "0"
-            if (!item.lectOnStr.isNullOrEmpty()) itemView.individual_street_lect.text = item.lectOnStr else itemView.individual_street_lect.text = "0"
-            if (!item.lectOnStr.isNullOrEmpty()) itemView.individual_lect_center.text = item.lectCentr else itemView.individual_lect_center.text = "0"
-            if (!item.nwet.isNullOrEmpty()) itemView.ind_nwet_num.text = item.nwet else itemView.ind_nwet_num.text = "0"
-            if (!item.dp.isNullOrEmpty()) itemView.ind_read_dp_num.text = item.lectCentr else itemView.ind_read_dp_num.text = "0"
+            if (!item.intro.isNullOrEmpty()) itemView.individual_result_intro.text = item.intro else itemView.individual_result_intro.text = "0"
+            if (!item.onedayWS.isNullOrEmpty()) itemView.individual_result_one_day.text = item.onedayWS else itemView.individual_result_one_day.text = "0"
+            if (!item.twoDayWS.isNullOrEmpty()) itemView.individual_result_two_day.text = item.twoDayWS else itemView.individual_result_two_day.text = "0"
+            if (!item.twOneDay.isNullOrEmpty()) itemView.individual_result_21_day.text = item.twOneDay else itemView.individual_result_21_day.text = "0"
+            if (!item.timeStr.isNullOrEmpty()) itemView.individual_result_time_str.text = item.timeStr else itemView.individual_result_time_str.text = "0"
+            if (!item.approach.isNullOrEmpty()) itemView.individual_result_approach.text = item.approach else itemView.individual_result_approach.text = "0"
+            if (!item.lectOnStr.isNullOrEmpty()) itemView.individual_result_street_lect.text = item.lectOnStr else itemView.individual_result_street_lect.text = "0"
+            if (!item.lectOnStr.isNullOrEmpty()) itemView.individual_result_lect_center.text = item.lectCentr else itemView.individual_result_lect_center.text = "0"
+            if (!item.nwet.isNullOrEmpty()) itemView.ind_result_nwet_num.text = item.nwet else itemView.ind_result_nwet_num.text = "0"
+            if (!item.dp.isNullOrEmpty()) itemView.ind_result_read_dp_num.text = item.lectCentr else itemView.ind_result_read_dp_num.text = "0"
 
         }
     }
