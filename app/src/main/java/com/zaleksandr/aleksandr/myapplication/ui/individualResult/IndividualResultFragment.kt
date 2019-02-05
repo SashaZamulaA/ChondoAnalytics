@@ -1,6 +1,7 @@
 package com.zaleksandr.aleksandr.myapplication.ui.individualResult
 
 import android.os.Bundle
+import android.provider.ContactsContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,8 +23,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_individual_result.*
 import kotlinx.android.synthetic.main.fragment_individual_result.view.*
 import androidx.appcompat.app.AppCompatActivity
-
-
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
+import com.google.android.material.snackbar.Snackbar
 
 
 class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunication {
@@ -94,6 +96,31 @@ class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunica
             }
         }
     }
+
+    private fun makeSnackBarMessage(message: String) {
+        Snackbar.make(this.view!!, message, Snackbar.LENGTH_SHORT).show()
+    }
+
+    fun updateNote(city: City?) {
+
+        val db = FirebaseFirestore.getInstance()
+
+        val noteRef = db
+                .collection("NewCity")
+                .document(city?.getId.toString())
+
+        noteRef.update(
+                "intro", city?.intro
+        ).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                makeSnackBarMessage("Updated note")
+                adapter?.updateNote(city!!)
+            } else {
+                makeSnackBarMessage("Failed. Check log.")
+            }
+        }
+    }
+
 
     private fun setUpRecyclerView(rootView: View) {
 

@@ -25,11 +25,15 @@ class GoalFragment : Fragment() {
     private val dialogDisposable = DialogCompositeDisposable()
     private var pictureJustChange = false
     val firestoreInstance: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
+    val firestoreInstanceGoal: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
     val currentUserDocRef: DocumentReference
         get() = firestoreInstance.document("City/${FirebaseAuth.getInstance().uid
                 ?: throw NullPointerException("UID is null.")}")
 
+
     private val noteRefCollection = firestoreInstance.collection("NewCity").document()
+    private val goleRefCollection = firestoreInstance.collection("Goal").document()
+    private val goalRefDocumentCurrent = firestoreInstanceGoal.collection("CurrentGoal").document("goal")
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(com.zaleksandr.aleksandr.myapplication.R.layout.fragment_add_goal, container, false)
@@ -85,16 +89,12 @@ class GoalFragment : Fragment() {
         val dataToSave = HashMap<String, Any>()
         val timestamp = System.currentTimeMillis()
 
-        val id = noteRefCollection.id
+        val id = goleRefCollection.id
 
-        FirestoreUtil.currentUserDocRef.addSnapshotListener { documentSnapshot, _ ->
-            FirestoreUtil.getCurrentUser { user ->
-                if (documentSnapshot?.exists()!!) {
+        goalRefDocumentCurrent.set(Goal(currentUserId, yearIntro, yearOneDay, yearTwoDay, yearTWOne, tearNWET, monthIntro, monthOneDay, monthTwoDay, monthTWOne, monthNWET, weekIntro, weekOneDay, weekTwoDay, weekTWOne, weekNWET, dayIntro, dayOneDay, dayTwoDay))
+        startActivity(Intent(context, MainActivity::class.java))
 
-                    noteRefCollection.set(Goal(currentUserId, yearIntro, yearOneDay, yearTwoDay, yearTWOne, tearNWET, monthIntro, monthOneDay, monthTwoDay, monthTWOne, monthNWET, weekIntro, weekOneDay, weekTwoDay, weekTWOne, weekNWET, dayIntro, dayOneDay, dayTwoDay))
-                }
+        goleRefCollection.set(Goal(currentUserId, yearIntro, yearOneDay, yearTwoDay, yearTWOne, tearNWET, monthIntro, monthOneDay, monthTwoDay, monthTWOne, monthNWET, weekIntro, weekOneDay, weekTwoDay, weekTWOne, weekNWET, dayIntro, dayOneDay, dayTwoDay))
+        startActivity(Intent(context, MainActivity::class.java))
             }
         }
-        startActivity(Intent(context, MainActivity::class.java))
-    }
-}

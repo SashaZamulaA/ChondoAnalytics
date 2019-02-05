@@ -1,6 +1,7 @@
 package com.zaleksandr.aleksandr.myapplication.ui.commonResult.adapter
 
 import android.content.Context
+import android.provider.ContactsContract
 import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.View
@@ -73,6 +74,12 @@ class IndividualAdapter(context: Context,
 
         }
     }
+
+    fun updateNote(city: City) {
+        list[mSelectedNoteIndex].intro
+        notifyDataSetChanged()
+    }
+
 
     fun removeNote(city: City) {
         list.remove(city)

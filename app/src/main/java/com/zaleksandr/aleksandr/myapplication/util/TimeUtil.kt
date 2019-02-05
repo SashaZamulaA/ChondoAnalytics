@@ -107,8 +107,8 @@ private fun setTimeToEndofDay(calendar: Calendar) {
     calendar.set(Calendar.MILLISECOND, 999)
 }
 
-fun clickByFilterCommon(noteRefCollection: CollectionReference, position: Int, value: Int) : Task<QuerySnapshot> {
-    return noteRefCollection.whereGreaterThanOrEqualTo("time", when (value) {
+fun clickByFilterCommon(goalCollection: CollectionReference, position: Int, value: Int) : Task<QuerySnapshot> {
+    return goalCollection.whereGreaterThanOrEqualTo("time", when (value) {
         1 -> startOfDay(Date())
         2 -> startOfWeek()
         3 -> startOfMonth()
