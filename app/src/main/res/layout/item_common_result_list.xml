@@ -49,7 +49,7 @@
 
         <TextView
 
-            android:id="@+id/individual_intro"
+            android:id="@+id/each_center_intro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -97,7 +97,7 @@
             app:layout_constraintTop_toBottomOf="@+id/each_center_one_day" />
 
         <TextView
-            android:id="@+id/individual_one_day"
+            android:id="@+id/each_center_one_day_edittext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -114,7 +114,7 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/individual_two_day"
+            android:id="@+id/each_center_two_day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -146,7 +146,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
         <TextView
-            android:id="@+id/individual_21_day"
+            android:id="@+id/each_center_21_day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"

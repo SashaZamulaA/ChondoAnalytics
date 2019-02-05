@@ -12,7 +12,6 @@ import com.zaleksandr.aleksandr.myapplication.util.clickByFilter
 import com.zaleksandr.aleksandr.myapplication.util.clickByFilterCommon
 import kotlinx.android.synthetic.main.item_common_goal_and_result_list2.view.*
 import kotlinx.android.synthetic.main.item_common_result_list.view.*
-import kotlinx.android.synthetic.main.item_individual_result_list.view.*
 
 
 class CommonResultAdapter(private var list: ArrayList<City>, private var fragmentCommunication: FragmentCommunication) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -102,7 +101,7 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
 
     fun updateList(list: ArrayList<City>) {
         this.list = list
-        list.size+1
+        list.size + 1
         notifyDataSetChanged()
     }
 
@@ -375,13 +374,13 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
                         val intro = (Integer.parseInt(resultNote.intro))
                         sumIntro += intro
                     } else {
-                        itemView.individual_intro.text = "0"
+                        itemView.each_center_intro.text = "0"
                     }
                     if (!resultNote.onedayWS.isNullOrEmpty()) {
                         val onaDay = Integer.parseInt(resultNote.onedayWS)
                         sumOneD1 += onaDay
                     } else {
-                        itemView.individual_one_day.text = "0"
+                        itemView.each_center_one_day_edittext.text = "0"
                     }
                     if (!resultNote.twoDayWS.isNullOrEmpty()) {
                         val twoDay = Integer.parseInt(resultNote.twoDayWS)
@@ -404,8 +403,9 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
                     } else {
                         itemView.individual_time_str.text = "0"
                     }
+
                     if (!resultNote.telCont.isNullOrEmpty()) {
-                        val lectOnStr = Integer.parseInt(resultNote.lectOnStr)
+                        val lectOnStr = Integer.parseInt(resultNote.telCont)
                         sumStrLect += lectOnStr
                     } else {
                         itemView.individual_tel_contact.text = "0"
@@ -417,21 +417,22 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
                         itemView.individual_lect_center.text = "0"
                     }
                 }
-                itemView.individual_intro.text = sumIntro.toString()
-                itemView.individual_one_day.text = sumOneD1.toString()
-                itemView.individual_two_day.text = sumTwoD1.toString()
-                itemView.individual_21_day.text = sumTwent1.toString()
+                itemView.each_center_intro.text = sumIntro.toString()
+                itemView.each_center_one_day_edittext.text = sumOneD1.toString()
+                itemView.each_center_two_day.text = sumTwoD1.toString()
+                itemView.each_center_21_day.text = sumTwent1.toString()
                 itemView.individual_time_str.text = sumTimeStr.toString()
                 itemView.individual_approach.text = sumAppr.toString()
+                itemView.individual_tel_contact.text = sumStrLect.toString()
 //                itemView.individual_street_lect.text = sumStrLect.toString()
-                itemView.individual_lect_center.text = sumCenteLect.toString()
+                        itemView.individual_lect_center.text = sumCenteLect.toString()
 
             } else {
 //                itemView.result_city.text = model.centers.toString()
-                itemView.individual_intro.text = "0"
-                itemView.individual_one_day.text = "0"
-                itemView.individual_two_day.text = "0"
-                itemView.individual_21_day.text = "0"
+                itemView.each_center_intro.text = "0"
+                itemView.each_center_one_day_edittext.text = "0"
+                itemView.each_center_two_day.text = "0"
+                itemView.each_center_21_day.text = "0"
                 itemView.individual_time_str.text = "0"
                 itemView.individual_approach.text = "0"
 //                itemView.individual_street_lect.text = "0"

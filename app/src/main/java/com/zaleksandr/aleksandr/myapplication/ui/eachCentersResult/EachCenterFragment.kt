@@ -63,9 +63,6 @@ class EachCenterFragment : Fragment() {
         return rootView
     }
 
-
-
-
     override fun onResume() {
         super.onResume()
         (this.activity!!.toolbar as Toolbar).title = "Each center result"

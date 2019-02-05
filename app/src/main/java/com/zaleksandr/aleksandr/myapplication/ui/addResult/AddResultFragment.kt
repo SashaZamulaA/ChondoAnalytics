@@ -76,13 +76,14 @@ class AddResultFragment : Fragment() {
         val oneDayWS = one_day_seminar_edittext.text.toString()
         val twoDayWS = two_day_seminar_edittext.text.toString()
         val twOneDay = day21_seminar_edittext.text.toString()
-        val approach = result_time_street_edit_text.text.toString()
+        val approach = result_approach_edit_text.text.toString()
         val telCont = result_add_telephot.text.toString()
-        val timeStr = result_approach_edit_text.text.toString()
+        val timeStr = result_time_street_edit_text.text.toString()
         val lectOnStr = result_lectures_on_street_edittext.text.toString()
         val lectCentr = result_lectures_in_center_edittext.text.toString()
         val nwet = result_nwet_edittext.text.toString()
         val dp = result_DP_edittext.text.toString()
+        val mmbk = result_mmbk_edittext.text.toString()
 
         var userPhotoPath = ""
         var name = ""
@@ -101,7 +102,7 @@ class AddResultFragment : Fragment() {
                     if (!pictureJustChange && user.profilePicturePath != null) {
                         userPhotoPath = user.profilePicturePath
                     }
-                   noteRefCollection.set(City(id,currentUserId, intro, oneDayWS, twoDayWS, twOneDay, centers, approach,telCont, timeStr, lectOnStr, lectCentr, Date(),timestamp, userPhotoPath, name, nwet, dp))
+                   noteRefCollection.set(City(id,currentUserId, intro, oneDayWS, twoDayWS, twOneDay, centers, approach,telCont, timeStr, lectOnStr, lectCentr, Date(),timestamp, userPhotoPath, name, nwet, dp, mmbk))
                 }
             }
         }

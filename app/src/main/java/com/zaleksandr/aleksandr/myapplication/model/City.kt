@@ -20,7 +20,8 @@ data class City(
         val userPhotoPath: String?,
         val name: String?,
         val nwet: String?,
-        val dp: String?
+        val dp: String?,
+        val mmbk: String?
 
 ) {
     constructor() : this(getId = "",
@@ -40,7 +41,8 @@ data class City(
             userPhotoPath = "",
             name = "",
             nwet = "",
-            dp = ""
+            dp = "",
+            mmbk = ""
     )
 
 }

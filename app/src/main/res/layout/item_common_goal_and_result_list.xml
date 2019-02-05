@@ -82,7 +82,7 @@
 
         <TextView
 
-            android:id="@+id/individual_intro"
+            android:id="@+id/each_center_intro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -130,7 +130,7 @@
             app:layout_constraintTop_toBottomOf="@+id/each_center_one_day" />
 
         <TextView
-            android:id="@+id/individual_one_day"
+            android:id="@+id/each_center_one_day_edittext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -147,7 +147,7 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/individual_two_day"
+            android:id="@+id/each_center_two_day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -185,9 +185,9 @@
             android:text="Res."
             android:textColor="@color/accent_darker"
             android:textSize="@dimen/space_14"
-            app:layout_constraintBottom_toTopOf="@+id/individual_intro"
-            app:layout_constraintEnd_toEndOf="@+id/individual_intro"
-            app:layout_constraintStart_toStartOf="@+id/individual_intro"
+            app:layout_constraintBottom_toTopOf="@+id/each_center_intro"
+            app:layout_constraintEnd_toEndOf="@+id/each_center_intro"
+            app:layout_constraintStart_toStartOf="@+id/each_center_intro"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -249,10 +249,10 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:text="0"
-            app:layout_constraintBottom_toBottomOf="@+id/individual_intro"
+            app:layout_constraintBottom_toBottomOf="@+id/each_center_intro"
             app:layout_constraintEnd_toStartOf="@+id/view2"
             app:layout_constraintStart_toEndOf="@+id/view"
-            app:layout_constraintTop_toTopOf="@+id/individual_intro" />
+            app:layout_constraintTop_toTopOf="@+id/each_center_intro" />
 
         <TextView
             android:id="@+id/textView10"
@@ -264,10 +264,10 @@
             android:textSize="@dimen/body1_text_size"
             android:textStyle="bold"
             android:text="0"
-            app:layout_constraintBottom_toBottomOf="@+id/individual_intro"
+            app:layout_constraintBottom_toBottomOf="@+id/each_center_intro"
             app:layout_constraintEnd_toStartOf="@+id/view2"
             app:layout_constraintStart_toEndOf="@+id/view"
-            app:layout_constraintTop_toTopOf="@+id/individual_intro" />
+            app:layout_constraintTop_toTopOf="@+id/each_center_intro" />
 
         <TextView
             android:id="@+id/textView5"
@@ -279,10 +279,10 @@
             android:textSize="@dimen/body1_text_size"
             android:textStyle="bold"
             android:text="0"
-            app:layout_constraintBottom_toBottomOf="@+id/individual_one_day"
+            app:layout_constraintBottom_toBottomOf="@+id/each_center_one_day_edittext"
             app:layout_constraintEnd_toStartOf="@+id/view2"
             app:layout_constraintStart_toEndOf="@+id/view"
-            app:layout_constraintTop_toTopOf="@+id/individual_one_day" />
+            app:layout_constraintTop_toTopOf="@+id/each_center_one_day_edittext" />
 
         <TextView
             android:id="@+id/textView8"
@@ -294,10 +294,10 @@
             android:textSize="@dimen/body1_text_size"
             android:textStyle="bold"
             android:text="0"
-            app:layout_constraintBottom_toBottomOf="@+id/individual_two_day"
+            app:layout_constraintBottom_toBottomOf="@+id/each_center_two_day"
             app:layout_constraintEnd_toStartOf="@+id/view2"
             app:layout_constraintStart_toEndOf="@+id/view"
-            app:layout_constraintTop_toTopOf="@+id/individual_two_day" />
+            app:layout_constraintTop_toTopOf="@+id/each_center_two_day" />
 
         <TextView
             android:id="@+id/textView11"

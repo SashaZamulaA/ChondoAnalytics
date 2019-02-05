@@ -18,7 +18,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <TextView
 
@@ -318,6 +318,22 @@
             app:layout_constraintTop_toTopOf="@+id/ind_read_dp" />
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/result_mmbk_edittext"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:inputType="numberDecimal"
+            android:selectAllOnFocus="true"
+            android:text="0"
+            android:textAlignment="center"
+            android:textSize="@dimen/body2_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/textView17"
+            app:layout_constraintEnd_toEndOf="@+id/result_DP_edittext"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/textView17"
+            app:layout_constraintTop_toTopOf="@+id/textView17" />
+
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/result_lectures_in_center_edittext"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
@@ -406,6 +422,16 @@
             android:text="Add information:"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ind_nwet" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            android:text="mmbk(min)"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ind_read_dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -2,9 +2,12 @@ package com.zaleksandr.aleksandr.myapplication
 
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.widget.Switch
+import androidx.annotation.NonNull
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -14,12 +17,18 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import com.google.android.material.navigation.NavigationView
 import com.zaleksandr.aleksandr.myapplication.ui.settings.model.User
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil
 import com.zaleksandr.aleksandr.myapplication.util.StorageUtil
 import com.zaleksandr.aleksandr.tmbook.glade.GlideApp
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_common_result.*
 import kotlinx.android.synthetic.main.header_layout.*
+import com.zaleksandr.aleksandr.myapplication.MainActivity.CustomDrawerListener
+
+
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -49,26 +58,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
 
-
         toolbar = findViewById<View>(R.id.toolbar) as Toolbar
         drawerLayout = findViewById<View>(R.id.drawer_layout) as DrawerLayout
         toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close)
         drawerLayout.addDrawerListener(toggle)
         toggle.drawerArrowDrawable.color = resources.getColor(R.color.white)
         toggle.syncState()
+        val menuItem: MenuItem? = null
 
-//        toggle = object : ActionBarDrawerToggle(
-//                this,
-//                drawerLayout,
-//                R.string.navigation_drawer_open,
-//                R.string.navigation_drawer_close
-//        ) {
-//        }
-//        drawerLayout.setDrawerListener(toggle)
-//        toggle?.syncState()
-//
-//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-//        supportActionBar?.setHomeButtonEnabled(true)
 
         drawerLayout = findViewById(R.id.drawer_layout)
 
@@ -108,6 +105,21 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
+
+    internal interface CustomDrawerListener : DrawerLayout.DrawerListener {
+        override fun onDrawerSlide(drawerView: View, slideOffset: Float)
+
+        override fun onDrawerOpened(drawerView: View) {}
+
+        override fun onDrawerClosed(drawerView: View) {
+
+        }
+
+        override fun onDrawerStateChanged(newState: Int) {
+
+        }
+    }
+
     override fun onSupportNavigateUp() = findNavController(this, R.id.nav_host_fragment).navigateUp()
 
     override fun onBackPressed() {
@@ -117,6 +129,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             super.onBackPressed()
         }
     }
+
+
+
 
 
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {

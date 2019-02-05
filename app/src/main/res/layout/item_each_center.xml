@@ -4,24 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardView2"
     android:layout_width="match_parent"
-    android:layout_height="96dp"
+    android:layout_height="wrap_content"
     android:layout_marginStart="8dp"
-    android:layout_marginTop="8dp"
+    android:layout_marginTop="2dp"
+    android:layout_marginBottom="2dp"
+    android:elevation="2dp"
     android:layout_marginEnd="8dp"
-    android:layout_marginBottom="@dimen/space4"
     app:cardBackgroundColor="@color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/imageView_profile_picture"
             android:layout_width="86dp"
             android:layout_height="86dp"
-            android:padding="@dimen/space_8"
             android:layout_marginTop="24dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="8dp"
+            android:padding="@dimen/space_8"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -33,7 +34,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:singleLine="true"
             android:text="Name"
@@ -84,14 +84,16 @@
             style="@style/AppTheme.VerticalViewDivider"
             android:layout_width="1dp"
             android:layout_height="0dp"
+            android:layout_marginStart="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView_profile_picture"
-            app:layout_constraintEnd_toEndOf="@+id/individual_two_day"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView_profile_picture"
-            app:layout_constraintTop_toTopOf="@+id/individual_intro" />
+            app:layout_constraintTop_toTopOf="@+id/each_center_intro"
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
 
-            android:id="@+id/individual_intro"
+            android:id="@+id/each_center_intro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -115,7 +117,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:ellipsize="end"
             android:maxLines="1"
@@ -125,22 +126,23 @@
             android:textSize="@dimen/body1_text_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView_profile_picture"
-            app:layout_constraintTop_toBottomOf="@+id/each_center_intr" />
+            app:layout_constraintTop_toBottomOf="@+id/each_center_intr"
+            app:layout_constraintVertical_bias="0.125" />
 
         <TextView
             android:id="@+id/textView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:text="@string/two_day_seminar"
             android:textColor="@color/text_primary_dark"
             android:textSize="@dimen/body1_text_size"
-            app:layout_constraintBottom_toBottomOf="@+id/individual_intro"
-            app:layout_constraintStart_toEndOf="@+id/view"
-            app:layout_constraintTop_toTopOf="@+id/individual_intro" />
+            app:layout_constraintStart_toEndOf="@+id/imageView_profile_picture"
+            app:layout_constraintTop_toBottomOf="@+id/each_center_one_day" />
 
         <TextView
-            android:id="@+id/individual_one_day"
+            android:id="@+id/each_center_one_day_edittext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -157,7 +159,7 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/individual_two_day"
+            android:id="@+id/each_center_two_day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -166,7 +168,7 @@
             android:textSize="@dimen/body1_text_size"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/textView7"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/view"
             app:layout_constraintTop_toTopOf="@+id/textView7" />
 
         <TextView
@@ -177,13 +179,12 @@
             android:text="21-day WS"
             android:textColor="@color/text_primary_dark"
             android:textSize="@dimen/body1_text_size"
-            app:layout_constraintBottom_toBottomOf="@+id/individual_one_day"
+            app:layout_constraintBottom_toBottomOf="@+id/each_center_intro"
             app:layout_constraintStart_toEndOf="@+id/view"
-            app:layout_constraintTop_toTopOf="@+id/individual_one_day"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toTopOf="@+id/each_center_intro" />
 
         <TextView
-            android:id="@+id/individual_21_day"
+            android:id="@+id/each_center_21_day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -197,149 +198,54 @@
             app:layout_constraintTop_toTopOf="@+id/each_center_21-d"
             app:layout_constraintVertical_bias="0.0" />
 
-        <!--<RelativeLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:padding="8dp">-->
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="NWET"
+            android:textColor="@color/text_primary_dark"
+            app:layout_constraintBottom_toBottomOf="@+id/each_center_one_day_edittext"
+            app:layout_constraintStart_toEndOf="@+id/view"
+            app:layout_constraintTop_toTopOf="@+id/each_center_one_day_edittext" />
 
-        <!--<ImageView-->
-        <!--android:id="@+id/imageView_profile_picture"-->
-        <!--android:layout_width="80dp"-->
-        <!--android:layout_height="80dp"-->
-        <!--app:srcCompat="@drawable/ic_account_circle_black_24dp"-->
-        <!--tools:ignore="VectorDrawableCompat" />-->
+        <TextView
+            android:id="@+id/each_center_nwet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:textColor="@color/text_secondary_dark"
+            android:textSize="@dimen/body1_text_size"
+            android:textStyle="bold"
+            android:text="0"
+            app:layout_constraintBottom_toBottomOf="@+id/textView18"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView18" />
 
-        <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginLeft="128dp"-->
-        <!--android:orientation="vertical">-->
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="mmbk(min)"
+            android:textColor="@color/text_primary_dark"
+            app:layout_constraintBottom_toBottomOf="@+id/each_center_two_day"
+            app:layout_constraintStart_toEndOf="@+id/view"
+            app:layout_constraintTop_toTopOf="@+id/each_center_two_day" />
 
-        <!--<RelativeLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginTop="@dimen/space8"-->
-        <!--android:gravity="start|end">-->
+        <TextView
+            android:id="@+id/each_center_mmbk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:textColor="@color/text_secondary_dark"
+            android:textSize="@dimen/body1_text_size"
+            android:textStyle="bold"
+            android:text="0"
+            app:layout_constraintBottom_toBottomOf="@+id/textView21"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView21" />
 
-        <!--<TextView-->
-        <!--android:id="@+id/each_center_name"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:textColor="@color/text_primary_dark"-->
-        <!--android:ellipsize="end"-->
-        <!--android:maxLines="1"-->
-        <!--android:textStyle="bold"-->
-        <!--android:singleLine="true"-->
-        <!--android:textSize="@dimen/larger_text"-->
-        <!--tools:text="@string/name" />-->
-
-        <!--<TextView-->
-        <!--android:id="@+id/each_center_time"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginTop="2dp"-->
-        <!--android:gravity="center_vertical"-->
-        <!--android:layout_alignParentEnd="true"-->
-        <!--android:textColor="@color/accent_darker"-->
-        <!--android:textSize="@dimen/body1_text_size"-->
-        <!--android:text="21" />-->
-
-
-        <!--</RelativeLayout>-->
-        <!--<RelativeLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginTop="@dimen/space8"-->
-        <!--android:gravity="start|end">-->
-
-
-        <!--<TextView-->
-        <!--android:id="@+id/each_center_intr"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:textColor="@color/text_primary_dark"-->
-        <!--android:ellipsize="end"-->
-        <!--android:maxLines="1"-->
-        <!--android:singleLine="true"-->
-        <!--android:textSize="@dimen/body2_text_size"-->
-        <!--android:text="@string/introdaction" />-->
-
-        <!--<TextView-->
-        <!--android:id="@+id/each_center_intro_num"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentEnd="true"-->
-        <!--android:textColor="@color/text_secondary_dark"-->
-        <!--android:textSize="@dimen/body2_text_size"-->
-        <!--tools:text="21" />-->
-
-        <!--</RelativeLayout>-->
-
-        <!--<RelativeLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginTop="@dimen/space_4"-->
-        <!--android:layout_marginBottom="@dimen/space4"-->
-        <!--android:gravity="start|end">-->
-
-        <!--<TextView-->
-        <!--android:id="@+id/start_time"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="24dp"-->
-        <!--android:ellipsize="end"-->
-        <!--android:maxLines="1"-->
-        <!--android:singleLine="true"-->
-        <!--android:textColor="@color/text_primary_dark"-->
-        <!--android:textSize="@dimen/body2_text_size"-->
-        <!--android:text="@string/one_day_seminar" />-->
-
-
-        <!--<TextView-->
-        <!--android:id="@+id/each_center_one_day_seminar_num"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentEnd="true"-->
-        <!--android:textColor="@color/text_secondary_dark"-->
-        <!--android:textSize="@dimen/body2_text_size"-->
-        <!--tools:text=" (7days)" />-->
-
-        <!--</RelativeLayout>-->
-
-        <!--<RelativeLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:gravity="start|end"-->
-        <!--android:layout_marginBottom="@dimen/space8">-->
-
-        <!--<TextView-->
-        <!--android:id="@+id/result"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentStart="true"-->
-        <!--android:layout_alignParentTop="true"-->
-        <!--android:layout_marginStart="0dp"-->
-        <!--android:ellipsize="end"-->
-        <!--android:fontFamily="sans-serif"-->
-        <!--android:maxLines="1"-->
-        <!--android:singleLine="true"-->
-        <!--android:text="@string/two_day_seminar"-->
-        <!--android:textColor="@color/text_primary_dark"-->
-        <!--android:textSize="@dimen/body2_text_size" />-->
-
-        <!--<TextView-->
-        <!--android:id="@+id/each_center_two_day_seminar_num"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentEnd="true"-->
-        <!--android:textColor="@color/text_secondary_dark"-->
-        <!--android:textSize="@dimen/body2_text_size"-->
-        <!--tools:text="20" />-->
-
-        <!--</RelativeLayout>-->
-
-        <!--</LinearLayout>-->
-
-        <!--</RelativeLayout>-->
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>
