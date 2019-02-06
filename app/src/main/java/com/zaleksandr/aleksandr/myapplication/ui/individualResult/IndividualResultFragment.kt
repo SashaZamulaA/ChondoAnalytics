@@ -1,7 +1,6 @@
 package com.zaleksandr.aleksandr.myapplication.ui.individualResult
 
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,12 +18,8 @@ import com.zaleksandr.aleksandr.myapplication.model.City
 import com.zaleksandr.aleksandr.myapplication.showMaterialDialogCancelDelete
 import com.zaleksandr.aleksandr.myapplication.ui.commonResult.adapter.IndividualAdapter
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_individual_result.*
 import kotlinx.android.synthetic.main.fragment_individual_result.view.*
-import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
 import com.google.android.material.snackbar.Snackbar
 
 
@@ -114,7 +109,7 @@ class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunica
         ).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 makeSnackBarMessage("Updated note")
-                adapter?.updateNote(city!!)
+//                adapter?.updateNote(city!!)
             } else {
                 makeSnackBarMessage("Failed. Check log.")
             }
@@ -125,7 +120,7 @@ class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunica
     private fun setUpRecyclerView(rootView: View) {
 
         rootView.list_individual_result_adapter.layoutManager = LinearLayoutManager(this.context, LinearLayout.VERTICAL, false)
-        rootView.list_individual_result_adapter.setHasFixedSize(false)
+        rootView.list_individual_result_adapter.setHasFixedSize(true)
         rootView.list_individual_result_adapter.layoutManager = LinearLayoutManager(context)
 
         adapter = IndividualAdapter(this.context!!, items, this)
@@ -155,11 +150,11 @@ class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunica
                         }
 
                         if (querydocumentSnapshot.result!!.size() != 0) {
-                            empty_kitchen_categories.visibility = View.GONE
-                            mLastQueriedDocument = querydocumentSnapshot.result!!.documents[querydocumentSnapshot.result!!.size() - 1]
+                            empty_individual_result_fragment.visibility = View.GONE
+                            mLastQueriedDocument = querydocumentSnapshot.result!!.documents[querydocumentSnapshot.result!!.size()-1]
                             adapter?.notifyDataSetChanged()
                         } else {
-                            empty_kitchen_categories.visibility = View.VISIBLE
+                            empty_individual_result_fragment.visibility = View.VISIBLE
                             adapter?.notifyDataSetChanged()
                         }
                     } else {

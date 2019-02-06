@@ -219,4 +219,5 @@
     <string name="DP_pages">Read DP</string>
     <string name="streat_t">Time on str.(min)</string>
     <string name="tel_cont">Tel. contact</string>
+    <string name="DP_pages_times">Read DP(times)</string>
 </resources>

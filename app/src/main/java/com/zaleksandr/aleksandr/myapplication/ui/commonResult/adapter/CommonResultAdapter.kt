@@ -41,6 +41,7 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
     private fun isPositionHeader(position: Int): Boolean {
         return position == 0
     }
+
     val firestoreInstanceGoal: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
     private val noteRefCollection = firestoreInstance.collection("NewCity")
     private val goalCollection = firestoreInstance.collection("Goal")
