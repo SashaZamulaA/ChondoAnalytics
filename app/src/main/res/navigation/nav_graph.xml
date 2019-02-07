@@ -56,7 +56,7 @@
     </fragment>
     <fragment
         android:id="@+id/eachCenterFragment"
-        android:name="com.zaleksandr.aleksandr.myapplication.ui.eachCentersResult.EachCenterFragment"
+        android:name="com.zaleksandr.aleksandr.myapplication.ui.eachCentersResult.EachCenterFragment2"
         android:label="EachCenterFragment"
         tools:layout="@layout/fragment_each_senter">
         <action

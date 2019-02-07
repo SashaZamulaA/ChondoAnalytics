@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
@@ -13,15 +14,17 @@ import com.zaleksandr.aleksandr.myapplication.ui.eachCentersResult.adapter.EachC
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.Query
+import com.zaleksandr.aleksandr.myapplication.ui.eachCentersResult.adapter.EachCenterAdapter2
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_each_senter.view.*
+import kotlinx.android.synthetic.main.fragment_individual_result.view.*
 
 
 class EachCenterFragment : Fragment() {
 
     var position: Int = 0
     var toolbar: Toolbar? = null
-    private lateinit var adapter: EachCenterAdapter
+    private lateinit var adapter: EachCenterAdapter2
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(com.zaleksandr.aleksandr.myapplication.R.layout.fragment_each_senter, container, false)
@@ -45,12 +48,15 @@ class EachCenterFragment : Fragment() {
                     else -> null
                 })
                 .orderBy("time", Query.Direction.DESCENDING)
-        //
+
         val options = FirestoreRecyclerOptions.Builder<City>()
                 .setQuery(query, City::class.java)
                 .build()
-        adapter = EachCenterAdapter(this.context!!, options)
+
+        rootView.list_each_center_res_adapter.layoutManager = LinearLayoutManager(this.context, LinearLayout.VERTICAL, false)
+        rootView.list_each_center_res_adapter.setHasFixedSize(false)
         rootView?.list_each_center_res_adapter?.layoutManager = LinearLayoutManager(context)
+        adapter = EachCenterAdapter2(this.context!!, options)
         rootView?.list_each_center_res_adapter?.adapter = adapter
 
         toolbar = view?.findViewById(com.zaleksandr.aleksandr.myapplication.R.id.toolbar)

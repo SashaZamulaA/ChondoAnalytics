@@ -120,7 +120,7 @@ class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunica
     private fun setUpRecyclerView(rootView: View) {
 
         rootView.list_individual_result_adapter.layoutManager = LinearLayoutManager(this.context, LinearLayout.VERTICAL, false)
-        rootView.list_individual_result_adapter.setHasFixedSize(true)
+        rootView.list_individual_result_adapter.setHasFixedSize(false)
         rootView.list_individual_result_adapter.layoutManager = LinearLayoutManager(context)
 
         adapter = IndividualAdapter(this.context!!, items, this)
