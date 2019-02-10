@@ -304,6 +304,7 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
                         val onaDay = Integer.parseInt(resultNote.onedayWS)
                         sumOneD1 += onaDay
                     }
+                     else
                     if (!resultNote.twoDayWS.isNullOrEmpty()) {
                         val twoDay = Integer.parseInt(resultNote.twoDayWS)
                         sumTwoD1 += twoDay
@@ -316,7 +317,6 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
                         val approach = Integer.parseInt(resultNote.nwet)
                         sumNwet += approach
                     }
-
                 }
                 itemView.common_result_intro.text = sumIntro.toString()
                 itemView.common_one_d_result.text = sumOneD1.toString()
@@ -324,15 +324,13 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
                 itemView.common_tw_one_d_result.text = sumTwent1.toString()
                 itemView.common_nwet_result.text = sumNwet.toString()
 
-
             } else {
 //                itemView.result_city.text = model.centers.toString()
                 itemView.common_result_intro.text = "0"
-                itemView.common_result_intro.text = "0"
+                itemView.common_one_d_result.text = "0"
                 itemView.common_two_d_result.text = "0"
                 itemView.common_tw_one_d_result.text = "0"
                 itemView.common_nwet_result.text = "0"
-
             }
         }
     }

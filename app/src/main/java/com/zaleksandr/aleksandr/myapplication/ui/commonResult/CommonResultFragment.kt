@@ -1,5 +1,6 @@
 package com.zaleksandr.aleksandr.myapplication.ui.commonResult
 
+import android.R
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,18 +11,18 @@ import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.zaleksandr.aleksandr.myapplication.BottomNavigationViewBehavior
 import com.zaleksandr.aleksandr.myapplication.model.City
 import com.zaleksandr.aleksandr.myapplication.ui.commonResult.adapter.CommonResultAdapter
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.android.synthetic.main.fragment_common_result.*
-import kotlinx.android.synthetic.main.fragment_common_result.view.*
-import java.util.*
-import kotlin.collections.ArrayList
-import android.R
 import com.zaleksandr.aleksandr.myapplication.ui.commonResult.adapter.CommonResultAdapter.FragmentCommunication
 import com.zaleksandr.aleksandr.myapplication.ui.individualResult.IndividualResultFragment
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_common_result.*
+import kotlinx.android.synthetic.main.fragment_common_result.view.*
 import java.io.Serializable
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class CommonResultFragment : Fragment(), CommonResultAdapter.FragmentCommunication, Serializable {
@@ -32,10 +33,10 @@ class CommonResultFragment : Fragment(), CommonResultAdapter.FragmentCommunicati
         val bundle = Bundle()
         bundle.putInt("pas", position)
         Navigation.findNavController(this.view!!).navigate(com.zaleksandr.aleksandr.myapplication.R.id.action_commonResultFragment_to_eachCenterFragment, bundle)
-items.clear()
+        items.clear()
     }
 
-//    var toolbar: Toolbar? = null
+    //    var toolbar: Toolbar? = null
     var adapter: CommonResultAdapter? = null
     var city: City? = null
     private val items: ArrayList<City> = ArrayList()
@@ -65,19 +66,6 @@ items.clear()
         (this.activity!!.toolbar as Toolbar).title = "Common result"
     }
 
-    override fun onPause() {
-//        adapter?.updateList(items)
-        super.onPause()
-    }
-
-    override fun onStart() {
-//       adapter?.clearProductItemList()
-       super.onStart()
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-    }
     var communication: FragmentCommunication = object : FragmentCommunication {
         override fun respond(position: Int) {
             val fragmentB = IndividualResultFragment()
@@ -138,52 +126,15 @@ items.clear()
         rootView.list_common_res_adapter.setHasFixedSize(true)
         rootView.list_common_res_adapter.layoutManager = LinearLayoutManager(context)
 
-        items.add(City("","","0", "0", "0", "0", "Kyiv", "0", "0","", "0", "0", Date(),0, "","","","", ""))
-        items.add(City("","","0", "0", "0", "0", "Kharkiv", "0", "0","", "0", "0", Date(),0, "","","","",""))
-        items.add(City("","","0", "0", "0", "0", "Dnepr", "0", "0","0", "0", "0", Date(),0,"","","","",""))
-        items.add(City("","","0", "0", "0", "0", "Zhytomyr", "0", "0","0", "0", "0", Date(),0,"","","","",""))
-        items.add(City("","","0", "0", "0", "0", "Lviv", "0", "0","0", "0", "0", Date(),0,"","","","",""))
-        items.add(City("","","0", "0", "0", "0", "Odessa", "0", "0","0", "0", "0", Date(),0,"","","","",""))
-        items.add(City("","","0", "0", "0", "0", "Chernigov", "0", "0","0", "0", "0", Date(),0,"","","","",""))
+        items.add(City("", "", "0", "0", "0", "0", "Kyiv", "0", "0", "", "0", "0", Date(), 0, "", "", "", "", ""))
+        items.add(City("", "", "0", "0", "0", "0", "Kharkiv", "0", "0", "", "0", "0", Date(), 0, "", "", "", "", ""))
+        items.add(City("", "", "0", "0", "0", "0", "Dnepr", "0", "0", "0", "0", "0", Date(), 0, "", "", "", "", ""))
+        items.add(City("", "", "0", "0", "0", "0", "Zhytomyr", "0", "0", "0", "0", "0", Date(), 0, "", "", "", "", ""))
+        items.add(City("", "", "0", "0", "0", "0", "Lviv", "0", "0", "0", "0", "0", Date(), 0, "", "", "", "", ""))
+        items.add(City("", "", "0", "0", "0", "0", "Odessa", "0", "0", "0", "0", "0", Date(), 0, "", "", "", "", ""))
+        items.add(City("", "", "0", "0", "0", "0", "Chernigov", "0", "0", "0", "0", "0", Date(), 0, "", "", "", "", ""))
 
         adapter = CommonResultAdapter(items, this)
         rootView.list_common_res_adapter.adapter = adapter
-    }
-
-    inner class BottomNavigationViewBehavior : CoordinatorLayout.Behavior<BottomNavigationView>() {
-
-        private var height: Int = 0
-
-        override fun onLayoutChild(parent: CoordinatorLayout, child: BottomNavigationView, layoutDirection: Int): Boolean {
-            height = child.height
-            return super.onLayoutChild(parent, child, layoutDirection)
-        }
-
-        override fun onStartNestedScroll(coordinatorLayout: CoordinatorLayout,
-                                         child: BottomNavigationView, directTargetChild: View, target: View,
-                                         axes: Int, type: Int): Boolean {
-            return axes == ViewCompat.SCROLL_AXIS_VERTICAL
-        }
-
-        override fun onNestedScroll(coordinatorLayout: CoordinatorLayout, child: BottomNavigationView,
-                                    target: View, dxConsumed: Int, dyConsumed: Int,
-                                    dxUnconsumed: Int, dyUnconsumed: Int,
-                                    @ViewCompat.NestedScrollType type: Int) {
-            if (dyConsumed > 0) {
-                slideDown(child)
-            } else if (dyConsumed < 0) {
-                slideUp(child)
-            }
-        }
-
-        private fun slideUp(child: BottomNavigationView) {
-            child.clearAnimation()
-            child.animate().translationY(0f).duration = 200
-        }
-
-        private fun slideDown(child: BottomNavigationView) {
-            child.clearAnimation()
-            child.animate().translationY(height.toFloat()).duration = 200
-        }
     }
 }

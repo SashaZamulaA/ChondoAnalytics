@@ -148,6 +148,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.individualResult -> navController.navigate(R.id.addIndividualFragment)
             R.id.nav_settings -> navController.navigate(R.id.settingsFragment)
             R.id.add_goal -> navController.navigate(R.id.goalFragment)
+            R.id.add_each_centers_goal -> navController.navigate(R.id.addGoalEachCenterFragment)
         }
         return true
     }

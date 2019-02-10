@@ -212,7 +212,8 @@
     <string name="day_goal">Goal of day</string>
     <string name="no">No</string>
     <string name="yes">Yes</string>
-    <string name="change_team_goals">Are you sure you want to change team goals?</string>
+    <string name="change_team_goals">Are you sure you want to change the overall goal of the center?</string>
+    <string name="change_center_team_goals">Are you sure that you want to change the goals of the center?</string>
     <string name="change_goal">Chondo common goal</string>
     <string name="lect_on_streat">Lect. on str.</string>
     <string name="lect_in_centre">Lect. in centr</string>
@@ -220,4 +221,8 @@
     <string name="streat_t">Time on str.(min)</string>
     <string name="tel_cont">Tel. contact</string>
     <string name="DP_pages_times">Read DP(times)</string>
+    <string name="add_all_centers_goal">Add all centers goal</string>
+    <string name="add_each_centers_goal">Add each center goal</string>
+    <string name="actionizer">Actionaiser</string>
+    <string name="change_center_goal">Change center goal</string>
 </resources>

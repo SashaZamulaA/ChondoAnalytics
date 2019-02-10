@@ -25,6 +25,12 @@
         tools:layout="@layout/fragment_add_result2" />
 
     <fragment
+        android:id="@+id/addGoalEachCenterFragment"
+        android:name="com.zaleksandr.aleksandr.myapplication.ui.addCentersGoal.GoalCentersFragment"
+        android:label="First Fragment"
+        tools:layout="@layout/fragment_add_centers_goal" />
+
+    <fragment
         android:id="@+id/addIndividualFragment"
         android:name="com.zaleksandr.aleksandr.myapplication.ui.individualResult.IndividualResultFragment"
         android:label="First Fragment"

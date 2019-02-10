@@ -168,3 +168,30 @@ fun clickByFilter(noteRefCollection: CollectionReference, position: Int, value: 
             }).get()
 
 }
+
+fun clickByFilterForEachCenter(noteRefCollection: CollectionReference, position: Int, value: Int) : Task<QuerySnapshot> {
+    return noteRefCollection.whereEqualTo("center", when(position) {
+        1 -> "Kyiv"
+        2 -> "Kharkiv"
+        3 -> "Dnepr"
+        4 -> "Zhytomyr"
+        5 -> "Lviv"
+        6 -> "Odessa"
+        7 -> "Chernigov"
+        else -> null
+//    }).whereGreaterThanOrEqualTo("time", when (value) {
+//        1 -> startOfDay(Date())
+//        2 -> startOfWeek()
+//        3 -> startOfMonth()
+//        4 -> startOfYear()
+//        else -> startOfDay(Date())
+//    }).whereLessThanOrEqualTo("time", when (value){
+//        1 -> endOfDay(Date())
+//        2 -> endOfWeek()
+//        3 -> endOfMonth()
+//        4 -> endOfYear()
+//        else -> startOfDay(Date())
+    }).get()
+
+}
+

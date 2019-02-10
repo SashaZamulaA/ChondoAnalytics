@@ -18,8 +18,12 @@
         <item
             android:id="@+id/add_goal"
             android:icon="@drawable/ic_create_black_24dp"
-            android:title="@string/add_goal" />
+            android:title="@string/add_all_centers_goal" />
 
+        <item
+            android:id="@+id/add_each_centers_goal"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="@string/add_each_centers_goal" />
         <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/ic_settings"
