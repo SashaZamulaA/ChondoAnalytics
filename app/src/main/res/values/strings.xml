@@ -75,6 +75,7 @@
     <string name="dinner">Dinner</string>
     <string name="lunch">Lunch</string>
     <string name="min">Min</string>
+    <string name="minute">min</string>
     <string name="start_time">start_per</string>
     <string name="end_time">end_per</string>
     <string name="probel"> - </string>
@@ -205,7 +206,7 @@
     <string name="day21_seminar_easy">21-dWS</string>
     <string name="common_res_and_goal">Common centers results</string>
     <string name="nwet">NWET</string>
-    <string name="read_DP_pages">Read DP pages</string>
+    <string name="read_DP_pages">Read DP(pages)</string>
     <string name="one_day_easy">1-d</string>
     <string name="two_day_easy">2-d</string>
     <string name="day21_easy">21-d</string>
@@ -218,11 +219,12 @@
     <string name="lect_on_streat">Lect. on str.</string>
     <string name="lect_in_centre">Lect. in centr</string>
     <string name="DP_pages">Read DP</string>
-    <string name="streat_t">Time on str.(min)</string>
+    <string name="streat_t">Time on street</string>
     <string name="tel_cont">Tel. contact</string>
     <string name="DP_pages_times">Read DP(times)</string>
     <string name="add_all_centers_goal">Add all centers goal</string>
     <string name="add_each_centers_goal">Add each center goal</string>
     <string name="actionizer">Actionaiser</string>
     <string name="change_center_goal">Change center goal</string>
+    <string name="contacts">Contacts</string>
 </resources>
