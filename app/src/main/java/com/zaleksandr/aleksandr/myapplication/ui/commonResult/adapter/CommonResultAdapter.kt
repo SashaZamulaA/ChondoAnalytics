@@ -11,7 +11,7 @@ import com.zaleksandr.aleksandr.myapplication.model.City
 import com.zaleksandr.aleksandr.myapplication.model.Goal
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import com.zaleksandr.aleksandr.myapplication.util.clickByFilter
-import com.zaleksandr.aleksandr.myapplication.util.clickByFilterCommon
+import com.zaleksandr.aleksandr.myapplication.util.clickByFilterCommonResult
 import kotlinx.android.synthetic.main.item_common_goal_and_result_list2.view.*
 import kotlinx.android.synthetic.main.item_common_result_list.view.*
 
@@ -112,7 +112,7 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
     inner class VHHeader(itemView: View, var fragmentCommunication: FragmentCommunication) : RecyclerView.ViewHolder(itemView) {
 
         fun bind2() {
-            clickByFilterCommon(noteRefCollection, position, period).addOnSuccessListener { queryDocumentSnapshots ->
+            clickByFilterCommonResult(noteRefCollection, position, period).addOnSuccessListener { queryDocumentSnapshots ->
                 commonResult(queryDocumentSnapshots)
             }
 
@@ -355,8 +355,6 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
             clickByFilter(noteRefCollection, position, period).addOnSuccessListener { queryDocumentSnapshots ->
                 cityName(queryDocumentSnapshots)
             }
-
-
         }
 
         private fun cityName(queryDocumentSnapshots: QuerySnapshot) {

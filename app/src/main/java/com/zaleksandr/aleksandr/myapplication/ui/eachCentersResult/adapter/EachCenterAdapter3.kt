@@ -11,6 +11,7 @@ import com.zaleksandr.aleksandr.myapplication.model.City
 import com.zaleksandr.aleksandr.myapplication.model.GoalCenter
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import com.zaleksandr.aleksandr.myapplication.util.StorageUtil
+import com.zaleksandr.aleksandr.myapplication.util.clickByFilterCommonResultForEachCenter
 import com.zaleksandr.aleksandr.myapplication.util.clickByFilterForEachCenter
 import com.zaleksandr.aleksandr.tmbook.glade.GlideApp
 import kotlinx.android.synthetic.main.item_each_center.view.*
@@ -21,8 +22,7 @@ import java.util.*
 class EachCenterAdapter3(private val context: Context,
                          private var list: ArrayList<City>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
-    val notesCollectionRef = firestoreInstance.collection("NewCity")
+    private val noteRefCollection = firestoreInstance.collection("NewCity")
     val goleCenterRefCollection = firestoreInstance.collection("GoalCenters")
     private val TYPE_HEADER = 0
     private val TYPE_ITEM = 1
@@ -55,7 +55,7 @@ class EachCenterAdapter3(private val context: Context,
 
     fun getNumber(cityNumber: Int): Int {
         this.cityNumber = cityNumber
-        return cityNumber + 1
+        return cityNumber
     }
 
     enum class ClickByFilter {
@@ -120,10 +120,66 @@ class EachCenterAdapter3(private val context: Context,
     inner class CenterGoalHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind2() {
 
+            clickByFilterCommonResultForEachCenter(noteRefCollection, getNumber(cityNumber), period).addOnSuccessListener { queryDocumentSnapshots ->
+                commonResult(queryDocumentSnapshots)
+            }
+
             clickByFilterForEachCenter(goleCenterRefCollection, getNumber(cityNumber), period).addOnSuccessListener { queryDocumentSnapshots ->
                 commonGoal(queryDocumentSnapshots)
             }
         }
+
+        private fun commonResult(queryDocumentSnapshots: QuerySnapshot) {
+
+            var sumIntro = 0
+            var sumOneD1 = 0
+            var sumTwoD1 = 0
+            var sumTwent1 = 0
+            var sumNwet = 0
+
+
+            if (!queryDocumentSnapshots.isEmpty) {
+                queryDocumentSnapshots.forEach { documentSnapshot ->
+
+                    val resultNote = documentSnapshot.toObject(City::class.java)
+
+                    if (!resultNote.intro.isNullOrEmpty()) {
+                        val intro = (Integer.parseInt(resultNote.intro))
+                        sumIntro += intro
+                    }
+                    if (!resultNote.onedayWS.isNullOrEmpty()) {
+                        val onaDay = Integer.parseInt(resultNote.onedayWS)
+                        sumOneD1 += onaDay
+                    }
+                    if (!resultNote.twoDayWS.isNullOrEmpty()) {
+                        val twoDay = Integer.parseInt(resultNote.twoDayWS)
+                        sumTwoD1 += twoDay
+                    }
+                    if (!resultNote.twOneDay.isNullOrEmpty()) {
+                        val twOneDay = Integer.parseInt(resultNote.twOneDay)
+                        sumTwent1 += twOneDay
+                    }
+                    if (!resultNote.nwet.isNullOrEmpty()) {
+                        val nwet = Integer.parseInt(resultNote.nwet)
+                        sumNwet += nwet
+                    }
+                }
+                itemView.common_result_intro.text = sumIntro.toString()
+                itemView.common_one_d_result.text = sumOneD1.toString()
+                itemView.common_two_d_result.text = sumTwoD1.toString()
+                itemView.common_tw_one_d_result.text = sumTwent1.toString()
+                itemView.common_nwet_result.text = sumNwet.toString()
+
+            } else {
+//                itemView.result_city.text = model.centers.toString()
+                itemView.common_result_intro.text = "0"
+                itemView.common_one_d_result.text = "0"
+                itemView.common_two_d_result.text = "0"
+                itemView.common_tw_one_d_result.text = "0"
+                itemView.common_nwet_result.text = "0"
+            }
+        }
+
 
         fun commonGoal(queryDocumentSnapshots: QuerySnapshot) {
             if (!queryDocumentSnapshots.isEmpty) {
@@ -174,7 +230,7 @@ class EachCenterAdapter3(private val context: Context,
 
                     }
                     if (period == 2)
-                    itemView.goal_21_day_center.text = "0"
+                        itemView.goal_21_day_center.text = "0"
                     itemView.goal_year_nwet_center.text = "0"
 
                 }

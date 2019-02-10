@@ -42,6 +42,15 @@ class EachCenterFragment2 : Fragment() {
     }
 
     private fun adapterInit(rootView: View) {
+        rootView.list_each_center_res_adapter.layoutManager = LinearLayoutManager(this.context, LinearLayout.VERTICAL, false)
+        rootView.list_each_center_res_adapter.setHasFixedSize(false)
+        rootView.list_each_center_res_adapter?.layoutManager = LinearLayoutManager(context)
+        adapter = EachCenterAdapter3(this.context!!, items)
+        rootView.list_each_center_res_adapter?.adapter = adapter
+
+        toolbar = view?.findViewById(R.id.toolbar)
+        (activity as AppCompatActivity).setSupportActionBar(toolbar)
+
         val notesCollectionRef = firestoreInstance.collection("NewCity")
         val goleCenterRefCollection = firestoreInstance.collection("GoalCenters")
         val name = arguments?.getInt("pas", 0)
@@ -106,14 +115,7 @@ class EachCenterFragment2 : Fragment() {
                     }
                 }
 
-        rootView.list_each_center_res_adapter.layoutManager = LinearLayoutManager(this.context, LinearLayout.VERTICAL, false)
-        rootView.list_each_center_res_adapter.setHasFixedSize(false)
-        rootView.list_each_center_res_adapter?.layoutManager = LinearLayoutManager(context)
-        adapter = EachCenterAdapter3(this.context!!, items)
-        rootView.list_each_center_res_adapter?.adapter = adapter
 
-        toolbar = view?.findViewById(R.id.toolbar)
-        (activity as AppCompatActivity).setSupportActionBar(toolbar)
 
     }
 
