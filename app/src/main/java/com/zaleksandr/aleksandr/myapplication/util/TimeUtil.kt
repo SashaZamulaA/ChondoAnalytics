@@ -195,7 +195,7 @@ fun clickByFilter(noteRefCollection: CollectionReference, position: Int, value: 
 
 }
 
-fun clickByFilterForEachCenter(noteRefCollection: CollectionReference, position: Int, value: Int) : Task<QuerySnapshot> {
+fun clickByFilterForEachCenterGoal(noteRefCollection: CollectionReference, position: Int, value: Int) : Task<QuerySnapshot> {
     return noteRefCollection.whereEqualTo("center", when(position) {
         1 -> "Kyiv"
         2 -> "Kharkiv"

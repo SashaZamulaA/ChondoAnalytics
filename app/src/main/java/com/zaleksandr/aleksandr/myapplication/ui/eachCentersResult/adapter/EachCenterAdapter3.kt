@@ -12,7 +12,7 @@ import com.zaleksandr.aleksandr.myapplication.model.GoalCenter
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import com.zaleksandr.aleksandr.myapplication.util.StorageUtil
 import com.zaleksandr.aleksandr.myapplication.util.clickByFilterCommonResultForEachCenter
-import com.zaleksandr.aleksandr.myapplication.util.clickByFilterForEachCenter
+import com.zaleksandr.aleksandr.myapplication.util.clickByFilterForEachCenterGoal
 import com.zaleksandr.aleksandr.tmbook.glade.GlideApp
 import kotlinx.android.synthetic.main.item_each_center.view.*
 import kotlinx.android.synthetic.main.item_individual_goal_and_result_for_center.view.*
@@ -124,7 +124,7 @@ class EachCenterAdapter3(private val context: Context,
                 commonResult(queryDocumentSnapshots)
             }
 
-            clickByFilterForEachCenter(goleCenterRefCollection, getNumber(cityNumber), period).addOnSuccessListener { queryDocumentSnapshots ->
+            clickByFilterForEachCenterGoal(goleCenterRefCollection, getNumber(cityNumber), period).addOnSuccessListener { queryDocumentSnapshots ->
                 commonGoal(queryDocumentSnapshots)
             }
         }

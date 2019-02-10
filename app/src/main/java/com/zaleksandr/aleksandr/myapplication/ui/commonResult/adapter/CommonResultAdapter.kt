@@ -411,7 +411,7 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
                         val lectOnStr = Integer.parseInt(resultNote.telCont)
                         sumStrLect += lectOnStr
                     } else {
-                        itemView.individual_tel_contact.text = "0"
+                        itemView.individual_contact.text = "0"
                     }
                     if (!resultNote.lectCentr.isNullOrEmpty()) {
                         val lectCentr = Integer.parseInt(resultNote.lectCentr)
@@ -426,7 +426,7 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
                 itemView.each_center_21_day.text = sumTwent1.toString()
                 itemView.individual_time_str.text = sumTimeStr.toString()
                 itemView.individual_approach.text = sumAppr.toString()
-                itemView.individual_tel_contact.text = sumStrLect.toString()
+                itemView.individual_contact.text = sumStrLect.toString()
 //                itemView.individual_street_lect.text = sumStrLect.toString()
                         itemView.individual_lect_center.text = sumCenteLect.toString()
 
@@ -438,7 +438,7 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
                 itemView.each_center_21_day.text = "0"
                 itemView.individual_time_str.text = "0"
                 itemView.individual_approach.text = "0"
-//                itemView.individual_street_lect.text = "0"
+                itemView.individual_contact.text = "0"
                 itemView.individual_lect_center.text = "0"
 
             }

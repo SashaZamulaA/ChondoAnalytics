@@ -227,4 +227,5 @@
     <string name="actionizer">Actionaiser</string>
     <string name="change_center_goal">Change center goal</string>
     <string name="contacts">Contacts</string>
+    <string name="contact">Contact</string>
 </resources>
