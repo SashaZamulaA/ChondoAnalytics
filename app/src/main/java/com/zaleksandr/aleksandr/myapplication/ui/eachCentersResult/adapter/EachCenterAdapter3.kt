@@ -229,10 +229,10 @@ class EachCenterAdapter3(private val context: Context,
                         itemView.goal_two_day_sem_center.text = goalNote.weekTwoDayCenter
 
                     }
-                    if (period == 2)
+                    if (period == 2) {
                         itemView.goal_21_day_center.text = "0"
-                    itemView.goal_year_nwet_center.text = "0"
-
+                        itemView.goal_year_nwet_center.text = "0"
+                    }
                 }
 //                if (!goalNote?.yearOneDay.isNullOrEmpty() && period == 4) {
 //                    val intro = (Integer.parseInt(goalNote?.yearOneDay))

@@ -1,8 +1,12 @@
 package com.zaleksandr.aleksandr.myapplication.util
 
+import android.os.Build
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.QuerySnapshot
+import java.time.LocalDate
+import java.time.ZoneId
+import java.time.temporal.TemporalAdjusters
 
 import java.util.*
 
@@ -36,7 +40,8 @@ fun startOfWeek(): Date {
 }
 
 fun endOfWeek(): Date {
-
+//    LocalDate.now(/* tz */).with(TemporalAdjusters.previousOrSame(firstDayOfWeek)); // first day
+//    LocalDate.now(/* tz */).with(TemporalAdjusters.nextOrSame(lastDayOfWeek));      // last day
     run {
         val calend = getCalendarForNow()
         calend.set(Calendar.DAY_OF_WEEK,
