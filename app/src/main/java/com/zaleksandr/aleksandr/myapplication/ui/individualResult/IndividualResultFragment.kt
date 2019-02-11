@@ -127,15 +127,7 @@ class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunica
         rootView.list_individual_result_adapter.adapter = adapter
 
         val notesCollectionRef = firestoreInstance.collection("NewCity")
-//        val notesQuery: Query?
-//        notesQuery = if (mLastQueriedDocument!=null) {
-//            notesCollectionRef
-//                    .whereEqualTo("id", if ("${FirebaseAuth.getInstance().uid}" == FirebaseAuth.getInstance().currentUser!!.uid) {
-//                        FirebaseAuth.getInstance().uid
-//                    } else null)
-//                    .orderBy("time", Query.Direction.DESCENDING)
-//                    .startAfter(mLastQueriedDocument!!)
-//        } else{
+
         notesCollectionRef
                 .whereEqualTo("id", if ("${FirebaseAuth.getInstance().uid}" == FirebaseAuth.getInstance().currentUser!!.uid) {
                     FirebaseAuth.getInstance().uid

@@ -1,13 +1,10 @@
 package com.zaleksandr.aleksandr.myapplication.util
 
-import android.os.Build
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.QuerySnapshot
 import java.time.LocalDate
-import java.time.ZoneId
-import java.time.temporal.TemporalAdjusters
-
+import java.time.temporal.WeekFields
 import java.util.*
 
 fun startOfDay(date: Date): Date {
@@ -31,24 +28,25 @@ fun endOfDay(date: Date): Date {
 }
 
 fun startOfWeek(): Date {
-    run {
-        val calend = getCalendarForNow()
-        calend.set(Calendar.DAY_OF_WEEK, calend.getActualMinimum(Calendar.DAY_OF_WEEK))
-        setTimeToBeginningOfDay(calend)
-        return calend.time
-    }
+//    val now = LocalDate.now()
+//    val fieldISO = WeekFields.of(Locale.FRANCE).dayOfWeek()
+    val calend = getCalendarForNow()
+    calend.set(Calendar.DAY_OF_WEEK, calend.getActualMinimum(Calendar.DAY_OF_WEEK))
+    setTimeToBeginningOfDay(calend)
+    return calend.time
+
 }
 
 fun endOfWeek(): Date {
 //    LocalDate.now(/* tz */).with(TemporalAdjusters.previousOrSame(firstDayOfWeek)); // first day
 //    LocalDate.now(/* tz */).with(TemporalAdjusters.nextOrSame(lastDayOfWeek));      // last day
-    run {
-        val calend = getCalendarForNow()
-        calend.set(Calendar.DAY_OF_WEEK,
-                calend.getActualMaximum(Calendar.DAY_OF_WEEK))
-        setTimeToEndofDay(calend)
-        return calend.time
-    }
+
+    val calend = getCalendarForNow()
+    calend.set(Calendar.DAY_OF_WEEK,
+            calend.getActualMaximum(Calendar.DAY_OF_WEEK))
+    setTimeToEndofDay(calend)
+    return calend.time
+
 }
 
 fun startOfMonth(): Date {
@@ -92,6 +90,7 @@ fun endOfYear(): Date {
         return calend.time
     }
 }
+
 private fun getCalendarForNow(): Calendar {
     val calendar = GregorianCalendar.getInstance()
     calendar.time = Date()
@@ -112,14 +111,14 @@ private fun setTimeToEndofDay(calendar: Calendar) {
     calendar.set(Calendar.MILLISECOND, 999)
 }
 
-fun clickByFilterCommonResult(goalCollection: CollectionReference, position: Int, value: Int) : Task<QuerySnapshot> {
+fun clickByFilterCommonResult(goalCollection: CollectionReference, position: Int, value: Int): Task<QuerySnapshot> {
     return goalCollection.whereGreaterThanOrEqualTo("time", when (value) {
         1 -> startOfDay(Date())
         2 -> startOfWeek()
         3 -> startOfMonth()
         4 -> startOfYear()
         else -> startOfDay(Date())
-    }).whereLessThanOrEqualTo("time", when (value){
+    }).whereLessThanOrEqualTo("time", when (value) {
         1 -> endOfDay(Date())
         2 -> endOfWeek()
         3 -> endOfMonth()
@@ -129,8 +128,8 @@ fun clickByFilterCommonResult(goalCollection: CollectionReference, position: Int
 
 }
 
-fun clickByFilterCommonResultForEachCenter(goalCollection: CollectionReference, position: Int, value: Int) : Task<QuerySnapshot> {
-    return goalCollection.whereEqualTo("centers", when(position) {
+fun clickByFilterCommonResultForEachCenter(goalCollection: CollectionReference, position: Int, value: Int): Task<QuerySnapshot> {
+    return goalCollection.whereEqualTo("centers", when (position) {
         1 -> "Kyiv"
         2 -> "Kharkiv"
         3 -> "Dnepr"
@@ -145,7 +144,7 @@ fun clickByFilterCommonResultForEachCenter(goalCollection: CollectionReference, 
         3 -> startOfMonth()
         4 -> startOfYear()
         else -> startOfDay(Date())
-    }).whereLessThanOrEqualTo("time", when (value){
+    }).whereLessThanOrEqualTo("time", when (value) {
         1 -> endOfDay(Date())
         2 -> endOfWeek()
         3 -> endOfMonth()
@@ -155,14 +154,14 @@ fun clickByFilterCommonResultForEachCenter(goalCollection: CollectionReference, 
 
 }
 
-fun clickByFilterCommonGoal(noteRefCollection: CollectionReference, position: Int, period: Int) : Task<QuerySnapshot> {
+fun clickByFilterCommonGoal(noteRefCollection: CollectionReference, position: Int, period: Int): Task<QuerySnapshot> {
     return noteRefCollection.whereGreaterThanOrEqualTo("time", when (period) {
         1 -> startOfDay(Date())
         2 -> startOfWeek()
         3 -> startOfMonth()
         4 -> startOfYear()
         else -> startOfDay(Date())
-    }).whereLessThanOrEqualTo("time", when (period){
+    }).whereLessThanOrEqualTo("time", when (period) {
         1 -> endOfDay(Date())
         2 -> endOfWeek()
         3 -> endOfMonth()
@@ -173,35 +172,34 @@ fun clickByFilterCommonGoal(noteRefCollection: CollectionReference, position: In
 }
 
 
-
-fun clickByFilter(noteRefCollection: CollectionReference, position: Int, value: Int) : Task<QuerySnapshot> {
-    return noteRefCollection.whereEqualTo("centers", when(position) {
-               1 -> "Kyiv"
-               2 -> "Kharkiv"
-               3 -> "Dnepr"
-               4 -> "Zhytomyr"
-               5 -> "Lviv"
-               6 -> "Odessa"
-               7 -> "Chernigov"
-                else -> null
-            }).whereGreaterThanOrEqualTo("time", when (value) {
-                1 -> startOfDay(Date())
-                2 -> startOfWeek()
-                3 -> startOfMonth()
-                4 -> startOfYear()
-                else -> startOfDay(Date())
-            }).whereLessThanOrEqualTo("time", when (value){
-                1 -> endOfDay(Date())
-                2 -> endOfWeek()
-                3 -> endOfMonth()
-                4 -> endOfYear()
-                else -> startOfDay(Date())
-            }).get()
+fun clickByFilter(noteRefCollection: CollectionReference, position: Int, value: Int): Task<QuerySnapshot> {
+    return noteRefCollection.whereEqualTo("centers", when (position) {
+        1 -> "Kyiv"
+        2 -> "Kharkiv"
+        3 -> "Dnepr"
+        4 -> "Zhytomyr"
+        5 -> "Lviv"
+        6 -> "Odessa"
+        7 -> "Chernigov"
+        else -> null
+    }).whereGreaterThanOrEqualTo("time", when (value) {
+        1 -> startOfDay(Date())
+        2 -> startOfWeek()
+        3 -> startOfMonth()
+        4 -> startOfYear()
+        else -> startOfDay(Date())
+    }).whereLessThanOrEqualTo("time", when (value) {
+        1 -> endOfDay(Date())
+        2 -> endOfWeek()
+        3 -> endOfMonth()
+        4 -> endOfYear()
+        else -> startOfDay(Date())
+    }).get()
 
 }
 
-fun clickByFilterForEachCenterGoal(noteRefCollection: CollectionReference, position: Int, value: Int) : Task<QuerySnapshot> {
-    return noteRefCollection.whereEqualTo("center", when(position) {
+fun clickByFilterForEachCenterGoal(noteRefCollection: CollectionReference, position: Int, value: Int): Task<QuerySnapshot> {
+    return noteRefCollection.whereEqualTo("center", when (position) {
         1 -> "Kyiv"
         2 -> "Kharkiv"
         3 -> "Dnepr"

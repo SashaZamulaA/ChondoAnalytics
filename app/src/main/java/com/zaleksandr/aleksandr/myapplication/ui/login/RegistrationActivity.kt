@@ -28,10 +28,7 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
     var databaseReference: DatabaseReference? = null
     private val chatChannelsCollectionRef = FirestoreUtil.firestoreInstance.collection("users")
 
-    private lateinit var currentChannelId: String
-    private val spinner_country = arrayOf(
-            "Киев", "Харьков", "Днепропетровск", "Житомир", "Львов", "Одесса", "Чернигов"
-    )
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,15 +60,7 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
         btn_signup.setOnClickListener {
             presenter.onValidateAndSave()
         }
-//        val spinnerCountryAdapter = ArrayAdapter(this, R.layout.spinner_simple_item, spinner_country)
-//        spinnerCountryAdapter.setDropDownViewResource(R.layout.spinner_drop_down)
-//        registration_city.adapter = spinnerCountryAdapter
-//        registration_city.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-//            override fun onNothingSelected(parent: AdapterView<*>?) {}
-//            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-//                presenter.onUpdateOwnerAddress(spinner_country[position])
-//            }
-//        }
+
                 button_back_registration.setOnClickListener {
                     startActivity(Intent(applicationContext, LoginActivity::class.java))
                     finish()
@@ -124,20 +113,13 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
                 ?.addOnCompleteListener(this@RegistrationActivity) { task ->
                     progressDialog.dismiss()
                     if (task.isSuccessful) {
-//                        val user = User(name, email, regId)
-//                        val userId = auth!!.currentUser!!.uid
-//                        val currentUserDb = databaseReference!!.child(userId)
-//
-//                        currentUserDb.child("firstName").setValue(user)
-//                    currentUserDb.child("lastName").setValue(input_owner_city)
+
                         FirestoreUtil.initCurrentUserIfFirstTime {
                             startActivity(Intent(this@RegistrationActivity, MainActivity::class.java))
                             finish()
                             val registrationToken = FirebaseInstanceId.getInstance().token
                             MyFirebaseInstanceIDService.addTokenToFirestore(registrationToken)
                         }
-//                        FirestoreUtil.updateCurrentUser(input_name.text.toString(),
-//                                input_email.text.toString())
                         saveQuote()
                     }
                 }
@@ -147,21 +129,12 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
         val authorText = input_name.text.toString()
         val quoteText = input_email.text.toString()
 
-//        val category = registration_city.selectedItem.toString()
-
         if (quoteText.isEmpty() || authorText.isEmpty()) {
             return
         }
         val dataToSave = HashMap<String, Any>()
         dataToSave[AUTHOR_KEY] = authorText
         dataToSave[QUOTE_KEY] = quoteText
-
-//        dataToSave[SPINNER] = category
-
-//                   val currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
-//        val newChannel = chatChannelsCollectionRef.document()
-//        newChannel.set(dataToSave)
-
 
             FirestoreUtil.currentUserDocRef.set(dataToSave)
     }

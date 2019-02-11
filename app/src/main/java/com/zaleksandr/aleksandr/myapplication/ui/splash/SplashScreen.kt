@@ -18,10 +18,8 @@ class Splash : AppCompatActivity() {
         super.onCreate(icicle)
         setContentView(R.layout.splash)
 
-        /* New Handler to start the Menu-Activity
-         * and close this Splash-Screen after some seconds.*/
         Handler().postDelayed(Runnable {
-            /* Create an Intent that will start the Menu-Activity. */
+
             val mainIntent = Intent(this@Splash, LoginActivity::class.java)
             this@Splash.startActivity(mainIntent)
             this@Splash.finish()

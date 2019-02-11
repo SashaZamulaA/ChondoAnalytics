@@ -10,14 +10,14 @@ import androidx.appcompat.widget.Toolbar
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.zaleksandr.aleksandr.myapplication.model.City
-import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.Query
 import com.zaleksandr.aleksandr.myapplication.BottomNavigationViewBehavior
 import com.zaleksandr.aleksandr.myapplication.R
+import com.zaleksandr.aleksandr.myapplication.model.City
 import com.zaleksandr.aleksandr.myapplication.model.GoalCenter
 import com.zaleksandr.aleksandr.myapplication.ui.eachCentersResult.adapter.EachCenterAdapter3
+import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_each_senter.view.*
 
@@ -58,45 +58,17 @@ class EachCenterFragment2 : Fragment() {
         if (name != null) {
             adapter?.getNumber(name)
         }
-//
-//        goleCenterRefCollection.whereEqualTo("centers", when (name) {
-//            1 -> "Kyiv"
-//            2 -> "Kharkiv"
-//            3 -> "Dnepr"
-//            4 -> "Zhytomyr"
-//            5 -> "Lviv"
-//            6 -> "Odessa"
-//            7 -> "Chernigov"
-//            else -> null
-//        })
-//                .orderBy("time", Query.Direction.DESCENDING)
-//                .get().addOnCompleteListener { querydocumentSnapshot ->
-//                    if (querydocumentSnapshot.isSuccessful) {
-//                        for (documentSnapshot in querydocumentSnapshot.result!!) {
-//                            val note = documentSnapshot.toObject<GoalCenter>(GoalCenter::class.java)
-//                            itemsCenter.add(note)
-//                        }
-//
-//                        if (querydocumentSnapshot.result!!.size() != 0) {
-//                            mLastQueriedDocument = querydocumentSnapshot.result!!.documents[querydocumentSnapshot.result!!.size() - 1]
-//                            adapter?.notifyDataSetChanged()
-//                        } else {
-//                            adapter?.notifyDataSetChanged()
-//                        }
-//                    } else {
-//                    }
-//                }
 
         notesCollectionRef.whereEqualTo("centers", when (name) {
-                    1 -> "Kyiv"
-                    2 -> "Kharkiv"
-                    3 -> "Dnepr"
-                    4 -> "Zhytomyr"
-                    5 -> "Lviv"
-                    6 -> "Odessa"
-                    7 -> "Chernigov"
-                    else -> null
-                })
+            1 -> "Kyiv"
+            2 -> "Kharkiv"
+            3 -> "Dnepr"
+            4 -> "Zhytomyr"
+            5 -> "Lviv"
+            6 -> "Odessa"
+            7 -> "Chernigov"
+            else -> null
+        })
                 .orderBy("time", Query.Direction.DESCENDING)
                 .get().addOnCompleteListener { querydocumentSnapshot ->
                     if (querydocumentSnapshot.isSuccessful) {
@@ -114,25 +86,19 @@ class EachCenterFragment2 : Fragment() {
                     } else {
                     }
                 }
-
-
-
     }
 
     override fun onResume() {
         super.onResume()
         (this.activity!!.toolbar as Toolbar).title = "Each center result"
     }
-
     private fun bottomMenuInit(rootView: View) {
         val layoutParams = rootView.bottom_navigation_center.layoutParams as CoordinatorLayout.LayoutParams
         layoutParams.behavior = BottomNavigationViewBehavior()
         rootView.bottom_navigation_center.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 com.zaleksandr.aleksandr.myapplication.R.id.menu_year -> {
-//                    showLoading()
                     adapter?.perioSelected(EachCenterAdapter3.ClickByFilter.YEAR)
-//                    hideLoading()
                 }
                 com.zaleksandr.aleksandr.myapplication.R.id.menu_month -> {
                     adapter?.perioSelected(EachCenterAdapter3.ClickByFilter.MONTH)
@@ -141,11 +107,6 @@ class EachCenterFragment2 : Fragment() {
                     adapter?.perioSelected(EachCenterAdapter3.ClickByFilter.WEEK)
                 }
 
-//                com.zaleksandr.aleksandr.myapplication.R.id.menu_ind_res -> {
-//                  Navigation.findNavController(this.view!!).navigate(com.zaleksandr.aleksandr.myapplication.R.id.action_commonResultFragment_to_individualResultFragment2)
-//                    adapter?.perioSelected(CommonResultAdapter.ClickByFilter.YEAR)
-////                    hideLoading()
-//                }
                 else -> {
                 }
             }
