@@ -1,10 +1,13 @@
 package com.zaleksandr.aleksandr.myapplication.ui.commonResult
 
 import android.R
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.ViewCompat
@@ -47,7 +50,6 @@ class CommonResultFragment : Fragment(), CommonResultAdapter.FragmentCommunicati
 //        rootView.button_individual_result.setOnClickListener {
 //            Navigation.findNavController(it).navigate(com.zamulaaleksandr.aleksandr.myapplication.R.id.action_commonResultFragment_to_individualResultFragment2)
 //        }
-
         adapterInit(rootView)
         bottomMenuInit(rootView)
 
@@ -60,6 +62,8 @@ class CommonResultFragment : Fragment(), CommonResultAdapter.FragmentCommunicati
 //        update(items)
         return rootView
     }
+
+
 
     override fun onResume() {
         super.onResume()

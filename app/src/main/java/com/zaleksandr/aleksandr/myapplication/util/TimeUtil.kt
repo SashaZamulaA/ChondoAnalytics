@@ -3,9 +3,17 @@ package com.zaleksandr.aleksandr.myapplication.util
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.QuerySnapshot
+import java.time.DayOfWeek
 import java.time.LocalDate
+import java.time.temporal.TemporalAdjusters
 import java.time.temporal.WeekFields
 import java.util.*
+import android.text.format.DateUtils
+import java.time.Clock
+import java.time.ZoneId
+import java.time.temporal.TemporalQueries.zoneId
+
+
 
 fun startOfDay(date: Date): Date {
     val calendar = Calendar.getInstance()
@@ -27,28 +35,51 @@ fun endOfDay(date: Date): Date {
     return calendar.time
 }
 
+//object MondaySunday {
+//    @JvmStatic
+//    fun main(args: Array<String>) {
+//        val today = LocalDate.now()
+//
+//        // Go backward to get Monday
+//        var monday = today
+//        while (monday.dayOfWeek != DayOfWeek.MONDAY) {
+//            monday = monday.minusDays(1)
+//        }
+//
+//        // Go forward to get Sunday
+//        var sunday = today
+//        while (sunday.dayOfWeek != DayOfWeek.SUNDAY) {
+//            sunday = sunday.plusDays(1)
+//        }
+//
+//        println("Today: $today")
+//        println("Monday of the Week: $monday")
+//        println("Sunday of the Week: $sunday")
+//    }
+//}
 fun startOfWeek(): Date {
-//    val now = LocalDate.now()
-//    val fieldISO = WeekFields.of(Locale.FRANCE).dayOfWeek()
-    val calend = getCalendarForNow()
-    calend.set(Calendar.DAY_OF_WEEK, calend.getActualMinimum(Calendar.DAY_OF_WEEK))
-    setTimeToBeginningOfDay(calend)
-    return calend.time
+
+    val c = Calendar.getInstance()
+    c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
+    setTimeToBeginningOfDay(c)
+    return c.time
 
 }
 
 fun endOfWeek(): Date {
-//    LocalDate.now(/* tz */).with(TemporalAdjusters.previousOrSame(firstDayOfWeek)); // first day
-//    LocalDate.now(/* tz */).with(TemporalAdjusters.nextOrSame(lastDayOfWeek));      // last day
 
-    val calend = getCalendarForNow()
-    calend.set(Calendar.DAY_OF_WEEK,
-            calend.getActualMaximum(Calendar.DAY_OF_WEEK))
-    setTimeToEndofDay(calend)
-    return calend.time
+    val c = Calendar.getInstance()
+    c.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
+    setTimeToEndofDay(c)
+    return c.time
 
 }
+private fun getCalendarForNow(): Calendar {
+    val calendar = GregorianCalendar.getInstance();
 
+    calendar.time = Date()
+    return calendar
+}
 fun startOfMonth(): Date {
     run {
         val calend = getCalendarForNow()
@@ -91,13 +122,10 @@ fun endOfYear(): Date {
     }
 }
 
-private fun getCalendarForNow(): Calendar {
-    val calendar = GregorianCalendar.getInstance()
-    calendar.time = Date()
-    return calendar
-}
+
 
 private fun setTimeToBeginningOfDay(calendar: Calendar) {
+
     calendar.set(Calendar.HOUR_OF_DAY, 0)
     calendar.set(Calendar.MINUTE, 0)
     calendar.set(Calendar.SECOND, 0)

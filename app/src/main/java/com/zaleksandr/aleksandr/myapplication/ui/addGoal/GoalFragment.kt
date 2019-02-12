@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.google.firebase.auth.FirebaseAuth
@@ -30,7 +32,7 @@ class GoalFragment : Fragment() {
         get() = firestoreInstance.document("City/${FirebaseAuth.getInstance().uid
                 ?: throw NullPointerException("UID is null.")}")
 
-
+    var result: String? = null
     private val noteRefCollection = firestoreInstance.collection("NewCity").document()
     private val goleRefCollection = firestoreInstance.collection("Goal").document()
     private val goalRefDocumentCurrent = firestoreInstanceGoal.collection("CurrentGoal").document("goal")
@@ -38,15 +40,17 @@ class GoalFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(com.zaleksandr.aleksandr.myapplication.R.layout.fragment_add_goal, container, false)
 
-        context?.showMaterialDialogNoYes(
-                title = resources.getText(com.zaleksandr.aleksandr.myapplication.R.string.change_goal).toString(),
-                message = resources.getText(com.zaleksandr.aleksandr.myapplication.R.string.change_team_goals).toString(),
-                onNoClick = {
-                    Navigation.findNavController(this.view!!).navigate(com.zaleksandr.aleksandr.myapplication.R.id.commonResultFragment)
-                },
-                onYesClick = {
-                }
-        )?.addTo(dialogDisposable)
+
+
+//        context?.showMaterialDialogNoYes(
+//                title = resources.getText(com.zaleksandr.aleksandr.myapplication.R.string.change_goal).toString(),
+//                message = resources.getText(com.zaleksandr.aleksandr.myapplication.R.string.change_team_goals).toString(),
+//                onNoClick = {
+//                    Navigation.findNavController(this.view!!).navigate(com.zaleksandr.aleksandr.myapplication.R.id.commonResultFragment)
+//                },
+//                onYesClick = {
+//                }
+//        )?.addTo(dialogDisposable)
 
 
 

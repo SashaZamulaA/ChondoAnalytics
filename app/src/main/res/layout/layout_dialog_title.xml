@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/space_24"
+    android:paddingTop="@dimen/space_24"
+    android:paddingBottom="@dimen/space_16"
+    tools:targetApi="lollipop">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center_vertical"
+        android:textColor="@color/main_font_color"
+        android:text="@string/select_range"
+        android:textSize="20sp" />
+
+
+</FrameLayout>

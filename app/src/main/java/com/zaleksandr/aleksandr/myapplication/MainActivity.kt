@@ -2,13 +2,12 @@ package com.zaleksandr.aleksandr.myapplication
 
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
-import android.widget.Switch
-import androidx.annotation.NonNull
+import android.widget.EditText
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
@@ -17,18 +16,12 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI
 import com.google.android.material.navigation.NavigationView
 import com.zaleksandr.aleksandr.myapplication.ui.settings.model.User
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil
 import com.zaleksandr.aleksandr.myapplication.util.StorageUtil
 import com.zaleksandr.aleksandr.tmbook.glade.GlideApp
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_common_result.*
-import kotlinx.android.synthetic.main.header_layout.*
-import com.zaleksandr.aleksandr.myapplication.MainActivity.CustomDrawerListener
-
-
+import kotlinx.android.synthetic.main.header_layout.view.*
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -37,8 +30,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val AUTHOR_KEY = "name"
         val QUOTE_KEY = "e_mail"
         val SPINNER = "spinner"
+        val PASSWORD = "0000"
+        val PASSWORD_ALL_CENTERS = "1111"
     }
 
+
+    private var result: String? = null
 
     val context: Context? = null
     lateinit var drawerLayout: DrawerLayout
@@ -131,9 +128,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
 
-
-
-
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
 
         menuItem.isChecked = true
@@ -145,10 +139,40 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 (menuItem.title)
             }
             R.id.add_result -> navController.navigate(R.id.addResultFragment)
+
             R.id.individualResult -> navController.navigate(R.id.addIndividualFragment)
             R.id.nav_settings -> navController.navigate(R.id.settingsFragment)
-            R.id.add_goal -> navController.navigate(R.id.goalFragment)
-            R.id.add_each_centers_goal -> navController.navigate(R.id.addGoalEachCenterFragment)
+            R.id.add_goal -> {
+                val b = AlertDialog.Builder(this)
+                b.setTitle("Please enter a password")
+                val input = EditText(this)
+                b.setView(input)
+                b.setPositiveButton("OK") { _, _ ->
+                    result = input.text.toString()
+                    if (result == PASSWORD) {
+                        navController.navigate(R.id.goalFragment)
+                    } else {
+                    }
+                }
+                b.setNegativeButton("CANCEL", null)
+                b.show()
+            }
+
+            R.id.add_each_centers_goal -> {
+                val b = AlertDialog.Builder(this)
+                b.setTitle("Please enter a password")
+                val input = EditText(this)
+                b.setView(input)
+                b.setPositiveButton("OK") { _, _ ->
+                    result = input.text.toString()
+                    if (result == PASSWORD_ALL_CENTERS) {
+                        navController.navigate(R.id.addGoalEachCenterFragment)
+                    } else {
+                    }
+                }
+                b.setNegativeButton("CANCEL", null)
+                b.show()
+            }
         }
         return true
     }

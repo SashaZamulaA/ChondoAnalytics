@@ -21,7 +21,7 @@
     <color name="accent_pressed">#579D31</color>
     <color name="accent">#7CB342</color> <!--Light Green 600-->
     <color name="accent_darker">#689F38</color> <!--Light Green 700-->
-
+    <color name="main_font_color">#DE000000</color>
     <color name="text_primary_dark">#DF000000</color> <!--87% of black-->
     <color name="text_secondary_dark">#8B000000</color> <!--54% of black-->
     <color name="text_disabled_dark">#61000000</color> <!--38% of black-->
