@@ -21,6 +21,7 @@ import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstan
 import kotlinx.android.synthetic.main.fragment_individual_result.*
 import kotlinx.android.synthetic.main.fragment_individual_result.view.*
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunication {
@@ -71,7 +72,7 @@ class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunica
 
     override fun onResume() {
         super.onResume()
-//        (this.activity!!.toolbar as Toolbar).title = "Individual result"
+        (this.activity!!.toolbar as Toolbar).title = "Individual result"
     }
 
     private fun deleteNote(city: City?) {

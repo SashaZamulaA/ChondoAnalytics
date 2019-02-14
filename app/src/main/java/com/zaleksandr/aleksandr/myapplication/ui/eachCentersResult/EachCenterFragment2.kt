@@ -21,9 +21,7 @@ import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstan
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_each_senter.view.*
 
-
 class EachCenterFragment2 : Fragment() {
-
 
     var toolbar: Toolbar? = null
     private val items: ArrayList<City> = ArrayList()
@@ -35,7 +33,6 @@ class EachCenterFragment2 : Fragment() {
 
         adapterInit(rootView)
         bottomMenuInit(rootView)
-
 
         adapter?.perioSelected(EachCenterAdapter3.ClickByFilter.YEAR)
         return rootView

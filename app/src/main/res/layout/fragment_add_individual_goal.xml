@@ -33,7 +33,6 @@
             android:text="@string/introdaction"
             android:textColor="@color/text_primary_dark"
             android:textSize="@dimen/body1_text_size"
-            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
@@ -46,7 +45,7 @@
 
 
             android:layout_marginEnd="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/ind_nwet"
+            app:layout_constraintBottom_toBottomOf="@+id/two_day_seminar_edittext"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/each_center_intr" />
@@ -61,7 +60,7 @@
             android:layout_marginEnd="8dp"
             android:inputType="numberDecimal"
             android:selectAllOnFocus="true"
-            android:text="0"
+            android:text=""
             android:textAlignment="center"
             android:textColor="@color/text_primary_dark"
             android:textSize="@dimen/body2_text_size"
@@ -85,7 +84,6 @@
             android:text="@string/one_day_seminar"
             android:textColor="@color/text_primary_dark"
             android:textSize="@dimen/body1_text_size"
-            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/each_center_intr" />
 
@@ -98,7 +96,6 @@
             android:text="@string/two_day_seminar"
             android:textColor="@color/text_primary_dark"
             android:textSize="@dimen/body1_text_size"
-            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/each_center_one_day" />
 
@@ -110,7 +107,7 @@
             android:layout_marginEnd="8dp"
             android:inputType="numberDecimal"
             android:selectAllOnFocus="true"
-            android:text="0"
+            android:text=""
             android:textAlignment="center"
             android:textColor="@color/text_primary_dark"
             android:textSize="@dimen/body2_text_size"
@@ -127,9 +124,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:selectAllOnFocus="true"
             android:inputType="numberDecimal"
-            android:text="0"
+            android:selectAllOnFocus="true"
+            android:text=""
             android:textAlignment="center"
             android:textColor="@color/text_primary_dark"
             android:textSize="@dimen/body2_text_size"
@@ -146,48 +143,29 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
             android:text="21-day WS"
             android:textColor="@color/text_primary_dark"
             android:textSize="@dimen/body1_text_size"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView7"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/ind_nwet"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:text="NWET"
-            android:textColor="@color/text_primary_dark"
-            android:textSize="@dimen/body1_text_size"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/each_center_21-d" />
+            app:layout_constraintStart_toEndOf="@+id/view"
+            app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/result_nwet_edittext"
 
             android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:selectAllOnFocus="true"
             android:inputType="numberDecimal"
-            android:text="0"
+            android:selectAllOnFocus="true"
+            android:text=""
             android:textAlignment="center"
             android:textColor="@color/text_primary_dark"
             android:textSize="@dimen/body2_text_size"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/ind_nwet"
-            app:layout_constraintEnd_toStartOf="@+id/view"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/ind_nwet" />
+            app:layout_constraintBottom_toBottomOf="@+id/textView25"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView25" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/day21_seminar_edittext"
@@ -195,100 +173,18 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:selectAllOnFocus="true"
             android:inputType="numberDecimal"
-            android:text="0"
+            android:selectAllOnFocus="true"
+            android:text=""
             android:textAlignment="center"
             android:textColor="@color/text_primary_dark"
             android:textSize="@dimen/body2_text_size"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/each_center_21-d"
-            app:layout_constraintEnd_toStartOf="@+id/view"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/each_center_21-d"
             app:layout_constraintTop_toTopOf="@+id/each_center_21-d" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/streat_t"
-            app:layout_constraintStart_toEndOf="@+id/view"
-            app:layout_constraintTop_toBottomOf="@+id/textView20" />
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/result_time_street_edit_text"
-            android:selectAllOnFocus="true"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:inputType="numberDecimal"
-            android:text="0"
-            android:textAlignment="center"
-            android:textSize="@dimen/body2_text_size"
-            app:layout_constraintBottom_toBottomOf="@+id/textView2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView2" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/approach"
-            app:layout_constraintStart_toEndOf="@+id/view"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/result_approach_edit_text"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:inputType="numberDecimal"
-            android:selectAllOnFocus="true"
-            android:text="0"
-            android:textAlignment="center"
-            android:textSize="@dimen/body2_text_size"
-            app:layout_constraintBottom_toBottomOf="@+id/textView4"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView4" />
-
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/lect_on_streat"
-            app:layout_constraintStart_toEndOf="@+id/view"
-            app:layout_constraintTop_toBottomOf="@+id/result_tel_contact" />
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/result_lectures_on_street_edittext"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:inputType="numberDecimal"
-            android:text="0"
-            android:textAlignment="center"
-            android:selectAllOnFocus="true"
-            android:textSize="@dimen/body2_text_size"
-            app:layout_constraintBottom_toBottomOf="@+id/textView6"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView6" />
-
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/lect_in_centre"
-            app:layout_constraintStart_toEndOf="@+id/view"
-            app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
         <TextView
             android:id="@+id/ind_read_dp"
@@ -296,7 +192,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
-            android:text="@string/DP_pages_times"
+            android:text="Read DP"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
@@ -307,7 +203,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:inputType="numberDecimal"
-            android:text="0"
+            android:text=""
             android:textAlignment="center"
             android:selectAllOnFocus="true"
             android:textSize="@dimen/body2_text_size"
@@ -324,7 +220,7 @@
             android:layout_marginStart="8dp"
             android:inputType="numberDecimal"
             android:selectAllOnFocus="true"
-            android:text="0"
+            android:text=""
             android:textAlignment="center"
             android:textSize="@dimen/body2_text_size"
             app:layout_constraintBottom_toBottomOf="@+id/textView17"
@@ -333,59 +229,20 @@
             app:layout_constraintStart_toEndOf="@+id/textView17"
             app:layout_constraintTop_toTopOf="@+id/textView17" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/result_lectures_in_center_edittext"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:inputType="numberDecimal"
-            android:text="0"
-            android:textAlignment="center"
-            android:selectAllOnFocus="true"
-            android:textSize="@dimen/body2_text_size"
-            app:layout_constraintBottom_toBottomOf="@+id/textView9"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView9" />
-
 
         <!--Город-->
 
         <View
+            android:id="@+id/view4"
             style="@style/AppTheme.HorizontalSpinnerDivider"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="274dp" />
+            app:layout_constraintTop_toBottomOf="@+id/two_day_seminar_edittext" />
 
-
-        <TextView
-            android:id="@+id/result_tel_contact"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:text="Tel. cont."
-            app:layout_constraintStart_toEndOf="@+id/view"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/result_add_telephot"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:inputType="numberDecimal"
-            android:selectAllOnFocus="true"
-            android:text="0"
-            android:textAlignment="center"
-            android:textSize="@dimen/body2_text_size"
-            app:layout_constraintBottom_toBottomOf="@+id/result_tel_contact"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/result_tel_contact"
-            app:layout_constraintTop_toTopOf="@+id/result_tel_contact" />
 
         <TextView
             android:id="@+id/textView19"
@@ -393,10 +250,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:text="Add information:"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ind_nwet" />
+            app:layout_constraintTop_toBottomOf="@+id/view4" />
 
         <TextView
             android:id="@+id/textView17"
@@ -404,12 +261,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="20dp"
-            android:text="Mmbk(min)"
+            android:text="HDH times"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ind_read_dp" />
 
         <TextView
             android:id="@+id/textView20"
+            style="@style/TextStyle_SubHeader_Accent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -417,6 +275,48 @@
             android:text="Goal for year"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/text_primary_dark"
+            android:textSize="@dimen/body1_text_size"
+            android:textStyle="bold"
+            android:text="Actionaser"
+            app:layout_constraintStart_toEndOf="@+id/view"
+            app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+        <EditText
+            android:id="@+id/textView23"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:textAlignment="center"
+            android:textColor="@color/text_primary_dark"
+            android:textSize="@dimen/body2_text_size"
+            android:textStyle="bold"
+            android:text=""
+            app:layout_constraintBottom_toBottomOf="@+id/textView22"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/textView22"
+            app:layout_constraintTop_toTopOf="@+id/textView22" />
+
+        <TextView
+            android:id="@+id/textView25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text="NWET"
+            android:textStyle="bold"
+            android:textColor="@color/saddlebrown"
+            app:layout_constraintStart_toEndOf="@+id/view"
+            app:layout_constraintTop_toBottomOf="@+id/each_center_21-d" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -58,21 +58,25 @@ fun endOfDay(date: Date): Date {
 //    }
 //}
 fun startOfWeek(): Date {
+    run {
+        val calend = getCalendarForNow()
+        calend.set(Calendar.DAY_OF_WEEK, calend.getActualMinimum(Calendar.DAY_OF_WEEK))
 
-    val c = Calendar.getInstance()
-    c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
-    setTimeToBeginningOfDay(c)
-    return c.time
+        setTimeToBeginningOfDay(calend)
 
+        return calend.time
+    }
 }
 
 fun endOfWeek(): Date {
+    run {
+        val calend = getCalendarForNow()
+        calend.set(Calendar.DAY_OF_WEEK,
+                calend.getActualMaximum(Calendar.DAY_OF_WEEK))
 
-    val c = Calendar.getInstance()
-    c.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
-    setTimeToEndofDay(c)
-    return c.time
-
+        setTimeToEndofDay(calend)
+        return calend.time
+    }
 }
 private fun getCalendarForNow(): Calendar {
     val calendar = GregorianCalendar.getInstance();

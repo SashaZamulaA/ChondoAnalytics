@@ -6,6 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical">
 
 
@@ -26,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="20dp"
             android:ellipsize="end"
             android:maxLines="1"
             android:singleLine="true"
@@ -35,7 +36,7 @@
             android:textSize="@dimen/body1_text_size"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/registration_city" />
+            app:layout_constraintTop_toBottomOf="@+id/buttonDate" />
 
         <View
             android:id="@+id/view"
@@ -208,10 +209,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="20dp"
             android:text="@string/streat_t"
             app:layout_constraintStart_toEndOf="@+id/view"
-            app:layout_constraintTop_toBottomOf="@+id/registration_city" />
+            app:layout_constraintTop_toBottomOf="@+id/buttonDate" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/result_time_street_edit_text"
@@ -362,6 +363,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
         <View
+            android:id="@+id/view5"
             style="@style/AppTheme.HorizontalSpinnerDivider"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
@@ -432,6 +434,30 @@
             android:text="Mmbk(min)"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ind_read_dp" />
+
+        <Button
+
+            android:id="@+id/buttonDate"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_marginTop="24dp"
+           android:layout_marginStart="@dimen/space8"
+            android:background="@drawable/button_green_bordered"
+            android:text="Select time"
+            android:textColor="@color/text_secondary_dark"
+            android:textSize="@dimen/space_12"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view5" />
+
+        <TextView
+            android:id="@+id/textViewDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="21 mart"
+            android:textColor="@color/braun"
+            app:layout_constraintBottom_toBottomOf="@+id/buttonDate"
+            app:layout_constraintStart_toStartOf="@+id/introduction_edittext"
+            app:layout_constraintTop_toTopOf="@+id/buttonDate" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
