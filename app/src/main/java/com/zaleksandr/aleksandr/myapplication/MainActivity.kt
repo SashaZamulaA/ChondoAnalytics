@@ -139,8 +139,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 (menuItem.title)
             }
             R.id.add_result -> navController.navigate(R.id.addResultFragment)
-
             R.id.individualResult -> navController.navigate(R.id.addIndividualFragment)
+            R.id.add_individual_goals -> navController.navigate(R.id.addIndividualGoalsFragment)
             R.id.nav_settings -> navController.navigate(R.id.settingsFragment)
             R.id.add_goal -> {
                 val b = AlertDialog.Builder(this)

@@ -37,6 +37,12 @@
         tools:layout="@layout/fragment_individual_result" />
 
     <fragment
+        android:id="@+id/addIndividualGoalsFragment"
+        android:name="com.zaleksandr.aleksandr.myapplication.ui.individualGoal.AddIndividualGoalFragment"
+        android:label="First Fragment"
+        tools:layout="@layout/fragment_individual_result" />
+
+    <fragment
         android:id="@+id/settingsFragment"
         android:name="com.zaleksandr.aleksandr.myapplication.ui.settings.SettingsFragment"
         android:label="First Fragment"

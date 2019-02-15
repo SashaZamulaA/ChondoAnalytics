@@ -229,4 +229,5 @@
     <string name="contacts">Contacts</string>
     <string name="contact">Contact</string>
     <string name="select_range">Select period</string>
+    <string name="add_individual_goals">Add individual goals</string>
 </resources>

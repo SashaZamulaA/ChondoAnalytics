@@ -1,339 +1,845 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+<LinearLayout
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <TextView
 
-            android:id="@+id/each_center_intr"
-            android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ind_goal_dp_ukr"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:hint="times"
+                    android:inputType="numberDecimal"
+                    android:selectAllOnFocus="true"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textSize="@dimen/body2_text_size"
+                    app:layout_constraintBottom_toBottomOf="@+id/ind_read_dp2"
+                    app:layout_constraintEnd_toEndOf="@+id/ind_goal_dp_kor"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/ind_read_dp2"
+                    app:layout_constraintTop_toTopOf="@+id/ind_read_dp2" />
+
+                <TextView
+
+                    android:id="@+id/each_center_intr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="@string/introdaction"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="@dimen/body1_text_size"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+                <TextView
+
+                    android:id="@+id/each_center_intr2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="@string/introdaction"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="@dimen/body1_text_size"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView26" />
+
+                <TextView
+
+                    android:id="@+id/each_center_intr3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="@string/contact"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="@dimen/body1_text_size"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView33" />
+
+                <TextView
+
+                    android:id="@+id/each_center_intr4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="Mmbk"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="@dimen/body1_text_size"
+                    app:layout_constraintStart_toEndOf="@+id/view8"
+                    app:layout_constraintTop_toBottomOf="@+id/textView34" />
+
+                <View
+                    android:id="@+id/view"
+                    style="@style/AppTheme.VerticalViewDivider"
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="8dp"
+
+
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/two_day_year_goal_edittext"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/introduction_year_goal_edittext" />
+
+                <View
+                    android:id="@+id/view6"
+                    style="@style/AppTheme.VerticalViewDivider"
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="8dp"
+
+
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/two_day_month_goal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.497"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/introduction_month_goal" />
+
+                <View
+                    android:id="@+id/view8"
+                    style="@style/AppTheme.VerticalViewDivider"
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="8dp"
+
+
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/ind_mmbk_week_goal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.494"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/indiv_contact_week_doal" />
+
+                <com.google.android.material.textfield.TextInputEditText
+
+                    android:id="@+id/introduction_year_goal_edittext"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:inputType="numberDecimal"
+                    android:selectAllOnFocus="true"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="@dimen/body2_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/each_center_intr"
+                    app:layout_constraintEnd_toStartOf="@+id/view"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/each_center_intr"
+                    app:layout_constraintTop_toTopOf="@+id/each_center_intr" />
+
+                <com.google.android.material.textfield.TextInputEditText
+
+                    android:id="@+id/introduction_month_goal"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:inputType="numberDecimal"
+                    android:selectAllOnFocus="true"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="@dimen/body2_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/each_center_intr2"
+                    app:layout_constraintEnd_toStartOf="@+id/view6"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/each_center_intr2"
+                    app:layout_constraintTop_toTopOf="@+id/each_center_intr2" />
+
+                <com.google.android.material.textfield.TextInputEditText
+
+                    android:id="@+id/indiv_contact_week_doal"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:inputType="numberDecimal"
+                    android:selectAllOnFocus="true"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="@dimen/body2_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/each_center_intr3"
+                    app:layout_constraintEnd_toStartOf="@+id/view8"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/each_center_intr3"
+                    app:layout_constraintTop_toTopOf="@+id/each_center_intr3" />
+
+                <com.google.android.material.textfield.TextInputEditText
+
+                    android:id="@+id/ind_mmbk_week_goal"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:hint="min"
+                    android:inputType="numberDecimal"
+                    android:selectAllOnFocus="true"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="@dimen/body2_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/each_center_intr4"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/each_center_intr4"
+                    app:layout_constraintTop_toTopOf="@+id/each_center_intr4" />
+
+                <com.google.android.material.textfield.TextInputEditText
+
+                    android:id="@+id/ind_1_day_week_goal"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:inputType="numberDecimal"
+                    android:selectAllOnFocus="true"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="@dimen/body2_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/each_center_one_day4"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/each_center_one_day4"
+                    app:layout_constraintTop_toTopOf="@+id/each_center_one_day4" />
+
+                <com.google.android.material.textfield.TextInputEditText
+
+                    android:id="@+id/ind_2_day_week_goal"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:inputType="numberDecimal"
+                    android:selectAllOnFocus="true"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="@dimen/body2_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView34"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/textView34"
+                    app:layout_constraintTop_toTopOf="@+id/textView34" />
+
+                <TextView
+
+                    android:id="@+id/each_center_one_day"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="@string/one_day_seminar"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="@dimen/body1_text_size"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/each_center_intr" />
+
+                <TextView
+
+                    android:id="@+id/each_center_one_day2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="@string/one_day_seminar"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="@dimen/body1_text_size"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/each_center_intr2" />
+
+                <TextView
+
+                    android:id="@+id/each_center_one_day3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="@string/introdaction"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="@dimen/body1_text_size"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/each_center_intr3" />
+
+                <TextView
+
+                    android:id="@+id/each_center_one_day4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="@string/one_day_seminar"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="@dimen/body1_text_size"
+                    app:layout_constraintStart_toEndOf="@+id/view8"
+                    app:layout_constraintTop_toBottomOf="@+id/textView33" />
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/two_day_seminar"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="@dimen/body1_text_size"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/each_center_one_day" />
+
+                <TextView
+                    android:id="@+id/textView28"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/two_day_seminar"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="@dimen/body1_text_size"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/each_center_one_day2" />
+
+                <TextView
+                    android:id="@+id/textView34"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/two_day_seminar"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="@dimen/body1_text_size"
+                    app:layout_constraintStart_toEndOf="@+id/view8"
+                    app:layout_constraintTop_toBottomOf="@+id/each_center_one_day4" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/one_day_year_goal_edittext"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:inputType="numberDecimal"
+                    android:selectAllOnFocus="true"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="@dimen/body2_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/each_center_one_day"
+                    app:layout_constraintEnd_toStartOf="@+id/view"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/each_center_one_day"
+                    app:layout_constraintTop_toTopOf="@+id/each_center_one_day" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/one_day_month_goal"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:inputType="numberDecimal"
+                    android:selectAllOnFocus="true"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="@dimen/body2_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/each_center_one_day2"
+                    app:layout_constraintEnd_toStartOf="@+id/view6"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/each_center_one_day2"
+                    app:layout_constraintTop_toTopOf="@+id/each_center_one_day2" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ind_week_goal_intro"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:inputType="numberDecimal"
+                    android:selectAllOnFocus="true"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="@dimen/body2_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/each_center_one_day3"
+                    app:layout_constraintEnd_toStartOf="@+id/view8"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/each_center_one_day3"
+                    app:layout_constraintTop_toTopOf="@+id/each_center_one_day3" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/two_day_year_goal_edittext"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:inputType="numberDecimal"
+                    android:selectAllOnFocus="true"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="@dimen/body2_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView7"
+                    app:layout_constraintEnd_toStartOf="@+id/view"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/textView7"
+                    app:layout_constraintTop_toTopOf="@+id/textView7" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/two_day_month_goal"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:inputType="numberDecimal"
+                    android:selectAllOnFocus="true"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="@dimen/body2_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView28"
+                    app:layout_constraintEnd_toStartOf="@+id/view6"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/textView28"
+                    app:layout_constraintTop_toTopOf="@+id/textView28" />
+
+                <TextView
+                    android:id="@+id/each_center_21-d"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="21-day WS"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="@dimen/body1_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/view"
+                    app:layout_constraintTop_toBottomOf="@+id/textView22" />
+
+                <TextView
+                    android:id="@+id/individual_month_21_goal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="21-day WS"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="@dimen/body1_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/view6"
+                    app:layout_constraintTop_toBottomOf="@+id/textView30" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/individual_goal_result_nwet_edittext"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:inputType="numberDecimal"
+                    android:selectAllOnFocus="true"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="@dimen/body2_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView25"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView25" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ind_goal_nwet_month_edittext"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:inputType="numberDecimal"
+                    android:selectAllOnFocus="true"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="@dimen/body2_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/ind_goal_nwet_month_name"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/ind_goal_nwet_month_name"
+                    app:layout_constraintTop_toTopOf="@+id/ind_goal_nwet_month_name" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/individual_goal_day21_seminar_edittext"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:inputType="numberDecimal"
+                    android:selectAllOnFocus="true"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="@dimen/body2_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/each_center_21-d"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/each_center_21-d"
+                    app:layout_constraintTop_toTopOf="@+id/each_center_21-d" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/individ_goal_21_month"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:inputType="numberDecimal"
+                    android:selectAllOnFocus="true"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="@dimen/body2_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/individual_month_21_goal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/individual_month_21_goal"
+                    app:layout_constraintTop_toTopOf="@+id/individual_month_21_goal" />
+
+                <TextView
+                    android:id="@+id/ind_read_dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Read DP(kor)"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+                <TextView
+                    android:id="@+id/ind_read_dp2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Read DP(ukr)"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ind_read_dp" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ind_goal_dp_kor"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:hint="times"
+                    android:inputType="numberDecimal"
+                    android:selectAllOnFocus="true"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textSize="@dimen/body2_text_size"
+                    app:layout_constraintBottom_toBottomOf="@+id/ind_read_dp"
+                    app:layout_constraintEnd_toStartOf="@+id/view8"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/ind_read_dp"
+                    app:layout_constraintTop_toTopOf="@+id/ind_read_dp" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ind_goal_hdh"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:hint="times"
+                    android:inputType="numberDecimal"
+                    android:selectAllOnFocus="true"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textSize="@dimen/body2_text_size"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView17"
+                    app:layout_constraintEnd_toEndOf="@+id/ind_goal_dp_kor"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/textView17"
+                    app:layout_constraintTop_toTopOf="@+id/textView17" />
+
+
+                <!--Город-->
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ind_goal_mobilisation"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:hint="times"
+                    android:inputType="numberDecimal"
+                    android:selectAllOnFocus="true"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textSize="@dimen/body2_text_size"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView23"
+                    app:layout_constraintEnd_toEndOf="@+id/ind_goal_dp_kor"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/textView23"
+                    app:layout_constraintTop_toTopOf="@+id/textView23" />
+
+                <View
+                    android:id="@+id/view4"
+                    style="@style/AppTheme.HorizontalSpinnerDivider"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/two_day_year_goal_edittext" />
+
+
+                <View
+                    android:id="@+id/view7"
+                    style="@style/AppTheme.HorizontalSpinnerDivider"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view6" />
+
+                <TextView
+                    android:id="@+id/textView19"
+                    style="@style/TextStyle_SubHeader_Accent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="Add information:"
+                    app:layout_constraintBottom_toTopOf="@+id/ind_read_dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view8" />
+
+                <TextView
+                    android:id="@+id/textView17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="HDH(per week)"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ind_read_dp2" />
+
+                <TextView
+                    android:id="@+id/textView23"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="Mobilisation"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+                <TextView
+                    android:id="@+id/textView20"
+                    style="@style/TextStyle_SubHeader_Accent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="24dp"
+                    android:text="Goal for year"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView26"
+                    style="@style/TextStyle_SubHeader_Accent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Goal for month"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view4" />
+
+                <TextView
+                    android:id="@+id/textView33"
+                    style="@style/TextStyle_SubHeader_Accent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Goal for week"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view7" />
+
+                <TextView
+                    android:id="@+id/textView22"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Actionaser"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="@dimen/body1_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/view"
+                    app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+                <TextView
+                    android:id="@+id/textView30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Actionaser"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="@dimen/body1_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/view6"
+                    app:layout_constraintTop_toBottomOf="@+id/textView26" />
+
+                <EditText
+                    android:id="@+id/indivitual_action_goal"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="@dimen/body2_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView22"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/textView22"
+                    app:layout_constraintTop_toTopOf="@+id/textView22" />
+
+                <EditText
+                    android:id="@+id/month_action_goal"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="@dimen/body2_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView30"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/textView30"
+                    app:layout_constraintTop_toTopOf="@+id/textView30" />
+
+                <TextView
+                    android:id="@+id/textView25"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="NWET"
+                    android:textColor="@color/saddlebrown"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/view"
+                    app:layout_constraintTop_toBottomOf="@+id/each_center_21-d" />
+
+                <TextView
+                    android:id="@+id/ind_goal_nwet_month_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="NWET"
+                    android:textColor="@color/saddlebrown"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/view6"
+                    app:layout_constraintTop_toBottomOf="@+id/individual_month_21_goal" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:text="@string/introdaction"
-            android:textColor="@color/text_primary_dark"
-            android:textSize="@dimen/body1_text_size"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView20" />
-
-        <View
-            android:id="@+id/view"
-            style="@style/AppTheme.VerticalViewDivider"
-            android:layout_width="1dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
+            android:gravity="bottom"
+            android:orientation="vertical">
 
 
-            android:layout_marginEnd="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/two_day_seminar_edittext"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/each_center_intr" />
-
-        <com.google.android.material.textfield.TextInputEditText
-
-            android:id="@+id/introduction_edittext"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:inputType="numberDecimal"
-            android:selectAllOnFocus="true"
-            android:text=""
-            android:textAlignment="center"
-            android:textColor="@color/text_primary_dark"
-            android:textSize="@dimen/body2_text_size"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/each_center_intr"
-            app:layout_constraintEnd_toStartOf="@+id/view"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/each_center_intr"
-            app:layout_constraintTop_toTopOf="@+id/each_center_intr" />
-
-        <TextView
-
-            android:id="@+id/each_center_one_day"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:text="@string/one_day_seminar"
-            android:textColor="@color/text_primary_dark"
-            android:textSize="@dimen/body1_text_size"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/each_center_intr" />
-
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/two_day_seminar"
-            android:textColor="@color/text_primary_dark"
-            android:textSize="@dimen/body1_text_size"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/each_center_one_day" />
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/one_day_seminar_edittext"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:inputType="numberDecimal"
-            android:selectAllOnFocus="true"
-            android:text=""
-            android:textAlignment="center"
-            android:textColor="@color/text_primary_dark"
-            android:textSize="@dimen/body2_text_size"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/each_center_one_day"
-            app:layout_constraintEnd_toStartOf="@+id/view"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/each_center_one_day"
-            app:layout_constraintTop_toTopOf="@+id/each_center_one_day" />
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/two_day_seminar_edittext"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:inputType="numberDecimal"
-            android:selectAllOnFocus="true"
-            android:text=""
-            android:textAlignment="center"
-            android:textColor="@color/text_primary_dark"
-            android:textSize="@dimen/body2_text_size"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/textView7"
-            app:layout_constraintEnd_toStartOf="@+id/view"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/textView7"
-            app:layout_constraintTop_toTopOf="@+id/textView7" />
-
-        <TextView
-            android:id="@+id/each_center_21-d"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:text="21-day WS"
-            android:textColor="@color/text_primary_dark"
-            android:textSize="@dimen/body1_text_size"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/view"
-            app:layout_constraintTop_toBottomOf="@+id/textView22" />
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/result_nwet_edittext"
-
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:inputType="numberDecimal"
-            android:selectAllOnFocus="true"
-            android:text=""
-            android:textAlignment="center"
-            android:textColor="@color/text_primary_dark"
-            android:textSize="@dimen/body2_text_size"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/textView25"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView25" />
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/day21_seminar_edittext"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:inputType="numberDecimal"
-            android:selectAllOnFocus="true"
-            android:text=""
-            android:textAlignment="center"
-            android:textColor="@color/text_primary_dark"
-            android:textSize="@dimen/body2_text_size"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/each_center_21-d"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/each_center_21-d"
-            app:layout_constraintTop_toTopOf="@+id/each_center_21-d" />
-
-        <TextView
-            android:id="@+id/ind_read_dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:text="Read DP"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView19" />
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/result_DP_edittext"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:inputType="numberDecimal"
-            android:text=""
-            android:textAlignment="center"
-            android:selectAllOnFocus="true"
-            android:textSize="@dimen/body2_text_size"
-            app:layout_constraintBottom_toBottomOf="@+id/ind_read_dp"
-            app:layout_constraintEnd_toStartOf="@+id/view"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/ind_read_dp"
-            app:layout_constraintTop_toTopOf="@+id/ind_read_dp" />
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/result_mmbk_edittext"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:inputType="numberDecimal"
-            android:selectAllOnFocus="true"
-            android:text=""
-            android:textAlignment="center"
-            android:textSize="@dimen/body2_text_size"
-            app:layout_constraintBottom_toBottomOf="@+id/textView17"
-            app:layout_constraintEnd_toEndOf="@+id/result_DP_edittext"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/textView17"
-            app:layout_constraintTop_toTopOf="@+id/textView17" />
-
-
-        <!--Город-->
-
-        <View
-            android:id="@+id/view4"
-            style="@style/AppTheme.HorizontalSpinnerDivider"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/two_day_seminar_edittext" />
-
-
-        <TextView
-            android:id="@+id/textView19"
-            style="@style/TextStyle_SubHeader_Accent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:text="Add information:"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view4" />
-
-        <TextView
-            android:id="@+id/textView17"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
-            android:text="HDH times"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ind_read_dp" />
-
-        <TextView
-            android:id="@+id/textView20"
-            style="@style/TextStyle_SubHeader_Accent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
-            android:text="Goal for year"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView22"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:textColor="@color/text_primary_dark"
-            android:textSize="@dimen/body1_text_size"
-            android:textStyle="bold"
-            android:text="Actionaser"
-            app:layout_constraintStart_toEndOf="@+id/view"
-            app:layout_constraintTop_toBottomOf="@+id/textView20" />
-
-        <EditText
-            android:id="@+id/textView23"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:textAlignment="center"
-            android:textColor="@color/text_primary_dark"
-            android:textSize="@dimen/body2_text_size"
-            android:textStyle="bold"
-            android:text=""
-            app:layout_constraintBottom_toBottomOf="@+id/textView22"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/textView22"
-            app:layout_constraintTop_toTopOf="@+id/textView22" />
-
-        <TextView
-            android:id="@+id/textView25"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:text="NWET"
-            android:textStyle="bold"
-            android:textColor="@color/saddlebrown"
-            app:layout_constraintStart_toEndOf="@+id/view"
-            app:layout_constraintTop_toBottomOf="@+id/each_center_21-d" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
-    </FrameLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="bottom">
-
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/result_fab_confirm_goal"
-            style="@style/FloatingActionButton"
-            app:backgroundTint="@color/link_color"
-            app:srcCompat="@drawable/ic_check_black_24dp" />
-    </LinearLayout>
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/result_fab_confirm_goal"
+                style="@style/FloatingActionButton"
+                app:backgroundTint="@color/link_color"
+                app:srcCompat="@drawable/ic_check_black_24dp" />
+        </LinearLayout>
 
 
 </LinearLayout>
+</ScrollView>

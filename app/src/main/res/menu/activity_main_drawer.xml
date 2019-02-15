@@ -24,6 +24,12 @@
             android:id="@+id/add_each_centers_goal"
             android:icon="@drawable/ic_home_black_24dp"
             android:title="@string/add_each_centers_goal" />
+
+        <item
+            android:id="@+id/add_individual_goals"
+            android:icon="@drawable/ic_tag_faces_black_24dp"
+            android:title="@string/add_individual_goals" />
+
         <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/ic_settings"
