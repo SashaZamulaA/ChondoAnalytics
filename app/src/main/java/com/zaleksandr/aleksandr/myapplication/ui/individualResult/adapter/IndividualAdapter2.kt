@@ -6,9 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.QuerySnapshot
 import com.zaleksandr.aleksandr.myapplication.model.City
+import com.zaleksandr.aleksandr.myapplication.ui.individualGoal.model.IndividualYearGoalModel
 import com.zaleksandr.aleksandr.myapplication.ui.individualResult.IndividualResultFragment
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
+import com.zaleksandr.aleksandr.myapplication.util.clickByFilterIndividualGoal
+import kotlinx.android.synthetic.main.item_individual_goal_and_result_for_center.view.*
+import kotlinx.android.synthetic.main.item_individual_goal_and_result_for_person.view.*
 import kotlinx.android.synthetic.main.item_individual_result_list.view.*
 import java.util.*
 
@@ -37,6 +42,10 @@ class IndividualAdapter2(context: Context,
     }
 
     private val noteRefCollection = firestoreInstance.collection("NewCity")
+    private val refCollectionYearGoal = firestoreInstance.collection("EachMemberYearGoal")
+    private val refCollectionMonthGoal = firestoreInstance.collection("EachMemberMonthGoal")
+    private val refCollectionWeekGoal = firestoreInstance.collection("EachMemberWeekGoal")
+    private val refCollectionAdditionalGoal = firestoreInstance.collection("EachMemberAdditionalGoal")
 
     enum class ClickByFilter {
         DAY, MONTH, WEEK, YEAR
@@ -67,7 +76,7 @@ class IndividualAdapter2(context: Context,
                     parent, false)
             return IndividualHolder(v)
         } else if (viewType == TYPE_HEADER) {
-            val v = LayoutInflater.from(parent.context).inflate(com.zaleksandr.aleksandr.myapplication.R.layout.item_individual_goal_and_result,
+            val v = LayoutInflater.from(parent.context).inflate(com.zaleksandr.aleksandr.myapplication.R.layout.item_individual_goal_and_result_for_person,
                     parent, false)
             return IndividualGoalHolder(v)
         }
@@ -104,10 +113,39 @@ class IndividualAdapter2(context: Context,
 
     inner class IndividualGoalHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind2() {
-            val item = list[position]
+
+            clickByFilterIndividualGoal(refCollectionYearGoal).addOnSuccessListener { querySnapshot ->
+                individualGoal(querySnapshot)
+            }
+        }
+
+        private fun individualGoal(queryDocumentSnapshots: QuerySnapshot) {
+            if (!queryDocumentSnapshots.isEmpty) {
+                queryDocumentSnapshots.forEach { documentSnapshot ->
+                    val individualGoalNote = documentSnapshot.toObject(IndividualYearGoalModel::class.java)
+//year
+                    if (!individualGoalNote.yearIntro.isNullOrEmpty()) {
+                        itemView.year_goal_intro_person.text = individualGoalNote.yearIntro
+                    }
+                    if (!individualGoalNote.yearOneDay.isNullOrEmpty()) {
+                        itemView.year_goal_one_day_sem_person.text = individualGoalNote.yearOneDay
+                    }
+                    if (!individualGoalNote.yearTwoDay.isNullOrEmpty()) {
+                        itemView.goal_two_day_sem_person.text = individualGoalNote.yearTwoDay
+                    }
+                    if (!individualGoalNote.yearActionaiser.isNullOrEmpty()) {
+                        itemView.individ_goal_action_center.text = individualGoalNote.yearActionaiser
+                    }
+                    if (!individualGoalNote.yearTWOne.isNullOrEmpty()) {
+                        itemView.goal_21_day_person.text = individualGoalNote.yearTWOne
+                    }
+                    if (!individualGoalNote.yearNWET.isNullOrEmpty()) {
+                        itemView.goal_year_nwet_person.text = individualGoalNote.yearNWET
+                    }
+                }
+            }
         }
     }
-
 //    fun updateNote(city: City) {
 //        list[mSelectedNoteIndex].intro
 //        notifyDataSetChanged()

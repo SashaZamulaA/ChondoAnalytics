@@ -16,15 +16,15 @@ import com.zaleksandr.aleksandr.myapplication.DialogCompositeDisposable
 import com.zaleksandr.aleksandr.myapplication.addTo
 import com.zaleksandr.aleksandr.myapplication.model.City
 import com.zaleksandr.aleksandr.myapplication.showMaterialDialogCancelDelete
-import com.zaleksandr.aleksandr.myapplication.ui.commonResult.adapter.IndividualAdapter
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import kotlinx.android.synthetic.main.fragment_individual_result.*
 import kotlinx.android.synthetic.main.fragment_individual_result.view.*
 import com.google.android.material.snackbar.Snackbar
+import com.zaleksandr.aleksandr.myapplication.ui.commonResult.adapter.IndividualAdapter2
 import kotlinx.android.synthetic.main.activity_main.*
 
 
-class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunication {
+class IndividualResultFragment : Fragment(), IndividualAdapter2.FragmentCommunication {
     override fun respond(city: City) {
 
         context?.showMaterialDialogCancelDelete(
@@ -37,9 +37,14 @@ class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunica
         )?.addTo(dialogDisposable)
 
     }
+    private val refCollectionYearGoal = firestoreInstance.collection("EachMemberYearGoal").document(FirebaseAuth.getInstance().uid!!)
+    private val refCollectionMonthGoal = firestoreInstance.collection("EachMemberMonthGoal").document(FirebaseAuth.getInstance().uid!!)
+    private val refCollectionWeekGoal = firestoreInstance.collection("EachMemberWeekGoal").document(FirebaseAuth.getInstance().uid!!)
+    private val refCollectionAdditionalGoal = firestoreInstance.collection("EachMemberAdditionalGoal").document(FirebaseAuth.getInstance().uid!!)
+
 
     var toolbar: Toolbar? = null
-    var adapter: IndividualAdapter? = null
+    var adapter: IndividualAdapter2? = null
     private val noteRefCollection = firestoreInstance.collection("NewCity")
     var city: City? = null
     private val items: ArrayList<City> = ArrayList()
@@ -117,14 +122,13 @@ class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunica
         }
     }
 
-
     private fun setUpRecyclerView(rootView: View) {
 
         rootView.list_individual_result_adapter.layoutManager = LinearLayoutManager(this.context, LinearLayout.VERTICAL, false)
         rootView.list_individual_result_adapter.setHasFixedSize(false)
         rootView.list_individual_result_adapter.layoutManager = LinearLayoutManager(context)
 
-        adapter = IndividualAdapter(this.context!!, items, this)
+        adapter = IndividualAdapter2(this.context!!, items, this)
         rootView.list_individual_result_adapter.adapter = adapter
 
         val notesCollectionRef = firestoreInstance.collection("NewCity")

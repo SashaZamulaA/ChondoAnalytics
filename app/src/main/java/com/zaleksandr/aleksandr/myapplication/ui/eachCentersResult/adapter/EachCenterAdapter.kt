@@ -19,8 +19,8 @@ import kotlinx.android.synthetic.main.item_individual_goal_and_result_for_center
 import java.util.*
 
 
-class EachCenterAdapter3(private val context: Context,
-                         private var list: ArrayList<City>
+class EachCenterAdapter(private val context: Context,
+                        private var list: ArrayList<City>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val noteRefCollection = firestoreInstance.collection("NewCity")
     val goleCenterRefCollection = firestoreInstance.collection("GoalCenters")
@@ -63,17 +63,17 @@ class EachCenterAdapter3(private val context: Context,
     }
 
     var period = 0
-    fun perioSelected(periodSelected: EachCenterAdapter3.ClickByFilter) {
+    fun perioSelected(periodSelected: EachCenterAdapter.ClickByFilter) {
 
         when (periodSelected) {
 
-            EachCenterAdapter3.ClickByFilter.WEEK -> {
+            EachCenterAdapter.ClickByFilter.WEEK -> {
                 period = 2; notifyDataSetChanged()
             }
-            EachCenterAdapter3.ClickByFilter.MONTH -> {
+            EachCenterAdapter.ClickByFilter.MONTH -> {
                 period = 3; notifyDataSetChanged()
             }
-            EachCenterAdapter3.ClickByFilter.YEAR -> {
+            EachCenterAdapter.ClickByFilter.YEAR -> {
                 period = 4; notifyDataSetChanged()
             }
         }

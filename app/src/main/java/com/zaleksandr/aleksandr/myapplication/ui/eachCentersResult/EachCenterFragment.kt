@@ -16,17 +16,17 @@ import com.zaleksandr.aleksandr.myapplication.BottomNavigationViewBehavior
 import com.zaleksandr.aleksandr.myapplication.R
 import com.zaleksandr.aleksandr.myapplication.model.City
 import com.zaleksandr.aleksandr.myapplication.model.GoalCenter
-import com.zaleksandr.aleksandr.myapplication.ui.eachCentersResult.adapter.EachCenterAdapter3
+import com.zaleksandr.aleksandr.myapplication.ui.eachCentersResult.adapter.EachCenterAdapter
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_each_senter.view.*
 
-class EachCenterFragment2 : Fragment() {
+class EachCenterFragment : Fragment() {
 
     var toolbar: Toolbar? = null
     private val items: ArrayList<City> = ArrayList()
     private val itemsCenter: ArrayList<GoalCenter> = ArrayList()
-    var adapter: EachCenterAdapter3? = null
+    var adapter: EachCenterAdapter? = null
     private var mLastQueriedDocument: DocumentSnapshot? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(com.zaleksandr.aleksandr.myapplication.R.layout.fragment_each_senter, container, false)
@@ -34,7 +34,7 @@ class EachCenterFragment2 : Fragment() {
         adapterInit(rootView)
         bottomMenuInit(rootView)
 
-        adapter?.perioSelected(EachCenterAdapter3.ClickByFilter.YEAR)
+        adapter?.perioSelected(EachCenterAdapter.ClickByFilter.YEAR)
         return rootView
     }
 
@@ -42,7 +42,7 @@ class EachCenterFragment2 : Fragment() {
         rootView.list_each_center_res_adapter.layoutManager = LinearLayoutManager(this.context, LinearLayout.VERTICAL, false)
         rootView.list_each_center_res_adapter.setHasFixedSize(false)
         rootView.list_each_center_res_adapter?.layoutManager = LinearLayoutManager(context)
-        adapter = EachCenterAdapter3(this.context!!, items)
+        adapter = EachCenterAdapter(this.context!!, items)
         rootView.list_each_center_res_adapter?.adapter = adapter
 
         toolbar = view?.findViewById(R.id.toolbar)
@@ -95,13 +95,13 @@ class EachCenterFragment2 : Fragment() {
         rootView.bottom_navigation_center.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 com.zaleksandr.aleksandr.myapplication.R.id.menu_year -> {
-                    adapter?.perioSelected(EachCenterAdapter3.ClickByFilter.YEAR)
+                    adapter?.perioSelected(EachCenterAdapter.ClickByFilter.YEAR)
                 }
                 com.zaleksandr.aleksandr.myapplication.R.id.menu_month -> {
-                    adapter?.perioSelected(EachCenterAdapter3.ClickByFilter.MONTH)
+                    adapter?.perioSelected(EachCenterAdapter.ClickByFilter.MONTH)
                 }
                 com.zaleksandr.aleksandr.myapplication.R.id.menu_week -> {
-                    adapter?.perioSelected(EachCenterAdapter3.ClickByFilter.WEEK)
+                    adapter?.perioSelected(EachCenterAdapter.ClickByFilter.WEEK)
                 }
 
                 else -> {

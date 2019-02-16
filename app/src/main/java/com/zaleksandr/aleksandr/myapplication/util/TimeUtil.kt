@@ -1,18 +1,10 @@
 package com.zaleksandr.aleksandr.myapplication.util
 
 import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.QuerySnapshot
-import java.time.DayOfWeek
-import java.time.LocalDate
-import java.time.temporal.TemporalAdjusters
-import java.time.temporal.WeekFields
 import java.util.*
-import android.text.format.DateUtils
-import java.time.Clock
-import java.time.ZoneId
-import java.time.temporal.TemporalQueries.zoneId
-
 
 
 fun startOfDay(date: Date): Date {
@@ -78,12 +70,14 @@ fun endOfWeek(): Date {
         return calend.time
     }
 }
+
 private fun getCalendarForNow(): Calendar {
     val calendar = GregorianCalendar.getInstance();
 
     calendar.time = Date()
     return calendar
 }
+
 fun startOfMonth(): Date {
     run {
         val calend = getCalendarForNow()
@@ -127,7 +121,6 @@ fun endOfYear(): Date {
 }
 
 
-
 private fun setTimeToBeginningOfDay(calendar: Calendar) {
 
     calendar.set(Calendar.HOUR_OF_DAY, 0)
@@ -142,6 +135,30 @@ private fun setTimeToEndofDay(calendar: Calendar) {
     calendar.set(Calendar.SECOND, 59)
     calendar.set(Calendar.MILLISECOND, 999)
 }
+
+
+fun clickByFilterIndividualGoal(individualGoalCollection: CollectionReference): Task<QuerySnapshot> {
+
+    return individualGoalCollection.whereEqualTo("currentUserId", if ("${FirebaseAuth.getInstance().uid}" == FirebaseAuth.getInstance().currentUser!!.uid) {
+        FirebaseAuth.getInstance().uid
+    } else null).get()
+
+//    return goalCollection.whereGreaterThanOrEqualTo("time", when (value) {
+//        1 -> startOfDay(Date())
+//        2 -> startOfWeek()
+//        3 -> startOfMonth()
+//        4 -> startOfYear()
+//        else -> startOfDay(Date())
+//    }).whereLessThanOrEqualTo("time", when (value) {
+//        1 -> endOfDay(Date())
+//        2 -> endOfWeek()
+//        3 -> endOfMonth()
+//        4 -> endOfYear()
+//        else -> startOfDay(Date())
+//    }).get()
+
+}
+
 
 fun clickByFilterCommonResult(goalCollection: CollectionReference, position: Int, value: Int): Task<QuerySnapshot> {
     return goalCollection.whereGreaterThanOrEqualTo("time", when (value) {
