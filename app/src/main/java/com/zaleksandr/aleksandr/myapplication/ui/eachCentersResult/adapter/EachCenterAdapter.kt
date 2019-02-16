@@ -125,7 +125,7 @@ class EachCenterAdapter(private val context: Context,
             }
 
             clickByFilterForEachCenterGoal(goleCenterRefCollection, getNumber(cityNumber), period).addOnSuccessListener { queryDocumentSnapshots ->
-                commonGoal(queryDocumentSnapshots)
+                centerGoal(queryDocumentSnapshots)
             }
         }
 
@@ -136,7 +136,6 @@ class EachCenterAdapter(private val context: Context,
             var sumTwoD1 = 0
             var sumTwent1 = 0
             var sumNwet = 0
-
 
             if (!queryDocumentSnapshots.isEmpty) {
                 queryDocumentSnapshots.forEach { documentSnapshot ->
@@ -180,8 +179,7 @@ class EachCenterAdapter(private val context: Context,
             }
         }
 
-
-        fun commonGoal(queryDocumentSnapshots: QuerySnapshot) {
+        private fun centerGoal(queryDocumentSnapshots: QuerySnapshot) {
             if (!queryDocumentSnapshots.isEmpty) {
                 queryDocumentSnapshots.forEach { documentSnapshot ->
 

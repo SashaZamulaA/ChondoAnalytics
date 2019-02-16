@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.appcompat.widget.Toolbar
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
@@ -20,7 +21,9 @@ import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstan
 import kotlinx.android.synthetic.main.fragment_individual_result.*
 import kotlinx.android.synthetic.main.fragment_individual_result.view.*
 import com.google.android.material.snackbar.Snackbar
+import com.zaleksandr.aleksandr.myapplication.BottomNavigationViewBehavior
 import com.zaleksandr.aleksandr.myapplication.ui.commonResult.adapter.IndividualAdapter2
+import com.zaleksandr.aleksandr.myapplication.ui.eachCentersResult.adapter.EachCenterAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -37,11 +40,6 @@ class IndividualResultFragment : Fragment(), IndividualAdapter2.FragmentCommunic
         )?.addTo(dialogDisposable)
 
     }
-    private val refCollectionYearGoal = firestoreInstance.collection("EachMemberYearGoal").document(FirebaseAuth.getInstance().uid!!)
-    private val refCollectionMonthGoal = firestoreInstance.collection("EachMemberMonthGoal").document(FirebaseAuth.getInstance().uid!!)
-    private val refCollectionWeekGoal = firestoreInstance.collection("EachMemberWeekGoal").document(FirebaseAuth.getInstance().uid!!)
-    private val refCollectionAdditionalGoal = firestoreInstance.collection("EachMemberAdditionalGoal").document(FirebaseAuth.getInstance().uid!!)
-
 
     var toolbar: Toolbar? = null
     var adapter: IndividualAdapter2? = null
@@ -56,6 +54,7 @@ class IndividualResultFragment : Fragment(), IndividualAdapter2.FragmentCommunic
 
         setUpRecyclerView(rootView)
 
+        bottomMenuInit(rootView)
 //        rootView.button_individual_result_ind_res.setOnClickListener {
 //            Navigation.findNavController(it).navigate(com.zamulaaleksandr.aleksandr.myapplication.R.id.action_individualResultFragment_to_commonResultFragment3)
 //        }
@@ -158,4 +157,27 @@ class IndividualResultFragment : Fragment(), IndividualAdapter2.FragmentCommunic
                     }
                 }
     }
+
+    private fun bottomMenuInit(rootView: View) {
+        val layoutParams = rootView.bottom_navigation_person.layoutParams as CoordinatorLayout.LayoutParams
+        layoutParams.behavior = BottomNavigationViewBehavior()
+        rootView.bottom_navigation_person.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                com.zaleksandr.aleksandr.myapplication.R.id.menu_year -> {
+                    adapter?.perioSelected(IndividualAdapter2.ClickByFilter.YEAR)
+                }
+                com.zaleksandr.aleksandr.myapplication.R.id.menu_month -> {
+                    adapter?.perioSelected(IndividualAdapter2.ClickByFilter.MONTH)
+                }
+                com.zaleksandr.aleksandr.myapplication.R.id.menu_week -> {
+                    adapter?.perioSelected(IndividualAdapter2.ClickByFilter.WEEK)
+                }
+
+                else -> {
+                }
+            }
+            true
+        }
+    }
+
 }

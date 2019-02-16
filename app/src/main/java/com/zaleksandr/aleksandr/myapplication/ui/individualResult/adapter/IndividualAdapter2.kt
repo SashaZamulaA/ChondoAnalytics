@@ -8,11 +8,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.QuerySnapshot
 import com.zaleksandr.aleksandr.myapplication.model.City
+import com.zaleksandr.aleksandr.myapplication.ui.individualGoal.model.IndividualMonthGoalModel
+import com.zaleksandr.aleksandr.myapplication.ui.individualGoal.model.IndividualWeekGoalModel
 import com.zaleksandr.aleksandr.myapplication.ui.individualGoal.model.IndividualYearGoalModel
 import com.zaleksandr.aleksandr.myapplication.ui.individualResult.IndividualResultFragment
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import com.zaleksandr.aleksandr.myapplication.util.clickByFilterIndividualGoal
-import kotlinx.android.synthetic.main.item_individual_goal_and_result_for_center.view.*
 import kotlinx.android.synthetic.main.item_individual_goal_and_result_for_person.view.*
 import kotlinx.android.synthetic.main.item_individual_result_list.view.*
 import java.util.*
@@ -48,24 +49,22 @@ class IndividualAdapter2(context: Context,
     private val refCollectionAdditionalGoal = firestoreInstance.collection("EachMemberAdditionalGoal")
 
     enum class ClickByFilter {
-        DAY, MONTH, WEEK, YEAR
+        MONTH, WEEK, YEAR
     }
 
-    var period = 0
+    var period = 1
     fun perioSelected(periodSelected: IndividualAdapter2.ClickByFilter) {
 
         when (periodSelected) {
-            CommonResultAdapter.ClickByFilter.DAY -> {
+
+            IndividualAdapter2.ClickByFilter.WEEK -> {
                 period = 1; notifyDataSetChanged()
             }
-            CommonResultAdapter.ClickByFilter.WEEK -> {
+            IndividualAdapter2.ClickByFilter.MONTH -> {
                 period = 2; notifyDataSetChanged()
             }
-            CommonResultAdapter.ClickByFilter.MONTH -> {
+            IndividualAdapter2.ClickByFilter.YEAR -> {
                 period = 3; notifyDataSetChanged()
-            }
-            CommonResultAdapter.ClickByFilter.YEAR -> {
-                period = 4; notifyDataSetChanged()
             }
         }
     }
@@ -114,18 +113,104 @@ class IndividualAdapter2(context: Context,
     inner class IndividualGoalHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind2() {
 
-            clickByFilterIndividualGoal(refCollectionYearGoal).addOnSuccessListener { querySnapshot ->
-                individualGoal(querySnapshot)
+            if (period == 1) {
+                clickByFilterIndividualGoal(refCollectionWeekGoal).addOnSuccessListener { queryDocumentSnapshots ->
+                    weekIndividualGoal(queryDocumentSnapshots)
+                }
+            } else if (period == 2) {
+                clickByFilterIndividualGoal(refCollectionMonthGoal).addOnSuccessListener { queryDocumentSnapshots ->
+                    monthIndividualGoal(queryDocumentSnapshots)
+                }
+            } else if (period == 3) {
+
+                clickByFilterIndividualGoal(refCollectionYearGoal).addOnSuccessListener { querySnapshot ->
+                    yearIndividualGoal(querySnapshot)
+                }
+            }
+
+        }
+
+        private fun weekIndividualGoal(queryDocumentSnapshots: QuerySnapshot) {
+            itemView.goal_21_day_person_text.text = "Mmbk"
+            itemView.goal_intr_person_text.text = "Cont."
+            itemView.nwet_individual.visibility = View.GONE
+            itemView.goal_year_nwet_person.visibility = View.GONE
+            itemView.nwet_result_person.visibility = View.GONE
+
+            if (!queryDocumentSnapshots.isEmpty) {
+                queryDocumentSnapshots.forEach { documentSnapshot ->
+                    val individualGoalNote = documentSnapshot.toObject(IndividualWeekGoalModel::class.java)
+//week
+
+                    if (!individualGoalNote.weekContacts.isNullOrEmpty()) {
+                        itemView.goal_intro_person.text = individualGoalNote.weekContacts
+                    }
+                    if (!individualGoalNote.weekIntro.isNullOrEmpty()) {
+                        itemView.year_goal_one_day_sem_person.text = individualGoalNote.weekIntro
+                    }
+                    if (!individualGoalNote.weekOneDay.isNullOrEmpty()) {
+                        itemView.goal_two_day_sem_person.text = individualGoalNote.weekOneDay
+                    }
+                    if (!individualGoalNote.weekTwoDay.isNullOrEmpty()) {
+                        itemView.individ_goal_action_center.text = individualGoalNote.weekTwoDay
+                    }
+                    if (!individualGoalNote.weekMMBK.isNullOrEmpty()) {
+                        itemView.goal_21_day_person.text = individualGoalNote.weekMMBK
+                    }
+                }
             }
         }
 
-        private fun individualGoal(queryDocumentSnapshots: QuerySnapshot) {
+        private fun monthIndividualGoal(queryDocumentSnapshots: QuerySnapshot) {
+            itemView.goal_intr_person_text.text = "Int."
+            itemView.nwet_individual.text = "NWET"
+            itemView.goal_21_day_person_text.text = "21-d"
+            itemView.nwet_individual.visibility = View.VISIBLE
+            itemView.goal_year_nwet_person.visibility = View.VISIBLE
+            itemView.nwet_result_person.visibility = View.VISIBLE
+            if (!queryDocumentSnapshots.isEmpty) {
+                queryDocumentSnapshots.forEach { documentSnapshot ->
+                    val individualGoalNote = documentSnapshot.toObject(IndividualMonthGoalModel::class.java)
+//month
+
+
+                    if (!individualGoalNote.monthIntro.isNullOrEmpty()) {
+                        itemView.goal_intro_person.text = individualGoalNote.monthIntro
+                    }
+                    if (!individualGoalNote.monthOneDay.isNullOrEmpty()) {
+                        itemView.year_goal_one_day_sem_person.text = individualGoalNote.monthOneDay
+                    }
+                    if (!individualGoalNote.monthTwoDay.isNullOrEmpty()) {
+                        itemView.goal_two_day_sem_person.text = individualGoalNote.monthTwoDay
+                    }
+                    if (!individualGoalNote.monthActioniser.isNullOrEmpty()) {
+                        itemView.individ_goal_action_center.text = individualGoalNote.monthActioniser
+                    }
+                    if (!individualGoalNote.monthTWOne.isNullOrEmpty()) {
+                        itemView.goal_21_day_person.text = individualGoalNote.monthTWOne
+                    }
+                    if (!individualGoalNote.monthNWET.isNullOrEmpty()) {
+                        itemView.goal_year_nwet_person.text = individualGoalNote.monthNWET
+                    }
+                }
+            }
+        }
+
+        private fun yearIndividualGoal(queryDocumentSnapshots: QuerySnapshot) {
+            itemView.goal_intr_person_text.text = "Int."
+            itemView.nwet_individual.text = "NWET"
+            itemView.goal_21_day_person_text.text = "21-d"
+            itemView.nwet_individual.visibility = View.VISIBLE
+            itemView.goal_year_nwet_person.visibility = View.VISIBLE
+            itemView.nwet_result_person.visibility = View.VISIBLE
+
             if (!queryDocumentSnapshots.isEmpty) {
                 queryDocumentSnapshots.forEach { documentSnapshot ->
                     val individualGoalNote = documentSnapshot.toObject(IndividualYearGoalModel::class.java)
 //year
+
                     if (!individualGoalNote.yearIntro.isNullOrEmpty()) {
-                        itemView.year_goal_intro_person.text = individualGoalNote.yearIntro
+                        itemView.goal_intro_person.text = individualGoalNote.yearIntro
                     }
                     if (!individualGoalNote.yearOneDay.isNullOrEmpty()) {
                         itemView.year_goal_one_day_sem_person.text = individualGoalNote.yearOneDay

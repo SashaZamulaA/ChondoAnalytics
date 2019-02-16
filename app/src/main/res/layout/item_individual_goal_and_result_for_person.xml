@@ -17,7 +17,7 @@
 
         <TextView
 
-            android:id="@+id/each_center_intr"
+            android:id="@+id/goal_intr_person_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -48,9 +48,9 @@
             android:textColor="@color/text_primary_dark"
             android:textSize="@dimen/body1_text_size"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/each_center_intr"
+            app:layout_constraintBottom_toBottomOf="@+id/goal_intr_person_text"
             app:layout_constraintEnd_toStartOf="@+id/textView7"
-            app:layout_constraintTop_toTopOf="@+id/each_center_intr"
+            app:layout_constraintTop_toTopOf="@+id/goal_intr_person_text"
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
@@ -77,11 +77,11 @@
             android:textSize="@dimen/body1_text_size"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/textView7"
-            app:layout_constraintEnd_toStartOf="@+id/each_center_21-d"
+            app:layout_constraintEnd_toStartOf="@+id/goal_21_day_person_text"
             app:layout_constraintTop_toTopOf="@+id/textView7" />
 
         <TextView
-            android:id="@+id/each_center_21-d"
+            android:id="@+id/goal_21_day_person_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -90,7 +90,7 @@
             android:textSize="@dimen/body1_text_size"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/textView7"
-            app:layout_constraintEnd_toStartOf="@+id/textView4"
+            app:layout_constraintEnd_toStartOf="@+id/nwet_individual"
             app:layout_constraintTop_toTopOf="@+id/textView7"
             app:layout_constraintVertical_bias="0.0" />
 
@@ -109,16 +109,16 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
+            android:id="@+id/nwet_individual"
+            android:layout_width="0dp"
             android:layout_height="21dp"
             android:layout_marginEnd="8dp"
             android:text="@string/nwet"
             android:textColor="@color/text_primary_dark"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/each_center_21-d"
+            app:layout_constraintBottom_toBottomOf="@+id/goal_21_day_person_text"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/each_center_21-d"
+            app:layout_constraintTop_toTopOf="@+id/goal_21_day_person_text"
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
@@ -129,7 +129,7 @@
             android:layout_marginTop="8dp"
             android:text="@string/goal"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/each_center_intr" />
+            app:layout_constraintTop_toBottomOf="@+id/goal_intr_person_text" />
 
         <TextView
             android:id="@+id/textView24"
@@ -144,13 +144,13 @@
             app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
         <TextView
-            android:id="@+id/year_goal_intro_person"
+            android:id="@+id/goal_intro_person"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
             app:layout_constraintBottom_toBottomOf="@+id/textView16"
-            app:layout_constraintEnd_toEndOf="@+id/each_center_intr"
-            app:layout_constraintStart_toStartOf="@+id/each_center_intr"
+            app:layout_constraintEnd_toEndOf="@+id/goal_intr_person_text"
+            app:layout_constraintStart_toStartOf="@+id/goal_intr_person_text"
             app:layout_constraintTop_toTopOf="@+id/textView16" />
 
         <TextView
@@ -200,8 +200,8 @@
             android:layout_height="wrap_content"
             android:text="0"
             app:layout_constraintBottom_toBottomOf="@+id/textView16"
-            app:layout_constraintEnd_toEndOf="@+id/each_center_21-d"
-            app:layout_constraintStart_toStartOf="@+id/each_center_21-d"
+            app:layout_constraintEnd_toEndOf="@+id/goal_21_day_person_text"
+            app:layout_constraintStart_toStartOf="@+id/goal_21_day_person_text"
             app:layout_constraintTop_toTopOf="@+id/textView16" />
 
         <TextView
@@ -210,8 +210,8 @@
             android:layout_height="wrap_content"
             android:text="0"
             app:layout_constraintBottom_toBottomOf="@+id/textView16"
-            app:layout_constraintEnd_toEndOf="@+id/textView4"
-            app:layout_constraintStart_toStartOf="@+id/textView4"
+            app:layout_constraintEnd_toEndOf="@+id/nwet_individual"
+            app:layout_constraintStart_toStartOf="@+id/nwet_individual"
             app:layout_constraintTop_toTopOf="@+id/textView16" />
 
         <TextView
@@ -220,8 +220,8 @@
             android:layout_height="wrap_content"
             android:text="0"
             app:layout_constraintBottom_toBottomOf="@+id/textView24"
-            app:layout_constraintEnd_toEndOf="@+id/each_center_intr"
-            app:layout_constraintStart_toStartOf="@+id/each_center_intr"
+            app:layout_constraintEnd_toEndOf="@+id/goal_intr_person_text"
+            app:layout_constraintStart_toStartOf="@+id/goal_intr_person_text"
             app:layout_constraintTop_toTopOf="@+id/textView24"
             app:layout_constraintVertical_bias="0.0" />
 
@@ -251,18 +251,18 @@
             android:layout_height="wrap_content"
             android:text="0"
             app:layout_constraintBottom_toBottomOf="@+id/textView24"
-            app:layout_constraintEnd_toEndOf="@+id/each_center_21-d"
-            app:layout_constraintStart_toStartOf="@+id/each_center_21-d"
+            app:layout_constraintEnd_toEndOf="@+id/goal_21_day_person_text"
+            app:layout_constraintStart_toStartOf="@+id/goal_21_day_person_text"
             app:layout_constraintTop_toTopOf="@+id/textView24" />
 
         <TextView
-            android:id="@+id/common_nwet_result"
+            android:id="@+id/nwet_result_person"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
             app:layout_constraintBottom_toBottomOf="@+id/textView24"
-            app:layout_constraintEnd_toEndOf="@+id/textView4"
-            app:layout_constraintStart_toStartOf="@+id/textView4"
+            app:layout_constraintEnd_toEndOf="@+id/nwet_individual"
+            app:layout_constraintStart_toStartOf="@+id/nwet_individual"
             app:layout_constraintTop_toTopOf="@+id/textView24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
