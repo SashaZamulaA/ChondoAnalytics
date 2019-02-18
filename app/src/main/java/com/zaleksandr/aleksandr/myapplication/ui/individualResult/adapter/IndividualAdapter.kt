@@ -10,7 +10,6 @@ import com.zaleksandr.aleksandr.myapplication.R
 import com.zaleksandr.aleksandr.myapplication.model.City
 import com.zaleksandr.aleksandr.myapplication.ui.individualResult.IndividualResultFragment
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
-import kotlinx.android.synthetic.main.item_common_result_list.view.*
 import kotlinx.android.synthetic.main.item_individual_result_list.view.*
 import java.util.*
 
@@ -71,7 +70,7 @@ class IndividualAdapter(context: Context,
             if (!item.lectOnStr.isNullOrEmpty()) itemView.individual_result_lect_center.text = item.lectCentr else itemView.individual_result_lect_center.text = "0"
             if (!item.nwet.isNullOrEmpty()) itemView.ind_result_nwet_num.text = item.nwet else itemView.ind_result_nwet_num.text = "0"
             if (!item.dp.isNullOrEmpty()) itemView.ind_result_read_dp_num.text = item.dp else itemView.ind_result_read_dp_num.text = "0"
-            if (!item.telCont.isNullOrEmpty()) itemView.individual_result_contacts.text = item.telCont else itemView.individual_result_contacts.text = "0"
+            if (!item.contact.isNullOrEmpty()) itemView.individual_result_contacts.text = item.contact else itemView.individual_result_contacts.text = "0"
             if (!item.mmbk.isNullOrEmpty()) itemView.individual_result_mmbk.text = item.mmbk else itemView.individual_result_mmbk.text = "0"
         }
     }

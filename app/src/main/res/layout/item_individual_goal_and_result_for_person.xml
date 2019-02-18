@@ -184,7 +184,7 @@
             app:layout_constraintTop_toTopOf="@+id/textView16" />
 
         <TextView
-            android:id="@+id/goal_two_day_sem_center3"
+            android:id="@+id/indiv_two_day_sem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
@@ -215,7 +215,7 @@
             app:layout_constraintTop_toTopOf="@+id/textView16" />
 
         <TextView
-            android:id="@+id/common_result_intro"
+            android:id="@+id/indiv_result_intro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
@@ -226,7 +226,7 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/common_one_d_result"
+            android:id="@+id/ind_one_d_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
@@ -236,7 +236,7 @@
             app:layout_constraintTop_toTopOf="@+id/textView24" />
 
         <TextView
-            android:id="@+id/common_two_d_result"
+            android:id="@+id/ind_two_d_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
@@ -246,7 +246,7 @@
             app:layout_constraintTop_toTopOf="@+id/textView24" />
 
         <TextView
-            android:id="@+id/common_tw_one_d_result"
+            android:id="@+id/indiv_tw_one_d_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"

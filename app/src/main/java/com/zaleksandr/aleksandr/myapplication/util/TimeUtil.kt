@@ -203,20 +203,21 @@ fun clickByFilterCommonResultForEachCenter(goalCollection: CollectionReference, 
 
 }
 
-fun clickByFilterCommonGoal(noteRefCollection: CollectionReference, position: Int, period: Int): Task<QuerySnapshot> {
-    return noteRefCollection.whereGreaterThanOrEqualTo("time", when (period) {
-        1 -> startOfDay(Date())
-        2 -> startOfWeek()
-        3 -> startOfMonth()
-        4 -> startOfYear()
-        else -> startOfDay(Date())
+fun clickByFilterIndividualResult(noteRefCollection: CollectionReference, period: Int): Task<QuerySnapshot> {
+    return noteRefCollection.whereEqualTo("id", if ("${FirebaseAuth.getInstance().uid}" == FirebaseAuth.getInstance().currentUser!!.uid) {
+        FirebaseAuth.getInstance().uid} else null)
+    .whereGreaterThanOrEqualTo("time", when (period) {
+        1 -> startOfWeek()
+        2 -> startOfMonth()
+        3 -> startOfYear()
+        else -> startOfWeek()
     }).whereLessThanOrEqualTo("time", when (period) {
-        1 -> endOfDay(Date())
-        2 -> endOfWeek()
-        3 -> endOfMonth()
-        4 -> endOfYear()
-        else -> startOfDay(Date())
-    }).get()
+        1 -> endOfWeek()
+        2 -> endOfMonth()
+        3 -> endOfYear()
+        else -> endOfWeek()
+    })
+ .get()
 
 }
 
