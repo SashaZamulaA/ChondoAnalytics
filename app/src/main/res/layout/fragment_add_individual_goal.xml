@@ -251,14 +251,14 @@
                     android:textSize="@dimen/body2_text_size"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/each_center_one_day4"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/view8"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toEndOf="@+id/each_center_one_day4"
                     app:layout_constraintTop_toTopOf="@+id/each_center_one_day4" />
 
                 <com.google.android.material.textfield.TextInputEditText
 
-                    android:id="@+id/ind_2_day_week_goal"
+                    android:id="@+id/ind_act_week_goal"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -276,6 +276,28 @@
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toEndOf="@+id/textView34"
                     app:layout_constraintTop_toTopOf="@+id/textView34" />
+
+                <com.google.android.material.textfield.TextInputEditText
+
+                    android:id="@+id/ind_2_day_week_goal"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:inputType="numberDecimal"
+                    android:selectAllOnFocus="true"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="@dimen/body2_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView39"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/textView39"
+                    app:layout_constraintTop_toTopOf="@+id/textView39"
+                    app:layout_constraintVertical_bias="0.541" />
 
                 <TextView
 
@@ -338,8 +360,8 @@
                     android:text="@string/one_day_seminar"
                     android:textColor="@color/text_primary_dark"
                     android:textSize="@dimen/body1_text_size"
-                    app:layout_constraintStart_toEndOf="@+id/view8"
-                    app:layout_constraintTop_toBottomOf="@+id/textView33" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/each_center_one_day3" />
 
                 <TextView
                     android:id="@+id/textView7"
@@ -371,11 +393,23 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
+                    android:text="Actionaser"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="@dimen/body1_text_size"
+                    app:layout_constraintStart_toEndOf="@+id/view8"
+                    app:layout_constraintTop_toBottomOf="@+id/textView39" />
+
+                <TextView
+                    android:id="@+id/textView39"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
                     android:text="@string/two_day_seminar"
                     android:textColor="@color/text_primary_dark"
                     android:textSize="@dimen/body1_text_size"
                     app:layout_constraintStart_toEndOf="@+id/view8"
-                    app:layout_constraintTop_toBottomOf="@+id/each_center_one_day4" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView33" />
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/one_day_year_goal_edittext"

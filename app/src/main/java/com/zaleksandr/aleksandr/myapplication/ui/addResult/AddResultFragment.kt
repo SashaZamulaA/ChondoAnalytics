@@ -108,15 +108,19 @@ class AddResultFragment : Fragment(){
         val intro = introduction_edittext.text.toString()
         val oneDayWS = one_day_seminar_edittext.text.toString()
         val twoDayWS = two_day_seminar_edittext.text.toString()
+        val actionaiser = res_actionaiser_edittext.text.toString()
         val twOneDay = day21_seminar_edittext.text.toString()
         val approach = result_approach_edit_text.text.toString()
         val telCont = result_add_telephot.text.toString()
+        val timeCenter = result_time_center_edit_text2.text.toString()
         val timeStr = result_time_street_edit_text.text.toString()
         val lectOnStr = result_lectures_on_street_edittext.text.toString()
         val lectCentr = result_lectures_in_center_edittext.text.toString()
         val nwet = result_nwet_edittext.text.toString()
         val dp = result_DP_edittext.text.toString()
         val mmbk = result_mmbk_edittext.text.toString()
+        val dpKor = result_DP_kor_edittext.text.toString()
+        val mobilis = result_mobilisation_edittext.text.toString()
 
         val date:Date
 
@@ -147,7 +151,7 @@ class AddResultFragment : Fragment(){
                     if (!pictureJustChange && user.profilePicturePath != null) {
                         userPhotoPath = user.profilePicturePath
                     }
-                    noteRefCollection.set(City(id, currentUserId, intro, oneDayWS, twoDayWS, twOneDay, centers, approach, telCont, timeStr, lectOnStr, lectCentr, date, timestamp, userPhotoPath, name, nwet, dp, mmbk))
+                    noteRefCollection.set(City(id, currentUserId, intro, oneDayWS, twoDayWS, actionaiser, twOneDay, centers, approach, telCont,timeCenter, timeStr, lectOnStr, lectCentr, date, timestamp, userPhotoPath, name, nwet, dpKor, dp, mmbk, mobilis))
                 }
             }
         }
@@ -155,5 +159,3 @@ class AddResultFragment : Fragment(){
         startActivity(Intent(context, MainActivity::class.java))
     }
  }
-
-

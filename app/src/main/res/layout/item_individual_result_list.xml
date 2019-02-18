@@ -42,7 +42,7 @@
 
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/ind_nwet"
+            app:layout_constraintBottom_toBottomOf="@+id/individual_result_actioniser"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textView2" />
@@ -93,6 +93,21 @@
             app:layout_constraintTop_toBottomOf="@+id/each_center_one_day" />
 
         <TextView
+            android:id="@+id/textView37"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="Actioniser"
+            android:textColor="@color/text_primary_dark"
+            android:textSize="@dimen/body1_text_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+        <TextView
             android:id="@+id/individual_result_one_day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -125,6 +140,22 @@
             app:layout_constraintTop_toTopOf="@+id/textView7" />
 
         <TextView
+            android:id="@+id/individual_result_actioniser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="0"
+            android:textColor="@color/text_primary_dark"
+            android:textSize="@dimen/body1_text_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/textView37"
+            app:layout_constraintEnd_toStartOf="@+id/view"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/textView37"
+            app:layout_constraintTop_toTopOf="@+id/textView37" />
+
+        <TextView
             android:id="@+id/each_center_21-d"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -143,12 +174,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
             android:text="NWET"
             android:textColor="@color/saddlebrown"
             android:textSize="@dimen/body1_text_size"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/view"
             app:layout_constraintTop_toBottomOf="@+id/each_center_21-d" />
 
@@ -282,6 +311,16 @@
             android:layout_marginTop="8dp"
             android:text="@string/read_DP_pages"
             app:layout_constraintStart_toEndOf="@+id/view"
+            app:layout_constraintTop_toBottomOf="@+id/ind_read_dp3" />
+
+        <TextView
+            android:id="@+id/ind_read_dp3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/read_DP_kor_pages"
+            app:layout_constraintStart_toEndOf="@+id/view"
             app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
         <TextView
@@ -309,6 +348,19 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/textView9"
             app:layout_constraintTop_toTopOf="@+id/textView9" />
+
+        <TextView
+            android:id="@+id/individual_result_dp_kor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="0"
+            app:layout_constraintBottom_toBottomOf="@+id/ind_read_dp3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/ind_read_dp3"
+            app:layout_constraintTop_toTopOf="@+id/ind_read_dp3" />
 
         <TextView
             android:id="@+id/individual_time_city"

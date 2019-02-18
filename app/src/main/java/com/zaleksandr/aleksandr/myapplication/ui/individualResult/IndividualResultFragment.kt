@@ -22,12 +22,11 @@ import kotlinx.android.synthetic.main.fragment_individual_result.*
 import kotlinx.android.synthetic.main.fragment_individual_result.view.*
 import com.google.android.material.snackbar.Snackbar
 import com.zaleksandr.aleksandr.myapplication.BottomNavigationViewBehavior
-import com.zaleksandr.aleksandr.myapplication.ui.commonResult.adapter.IndividualAdapter2
-import com.zaleksandr.aleksandr.myapplication.ui.eachCentersResult.adapter.EachCenterAdapter
+import com.zaleksandr.aleksandr.myapplication.ui.commonResult.adapter.IndividualAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
 
-class IndividualResultFragment : Fragment(), IndividualAdapter2.FragmentCommunication {
+class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunication {
     override fun respond(city: City) {
 
         context?.showMaterialDialogCancelDelete(
@@ -42,7 +41,7 @@ class IndividualResultFragment : Fragment(), IndividualAdapter2.FragmentCommunic
     }
 
     var toolbar: Toolbar? = null
-    var adapter: IndividualAdapter2? = null
+    var adapter: IndividualAdapter? = null
     private val noteRefCollection = firestoreInstance.collection("NewCity")
     var city: City? = null
     private val items: ArrayList<City> = ArrayList()
@@ -127,7 +126,7 @@ class IndividualResultFragment : Fragment(), IndividualAdapter2.FragmentCommunic
         rootView.list_individual_result_adapter.setHasFixedSize(false)
         rootView.list_individual_result_adapter.layoutManager = LinearLayoutManager(context)
 
-        adapter = IndividualAdapter2(this.context!!, items, this)
+        adapter = IndividualAdapter(this.context!!, items, this)
         rootView.list_individual_result_adapter.adapter = adapter
 
         val notesCollectionRef = firestoreInstance.collection("NewCity")
@@ -164,13 +163,13 @@ class IndividualResultFragment : Fragment(), IndividualAdapter2.FragmentCommunic
         rootView.bottom_navigation_person.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 com.zaleksandr.aleksandr.myapplication.R.id.menu_year -> {
-                    adapter?.perioSelected(IndividualAdapter2.ClickByFilter.YEAR)
+                    adapter?.perioSelected(IndividualAdapter.ClickByFilter.YEAR)
                 }
                 com.zaleksandr.aleksandr.myapplication.R.id.menu_month -> {
-                    adapter?.perioSelected(IndividualAdapter2.ClickByFilter.MONTH)
+                    adapter?.perioSelected(IndividualAdapter.ClickByFilter.MONTH)
                 }
                 com.zaleksandr.aleksandr.myapplication.R.id.menu_week -> {
-                    adapter?.perioSelected(IndividualAdapter2.ClickByFilter.WEEK)
+                    adapter?.perioSelected(IndividualAdapter.ClickByFilter.WEEK)
                 }
 
                 else -> {

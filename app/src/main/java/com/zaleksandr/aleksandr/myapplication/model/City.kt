@@ -8,10 +8,12 @@ data class City(
         val intro: String?,
         val onedayWS: String?,
         val twoDayWS: String?,
+        val actionaiser:String?,
         val twOneDay: String?,
         val centers: String?,
         val approach: String?,
         val contact: String?,
+        val timeCenter: String,
         val timeStr: String?,
         val lectOnStr: String?,
         val lectCentr: String?,
@@ -20,8 +22,10 @@ data class City(
         val userPhotoPath: String?,
         val name: String?,
         val nwet: String?,
+        val dpKor: String?,
         val dp: String?,
-        val mmbk: String?
+        val mmbk: String?,
+        val mobilis: String?
 
 ) {
     constructor() : this(getId = "",
@@ -29,10 +33,12 @@ data class City(
             intro = "0",
             onedayWS = "0",
             twoDayWS = "0",
+            actionaiser = "0",
             twOneDay = "0",
             centers = "",
             approach = "",
             contact = "",
+            timeCenter = "",
             timeStr = "",
             lectOnStr = "",
             lectCentr = "",
@@ -41,8 +47,10 @@ data class City(
             userPhotoPath = "",
             name = "",
             nwet = "",
+            dpKor = "",
             dp = "",
-            mmbk = ""
+            mmbk = "",
+            mobilis = ""
     )
 
 }

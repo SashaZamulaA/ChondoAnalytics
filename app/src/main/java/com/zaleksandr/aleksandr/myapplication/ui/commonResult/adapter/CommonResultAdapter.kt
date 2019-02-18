@@ -12,6 +12,7 @@ import com.zaleksandr.aleksandr.myapplication.model.Goal
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import com.zaleksandr.aleksandr.myapplication.util.clickByFilter
 import com.zaleksandr.aleksandr.myapplication.util.clickByFilterCommonResult
+import kotlinx.android.synthetic.main.fragment_add_result2.view.*
 import kotlinx.android.synthetic.main.item_common_goal_and_result_list2.view.*
 import kotlinx.android.synthetic.main.item_common_result_list.view.*
 
@@ -353,20 +354,24 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
             itemView.common_result_city.text = item.centers
 
             clickByFilter(noteRefCollection, position, period).addOnSuccessListener { queryDocumentSnapshots ->
-                cityName(queryDocumentSnapshots)
+                cityResult(queryDocumentSnapshots)
             }
         }
 
-        private fun cityName(queryDocumentSnapshots: QuerySnapshot) {
+        private fun cityResult(queryDocumentSnapshots: QuerySnapshot) {
+
 
             var sumIntro = 0
             var sumOneD1 = 0
             var sumTwoD1 = 0
             var sumTwent1 = 0
+            var sumNwet = 0
             var sumAppr = 0
             var sumTimeStr = 0
             var sumStrLect = 0
             var sumCenteLect = 0
+            var sumAction = 0
+            var sumMmbk = 0
 
             if (!queryDocumentSnapshots.isEmpty) {
                 queryDocumentSnapshots.forEach { documentSnapshot ->
@@ -394,6 +399,14 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
                         sumTwent1 += twOneDay
                     }
 
+                    if (!resultNote.nwet.isNullOrEmpty()) {
+                        val nwet = Integer.parseInt(resultNote.nwet)
+                        sumNwet += nwet
+                    } else {
+                        itemView.center_mmbk_res.text = "0"
+                    }
+
+
                     if (!resultNote.approach.isNullOrEmpty()) {
                         val approach = Integer.parseInt(resultNote.approach)
                         sumAppr += approach
@@ -419,19 +432,37 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
                     } else {
                         itemView.individual_lect_center.text = "0"
                     }
+
+                    if (!resultNote.actionaiser.isNullOrEmpty()) {
+                        val action = Integer.parseInt(resultNote.actionaiser)
+                        sumAction += action
+                    } else {
+                        itemView.center_action_res.text = "0"
+                    }
+
+                    if (!resultNote.mmbk.isNullOrEmpty()) {
+                        val mmbk = Integer.parseInt(resultNote.mmbk)
+                        sumMmbk += mmbk
+                    } else {
+                        itemView.center_mmbk_res.text = "0"
+                    }
+
                 }
                 itemView.each_center_intro.text = sumIntro.toString()
                 itemView.each_center_one_day_edittext.text = sumOneD1.toString()
                 itemView.each_center_two_day.text = sumTwoD1.toString()
+                itemView.center_action_res.text = sumAction.toString()
                 itemView.each_center_21_day.text = sumTwent1.toString()
+                itemView.each_center_nwet.text = sumNwet.toString()
                 itemView.individual_time_str.text = sumTimeStr.toString()
                 itemView.individual_approach.text = sumAppr.toString()
                 itemView.individual_contact.text = sumStrLect.toString()
-//                itemView.individual_street_lect.text = sumStrLect.toString()
-                        itemView.individual_lect_center.text = sumCenteLect.toString()
+                itemView.individual_lect_center.text = sumCenteLect.toString()
+                itemView.center_mmbk_res.text = sumMmbk.toString()
+
 
             } else {
-//                itemView.result_city.text = model.centers.toString()
+//              itemView.result_city.text = model.centers.toString()
                 itemView.each_center_intro.text = "0"
                 itemView.each_center_one_day_edittext.text = "0"
                 itemView.each_center_two_day.text = "0"
@@ -444,7 +475,6 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
             }
         }
     }
-
 
     interface FragmentCommunication {
         fun respond(position: Int)

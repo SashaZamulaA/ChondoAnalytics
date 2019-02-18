@@ -204,9 +204,9 @@
     <string name="one_day_seminar_easy">1-dWS</string>
     <string name="two_day_seminar_easy">2-dWS</string>
     <string name="day21_seminar_easy">21-dWS</string>
-    <string name="common_res_and_goal">Common centers results</string>
+    <string name="common_res_and_goal">Common centers result</string>
     <string name="nwet">NWET</string>
-    <string name="read_DP_pages">Read DP(pages)</string>
+    <string name="read_DP_pages">DP ukr.(page)</string>
     <string name="one_day_easy">1-d</string>
     <string name="two_day_easy">2-d</string>
     <string name="day21_easy">21-d</string>
@@ -218,7 +218,7 @@
     <string name="change_goal">Chondo common goal</string>
     <string name="lect_on_streat">Lect. on str.</string>
     <string name="lect_in_centre">Lect. in centr</string>
-    <string name="DP_pages">Read DP</string>
+    <string name="DP_pages">Read DP(kor.)</string>
     <string name="streat_t">Time on street</string>
     <string name="tel_cont">Tel. contact</string>
     <string name="DP_pages_times">Read DP(times)</string>
@@ -231,4 +231,7 @@
     <string name="select_range">Select period</string>
     <string name="add_individual_goals">Add individual goals</string>
     <string name="individual_goals_and_result">Individual goals and result</string>
+    <string name="center_time">Time in center</string>
+    <string name="read_DP_kor_pages">DP kor.(page)</string>
+    <string name="DP_pages_ukr">Read DP(ukr.)</string>
 </resources>

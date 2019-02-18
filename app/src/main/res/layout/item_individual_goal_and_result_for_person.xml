@@ -20,9 +20,8 @@
             android:id="@+id/goal_intr_person_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:ellipsize="end"
             android:maxLines="1"
             android:singleLine="true"
@@ -31,6 +30,24 @@
             android:textSize="@dimen/body1_text_size"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/each_center_one_day"
+            app:layout_constraintTop_toBottomOf="@+id/common_name" />
+
+        <TextView
+
+            android:id="@+id/goal_cont_person_text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="Cont."
+            android:textColor="@color/text_primary_dark"
+            android:textSize="@dimen/body1_text_size"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/goal_intr_person_text"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/textView24"
             app:layout_constraintTop_toBottomOf="@+id/common_name" />
@@ -40,7 +57,7 @@
             android:id="@+id/each_center_one_day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="8dp"
             android:ellipsize="end"
             android:maxLines="1"
             android:singleLine="true"
@@ -72,7 +89,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:text="Action."
+            android:text="Act."
             android:textColor="@color/text_primary_dark"
             android:textSize="@dimen/body1_text_size"
             android:textStyle="bold"
@@ -84,7 +101,7 @@
             android:id="@+id/goal_21_day_person_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="8dp"
             android:text="@string/day21_easy"
             android:textColor="@color/text_primary_dark"
             android:textSize="@dimen/body1_text_size"
@@ -117,9 +134,21 @@
             android:textColor="@color/text_primary_dark"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/goal_21_day_person_text"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/dp_text"
             app:layout_constraintTop_toTopOf="@+id/goal_21_day_person_text"
             app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/dp_text"
+            android:layout_width="0dp"
+            android:layout_height="21dp"
+            android:layout_marginEnd="8dp"
+            android:text="DP"
+            android:textColor="@color/text_primary_dark"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/goal_21_day_person_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/goal_21_day_person_text" />
 
         <TextView
             android:id="@+id/textView16"
@@ -154,6 +183,17 @@
             app:layout_constraintTop_toTopOf="@+id/textView16" />
 
         <TextView
+            android:id="@+id/goal_cont_person"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            app:layout_constraintBottom_toBottomOf="@+id/textView16"
+            app:layout_constraintEnd_toEndOf="@+id/goal_cont_person_text2"
+            app:layout_constraintStart_toStartOf="@+id/goal_cont_person_text2"
+            app:layout_constraintTop_toTopOf="@+id/textView16"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
             android:id="@+id/year_goal_one_day_sem_person"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -184,7 +224,7 @@
             app:layout_constraintTop_toTopOf="@+id/textView16" />
 
         <TextView
-            android:id="@+id/indiv_two_day_sem"
+            android:id="@+id/indiv_action_res"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
@@ -215,6 +255,16 @@
             app:layout_constraintTop_toTopOf="@+id/textView16" />
 
         <TextView
+            android:id="@+id/dp_goal_year_person"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            app:layout_constraintBottom_toBottomOf="@+id/textView16"
+            app:layout_constraintEnd_toEndOf="@+id/dp_text"
+            app:layout_constraintStart_toStartOf="@+id/dp_text"
+            app:layout_constraintTop_toTopOf="@+id/textView16" />
+
+        <TextView
             android:id="@+id/indiv_result_intro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -222,6 +272,17 @@
             app:layout_constraintBottom_toBottomOf="@+id/textView24"
             app:layout_constraintEnd_toEndOf="@+id/goal_intr_person_text"
             app:layout_constraintStart_toStartOf="@+id/goal_intr_person_text"
+            app:layout_constraintTop_toTopOf="@+id/textView24"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/indiv_result_cont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            app:layout_constraintBottom_toBottomOf="@+id/textView24"
+            app:layout_constraintEnd_toEndOf="@+id/goal_cont_person_text2"
+            app:layout_constraintStart_toStartOf="@+id/goal_cont_person_text2"
             app:layout_constraintTop_toTopOf="@+id/textView24"
             app:layout_constraintVertical_bias="0.0" />
 
@@ -264,6 +325,17 @@
             app:layout_constraintEnd_toEndOf="@+id/nwet_individual"
             app:layout_constraintStart_toStartOf="@+id/nwet_individual"
             app:layout_constraintTop_toTopOf="@+id/textView24" />
+
+        <TextView
+            android:id="@+id/dp_result_person"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            app:layout_constraintBottom_toBottomOf="@+id/textView24"
+            app:layout_constraintEnd_toEndOf="@+id/dp_text"
+            app:layout_constraintStart_toStartOf="@+id/dp_text"
+            app:layout_constraintTop_toTopOf="@+id/textView24"
+            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

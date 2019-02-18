@@ -6,7 +6,8 @@ data class IndividualWeekGoalModel(
         val weekContacts: String,
         val weekIntro: String?,
         val weekOneDay: String?,
-        val weekTwoDay: String?
+        val weekTwoDay: String?,
+        val weekAct: String
 
 ) {
     constructor() : this(
@@ -15,7 +16,8 @@ data class IndividualWeekGoalModel(
             weekContacts = "",
             weekIntro = "",
             weekOneDay = "",
-            weekTwoDay = ""
+            weekTwoDay = "",
+            weekAct = ""
     )
 
     fun constructor() {
