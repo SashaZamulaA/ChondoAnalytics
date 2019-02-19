@@ -114,6 +114,7 @@ class AddResultFragment : Fragment(){
         val telCont = result_add_telephot.text.toString()
         val timeCenter = result_time_center_edit_text2.text.toString()
         val timeStr = result_time_street_edit_text.text.toString()
+        val lectTraining = result_add_lect_training.text.toString()
         val lectOnStr = result_lectures_on_street_edittext.text.toString()
         val lectCentr = result_lectures_in_center_edittext.text.toString()
         val nwet = result_nwet_edittext.text.toString()
@@ -151,7 +152,7 @@ class AddResultFragment : Fragment(){
                     if (!pictureJustChange && user.profilePicturePath != null) {
                         userPhotoPath = user.profilePicturePath
                     }
-                    noteRefCollection.set(City(id, currentUserId, intro, oneDayWS, twoDayWS, actionaiser, twOneDay, centers, approach, telCont,timeCenter, timeStr, lectOnStr, lectCentr, date, timestamp, userPhotoPath, name, nwet, dpKor, dp, mmbk, mobilis))
+                    noteRefCollection.set(City(id, currentUserId, intro, oneDayWS, twoDayWS, actionaiser, twOneDay, centers, approach, telCont,timeCenter, timeStr, lectTraining, lectOnStr, lectCentr, date, timestamp, userPhotoPath, name, nwet, dpKor, dp, mmbk, mobilis))
                 }
             }
         }

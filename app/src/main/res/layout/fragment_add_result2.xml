@@ -323,6 +323,16 @@
                     android:layout_marginTop="16dp"
                     android:text="@string/lect_on_streat"
                     app:layout_constraintStart_toEndOf="@+id/view"
+                    app:layout_constraintTop_toBottomOf="@+id/textView40" />
+
+                <TextView
+                    android:id="@+id/textView40"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Lect.training"
+                    app:layout_constraintStart_toEndOf="@+id/view"
                     app:layout_constraintTop_toBottomOf="@+id/result_tel_contact" />
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -518,6 +528,23 @@
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toEndOf="@+id/result_tel_contact"
                     app:layout_constraintTop_toTopOf="@+id/result_tel_contact" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/result_add_lect_training"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:inputType="numberDecimal"
+                    android:selectAllOnFocus="true"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textSize="@dimen/body2_text_size"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView40"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/textView40"
+                    app:layout_constraintTop_toTopOf="@+id/textView40" />
 
                 <TextView
                     android:id="@+id/textView19"

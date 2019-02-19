@@ -99,6 +99,7 @@ class AddIndividualGoalFragment : Fragment() {
         val currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
 
         val weekMMBK = ind_mmbk_week_goal.text.toString()
+        val weekLectTraining = indiv_lect_tr_week.text.toString()
         val weekContacts = indiv_contact_week_doal.text.toString()
         val weekIntro = ind_week_goal_intro.text.toString()
         val weekOneDay = ind_1_day_week_goal.text.toString()
@@ -108,7 +109,7 @@ class AddIndividualGoalFragment : Fragment() {
         FirestoreUtil.currentUserDocRef.addSnapshotListener { documentSnapshot, _ ->
             FirestoreUtil.getCurrentUser { user ->
                 if (documentSnapshot?.exists()!!) {
-                    refCollectionWeekGoal.set(IndividualWeekGoalModel(currentUserId, weekMMBK, weekContacts, weekIntro, weekOneDay, weekTwoDay, weekAct))
+                    refCollectionWeekGoal.set(IndividualWeekGoalModel(currentUserId, weekMMBK, weekLectTraining, weekContacts, weekIntro, weekOneDay, weekTwoDay, weekAct))
                 }
             }
         }

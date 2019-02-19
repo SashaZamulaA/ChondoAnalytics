@@ -85,6 +85,22 @@
                     android:textColor="@color/text_primary_dark"
                     android:textSize="@dimen/body1_text_size"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/each_center_intr5" />
+
+                <TextView
+
+                    android:id="@+id/each_center_intr5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="23dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="Lecture tr."
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="@dimen/body1_text_size"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView33" />
 
                 <TextView
@@ -144,11 +160,12 @@
 
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/ind_mmbk_week_goal"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/ind_1_day_week_goal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.494"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/indiv_contact_week_doal" />
+                    app:layout_constraintTop_toTopOf="@+id/indiv_lect_tr_week" />
 
                 <com.google.android.material.textfield.TextInputEditText
 
@@ -212,6 +229,27 @@
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toEndOf="@+id/each_center_intr3"
                     app:layout_constraintTop_toTopOf="@+id/each_center_intr3" />
+
+                <com.google.android.material.textfield.TextInputEditText
+
+                    android:id="@+id/indiv_lect_tr_week"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:inputType="numberDecimal"
+                    android:selectAllOnFocus="true"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textColor="@color/text_primary_dark"
+                    android:textSize="@dimen/body2_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/each_center_intr5"
+                    app:layout_constraintEnd_toStartOf="@+id/view8"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/each_center_intr5"
+                    app:layout_constraintTop_toTopOf="@+id/each_center_intr5" />
 
                 <com.google.android.material.textfield.TextInputEditText
 
@@ -694,11 +732,25 @@
                 <View
                     android:id="@+id/view7"
                     style="@style/AppTheme.HorizontalSpinnerDivider"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ind_1_day_week_goal" />
+
+                <View
+                    android:id="@+id/view9"
+                    style="@style/AppTheme.HorizontalSpinnerDivider"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="8dp"
+                    android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -715,7 +767,7 @@
                     android:text="Add information:"
                     app:layout_constraintBottom_toTopOf="@+id/ind_read_dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/view8" />
+                    app:layout_constraintTop_toBottomOf="@+id/view7" />
 
                 <TextView
                     android:id="@+id/textView17"
@@ -770,7 +822,7 @@
                     android:layout_marginTop="16dp"
                     android:text="Goal for week"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/view7" />
+                    app:layout_constraintTop_toBottomOf="@+id/view9" />
 
                 <TextView
                     android:id="@+id/textView22"
