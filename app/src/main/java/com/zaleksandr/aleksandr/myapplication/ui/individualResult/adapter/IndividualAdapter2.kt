@@ -20,27 +20,32 @@ import kotlinx.android.synthetic.main.item_individual_result_list.view.*
 import java.util.*
 
 
-class IndividualAdapter(context: Context,
-                        private var list: ArrayList<City>,
-                        private var fragmentCommunication: IndividualResultFragment) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class IndividualAdapter2(context: Context,
+                         private var list: ArrayList<City>,
+                         private var fragmentCommunication: IndividualResultFragment) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
     private val TYPE_HEADER = 0
     private val TYPE_ITEM = 1
+    private val TYPE_HEADER_ADD = 2
 
     var city: City? = null
     private var mSelectedNoteIndex: Int = 0
 
     override fun getItemCount(): Int {
-        return list.size + 1
+        return list.size + 2
     }
 
     private fun getItem(position: Int): City {
-        return list[position - 1]
+        return list[position - 2]
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (position == 0) TYPE_HEADER else TYPE_ITEM
+        return when (position) {
+            0 -> TYPE_HEADER
+            1 -> TYPE_HEADER_ADD
+            else -> TYPE_ITEM
+        }
     }
 
     private val noteRefCollection = firestoreInstance.collection("NewCity")
@@ -54,17 +59,17 @@ class IndividualAdapter(context: Context,
     }
 
     var period = 3
-    fun perioSelected(periodSelected: IndividualAdapter.ClickByFilter) {
+    fun perioSelected(periodSelected: IndividualAdapter2.ClickByFilter) {
 
         when (periodSelected) {
 
-            IndividualAdapter.ClickByFilter.WEEK -> {
+            IndividualAdapter2.ClickByFilter.WEEK -> {
                 period = 1; notifyDataSetChanged()
             }
-            IndividualAdapter.ClickByFilter.MONTH -> {
+            IndividualAdapter2.ClickByFilter.MONTH -> {
                 period = 2; notifyDataSetChanged()
             }
-            IndividualAdapter.ClickByFilter.YEAR -> {
+            IndividualAdapter2.ClickByFilter.YEAR -> {
                 period = 3; notifyDataSetChanged()
             }
         }
@@ -79,6 +84,10 @@ class IndividualAdapter(context: Context,
             val v = LayoutInflater.from(parent.context).inflate(com.zaleksandr.aleksandr.myapplication.R.layout.item_individual_goal_and_result_for_person,
                     parent, false)
             return IndividualGoalHolder(v)
+        } else if (viewType == TYPE_HEADER_ADD) {
+            val v = LayoutInflater.from(parent.context).inflate(com.zaleksandr.aleksandr.myapplication.R.layout.item_individual_goal_and_result_for_person2,
+                    parent, false)
+            return IndividualGoalHolderAddRes(v)
         }
         throw RuntimeException("there is no type that matches the type $viewType + make sure your using types correctly")
     }
@@ -90,13 +99,15 @@ class IndividualAdapter(context: Context,
         } else if (holder is IndividualGoalHolder) {
 
             holder.bind2()
+        } else if (holder is IndividualGoalHolderAddRes){
+            holder.bind3()
         }
     }
 
     inner class IndividualHolder(itemView: View, fragmentCommunication: IndividualResultFragment) : RecyclerView.ViewHolder(itemView), View.OnLongClickListener {
 
         override fun onLongClick(v: View?): Boolean {
-            mSelectedNoteIndex = adapterPosition - 1
+            mSelectedNoteIndex = adapterPosition - 2
             fragmentCommunication.respond(list[mSelectedNoteIndex])
             return false
         }
@@ -107,7 +118,7 @@ class IndividualAdapter(context: Context,
 
 
         fun bind() {
-            val item = list[position - 1]
+            val item = list[position - 2]
             itemView.individual_result_city.text = item.centers
             itemView.individual_time_city.text = formatDateAndTime(item.timestamp)
             if (!item.contact.isNullOrEmpty()) itemView.individual_result_contacts.text = item.contact else itemView.individual_result_intro.text = "0"
@@ -399,16 +410,31 @@ class IndividualAdapter(context: Context,
 //    }
 
     @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-    inner class CityHolder(itemView: View, var fragmentCommunication: IndividualResultFragment) : RecyclerView.ViewHolder(itemView), View.OnLongClickListener {
-        override fun onLongClick(v: View?): Boolean {
-            mSelectedNoteIndex = adapterPosition
-            fragmentCommunication.respond(list[mSelectedNoteIndex])
-            return false
+    inner class IndividualGoalHolderAddRes(itemView: View) : RecyclerView.ViewHolder(itemView){
+        fun bind3() {
+
+//            clickByFilterIndividualResult(noteRefCollection, period).addOnSuccessListener { queryDocumentSnapshots ->
+//                individualResult(queryDocumentSnapshots)
+//            }
+//
+//            if (period == 1) {
+//                clickByFilterIndividualGoal(refCollectionWeekGoal).addOnSuccessListener { queryDocumentSnapshots ->
+//                    weekIndividualGoal(queryDocumentSnapshots)
+//                }
+//            } else if (period == 2) {
+//                clickByFilterIndividualGoal(refCollectionMonthGoal).addOnSuccessListener { queryDocumentSnapshots ->
+//                    monthIndividualGoal(queryDocumentSnapshots)
+//                }
+//            } else if (period == 3) {
+//
+//                clickByFilterIndividualGoal(refCollectionYearGoal).addOnSuccessListener { querySnapshot ->
+//                    yearIndividualGoal(querySnapshot)
+//                }
+//            }
+
         }
 
-        init {
-            itemView.setOnLongClickListener(this)
-        }
+
     }
 
     interface FragmentCommunication {

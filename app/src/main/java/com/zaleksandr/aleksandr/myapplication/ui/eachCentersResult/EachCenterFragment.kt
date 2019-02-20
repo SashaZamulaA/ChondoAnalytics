@@ -47,7 +47,7 @@ class EachCenterFragment : Fragment() {
 
         toolbar = view?.findViewById(R.id.toolbar)
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
-
+        val noteRefCommonCollectionForEachCenter = firestoreInstance.collection("EachCenter")
         val notesCollectionRef = firestoreInstance.collection("NewCity")
         val goleCenterRefCollection = firestoreInstance.collection("GoalCenters")
         val name = arguments?.getInt("pas", 0)
@@ -69,9 +69,17 @@ class EachCenterFragment : Fragment() {
                 .orderBy("time", Query.Direction.DESCENDING)
                 .get().addOnCompleteListener { querydocumentSnapshot ->
                     if (querydocumentSnapshot.isSuccessful) {
+
                         for (documentSnapshot in querydocumentSnapshot.result!!) {
                             val note = documentSnapshot.toObject<City>(City::class.java)
-                            items.add(note)
+                            if (documentSnapshot["intro"] != "" && documentSnapshot["intro"] != "0"
+                                    || documentSnapshot["mmbk"] != "" && documentSnapshot["mmbk"] != "0"
+                                    || documentSnapshot["onedayWS"] != "" && documentSnapshot["onedayWS"] != "0"
+                                    || documentSnapshot["actionaiser"] != "" && documentSnapshot["actionaiser"] != "0" && documentSnapshot["actionaiser"] != null
+                                    || documentSnapshot["twoDayWS"] != "" && documentSnapshot["twoDayWS"] != "0"
+                                    || documentSnapshot["twOneDay"] != "" && documentSnapshot["twOneDay"] != "0"
+                            )
+                                items.add(note)
                         }
 
                         if (querydocumentSnapshot.result!!.size() != 0) {
@@ -89,6 +97,7 @@ class EachCenterFragment : Fragment() {
         super.onResume()
         (this.activity!!.toolbar as Toolbar).title = "Each center result"
     }
+
     private fun bottomMenuInit(rootView: View) {
         val layoutParams = rootView.bottom_navigation_center.layoutParams as CoordinatorLayout.LayoutParams
         layoutParams.behavior = BottomNavigationViewBehavior()

@@ -1,13 +1,12 @@
 package com.zaleksandr.aleksandr.myapplication.ui.commonResult.adapter
 
+import android.content.ContentValues
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.FirebaseFirestoreSettings
-import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.firestore.*
 import com.zaleksandr.aleksandr.myapplication.model.City
 import com.zaleksandr.aleksandr.myapplication.model.Goal
 import com.zaleksandr.aleksandr.myapplication.util.*
@@ -17,7 +16,7 @@ import kotlinx.android.synthetic.main.item_common_result_list.view.*
 import java.util.*
 
 
-class CommonResultAdapter(private var list: ArrayList<City>, private var fragmentCommunication: FragmentCommunication) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class CommonResultAdapter2(private var list: ArrayList<City>, private var fragmentCommunication: FragmentCommunication) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     val settings: FirebaseFirestoreSettings = FirebaseFirestoreSettings.Builder().setPersistenceEnabled(true).build()
     private val db by lazy { FirebaseFirestore.getInstance() }
@@ -45,10 +44,10 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
         return position == 0
     }
 
-    val firestoreInstanceGoal: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
+    val firestoreInstance: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
     private val noteRefCollection = firestoreInstance.collection("NewCity")
     private val goalCollection = firestoreInstance.collection("Goal")
-    private val goalRefDocumentCurrent = firestoreInstanceGoal.collection("CurrentGoal").document("goal")
+    private val goalRefDocumentCurrent = firestoreInstance.collection("CurrentGoal").document("goal")
 
 //   val ref = firestoreInstance.re('locs/')
 
@@ -57,19 +56,19 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
     }
 
     var period = 0
-    fun perioSelected(periodSelected: CommonResultAdapter.ClickByFilter) {
+    fun perioSelected(periodSelected: CommonResultAdapter2.ClickByFilter) {
 
         when (periodSelected) {
-            CommonResultAdapter.ClickByFilter.DAY -> {
+            CommonResultAdapter2.ClickByFilter.DAY -> {
                 period = 1; notifyDataSetChanged()
             }
-            CommonResultAdapter.ClickByFilter.WEEK -> {
+            CommonResultAdapter2.ClickByFilter.WEEK -> {
                 period = 2; notifyDataSetChanged()
             }
-            CommonResultAdapter.ClickByFilter.MONTH -> {
+            CommonResultAdapter2.ClickByFilter.MONTH -> {
                 period = 3; notifyDataSetChanged()
             }
-            CommonResultAdapter.ClickByFilter.YEAR -> {
+            CommonResultAdapter2.ClickByFilter.YEAR -> {
                 period = 4; notifyDataSetChanged()
             }
         }
@@ -324,13 +323,25 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
                         sumNwet += approach
                     }
                 }
+
+                for (change in queryDocumentSnapshots.documentChanges) {
+                    if (change.type == DocumentChange.Type.MODIFIED) {
+                        Log.d(ContentValues.TAG, "data:" + change.document.data)
+                    }
+                    val source = if (queryDocumentSnapshots.metadata.isFromCache)
+                        "local cache"
+                    else
+                        "server"
+                    Log.d(ContentValues.TAG, "Data fetched from $source")
+                }
+
                 itemView.common_result_intro.text = sumIntro.toString()
                 itemView.common_one_d_result.text = sumOneD1.toString()
                 itemView.common_two_d_result.text = sumTwoD1.toString()
                 itemView.common_tw_one_d_result.text = sumTwent1.toString()
                 itemView.common_nwet_result.text = sumNwet.toString()
-
-            } else {
+            }
+             else {
 //                itemView.result_city.text = model.centers.toString()
                 itemView.common_result_intro.text = "0"
                 itemView.common_one_d_result.text = "0"
@@ -358,12 +369,35 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
             val item = getItem(position)
             itemView.common_result_city.text = item.centers
 
-            clickByFilter(noteRefCollection, position, period).addOnSuccessListener { queryDocumentSnapshots ->
-                cityResult(queryDocumentSnapshots)
+            noteRefCollection.whereEqualTo("centers", when (position) {
+                1 -> "Kyiv"
+                2 -> "Kharkiv"
+                3 -> "Dnepr"
+                4 -> "Zhytomyr"
+                5 -> "Lviv"
+                6 -> "Odessa"
+                7 -> "Chernigov"
+                else -> null
+            }).whereGreaterThanOrEqualTo("time", when (period) {
+                1 -> startOfDay(Date())
+                2 -> startOfWeek()
+                3 -> startOfMonth()
+                4 -> startOfYear()
+                else -> startOfDay(Date())
+            }).whereLessThanOrEqualTo("time", when (period) {
+                1 -> endOfDay(Date())
+                2 -> endOfWeek()
+                3 -> endOfMonth()
+                4 -> endOfYear()
+                else -> startOfDay(Date())
+            }).addSnapshotListener { queryDocumentSnapshots,_  ->
+
+                cityResult(queryDocumentSnapshots!!)
             }
         }
 
         private fun cityResult(queryDocumentSnapshots: QuerySnapshot) {
+
 
             var sumIntro = 0
             var sumOneD1 = 0
@@ -452,6 +486,18 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
                     }
 
                 }
+
+                for (change in queryDocumentSnapshots.documentChanges) {
+                    if (change.type == DocumentChange.Type.MODIFIED) {
+                        Log.d(ContentValues.TAG, "data:" + change.document.data)
+                    }
+                    val source = if (queryDocumentSnapshots.metadata.isFromCache)
+                        "local cache"
+                    else
+                        "server"
+                    Log.d(ContentValues.TAG, "Data fetched from $source")
+                }
+
                 itemView.each_center_intro.text = sumIntro.toString()
                 itemView.each_center_one_day_edittext.text = sumOneD1.toString()
                 itemView.each_center_two_day.text = sumTwoD1.toString()

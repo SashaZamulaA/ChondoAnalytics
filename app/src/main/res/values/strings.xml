@@ -231,6 +231,7 @@
     <string name="select_range">Select period</string>
     <string name="add_individual_goals">Add individual goals</string>
     <string name="individual_goals_and_result">Individual goals and result</string>
+    <string name="add_goals_and_result">Add goals and result</string>
     <string name="center_time">Time in center</string>
     <string name="read_DP_kor_pages">DP kor.(page)</string>
     <string name="DP_pages_ukr">Read DP(ukr.)</string>

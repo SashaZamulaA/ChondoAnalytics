@@ -20,6 +20,8 @@ import com.zaleksandr.aleksandr.myapplication.MainActivity
 import com.zaleksandr.aleksandr.myapplication.MainActivity.Companion.AUTHOR_KEY
 import com.zaleksandr.aleksandr.myapplication.MainActivity.Companion.SPINNER
 import com.zaleksandr.aleksandr.myapplication.model.City
+import com.zaleksandr.aleksandr.myapplication.model.CityAddInfo
+import com.zaleksandr.aleksandr.myapplication.model.EachCenter
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_add_result2.*
@@ -29,7 +31,7 @@ import java.util.*
 
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-class AddResultFragment : Fragment(){
+class AddResultFragment : Fragment() {
 
 
     private var pictureJustChange = false
@@ -38,9 +40,11 @@ class AddResultFragment : Fragment(){
         get() = firestoreInstance.document("City/${FirebaseAuth.getInstance().uid
                 ?: throw NullPointerException("UID is null.")}")
 
-    private val noteRefCollection = firestoreInstance.collection("NewCity").document()
+    private val noteRefCommonCollection = firestoreInstance.collection("NewCity").document()
+    private val noteRefAddCollection = firestoreInstance.collection("AnnInfo").document()
+    private val noteRefCommonCollectionForEachCenter = firestoreInstance.collection("EachCenter").document()
     private val spinner_country = arrayOf(
-            "Kyiv", "Kharkiv", "Dnepr", "Zhytomyr", "Lviv", "Odessa", "Chernigov"
+            "Kyiv", "Kharkiv", "Dnepr", "Zhytomyr", "Lviv", "Odessa", "Chernigov", "Other"
     )
 
     private var category2: Array<String>? = null
@@ -81,9 +85,9 @@ class AddResultFragment : Fragment(){
 
         val c = Calendar.getInstance()
         DatePickerDialog(mContext, OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
-         c.set(year, monthOfYear, dayOfMonth)
+            c.set(year, monthOfYear, dayOfMonth)
 
-         calendarDate = Date(c.timeInMillis)
+            calendarDate = Date(c.timeInMillis)
             val currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.time)
             textViewDate.text = currentDateString
 //            val dateFormat = SimpleDateFormat("yyyy-MM-dd")
@@ -118,21 +122,23 @@ class AddResultFragment : Fragment(){
         val lectOnStr = result_lectures_on_street_edittext.text.toString()
         val lectCentr = result_lectures_in_center_edittext.text.toString()
         val nwet = result_nwet_edittext.text.toString()
-        val dp = result_DP_edittext.text.toString()
         val mmbk = result_mmbk_edittext.text.toString()
+
+
+        val dp = result_DP_edittext.text.toString()
         val dpKor = result_DP_kor_edittext.text.toString()
         val mobilis = result_mobilisation_edittext.text.toString()
 
-        val date:Date
+        val date: Date
 
-      if (calendarDate==null) {
-          val c = Calendar.getInstance()
-          val currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.time)
-          textViewDate.text = currentDateString
-          date = Date(c.timeInMillis)
-      } else{
-          date = calendarDate as Date
-      }
+        if (calendarDate == null) {
+            val c = Calendar.getInstance()
+            val currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.time)
+            textViewDate.text = currentDateString
+            date = Date(c.timeInMillis)
+        } else {
+            date = calendarDate as Date
+        }
 
 
         var userPhotoPath = ""
@@ -143,20 +149,24 @@ class AddResultFragment : Fragment(){
         dataToSave[SPINNER] = centers
         val timestamp = System.currentTimeMillis()
 
-        val id = noteRefCollection.id
+        val id = noteRefCommonCollection.id
 
         FirestoreUtil.currentUserDocRef.addSnapshotListener { documentSnapshot, _ ->
             FirestoreUtil.getCurrentUser { user ->
-                if (documentSnapshot?.exists()!!) {
+                if (documentSnapshot?.exists()!! && centers != "Other") {
                     name = documentSnapshot.getString(AUTHOR_KEY) ?: ""
                     if (!pictureJustChange && user.profilePicturePath != null) {
                         userPhotoPath = user.profilePicturePath
                     }
-                    noteRefCollection.set(City(id, currentUserId, intro, oneDayWS, twoDayWS, actionaiser, twOneDay, centers, approach, telCont,timeCenter, timeStr, lectTraining, lectOnStr, lectCentr, date, timestamp, userPhotoPath, name, nwet, dpKor, dp, mmbk, mobilis))
+                    noteRefCommonCollection.set(City(id, currentUserId, intro, oneDayWS, twoDayWS, actionaiser, twOneDay, centers, approach, telCont, timeCenter, timeStr, lectTraining, lectOnStr, lectCentr, date, timestamp, userPhotoPath, name, nwet, dpKor, dp, mmbk, mobilis))
+                    noteRefCommonCollectionForEachCenter.set(EachCenter(id, currentUserId, intro, oneDayWS, twoDayWS, actionaiser, twOneDay, centers, date, timestamp, userPhotoPath, name, nwet, mmbk))
+
+                } else {
+                    noteRefAddCollection.set(CityAddInfo(id, currentUserId, date, timestamp, dpKor, dp, mobilis))
                 }
             }
         }
         dataToSave[SPINNER] = centers
         startActivity(Intent(context, MainActivity::class.java))
     }
- }
+}

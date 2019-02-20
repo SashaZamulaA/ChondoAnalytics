@@ -13,14 +13,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.zaleksandr.aleksandr.myapplication.*
-import com.zaleksandr.aleksandr.myapplication.model.Goal
 import com.zaleksandr.aleksandr.myapplication.model.GoalCenter
 import kotlinx.android.synthetic.main.fragment_add_centers_goal.*
 import kotlinx.android.synthetic.main.fragment_add_centers_goal.view.*
-import kotlinx.android.synthetic.main.fragment_add_goal.*
-import kotlinx.android.synthetic.main.fragment_add_goal.view.*
-import kotlinx.android.synthetic.main.fragment_add_result2.*
-import kotlinx.android.synthetic.main.fragment_add_result2.view.*
 import java.util.*
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
@@ -89,11 +84,13 @@ class GoalCentersFragment : Fragment() {
     private fun addNote() {
 
         val center = registration_city_each_center.selectedItem.toString()
+
         val yearIntroCenter = goal_year_introduction_edittext_each_center.text.toString()
         val yearOneDayCenter = goal_year_one_day_seminar_edittext_each_center.text.toString()
+        val yearActionCenter = goal_year_actioniser_edittext_each_center.text.toString()
         val yearTwoDayCenter = goal_year_two_day_seminar_edit_text_each_center.text.toString()
         val yearTWOneCenter = goal_year_21day_edit_text_each_center.text.toString()
-        val tearNWETCenter = goal_year_two_day_seminar_edittext_each_center.text.toString()
+        val yearNWETCenter = goal_year_two_day_seminar_edittext_each_center.text.toString()
 
         val monthIntroCenter = goal_month_introduction_edittext_each_center.text.toString()
         val monthOneDayCenter = goal_month_one_day_seminar_edittext_each_center.text.toString()
@@ -121,9 +118,10 @@ class GoalCentersFragment : Fragment() {
                 currentUserId,
                 yearIntroCenter,
                 yearOneDayCenter,
+                yearActionCenter,
                 yearTwoDayCenter,
                 yearTWOneCenter,
-                tearNWETCenter,
+                yearNWETCenter,
                 monthIntroCenter,
                 monthOneDayCenter,
                 monthTwoDayCenter,

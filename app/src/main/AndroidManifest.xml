@@ -32,6 +32,7 @@
         <activity android:name="com.zaleksandr.aleksandr.myapplication.ui.login.LoginActivity" />
         <activity android:name="com.zaleksandr.aleksandr.myapplication.ui.login.RegistrationActivity" />
         <activity android:name="com.zaleksandr.aleksandr.myapplication.MainActivity" />
+        <activity android:name="com.zaleksandr.aleksandr.myapplication.OffLineFirebase" />
         <!--<activity-->
             <!--android:name=".ui.chondo_result.ResultM3AView"-->
             <!--android:windowSoftInputMode="stateUnchanged|adjustResize" />-->

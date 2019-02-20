@@ -216,8 +216,8 @@ fun clickByFilterIndividualResult(noteRefCollection: CollectionReference, period
         2 -> endOfMonth()
         3 -> endOfYear()
         else -> endOfWeek()
-    })
- .get()
+    }).get()
+
 
 }
 

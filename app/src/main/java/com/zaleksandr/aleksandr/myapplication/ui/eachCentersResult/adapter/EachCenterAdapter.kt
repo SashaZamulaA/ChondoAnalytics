@@ -34,7 +34,7 @@ class EachCenterAdapter(private val context: Context,
         if (viewType == TYPE_ITEM) {
             val v = LayoutInflater.from(parent.context).inflate(com.zaleksandr.aleksandr.myapplication.R.layout.item_each_center,
                     parent, false)
-            return CenterEachHolder(v)
+            return CentersHolder(v)
         } else if (viewType == TYPE_HEADER) {
             val v = LayoutInflater.from(parent.context).inflate(com.zaleksandr.aleksandr.myapplication.R.layout.item_individual_goal_and_result_for_center,
                     parent, false)
@@ -89,14 +89,14 @@ class EachCenterAdapter(private val context: Context,
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
-        if (holder is CenterEachHolder) {
+        if (holder is CentersHolder) {
             holder.bind()
         } else if (holder is CenterGoalHolder) {
             holder.bind2()
         }
     }
 
-    inner class CenterEachHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class CentersHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind() {
 
             val item = list[position - 1]
@@ -112,7 +112,7 @@ class EachCenterAdapter(private val context: Context,
             itemView.each_center_one_day_edittext.text = if (!item.onedayWS.isNullOrBlank()) item.onedayWS else "0"
             itemView.each_center_two_day.text = if (!item.twoDayWS.isNullOrBlank()) item.twoDayWS else "0"
             itemView.each_center_21_day.text = if (!item.twOneDay.isNullOrBlank()) item.twOneDay else "0"
-            itemView.each_center_nwet.text = if (!item.nwet.isNullOrBlank()) item.nwet else "0"
+            itemView.each_center_actioniser.text = if (!item.actionaiser.isNullOrBlank()) item.actionaiser else "0"
             itemView.each_center_mmbk.text = if (!item.mmbk.isNullOrBlank()) item.mmbk else "0"
         }
     }
@@ -134,6 +134,7 @@ class EachCenterAdapter(private val context: Context,
             var sumIntro = 0
             var sumOneD1 = 0
             var sumTwoD1 = 0
+            var sumAct = 0
             var sumTwent1 = 0
             var sumNwet = 0
 
@@ -154,6 +155,12 @@ class EachCenterAdapter(private val context: Context,
                         val twoDay = Integer.parseInt(resultNote.twoDayWS)
                         sumTwoD1 += twoDay
                     }
+
+                    if (!resultNote.actionaiser.isNullOrEmpty()) {
+                        val twoDay = Integer.parseInt(resultNote.actionaiser)
+                        sumTwoD1 += twoDay
+                    }
+
                     if (!resultNote.twOneDay.isNullOrEmpty()) {
                         val twOneDay = Integer.parseInt(resultNote.twOneDay)
                         sumTwent1 += twOneDay
@@ -166,6 +173,7 @@ class EachCenterAdapter(private val context: Context,
                 itemView.common_result_intro.text = sumIntro.toString()
                 itemView.common_one_d_result.text = sumOneD1.toString()
                 itemView.common_two_d_result.text = sumTwoD1.toString()
+                itemView.common_act_result.text = sumAct.toString()
                 itemView.common_tw_one_d_result.text = sumTwent1.toString()
                 itemView.common_nwet_result.text = sumNwet.toString()
 
@@ -174,6 +182,7 @@ class EachCenterAdapter(private val context: Context,
                 itemView.common_result_intro.text = "0"
                 itemView.common_one_d_result.text = "0"
                 itemView.common_two_d_result.text = "0"
+                itemView.common_act_result.text = "0"
                 itemView.common_tw_one_d_result.text = "0"
                 itemView.common_nwet_result.text = "0"
             }
@@ -191,6 +200,9 @@ class EachCenterAdapter(private val context: Context,
                     }
                     if (!goalNote.yearOneDayCenter.isNullOrEmpty() && period == 4) {
                         itemView.goal_one_day_sem_center.text = goalNote.yearOneDayCenter
+                    }
+                    if (!goalNote.yearActionCenter.isNullOrEmpty() && period == 4) {
+                        itemView.goal_actionaiser_center.text = goalNote.yearActionCenter
                     }
                     if (!goalNote.yearTwoDayCenter.isNullOrEmpty() && period == 4) {
                         itemView.goal_two_day_sem_center.text = goalNote.yearTwoDayCenter

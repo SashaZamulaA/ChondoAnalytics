@@ -27,7 +27,7 @@ class AddIndividualGoalFragment : Fragment() {
     val firestoreInstance: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
     val currentUserDocRef: DocumentReference
         get() = firestoreInstance.document("City/${FirebaseAuth.getInstance().uid
-                ?: throw NullPointerException("UID is null.")}")
+                ?: throw NullPointerException("UID is null.") as Throwable}")
 
     private val refCollectionYearGoal = firestoreInstance.collection("EachMemberYearGoal").document(FirebaseAuth.getInstance().uid!!)
     private val refCollectionMonthGoal = firestoreInstance.collection("EachMemberMonthGoal").document(FirebaseAuth.getInstance().uid!!)

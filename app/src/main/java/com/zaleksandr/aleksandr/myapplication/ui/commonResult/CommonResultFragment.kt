@@ -19,6 +19,7 @@ import com.zaleksandr.aleksandr.myapplication.BottomNavigationViewBehavior
 import com.zaleksandr.aleksandr.myapplication.model.City
 import com.zaleksandr.aleksandr.myapplication.ui.commonResult.adapter.CommonResultAdapter
 import com.zaleksandr.aleksandr.myapplication.ui.commonResult.adapter.CommonResultAdapter.FragmentCommunication
+import com.zaleksandr.aleksandr.myapplication.ui.commonResult.adapter.CommonResultAdapter2
 import com.zaleksandr.aleksandr.myapplication.ui.individualResult.IndividualResultFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_common_result.*
@@ -28,7 +29,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class CommonResultFragment : Fragment(), CommonResultAdapter.FragmentCommunication, Serializable {
+class CommonResultFragment : Fragment(), CommonResultAdapter2.FragmentCommunication, Serializable {
 
     override fun respond(position: Int) {
 //        items[position]
@@ -40,7 +41,7 @@ class CommonResultFragment : Fragment(), CommonResultAdapter.FragmentCommunicati
     }
 
     //    var toolbar: Toolbar? = null
-    var adapter: CommonResultAdapter? = null
+    var adapter: CommonResultAdapter2? = null
     var city: City? = null
     private val items: ArrayList<City> = ArrayList()
 
@@ -50,13 +51,15 @@ class CommonResultFragment : Fragment(), CommonResultAdapter.FragmentCommunicati
 //        rootView.button_individual_result.setOnClickListener {
 //            Navigation.findNavController(it).navigate(com.zamulaaleksandr.aleksandr.myapplication.R.id.action_commonResultFragment_to_individualResultFragment2)
 //        }
+
+
         adapterInit(rootView)
         bottomMenuInit(rootView)
 
 //        toolbar = view?.findViewById(com.zamulaaleksandr.aleksandr.myapplication.R.id.toolbar)
 //        (activity as AppCompatActivity).setSupportActionBar(toolbar)
 
-        adapter?.perioSelected(CommonResultAdapter.ClickByFilter.YEAR)
+        adapter?.perioSelected(CommonResultAdapter2.ClickByFilter.YEAR)
 
 
 //        update(items)
@@ -102,17 +105,17 @@ class CommonResultFragment : Fragment(), CommonResultAdapter.FragmentCommunicati
             when (item.itemId) {
                 com.zaleksandr.aleksandr.myapplication.R.id.menu_year -> {
 //                    showLoading()
-                    adapter?.perioSelected(CommonResultAdapter.ClickByFilter.YEAR)
+                    adapter?.perioSelected(CommonResultAdapter2.ClickByFilter.YEAR)
 //                    hideLoading()
                 }
                 com.zaleksandr.aleksandr.myapplication.R.id.menu_month -> {
-                    adapter?.perioSelected(CommonResultAdapter.ClickByFilter.MONTH)
+                    adapter?.perioSelected(CommonResultAdapter2.ClickByFilter.MONTH)
                 }
                 com.zaleksandr.aleksandr.myapplication.R.id.menu_week -> {
-                    adapter?.perioSelected(CommonResultAdapter.ClickByFilter.WEEK)
+                    adapter?.perioSelected(CommonResultAdapter2.ClickByFilter.WEEK)
                 }
                 com.zaleksandr.aleksandr.myapplication.R.id.menu_day -> {
-                    adapter?.perioSelected(CommonResultAdapter.ClickByFilter.DAY)
+                    adapter?.perioSelected(CommonResultAdapter2.ClickByFilter.DAY)
                 }
 //                com.zaleksandr.aleksandr.myapplication.R.id.menu_ind_res -> {
 //                  Navigation.findNavController(this.view!!).navigate(com.zaleksandr.aleksandr.myapplication.R.id.action_commonResultFragment_to_individualResultFragment2)
@@ -138,7 +141,7 @@ class CommonResultFragment : Fragment(), CommonResultAdapter.FragmentCommunicati
         items.add(City("", "", "0", "0", "0","", "0", "Odessa", "0", "0","", "0","", "0", "0", Date(), 0, "", "", "", "", "", "", ""))
         items.add(City("", "", "0", "0", "0","", "0", "Chernigov", "0", "0","", "0","", "0", "0", Date(), 0, "", "", "", "", "", "", ""))
 
-        adapter = CommonResultAdapter(items, this)
+        adapter = CommonResultAdapter2(items, this)
         rootView.list_common_res_adapter.adapter = adapter
     }
 }
