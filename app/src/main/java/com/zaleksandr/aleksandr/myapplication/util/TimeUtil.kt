@@ -1,11 +1,13 @@
 package com.zaleksandr.aleksandr.myapplication.util
 
 import com.google.android.gms.tasks.Task
+import com.google.android.gms.tasks.Tasks
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.QuerySnapshot
 import java.util.*
 
+private val responseCache = WeakHashMap<Int, Task<QuerySnapshot>>()
 
 fun startOfDay(date: Date): Date {
     val calendar = Calendar.getInstance()
@@ -161,7 +163,10 @@ fun clickByFilterIndividualGoal(individualGoalCollection: CollectionReference): 
 
 
 fun clickByFilterCommonResult(goalCollection: CollectionReference, position: Int, value: Int): Task<QuerySnapshot> {
-    return goalCollection.whereGreaterThanOrEqualTo("time", when (value) {
+    if (responseCache.containsKey(value)){
+        return responseCache[value]!!
+    }
+    val resultTask =  goalCollection.whereGreaterThanOrEqualTo("time", when (value) {
         1 -> startOfDay(Date())
         2 -> startOfWeek()
         3 -> startOfMonth()
@@ -174,6 +179,10 @@ fun clickByFilterCommonResult(goalCollection: CollectionReference, position: Int
         4 -> endOfYear()
         else -> startOfDay(Date())
     }).get()
+
+    responseCache[value] = resultTask
+
+    return resultTask
 
 }
 
@@ -205,18 +214,19 @@ fun clickByFilterCommonResultForEachCenter(goalCollection: CollectionReference, 
 
 fun clickByFilterIndividualResult(noteRefCollection: CollectionReference, period: Int): Task<QuerySnapshot> {
     return noteRefCollection.whereEqualTo("id", if ("${FirebaseAuth.getInstance().uid}" == FirebaseAuth.getInstance().currentUser!!.uid) {
-        FirebaseAuth.getInstance().uid} else null)
-    .whereGreaterThanOrEqualTo("time", when (period) {
-        1 -> startOfWeek()
-        2 -> startOfMonth()
-        3 -> startOfYear()
-        else -> startOfWeek()
-    }).whereLessThanOrEqualTo("time", when (period) {
-        1 -> endOfWeek()
-        2 -> endOfMonth()
-        3 -> endOfYear()
-        else -> endOfWeek()
-    }).get()
+        FirebaseAuth.getInstance().uid
+    } else null)
+            .whereGreaterThanOrEqualTo("time", when (period) {
+                1 -> startOfWeek()
+                2 -> startOfMonth()
+                3 -> startOfYear()
+                else -> startOfWeek()
+            }).whereLessThanOrEqualTo("time", when (period) {
+                1 -> endOfWeek()
+                2 -> endOfMonth()
+                3 -> endOfYear()
+                else -> endOfWeek()
+            }).get()
 
 
 }

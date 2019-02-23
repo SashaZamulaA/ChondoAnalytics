@@ -20,6 +20,7 @@ import com.zaleksandr.aleksandr.myapplication.ui.settings.model.User
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil
 import com.zaleksandr.aleksandr.myapplication.util.StorageUtil
 import com.zaleksandr.aleksandr.tmbook.glade.GlideApp
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.header_layout.view.*
 
 
@@ -46,6 +47,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var toggle: ActionBarDrawerToggle
     internal lateinit var toolbar: Toolbar
     private val dialogDisposable = DialogCompositeDisposable()
+    private var menuItem: MenuItem? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,7 +62,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawerLayout.addDrawerListener(toggle)
         toggle.drawerArrowDrawable.color = resources.getColor(R.color.white)
         toggle.syncState()
-        val menuItem: MenuItem? = null
+
 
 
         drawerLayout = findViewById(R.id.drawer_layout)
@@ -73,31 +75,73 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 //
 //        NavigationUI.setupWithNavController(navigationView, navController)
 
-//        navigationView.setNavigationItemSelectedListener(NavigationView.OnNavigationItemSelectedListener { item ->
-//            val id = item.itemId
-//            when (id) {
-//                R.id.account -> {
-//                    Toast.makeText(this@MainActivity, "My Account", Toast.LENGTH_SHORT).show()
-//                    Toast.makeText(this@MainActivity, "Settings", Toast.LENGTH_SHORT).show()
-//                    Toast.makeText(this@MainActivity, "My Cart", Toast.LENGTH_SHORT).show()
-//                    true
-//                }
-//                R.id.settings -> {
-//                    Toast.makeText(this@MainActivity, "Settings", Toast.LENGTH_SHORT).show()
-//                    Toast.makeText(this@MainActivity, "My Cart", Toast.LENGTH_SHORT).show()
-//                    true
-//                }
-//                R.id.mycart -> {
-//                    Toast.makeText(this@MainActivity, "My Cart", Toast.LENGTH_SHORT).show()
-//                    true
-//                }
-//                else -> true
-//            }
-//        })
-//
-//
-
         navigationView.setNavigationItemSelectedListener(this)
+
+        drawer_layout.addDrawerListener(object : DrawerLayout.DrawerListener {
+            override fun onDrawerSlide(drawerView: View, slideOffset: Float) {}
+            override fun onDrawerOpened(drawerView: View) {
+                hideKeyboard()
+            }
+
+            override fun onDrawerClosed(drawerView: View) {}
+            override fun onDrawerStateChanged(newState: Int) {
+                if (newState == DrawerLayout.STATE_IDLE) {
+                    menuItem?.let {
+                        drawerLayout.post {
+
+                            it.isChecked = true
+                            drawerLayout.closeDrawers()
+                            val id = it.itemId
+                            when (id) {
+                                R.id.commonResult -> {
+                                    navController.navigate(R.id.commonResultFragment)
+                                    (it.title)
+                                }
+                                R.id.add_result -> navController.navigate(R.id.addResultFragment)
+                                R.id.individualResult -> navController.navigate(R.id.addIndividualFragment)
+                                R.id.add_individual_goals -> navController.navigate(R.id.addIndividualGoalsFragment)
+                                R.id.nav_settings -> navController.navigate(R.id.settingsFragment)
+                                R.id.add_goal -> {
+                                    val b = AlertDialog.Builder(this@MainActivity)
+                                    b.setTitle("Please enter a password")
+                                    val input = EditText(this@MainActivity)
+                                    b.setView(input)
+                                    b.setPositiveButton("OK") { _, _ ->
+                                        result = input.text.toString()
+                                        if (result == PASSWORD) {
+                                            navController.navigate(R.id.goalFragment)
+                                        } else {
+                                        }
+                                    }
+                                    b.setNegativeButton("CANCEL", null)
+                                    b.show()
+                                }
+
+                                R.id.add_each_centers_goal -> {
+                                    val b = AlertDialog.Builder(this@MainActivity)
+                                    b.setTitle("Please enter a password")
+                                    val input = EditText(this@MainActivity)
+                                    b.setView(input)
+                                    b.setPositiveButton("OK") { _, _ ->
+                                        result = input.text.toString()
+                                        if (result == PASSWORD_ALL_CENTERS) {
+                                            navController.navigate(R.id.addGoalEachCenterFragment)
+                                        } else {
+                                        }
+                                    }
+                                    b.setNegativeButton("CANCEL", null)
+                                    b.show()
+                                }
+                                else -> {
+                                }
+                            }
+                        }
+                        menuItem = null
+                    }
+                }
+            }
+        })
+
 
         navigationView.getHeaderView(0).apply {
             FirestoreUtil.currentUserDocRef.addSnapshotListener { documentSnapshot, _ ->
@@ -124,6 +168,56 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         }
     }
+
+
+//    private fun setNavigationViewListner(menuItem: MenuItem): Boolean {
+//          navigationView.setNavigationItemSelectedListener(this)
+//        menuItem.isChecked = true
+//        drawerLayout.closeDrawers()
+//        val id = menuItem.itemId
+//        when (id) {
+//            R.id.commonResult -> {
+//                navController.navigate(R.id.commonResultFragment)
+//                (menuItem.title)
+//            }
+//            R.id.add_result -> navController.navigate(R.id.addResultFragment)
+//            R.id.individualResult -> navController.navigate(R.id.addIndividualFragment)
+//            R.id.add_individual_goals -> navController.navigate(R.id.addIndividualGoalsFragment)
+//            R.id.nav_settings -> navController.navigate(R.id.settingsFragment)
+//            R.id.add_goal -> {
+//                val b = AlertDialog.Builder(this)
+//                b.setTitle("Please enter a password")
+//                val input = EditText(this)
+//                b.setView(input)
+//                b.setPositiveButton("OK") { _, _ ->
+//                    result = input.text.toString()
+//                    if (result == PASSWORD) {
+//                        navController.navigate(R.id.goalFragment)
+//                    } else {
+//                    }
+//                }
+//                b.setNegativeButton("CANCEL", null)
+//                b.show()
+//            }
+//
+//            R.id.add_each_centers_goal -> {
+//                val b = AlertDialog.Builder(this)
+//                b.setTitle("Please enter a password")
+//                val input = EditText(this)
+//                b.setView(input)
+//                b.setPositiveButton("OK") { _, _ ->
+//                    result = input.text.toString()
+//                    if (result == PASSWORD_ALL_CENTERS) {
+//                        navController.navigate(R.id.addGoalEachCenterFragment)
+//                    } else {
+//                    }
+//                }
+//                b.setNegativeButton("CANCEL", null)
+//                b.show()
+//            }
+//        }
+//        return true
+//    }
 
 
     internal interface CustomDrawerListener : DrawerLayout.DrawerListener {
@@ -153,50 +247,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
 
-        menuItem.isChecked = true
-        drawerLayout.closeDrawers()
-        val id = menuItem.itemId
-        when (id) {
-            R.id.commonResult -> {
-                navController.navigate(R.id.commonResultFragment)
-                (menuItem.title)
-            }
-            R.id.add_result -> navController.navigate(R.id.addResultFragment)
-            R.id.individualResult -> navController.navigate(R.id.addIndividualFragment)
-            R.id.add_individual_goals -> navController.navigate(R.id.addIndividualGoalsFragment)
-            R.id.nav_settings -> navController.navigate(R.id.settingsFragment)
-            R.id.add_goal -> {
-                val b = AlertDialog.Builder(this)
-                b.setTitle("Please enter a password")
-                val input = EditText(this)
-                b.setView(input)
-                b.setPositiveButton("OK") { _, _ ->
-                    result = input.text.toString()
-                    if (result == PASSWORD) {
-                        navController.navigate(R.id.goalFragment)
-                    } else {
-                    }
-                }
-                b.setNegativeButton("CANCEL", null)
-                b.show()
-            }
+        this.menuItem = menuItem
+        drawerLayout.closeDrawer(GravityCompat.START)
 
-            R.id.add_each_centers_goal -> {
-                val b = AlertDialog.Builder(this)
-                b.setTitle("Please enter a password")
-                val input = EditText(this)
-                b.setView(input)
-                b.setPositiveButton("OK") { _, _ ->
-                    result = input.text.toString()
-                    if (result == PASSWORD_ALL_CENTERS) {
-                        navController.navigate(R.id.addGoalEachCenterFragment)
-                    } else {
-                    }
-                }
-                b.setNegativeButton("CANCEL", null)
-                b.show()
-            }
-        }
         return true
     }
 }
