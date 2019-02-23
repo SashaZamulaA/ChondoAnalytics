@@ -50,6 +50,7 @@ class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunica
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(com.zaleksandr.aleksandr.myapplication.R.layout.fragment_individual_result, container, false)
+        val actions = listOf("Update", "Delete")
 
         setUpRecyclerView(rootView)
 

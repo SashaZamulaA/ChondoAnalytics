@@ -105,12 +105,17 @@ class EachCenterFragment : Fragment() {
             when (item.itemId) {
                 com.zaleksandr.aleksandr.myapplication.R.id.menu_year -> {
                     adapter?.perioSelected(EachCenterAdapter.ClickByFilter.YEAR)
+
                 }
                 com.zaleksandr.aleksandr.myapplication.R.id.menu_month -> {
+
                     adapter?.perioSelected(EachCenterAdapter.ClickByFilter.MONTH)
+
                 }
                 com.zaleksandr.aleksandr.myapplication.R.id.menu_week -> {
+
                     adapter?.perioSelected(EachCenterAdapter.ClickByFilter.WEEK)
+
                 }
 
                 else -> {

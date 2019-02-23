@@ -1,6 +1,5 @@
 package com.zaleksandr.aleksandr.myapplication
 
-
 import android.content.Context
 import android.os.Bundle
 import android.view.MenuItem
@@ -73,6 +72,30 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 //        NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
 //
 //        NavigationUI.setupWithNavController(navigationView, navController)
+
+//        navigationView.setNavigationItemSelectedListener(NavigationView.OnNavigationItemSelectedListener { item ->
+//            val id = item.itemId
+//            when (id) {
+//                R.id.account -> {
+//                    Toast.makeText(this@MainActivity, "My Account", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this@MainActivity, "Settings", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this@MainActivity, "My Cart", Toast.LENGTH_SHORT).show()
+//                    true
+//                }
+//                R.id.settings -> {
+//                    Toast.makeText(this@MainActivity, "Settings", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this@MainActivity, "My Cart", Toast.LENGTH_SHORT).show()
+//                    true
+//                }
+//                R.id.mycart -> {
+//                    Toast.makeText(this@MainActivity, "My Cart", Toast.LENGTH_SHORT).show()
+//                    true
+//                }
+//                else -> true
+//            }
+//        })
+//
+//
 
         navigationView.setNavigationItemSelectedListener(this)
 

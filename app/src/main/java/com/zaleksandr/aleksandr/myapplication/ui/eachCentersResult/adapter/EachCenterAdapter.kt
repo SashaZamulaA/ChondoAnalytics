@@ -69,12 +69,15 @@ class EachCenterAdapter(private val context: Context,
 
             EachCenterAdapter.ClickByFilter.WEEK -> {
                 period = 2; notifyDataSetChanged()
+
             }
             EachCenterAdapter.ClickByFilter.MONTH -> {
                 period = 3; notifyDataSetChanged()
+
             }
             EachCenterAdapter.ClickByFilter.YEAR -> {
                 period = 4; notifyDataSetChanged()
+
             }
         }
     }
@@ -100,6 +103,7 @@ class EachCenterAdapter(private val context: Context,
         fun bind() {
 
             val item = list[position - 1]
+
             if (!item.userPhotoPath.isNullOrBlank()) {
                 GlideApp.with(context)
                         .load(item.userPhotoPath.let { StorageUtil.pathToReference(it) })
@@ -186,7 +190,7 @@ class EachCenterAdapter(private val context: Context,
                 itemView.common_tw_one_d_result.text = "0"
                 itemView.common_nwet_result.text = "0"
             }
-        }
+         }
 
         private fun centerGoal(queryDocumentSnapshots: QuerySnapshot) {
             if (!queryDocumentSnapshots.isEmpty) {

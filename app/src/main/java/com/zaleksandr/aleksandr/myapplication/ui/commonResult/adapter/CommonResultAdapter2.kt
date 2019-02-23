@@ -10,7 +10,6 @@ import com.google.firebase.firestore.*
 import com.zaleksandr.aleksandr.myapplication.model.City
 import com.zaleksandr.aleksandr.myapplication.model.Goal
 import com.zaleksandr.aleksandr.myapplication.util.*
-import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import kotlinx.android.synthetic.main.item_common_goal_and_result_list2.view.*
 import kotlinx.android.synthetic.main.item_common_result_list.view.*
 import java.util.*
@@ -135,18 +134,21 @@ class CommonResultAdapter2(private var list: ArrayList<City>, private var fragme
             var sumIntroyear = 0
             var sumOneD1year = 0
             var sumTwoD1year = 0
+            var sumActYear = 0
             var sumTwent1year = 0
             var sumNwetyear = 0
 //month
             var sumIntromonth = 0
             var sumOneD1month = 0
             var sumTwoD1month = 0
+            var sumActMonth = 0
             var sumTwent1month = 0
             var sumNwetmonth = 0
 //week
             var sumIntroweek = 0
             var sumOneD1week = 0
             var sumTwoD1week = 0
+            var sumActWeek = 0
 //day
             var sumIntroDay = 0
             var sumOneDDay = 0
@@ -178,6 +180,17 @@ class CommonResultAdapter2(private var list: ArrayList<City>, private var fragme
                     itemView.common_goal_year_two_day_sem.text = sumTwoD1year.toString()
                 }
 
+                if (!goalNote?.yearAct.isNullOrEmpty() && period == 4) {
+                    val intro = (Integer.parseInt(goalNote?.yearAct))
+                    sumActYear += intro
+                    itemView.common_goal_year_act.text = sumActYear.toString()
+                }
+
+                if (!goalNote?.yearTwoDay.isNullOrEmpty() && period == 4) {
+                    val intro = (Integer.parseInt(goalNote?.yearTwoDay))
+                    sumTwoD1year += intro
+                    itemView.common_goal_year_two_day_sem.text = sumTwoD1year.toString()
+                }
 
                 if (!goalNote?.yearTWOne.isNullOrEmpty() && period == 4) {
                     val intro = (Integer.parseInt(goalNote?.yearTWOne))
@@ -215,6 +228,11 @@ class CommonResultAdapter2(private var list: ArrayList<City>, private var fragme
                     itemView.common_goal_year_two_day_sem.text = sumTwoD1month.toString()
                 }
 
+                if (!goalNote?.monthAct.isNullOrEmpty() && period == 3) {
+                    val intro = (Integer.parseInt(goalNote?.monthAct))
+                    sumActMonth += intro
+                    itemView.common_goal_year_act.text = sumActMonth.toString()
+                }
 
                 if (!goalNote?.monthTWOne.isNullOrEmpty() && period == 3) {
                     val intro = (Integer.parseInt(goalNote?.monthTWOne))
@@ -251,6 +269,12 @@ class CommonResultAdapter2(private var list: ArrayList<City>, private var fragme
                     itemView.common_goal_year_two_day_sem.text = sumTwoD1week.toString()
                 }
 
+                if (!goalNote?.weekAct.isNullOrEmpty() && period == 2) {
+                    val intro = (Integer.parseInt(goalNote?.weekAct))
+                    sumActWeek += intro
+                    itemView.common_goal_year_act.text = sumActWeek.toString()
+                }
+
 
                 if (period == 2) {
                     itemView.common_goal_21_day.text = "0"
@@ -282,6 +306,7 @@ class CommonResultAdapter2(private var list: ArrayList<City>, private var fragme
                 if (period == 1) {
                     itemView.common_goal_21_day.text = "0"
                     itemView.common_goal_year_nwet.text = "0"
+                    itemView.common_goal_year_act.text = "0"
                 }
             }
         }
@@ -292,6 +317,7 @@ class CommonResultAdapter2(private var list: ArrayList<City>, private var fragme
             var sumIntro = 0
             var sumOneD1 = 0
             var sumTwoD1 = 0
+            var sumAct = 0
             var sumTwent1 = 0
             var sumNwet = 0
 
@@ -310,10 +336,16 @@ class CommonResultAdapter2(private var list: ArrayList<City>, private var fragme
                         val onaDay = Integer.parseInt(resultNote.onedayWS)
                         sumOneD1 += onaDay
                     }
-                        if (!resultNote.twoDayWS.isNullOrEmpty()) {
-                            val twoDay = Integer.parseInt(resultNote.twoDayWS)
-                            sumTwoD1 += twoDay
-                        }
+                    if (!resultNote.twoDayWS.isNullOrEmpty()) {
+                        val twoDay = Integer.parseInt(resultNote.twoDayWS)
+                        sumTwoD1 += twoDay
+                    }
+
+                    if (!resultNote.actionaiser.isNullOrEmpty()) {
+                        val twoDay = Integer.parseInt(resultNote.actionaiser)
+                        sumAct += twoDay
+                    }
+
                     if (!resultNote.twOneDay.isNullOrEmpty()) {
                         val twOneDay = Integer.parseInt(resultNote.twOneDay)
                         sumTwent1 += twOneDay
@@ -338,10 +370,10 @@ class CommonResultAdapter2(private var list: ArrayList<City>, private var fragme
                 itemView.common_result_intro.text = sumIntro.toString()
                 itemView.common_one_d_result.text = sumOneD1.toString()
                 itemView.common_two_d_result.text = sumTwoD1.toString()
+                itemView.common_act_result.text = sumAct.toString()
                 itemView.common_tw_one_d_result.text = sumTwent1.toString()
                 itemView.common_nwet_result.text = sumNwet.toString()
-            }
-             else {
+            } else {
 //                itemView.result_city.text = model.centers.toString()
                 itemView.common_result_intro.text = "0"
                 itemView.common_one_d_result.text = "0"
@@ -390,7 +422,7 @@ class CommonResultAdapter2(private var list: ArrayList<City>, private var fragme
                 3 -> endOfMonth()
                 4 -> endOfYear()
                 else -> startOfDay(Date())
-            }).addSnapshotListener { queryDocumentSnapshots,_  ->
+            }).addSnapshotListener { queryDocumentSnapshots, _ ->
 
                 cityResult(queryDocumentSnapshots!!)
             }
@@ -530,5 +562,3 @@ class CommonResultAdapter2(private var list: ArrayList<City>, private var fragme
         fun respond(position: Int)
     }
 }
-
-
