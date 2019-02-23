@@ -8,7 +8,7 @@ data class City(
         val intro: String?,
         val onedayWS: String?,
         val twoDayWS: String?,
-        val actionaiser:String?,
+        val actionaiser: String?,
         val twOneDay: String?,
         val centers: String?,
         val approach: String?,
@@ -26,7 +26,8 @@ data class City(
         val dpKor: String?,
         val dp: String?,
         val mmbk: String?,
-        val mobilis: String?
+        val mobilis: String?,
+        val eduMat: String?
 
 ) {
     constructor() : this(getId = "",
@@ -52,7 +53,8 @@ data class City(
             dpKor = "",
             dp = "",
             mmbk = "",
-            mobilis = ""
+            mobilis = "",
+            eduMat = ""
     )
 
 }

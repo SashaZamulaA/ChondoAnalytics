@@ -24,8 +24,8 @@ import com.zaleksandr.aleksandr.myapplication.model.CityAddInfo
 import com.zaleksandr.aleksandr.myapplication.model.EachCenter
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_add_result2.*
-import kotlinx.android.synthetic.main.fragment_add_result2.view.*
+import kotlinx.android.synthetic.main.fragment_add_result.*
+import kotlinx.android.synthetic.main.fragment_add_result.view.*
 import java.text.DateFormat
 import java.util.*
 
@@ -50,7 +50,7 @@ class AddResultFragment : Fragment() {
     private var category2: Array<String>? = null
     var calendarDate: Date? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val rootView = inflater.inflate(com.zaleksandr.aleksandr.myapplication.R.layout.fragment_add_result2, container, false)
+        val rootView = inflater.inflate(com.zaleksandr.aleksandr.myapplication.R.layout.fragment_add_result, container, false)
 
         val c = Calendar.getInstance()
         val currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.time)
@@ -123,7 +123,7 @@ class AddResultFragment : Fragment() {
         val lectCentr = result_lectures_in_center_edittext.text.toString()
         val nwet = result_nwet_edittext.text.toString()
         val mmbk = result_mmbk_edittext.text.toString()
-
+        val eduMat = result_edu_mat_edittext.text.toString()
 
         val dp = result_DP_edittext.text.toString()
         val dpKor = result_DP_kor_edittext.text.toString()
@@ -158,7 +158,7 @@ class AddResultFragment : Fragment() {
                     if (!pictureJustChange && user.profilePicturePath != null) {
                         userPhotoPath = user.profilePicturePath
                     }
-                    noteRefCommonCollection.set(City(id, currentUserId, intro, oneDayWS, twoDayWS, actionaiser, twOneDay, centers, approach, telCont, timeCenter, timeStr, lectTraining, lectOnStr, lectCentr, date, timestamp, userPhotoPath, name, nwet, dpKor, dp, mmbk, mobilis))
+                    noteRefCommonCollection.set(City(id, currentUserId, intro, oneDayWS, twoDayWS, actionaiser, twOneDay, centers, approach, telCont, timeCenter, timeStr, lectTraining, lectOnStr, lectCentr, date, timestamp, userPhotoPath, name, nwet, dpKor, dp, mmbk, mobilis, eduMat))
                     noteRefCommonCollectionForEachCenter.set(EachCenter(id, currentUserId, intro, oneDayWS, twoDayWS, actionaiser, twOneDay, centers, date, timestamp, userPhotoPath, name, nwet, mmbk))
 
                 } else {

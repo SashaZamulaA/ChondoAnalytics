@@ -125,6 +125,7 @@ class IndividualAdapter(context: Context,
 //            if (!item.dpKor.isNullOrEmpty()) itemView.individual_result_dp_kor.text = item.dpKor else itemView.individual_result_dp_kor.text = "0"
 //            if (!item.dp.isNullOrEmpty()) itemView.ind_result_read_dp_num.text = item.dp else itemView.ind_result_read_dp_num.text = "0"
             if (!item.mmbk.isNullOrEmpty()) itemView.individual_result_mmbk.text = item.mmbk else itemView.individual_result_mmbk.text = "0"
+            if (!item.eduMat.isNullOrEmpty()) itemView.individual_result_edu_mat.text = item.eduMat else itemView.individual_result_edu_mat.text = "0"
 
         }
     }

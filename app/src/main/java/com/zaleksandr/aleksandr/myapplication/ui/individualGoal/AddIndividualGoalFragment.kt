@@ -18,7 +18,7 @@ import com.zaleksandr.aleksandr.myapplication.ui.individualGoal.model.Individual
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_add_individual_goal.*
-import kotlinx.android.synthetic.main.fragment_add_result2.view.*
+import kotlinx.android.synthetic.main.fragment_add_result.view.*
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class AddIndividualGoalFragment : Fragment() {
