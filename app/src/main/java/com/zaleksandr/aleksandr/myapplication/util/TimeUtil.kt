@@ -1,7 +1,6 @@
 package com.zaleksandr.aleksandr.myapplication.util
 
 import com.google.android.gms.tasks.Task
-import com.google.android.gms.tasks.Tasks
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.QuerySnapshot
@@ -163,9 +162,9 @@ fun clickByFilterIndividualGoal(individualGoalCollection: CollectionReference): 
 
 
 fun clickByFilterCommonResult(goalCollection: CollectionReference, position: Int, value: Int): Task<QuerySnapshot> {
-    if (responseCache.containsKey(value)){
-        return responseCache[value]!!
-    }
+//    if (responseCache.containsKey(value)){
+//        return responseCache[value]!!
+//    }
     val resultTask =  goalCollection.whereGreaterThanOrEqualTo("time", when (value) {
         1 -> startOfDay(Date())
         2 -> startOfWeek()
@@ -187,7 +186,7 @@ fun clickByFilterCommonResult(goalCollection: CollectionReference, position: Int
 }
 
 fun clickByFilterCommonResultForEachCenter(goalCollection: CollectionReference, position: Int, value: Int): Task<QuerySnapshot> {
-    return goalCollection.whereEqualTo("centers", when (position) {
+    val resultTask =   goalCollection.whereEqualTo("centers", when (position) {
         1 -> "Kyiv"
         2 -> "Kharkiv"
         3 -> "Dnepr"
@@ -209,7 +208,7 @@ fun clickByFilterCommonResultForEachCenter(goalCollection: CollectionReference, 
         4 -> endOfYear()
         else -> startOfDay(Date())
     }).get()
-
+    return resultTask
 }
 
 fun clickByFilterIndividualResult(noteRefCollection: CollectionReference, period: Int): Task<QuerySnapshot> {

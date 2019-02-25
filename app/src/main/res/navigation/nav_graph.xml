@@ -37,6 +37,18 @@
         tools:layout="@layout/fragment_individual_result" />
 
     <fragment
+        android:id="@+id/myGuestFragment"
+        android:name="com.zaleksandr.aleksandr.myapplication.ui.myGuest.GuestFragment"
+        android:label="First Fragment"
+        tools:layout="@layout/fragment_individual_result" />
+
+    <fragment
+        android:id="@+id/addMyGuestFragment"
+        android:name="com.zaleksandr.aleksandr.myapplication.ui.addGuest.AddGuestFragment"
+        android:label="First Fragment"
+        tools:layout="@layout/fragment_individual_result" />
+
+    <fragment
         android:id="@+id/addIndividualGoalsFragment"
         android:name="com.zaleksandr.aleksandr.myapplication.ui.individualGoal.AddIndividualGoalFragment"
         android:label="First Fragment"

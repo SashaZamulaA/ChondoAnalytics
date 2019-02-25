@@ -236,4 +236,11 @@
     <string name="read_DP_kor_pages">DP kor.(page)</string>
     <string name="DP_pages_ukr">Read DP(ukr.)</string>
     <string name="education_material">Edu. material</string>
+    <string name="number_of_telephone">Number of phone</string>
+    <string name="age">Age</string>
+    <string name="birthday">Birthday</string>
+    <string name="status">Status</string>
+    <string name="lector">Lector</string>
+    <string name="my_guests">My guests</string>
+    <string name="add_guest">Add guest</string>
 </resources>

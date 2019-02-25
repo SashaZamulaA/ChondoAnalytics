@@ -98,6 +98,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                                     (it.title)
                                 }
                                 R.id.add_result -> navController.navigate(R.id.addResultFragment)
+                                R.id.add_guest -> navController.navigate(R.id.addMyGuestFragment)
+                                R.id.my_guests -> navController.navigate(R.id.myGuestFragment)
                                 R.id.individualResult -> navController.navigate(R.id.addIndividualFragment)
                                 R.id.add_individual_goals -> navController.navigate(R.id.addIndividualGoalsFragment)
                                 R.id.nav_settings -> navController.navigate(R.id.settingsFragment)
