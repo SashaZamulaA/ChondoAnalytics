@@ -176,17 +176,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 //          navigationView.setNavigationItemSelectedListener(this)
 //        menuItem.isChecked = true
 //        drawerLayout.closeDrawers()
-//        val id = menuItem.itemId
-//        when (id) {
-//            R.id.commonResult -> {
-//                navController.navigate(R.id.commonResultFragment)
+//        val currentUserId = menuItem.itemId
+//        when (currentUserId) {
+//            R.currentUserId.commonResult -> {
+//                navController.navigate(R.currentUserId.commonResultFragment)
 //                (menuItem.title)
 //            }
-//            R.id.add_result -> navController.navigate(R.id.addResultFragment)
-//            R.id.individualResult -> navController.navigate(R.id.addIndividualFragment)
-//            R.id.add_individual_goals -> navController.navigate(R.id.addIndividualGoalsFragment)
-//            R.id.nav_settings -> navController.navigate(R.id.settingsFragment)
-//            R.id.add_goal -> {
+//            R.currentUserId.add_result -> navController.navigate(R.currentUserId.addResultFragment)
+//            R.currentUserId.individualResult -> navController.navigate(R.currentUserId.addIndividualFragment)
+//            R.currentUserId.add_individual_goals -> navController.navigate(R.currentUserId.addIndividualGoalsFragment)
+//            R.currentUserId.nav_settings -> navController.navigate(R.currentUserId.settingsFragment)
+//            R.currentUserId.add_goal -> {
 //                val b = AlertDialog.Builder(this)
 //                b.setTitle("Please enter a password")
 //                val input = EditText(this)
@@ -194,7 +194,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 //                b.setPositiveButton("OK") { _, _ ->
 //                    result = input.text.toString()
 //                    if (result == PASSWORD) {
-//                        navController.navigate(R.id.goalFragment)
+//                        navController.navigate(R.currentUserId.goalFragment)
 //                    } else {
 //                    }
 //                }
@@ -202,7 +202,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 //                b.show()
 //            }
 //
-//            R.id.add_each_centers_goal -> {
+//            R.currentUserId.add_each_centers_goal -> {
 //                val b = AlertDialog.Builder(this)
 //                b.setTitle("Please enter a password")
 //                val input = EditText(this)
@@ -210,7 +210,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 //                b.setPositiveButton("OK") { _, _ ->
 //                    result = input.text.toString()
 //                    if (result == PASSWORD_ALL_CENTERS) {
-//                        navController.navigate(R.id.addGoalEachCenterFragment)
+//                        navController.navigate(R.currentUserId.addGoalEachCenterFragment)
 //                    } else {
 //                    }
 //                }

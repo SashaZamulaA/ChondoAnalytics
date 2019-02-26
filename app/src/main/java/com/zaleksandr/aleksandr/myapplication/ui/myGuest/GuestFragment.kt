@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.appcompat.widget.Toolbar
-import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
@@ -18,53 +17,43 @@ import com.zaleksandr.aleksandr.myapplication.addTo
 import com.zaleksandr.aleksandr.myapplication.model.City
 import com.zaleksandr.aleksandr.myapplication.showMaterialDialogCancelDelete
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
-import kotlinx.android.synthetic.main.fragment_individual_result.*
-import kotlinx.android.synthetic.main.fragment_individual_result.view.*
 import com.google.android.material.snackbar.Snackbar
-import com.zaleksandr.aleksandr.myapplication.BottomNavigationViewBehavior
-import com.zaleksandr.aleksandr.myapplication.ui.commonResult.adapter.IndividualAdapter
+import com.zaleksandr.aleksandr.myapplication.model.Guest
+import com.zaleksandr.aleksandr.myapplication.ui.commonResult.adapter.MyGuestAdapter
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_my_guests.view.*
 
 
-class GuestFragment : Fragment(), IndividualAdapter.FragmentCommunication {
-    override fun respond(city: City) {
+class GuestFragment : Fragment(), MyGuestAdapter.FragmentCommunication {
 
+    override fun respond(city: Guest) {
         context?.showMaterialDialogCancelDelete(
                 title = resources.getText(com.zaleksandr.aleksandr.myapplication.R.string.delete_item_card_title).toString(),
                 message = resources.getText(com.zaleksandr.aleksandr.myapplication.R.string.delete_select_item).toString(),
                 onNoClick = {},
                 onYesClick = {
-                    deleteNote(city)
-                }
-        )?.addTo(dialogDisposable)
 
-    }
+                }
+        )?.addTo(dialogDisposable)    }
+
+
 
     var toolbar: Toolbar? = null
-    var adapter: IndividualAdapter? = null
-    private val noteRefCollection = firestoreInstance.collection("NewCity")
-    var city: City? = null
-    private val items: ArrayList<City> = ArrayList()
+    var adapter: MyGuestAdapter? = null
+    private val noteRefCollection = firestoreInstance.collection("Guest")
+    var city: Guest? = null
+    private val items: ArrayList<Guest> = ArrayList()
     private var mLastQueriedDocument: DocumentSnapshot? = null
     private val dialogDisposable = DialogCompositeDisposable()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val rootView = inflater.inflate(com.zaleksandr.aleksandr.myapplication.R.layout.fragment_individual_result, container, false)
+        val rootView = inflater.inflate(com.zaleksandr.aleksandr.myapplication.R.layout.fragment_my_guests, container, false)
         val actions = listOf("Update", "Delete")
 
         setUpRecyclerView(rootView)
 
 //        bottomMenuInit(rootView)
-//        rootView.button_individual_result_ind_res.setOnClickListener {
-//            Navigation.findNavController(it).navigate(com.zamulaaleksandr.aleksandr.myapplication.R.id.action_individualResultFragment_to_commonResultFragment3)
-//        }
-//        rootView.individual_button_back.setOnClickListener {
-//            Navigation.findNavController(it).navigate(com.zamulaaleksandr.aleksandr.myapplication.R.id.commonResultFragment)
-//        }
 
-//        toolbar = view?.findViewById(com.zamulaaleksandr.aleksandr.myapplication.R.id.toolbar)
-//        (activity as AppCompatActivity).setSupportActionBar(toolbar)
-//        (activity as AppCompatActivity).supportActionBar!!.hide()
         return rootView
     }
 
@@ -72,24 +61,6 @@ class GuestFragment : Fragment(), IndividualAdapter.FragmentCommunication {
     override fun onResume() {
         super.onResume()
         (this.activity!!.toolbar as Toolbar).title = "My guests"
-    }
-
-    private fun deleteNote(city: City?) {
-        val db = FirebaseFirestore.getInstance()
-
-        val noteRef = db
-                .collection("NewCity")
-                .document(city?.getId.toString())
-
-        noteRef.delete().addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                if (city != null) {
-                    adapter?.removeNote(city)
-                }
-            } else {
-//                makeSnackBarMessage("Failed. Check log.")
-            }
-        }
     }
 
     private fun makeSnackBarMessage(message: String) {
@@ -102,7 +73,7 @@ class GuestFragment : Fragment(), IndividualAdapter.FragmentCommunication {
 
         val noteRef = db
                 .collection("NewCity")
-                .document(city?.getId.toString())
+                .document(city?.id.toString())
 
         noteRef.update(
                 "intro", city?.intro
@@ -118,53 +89,54 @@ class GuestFragment : Fragment(), IndividualAdapter.FragmentCommunication {
 
     private fun setUpRecyclerView(rootView: View) {
 
-//        rootView.list_individual_result_adapter.layoutManager = LinearLayoutManager(this.context, LinearLayout.VERTICAL, false)
-//        rootView.list_individual_result_adapter.setHasFixedSize(false)
-//        rootView.list_individual_result_adapter.layoutManager = LinearLayoutManager(context)
-//
-//        adapter = IndividualAdapter(this.context!!, items, this)
-//        rootView.list_individual_result_adapter.adapter = adapter
-//
-//        val notesCollectionRef = firestoreInstance.collection("NewCity")
-//
-//        notesCollectionRef
-//                .whereEqualTo("id", if ("${FirebaseAuth.getInstance().uid}" == FirebaseAuth.getInstance().currentUser!!.uid) {
-//                    FirebaseAuth.getInstance().uid
-//                } else null)
-//                .orderBy("time", Query.Direction.DESCENDING)
-//
-//                .get().addOnCompleteListener { querydocumentSnapshot ->
-//                    if (querydocumentSnapshot.isSuccessful) {
-//                        for (documentSnapshot in querydocumentSnapshot.result!!) {
-//                            val note = documentSnapshot.toObject<City>(City::class.java)
-//                            items.add(note)
-//                        }
-//
-//                        if (querydocumentSnapshot.result!!.size() != 0) {
+        rootView.list_my_guest_adapter.layoutManager = LinearLayoutManager(this.context, LinearLayout.VERTICAL, false)
+        rootView.list_my_guest_adapter.setHasFixedSize(false)
+        rootView.list_my_guest_adapter.layoutManager = LinearLayoutManager(context)
+
+        adapter = MyGuestAdapter(this.context!!, items, this)
+        rootView.list_my_guest_adapter.adapter = adapter
+
+        val notesCollectionRef = firestoreInstance.collection("Guest")
+
+        notesCollectionRef
+                .whereEqualTo("currentUserId", if ("${FirebaseAuth.getInstance().uid}" == FirebaseAuth.getInstance().currentUser!!.uid) {
+                    FirebaseAuth.getInstance().uid
+                } else null)
+                .orderBy("time", Query.Direction.DESCENDING)
+
+                .get().addOnCompleteListener { querydocumentSnapshot ->
+                    if (querydocumentSnapshot.isSuccessful) {
+                        for (documentSnapshot in querydocumentSnapshot.result!!) {
+                            val note = documentSnapshot.toObject<Guest>(Guest::class.java)
+                            items.add(note)
+                        }
+
+                        if (querydocumentSnapshot.result!!.size() != 0) {
 //                            empty_individual_result_fragment.visibility = View.GONE
-//                            mLastQueriedDocument = querydocumentSnapshot.result!!.documents[querydocumentSnapshot.result!!.size()-1]
-//                            adapter?.notifyDataSetChanged()
-//                        } else {
+                            mLastQueriedDocument = querydocumentSnapshot.result!!.documents[querydocumentSnapshot.result!!.size() - 1]
+                            adapter?.notifyDataSetChanged()
+                        } else {
 //                            empty_individual_result_fragment.visibility = View.VISIBLE
-//                            adapter?.notifyDataSetChanged()
-//                        }
-//                    } else {
-//                    }
+                            adapter?.notifyDataSetChanged()
+                        }
+                    } else {
+                    }
                 }
     }
+}
 
 //    private fun bottomMenuInit(rootView: View) {
 //        val layoutParams = rootView.bottom_navigation_person.layoutParams as CoordinatorLayout.LayoutParams
 //        layoutParams.behavior = BottomNavigationViewBehavior()
 //        rootView.bottom_navigation_person.setOnNavigationItemSelectedListener { item ->
 //            when (item.itemId) {
-//                com.zaleksandr.aleksandr.myapplication.R.id.menu_year -> {
+//                com.zaleksandr.aleksandr.myapplication.R.currentUserId.menu_year -> {
 //                    adapter?.perioSelected(IndividualAdapter.ClickByFilter.YEAR)
 //                }
-//                com.zaleksandr.aleksandr.myapplication.R.id.menu_month -> {
+//                com.zaleksandr.aleksandr.myapplication.R.currentUserId.menu_month -> {
 //                    adapter?.perioSelected(IndividualAdapter.ClickByFilter.MONTH)
 //                }
-//                com.zaleksandr.aleksandr.myapplication.R.id.menu_week -> {
+//                com.zaleksandr.aleksandr.myapplication.R.currentUserId.menu_week -> {
 //                    adapter?.perioSelected(IndividualAdapter.ClickByFilter.WEEK)
 //                }
 //

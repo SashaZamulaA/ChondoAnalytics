@@ -130,11 +130,11 @@ class AddGuestFragment : Fragment() {
 
 
         val date: Date
-
+        val currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
         if (calendarDate == null) {
             val c = Calendar.getInstance()
             val currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.time)
-            textViewDate.text = currentDateString
+            guest_textViewDate.text = currentDateString
             date = Date(c.timeInMillis)
         } else {
             date = calendarDate as Date
@@ -144,6 +144,7 @@ class AddGuestFragment : Fragment() {
 
                     noteRefGuestCollection.set(Guest(
                             id,
+                            currentUserId,
                             name,
                             center,
                             intro,

@@ -3,8 +3,8 @@ package com.zaleksandr.aleksandr.myapplication.model
 import java.util.*
 
 data class City(
-        val getId: String?,
         val id: String?,
+        val currentUserId: String?,
         val intro: String?,
         val onedayWS: String?,
         val twoDayWS: String?,
@@ -30,8 +30,8 @@ data class City(
         val eduMat: String?
 
 ) {
-    constructor() : this(getId = "",
-            id = "0",
+    constructor() : this(id = "",
+            currentUserId = "0",
             intro = "0",
             onedayWS = "0",
             twoDayWS = "0",

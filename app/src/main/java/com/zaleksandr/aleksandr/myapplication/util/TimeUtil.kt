@@ -212,22 +212,21 @@ fun clickByFilterCommonResultForEachCenter(goalCollection: CollectionReference, 
 }
 
 fun clickByFilterIndividualResult(noteRefCollection: CollectionReference, period: Int): Task<QuerySnapshot> {
-    return noteRefCollection.whereEqualTo("id", if ("${FirebaseAuth.getInstance().uid}" == FirebaseAuth.getInstance().currentUser!!.uid) {
+    return noteRefCollection.whereEqualTo("currentUserId", if ("${FirebaseAuth.getInstance().uid}" == FirebaseAuth.getInstance().currentUser!!.uid) {
         FirebaseAuth.getInstance().uid
     } else null)
-            .whereGreaterThanOrEqualTo("time", when (period) {
-                1 -> startOfWeek()
-                2 -> startOfMonth()
-                3 -> startOfYear()
-                else -> startOfWeek()
-            }).whereLessThanOrEqualTo("time", when (period) {
-                1 -> endOfWeek()
-                2 -> endOfMonth()
-                3 -> endOfYear()
-                else -> endOfWeek()
-            }).get()
-
-
+//            .whereGreaterThanOrEqualTo("time", when (period) {
+//                1 -> startOfWeek()
+//                2 -> startOfMonth()
+//                3 -> startOfYear()
+//                else -> startOfWeek()
+//            }).whereLessThanOrEqualTo("time", when (period) {
+//                1 -> endOfWeek()
+//                2 -> endOfMonth()
+//                3 -> endOfYear()
+//                else -> endOfWeek()
+//            })
+            .get()
 }
 
 
@@ -254,7 +253,6 @@ fun clickByFilter(noteRefCollection: CollectionReference, position: Int, value: 
         4 -> endOfYear()
         else -> startOfDay(Date())
     }).get()
-
 }
 
 fun clickByFilterForEachCenterGoal(noteRefCollection: CollectionReference, position: Int, value: Int): Task<QuerySnapshot> {

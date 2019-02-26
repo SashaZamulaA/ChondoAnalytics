@@ -4,5 +4,5 @@ import com.google.gson.annotations.SerializedName
 
 data class OwnerData(
         @SerializedName("userId") val userId: Int,
-        @SerializedName("id") val id: Int
+        @SerializedName("currentUserId") val id: Int
 )

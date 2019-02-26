@@ -18,7 +18,7 @@
         android:icon="@mipmap/dayday"
         android:title="@string/day" />
     <!--<item-->
-        <!--android:id="@+id/menu_ind_res"-->
+        <!--android:currentUserId="@+currentUserId/menu_ind_res"-->
         <!--android:icon="@drawable/ic_arrow_back_white"-->
         <!--android:title="@string/day" />-->
 </menu>

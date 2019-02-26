@@ -38,7 +38,7 @@ class SettingsFragment : Fragment() {
         val rootView = inflater.inflate(com.zaleksandr.aleksandr.myapplication.R.layout.fragment_settings, container, false)
 
 //        rootView.settings_button_back.setOnClickListener {
-//            Navigation.findNavController(it).navigate(com.zamulaaleksandr.aleksandr.myapplication.R.id.commonResultFragment)
+//            Navigation.findNavController(it).navigate(com.zamulaaleksandr.aleksandr.myapplication.R.currentUserId.commonResultFragment)
 //        }
 
         rootView.logout_button.setOnClickListener {

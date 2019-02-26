@@ -13,7 +13,7 @@
 
 
         <!--<com.google.android.material.appbar.AppBarLayout-->
-            <!--android:id="@+id/myAppBar"-->
+            <!--android:currentUserId="@+currentUserId/myAppBar"-->
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="wrap_content"-->
             <!--android:descendantFocusability="beforeDescendants"-->
@@ -22,7 +22,7 @@
             <!--app:elevation="0dp">-->
 
             <!--<androidx.appcompat.widget.Toolbar-->
-                <!--android:id="@+id/toolbar"-->
+                <!--android:currentUserId="@+currentUserId/toolbar"-->
                 <!--android:layout_width="match_parent"-->
                 <!--android:layout_height="?attr/actionBarSize"-->
                 <!--android:background="@color/colorPrimary"-->
@@ -33,7 +33,7 @@
                 <!--android:layout_height="match_parent">-->
 
                 <!--<TextView-->
-                    <!--android:id="@+id/tv_title"-->
+                    <!--android:currentUserId="@+currentUserId/tv_title"-->
                     <!--style="@style/TextStyle_Title_White"-->
                     <!--android:layout_width="wrap_content"-->
                     <!--android:layout_height="match_parent"-->
@@ -42,7 +42,7 @@
                     <!--android:text="@string/common_result" />-->
 
                 <!--<ImageView-->
-                    <!--android:id="@+id/button_individual_result"-->
+                    <!--android:currentUserId="@+currentUserId/button_individual_result"-->
                     <!--android:layout_width="@dimen/toolbar_icon_size"-->
                     <!--android:layout_height="@dimen/toolbar_icon_size"-->
                     <!--android:background="@drawable/button_ripple_circle_green"-->

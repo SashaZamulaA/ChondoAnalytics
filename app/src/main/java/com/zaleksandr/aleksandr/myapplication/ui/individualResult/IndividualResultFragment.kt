@@ -42,7 +42,6 @@ class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunica
 
     var toolbar: Toolbar? = null
     var adapter: IndividualAdapter? = null
-    private val noteRefCollection = firestoreInstance.collection("NewCity")
     var city: City? = null
     private val items: ArrayList<City> = ArrayList()
     private var mLastQueriedDocument: DocumentSnapshot? = null
@@ -56,13 +55,13 @@ class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunica
 
         bottomMenuInit(rootView)
 //        rootView.button_individual_result_ind_res.setOnClickListener {
-//            Navigation.findNavController(it).navigate(com.zamulaaleksandr.aleksandr.myapplication.R.id.action_individualResultFragment_to_commonResultFragment3)
+//            Navigation.findNavController(it).navigate(com.zamulaaleksandr.aleksandr.myapplication.R.currentUserId.action_individualResultFragment_to_commonResultFragment3)
 //        }
 //        rootView.individual_button_back.setOnClickListener {
-//            Navigation.findNavController(it).navigate(com.zamulaaleksandr.aleksandr.myapplication.R.id.commonResultFragment)
+//            Navigation.findNavController(it).navigate(com.zamulaaleksandr.aleksandr.myapplication.R.currentUserId.commonResultFragment)
 //        }
 
-//        toolbar = view?.findViewById(com.zamulaaleksandr.aleksandr.myapplication.R.id.toolbar)
+//        toolbar = view?.findViewById(com.zamulaaleksandr.aleksandr.myapplication.R.currentUserId.toolbar)
 //        (activity as AppCompatActivity).setSupportActionBar(toolbar)
 //        (activity as AppCompatActivity).supportActionBar!!.hide()
         return rootView
@@ -84,7 +83,7 @@ class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunica
 
         val noteRef = db
                 .collection("NewCity")
-                .document(city?.getId.toString())
+                .document(city?.id.toString())
 
         noteRef.delete().addOnCompleteListener { task ->
             if (task.isSuccessful) {
@@ -107,7 +106,7 @@ class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunica
 
         val noteRef = db
                 .collection("NewCity")
-                .document(city?.getId.toString())
+                .document(city?.id.toString())
 
         noteRef.update(
                 "intro", city?.intro
@@ -133,7 +132,7 @@ class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunica
         val notesCollectionRef = firestoreInstance.collection("NewCity")
 
         notesCollectionRef
-                .whereEqualTo("id", if ("${FirebaseAuth.getInstance().uid}" == FirebaseAuth.getInstance().currentUser!!.uid) {
+                .whereEqualTo("currentUserId", if ("${FirebaseAuth.getInstance().uid}" == FirebaseAuth.getInstance().currentUser!!.uid) {
                     FirebaseAuth.getInstance().uid
                 } else null)
                 .orderBy("time", Query.Direction.DESCENDING)

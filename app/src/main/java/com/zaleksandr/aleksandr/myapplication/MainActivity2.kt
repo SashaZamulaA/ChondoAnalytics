@@ -28,11 +28,11 @@
 //        super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_main)
 //
-//        button1 = findViewById<Button>(R.id.button1)
-//        button2 = findViewById<Button>(R.id.button2)
-//        button3 = findViewById<Button>(R.id.button3)
-//        button4 = findViewById<Button>(R.id.button4)
-//        button5 = findViewById<Button>(R.id.button5)
+//        button1 = findViewById<Button>(R.currentUserId.button1)
+//        button2 = findViewById<Button>(R.currentUserId.button2)
+//        button3 = findViewById<Button>(R.currentUserId.button3)
+//        button4 = findViewById<Button>(R.currentUserId.button4)
+//        button5 = findViewById<Button>(R.currentUserId.button5)
 //
 //        button1.setOnClickListener {
 //            // TODO Auto-generated method stub
@@ -92,7 +92,7 @@
 //
 //        override fun onDateSet(view: DatePicker, year: Int, month: Int, day: Int) {
 //
-//            val textview = activity.findViewById(R.id.textView1) as TextView
+//            val textview = activity.findViewById(R.currentUserId.textView1) as TextView
 //
 //            textview.text = day.toString() + ":" + (month + 1) + ":" + year
 //
@@ -113,7 +113,7 @@
 //
 //        override fun onDateSet(view: DatePicker, year: Int, month: Int, day: Int) {
 //
-//            val textview = activity.findViewById(R.id.textView1) as TextView
+//            val textview = activity.findViewById(R.currentUserId.textView1) as TextView
 //
 //            textview.text = day.toString() + ":" + (month + 1) + ":" + year
 //
@@ -134,7 +134,7 @@
 //
 //        override fun onDateSet(view: DatePicker, year: Int, month: Int, day: Int) {
 //
-//            val textview = activity.findViewById(R.id.textView1) as TextView
+//            val textview = activity.findViewById(R.currentUserId.textView1) as TextView
 //
 //            textview.text = day.toString() + ":" + (month + 1) + ":" + year
 //
@@ -155,7 +155,7 @@
 //
 //        override fun onDateSet(view: DatePicker, year: Int, month: Int, day: Int) {
 //
-//            val textview = activity.findViewById(R.id.textView1) as TextView
+//            val textview = activity.findViewById(R.currentUserId.textView1) as TextView
 //
 //            textview.text = day.toString() + ":" + (month + 1) + ":" + year
 //
@@ -176,7 +176,7 @@
 //
 //        override fun onDateSet(view: DatePicker, year: Int, month: Int, day: Int) {
 //
-//            val textview = activity.findViewById(R.id.textView1) as TextView
+//            val textview = activity.findViewById(R.currentUserId.textView1) as TextView
 //
 //            textview.text = day.toString() + ":" + (month + 1) + ":" + year
 //

@@ -20,7 +20,7 @@
 //        val contentView = inflater?.inflate(R.layout.layout_dialog_calendar, view as ViewGroup, false)
 //        val titleView = inflater?.inflate(R.layout.layout_dialog_title, view as ViewGroup, false)
 //
-//        val widget = contentView?.findViewById(R.id.calendarView) as MaterialCalendarView
+//        val widget = contentView?.findViewById(R.currentUserId.calendarView) as MaterialCalendarView
 //        widget.setSelectionMode(SELECTION_MODE_RANGE)
 //        widget.setDynamicHeightEnabled(false)
 //        widget.setTileHeight(widget.getTileHeight() / 2)//hack for landscape orientation

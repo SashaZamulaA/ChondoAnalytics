@@ -49,14 +49,14 @@ class CommonResultFragment : Fragment(), CommonResultAdapter2.FragmentCommunicat
         val rootView = inflater.inflate(com.zaleksandr.aleksandr.myapplication.R.layout.fragment_common_result, container, false)
         items.clear()
 //        rootView.button_individual_result.setOnClickListener {
-//            Navigation.findNavController(it).navigate(com.zamulaaleksandr.aleksandr.myapplication.R.id.action_commonResultFragment_to_individualResultFragment2)
+//            Navigation.findNavController(it).navigate(com.zamulaaleksandr.aleksandr.myapplication.R.currentUserId.action_commonResultFragment_to_individualResultFragment2)
 //        }
 
 
         adapterInit(rootView)
         bottomMenuInit(rootView)
 
-//        toolbar = view?.findViewById(com.zamulaaleksandr.aleksandr.myapplication.R.id.toolbar)
+//        toolbar = view?.findViewById(com.zamulaaleksandr.aleksandr.myapplication.R.currentUserId.toolbar)
 //        (activity as AppCompatActivity).setSupportActionBar(toolbar)
 
         adapter?.perioSelected(CommonResultAdapter2.ClickByFilter.YEAR)
@@ -117,8 +117,8 @@ class CommonResultFragment : Fragment(), CommonResultAdapter2.FragmentCommunicat
                 com.zaleksandr.aleksandr.myapplication.R.id.menu_day -> {
                     adapter?.perioSelected(CommonResultAdapter2.ClickByFilter.DAY)
                 }
-//                com.zaleksandr.aleksandr.myapplication.R.id.menu_ind_res -> {
-//                  Navigation.findNavController(this.view!!).navigate(com.zaleksandr.aleksandr.myapplication.R.id.action_commonResultFragment_to_individualResultFragment2)
+//                com.zaleksandr.aleksandr.myapplication.R.currentUserId.menu_ind_res -> {
+//                  Navigation.findNavController(this.view!!).navigate(com.zaleksandr.aleksandr.myapplication.R.currentUserId.action_commonResultFragment_to_individualResultFragment2)
 //                    adapter?.perioSelected(CommonResultAdapter.ClickByFilter.YEAR)
 ////                    hideLoading()
 //                }

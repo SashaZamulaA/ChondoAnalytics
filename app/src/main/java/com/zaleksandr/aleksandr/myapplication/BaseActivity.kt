@@ -21,15 +21,15 @@ abstract class BaseActivity : AppCompatActivity(), IView{
     override fun setContentView(layoutResID: Int) {
 
 
-//        toolbar = findViewById<View>(R.id.toolbar) as Toolbar
+//        toolbar = findViewById<View>(R.currentUserId.toolbar) as Toolbar
 //
-//        drawer = findViewById<View>(R.id.drawer_layout) as DrawerLayout
+//        drawer = findViewById<View>(R.currentUserId.drawer_layout) as DrawerLayout
 //        toggle = ActionBarDrawerToggle(this, drawer, toolbar, R.string.drawer_open, R.string.drawer_close)
 //        drawer.addDrawerListener(toggle)
 //        toggle.drawerArrowDrawable.color = resources.getColor(R.color.white)
 //        toggle.syncState()
 //
-//        navigationView = findViewById<View>(R.id.nav_view) as NavigationView
+//        navigationView = findViewById<View>(R.currentUserId.nav_view) as NavigationView
 //        navigationView.setNavigationItemSelectedListener(this)
     }
 
@@ -41,23 +41,23 @@ abstract class BaseActivity : AppCompatActivity(), IView{
         }
     }
 //    override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
-//        val id = menuItem.itemId
-//        when (id) {
-//            R.id.nav_main -> startActivity(Intent(this, MainActivity::class.java))
+//        val currentUserId = menuItem.itemId
+//        when (currentUserId) {
+//            R.currentUserId.nav_main -> startActivity(Intent(this, MainActivity::class.java))
 //
-////            R.id.chondo_result -> {
+////            R.currentUserId.chondo_result -> {
 ////                startActivity(Intent(this, ResultM3AView::class.java))
 ////                Toast.makeText(applicationContext, "You Clicked Options A", Toast.LENGTH_SHORT).show()
 ////                drawer.closeDrawer(GravityCompat.START)
 ////            }
 //
 //
-//            R.id.nav_settings -> {
+//            R.currentUserId.nav_settings -> {
 //                startActivity(Intent(this, SettingsView::class.java))
 //                drawer.closeDrawer(GravityCompat.START)
 //            }
 //
-//            R.id.nav_share -> {
+//            R.currentUserId.nav_share -> {
 //                val sharingIntent = Intent(Intent.ACTION_SEND)
 //                val shareBody = getString(R.string.share_body)
 //                sharingIntent.apply {
@@ -69,7 +69,7 @@ abstract class BaseActivity : AppCompatActivity(), IView{
 //            }
 //        }
 //
-//        drawer = findViewById<View>(R.id.drawer_layout) as DrawerLayout
+//        drawer = findViewById<View>(R.currentUserId.drawer_layout) as DrawerLayout
 //        drawer.closeDrawer(GravityCompat.START)
 //        return true
 //    }

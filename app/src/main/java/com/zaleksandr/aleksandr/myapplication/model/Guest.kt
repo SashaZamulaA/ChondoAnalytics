@@ -5,6 +5,7 @@ import java.util.*
 data class Guest(
 
         val id: String?,
+        val currentUserId: String?,
         val name: String?,
         val centers: String?,
         val intro: Boolean?,
@@ -27,6 +28,7 @@ data class Guest(
     constructor() : this(
 
             id = "0",
+            currentUserId = "0",
             name = "0",
             intro = false,
             onedayWS = false,

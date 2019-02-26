@@ -75,10 +75,10 @@
         android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/list_individual_result_adapter"
+                android:id="@+id/list_my_guest_adapter"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:listitem="@layout/item_individual_result_list">
+                tools:listitem="@layout/item_my_guest_list">
 
             </androidx.recyclerview.widget.RecyclerView>
 

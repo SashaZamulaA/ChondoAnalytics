@@ -408,7 +408,7 @@
 
 
                         <!--<com.google.android.material.textfield.TextInputLayout-->
-                        <!--android:id="@+id/goal_year_two_day_seminar"-->
+                        <!--android:currentUserId="@+currentUserId/goal_year_two_day_seminar"-->
                         <!--style="@style/TextStyle_Caption_Dark"-->
                         <!--android:layout_width="match_parent"-->
                         <!--android:layout_height="@dimen/touchable_list_container"-->
@@ -419,7 +419,7 @@
                         <!--android:textDirection="inherit">-->
 
                         <!--<com.google.android.material.textfield.TextInputEditText-->
-                        <!--android:id="@+id/goal_year_two_day_seminar_edittext"-->
+                        <!--android:currentUserId="@+currentUserId/goal_year_two_day_seminar_edittext"-->
                         <!--style="@style/TextStyle_Body2_Primary_Dark"-->
                         <!--android:layout_width="match_parent"-->
                         <!--android:layout_height="wrap_content"-->
@@ -431,8 +431,8 @@
                         <!--android:imeOptions="actionNext"-->
                         <!--android:inputType="numberDecimal"-->
                         <!--android:maxLines="1"-->
-                        <!--android:nextFocusDown="@+id/et_sku"-->
-                        <!--android:nextFocusForward="@+id/et_sku"-->
+                        <!--android:nextFocusDown="@+currentUserId/et_sku"-->
+                        <!--android:nextFocusForward="@+currentUserId/et_sku"-->
                         <!--android:selectAllOnFocus="true"-->
                         <!--android:textAlignment="gravity"-->
                         <!--android:textDirection="inherit"-->
@@ -772,7 +772,7 @@
 
 
                             <!--<com.google.android.material.textfield.TextInputLayout-->
-                                <!--android:id="@+id/goal_month_team_seminar"-->
+                                <!--android:currentUserId="@+currentUserId/goal_month_team_seminar"-->
                                 <!--style="@style/TextStyle_Caption_Dark"-->
                                 <!--android:layout_width="match_parent"-->
                                 <!--android:layout_height="@dimen/touchable_list_container"-->
@@ -783,7 +783,7 @@
                                 <!--android:textDirection="inherit">-->
 
                                 <!--<com.google.android.material.textfield.TextInputEditText-->
-                                    <!--android:id="@+id/goal_month_team_edittext"-->
+                                    <!--android:currentUserId="@+currentUserId/goal_month_team_edittext"-->
                                     <!--style="@style/TextStyle_Body2_Primary_Dark"-->
                                     <!--android:layout_width="match_parent"-->
                                     <!--android:layout_height="wrap_content"-->
@@ -795,8 +795,8 @@
                                     <!--android:imeOptions="actionNext"-->
                                     <!--android:inputType="numberDecimal"-->
                                     <!--android:maxLines="1"-->
-                                    <!--android:nextFocusDown="@+id/et_sku"-->
-                                    <!--android:nextFocusForward="@+id/et_sku"-->
+                                    <!--android:nextFocusDown="@+currentUserId/et_sku"-->
+                                    <!--android:nextFocusForward="@+currentUserId/et_sku"-->
                                     <!--android:selectAllOnFocus="true"-->
                                     <!--android:textAlignment="gravity"-->
                                     <!--android:textDirection="inherit"-->
@@ -1046,7 +1046,7 @@
 
 
                             <!--<com.google.android.material.textfield.TextInputLayout-->
-                                <!--android:id="@+id/goal_wee_team"-->
+                                <!--android:currentUserId="@+currentUserId/goal_wee_team"-->
                                 <!--style="@style/TextStyle_Caption_Dark"-->
                                 <!--android:layout_width="match_parent"-->
                                 <!--android:layout_height="@dimen/touchable_list_container"-->
@@ -1057,7 +1057,7 @@
                                 <!--android:textDirection="inherit">-->
 
                                 <!--<com.google.android.material.textfield.TextInputEditText-->
-                                    <!--android:id="@+id/goal_weak_team_edittext"-->
+                                    <!--android:currentUserId="@+currentUserId/goal_weak_team_edittext"-->
                                     <!--style="@style/TextStyle_Body2_Primary_Dark"-->
                                     <!--android:layout_width="match_parent"-->
                                     <!--android:layout_height="wrap_content"-->
@@ -1069,8 +1069,8 @@
                                     <!--android:imeOptions="actionNext"-->
                                     <!--android:inputType="numberDecimal"-->
                                     <!--android:maxLines="1"-->
-                                    <!--android:nextFocusDown="@+id/et_sku"-->
-                                    <!--android:nextFocusForward="@+id/et_sku"-->
+                                    <!--android:nextFocusDown="@+currentUserId/et_sku"-->
+                                    <!--android:nextFocusForward="@+currentUserId/et_sku"-->
                                     <!--android:selectAllOnFocus="true"-->
                                     <!--android:textAlignment="gravity"-->
                                     <!--android:textDirection="inherit"-->
