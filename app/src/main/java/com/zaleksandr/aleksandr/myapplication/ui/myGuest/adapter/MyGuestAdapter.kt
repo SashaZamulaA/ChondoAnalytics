@@ -14,7 +14,9 @@ import java.util.*
 
 class MyGuestAdapter(context: Context,
                      private var list: ArrayList<Guest>,
-                     private var fragmentCommunication: GuestFragment) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+                     private var fragmentCommunication: GuestFragment
+//                     private val onClickEditItem: (Guest) -> Unit
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
     private val TYPE_HEADER = 0
@@ -101,6 +103,8 @@ class MyGuestAdapter(context: Context,
 ////            if (!item.dp.isNullOrEmpty()) itemView.ind_result_read_dp_num.text = item.dp else itemView.ind_result_read_dp_num.text = "0"
 //            if (!item.mmbk.isNullOrEmpty()) itemView.individual_result_mmbk.text = item.mmbk else itemView.individual_result_mmbk.text = "0"
 //            if (!item.eduMat.isNullOrEmpty()) itemView.individual_result_edu_mat.text = item.eduMat else itemView.individual_result_edu_mat.text = "0"
+
+//            itemView.setOnClickListener { onClickEditItem(item) }
 
         }
     }

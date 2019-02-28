@@ -7,15 +7,14 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.zaleksandr.aleksandr.myapplication.DialogCompositeDisposable
-import com.zaleksandr.aleksandr.myapplication.addTo
 import com.zaleksandr.aleksandr.myapplication.model.City
-import com.zaleksandr.aleksandr.myapplication.showMaterialDialogCancelDelete
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import com.google.android.material.snackbar.Snackbar
 import com.zaleksandr.aleksandr.myapplication.model.Guest
@@ -27,14 +26,14 @@ import kotlinx.android.synthetic.main.fragment_my_guests.view.*
 class GuestFragment : Fragment(), MyGuestAdapter.FragmentCommunication {
 
     override fun respond(city: Guest) {
-        context?.showMaterialDialogCancelDelete(
-                title = resources.getText(com.zaleksandr.aleksandr.myapplication.R.string.delete_item_card_title).toString(),
-                message = resources.getText(com.zaleksandr.aleksandr.myapplication.R.string.delete_select_item).toString(),
-                onNoClick = {},
-                onYesClick = {
 
-                }
-        )?.addTo(dialogDisposable)    }
+        val bundle = Bundle()
+        bundle.putString("name", city.name)
+        bundle.putBoolean("intro", city.intro!!)
+        Navigation.findNavController(this.view!!).navigate(com.zaleksandr.aleksandr.myapplication.R.id.action_showMyGuestFragment_to_updateMyGuestFragment, bundle)
+        items.clear()
+
+    }
 
 
 
@@ -93,7 +92,13 @@ class GuestFragment : Fragment(), MyGuestAdapter.FragmentCommunication {
         rootView.list_my_guest_adapter.setHasFixedSize(false)
         rootView.list_my_guest_adapter.layoutManager = LinearLayoutManager(context)
 
+
         adapter = MyGuestAdapter(this.context!!, items, this)
+
+
+
+
+
         rootView.list_my_guest_adapter.adapter = adapter
 
         val notesCollectionRef = firestoreInstance.collection("Guest")

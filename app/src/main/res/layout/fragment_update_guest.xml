@@ -161,7 +161,7 @@
                     app:layout_constraintTop_toTopOf="@+id/textViewDate6" />
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/guest_name"
+                    android:id="@+id/guest_name_edit"
                     android:layout_width="0dp"
                     android:layout_height="46dp"
                     android:layout_marginStart="8dp"
@@ -243,7 +243,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/guest_name" />
+                    app:layout_constraintTop_toBottomOf="@+id/guest_name_edit" />
 
 
                 <TextView
@@ -466,10 +466,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="64dp"
+                    android:layout_marginTop="16dp"
                     android:text="@string/day21_seminar"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/guest_twoDay" />
+                    app:layout_constraintTop_toBottomOf="@+id/guest_act" />
 
                 <CheckBox
                     android:id="@+id/guest_nwet"
@@ -493,7 +493,7 @@
 
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/guest_fab_confirm_goal"
+                android:id="@+id/fab_update_guest"
                 style="@style/FloatingActionButton"
                 app:backgroundTint="@color/link_color"
                 app:srcCompat="@drawable/ic_check_black_24dp" />

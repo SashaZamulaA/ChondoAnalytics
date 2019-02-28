@@ -21,9 +21,9 @@ data class Guest(
 //        val time21Day: String?,
 //        val timeNwet: String?,
         val time: Date,
-        val timestamp: Long,
-        val birthday: String?,
-        val phoneNum: String?
+        val timestamp: Long
+//        val birthday: String?,
+//        val phoneNum: String?
 ) {
     constructor() : this(
 
@@ -44,9 +44,9 @@ data class Guest(
 //            timeNwet = "",
             centers = "",
             time = Date(),
-            timestamp = 0,
-            birthday = "",
-            phoneNum = ""
+            timestamp = 0
+//            birthday = "",
+//            phoneNum = ""
     )
 
     fun constructor() {

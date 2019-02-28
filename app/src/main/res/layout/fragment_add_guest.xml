@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/guest_phone2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:hint="@string/phone_number"
+                    android:inputType="numberDecimal"
+                    android:selectAllOnFocus="true"
+                    android:text=""
+                    android:textAlignment="textStart"
+                    android:textSize="@dimen/body2_text_size"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView2"
+                    app:layout_constraintTop_toBottomOf="@+id/guest_name" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/guest_name"
+                    android:layout_width="0dp"
+                    android:layout_height="46dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="10dp"
+                    android:focusableInTouchMode="true"
+                    android:hint="Name"
+                    android:inputType="textCapSentences"
+                    android:maxLength="64"
+                    android:maxLines="1"
+                    android:selectAllOnFocus="true"
+                    android:text=""
+                    android:textAlignment="textStart"
+                    android:textSize="@dimen/body2_text_size"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView2"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <!--Город-->
+
+                <Spinner
+                    android:id="@+id/add_guest_city"
+                    android:layout_width="0dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toEndOf="@+id/textViewDate6"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+                <View
+                    android:id="@+id/view5"
+                    style="@style/AppTheme.HorizontalSpinnerDivider"
+                    android:layout_width="0dp"
+                    android:layout_marginEnd="12dp"
+                    app:layout_constraintEnd_toEndOf="@+id/add_guest_city"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/add_guest_city"
+                    app:layout_constraintTop_toBottomOf="@+id/add_guest_city" />
+
+
+                <Button
+
+                    android:id="@+id/guest_time_intro"
+                    android:layout_width="60dp"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="140dp"
+                    android:background="@drawable/button_green_bordered"
+                    android:text="@string/data"
+                    android:textColor="@color/text_secondary_dark"
+                    android:textSize="@dimen/space_12"
+                    app:layout_constraintBottom_toBottomOf="@+id/add_guest_intro"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/add_guest_intro" />
+
+                <Button
+
+                    android:id="@+id/guest_time_one_day"
+                    android:layout_width="60dp"
+                    android:layout_height="36dp"
+                    android:background="@drawable/button_green_bordered"
+                    android:text="@string/data"
+                    android:textColor="@color/text_secondary_dark"
+                    android:textSize="@dimen/space_12"
+                    app:layout_constraintBottom_toBottomOf="@+id/add_guest_oneDay"
+                    app:layout_constraintEnd_toEndOf="@+id/guest_time_intro"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/guest_time_intro"
+                    app:layout_constraintTop_toTopOf="@+id/add_guest_oneDay"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <Button
+
+                    android:id="@+id/guest_time_two_day"
+                    android:layout_width="60dp"
+                    android:layout_height="36dp"
+                    android:background="@drawable/button_green_bordered"
+                    android:text="@string/data"
+                    android:textColor="@color/text_secondary_dark"
+                    android:textSize="@dimen/space_12"
+                    app:layout_constraintBottom_toBottomOf="@+id/add_guest_twoDay"
+                    app:layout_constraintEnd_toEndOf="@+id/guest_time_one_day"
+                    app:layout_constraintStart_toStartOf="@+id/guest_time_one_day"
+                    app:layout_constraintTop_toTopOf="@+id/add_guest_twoDay" />
+
+                <Button
+
+                    android:id="@+id/guest_time_act"
+                    android:layout_width="60dp"
+                    android:layout_height="36dp"
+                    android:background="@drawable/button_green_bordered"
+                    android:text="@string/data"
+                    android:textColor="@color/text_secondary_dark"
+                    android:textSize="@dimen/space_12"
+                    app:layout_constraintBottom_toBottomOf="@+id/add_guest_act"
+                    app:layout_constraintEnd_toEndOf="@+id/guest_time_two_day"
+                    app:layout_constraintStart_toStartOf="@+id/guest_time_two_day"
+                    app:layout_constraintTop_toTopOf="@+id/add_guest_act" />
+
+                <Button
+
+                    android:id="@+id/guest_time_21_day"
+                    android:layout_width="60dp"
+                    android:layout_height="36dp"
+                    android:background="@drawable/button_green_bordered"
+                    android:text="@string/data"
+                    android:textColor="@color/text_secondary_dark"
+                    android:textSize="@dimen/space_12"
+                    app:layout_constraintBottom_toBottomOf="@+id/add_guest_21"
+                    app:layout_constraintEnd_toEndOf="@+id/guest_time_act"
+                    app:layout_constraintStart_toStartOf="@+id/guest_time_act"
+                    app:layout_constraintTop_toTopOf="@+id/add_guest_21"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <Button
+
+                    android:id="@+id/guest_time_nwet"
+                    android:layout_width="60dp"
+                    android:layout_height="36dp"
+                    android:background="@drawable/button_green_bordered"
+                    android:text="@string/data"
+                    android:textColor="@color/text_secondary_dark"
+                    android:textSize="@dimen/space_12"
+                    app:layout_constraintBottom_toBottomOf="@+id/add_guest_nwet"
+                    app:layout_constraintEnd_toEndOf="@+id/guest_time_21_day"
+                    app:layout_constraintStart_toStartOf="@+id/guest_time_21_day"
+                    app:layout_constraintTop_toTopOf="@+id/add_guest_nwet" />
+
+                <Button
+
+                    android:id="@+id/add_birthday_gues"
+                    android:layout_width="100dp"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/button_green_bordered"
+                    android:text="@string/birthday"
+                    android:textColor="@color/text_secondary_dark"
+                    android:textSize="@dimen/space_12"
+                    app:layout_constraintStart_toEndOf="@+id/imageView2"
+                    app:layout_constraintTop_toBottomOf="@+id/guest_phone2" />
+
+                <TextView
+                    android:id="@+id/date_intro_guest_textViewDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="21 mart"
+                    android:textColor="@color/braun"
+                    app:layout_constraintBottom_toBottomOf="@+id/guest_time_intro"
+                    app:layout_constraintStart_toEndOf="@+id/guest_time_intro"
+                    app:layout_constraintTop_toTopOf="@+id/guest_time_intro" />
+
+                <TextView
+                    android:id="@+id/textViewDate2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="21 mart"
+                    android:textColor="@color/braun"
+                    app:layout_constraintBottom_toBottomOf="@+id/guest_time_one_day"
+                    app:layout_constraintEnd_toEndOf="@+id/date_intro_guest_textViewDate"
+                    app:layout_constraintStart_toStartOf="@+id/date_intro_guest_textViewDate"
+                    app:layout_constraintTop_toTopOf="@+id/guest_time_one_day" />
+
+                <TextView
+                    android:id="@+id/textViewDate3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="21 mart"
+                    android:textColor="@color/braun"
+                    app:layout_constraintBottom_toBottomOf="@+id/guest_time_two_day"
+                    app:layout_constraintEnd_toEndOf="@+id/textViewDate2"
+                    app:layout_constraintStart_toStartOf="@+id/textViewDate2"
+                    app:layout_constraintTop_toTopOf="@+id/guest_time_two_day" />
+
+                <TextView
+                    android:id="@+id/textViewDate4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="21 mart"
+                    android:textColor="@color/braun"
+                    app:layout_constraintBottom_toBottomOf="@+id/guest_time_act"
+                    app:layout_constraintEnd_toEndOf="@+id/textViewDate3"
+                    app:layout_constraintStart_toStartOf="@+id/textViewDate3"
+                    app:layout_constraintTop_toTopOf="@+id/guest_time_act" />
+
+                <TextView
+                    android:id="@+id/textViewDate5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="21 mart"
+                    android:textColor="@color/braun"
+                    app:layout_constraintBottom_toBottomOf="@+id/guest_time_21_day"
+                    app:layout_constraintEnd_toEndOf="@+id/textViewDate4"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@+id/textViewDate4"
+                    app:layout_constraintTop_toTopOf="@+id/guest_time_21_day" />
+
+                <TextView
+                    android:id="@+id/textViewDate6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="21 mart"
+                    android:textColor="@color/braun"
+                    app:layout_constraintBottom_toBottomOf="@+id/guest_time_nwet"
+                    app:layout_constraintEnd_toEndOf="@+id/textViewDate5"
+                    app:layout_constraintStart_toStartOf="@+id/textViewDate5"
+                    app:layout_constraintTop_toTopOf="@+id/guest_time_nwet" />
+
+                <TextView
+                    android:id="@+id/textViewDate7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="21 mart"
+                    android:textColor="@color/braun"
+                    app:layout_constraintBottom_toBottomOf="@+id/add_birthday_gues"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/add_birthday_gues"
+                    app:layout_constraintTop_toTopOf="@+id/add_birthday_gues" />
+
+                <CheckBox
+                    android:id="@+id/add_guest_intro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/introdaction"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/add_guest_city" />
+
+                <CheckBox
+                    android:id="@+id/add_guest_oneDay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/one_day_seminar"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/add_guest_intro" />
+
+                <CheckBox
+                    android:id="@+id/add_guest_twoDay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/two_day_seminar"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/add_guest_oneDay" />
+
+                <CheckBox
+                    android:id="@+id/add_guest_act"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/actionizer"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/add_guest_twoDay" />
+
+                <CheckBox
+                    android:id="@+id/add_guest_21"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="64dp"
+                    android:text="@string/day21_seminar"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/add_guest_twoDay" />
+
+                <CheckBox
+                    android:id="@+id/add_guest_nwet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/nwet"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/add_guest_21" />
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="131dp"
+                    android:layout_height="184dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/com_facebook_profile_picture_blank_portrait" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="32dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/textViewDate6"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/add_guest_nwet">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="top|left"
+                        android:hint="hint"
+                        android:lines="10"
+                        android:maxLines="150"
+                        android:minLines="5" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:gravity="bottom"
+            android:orientation="vertical">
+
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/guest_fab_confirm_goal"
+                style="@style/FloatingActionButton"
+                app:backgroundTint="@color/link_color"
+                app:srcCompat="@drawable/ic_check_black_24dp" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</ScrollView>

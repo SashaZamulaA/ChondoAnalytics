@@ -17,18 +17,13 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.zaleksandr.aleksandr.myapplication.MainActivity
-import com.zaleksandr.aleksandr.myapplication.MainActivity.Companion.AUTHOR_KEY
 import com.zaleksandr.aleksandr.myapplication.MainActivity.Companion.SPINNER
-import com.zaleksandr.aleksandr.myapplication.model.City
-import com.zaleksandr.aleksandr.myapplication.model.CityAddInfo
-import com.zaleksandr.aleksandr.myapplication.model.EachCenter
 import com.zaleksandr.aleksandr.myapplication.model.Guest
-import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_add_guest_result.*
-import kotlinx.android.synthetic.main.fragment_add_guest_result.view.*
-import kotlinx.android.synthetic.main.fragment_add_result.*
-import kotlinx.android.synthetic.main.fragment_add_result.view.*
+import kotlinx.android.synthetic.main.fragment_add_guest.*
+import kotlinx.android.synthetic.main.fragment_add_guest.view.*
+import kotlinx.android.synthetic.main.fragment_update_guest.*
+import kotlinx.android.synthetic.main.fragment_update_guest.view.*
 import java.text.DateFormat
 import java.util.*
 
@@ -52,11 +47,11 @@ class AddGuestFragment : Fragment() {
     private var category2: Array<String>? = null
     var calendarDate: Date? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val rootView = inflater.inflate(com.zaleksandr.aleksandr.myapplication.R.layout.fragment_add_guest_result, container, false)
+        val rootView = inflater.inflate(com.zaleksandr.aleksandr.myapplication.R.layout.fragment_add_guest, container, false)
 
         val c = Calendar.getInstance()
         val currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.time)
-        rootView.guest_textViewDate.text = currentDateString
+        rootView.date_intro_guest_textViewDate.text = currentDateString
 
         category2 = resources.getStringArray(com.zaleksandr.aleksandr.myapplication.R.array.City)
         @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
@@ -65,15 +60,15 @@ class AddGuestFragment : Fragment() {
 
         val spinnerCountryAdapter = ArrayAdapter(context, com.zaleksandr.aleksandr.myapplication.R.layout.spinner_simple_item, spinner_country)
         spinnerCountryAdapter.setDropDownViewResource(com.zaleksandr.aleksandr.myapplication.R.layout.spinner_drop_down)
-        rootView.guest_city.adapter = spinnerCountryAdapter
-        rootView.guest_city.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        rootView.add_guest_city.adapter = spinnerCountryAdapter
+        rootView.add_guest_city.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
             }
         }
 
-        rootView.guest_time_intro.setOnClickListener {
-            showDatePickerDialog(this.context!!, String(), guest_textViewDate)
+        rootView.date_intro_guest_textViewDate.setOnClickListener {
+            showDatePickerDialog(this.context!!, String(), date_intro_guest_textViewDate)
         }
 
         rootView.guest_fab_confirm_goal.setOnClickListener {
@@ -113,15 +108,15 @@ class AddGuestFragment : Fragment() {
 
         val id = noteRefGuestCollection.id
         val name = guest_name.text.toString()
-        val center = guest_city.selectedItem.toString()
-        val intro = guest_intro.isChecked
-        val oneDayWS = guest_oneDay.isChecked
-        val twoDayWS = guest_twoDay.isChecked
-        val actionaiser = guest_act.isChecked
-        val twOneDay = guest_21.isChecked
-        val nwet = guest_nwet.isChecked
-        val birthday = guest_birthday.text.toString()
-        val phoneNum = guest_phone.text.toString()
+        val center = add_guest_city.selectedItem.toString()
+        val intro = add_guest_intro.isChecked
+        val oneDayWS = add_guest_oneDay.isChecked
+        val twoDayWS = add_guest_twoDay.isChecked
+        val actionaiser = add_guest_act.isChecked
+        val twOneDay = add_guest_21.isChecked
+        val nwet = add_guest_nwet.isChecked
+//        val birthday = guest_birthday.text.toString()
+//        val phoneNum = guest_phone.text.toString()
 
         val dataToSave = HashMap<String, Any>()
         dataToSave[SPINNER] = center
@@ -134,7 +129,7 @@ class AddGuestFragment : Fragment() {
         if (calendarDate == null) {
             val c = Calendar.getInstance()
             val currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.time)
-            guest_textViewDate.text = currentDateString
+            date_intro_guest_textViewDate.text = currentDateString
             date = Date(c.timeInMillis)
         } else {
             date = calendarDate as Date
@@ -160,9 +155,9 @@ class AddGuestFragment : Fragment() {
 //                            time21Day,
 //                            timeNwet,
                             Date(),
-                            timestamp,
-                            birthday,
-                            phoneNum
+                            timestamp
+//                            birthday,
+//                            phoneNum
                     ))
 
         startActivity(Intent(context, MainActivity::class.java))

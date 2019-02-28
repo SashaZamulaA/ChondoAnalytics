@@ -158,6 +158,7 @@ class AddResultFragment : Fragment() {
                     if (!pictureJustChange && user.profilePicturePath != null) {
                         userPhotoPath = user.profilePicturePath
                     }
+
                     noteRefCommonCollection.set(City(id, currentUserId, intro, oneDayWS, twoDayWS, actionaiser, twOneDay, centers, approach, telCont, timeCenter, timeStr, lectTraining, lectOnStr, lectCentr, date, timestamp, userPhotoPath, name, nwet, dpKor, dp, mmbk, mobilis, eduMat))
                     noteRefCommonCollectionForEachCenter.set(EachCenter(id, currentUserId, intro, oneDayWS, twoDayWS, actionaiser, twOneDay, centers, date, timestamp, userPhotoPath, name, nwet, mmbk))
 

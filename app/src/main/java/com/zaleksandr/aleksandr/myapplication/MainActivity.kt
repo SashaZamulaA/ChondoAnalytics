@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val SPINNER = "spinner"
         val PASSWORD = "0000"
         val PASSWORD_ALL_CENTERS = "1111"
+        val INTRO = false
     }
 
 
@@ -99,7 +100,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                                 }
                                 R.id.add_result -> navController.navigate(R.id.addResultFragment)
                                 R.id.add_guest -> navController.navigate(R.id.addMyGuestFragment)
-                                R.id.my_guests -> navController.navigate(R.id.myGuestFragment)
+                                R.id.my_guests -> navController.navigate(R.id.showMyGuestFragment)
                                 R.id.individualResult -> navController.navigate(R.id.addIndividualFragment)
                                 R.id.add_individual_goals -> navController.navigate(R.id.addIndividualGoalsFragment)
                                 R.id.nav_settings -> navController.navigate(R.id.settingsFragment)

@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_commonResultFragment_to_eachCenterFragment"
             app:destination="@id/eachCenterFragment" />
+        <argument
+            android:name="intro"
+            app:argType="boolean" />
     </fragment>
 
     <fragment
@@ -37,16 +40,32 @@
         tools:layout="@layout/fragment_individual_result" />
 
     <fragment
-        android:id="@+id/myGuestFragment"
+        android:id="@+id/showMyGuestFragment"
         android:name="com.zaleksandr.aleksandr.myapplication.ui.myGuest.GuestFragment"
         android:label="First Fragment"
-        tools:layout="@layout/fragment_individual_result" />
+        tools:layout="@layout/fragment_my_guests" >
+        <action
+            android:id="@+id/action_showMyGuestFragment_to_updateMyGuestFragment"
+            app:destination="@id/updateMyGuestFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/updateMyGuestFragment"
+        android:name="com.zaleksandr.aleksandr.myapplication.ui.myGuest.GuestEditFragment"
+        android:label="Update Fragment"
+        tools:layout="@layout/fragment_update_guest" >
+
+        <argument
+            android:name="name"
+            app:argType="string" />
+    </fragment>
 
     <fragment
         android:id="@+id/addMyGuestFragment"
         android:name="com.zaleksandr.aleksandr.myapplication.ui.addGuest.AddGuestFragment"
         android:label="First Fragment"
-        tools:layout="@layout/fragment_individual_result" />
+        tools:layout="@layout/fragment_add_guest" />
 
     <fragment
         android:id="@+id/addIndividualGoalsFragment"
