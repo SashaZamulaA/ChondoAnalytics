@@ -41,7 +41,7 @@
 
     <fragment
         android:id="@+id/showMyGuestFragment"
-        android:name="com.zaleksandr.aleksandr.myapplication.ui.myGuest.GuestFragment"
+        android:name="com.zaleksandr.aleksandr.myapplication.ui.updateGuest.GuestFragment"
         android:label="First Fragment"
         tools:layout="@layout/fragment_my_guests" >
         <action
@@ -52,7 +52,7 @@
 
     <fragment
         android:id="@+id/updateMyGuestFragment"
-        android:name="com.zaleksandr.aleksandr.myapplication.ui.myGuest.GuestEditFragment"
+        android:name="com.zaleksandr.aleksandr.myapplication.ui.updateGuest.GuestEditFragment"
         android:label="Update Fragment"
         tools:layout="@layout/fragment_update_guest" >
 

@@ -41,6 +41,15 @@ object StorageUtil {
                 }
     }
 
+//    fun uploadGuestProfilePhoto(imageBytes: ByteArray,
+//                           onSuccess: (imagePath: String) -> Unit){
+//        val ref = currentUserRef.child("guestPictures/${UUID.nameUUIDFromBytes(imageBytes)}")
+//        ref.putBytes(imageBytes)
+//                .addOnSuccessListener {
+//                    onSuccess(ref.path)
+//                }
+//    }
+
     fun uploadMessageImage(imageBytes: ByteArray,
                            onSuccess: (imagePath: String) -> Unit){
         val ref = currentUserRef.child("messages/${UUID.nameUUIDFromBytes(imageBytes)}")
@@ -49,5 +58,7 @@ object StorageUtil {
                     onSuccess(ref.path)
                 }
     }
-fun pathToReference(path: String) = storageInstance.getReference(path)
+fun pathToReference(path: String) = if (!path.isEmpty()) {
+    storageInstance.getReference(path)
+} else{ }
 }

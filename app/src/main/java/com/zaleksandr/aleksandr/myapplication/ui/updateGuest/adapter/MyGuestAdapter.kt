@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.zaleksandr.aleksandr.myapplication.model.Guest
-import com.zaleksandr.aleksandr.myapplication.ui.myGuest.GuestFragment
+import com.zaleksandr.aleksandr.myapplication.ui.updateGuest.GuestFragment
 import kotlinx.android.synthetic.main.item_my_guest_list.view.*
 import java.util.*
 

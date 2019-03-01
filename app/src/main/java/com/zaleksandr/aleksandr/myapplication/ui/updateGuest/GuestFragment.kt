@@ -1,4 +1,4 @@
-package com.zaleksandr.aleksandr.myapplication.ui.myGuest
+package com.zaleksandr.aleksandr.myapplication.ui.updateGuest
 
 import android.os.Bundle
 import android.view.LayoutInflater

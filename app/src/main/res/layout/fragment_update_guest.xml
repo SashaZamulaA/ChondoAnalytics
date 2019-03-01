@@ -24,141 +24,71 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/ind_read_dp4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="142dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/number_of_telephone"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toEndOf="@+id/textViewDate6"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView19" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView19">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="top|left"
+                        android:hint="hint"
+                        android:lines="10"
+                        android:maxLines="150"
+                        android:minLines="5" />
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
-                    android:id="@+id/ind_read_dp7"
+                    android:id="@+id/textViewDate8"
                     android:layout_width="wrap_content"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="21 mart"
+                    android:textColor="@color/braun"
+                    app:layout_constraintBottom_toBottomOf="@+id/add_birthday_gues2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/add_birthday_gues2"
+                    app:layout_constraintTop_toTopOf="@+id/add_birthday_gues2" />
+
+                <Button
+
+                    android:id="@+id/add_birthday_gues2"
+                    android:layout_width="100dp"
+                    android:layout_height="36dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
+                    android:background="@drawable/button_green_bordered"
                     android:text="@string/birthday"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/ind_read_dp4" />
+                    android:textColor="@color/text_secondary_dark"
+                    android:textSize="@dimen/space_12"
+                    app:layout_constraintStart_toEndOf="@+id/update_profile_pocture"
+                    app:layout_constraintTop_toBottomOf="@+id/guest_phone3" />
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/guest_phone"
-                    android:layout_width="140dp"
+                    android:id="@+id/guest_phone3"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="80dp"
+                    android:hint="@string/phone_number"
                     android:inputType="numberDecimal"
                     android:selectAllOnFocus="true"
                     android:text=""
                     android:textAlignment="textStart"
                     android:textSize="@dimen/body2_text_size"
-                    app:layout_constraintBottom_toBottomOf="@+id/ind_read_dp4"
-                    app:layout_constraintEnd_toEndOf="@+id/guest_time_nwet"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/guest_time_nwet"
-                    app:layout_constraintTop_toTopOf="@+id/ind_read_dp4"
-                    app:layout_constraintVertical_bias="0.49" />
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/result_DP_kor_edittext3"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:inputType="numberDecimal"
-                    android:selectAllOnFocus="true"
-                    android:text="@string/lector"
-                    android:textAlignment="textStart"
-                    android:textSize="@dimen/body2_text_size"
-                    app:layout_constraintBottom_toBottomOf="@+id/guest_textViewDate"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/guest_textViewDate"
-                    app:layout_constraintTop_toTopOf="@+id/guest_textViewDate" />
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/result_DP_kor_edittext4"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:inputType="numberDecimal"
-                    android:selectAllOnFocus="true"
-                    android:text="@string/lector"
-                    android:textAlignment="textStart"
-                    android:textSize="@dimen/body2_text_size"
-                    app:layout_constraintBottom_toBottomOf="@+id/textViewDate2"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toEndOf="@+id/textViewDate2"
-                    app:layout_constraintTop_toTopOf="@+id/textViewDate2" />
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/result_DP_kor_edittext5"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:inputType="numberDecimal"
-                    android:selectAllOnFocus="true"
-                    android:text="@string/lector"
-                    android:textAlignment="textStart"
-                    android:textSize="@dimen/body2_text_size"
-                    app:layout_constraintBottom_toBottomOf="@+id/textViewDate3"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toEndOf="@+id/textViewDate2"
-                    app:layout_constraintTop_toTopOf="@+id/textViewDate3" />
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/result_DP_kor_edittext6"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:inputType="numberDecimal"
-                    android:selectAllOnFocus="true"
-                    android:text="@string/lector"
-                    android:textAlignment="textStart"
-                    android:textSize="@dimen/body2_text_size"
-                    app:layout_constraintBottom_toBottomOf="@+id/textViewDate4"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toEndOf="@+id/textViewDate2"
-                    app:layout_constraintTop_toTopOf="@+id/textViewDate4" />
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/result_DP_kor_edittext7"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:inputType="numberDecimal"
-                    android:selectAllOnFocus="true"
-                    android:text="@string/lector"
-                    android:textAlignment="textStart"
-                    android:textSize="@dimen/body2_text_size"
-                    app:layout_constraintBottom_toBottomOf="@+id/textViewDate5"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toEndOf="@+id/textViewDate2"
-                    app:layout_constraintTop_toTopOf="@+id/textViewDate5" />
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/result_DP_kor_edittext8"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:inputType="numberDecimal"
-                    android:selectAllOnFocus="true"
-                    android:text="@string/lector"
-                    android:textAlignment="textStart"
-                    android:textSize="@dimen/body2_text_size"
-                    app:layout_constraintBottom_toBottomOf="@+id/textViewDate6"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/textViewDate6"
-                    app:layout_constraintTop_toTopOf="@+id/textViewDate6" />
+                    app:layout_constraintStart_toEndOf="@+id/update_profile_pocture"
+                    app:layout_constraintTop_toBottomOf="@+id/guest_name_edit" />
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/guest_name_edit"
@@ -177,73 +107,11 @@
                     android:textAlignment="textStart"
                     android:textSize="@dimen/body2_text_size"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/update_profile_pocture"
                     app:layout_constraintTop_toTopOf="parent" />
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/result_mobilisation_edittext"
-                    android:layout_width="140dp"
-                    android:layout_height="wrap_content"
-                    android:selectAllOnFocus="true"
-                    android:text=""
-                    android:textAlignment="center"
-                    android:textSize="@dimen/body2_text_size"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView38"
-                    app:layout_constraintEnd_toEndOf="@+id/guest_birthday"
-                    app:layout_constraintStart_toStartOf="@+id/guest_birthday"
-                    app:layout_constraintTop_toTopOf="@+id/textView38" />
 
 
                 <!--Город-->
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/guest_birthday"
-                    android:layout_width="142dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
-                    android:selectAllOnFocus="true"
-                    android:text=""
-                    android:textAlignment="center"
-                    android:textSize="@dimen/body2_text_size"
-                    app:layout_constraintBottom_toBottomOf="@+id/ind_read_dp7"
-                    app:layout_constraintEnd_toEndOf="@+id/guest_phone"
-                    app:layout_constraintStart_toStartOf="@+id/guest_phone"
-                    app:layout_constraintTop_toTopOf="@+id/ind_read_dp7" />
-
-                <Spinner
-                    android:id="@+id/guest_city"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView15" />
-
-                <View
-                    android:id="@+id/view5"
-                    style="@style/AppTheme.HorizontalSpinnerDivider"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/guest_city" />
-
-                <TextView
-                    android:id="@+id/textView15"
-                    style="@style/TextStyle_SubHeader_Accent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="8dp"
-                    android:text="City"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/guest_name_edit" />
 
 
                 <TextView
@@ -256,16 +124,6 @@
                     android:text="Add information:"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/guest_nwet" />
-
-                <TextView
-                    android:id="@+id/textView38"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/status"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/ind_read_dp7" />
 
                 <Button
 
@@ -429,7 +287,7 @@
                     android:layout_marginTop="16dp"
                     android:text="@string/introdaction"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/guest_city" />
+                    app:layout_constraintTop_toBottomOf="@+id/update_profile_pocture" />
 
                 <CheckBox
                     android:id="@+id/guest_oneDay"
@@ -480,6 +338,16 @@
                     android:text="@string/nwet"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/guest_21" />
+
+                <ImageView
+                    android:id="@+id/update_profile_pocture"
+                    android:layout_width="131dp"
+                    android:layout_height="183dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/com_facebook_profile_picture_blank_portrait" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </FrameLayout>

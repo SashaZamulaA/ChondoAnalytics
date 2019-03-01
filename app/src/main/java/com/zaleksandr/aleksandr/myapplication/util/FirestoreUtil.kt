@@ -7,6 +7,7 @@ import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.zaleksandr.aleksandr.myapplication.MainActivity.Companion.AUTHOR_KEY
 import com.zaleksandr.aleksandr.myapplication.MainActivity.Companion.QUOTE_KEY
+import com.zaleksandr.aleksandr.myapplication.model.Guest
 
 object FirestoreUtil {
     val firestoreInstance: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
@@ -61,6 +62,14 @@ object FirestoreUtil {
         currentUserDocRef.get()
                 .addOnSuccessListener {
                     onComplete(it.toObject(User::class.java)!!)
+                }
+    }
+
+    fun getCurrentUserGuest(onComplete: (Guest) -> Unit) {
+        val notesUpdateGuestRef = firestoreInstance.collection("Guest").document()
+        notesUpdateGuestRef.get()
+                .addOnSuccessListener {
+                    onComplete(it.toObject(Guest::class.java)!!)
                 }
     }
 }

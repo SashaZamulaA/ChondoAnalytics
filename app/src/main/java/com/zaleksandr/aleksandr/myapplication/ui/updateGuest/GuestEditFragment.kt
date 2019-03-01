@@ -1,4 +1,4 @@
-package com.zaleksandr.aleksandr.myapplication.ui.myGuest
+package com.zaleksandr.aleksandr.myapplication.ui.updateGuest
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,19 +8,22 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.zaleksandr.aleksandr.myapplication.DialogCompositeDisposable
 import com.zaleksandr.aleksandr.myapplication.MainActivity.Companion.AUTHOR_KEY
+import com.zaleksandr.aleksandr.myapplication.R
 import com.zaleksandr.aleksandr.myapplication.addTo
-import com.zaleksandr.aleksandr.myapplication.model.City
 import com.zaleksandr.aleksandr.myapplication.model.Guest
 import com.zaleksandr.aleksandr.myapplication.showMaterialDialogCancelDelete
 import com.zaleksandr.aleksandr.myapplication.ui.commonResult.adapter.MyGuestAdapter
+import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
+import com.zaleksandr.aleksandr.myapplication.util.StorageUtil
+import com.zaleksandr.aleksandr.tmbook.glade.GlideApp
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_update_guest.*
 import kotlinx.android.synthetic.main.fragment_update_guest.view.*
+import kotlinx.android.synthetic.main.header_layout.*
 
 
 class GuestEditFragment : Fragment(), MyGuestAdapter.FragmentCommunication {
@@ -42,15 +45,35 @@ class GuestEditFragment : Fragment(), MyGuestAdapter.FragmentCommunication {
 
     var path = ""
     var name = ""
+    var photo = ""
     var toolbar: Toolbar? = null
     val notesUpdateGuestRef = firestoreInstance.collection("Guest")
     var city: Guest? = null
     private val dialogDisposable = DialogCompositeDisposable()
+    private var pictureJustChange = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(com.zaleksandr.aleksandr.myapplication.R.layout.fragment_update_guest, container, false)
 
+
+
+//        notesUpdateGuestRef.addSnapshotListener { documentSnapshot, _ ->
+//            FirestoreUtil.getCurrentUserGuest { guest ->
+//                if (!documentSnapshot?.isEmpty!!) {
+//
+//                    if (!pictureJustChange && guest.photo != null)
+//                        GlideApp.with(this)
+//                                .load(StorageUtil.pathToReference(guest.photo))
+//                                .placeholder(R.drawable.ic_account_circle_black_24dp)
+//                                .circleCrop()
+//                                .into(header_profile_picture)
+//                }
+//            }
+//        }
+
+
         rootView.fab_update_guest.setOnClickListener {
+
 
             updateCurrentUser(
 
@@ -100,6 +123,7 @@ class GuestEditFragment : Fragment(), MyGuestAdapter.FragmentCommunication {
 //        }
 //    }
 
+
     private fun updateCurrentUser(name: String = "", intro: Boolean, oneDay: Boolean, twoDay: Boolean, twOneDay: Boolean, nwet: Boolean) {
 
         val userFieldMap = mutableMapOf<String, Any>()
@@ -147,6 +171,30 @@ class GuestEditFragment : Fragment(), MyGuestAdapter.FragmentCommunication {
 //                            notesUpdateGuestRef.document(path
 //                                    ?: throw NullPointerException("UID is null.")).update(userFieldMap)
 //                        }
+
+                            } else {
+                            }
+                        }
+                    }
+                }
+
+
+        notesUpdateGuestRef
+                .whereEqualTo("currentUserId", if ("${FirebaseAuth.getInstance().uid}" == FirebaseAuth.getInstance().currentUser!!.uid) {
+                    FirebaseAuth.getInstance().uid
+                } else null).orderBy("time", Query.Direction.DESCENDING)
+                .whereEqualTo("name", name)
+
+                .get().addOnCompleteListener { querydocumentSnapshot ->
+                    if (querydocumentSnapshot.isSuccessful) {
+                        for (documentSnapshot in querydocumentSnapshot.result!!) {
+                            val note = documentSnapshot.toObject<Guest>(Guest::class.java)
+                            photo = note.photo.toString()
+
+                            if (!pictureJustChange && note.photo != null) {
+                                GlideApp.with(this)
+                                        .load(StorageUtil.pathToReference(note.photo))
+                                        .into(update_profile_pocture)
 
                             } else {
                             }
