@@ -38,9 +38,7 @@ class AddGuestFragment : Fragment() {
 
     enum class InvalidData {
         NO_NAME
-
     }
-
 
     private val SELECT_IMAGE = 2
     private lateinit var selectImageBytes: ByteArray
@@ -58,7 +56,7 @@ class AddGuestFragment : Fragment() {
             "Kyiv", "Kharkiv", "Dnepr", "Zhytomyr", "Lviv", "Odessa", "Chernigov", "Other"
     )
 
-    private var category2: Array<String>? = null
+    private var cityCategory: Array<String>? = null
     var calendarDate: Date? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(com.zaleksandr.aleksandr.myapplication.R.layout.fragment_add_guest, container, false)
@@ -67,9 +65,9 @@ class AddGuestFragment : Fragment() {
         val currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.time)
         rootView.date_intro_guest_textViewDate.text = currentDateString
 
-        category2 = resources.getStringArray(com.zaleksandr.aleksandr.myapplication.R.array.City)
+        cityCategory = resources.getStringArray(com.zaleksandr.aleksandr.myapplication.R.array.City)
         @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-        val adapter2 = ArrayAdapter(context, android.R.layout.simple_dropdown_item_1line, category2)
+        val adapter2 = ArrayAdapter(context, android.R.layout.simple_dropdown_item_1line, cityCategory)
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         rootView.add_guest_photo.setOnClickListener {
@@ -80,7 +78,6 @@ class AddGuestFragment : Fragment() {
             }
             startActivityForResult(Intent.createChooser(intent, " Select Image"), SELECT_IMAGE)
         }
-
 
         val spinnerCountryAdapter = ArrayAdapter(context, com.zaleksandr.aleksandr.myapplication.R.layout.spinner_simple_item, spinner_country)
         spinnerCountryAdapter.setDropDownViewResource(com.zaleksandr.aleksandr.myapplication.R.layout.spinner_drop_down)
@@ -120,10 +117,8 @@ class AddGuestFragment : Fragment() {
         }
     }
 
-
     fun onResetError() {
         guest_name.isErrorEnabled = false
-
     }
 
     fun uploadGuestProfilePhoto(imageBytes: ByteArray,

@@ -1,29 +1,38 @@
 package com.zaleksandr.aleksandr.myapplication.ui.updateGuest
 
+import android.app.Activity
+import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.Query
 import com.zaleksandr.aleksandr.myapplication.DialogCompositeDisposable
+import com.zaleksandr.aleksandr.myapplication.MainActivity
 import com.zaleksandr.aleksandr.myapplication.MainActivity.Companion.AUTHOR_KEY
-import com.zaleksandr.aleksandr.myapplication.R
+import com.zaleksandr.aleksandr.myapplication.MainActivity.Companion.QUOTE_KEY
 import com.zaleksandr.aleksandr.myapplication.addTo
 import com.zaleksandr.aleksandr.myapplication.model.Guest
 import com.zaleksandr.aleksandr.myapplication.showMaterialDialogCancelDelete
 import com.zaleksandr.aleksandr.myapplication.ui.commonResult.adapter.MyGuestAdapter
+import com.zaleksandr.aleksandr.myapplication.ui.settings.model.User
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import com.zaleksandr.aleksandr.myapplication.util.StorageUtil
+import com.zaleksandr.aleksandr.myapplication.util.StorageUtil.currentUserRef
 import com.zaleksandr.aleksandr.tmbook.glade.GlideApp
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_settings.*
 import kotlinx.android.synthetic.main.fragment_update_guest.*
 import kotlinx.android.synthetic.main.fragment_update_guest.view.*
-import kotlinx.android.synthetic.main.header_layout.*
+import java.io.ByteArrayOutputStream
 
 
 class GuestEditFragment : Fragment(), MyGuestAdapter.FragmentCommunication {
@@ -43,6 +52,7 @@ class GuestEditFragment : Fragment(), MyGuestAdapter.FragmentCommunication {
         val NAME = "name"
     }
 
+    private val SELECT_IMAGE = 2
     var path = ""
     var name = ""
     var photo = ""
@@ -51,30 +61,28 @@ class GuestEditFragment : Fragment(), MyGuestAdapter.FragmentCommunication {
     var city: Guest? = null
     private val dialogDisposable = DialogCompositeDisposable()
     private var pictureJustChange = false
+    private lateinit var selectImageBytes: ByteArray
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(com.zaleksandr.aleksandr.myapplication.R.layout.fragment_update_guest, container, false)
 
-
-
-//        notesUpdateGuestRef.addSnapshotListener { documentSnapshot, _ ->
-//            FirestoreUtil.getCurrentUserGuest { guest ->
-//                if (!documentSnapshot?.isEmpty!!) {
-//
-//                    if (!pictureJustChange && guest.photo != null)
-//                        GlideApp.with(this)
-//                                .load(StorageUtil.pathToReference(guest.photo))
-//                                .placeholder(R.drawable.ic_account_circle_black_24dp)
-//                                .circleCrop()
-//                                .into(header_profile_picture)
-//                }
-//            }
-//        }
-
+        rootView.update_profile_pocture.setOnClickListener {
+            val intent = Intent().apply {
+                type = "image/*"
+                action = Intent.ACTION_GET_CONTENT
+                putExtra(Intent.EXTRA_MIME_TYPES, arrayOf("image/jpeg", "image/png", "image/jpg"))
+            }
+            startActivityForResult(Intent.createChooser(intent, " Select Image"), 2)
+        }
 
         rootView.fab_update_guest.setOnClickListener {
 
-
+            if (::selectImageBytes.isInitialized) {
+                uploadGuestProfilePhoto(selectImageBytes) { profilePicturePath ->
+                    updatePhoto(profilePicturePath)
+                }
+            }
+            setUpRecyclerView(rootView)
             updateCurrentUser(
 
                     guest_name_edit.text.toString(),
@@ -84,6 +92,7 @@ class GuestEditFragment : Fragment(), MyGuestAdapter.FragmentCommunication {
                     guest_21.isChecked,
                     guest_nwet.isChecked
             )
+
         }
 
         setUpRecyclerView(rootView)
@@ -93,6 +102,14 @@ class GuestEditFragment : Fragment(), MyGuestAdapter.FragmentCommunication {
         return rootView
     }
 
+    fun uploadGuestProfilePhoto(imageBytes: ByteArray,
+                                onSuccess: (imagePath: String) -> Unit) {
+        val ref = currentUserRef.child("guestPictures/${(guest_name_edit.text.toString())}")
+        ref.putBytes(imageBytes)
+                .addOnSuccessListener {
+                    onSuccess(ref.path)
+                }
+    }
 
     override fun onResume() {
         super.onResume()
@@ -123,7 +140,58 @@ class GuestEditFragment : Fragment(), MyGuestAdapter.FragmentCommunication {
 //        }
 //    }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == SELECT_IMAGE && resultCode == Activity.RESULT_OK &&
+                data != null && data.data != null) {
+            val selectedImagePath = data.data
+            val selectedImageBmp = MediaStore.Images.Media
+                    .getBitmap(context?.contentResolver, selectedImagePath)
 
+            val outputStream = ByteArrayOutputStream()
+            selectedImageBmp.compress(Bitmap.CompressFormat.JPEG, 20, outputStream)
+            selectImageBytes = outputStream.toByteArray()
+
+            GlideApp.with(this)
+                    .load(selectImageBytes)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(true)
+                    .into(update_profile_pocture)
+            pictureJustChange = true
+        }
+    }
+
+
+    private fun updatePhoto(profilePicturePath: String) {
+
+        photo = profilePicturePath
+        notesUpdateGuestRef.document(path).update("photo", photo)
+
+    }
+//    override fun onStart() {
+//        super.onStart()
+//        notesUpdateGuestRef
+//                .whereEqualTo("currentUserId", if ("${FirebaseAuth.getInstance().uid}" == FirebaseAuth.getInstance().currentUser!!.uid) {
+//                    FirebaseAuth.getInstance().uid
+//                } else null).orderBy("time", Query.Direction.DESCENDING)
+//                .whereEqualTo("name", name)
+//
+//                .get().addOnCompleteListener { querydocumentSnapshot ->
+//                    if (querydocumentSnapshot.isSuccessful) {
+//                        for (documentSnapshot in querydocumentSnapshot.result!!) {
+//                            val note = documentSnapshot.toObject<Guest>(Guest::class.java)
+//                            path = note.id.toString()
+//
+//                            if (note.photo != null) {
+//                                GlideApp.with(this)
+//                                        .load(StorageUtil.pathToReference(note.photo))
+//                                        .into(update_profile_pocture)
+//                            } else {
+//                            }
+//                        }
+//
+//                    }
+//                }
+//        }
     private fun updateCurrentUser(name: String = "", intro: Boolean, oneDay: Boolean, twoDay: Boolean, twOneDay: Boolean, nwet: Boolean) {
 
         val userFieldMap = mutableMapOf<String, Any>()
@@ -136,7 +204,7 @@ class GuestEditFragment : Fragment(), MyGuestAdapter.FragmentCommunication {
                 "twOneDay", twOneDay,
                 "nwet", nwet)
 
-
+    startActivity(Intent(context, MainActivity::class.java))
 //        notesUpdateGuestRef.document(path).update("onedayWS", oneDay)
 //        notesUpdateGuestRef.document(path).update("twoDayWS", twoDay)
 //        notesUpdateGuestRef.document(path).update("twOneDay", twOneDay)
@@ -163,42 +231,17 @@ class GuestEditFragment : Fragment(), MyGuestAdapter.FragmentCommunication {
                             guest_intro.isChecked = intro!!
                             guest_name_edit.setText(name.toString())
 
-                            val userFieldMap = mutableMapOf<String, Any>()
-                            if (name != null) {
-                                if (name.isNotBlank()) userFieldMap[AUTHOR_KEY] = name
+                                if (note.photo != null) {
 
-
-//                            notesUpdateGuestRef.document(path
-//                                    ?: throw NullPointerException("UID is null.")).update(userFieldMap)
-//                        }
-
-                            } else {
-                            }
+                                    GlideApp.with(this)
+                                            .load(StorageUtil.pathToReference(note.photo))
+                                            .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                            .skipMemoryCache(true)
+                                            .into(update_profile_pocture)
+                                } else {
+                                }
                         }
-                    }
-                }
 
-
-        notesUpdateGuestRef
-                .whereEqualTo("currentUserId", if ("${FirebaseAuth.getInstance().uid}" == FirebaseAuth.getInstance().currentUser!!.uid) {
-                    FirebaseAuth.getInstance().uid
-                } else null).orderBy("time", Query.Direction.DESCENDING)
-                .whereEqualTo("name", name)
-
-                .get().addOnCompleteListener { querydocumentSnapshot ->
-                    if (querydocumentSnapshot.isSuccessful) {
-                        for (documentSnapshot in querydocumentSnapshot.result!!) {
-                            val note = documentSnapshot.toObject<Guest>(Guest::class.java)
-                            photo = note.photo.toString()
-
-                            if (!pictureJustChange && note.photo != null) {
-                                GlideApp.with(this)
-                                        .load(StorageUtil.pathToReference(note.photo))
-                                        .into(update_profile_pocture)
-
-                            } else {
-                            }
-                        }
                     }
                 }
     }

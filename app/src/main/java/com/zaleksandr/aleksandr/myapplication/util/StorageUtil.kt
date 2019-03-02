@@ -58,7 +58,10 @@ object StorageUtil {
                     onSuccess(ref.path)
                 }
     }
-fun pathToReference(path: String) = if (!path.isEmpty()) {
+fun pathToReference(path: String) = if (!path.isNullOrEmpty()) {
     storageInstance.getReference(path)
 } else{ }
+
+
+//fun pathToReference2(path: String) = storageInstance.getReference(path)
 }
