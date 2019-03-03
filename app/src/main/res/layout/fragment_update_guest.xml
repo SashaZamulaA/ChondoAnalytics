@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+   >
 
     <LinearLayout
 
@@ -35,32 +35,33 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView19">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/guest_edit_description"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="top|left"
-                        android:hint="hint"
+                        android:hint="@string/description"
                         android:lines="10"
                         android:maxLines="150"
                         android:minLines="5" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
-                    android:id="@+id/textViewDate8"
+                    android:id="@+id/birthday_edit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="8dp"
                     android:text="21 mart"
                     android:textColor="@color/braun"
-                    app:layout_constraintBottom_toBottomOf="@+id/add_birthday_gues2"
+                    app:layout_constraintBottom_toBottomOf="@+id/update_birthday_gues"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@+id/add_birthday_gues2"
-                    app:layout_constraintTop_toTopOf="@+id/add_birthday_gues2" />
+                    app:layout_constraintStart_toEndOf="@+id/update_birthday_gues"
+                    app:layout_constraintTop_toTopOf="@+id/update_birthday_gues" />
 
                 <Button
 
-                    android:id="@+id/add_birthday_gues2"
+                    android:id="@+id/update_birthday_gues"
                     android:layout_width="100dp"
                     android:layout_height="36dp"
                     android:layout_marginStart="8dp"
@@ -70,10 +71,10 @@
                     android:textColor="@color/text_secondary_dark"
                     android:textSize="@dimen/space_12"
                     app:layout_constraintStart_toEndOf="@+id/update_profile_pocture"
-                    app:layout_constraintTop_toBottomOf="@+id/guest_phone3" />
+                    app:layout_constraintTop_toBottomOf="@+id/guest_edit_phone" />
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/guest_phone3"
+                    android:id="@+id/guest_edit_phone"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"

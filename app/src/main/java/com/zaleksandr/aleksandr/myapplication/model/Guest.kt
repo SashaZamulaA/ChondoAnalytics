@@ -15,16 +15,17 @@ data class Guest(
         val actionaiser: Boolean?,
         val twOneDay: Boolean?,
         val nwet: Boolean?,
-//        val timeIntro: String?,
-//        val timeOneDay: String?,
-//        val timeTwoDay: String?,
-//        val timeAct: String?,
-//        val time21Day: String?,
-//        val timeNwet: String?,
+        val timeIntro: String?,
+        val timeOneDay: String?,
+        val timeTwoDay: String?,
+        val timeAct: String?,
+        val time21Day: String?,
+        val timeNwet: String?,
         val time: Date,
-        val timestamp: Long
-//        val birthday: String?,
-//        val phoneNum: String?
+        val timestamp: Long,
+        val birthday: String?,
+        val phoneNum: String?,
+        val description: String?
 ) {
     constructor() : this(
 
@@ -38,17 +39,18 @@ data class Guest(
             actionaiser = false,
             twOneDay = false,
             nwet = false,
-//            timeIntro = "",
-//            timeOneDay = "",
-//            timeTwoDay = "",
-//            timeAct = "",
-//            time21Day = "",
-//            timeNwet = "",
+            timeIntro = "",
+            timeOneDay = "",
+            timeTwoDay = "",
+            timeAct = "",
+            time21Day = "",
+            timeNwet = "",
             centers = "",
             time = Date(),
-            timestamp = 0
-//            birthday = "",
-//            phoneNum = ""
+            timestamp = 0,
+            birthday = "",
+            phoneNum = "",
+            description = ""
     )
 
     fun constructor() {

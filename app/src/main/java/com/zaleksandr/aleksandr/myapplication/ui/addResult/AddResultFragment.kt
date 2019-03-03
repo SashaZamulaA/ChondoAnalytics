@@ -81,7 +81,7 @@ class AddResultFragment : Fragment() {
     }
 
 
-    fun showDatePickerDialog(mContext: Context, format: String, textViewDate: TextView) {
+   private fun showDatePickerDialog(mContext: Context, format: String, textViewDate: TextView) {
 
         val c = Calendar.getInstance()
         DatePickerDialog(mContext, OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
@@ -105,7 +105,6 @@ class AddResultFragment : Fragment() {
         (this.activity!!.toolbar as Toolbar).title = "Add result"
     }
 
-
     private fun addNote() {
 
         val centers = registration_city.selectedItem.toString()
@@ -124,7 +123,6 @@ class AddResultFragment : Fragment() {
         val nwet = result_nwet_edittext.text.toString()
         val mmbk = result_mmbk_edittext.text.toString()
         val eduMat = result_edu_mat_edittext.text.toString()
-
         val dp = result_DP_edittext.text.toString()
         val dpKor = result_DP_kor_edittext.text.toString()
         val mobilis = result_mobilisation_edittext.text.toString()

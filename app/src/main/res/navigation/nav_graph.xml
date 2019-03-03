@@ -47,6 +47,10 @@
         <action
             android:id="@+id/action_showMyGuestFragment_to_updateMyGuestFragment"
             app:destination="@id/updateMyGuestFragment" />
+        <argument
+            android:name="oneDay"
+            app:argType="boolean"
+            android:defaultValue="false" />
 
     </fragment>
 

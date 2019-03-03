@@ -1,7 +1,6 @@
 package com.zaleksandr.aleksandr.myapplication.ui.commonResult.adapter
 
 import android.content.Context
-import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -108,12 +107,6 @@ class MyGuestAdapter(context: Context,
 
         }
     }
-
-    private val dateFormatter = DateFormat.getDateFormat(context)
-    private val timeFormatter = DateFormat.getTimeFormat(context)
-    private fun formatDateAndTime(ts: Long): String = formatDate(ts)
-    private fun formatDate(ts: Long): String = Calendar.getInstance().run { timeInMillis = ts; dateFormatter.format(time) }
-    private fun formatTime(ts: Long): String = Calendar.getInstance().run { timeInMillis = ts; timeFormatter.format(time) }
 
     //    fun updateList(list: ArrayList<City>) {
 //        this.list = list

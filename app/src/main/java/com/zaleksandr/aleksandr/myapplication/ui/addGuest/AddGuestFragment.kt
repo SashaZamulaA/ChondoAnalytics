@@ -15,6 +15,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
@@ -30,16 +31,19 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_add_guest.*
 import kotlinx.android.synthetic.main.fragment_add_guest.view.*
 import java.io.ByteArrayOutputStream
+import java.sql.Timestamp
 import java.text.DateFormat
 import java.util.*
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class AddGuestFragment : Fragment() {
 
+
     enum class InvalidData {
         NO_NAME
     }
 
+    var dateBirthday: String? = null
     private val SELECT_IMAGE = 2
     private lateinit var selectImageBytes: ByteArray
     private var pictureJustChange = false
@@ -61,9 +65,15 @@ class AddGuestFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(com.zaleksandr.aleksandr.myapplication.R.layout.fragment_add_guest, container, false)
 
-        val c = Calendar.getInstance()
-        val currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.time)
-        rootView.date_intro_guest_textViewDate.text = currentDateString
+
+        rootView.add_birthday_gues.setOnClickListener {
+            showDatePickerBirthdayDialog(this.context!!, String(), birthday_textViewDate)
+        }
+
+
+//        val c = Calendar.getInstance()
+//        val currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.time)
+//        rootView.date_intro_guest_textViewDate.text = currentDateString
 
         cityCategory = resources.getStringArray(com.zaleksandr.aleksandr.myapplication.R.array.City)
         @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
@@ -89,8 +99,13 @@ class AddGuestFragment : Fragment() {
         }
 
         rootView.date_intro_guest_textViewDate.setOnClickListener {
-            showDatePickerDialog(this.context!!, String(), date_intro_guest_textViewDate)
+            showDatePickerIntroDialog(this.context!!, String(), date_intro_guest_textViewDate)
         }
+
+        rootView.date_intro_guest_textViewDate.setOnClickListener {
+            showDatePickerOneDayDialog(this.context!!, String(), date_one_day_guest_textViewDate)
+        }
+
 
         rootView.guest_fab_confirm_goal.setOnClickListener {
             guest_name_edittext.setSimpleTextWatcher {
@@ -130,18 +145,53 @@ class AddGuestFragment : Fragment() {
                 }
     }
 
-    fun showDatePickerDialog(mContext: Context, format: String, textViewDate: TextView) {
+    fun showDatePickerBirthdayDialog(mContext: Context, format: String, birthday_textViewDate: TextView) {
+
+        val c = Calendar.getInstance()
+        DatePickerDialog(mContext, OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            c.set(year, monthOfYear, dayOfMonth)
+
+                val currentDateString = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(c.time)
+                birthday_textViewDate.text = currentDateString
+                dateBirthday = currentDateString
+
+
+
+//            calendarDate = Date(c.timeInMillis)
+//            val currentDateString = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(c.time)
+//            textViewDate7.text = currentDateString
+
+        }, c.get(Calendar.YEAR), c.get(Calendar.MONTH),
+                c.get(Calendar.DAY_OF_MONTH)).show()
+
+
+    }
+
+    private fun showDatePickerIntroDialog(mContext: Context, format: String, date_intro_guest_textViewDate: TextView) {
 
         val c = Calendar.getInstance()
         DatePickerDialog(mContext, OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
             c.set(year, monthOfYear, dayOfMonth)
 
             calendarDate = Date(c.timeInMillis)
-            val currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.time)
-            textViewDate.text = currentDateString
-//            val dateFormat = SimpleDateFormat("yyyy-MM-dd")
-//            val parsedDate = dateFormat.parse(currentDateString).time
+            val currentDateString = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(c.time)
+            date_intro_guest_textViewDate.text = currentDateString
 
+        }, c.get(Calendar.YEAR), c.get(Calendar.MONTH),
+                c.get(Calendar.DAY_OF_MONTH)).show()
+
+
+    }
+
+    private fun showDatePickerOneDayDialog(mContext: Context, format: String, date_one_day_guest_textViewDate: TextView) {
+
+        val c = Calendar.getInstance()
+        DatePickerDialog(mContext, OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            c.set(year, monthOfYear, dayOfMonth)
+
+            calendarDate = Date(c.timeInMillis)
+            val currentDateString = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(c.time)
+            date_one_day_guest_textViewDate.text = currentDateString
 
         }, c.get(Calendar.YEAR), c.get(Calendar.MONTH),
                 c.get(Calendar.DAY_OF_MONTH)).show()
@@ -185,12 +235,21 @@ class AddGuestFragment : Fragment() {
         val center = add_guest_city.selectedItem.toString()
         val intro = add_guest_intro.isChecked
         val oneDayWS = add_guest_oneDay.isChecked
-        val twoDayWS = add_guest_twoDay.isChecked
-        val actionaiser = add_guest_act.isChecked
-        val twOneDay = add_guest_21.isChecked
-        val nwet = add_guest_nwet.isChecked
+        val twoDayWS = false
+        val actionaiser = false
+        val twOneDay = false
+        val nwet = false
+        val timeIntro = ""
+        val timeOneDay = ""
+        val timeTwoDay = ""
+        val timeAct = ""
+        val time21Day = ""
+        val timeNwet = ""
+        val birthday = dateBirthday
+        val description = guest_description_edittext.text.toString()
+
 //        val birthday = guest_birthday.text.toString()
-//        val phoneNum = guest_phone.text.toString()
+        val phoneNum = guest_add_phone.text.toString()
 
         val dataToSave = HashMap<String, Any>()
         dataToSave[SPINNER] = center
@@ -220,18 +279,21 @@ class AddGuestFragment : Fragment() {
                 actionaiser,
                 twOneDay,
                 nwet,
-//                            timeIntro,
-//                            timeOneDay,
-//                            timeTwoDay,
-//                            timeAct,
-//                            time21Day,
-//                            timeNwet,
+                timeIntro,
+                timeOneDay,
+                timeTwoDay,
+                timeAct,
+                time21Day,
+                timeNwet,
                 Date(),
-                timestamp
-//                            birthday,
-//                            phoneNum
+                timestamp,
+                birthday,
+                phoneNum,
+                description
         ))
 
         startActivity(Intent(context, MainActivity::class.java))
     }
+
+
 }

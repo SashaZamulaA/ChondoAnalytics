@@ -1,6 +1,8 @@
 package com.zaleksandr.aleksandr.myapplication.ui.updateGuest
 
 import android.app.Activity
+import android.app.DatePickerDialog
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
@@ -8,6 +10,7 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -16,23 +19,20 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.Query
 import com.zaleksandr.aleksandr.myapplication.DialogCompositeDisposable
 import com.zaleksandr.aleksandr.myapplication.MainActivity
-import com.zaleksandr.aleksandr.myapplication.MainActivity.Companion.AUTHOR_KEY
-import com.zaleksandr.aleksandr.myapplication.MainActivity.Companion.QUOTE_KEY
 import com.zaleksandr.aleksandr.myapplication.addTo
 import com.zaleksandr.aleksandr.myapplication.model.Guest
 import com.zaleksandr.aleksandr.myapplication.showMaterialDialogCancelDelete
 import com.zaleksandr.aleksandr.myapplication.ui.commonResult.adapter.MyGuestAdapter
-import com.zaleksandr.aleksandr.myapplication.ui.settings.model.User
-import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import com.zaleksandr.aleksandr.myapplication.util.StorageUtil
 import com.zaleksandr.aleksandr.myapplication.util.StorageUtil.currentUserRef
 import com.zaleksandr.aleksandr.tmbook.glade.GlideApp
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_settings.*
 import kotlinx.android.synthetic.main.fragment_update_guest.*
 import kotlinx.android.synthetic.main.fragment_update_guest.view.*
 import java.io.ByteArrayOutputStream
+import java.text.DateFormat
+import java.util.*
 
 
 class GuestEditFragment : Fragment(), MyGuestAdapter.FragmentCommunication {
@@ -53,6 +53,7 @@ class GuestEditFragment : Fragment(), MyGuestAdapter.FragmentCommunication {
     }
 
     private val SELECT_IMAGE = 2
+    var updateDateBirthday: String? = null
     var path = ""
     var name = ""
     var photo = ""
@@ -65,6 +66,13 @@ class GuestEditFragment : Fragment(), MyGuestAdapter.FragmentCommunication {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(com.zaleksandr.aleksandr.myapplication.R.layout.fragment_update_guest, container, false)
+
+
+        rootView.update_birthday_gues.setOnClickListener {
+            showDatePickerBirthdayDialog(this.context!!, String(), birthday_edit)
+        }
+
+
 
         rootView.update_profile_pocture.setOnClickListener {
             val intent = Intent().apply {
@@ -86,12 +94,17 @@ class GuestEditFragment : Fragment(), MyGuestAdapter.FragmentCommunication {
             updateCurrentUser(
 
                     guest_name_edit.text.toString(),
+                    birthday_edit.text.toString(),
                     guest_intro.isChecked,
+                    guest_oneDay.isChecked,
                     guest_twoDay.isChecked,
                     guest_act.isChecked,
                     guest_21.isChecked,
-                    guest_nwet.isChecked
-            )
+                    guest_nwet.isChecked,
+                    guest_edit_phone.text.toString(),
+                    guest_edit_description.text.toString()
+
+                    )
 
         }
 
@@ -101,6 +114,29 @@ class GuestEditFragment : Fragment(), MyGuestAdapter.FragmentCommunication {
 
         return rootView
     }
+
+
+    fun showDatePickerBirthdayDialog(mContext: Context, format: String, update_birthday_gues: TextView) {
+
+        val c = Calendar.getInstance()
+        DatePickerDialog(mContext, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            c.set(year, monthOfYear, dayOfMonth)
+
+            val currentDateString = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(c.time)
+            update_birthday_gues.text = currentDateString
+            updateDateBirthday = currentDateString
+
+
+//            calendarDate = Date(c.timeInMillis)
+//            val currentDateString = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(c.time)
+//            textViewDate7.text = currentDateString
+
+        }, c.get(Calendar.YEAR), c.get(Calendar.MONTH),
+                c.get(Calendar.DAY_OF_MONTH)).show()
+
+
+    }
+
 
     fun uploadGuestProfilePhoto(imageBytes: ByteArray,
                                 onSuccess: (imagePath: String) -> Unit) {
@@ -167,7 +203,8 @@ class GuestEditFragment : Fragment(), MyGuestAdapter.FragmentCommunication {
         notesUpdateGuestRef.document(path).update("photo", photo)
 
     }
-//    override fun onStart() {
+
+    //    override fun onStart() {
 //        super.onStart()
 //        notesUpdateGuestRef
 //                .whereEqualTo("currentUserId", if ("${FirebaseAuth.getInstance().uid}" == FirebaseAuth.getInstance().currentUser!!.uid) {
@@ -192,30 +229,31 @@ class GuestEditFragment : Fragment(), MyGuestAdapter.FragmentCommunication {
 //                    }
 //                }
 //        }
-    private fun updateCurrentUser(name: String = "", intro: Boolean, oneDay: Boolean, twoDay: Boolean, twOneDay: Boolean, nwet: Boolean) {
+    private fun updateCurrentUser(name: String = "", birthday: String, intro: Boolean, oneDay: Boolean, twoDay: Boolean, action: Boolean, twOneDay: Boolean, nwet: Boolean, phone: String, description: String) {
 
         val userFieldMap = mutableMapOf<String, Any>()
 
         notesUpdateGuestRef.document(path).update(userFieldMap)
         notesUpdateGuestRef.document(path).update("name", name,
+                "birthday", birthday,
                 "intro", intro,
                 "onedayWS", oneDay,
                 "twoDayWS", twoDay,
+                "actionaiser", action,
                 "twOneDay", twOneDay,
-                "nwet", nwet)
+                "nwet", nwet,
+                "phoneNum", phone,
+                "description", description)
 
-    startActivity(Intent(context, MainActivity::class.java))
-//        notesUpdateGuestRef.document(path).update("onedayWS", oneDay)
-//        notesUpdateGuestRef.document(path).update("twoDayWS", twoDay)
-//        notesUpdateGuestRef.document(path).update("twOneDay", twOneDay)
-//        notesUpdateGuestRef.document(path).update("onedayWS", oneDay)
-//        notesUpdateGuestRef.document(path).update("twoDayWS", twoDay)
+        startActivity(Intent(context, MainActivity::class.java))
     }
+
 
     private fun setUpRecyclerView(rootView: View) {
 
         val name = arguments?.getString("name")
         val intro = arguments?.getBoolean("intro", false)
+        val oneday = arguments?.getBoolean("oneDay", false)
 
         notesUpdateGuestRef
                 .whereEqualTo("currentUserId", if ("${FirebaseAuth.getInstance().uid}" == FirebaseAuth.getInstance().currentUser!!.uid) {
@@ -226,20 +264,30 @@ class GuestEditFragment : Fragment(), MyGuestAdapter.FragmentCommunication {
                 .get().addOnCompleteListener { querydocumentSnapshot ->
                     if (querydocumentSnapshot.isSuccessful) {
                         for (documentSnapshot in querydocumentSnapshot.result!!) {
+
+
                             val note = documentSnapshot.toObject<Guest>(Guest::class.java)
                             path = note.id.toString()
-                            guest_intro.isChecked = intro!!
+                            guest_intro.isChecked = note.intro!!
+                            guest_oneDay.isChecked = note.onedayWS!!
+                            guest_twoDay.isChecked = note.twoDayWS!!
+                            guest_act.isChecked = note.actionaiser!!
+                            guest_21.isChecked = note.twOneDay!!
+                            guest_nwet.isChecked = note.nwet!!
+                            guest_edit_description.setText(note.description)
+                            guest_edit_phone.setText(note.phoneNum)
+                            birthday_edit.text = note.birthday
                             guest_name_edit.setText(name.toString())
 
-                                if (note.photo != null) {
+                            if (note.photo != null) {
 
-                                    GlideApp.with(this)
-                                            .load(StorageUtil.pathToReference(note.photo))
-                                            .diskCacheStrategy(DiskCacheStrategy.NONE)
-                                            .skipMemoryCache(true)
-                                            .into(update_profile_pocture)
-                                } else {
-                                }
+                                GlideApp.with(this)
+                                        .load(StorageUtil.pathToReference(note.photo))
+                                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                        .skipMemoryCache(true)
+                                        .into(update_profile_pocture)
+                            } else {
+                            }
                         }
 
                     }

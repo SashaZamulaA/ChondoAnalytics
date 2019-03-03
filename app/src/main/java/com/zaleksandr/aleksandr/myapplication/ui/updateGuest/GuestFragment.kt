@@ -30,6 +30,8 @@ class GuestFragment : Fragment(), MyGuestAdapter.FragmentCommunication {
         val bundle = Bundle()
         bundle.putString("name", city.name)
         bundle.putBoolean("intro", city.intro!!)
+        bundle.putBoolean("oneDay", city.onedayWS!!)
+
         Navigation.findNavController(this.view!!).navigate(com.zaleksandr.aleksandr.myapplication.R.id.action_showMyGuestFragment_to_updateMyGuestFragment, bundle)
         items.clear()
 
@@ -94,10 +96,6 @@ class GuestFragment : Fragment(), MyGuestAdapter.FragmentCommunication {
 
 
         adapter = MyGuestAdapter(this.context!!, items, this)
-
-
-
-
 
         rootView.list_my_guest_adapter.adapter = adapter
 
