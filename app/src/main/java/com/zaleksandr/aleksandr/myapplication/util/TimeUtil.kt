@@ -212,7 +212,7 @@ fun clickByFilterCommonResultForEachCenter(goalCollection: CollectionReference, 
 }
 
 fun clickByFilterIndividualResult(noteRefCollection: CollectionReference, period: Int): Task<QuerySnapshot> {
-    return noteRefCollection.whereEqualTo("currentUserId", if ("${FirebaseAuth.getInstance().uid}" == FirebaseAuth.getInstance().currentUser!!.uid) {
+    return noteRefCollection.whereEqualTo("id", if ("${FirebaseAuth.getInstance().uid}" == FirebaseAuth.getInstance().currentUser!!.uid) {
         FirebaseAuth.getInstance().uid
     } else null)
 //            .whereGreaterThanOrEqualTo("time", when (period) {

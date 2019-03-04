@@ -325,7 +325,6 @@ class IndividualAdapter2(context: Context,
                     val individualGoalNote = documentSnapshot.toObject(IndividualMonthGoalModel::class.java)
 //month
 
-
                     if (!individualGoalNote.monthIntro.isNullOrEmpty()) {
                         itemView.goal_intro_person.text = individualGoalNote.monthIntro
                     }
