@@ -40,6 +40,7 @@ class AddResultFragment : Fragment() {
         get() = firestoreInstance.document("City/${FirebaseAuth.getInstance().uid
                 ?: throw NullPointerException("UID is null.")}")
 
+    var timestamp:Long = 0
     private val noteRefCommonCollection = firestoreInstance.collection("NewCity").document()
     private val noteRefAddCollection = firestoreInstance.collection("AnnInfo").document()
     private val noteRefCommonCollectionForEachCenter = firestoreInstance.collection("EachCenter").document()
@@ -90,6 +91,8 @@ class AddResultFragment : Fragment() {
             calendarDate = Date(c.timeInMillis)
             val currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.time)
             textViewDate.text = currentDateString
+            timestamp = c.timeInMillis
+
 //            val dateFormat = SimpleDateFormat("yyyy-MM-dd")
 //            val parsedDate = dateFormat.parse(currentDateString).time
 
@@ -134,6 +137,7 @@ class AddResultFragment : Fragment() {
             val currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.time)
             textViewDate.text = currentDateString
             date = Date(c.timeInMillis)
+            timestamp = System.currentTimeMillis()
         } else {
             date = calendarDate as Date
         }
@@ -142,12 +146,12 @@ class AddResultFragment : Fragment() {
         var userPhotoPath = ""
         var name = ""
 
-        val currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
+        val id = FirebaseAuth.getInstance().currentUser!!.uid
         val dataToSave = HashMap<String, Any>()
         dataToSave[SPINNER] = centers
-        val timestamp = System.currentTimeMillis()
+//        val timestamp = System.currentTimeMillis()
 
-        val id = noteRefCommonCollection.id
+        val getId = noteRefCommonCollection.id
 
         FirestoreUtil.currentUserDocRef.addSnapshotListener { documentSnapshot, _ ->
             FirestoreUtil.getCurrentUser { user ->
@@ -157,11 +161,11 @@ class AddResultFragment : Fragment() {
                         userPhotoPath = user.profilePicturePath
                     }
 
-                    noteRefCommonCollection.set(City(id, currentUserId, intro, oneDayWS, twoDayWS, actionaiser, twOneDay, centers, approach, telCont, timeCenter, timeStr, lectTraining, lectOnStr, lectCentr, date, timestamp, userPhotoPath, name, nwet, dpKor, dp, mmbk, mobilis, eduMat))
-                    noteRefCommonCollectionForEachCenter.set(EachCenter(id, currentUserId, intro, oneDayWS, twoDayWS, actionaiser, twOneDay, centers, date, timestamp, userPhotoPath, name, nwet, mmbk))
+                    noteRefCommonCollection.set(City(getId, id, intro, oneDayWS, twoDayWS, actionaiser, twOneDay, centers, approach, telCont, timeCenter, timeStr, lectTraining, lectOnStr, lectCentr, date, timestamp, userPhotoPath, name, nwet, dpKor, dp, mmbk, mobilis, eduMat))
+                    noteRefCommonCollectionForEachCenter.set(EachCenter(id, id, intro, oneDayWS, twoDayWS, actionaiser, twOneDay, centers, date, timestamp, userPhotoPath, name, nwet, mmbk))
 
                 } else {
-                    noteRefAddCollection.set(CityAddInfo(id, currentUserId, date, timestamp, dpKor, dp, mobilis))
+                    noteRefAddCollection.set(CityAddInfo(getId, id, date, timestamp, dpKor, dp, mobilis))
                 }
             }
         }

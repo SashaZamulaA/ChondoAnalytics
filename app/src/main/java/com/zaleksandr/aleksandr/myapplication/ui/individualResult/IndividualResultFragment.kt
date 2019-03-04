@@ -83,7 +83,7 @@ class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunica
 
         val noteRef = db
                 .collection("NewCity")
-                .document(city?.id.toString())
+                .document(city?.getId.toString())
 
         noteRef.delete().addOnCompleteListener { task ->
             if (task.isSuccessful) {
@@ -132,7 +132,7 @@ class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunica
         val notesCollectionRef = firestoreInstance.collection("NewCity")
 
         notesCollectionRef
-                .whereEqualTo("currentUserId", if ("${FirebaseAuth.getInstance().uid}" == FirebaseAuth.getInstance().currentUser!!.uid) {
+                .whereEqualTo("id", if ("${FirebaseAuth.getInstance().uid}" == FirebaseAuth.getInstance().currentUser!!.uid) {
                     FirebaseAuth.getInstance().uid
                 } else null)
                 .orderBy("time", Query.Direction.DESCENDING)

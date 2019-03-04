@@ -619,7 +619,7 @@
                     android:layout_marginStart="@dimen/space8"
                     android:layout_marginTop="24dp"
                     android:background="@drawable/button_green_bordered"
-                    android:text="Select time"
+                    android:text="Select date"
                     android:textColor="@color/text_secondary_dark"
                     android:textSize="@dimen/space_12"
                     app:layout_constraintStart_toStartOf="parent"
