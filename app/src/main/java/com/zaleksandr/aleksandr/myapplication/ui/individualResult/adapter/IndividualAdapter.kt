@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.QuerySnapshot
 import com.zaleksandr.aleksandr.myapplication.model.City
+import com.zaleksandr.aleksandr.myapplication.ui.individualGoal.model.AdditionalGoalsModel
 import com.zaleksandr.aleksandr.myapplication.ui.individualGoal.model.IndividualMonthGoalModel
 import com.zaleksandr.aleksandr.myapplication.ui.individualGoal.model.IndividualWeekGoalModel
 import com.zaleksandr.aleksandr.myapplication.ui.individualGoal.model.IndividualYearGoalModel
@@ -17,13 +18,13 @@ import com.zaleksandr.aleksandr.myapplication.util.clickByFilterIndividualGoal
 import com.zaleksandr.aleksandr.myapplication.util.clickByFilterIndividualResult
 import kotlinx.android.synthetic.main.item_individual_goal_and_result_for_person.view.*
 import kotlinx.android.synthetic.main.item_individual_result_list.view.*
+import java.text.DecimalFormat
 import java.util.*
 
 
 class IndividualAdapter(context: Context,
                         private var list: ArrayList<City>,
                         private var fragmentCommunication: IndividualResultFragment) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
 
     private val TYPE_HEADER = 0
     private val TYPE_ITEM = 1
@@ -137,6 +138,11 @@ class IndividualAdapter(context: Context,
                 individualResult(queryDocumentSnapshots)
             }
 
+            clickByFilterIndividualGoal(refCollectionAdditionalGoal).addOnSuccessListener { querySnapshot ->
+                yearAddGoal(querySnapshot)
+            }
+
+
             if (period == 1) {
                 clickByFilterIndividualGoal(refCollectionWeekGoal).addOnSuccessListener { queryDocumentSnapshots ->
                     weekIndividualGoal(queryDocumentSnapshots)
@@ -149,9 +155,24 @@ class IndividualAdapter(context: Context,
 
                 clickByFilterIndividualGoal(refCollectionYearGoal).addOnSuccessListener { querySnapshot ->
                     yearIndividualGoal(querySnapshot)
+
                 }
             }
 
+        }
+
+        private fun yearAddGoal(queryDocumentSnapshots: QuerySnapshot) {
+
+
+            if (!queryDocumentSnapshots.isEmpty) {
+                queryDocumentSnapshots.forEach { documentSnapshot ->
+                    val individualGoalNote = documentSnapshot.toObject(AdditionalGoalsModel::class.java)
+
+                    if (!individualGoalNote.yearDPUkr.isNullOrEmpty()) {
+                        itemView.goal_dp_person.text = individualGoalNote.yearDPUkr
+                    }
+                }
+            }
         }
 
         private fun individualResult(queryDocumentSnapshots: QuerySnapshot) {
@@ -164,8 +185,10 @@ class IndividualAdapter(context: Context,
             var sumTwent1 = 0
             var sumNwet = 0
             var sumMmbk = 0
-            var sumDp = 0
-
+            var sumDp = 0.0
+            var sumInDouble: Double = 1.0
+            var df = DecimalFormat("#.##")
+            var dpYear = ""
 
             if (!queryDocumentSnapshots.isEmpty) {
                 queryDocumentSnapshots.forEach { documentSnapshot ->
@@ -208,11 +231,16 @@ class IndividualAdapter(context: Context,
                         sumMmbk += nwet
                     }
                     if (!resultNote.dp.isNullOrEmpty()) {
-                        val nwet = Integer.parseInt(resultNote.dp)
-                        sumDp += nwet
+                        val dp = Integer.parseInt(resultNote.dp)
+                        sumDp += dp
+                        sumInDouble = (sumDp / 455)
+
+                        df = DecimalFormat("#.##")
+                        dpYear = df.format(sumInDouble)
                     }
 
                 }
+                // year
                 if (period == 3) {
                     itemView.goal_cont_person_text2.visibility = View.GONE
                     itemView.goal_cont_person.visibility = View.GONE
@@ -223,7 +251,8 @@ class IndividualAdapter(context: Context,
                     itemView.indiv_action_res.text = sumAct.toString()
                     itemView.indiv_tw_one_d_result.text = sumTwent1.toString()
                     itemView.nwet_result_person.text = sumNwet.toString()
-//                    itemView.dp_result_person.text = sumDp.toString()
+                    itemView.indiv_result_dp.text = dpYear
+                    //month
                 } else
                     if (period == 2) {
                         itemView.goal_cont_person_text2.visibility = View.GONE
@@ -235,7 +264,9 @@ class IndividualAdapter(context: Context,
                         itemView.indiv_action_res.text = sumAct.toString()
                         itemView.indiv_tw_one_d_result.text = sumTwent1.toString()
                         itemView.nwet_result_person.text = sumNwet.toString()
-//                        itemView.dp_result_person.text = sumDp.toString()
+                        itemView.indiv_result_dp.text = sumInDouble.toString()
+                        itemView.indiv_result_dp.text = dpYear
+                        //week
                     } else
                         if (period == 1) {
                             itemView.goal_cont_person_text2.visibility = View.VISIBLE
@@ -247,7 +278,8 @@ class IndividualAdapter(context: Context,
                             itemView.ind_two_d_result.text = sumTwoD1.toString()
                             itemView.indiv_action_res.text = sumAct.toString()
                             itemView.indiv_tw_one_d_result.text = sumMmbk.toString()
-//                            itemView.dp_result_person.text = sumDp.toString()
+                            itemView.indiv_result_dp.text = sumInDouble.toString()
+                            itemView.indiv_result_dp.text = dpYear
                         }
             }
 //                itemView.result_city.text = model.centers.toString()

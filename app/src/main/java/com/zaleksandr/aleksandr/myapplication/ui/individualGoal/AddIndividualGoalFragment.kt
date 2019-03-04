@@ -56,6 +56,7 @@ class AddIndividualGoalFragment : Fragment() {
 
         val currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
 
+//        if (!introduction_year_goal_edittext.text.isNullOrEmpty()){ //TODO12
         val yearIntro = introduction_year_goal_edittext.text.toString()
         val yearOneDay = one_day_year_goal_edittext.text.toString()
         val yearTwoDay = two_day_year_goal_edittext.text.toString()

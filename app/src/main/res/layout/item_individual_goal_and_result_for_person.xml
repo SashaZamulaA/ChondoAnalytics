@@ -54,6 +54,26 @@
 
         <TextView
 
+            android:id="@+id/dp_person_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="DP"
+            android:textColor="@color/text_primary_dark"
+            android:textSize="@dimen/body1_text_size"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/goal_cont_person_text2"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/textView24"
+            app:layout_constraintTop_toBottomOf="@+id/common_name" />
+
+        <TextView
+
             android:id="@+id/each_center_one_day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -182,6 +202,17 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
+            android:id="@+id/goal_dp_person"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            app:layout_constraintBottom_toBottomOf="@+id/textView16"
+            app:layout_constraintEnd_toEndOf="@+id/dp_person_text"
+            app:layout_constraintStart_toStartOf="@+id/dp_person_text"
+            app:layout_constraintTop_toTopOf="@+id/textView16"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
             android:id="@+id/year_goal_one_day_sem_person"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -261,6 +292,17 @@
             app:layout_constraintBottom_toBottomOf="@+id/textView24"
             app:layout_constraintEnd_toEndOf="@+id/goal_cont_person_text2"
             app:layout_constraintStart_toStartOf="@+id/goal_cont_person_text2"
+            app:layout_constraintTop_toTopOf="@+id/textView24"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/indiv_result_dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            app:layout_constraintBottom_toBottomOf="@+id/textView24"
+            app:layout_constraintEnd_toEndOf="@+id/dp_person_text"
+            app:layout_constraintStart_toStartOf="@+id/dp_person_text"
             app:layout_constraintTop_toTopOf="@+id/textView24"
             app:layout_constraintVertical_bias="0.0" />
 
