@@ -33,6 +33,10 @@ import kotlinx.android.synthetic.main.fragment_update_guest.view.*
 import java.io.ByteArrayOutputStream
 import java.text.DateFormat
 import java.util.*
+import android.view.MotionEvent
+import android.view.View.OnTouchListener
+
+
 
 
 class GuestEditFragment : Fragment(), MyGuestAdapter.FragmentCommunication {
@@ -67,13 +71,46 @@ class GuestEditFragment : Fragment(), MyGuestAdapter.FragmentCommunication {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(com.zaleksandr.aleksandr.myapplication.R.layout.fragment_update_guest, container, false)
 
+        rootView.guest_edit_description.setOnTouchListener(OnTouchListener { v, event ->
+            if (guest_edit_description.hasFocus()) {
+                v.parent.requestDisallowInterceptTouchEvent(true)
+                when (event.action and MotionEvent.ACTION_MASK) {
+                    MotionEvent.ACTION_SCROLL -> {
+                        v.parent.requestDisallowInterceptTouchEvent(false)
+                        return@OnTouchListener true
+                    }
+                }
+            }
+            false
+        })
 
         rootView.update_birthday_gues.setOnClickListener {
             showDatePickerBirthdayDialog(this.context!!, String(), birthday_edit)
         }
 
+        rootView.guest_time_intro.setOnClickListener {
+            showDatePickerIntroDialog(this.context!!, String(), guest_time_intro_edittext)
+        }
 
+        rootView.guest_time_one_day.setOnClickListener {
+            showDatePickerOneDayDialog(this.context!!, String(), guest_time_1d)
+        }
 
+        rootView.guest_time_two_day.setOnClickListener {
+            showDatePickerTwoDayDialog(this.context!!, String(), guest_time2d)
+        }
+
+        rootView.guest_time_act.setOnClickListener {
+            showDatePickerActDialog(this.context!!, String(), guest_time_edittext_act)
+        }
+
+        rootView.guest_time_21_day.setOnClickListener {
+            showDatePicker21Dialog(this.context!!, String(), guest_time_21d)
+        }
+
+        rootView.guest_time_nwet.setOnClickListener {
+            showDatePickerNWETDialog(this.context!!, String(), guest_time_edittext_nwet)
+        }
         rootView.update_profile_pocture.setOnClickListener {
             val intent = Intent().apply {
                 type = "image/*"
@@ -102,9 +139,14 @@ class GuestEditFragment : Fragment(), MyGuestAdapter.FragmentCommunication {
                     guest_21.isChecked,
                     guest_nwet.isChecked,
                     guest_edit_phone.text.toString(),
-                    guest_edit_description.text.toString()
-
-                    )
+                    guest_edit_description.text.toString(),
+                    guest_time_intro_edittext.text.toString(),
+                    guest_time_1d.text.toString(),
+                    guest_time2d.text.toString(),
+                    guest_time_edittext_act.text.toString(),
+                    guest_time_21d.text.toString(),
+                    guest_time_edittext_nwet.text.toString()
+            )
 
         }
 
@@ -124,12 +166,7 @@ class GuestEditFragment : Fragment(), MyGuestAdapter.FragmentCommunication {
 
             val currentDateString = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(c.time)
             update_birthday_gues.text = currentDateString
-            updateDateBirthday = currentDateString
 
-
-//            calendarDate = Date(c.timeInMillis)
-//            val currentDateString = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(c.time)
-//            textViewDate7.text = currentDateString
 
         }, c.get(Calendar.YEAR), c.get(Calendar.MONTH),
                 c.get(Calendar.DAY_OF_MONTH)).show()
@@ -137,6 +174,95 @@ class GuestEditFragment : Fragment(), MyGuestAdapter.FragmentCommunication {
 
     }
 
+    fun showDatePickerIntroDialog(mContext: Context, format: String, guest_time_intro_edittext: TextView) {
+
+        val c = Calendar.getInstance()
+        DatePickerDialog(mContext, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            c.set(year, monthOfYear, dayOfMonth)
+
+            val currentDateString = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(c.time)
+            guest_time_intro_edittext.text = currentDateString
+
+        }, c.get(Calendar.YEAR), c.get(Calendar.MONTH),
+                c.get(Calendar.DAY_OF_MONTH)).show()
+
+
+    }
+
+    fun showDatePickerOneDayDialog(mContext: Context, format: String, guest_time_1d: TextView) {
+
+        val c = Calendar.getInstance()
+        DatePickerDialog(mContext, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            c.set(year, monthOfYear, dayOfMonth)
+
+            val currentDateString = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(c.time)
+            guest_time_1d.text = currentDateString
+
+        }, c.get(Calendar.YEAR), c.get(Calendar.MONTH),
+                c.get(Calendar.DAY_OF_MONTH)).show()
+
+
+    }
+
+    fun showDatePickerTwoDayDialog(mContext: Context, format: String, guest_time2d: TextView) {
+
+        val c = Calendar.getInstance()
+        DatePickerDialog(mContext, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            c.set(year, monthOfYear, dayOfMonth)
+
+            val currentDateString = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(c.time)
+            guest_time2d.text = currentDateString
+
+        }, c.get(Calendar.YEAR), c.get(Calendar.MONTH),
+                c.get(Calendar.DAY_OF_MONTH)).show()
+
+
+    }
+
+    fun showDatePickerActDialog(mContext: Context, format: String, guest_time_edittext_act: TextView) {
+
+        val c = Calendar.getInstance()
+        DatePickerDialog(mContext, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            c.set(year, monthOfYear, dayOfMonth)
+
+            val currentDateString = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(c.time)
+            guest_time_edittext_act.text = currentDateString
+
+        }, c.get(Calendar.YEAR), c.get(Calendar.MONTH),
+                c.get(Calendar.DAY_OF_MONTH)).show()
+
+
+    }
+
+    fun showDatePicker21Dialog(mContext: Context, format: String, guest_time_21d: TextView) {
+
+        val c = Calendar.getInstance()
+        DatePickerDialog(mContext, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            c.set(year, monthOfYear, dayOfMonth)
+
+            val currentDateString = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(c.time)
+            guest_time_21d.text = currentDateString
+
+        }, c.get(Calendar.YEAR), c.get(Calendar.MONTH),
+                c.get(Calendar.DAY_OF_MONTH)).show()
+
+
+    }
+
+    fun showDatePickerNWETDialog(mContext: Context, format: String, guest_time_edittext_nwet: TextView) {
+
+        val c = Calendar.getInstance()
+        DatePickerDialog(mContext, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            c.set(year, monthOfYear, dayOfMonth)
+
+            val currentDateString = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(c.time)
+            guest_time_edittext_nwet.text = currentDateString
+
+        }, c.get(Calendar.YEAR), c.get(Calendar.MONTH),
+                c.get(Calendar.DAY_OF_MONTH)).show()
+
+
+    }
 
     fun uploadGuestProfilePhoto(imageBytes: ByteArray,
                                 onSuccess: (imagePath: String) -> Unit) {
@@ -229,7 +355,22 @@ class GuestEditFragment : Fragment(), MyGuestAdapter.FragmentCommunication {
 //                    }
 //                }
 //        }
-    private fun updateCurrentUser(name: String = "", birthday: String, intro: Boolean, oneDay: Boolean, twoDay: Boolean, action: Boolean, twOneDay: Boolean, nwet: Boolean, phone: String, description: String) {
+    private fun updateCurrentUser(name: String = "",
+                                  birthday: String,
+                                  intro: Boolean,
+                                  oneDay: Boolean,
+                                  twoDay: Boolean,
+                                  action: Boolean,
+                                  twOneDay: Boolean,
+                                  nwet: Boolean,
+                                  phone: String,
+                                  description: String,
+                                  timeInt: String,
+                                  timeOneD: String,
+                                  timeTwoD: String,
+                                  timeAct: String,
+                                  time21: String,
+                                  timeNwet: String) {
 
         val userFieldMap = mutableMapOf<String, Any>()
 
@@ -243,7 +384,14 @@ class GuestEditFragment : Fragment(), MyGuestAdapter.FragmentCommunication {
                 "twOneDay", twOneDay,
                 "nwet", nwet,
                 "phoneNum", phone,
-                "description", description)
+                "description", description,
+                "timeIntro", timeInt,
+                "timeOneDay", timeOneD,
+                "timeTwoDay", timeTwoD,
+                "timeAct", timeAct,
+                "time21Day", time21,
+                "timeNwet", timeNwet
+        )
 
         startActivity(Intent(context, MainActivity::class.java))
     }
@@ -277,6 +425,14 @@ class GuestEditFragment : Fragment(), MyGuestAdapter.FragmentCommunication {
                             guest_edit_description.setText(note.description)
                             guest_edit_phone.setText(note.phoneNum)
                             birthday_edit.text = note.birthday
+                            guest_time_intro_edittext.text = note.timeIntro
+                            guest_time_1d.text = note.timeOneDay
+                            guest_time2d.text = note.timeTwoDay
+                            guest_time_edittext_act.text = note.timeAct
+                            guest_time_21d.text = note.time21Day
+                            guest_time_edittext_nwet.text = note.timeNwet
+
+
                             guest_name_edit.setText(name.toString())
 
                             if (note.photo != null) {
@@ -289,7 +445,6 @@ class GuestEditFragment : Fragment(), MyGuestAdapter.FragmentCommunication {
                             } else {
                             }
                         }
-
                     }
                 }
     }

@@ -24,26 +24,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="0dp"
-                    android:layout_height="142dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginEnd="8dp"
-                    app:layout_constraintEnd_toEndOf="@+id/textViewDate6"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView19">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/guest_edit_description"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="top|left"
-                        android:hint="@string/description"
-                        android:lines="10"
-                        android:maxLines="150"
-                        android:minLines="5" />
-                </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
                     android:id="@+id/birthday_edit"
@@ -120,9 +100,11 @@
                     style="@style/TextStyle_SubHeader_Accent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"
                     android:text="Add information:"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/guest_nwet" />
 
@@ -214,7 +196,7 @@
                     app:layout_constraintTop_toTopOf="@+id/guest_nwet" />
 
                 <TextView
-                    android:id="@+id/guest_textViewDate"
+                    android:id="@+id/guest_time_intro_edittext"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -225,59 +207,59 @@
                     app:layout_constraintTop_toTopOf="@+id/guest_time_intro" />
 
                 <TextView
-                    android:id="@+id/textViewDate2"
+                    android:id="@+id/guest_time_1d"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="21 mart"
                     android:textColor="@color/braun"
                     app:layout_constraintBottom_toBottomOf="@+id/guest_time_one_day"
-                    app:layout_constraintEnd_toEndOf="@+id/guest_textViewDate"
-                    app:layout_constraintStart_toStartOf="@+id/guest_textViewDate"
+                    app:layout_constraintEnd_toEndOf="@+id/guest_time_intro_edittext"
+                    app:layout_constraintStart_toStartOf="@+id/guest_time_intro_edittext"
                     app:layout_constraintTop_toTopOf="@+id/guest_time_one_day" />
 
                 <TextView
-                    android:id="@+id/textViewDate3"
+                    android:id="@+id/guest_time2d"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="21 mart"
                     android:textColor="@color/braun"
                     app:layout_constraintBottom_toBottomOf="@+id/guest_time_two_day"
-                    app:layout_constraintEnd_toEndOf="@+id/textViewDate2"
-                    app:layout_constraintStart_toStartOf="@+id/textViewDate2"
+                    app:layout_constraintEnd_toEndOf="@+id/guest_time_1d"
+                    app:layout_constraintStart_toStartOf="@+id/guest_time_1d"
                     app:layout_constraintTop_toTopOf="@+id/guest_time_two_day" />
 
                 <TextView
-                    android:id="@+id/textViewDate4"
+                    android:id="@+id/guest_time_edittext_act"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="21 mart"
                     android:textColor="@color/braun"
                     app:layout_constraintBottom_toBottomOf="@+id/guest_time_act"
-                    app:layout_constraintEnd_toEndOf="@+id/textViewDate3"
-                    app:layout_constraintStart_toStartOf="@+id/textViewDate3"
+                    app:layout_constraintEnd_toEndOf="@+id/guest_time2d"
+                    app:layout_constraintStart_toStartOf="@+id/guest_time2d"
                     app:layout_constraintTop_toTopOf="@+id/guest_time_act" />
 
                 <TextView
-                    android:id="@+id/textViewDate5"
+                    android:id="@+id/guest_time_21d"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="21 mart"
                     android:textColor="@color/braun"
                     app:layout_constraintBottom_toBottomOf="@+id/guest_time_21_day"
-                    app:layout_constraintEnd_toEndOf="@+id/textViewDate4"
+                    app:layout_constraintEnd_toEndOf="@+id/guest_time_edittext_act"
                     app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="@+id/textViewDate4"
+                    app:layout_constraintStart_toStartOf="@+id/guest_time_edittext_act"
                     app:layout_constraintTop_toTopOf="@+id/guest_time_21_day" />
 
                 <TextView
-                    android:id="@+id/textViewDate6"
+                    android:id="@+id/guest_time_edittext_nwet"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="21 mart"
                     android:textColor="@color/braun"
                     app:layout_constraintBottom_toBottomOf="@+id/guest_time_nwet"
-                    app:layout_constraintEnd_toEndOf="@+id/textViewDate5"
-                    app:layout_constraintStart_toStartOf="@+id/textViewDate5"
+                    app:layout_constraintEnd_toEndOf="@+id/guest_time_21d"
+                    app:layout_constraintStart_toStartOf="@+id/guest_time_21d"
                     app:layout_constraintTop_toTopOf="@+id/guest_time_nwet" />
 
                 <CheckBox
@@ -359,6 +341,35 @@
             android:layout_gravity="bottom"
             android:gravity="bottom"
             android:orientation="vertical">
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="12dp"
+                android:fillViewport="true"
+                android:overScrollMode="always"
+                android:scrollbarStyle="insideInset"
+                android:scrollbars="vertical"
+                android:nestedScrollingEnabled="false"
+                android:layout_marginEnd="12dp"
+            >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/guest_edit_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="top|left"
+                    android:overScrollMode="always"
+                    android:scrollbarStyle="insideInset"
+                    android:scrollbars="vertical"
+                    android:nestedScrollingEnabled="false"
+                    android:hint="@string/description"
+                    android:fillViewport="true"
+                    android:lines="10"
+                    android:maxLines="150"
+                    android:minLines="5" />
+            </com.google.android.material.textfield.TextInputLayout>
 
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton

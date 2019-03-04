@@ -9,6 +9,7 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
@@ -30,6 +31,8 @@ import com.zaleksandr.aleksandr.tmbook.glade.GlideApp
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_add_guest.*
 import kotlinx.android.synthetic.main.fragment_add_guest.view.*
+import kotlinx.android.synthetic.main.fragment_update_guest.*
+import kotlinx.android.synthetic.main.fragment_update_guest.view.*
 import java.io.ByteArrayOutputStream
 import java.sql.Timestamp
 import java.text.DateFormat
@@ -44,6 +47,8 @@ class AddGuestFragment : Fragment() {
     }
 
     var dateBirthday: String? = null
+    var dateIntro: String? = null
+    var dateOneDay: String? = null
     private val SELECT_IMAGE = 2
     private lateinit var selectImageBytes: ByteArray
     private var pictureJustChange = false
@@ -64,6 +69,19 @@ class AddGuestFragment : Fragment() {
     var calendarDate: Date? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(com.zaleksandr.aleksandr.myapplication.R.layout.fragment_add_guest, container, false)
+
+        rootView.guest_description_edittext.setOnTouchListener(View.OnTouchListener { v, event ->
+            if (guest_description_edittext.hasFocus()) {
+                v.parent.requestDisallowInterceptTouchEvent(true)
+                when (event.action and MotionEvent.ACTION_MASK) {
+                    MotionEvent.ACTION_SCROLL -> {
+                        v.parent.requestDisallowInterceptTouchEvent(false)
+                        return@OnTouchListener true
+                    }
+                }
+            }
+            false
+        })
 
 
         rootView.add_birthday_gues.setOnClickListener {
@@ -98,11 +116,11 @@ class AddGuestFragment : Fragment() {
             }
         }
 
-        rootView.date_intro_guest_textViewDate.setOnClickListener {
+        rootView.guest_add_time_intro.setOnClickListener {
             showDatePickerIntroDialog(this.context!!, String(), date_intro_guest_textViewDate)
         }
 
-        rootView.date_intro_guest_textViewDate.setOnClickListener {
+        rootView.guest_add_time_one_day.setOnClickListener {
             showDatePickerOneDayDialog(this.context!!, String(), date_one_day_guest_textViewDate)
         }
 
@@ -155,12 +173,6 @@ class AddGuestFragment : Fragment() {
                 birthday_textViewDate.text = currentDateString
                 dateBirthday = currentDateString
 
-
-
-//            calendarDate = Date(c.timeInMillis)
-//            val currentDateString = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(c.time)
-//            textViewDate7.text = currentDateString
-
         }, c.get(Calendar.YEAR), c.get(Calendar.MONTH),
                 c.get(Calendar.DAY_OF_MONTH)).show()
 
@@ -173,9 +185,9 @@ class AddGuestFragment : Fragment() {
         DatePickerDialog(mContext, OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
             c.set(year, monthOfYear, dayOfMonth)
 
-            calendarDate = Date(c.timeInMillis)
             val currentDateString = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(c.time)
             date_intro_guest_textViewDate.text = currentDateString
+            dateIntro = currentDateString
 
         }, c.get(Calendar.YEAR), c.get(Calendar.MONTH),
                 c.get(Calendar.DAY_OF_MONTH)).show()
@@ -189,9 +201,9 @@ class AddGuestFragment : Fragment() {
         DatePickerDialog(mContext, OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
             c.set(year, monthOfYear, dayOfMonth)
 
-            calendarDate = Date(c.timeInMillis)
             val currentDateString = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(c.time)
             date_one_day_guest_textViewDate.text = currentDateString
+            dateOneDay = currentDateString
 
         }, c.get(Calendar.YEAR), c.get(Calendar.MONTH),
                 c.get(Calendar.DAY_OF_MONTH)).show()
@@ -239,8 +251,8 @@ class AddGuestFragment : Fragment() {
         val actionaiser = false
         val twOneDay = false
         val nwet = false
-        val timeIntro = ""
-        val timeOneDay = ""
+        val timeIntro = dateIntro
+        val timeOneDay = dateOneDay
         val timeTwoDay = ""
         val timeAct = ""
         val time21Day = ""
