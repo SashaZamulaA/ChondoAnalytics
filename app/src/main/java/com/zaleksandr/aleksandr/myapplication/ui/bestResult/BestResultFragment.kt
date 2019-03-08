@@ -60,7 +60,11 @@ class BestResultFragment : Fragment() {
 
                         val items= querydocumentSnapshot.result!!
                                 .map { it.toObject<City>(City::class.java) }
-                                .filterNot { it.intro.isNullOrEmpty() }
+                                .filterNot {
+                                    it.intro.isNullOrEmpty()
+                                    it.onedayWS.isNullOrEmpty()
+
+                                }
 
                         val itemsToRv = items.groupBy {
                             it.id
