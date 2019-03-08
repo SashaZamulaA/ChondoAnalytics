@@ -18,7 +18,7 @@ import com.zaleksandr.aleksandr.myapplication.model.City
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import com.google.android.material.snackbar.Snackbar
 import com.zaleksandr.aleksandr.myapplication.model.Guest
-import com.zaleksandr.aleksandr.myapplication.ui.commonResult.adapter.MyGuestAdapter
+import com.zaleksandr.aleksandr.myapplication.ui.updateGuest.adapter.MyGuestAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_my_guests.view.*
 

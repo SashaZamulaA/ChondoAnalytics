@@ -57,17 +57,8 @@ data class City(
             eduMat = ""
     )
 
+
 }
 
-fun constructor() {
-}
+fun constructor() {}
 
-enum class Method(val method: String) {
-    KYIV("KYIV"),
-    KHARKIV("KHARKIV"),
-    LVIV("LVIV"),
-    DNEPR("DNEPR"),
-    ZHYTOMYR("ZHYTOMYR"),
-    ODESSA("ODESSA"),
-    CHERNIGOV("CHERNIGOV"),
-}

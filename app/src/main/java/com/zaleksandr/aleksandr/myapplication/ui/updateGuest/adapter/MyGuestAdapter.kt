@@ -1,4 +1,4 @@
-package com.zaleksandr.aleksandr.myapplication.ui.commonResult.adapter
+package com.zaleksandr.aleksandr.myapplication.ui.updateGuest.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -10,7 +10,6 @@ import com.zaleksandr.aleksandr.myapplication.model.Guest
 import com.zaleksandr.aleksandr.myapplication.ui.updateGuest.GuestFragment
 import com.zaleksandr.aleksandr.myapplication.util.StorageUtil
 import com.zaleksandr.aleksandr.tmbook.glade.GlideApp
-import kotlinx.android.synthetic.main.item_individual_result_list.view.*
 import kotlinx.android.synthetic.main.item_my_guest_list.view.*
 import java.util.*
 

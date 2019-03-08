@@ -22,6 +22,12 @@
     </fragment>
 
     <fragment
+        android:id="@+id/addBestResultsFragment"
+        android:name="com.zaleksandr.aleksandr.myapplication.ui.bestResult.BestResultFragment"
+        android:label="Best10 Fragment"
+        tools:layout="@layout/fragment_best_result" />
+
+    <fragment
         android:id="@+id/addResultFragment"
         android:name="com.zaleksandr.aleksandr.myapplication.ui.addResult.AddResultFragment"
         android:label="First Fragment"

@@ -22,7 +22,6 @@ import com.zaleksandr.aleksandr.myapplication.MainActivity
 import com.zaleksandr.aleksandr.myapplication.addTo
 import com.zaleksandr.aleksandr.myapplication.model.Guest
 import com.zaleksandr.aleksandr.myapplication.showMaterialDialogCancelDelete
-import com.zaleksandr.aleksandr.myapplication.ui.commonResult.adapter.MyGuestAdapter
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import com.zaleksandr.aleksandr.myapplication.util.StorageUtil
 import com.zaleksandr.aleksandr.myapplication.util.StorageUtil.currentUserRef
@@ -35,8 +34,7 @@ import java.text.DateFormat
 import java.util.*
 import android.view.MotionEvent
 import android.view.View.OnTouchListener
-
-
+import com.zaleksandr.aleksandr.myapplication.ui.updateGuest.adapter.MyGuestAdapter
 
 
 class GuestEditFragment : Fragment(), MyGuestAdapter.FragmentCommunication {
