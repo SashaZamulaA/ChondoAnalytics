@@ -165,7 +165,7 @@ fun clickByFilterCommonResult(goalCollection: CollectionReference, position: Int
 //    if (responseCache.containsKey(value)){
 //        return responseCache[value]!!
 //    }
-    val resultTask =  goalCollection.whereGreaterThanOrEqualTo("time", when (value) {
+    val resultTask = goalCollection.whereGreaterThanOrEqualTo("time", when (value) {
         1 -> startOfDay(Date())
         2 -> startOfWeek()
         3 -> startOfMonth()
@@ -186,7 +186,7 @@ fun clickByFilterCommonResult(goalCollection: CollectionReference, position: Int
 }
 
 fun clickByFilterCommonResultForEachCenter(goalCollection: CollectionReference, position: Int, value: Int): Task<QuerySnapshot> {
-    val resultTask =   goalCollection.whereEqualTo("centers", when (position) {
+    val resultTask = goalCollection.whereEqualTo("centers", when (position) {
         1 -> "Kyiv"
         2 -> "Kharkiv"
         3 -> "Dnepr"
@@ -229,6 +229,9 @@ fun clickByFilterIndividualResult(noteRefCollection: CollectionReference, period
             .get()
 }
 
+fun clickByFilterBestResult(noteRefCollection: CollectionReference): Task<QuerySnapshot> {
+    return noteRefCollection.get()
+}
 
 fun clickByFilter(noteRefCollection: CollectionReference, position: Int, value: Int): Task<QuerySnapshot> {
     return noteRefCollection.whereEqualTo("centers", when (position) {

@@ -64,7 +64,7 @@
 
         <TextView
 
-            android:id="@+id/each_center_intro"
+            android:id="@+id/best_res_intro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -107,7 +107,7 @@
             app:layout_constraintTop_toTopOf="@+id/each_center_one_day" />
 
         <TextView
-            android:id="@+id/each_center_one_day_edittext"
+            android:id="@+id/best_result_one_day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -120,7 +120,7 @@
             app:layout_constraintTop_toBottomOf="@+id/each_center_one_day" />
 
         <TextView
-            android:id="@+id/each_center_two_day"
+            android:id="@+id/best_res_two_day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -133,7 +133,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
         <TextView
-            android:id="@+id/each_center_two_day2"
+            android:id="@+id/best_res_twoOne_day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -146,7 +146,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
         <TextView
-            android:id="@+id/each_center_two_day3"
+            android:id="@+id/best_res_nwet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -171,7 +171,7 @@
             app:layout_constraintTop_toTopOf="@+id/textView21" />
 
         <TextView
-            android:id="@+id/each_center_21_day"
+            android:id="@+id/best_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
