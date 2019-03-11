@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cardView2"
+    android:id="@+id/best_cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="8dp"
@@ -17,7 +17,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imageView_profile_picture"
+            android:id="@+id/best_profile_picture"
             android:layout_width="86dp"
             android:layout_height="86dp"
             android:layout_marginStart="8dp"
@@ -25,7 +25,7 @@
             android:layout_marginBottom="8dp"
             android:padding="@dimen/space_8"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/best_number_position"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_account_circle_black_24dp"
             tools:ignore="VectorDrawableCompat" />
@@ -43,8 +43,8 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/each_center_intr"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/imageView_profile_picture"
-            app:layout_constraintTop_toTopOf="@+id/imageView_profile_picture" />
+            app:layout_constraintStart_toEndOf="@+id/best_profile_picture"
+            app:layout_constraintTop_toTopOf="@+id/best_profile_picture" />
 
         <TextView
 
@@ -59,7 +59,7 @@
             android:text="@string/intro"
             android:textColor="@color/text_primary_dark"
             android:textSize="@dimen/body1_text_size"
-            app:layout_constraintStart_toEndOf="@+id/imageView_profile_picture"
+            app:layout_constraintStart_toEndOf="@+id/best_profile_picture"
             app:layout_constraintTop_toBottomOf="@+id/best_result_name" />
 
         <TextView
@@ -175,15 +175,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:text="0"
+            android:textColor="@color/saddlebrown"
+            android:textSize="@dimen/space_24"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/each_center_21-d"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/each_center_21-d"
-            app:layout_constraintTop_toTopOf="@+id/each_center_21-d"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView21"
@@ -195,6 +198,20 @@
             app:layout_constraintBottom_toBottomOf="@+id/textView7"
             app:layout_constraintStart_toEndOf="@+id/textView7"
             app:layout_constraintTop_toTopOf="@+id/textView7" />
+
+        <TextView
+            android:id="@+id/best_number_position"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:textSize="@dimen/space_24"
+            android:textColor="@color/main_font_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="1" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

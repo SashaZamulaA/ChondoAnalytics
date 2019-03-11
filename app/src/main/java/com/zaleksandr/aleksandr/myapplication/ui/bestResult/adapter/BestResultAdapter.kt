@@ -5,10 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.zaleksandr.aleksandr.myapplication.R
 import com.zaleksandr.aleksandr.myapplication.model.City
 import com.zaleksandr.aleksandr.myapplication.ui.eachCentersResult.adapter.EachCenterAdapter
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
+import com.zaleksandr.aleksandr.myapplication.util.StorageUtil
 import com.zaleksandr.aleksandr.myapplication.util.clickByFilterBestResult
+import com.zaleksandr.aleksandr.tmbook.glade.GlideApp
 import kotlinx.android.synthetic.main.item_best_result_list.view.*
 
 
@@ -111,11 +114,33 @@ class BestResultAdapter(private val context: Context,
                                 }
                             }
 
+                        if (resultNote.name == item.first) {
+                            if (!resultNote.userPhotoPath.isNullOrBlank()) {
+                                GlideApp.with(context)
+                                        .load(resultNote.userPhotoPath.let { StorageUtil.pathToReference(it) })
+                                        .circleCrop()
+                                        .into(itemView.best_profile_picture)
+                            }
+                        }
+
+//                        if (layoutPosition == 0 ||layoutPosition == 1 ||layoutPosition == 2 ){
+//                            itemView.best_cardView.setBackgroundResource(R.color.best3_color)
+//                        }
+//                        if (layoutPosition == 3 ||layoutPosition == 4 ||layoutPosition == 5||
+//                                layoutPosition == 6 ||layoutPosition == 7 ||layoutPosition == 8
+//                                ||layoutPosition == 9){
+//                            itemView.best_cardView.setBackgroundResource(R.color.best3_color)
+//                        }
+
+                        if (resultNote.name == item.first){
+                            itemView.best_number_position.text = (layoutPosition+1).toString()
+                        }
 
                             itemView.best_result_name.text = item.first.toString()
                             itemView.best_result.text = item.second.toString()
 
                         }
+
                         itemView.best_res_intro.text = sumIntro.toString()
                         itemView.best_result_one_day.text = sumOneDay.toString()
                         itemView.best_res_two_day.text = sumTwoDay.toString()

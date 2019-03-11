@@ -88,41 +88,15 @@ class BestResultFragment : Fragment() {
                                                 .plus(Integer.parseInt(if (it.nwet.isNullOrEmpty() || it.nwet.isNullOrBlank() || it.nwet == "") {
                                                     ("0").toString()
                                                 } else it.nwet) * 80)
-
-//                                        Integer.parseInt(it.intro?: "0")
-//                                                .plus((Integer.parseInt(it.onedayWS?: "0") * 3))
-//                                                .plus(Integer.parseInt(it.twoDayWS?: "0") * 12)
-//                                                .plus(Integer.parseInt(it.twOneDay?: "0") * 40)
-//                                                .plus(Integer.parseInt(it.nwet?: "0") * 80)
-                                    }
-//                                    it.value.sumBy {
-//                                        Integer.parseInt(it.intro)
-//                                    }
-//                                    it.value.sumBy {
-//                                        Integer.parseInt(it.onedayWS)
-//
-//                                    }
-//                                    it.value.sumBy {
-//                                        Integer.parseInt(it.twoDayWS)
-//
-//                                    }
-//                                    it.value.sumBy {
-//                                        Integer.parseInt(it.twOneDay)
-//
-//                                    }
-//                                    it.value.sumBy {
-//                                        Integer.parseInt(it.nwet)
-//                                    }
+                                           }
                                 }
                                 .toList()
                                 .sortedByDescending { it.second }
-
 
                         val itemsToRvIntro = items.groupBy {
                             it.name
 
                         }
-
 
                         adapter?.setList(itemsToRv)
 
