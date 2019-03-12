@@ -230,7 +230,19 @@ fun clickByFilterIndividualResult(noteRefCollection: CollectionReference, period
 }
 
 fun clickByFilterBestResult(noteRefCollection: CollectionReference): Task<QuerySnapshot> {
-    return noteRefCollection.get()
+    return noteRefCollection
+//            .whereGreaterThanOrEqualTo("time", when (period) {
+//                1 -> startOfWeek()
+//                2 -> startOfMonth()
+//                3 -> startOfYear()
+//                else -> startOfYear()
+//            }).whereLessThanOrEqualTo("time", when (period) {
+//                1 -> endOfWeek()
+//                2 -> endOfMonth()
+//                3 -> endOfYear()
+//                else -> startOfYear()
+//            })
+            .get()
 }
 
 fun clickByFilter(noteRefCollection: CollectionReference, position: Int, value: Int): Task<QuerySnapshot> {

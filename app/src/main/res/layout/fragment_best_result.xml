@@ -64,43 +64,43 @@
             <!--</androidx.appcompat.widget.Toolbar>-->
 
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white">
-
-    <FrameLayout
-        android:id="@+id/fl_items_product_categories_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/list_best_result_adapter"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/item_best_result_list">
+            android:background="@color/white">
 
-        </androidx.recyclerview.widget.RecyclerView>
+            <FrameLayout
+                android:id="@+id/fl_items_product_categories_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-    </FrameLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/list_best_result_adapter"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:listitem="@layout/item_best_result_list">
 
-    <include
-        android:id="@+id/empty_individual_result_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal"
-        android:visibility="gone"
-        layout="@layout/blank_individual_result" />
+                </androidx.recyclerview.widget.RecyclerView>
 
-    </FrameLayout>
+            </FrameLayout>
+
+            <include
+                android:id="@+id/empty_individual_result_fragment"
+                layout="@layout/blank_individual_result"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:visibility="gone" />
+
+        </FrameLayout>
 
         <!--<com.google.android.material.bottomnavigation.BottomNavigationView-->
-            <!--android:id="@+id/bottom_navigation_person"-->
+            <!--android:id="@+id/bottom_navigation_best_result_person"-->
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="wrap_content"-->
             <!--android:layout_gravity="bottom"-->
             <!--app:itemBackground="@drawable/bottomnav_divider"-->
-            <!--app:menu="@menu/bottom_navigation_main_person" />-->
+            <!--app:menu="@menu/bottom_navigation_best_result" />-->
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

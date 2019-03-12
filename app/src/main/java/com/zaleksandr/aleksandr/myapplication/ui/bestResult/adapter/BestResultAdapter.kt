@@ -4,13 +4,10 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.AppCompatDrawableManager
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.zaleksandr.aleksandr.myapplication.R
 import com.zaleksandr.aleksandr.myapplication.model.City
-import com.zaleksandr.aleksandr.myapplication.ui.eachCentersResult.adapter.EachCenterAdapter
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import com.zaleksandr.aleksandr.myapplication.util.StorageUtil
 import com.zaleksandr.aleksandr.myapplication.util.clickByFilterBestResult
@@ -59,28 +56,27 @@ class BestResultAdapter(private val context: Context,
         MONTH, WEEK, YEAR
     }
 
-    var period = 0
-    fun perioSelected(periodSelected: EachCenterAdapter.ClickByFilter) {
-
-        when (periodSelected) {
-
-            EachCenterAdapter.ClickByFilter.WEEK -> {
-                period = 2; notifyDataSetChanged()
-
-            }
-            EachCenterAdapter.ClickByFilter.MONTH -> {
-                period = 3; notifyDataSetChanged()
-
-            }
-            EachCenterAdapter.ClickByFilter.YEAR -> {
-                period = 4; notifyDataSetChanged()
-
-            }
-        }
-    }
+//    var period = 3
+//    fun perioSelected(periodSelected: BestResultAdapter.ClickByFilter) {
+//
+//        when (periodSelected) {
+//
+//            BestResultAdapter.ClickByFilter.WEEK -> {
+//                period = 1; notifyDataSetChanged()
+//
+//            }
+//            BestResultAdapter.ClickByFilter.MONTH -> {
+//                period = 2; notifyDataSetChanged()
+//
+//            }
+//            BestResultAdapter.ClickByFilter.YEAR -> {
+//                period = 3; notifyDataSetChanged()
+//
+//            }
+//        }
+//    }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-
         if (holder is CentersHolder) {
             holder.bind()
         }
@@ -101,12 +97,12 @@ class BestResultAdapter(private val context: Context,
                         val resultNote = documentSnapshot.toObject(City::class.java)
 
 
-                            if (resultNote.name == item.first) {
-                                GlideApp.with(context)
-                                        .load(resultNote.userPhotoPath.let { StorageUtil.pathToReference(it!!) })
-                                        .placeholder(R.drawable.ic_account_circle_black_24dp)
-                                        .circleCrop()
-                                        .into(itemView.best_profile_picture)
+                        if (resultNote.name == item.first) {
+                            GlideApp.with(context)
+                                    .load(resultNote.userPhotoPath.let { StorageUtil.pathToReference(it!!) })
+                                    .placeholder(R.drawable.ic_account_circle_black_24dp)
+                                    .circleCrop()
+                                    .into(itemView.best_profile_picture)
 
                         }
 
@@ -143,7 +139,6 @@ class BestResultAdapter(private val context: Context,
                                 sumNWET += nwet
                             }
                         }
-
 
 
 //                        if (layoutPosition == 0 ||layoutPosition == 1 ||layoutPosition == 2 ){

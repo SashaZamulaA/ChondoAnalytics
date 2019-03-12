@@ -244,5 +244,5 @@
     <string name="my_guests">My guests</string>
     <string name="add_guest">Add guest</string>
     <string name="phone_number">Phone number</string>
-    <string name="bestResult">Top 10</string>
+    <string name="bestResult">Best result</string>
 </resources>

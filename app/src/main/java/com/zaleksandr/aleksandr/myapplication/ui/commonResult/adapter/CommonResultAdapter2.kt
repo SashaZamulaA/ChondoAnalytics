@@ -186,11 +186,6 @@ class CommonResultAdapter2(private var list: ArrayList<City>, private var fragme
                     itemView.common_goal_year_act.text = sumActYear.toString()
                 }
 
-                if (!goalNote?.yearTwoDay.isNullOrEmpty() && period == 4) {
-                    val intro = (Integer.parseInt(goalNote?.yearTwoDay))
-                    sumTwoD1year += intro
-                    itemView.common_goal_year_two_day_sem.text = sumTwoD1year.toString()
-                }
 
                 if (!goalNote?.yearTWOne.isNullOrEmpty() && period == 4) {
                     val intro = (Integer.parseInt(goalNote?.yearTWOne))

@@ -6,13 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.appcompat.widget.Toolbar
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.Query
+import com.zaleksandr.aleksandr.myapplication.BottomNavigationViewBehavior
 import com.zaleksandr.aleksandr.myapplication.model.City
 import com.zaleksandr.aleksandr.myapplication.ui.bestResult.adapter.BestResultAdapter
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
+import com.zaleksandr.aleksandr.myapplication.util.clickByFilterBestResult
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_best_result.view.*
 
@@ -38,7 +41,32 @@ class BestResultFragment : Fragment() {
 
         return rootView
     }
-
+    enum class ClickByFilter {
+        MONTH, WEEK, YEAR
+    }
+//    var period = 3
+//    fun perioSelected(periodSelected: ClickByFilter) {
+//
+//        when (periodSelected) {
+//
+//            ClickByFilter.WEEK -> {
+//                period = 1
+//                adapter?.notifyDataSetChanged()
+//
+//            }
+//            ClickByFilter.MONTH -> {
+//                period = 2
+//                adapter?.notifyDataSetChanged()
+//
+//            }
+//            ClickByFilter.YEAR -> {
+//                period = 3
+//                adapter?.notifyDataSetChanged()
+//
+//
+//            }
+//        }
+//    }
 
     override fun onResume() {
         super.onResume()
@@ -88,7 +116,7 @@ class BestResultFragment : Fragment() {
                                                 .plus(Integer.parseInt(if (it.nwet.isNullOrEmpty() || it.nwet.isNullOrBlank() || it.nwet == "") {
                                                     ("0").toString()
                                                 } else it.nwet) * 80)
-                                           }
+                                    }
                                 }
                                 .toList()
                                 .sortedByDescending { it.second }
@@ -112,22 +140,24 @@ class BestResultFragment : Fragment() {
                     }
                 }
     }
-}
 
 
 //    private fun bottomMenuInit(rootView: View) {
-//        val layoutParams = rootView.bottom_navigation_person.layoutParams as CoordinatorLayout.LayoutParams
+//        val layoutParams = rootView.bottom_navigation_best_result_person.layoutParams as CoordinatorLayout.LayoutParams
 //        layoutParams.behavior = BottomNavigationViewBehavior()
-//        rootView.bottom_navigation_person.setOnNavigationItemSelectedListener { item ->
+//        rootView.bottom_navigation_best_result_person.setOnNavigationItemSelectedListener { item ->
 //            when (item.itemId) {
-//                com.zaleksandr.aleksandr.myapplication.R.currentUserId.menu_year -> {
-//                    adapter?.perioSelected(IndividualAdapter.ClickByFilter.YEAR)
+//                com.zaleksandr.aleksandr.myapplication.R.id.menu_year -> {
+//                    adapter?.perioSelected(BestResultAdapter.ClickByFilter.YEAR)
+//                    perioSelected(ClickByFilter.YEAR)
 //                }
-//                com.zaleksandr.aleksandr.myapplication.R.currentUserId.menu_month -> {
-//                    adapter?.perioSelected(IndividualAdapter.ClickByFilter.MONTH)
+//                com.zaleksandr.aleksandr.myapplication.R.id.menu_month -> {
+//                    adapter?.perioSelected(BestResultAdapter.ClickByFilter.MONTH)
+//                    perioSelected(ClickByFilter.MONTH)
 //                }
-//                com.zaleksandr.aleksandr.myapplication.R.currentUserId.menu_week -> {
-//                    adapter?.perioSelected(IndividualAdapter.ClickByFilter.WEEK)
+//                com.zaleksandr.aleksandr.myapplication.R.id.menu_week -> {
+//                    adapter?.perioSelected(BestResultAdapter.ClickByFilter.WEEK)
+//                    perioSelected(ClickByFilter.WEEK)
 //                }
 //
 //                else -> {
@@ -136,5 +166,5 @@ class BestResultFragment : Fragment() {
 //            true
 //        }
 //    }
-//
-//}
+
+}

@@ -14,15 +14,10 @@ import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.zaleksandr.aleksandr.myapplication.BottomNavigationViewBehavior
 import com.zaleksandr.aleksandr.myapplication.model.City
-import com.zaleksandr.aleksandr.myapplication.ui.commonResult.adapter.CommonResultAdapter
-import com.zaleksandr.aleksandr.myapplication.ui.commonResult.adapter.CommonResultAdapter.FragmentCommunication
 import com.zaleksandr.aleksandr.myapplication.ui.commonResult.adapter.CommonResultAdapter2
-import com.zaleksandr.aleksandr.myapplication.ui.individualResult.IndividualResultFragment
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_common_result.*
 import kotlinx.android.synthetic.main.fragment_common_result.view.*
 import java.io.Serializable
 import java.util.*
@@ -72,30 +67,6 @@ class CommonResultFragment : Fragment(), CommonResultAdapter2.FragmentCommunicat
         super.onResume()
         (this.activity!!.toolbar as Toolbar).title = "Common result"
     }
-
-    var communication: FragmentCommunication = object : FragmentCommunication {
-        override fun respond(position: Int) {
-            val fragmentB = IndividualResultFragment()
-            val manager = fragmentManager
-            val transaction = manager!!.beginTransaction()
-            transaction.replace(R.id.list_container, fragmentB).commit()
-        }
-
-    }
-
-
-    private fun showLoading() {
-        pb_loading.visibility = View.VISIBLE
-    }
-
-    private fun hideLoading() {
-        pb_loading.visibility = View.GONE
-    }
-
-//    fun update(items: ArrayList<City>) {
-//        adapter?.updateList(items)
-//
-//    }
 
 
     private fun bottomMenuInit(rootView: View) {
