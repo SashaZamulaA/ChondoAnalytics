@@ -4,19 +4,19 @@ import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.zaleksandr.aleksandr.myapplication.MainActivity
 import com.zaleksandr.aleksandr.myapplication.R
 import com.zaleksandr.aleksandr.myapplication.setSimpleTextWatcher
 import com.zaleksandr.aleksandr.myapplication.showMaterialDialogOk
 import com.zaleksandr.aleksandr.myapplication.ui.login.presenter.LoginPresenter
-import com.zaleksandr.aleksandr.myapplication.MainActivity
-import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.view_login.*
 
 class LoginActivity : AppCompatActivity(), ILoginActivity {
 
     private var auth: FirebaseAuth? = null
     private lateinit var presenter: LoginPresenter
-
+    private var result: String? = null
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.view_login)

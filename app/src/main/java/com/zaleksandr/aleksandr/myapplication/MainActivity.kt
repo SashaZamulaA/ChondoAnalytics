@@ -14,7 +14,6 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.Navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.navigation.NavigationView
 import com.zaleksandr.aleksandr.myapplication.ui.settings.model.User
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil
@@ -26,11 +25,13 @@ import kotlinx.android.synthetic.main.header_layout.view.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
+
     companion object {
         val AUTHOR_KEY = "name"
         val QUOTE_KEY = "e_mail"
         val SPINNER = "spinner"
         val PASSWORD = "0000"
+        val PASSWORDACCESS = "m3a"
         val PASSWORD_ALL_CENTERS = "1111"
         val INTRO = false
     }
@@ -42,7 +43,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     lateinit var drawerLayout: DrawerLayout
     lateinit var navController: NavController
     private var pictureJustChange = false
-
+    private lateinit var presenter: MainPresenter
     private lateinit var navigationView: NavigationView
 
     private lateinit var toggle: ActionBarDrawerToggle
@@ -53,9 +54,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val finalHost = NavHostFragment.create(R.navigation.nav_graph)
-
-
+        presenter = MainPresenter(this, application)
 
         toolbar = findViewById<View>(R.id.toolbar) as Toolbar
         drawerLayout = findViewById<View>(R.id.drawer_layout) as DrawerLayout
@@ -83,6 +82,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             override fun onDrawerOpened(drawerView: View) {
                 hideKeyboard()
             }
+
+            fun passwordToAccess() {}
 
             override fun onDrawerClosed(drawerView: View) {}
             override fun onDrawerStateChanged(newState: Int) {

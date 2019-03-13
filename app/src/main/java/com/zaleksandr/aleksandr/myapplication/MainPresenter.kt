@@ -3,15 +3,18 @@ package com.zaleksandr.aleksandr.myapplication
 import android.app.Application
 
 
-abstract class MainPresenter(mainView: MainActivity, applicationComponent: Application): BasePresenter<MainActivity>(mainView){
-//    init {
+class MainPresenter(mainView: MainActivity, application: Application): BasePresenter<MainActivity>(mainView){
+    init {
+
+                (application as AndroidApplication).applicationComponent.inject(this)
 
 
-//        (applicationComponent as AndroidApplication).applicationComponent.inject(this)}
+    }
 
-//    override fun onBindView() {
-//       }
+    override fun onBindView() {
 
-//    override fun onUnbindView() {
-//    }
+       }
+
+    override fun onUnbindView() {
+    }
 }

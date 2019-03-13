@@ -1,6 +1,6 @@
 package com.zaleksandr.aleksandr.myapplication
 
-interface IView {
+interface IMainActivity {
         fun passwordToAccess()
 //    fun showLoading()
 //    fun hideLoading()

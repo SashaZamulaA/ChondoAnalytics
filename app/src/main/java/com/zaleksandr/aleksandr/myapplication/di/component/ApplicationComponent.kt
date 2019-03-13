@@ -8,6 +8,7 @@ import com.zaleksandr.aleksandr.myapplication.ui.login.RegistrationActivity
 import com.zaleksandr.aleksandr.myapplication.ui.login.presenter.LoginPresenter
 import com.zaleksandr.aleksandr.myapplication.ui.login.presenter.RegistrationPresenter
 import com.zaleksandr.aleksandr.myapplication.MainActivity
+import com.zaleksandr.aleksandr.myapplication.MainPresenter
 import dagger.Component
 
 @Component(modules = [AppModule::class, NetModule::class, NetModule::class])
@@ -22,6 +23,7 @@ interface ApplicationComponent {
 
     // PRESENTER
 //    fun inject(infoPresenter: ResultM3APresenter)
+    fun inject(mainView: MainPresenter)
     fun inject(loginPresenter: LoginPresenter)
     fun inject(registrationPresenter: RegistrationPresenter)
   }

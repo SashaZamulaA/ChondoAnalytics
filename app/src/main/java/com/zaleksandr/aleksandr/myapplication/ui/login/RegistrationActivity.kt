@@ -1,8 +1,10 @@
 package com.zaleksandr.aleksandr.myapplication.ui.login
 
+import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Toast
 import com.zaleksandr.aleksandr.myapplication.R
@@ -17,6 +19,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.iid.FirebaseInstanceId
 import com.zaleksandr.aleksandr.myapplication.MainActivity.Companion.AUTHOR_KEY
+import com.zaleksandr.aleksandr.myapplication.MainActivity.Companion.PASSWORDACCESS
 import com.zaleksandr.aleksandr.myapplication.MainActivity.Companion.QUOTE_KEY
 import kotlinx.android.synthetic.main.view_registration.*
 
@@ -27,7 +30,7 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
     private var auth: FirebaseAuth? = null
     var databaseReference: DatabaseReference? = null
     private val chatChannelsCollectionRef = FirestoreUtil.firestoreInstance.collection("users")
-
+    private var result: String? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,7 +61,30 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
 //            presenter.onUpdateCheckboxGdpr(isChecked)
 //        }
         btn_signup.setOnClickListener {
-            presenter.onValidateAndSave()
+
+
+            val b = AlertDialog.Builder(this@RegistrationActivity)
+            b.setTitle("Please enter a password")
+            val input = EditText(this@RegistrationActivity)
+            b.setView(input)
+            b.setPositiveButton("OK") { _, _ ->
+                result = input.text.toString()
+                if (result == PASSWORDACCESS) {
+                    presenter.onValidateAndSave()
+                } else {
+                    val intentRegister = Intent(applicationContext, RegistrationActivity::class.java)
+                    startActivity(intentRegister)
+                    finish()
+                }
+            }
+            b.setNegativeButton("CANCEL") { _, _ ->
+                val intentRegister = Intent(applicationContext, RegistrationActivity::class.java)
+                startActivity(intentRegister)
+                finish()
+            }
+            b.show()
+
+
         }
 
                 button_back_registration.setOnClickListener {
