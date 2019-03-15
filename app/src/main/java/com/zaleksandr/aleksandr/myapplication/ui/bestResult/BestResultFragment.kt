@@ -14,8 +14,8 @@ import com.google.firebase.firestore.Query
 import com.zaleksandr.aleksandr.myapplication.BottomNavigationViewBehavior
 import com.zaleksandr.aleksandr.myapplication.model.City
 import com.zaleksandr.aleksandr.myapplication.ui.bestResult.adapter.BestResultAdapter
+import com.zaleksandr.aleksandr.myapplication.util.*
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
-import com.zaleksandr.aleksandr.myapplication.util.clickByFilterBestResult
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_best_result.view.*
 
@@ -37,36 +37,38 @@ class BestResultFragment : Fragment() {
 
         setUpRecyclerView(rootView)
 
-//        bottomMenuInit(rootView)
+        bottomMenuInit(rootView)
 
         return rootView
     }
+
     enum class ClickByFilter {
         MONTH, WEEK, YEAR
     }
-//    var period = 3
-//    fun perioSelected(periodSelected: ClickByFilter) {
-//
-//        when (periodSelected) {
-//
-//            ClickByFilter.WEEK -> {
-//                period = 1
-//                adapter?.notifyDataSetChanged()
-//
-//            }
-//            ClickByFilter.MONTH -> {
-//                period = 2
-//                adapter?.notifyDataSetChanged()
-//
-//            }
-//            ClickByFilter.YEAR -> {
-//                period = 3
-//                adapter?.notifyDataSetChanged()
-//
-//
-//            }
-//        }
-//    }
+
+    var period = 3
+    fun perioSelected(periodSelected: ClickByFilter) {
+
+        when (periodSelected) {
+
+            ClickByFilter.WEEK -> {
+                period = 1
+                adapter?.notifyDataSetChanged()
+
+            }
+            ClickByFilter.MONTH -> {
+                period = 2
+                adapter?.notifyDataSetChanged()
+
+            }
+            ClickByFilter.YEAR -> {
+                period = 3
+                adapter?.notifyDataSetChanged()
+
+
+            }
+        }
+    }
 
     override fun onResume() {
         super.onResume()
@@ -96,8 +98,6 @@ class BestResultFragment : Fragment() {
                         val itemsToRv = items.groupBy {
                             it.name
                         }
-
-
                                 .mapValues {
                                     it.value.sumBy {
 
@@ -119,6 +119,7 @@ class BestResultFragment : Fragment() {
                                     }
                                 }
                                 .toList()
+                                .filterNot { it.second == 0 }
                                 .sortedByDescending { it.second }
 
                         val itemsToRvIntro = items.groupBy {
@@ -142,29 +143,205 @@ class BestResultFragment : Fragment() {
     }
 
 
-//    private fun bottomMenuInit(rootView: View) {
-//        val layoutParams = rootView.bottom_navigation_best_result_person.layoutParams as CoordinatorLayout.LayoutParams
-//        layoutParams.behavior = BottomNavigationViewBehavior()
-//        rootView.bottom_navigation_best_result_person.setOnNavigationItemSelectedListener { item ->
-//            when (item.itemId) {
-//                com.zaleksandr.aleksandr.myapplication.R.id.menu_year -> {
-//                    adapter?.perioSelected(BestResultAdapter.ClickByFilter.YEAR)
-//                    perioSelected(ClickByFilter.YEAR)
-//                }
-//                com.zaleksandr.aleksandr.myapplication.R.id.menu_month -> {
-//                    adapter?.perioSelected(BestResultAdapter.ClickByFilter.MONTH)
-//                    perioSelected(ClickByFilter.MONTH)
-//                }
-//                com.zaleksandr.aleksandr.myapplication.R.id.menu_week -> {
-//                    adapter?.perioSelected(BestResultAdapter.ClickByFilter.WEEK)
-//                    perioSelected(ClickByFilter.WEEK)
-//                }
-//
-//                else -> {
-//                }
-//            }
-//            true
-//        }
-//    }
+    private fun bottomMenuInit(rootView: View) {
+        val layoutParams = rootView.bottom_navigation_best_result_person.layoutParams as CoordinatorLayout.LayoutParams
+        layoutParams.behavior = BottomNavigationViewBehavior()
+        rootView.bottom_navigation_best_result_person.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
 
+                com.zaleksandr.aleksandr.myapplication.R.id.menu_year -> {
+                    adapter?.perioSelected(BestResultAdapter.ClickByFilter.YEAR)
+                    perioSelected(ClickByFilter.YEAR)
+                    noteRefCollection
+                            .whereGreaterThanOrEqualTo("time", startOfYear())
+                            .whereLessThanOrEqualTo("time", endOfYear())
+                            .orderBy("time", Query.Direction.DESCENDING)
+                            .get().addOnCompleteListener { querydocumentSnapshot ->
+                                if (querydocumentSnapshot.isSuccessful) {
+
+                                    val items = querydocumentSnapshot.result!!
+                                            .map { it.toObject<City>(City::class.java) }
+                                            .filterNot {
+                                                (it.name == "Kyiv Chondoso" || it.name == "Daniela Aldasoro ")
+
+                                            }
+
+                                    val itemsToRv = items.groupBy {
+                                        it.name
+                                    }
+                                            .mapValues {
+                                                it.value.sumBy {
+
+                                                    Integer.parseInt(if (it.intro.isNullOrEmpty() || it.intro.isNullOrBlank() || it.intro == "") {
+                                                        ("0").toString()
+                                                    } else it.intro.toString())
+                                                            .plus(Integer.parseInt(if (it.onedayWS.isNullOrEmpty() || it.onedayWS.isNullOrBlank() || it.onedayWS == "") {
+                                                                ("0").toString()
+                                                            } else it.onedayWS) * 3)
+                                                            .plus(Integer.parseInt(if (it.twoDayWS.isNullOrEmpty() || it.twoDayWS.isNullOrBlank() || it.twoDayWS == "") {
+                                                                ("0").toString()
+                                                            } else it.twoDayWS) * 12)
+                                                            .plus(Integer.parseInt(if (it.twOneDay.isNullOrEmpty() || it.twOneDay.isNullOrBlank() || it.twOneDay == "") {
+                                                                ("0").toString()
+                                                            } else it.twOneDay) * 40)
+                                                            .plus(Integer.parseInt(if (it.nwet.isNullOrEmpty() || it.nwet.isNullOrBlank() || it.nwet == "") {
+                                                                ("0").toString()
+                                                            } else it.nwet) * 80)
+                                                }
+                                            }
+                                            .toList()
+                                            .filterNot { it.second == 0 }
+                                            .sortedByDescending { it.second }
+
+                                    val itemsToRvIntro = items.groupBy {
+                                        it.name
+
+                                    }
+
+                                    adapter?.setList(itemsToRv)
+
+                                }
+
+                                if (querydocumentSnapshot.result!!.size() != 0) {
+//                            empty_individual_result_fragment.visibility = View.GONE
+                                    mLastQueriedDocument = querydocumentSnapshot.result!!.documents[querydocumentSnapshot.result!!.size() - 1]
+                                    adapter?.notifyDataSetChanged()
+                                } else {
+//                            empty_individual_result_fragment.visibility = View.VISIBLE
+                                    adapter?.notifyDataSetChanged()
+                                }
+                            }
+                }
+                com.zaleksandr.aleksandr.myapplication.R.id.menu_month -> {
+                    adapter?.perioSelected(BestResultAdapter.ClickByFilter.MONTH)
+                    perioSelected(ClickByFilter.MONTH)
+                    noteRefCollection
+                            .whereGreaterThanOrEqualTo("time", startOfMonth())
+                            .whereLessThanOrEqualTo("time", endOfMonth())
+                            .orderBy("time", Query.Direction.DESCENDING)
+                            .get().addOnCompleteListener { querydocumentSnapshot ->
+                                if (querydocumentSnapshot.isSuccessful) {
+
+                                    val items = querydocumentSnapshot.result!!
+                                            .map { it.toObject<City>(City::class.java) }
+                                            .filterNot {
+                                                (it.name == "Kyiv Chondoso" || it.name == "Daniela Aldasoro ")
+
+                                            }
+
+                                    val itemsToRv = items.groupBy {
+                                        it.name
+                                    }
+                                            .mapValues {
+                                                it.value.sumBy {
+
+                                                    Integer.parseInt(if (it.intro.isNullOrEmpty() || it.intro.isNullOrBlank() || it.intro == "") {
+                                                        ("0").toString()
+                                                    } else it.intro.toString())
+                                                            .plus(Integer.parseInt(if (it.onedayWS.isNullOrEmpty() || it.onedayWS.isNullOrBlank() || it.onedayWS == "") {
+                                                                ("0").toString()
+                                                            } else it.onedayWS) * 3)
+                                                            .plus(Integer.parseInt(if (it.twoDayWS.isNullOrEmpty() || it.twoDayWS.isNullOrBlank() || it.twoDayWS == "") {
+                                                                ("0").toString()
+                                                            } else it.twoDayWS) * 12)
+                                                            .plus(Integer.parseInt(if (it.twOneDay.isNullOrEmpty() || it.twOneDay.isNullOrBlank() || it.twOneDay == "") {
+                                                                ("0").toString()
+                                                            } else it.twOneDay) * 40)
+                                                            .plus(Integer.parseInt(if (it.nwet.isNullOrEmpty() || it.nwet.isNullOrBlank() || it.nwet == "") {
+                                                                ("0").toString()
+                                                            } else it.nwet) * 80)
+                                                }
+                                            }
+                                            .toList()
+                                            .filterNot { it.second == 0 }
+                                            .sortedByDescending { it.second }
+
+                                    val itemsToRvIntro = items.groupBy {
+                                        it.name
+
+                                    }
+
+                                    adapter?.setList(itemsToRv)
+
+                                }
+
+                                if (querydocumentSnapshot.result!!.size() != 0) {
+//                            empty_individual_result_fragment.visibility = View.GONE
+                                    mLastQueriedDocument = querydocumentSnapshot.result!!.documents[querydocumentSnapshot.result!!.size() - 1]
+                                    adapter?.notifyDataSetChanged()
+                                } else {
+//                            empty_individual_result_fragment.visibility = View.VISIBLE
+                                    adapter?.notifyDataSetChanged()
+                                }
+                            }
+                }
+                com.zaleksandr.aleksandr.myapplication.R.id.menu_week -> {
+                    adapter?.perioSelected(BestResultAdapter.ClickByFilter.WEEK)
+                    perioSelected(ClickByFilter.WEEK)
+                    noteRefCollection
+                            .whereGreaterThanOrEqualTo("time", startOfWeek())
+                            .whereLessThanOrEqualTo("time", endOfWeek())
+                            .orderBy("time", Query.Direction.DESCENDING)
+                            .get().addOnCompleteListener { querydocumentSnapshot ->
+                                if (querydocumentSnapshot.isSuccessful) {
+
+                                    val items = querydocumentSnapshot.result!!
+                                            .map { it.toObject<City>(City::class.java) }
+                                            .filterNot {
+                                                (it.name == "Kyiv Chondoso" || it.name == "Daniela Aldasoro ")
+
+                                            }
+
+                                    val itemsToRv = items.groupBy {
+                                        it.name
+                                    }
+                                            .mapValues {
+                                                it.value.sumBy {
+
+                                                    Integer.parseInt(if (it.intro.isNullOrEmpty() || it.intro.isNullOrBlank() || it.intro == "") {
+                                                        ("0").toString()
+                                                    } else it.intro.toString())
+                                                            .plus(Integer.parseInt(if (it.onedayWS.isNullOrEmpty() || it.onedayWS.isNullOrBlank() || it.onedayWS == "") {
+                                                                ("0").toString()
+                                                            } else it.onedayWS) * 3)
+                                                            .plus(Integer.parseInt(if (it.twoDayWS.isNullOrEmpty() || it.twoDayWS.isNullOrBlank() || it.twoDayWS == "") {
+                                                                ("0").toString()
+                                                            } else it.twoDayWS) * 12)
+                                                            .plus(Integer.parseInt(if (it.twOneDay.isNullOrEmpty() || it.twOneDay.isNullOrBlank() || it.twOneDay == "") {
+                                                                ("0").toString()
+                                                            } else it.twOneDay) * 40)
+                                                            .plus(Integer.parseInt(if (it.nwet.isNullOrEmpty() || it.nwet.isNullOrBlank() || it.nwet == "") {
+                                                                ("0").toString()
+                                                            } else it.nwet) * 80)
+                                                }
+                                            }
+                                            .toList()
+                                            .filterNot { it.second == 0 }
+                                            .sortedByDescending { it.second }
+
+                                    val itemsToRvIntro = items.groupBy {
+                                        it.name
+
+                                    }
+
+                                    adapter?.setList(itemsToRv)
+
+                                }
+
+                                if (querydocumentSnapshot.result!!.size() != 0) {
+//                            empty_individual_result_fragment.visibility = View.GONE
+                                    mLastQueriedDocument = querydocumentSnapshot.result!!.documents[querydocumentSnapshot.result!!.size() - 1]
+                                    adapter?.notifyDataSetChanged()
+                                } else {
+//                            empty_individual_result_fragment.visibility = View.VISIBLE
+                                    adapter?.notifyDataSetChanged()
+                                }
+                            }
+                }
+                else -> {
+                }
+            }
+            true
+        }
+    }
 }

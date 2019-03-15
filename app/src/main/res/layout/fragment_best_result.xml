@@ -94,13 +94,13 @@
 
         </FrameLayout>
 
-        <!--<com.google.android.material.bottomnavigation.BottomNavigationView-->
-            <!--android:id="@+id/bottom_navigation_best_result_person"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="bottom"-->
-            <!--app:itemBackground="@drawable/bottomnav_divider"-->
-            <!--app:menu="@menu/bottom_navigation_best_result" />-->
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation_best_result_person"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:itemBackground="@drawable/bottomnav_divider"
+            app:menu="@menu/bottom_navigation_best_result" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

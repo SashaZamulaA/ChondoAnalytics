@@ -56,25 +56,25 @@ class BestResultAdapter(private val context: Context,
         MONTH, WEEK, YEAR
     }
 
-//    var period = 3
-//    fun perioSelected(periodSelected: BestResultAdapter.ClickByFilter) {
-//
-//        when (periodSelected) {
-//
-//            BestResultAdapter.ClickByFilter.WEEK -> {
-//                period = 1; notifyDataSetChanged()
-//
-//            }
-//            BestResultAdapter.ClickByFilter.MONTH -> {
-//                period = 2; notifyDataSetChanged()
-//
-//            }
-//            BestResultAdapter.ClickByFilter.YEAR -> {
-//                period = 3; notifyDataSetChanged()
-//
-//            }
-//        }
-//    }
+    var period = 3
+    fun perioSelected(periodSelected: BestResultAdapter.ClickByFilter) {
+
+        when (periodSelected) {
+
+            BestResultAdapter.ClickByFilter.WEEK -> {
+                period = 1; notifyDataSetChanged()
+
+            }
+            BestResultAdapter.ClickByFilter.MONTH -> {
+                period = 2; notifyDataSetChanged()
+
+            }
+            BestResultAdapter.ClickByFilter.YEAR -> {
+                period = 3; notifyDataSetChanged()
+
+            }
+        }
+    }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is CentersHolder) {
@@ -90,7 +90,7 @@ class BestResultAdapter(private val context: Context,
             var sumTwoOneDay = 0
             var sumNWET = 0
             val item = pairList[adapterPosition]
-            clickByFilterBestResult(noteRefCollection).addOnSuccessListener { queryDocumentSnapshots ->
+            clickByFilterBestResult(noteRefCollection, period).addOnSuccessListener { queryDocumentSnapshots ->
                 if (!queryDocumentSnapshots.isEmpty) {
                     queryDocumentSnapshots.forEach { documentSnapshot ->
 
