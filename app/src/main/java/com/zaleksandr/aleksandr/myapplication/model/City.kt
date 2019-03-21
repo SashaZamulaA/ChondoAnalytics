@@ -5,7 +5,7 @@ import java.util.*
 data class City(
         val getId: String?,
         val id: String?,
-        val intro: String?,
+        val intro: String,
         val onedayWS: String?,
         val twoDayWS: String?,
         val actionaiser: String?,

@@ -89,6 +89,7 @@ class BestResultAdapter(private val context: Context,
             var sumTwoDay = 0
             var sumTwoOneDay = 0
             var sumNWET = 0
+            var name = ""
             val item = pairList[adapterPosition]
             clickByFilterBestResult(noteRefCollection, period).addOnSuccessListener { queryDocumentSnapshots ->
                 if (!queryDocumentSnapshots.isEmpty) {
@@ -97,7 +98,7 @@ class BestResultAdapter(private val context: Context,
                         val resultNote = documentSnapshot.toObject(City::class.java)
 
 
-                        if (resultNote.name == item.first) {
+                        if (resultNote.id == item.first) {
                             GlideApp.with(context)
                                     .load(resultNote.userPhotoPath.let { StorageUtil.pathToReference(it!!) })
                                     .placeholder(R.drawable.ic_account_circle_black_24dp)
@@ -107,39 +108,43 @@ class BestResultAdapter(private val context: Context,
                         }
 
                         if (!resultNote.intro.isNullOrEmpty()) {
-                            if (resultNote.name == item.first) {
+                            if (resultNote.id == item.first) {
                                 val intro = (Integer.parseInt(resultNote.intro))
                                 sumIntro += intro
                             }
                         }
 
                         if (!resultNote.onedayWS.isNullOrEmpty()) {
-                            if (resultNote.name == item.first) {
+                            if (resultNote.id == item.first) {
                                 val oneDay = (Integer.parseInt(resultNote.onedayWS))
                                 sumOneDay += oneDay
                             }
                         }
 
                         if (!resultNote.twoDayWS.isNullOrEmpty()) {
-                            if (resultNote.name == item.first) {
+                            if (resultNote.id == item.first) {
                                 val twoDay = (Integer.parseInt(resultNote.twoDayWS))
                                 sumTwoDay += twoDay
                             }
                         }
                         if (!resultNote.twOneDay.isNullOrEmpty()) {
-                            if (resultNote.twOneDay == item.first) {
+                            if (resultNote.id == item.first) {
                                 val twoOneDay = (Integer.parseInt(resultNote.twOneDay))
                                 sumTwoOneDay += twoOneDay
                             }
                         }
 
                         if (!resultNote.nwet.isNullOrEmpty()) {
-                            if (resultNote.nwet == item.first) {
+                            if (resultNote.id == item.first) {
                                 val nwet = (Integer.parseInt(resultNote.nwet))
                                 sumNWET += nwet
                             }
                         }
 
+                        if (resultNote.id == item.first) {
+                             name = resultNote.name.toString()
+
+                        }
 
 //                        if (layoutPosition == 0 ||layoutPosition == 1 ||layoutPosition == 2 ){
 //                            itemView.best_cardView.setBackgroundResource(R.color.best3_color)
@@ -150,15 +155,16 @@ class BestResultAdapter(private val context: Context,
 //                            itemView.best_cardView.setBackgroundResource(R.color.best3_color)
 //                        }
 
-                        if (resultNote.name == item.first) {
+                        if (resultNote.id == item.first) {
                             itemView.best_number_position.text = (layoutPosition + 1).toString()
                         }
 
-                        itemView.best_result_name.text = item.first.toString()
+//                        itemView.best_result_name.text = item.first.toString()
                         itemView.best_result.text = item.second.toString()
 
                     }
 
+                    itemView.best_result_name.text = name
                     itemView.best_res_intro.text = sumIntro.toString()
                     itemView.best_result_one_day.text = sumOneDay.toString()
                     itemView.best_res_two_day.text = sumTwoDay.toString()

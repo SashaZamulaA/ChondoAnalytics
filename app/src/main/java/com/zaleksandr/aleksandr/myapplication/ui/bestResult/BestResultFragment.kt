@@ -96,7 +96,7 @@ class BestResultFragment : Fragment() {
                                 }
 
                         val itemsToRv = items.groupBy {
-                            it.name
+                            it.id
                         }
                                 .mapValues {
                                     it.value.sumBy {
@@ -167,7 +167,7 @@ class BestResultFragment : Fragment() {
                                             }
 
                                     val itemsToRv = items.groupBy {
-                                        it.name
+                                        it.id
                                     }
                                             .mapValues {
                                                 it.value.sumBy {
@@ -193,10 +193,6 @@ class BestResultFragment : Fragment() {
                                             .filterNot { it.second == 0 }
                                             .sortedByDescending { it.second }
 
-                                    val itemsToRvIntro = items.groupBy {
-                                        it.name
-
-                                    }
 
                                     adapter?.setList(itemsToRv)
 
@@ -230,7 +226,7 @@ class BestResultFragment : Fragment() {
                                             }
 
                                     val itemsToRv = items.groupBy {
-                                        it.name
+                                        it.id
                                     }
                                             .mapValues {
                                                 it.value.sumBy {
@@ -257,7 +253,7 @@ class BestResultFragment : Fragment() {
                                             .sortedByDescending { it.second }
 
                                     val itemsToRvIntro = items.groupBy {
-                                        it.name
+                                        it.id
 
                                     }
 
@@ -293,7 +289,7 @@ class BestResultFragment : Fragment() {
                                             }
 
                                     val itemsToRv = items.groupBy {
-                                        it.name
+                                        it.id
                                     }
                                             .mapValues {
                                                 it.value.sumBy {
