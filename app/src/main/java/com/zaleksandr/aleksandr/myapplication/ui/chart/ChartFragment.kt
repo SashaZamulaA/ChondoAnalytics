@@ -1,21 +1,20 @@
 package com.zaleksandr.aleksandr.myapplication.ui.chart
 
 import android.graphics.Color
-import android.os.Build.VERSION_CODES.P
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SeekBar
-import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import com.github.mikephil.charting.charts.PieChart
-import com.github.mikephil.charting.data.*
-import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
+import com.github.mikephil.charting.data.PieData
+import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.utils.ColorTemplate
+import com.google.firebase.firestore.Query
+import com.zaleksandr.aleksandr.myapplication.model.City
+import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_chart.*
 import kotlinx.android.synthetic.main.fragment_chart.view.*
 
 
@@ -24,7 +23,8 @@ class ChartFragment : Fragment() {
     var toolbar: Toolbar? = null
     private val rain: ArrayList<Float> = ArrayList()
     private val monthNames: ArrayList<String> = ArrayList()
-
+    private var pairList: List<Pair<String?, Int>>? = null
+    private val noteRefCollection = firestoreInstance.collection("NewCity")
 //    private var chart: PieChart? = null
 //    private var seekBarX: SeekBar? = null
 //    private var seekBarY: SeekBar? = null
@@ -38,15 +38,13 @@ class ChartFragment : Fragment() {
 //        chart?.setOnChartValueSelectedListener(this)
 
 
-
         rain.add(98.6F)
         rain.add(94.6F)
         rain.add(28.6F)
         rain.add(198.6F)
         rain.add(8.6F)
         rain.add(98.6F)
-        rain.add(58.6F)
-        rain.add(68.6F)
+        rain.add(98.6F)
 
 
         monthNames.add("Kyiv")
@@ -56,7 +54,7 @@ class ChartFragment : Fragment() {
         monthNames.add("Lviv")
         monthNames.add("Odessa")
         monthNames.add("Chernigov")
-        monthNames.add("Other")
+
 
 
         setupPieChart(rootView)
@@ -92,44 +90,104 @@ class ChartFragment : Fragment() {
         return rootView
     }
 
-    fun setupPieChart(rootView: View){
+    fun setupPieChart(rootView: View) {
 
 
-        val pieEntries = ArrayList<PieEntry>()
-            for (i in 0 until rain.size) {
-            pieEntries.add(PieEntry(rain[i], monthNames[i])) }
+        noteRefCollection
+                .orderBy("time", Query.Direction.DESCENDING)
+                .get().addOnCompleteListener { querydocumentSnapshot ->
+                    if (querydocumentSnapshot.isSuccessful) {
 
-       val dataSet = PieDataSet(pieEntries, "Each centers result")
+                        val items = querydocumentSnapshot.result!!
+                                .map { it.toObject<City>(City::class.java) }
+                                .filterNot {
+                                    (it.name == "Kyiv Chondoso" || it.name == "Daniela Aldasoro ")
+
+                                }
+
+                        val itemsCity = items.groupBy {
+                            it.centers
+                        }
+                                .mapValues {
+                                    it.value.sumBy {
+
+                                        Integer.parseInt(if (it.intro.isNullOrEmpty() || it.intro.isNullOrBlank() || it.intro == "") {
+                                            ("0").toString()
+                                        } else it.intro.toString())
+                                                .plus(Integer.parseInt(if (it.onedayWS.isNullOrEmpty() || it.onedayWS.isNullOrBlank() || it.onedayWS == "") {
+                                                    ("0").toString()
+                                                } else it.onedayWS) * 3)
+                                                .plus(Integer.parseInt(if (it.twoDayWS.isNullOrEmpty() || it.twoDayWS.isNullOrBlank() || it.twoDayWS == "") {
+                                                    ("0").toString()
+                                                } else it.twoDayWS) * 12)
+                                                .plus(Integer.parseInt(if (it.twOneDay.isNullOrEmpty() || it.twOneDay.isNullOrBlank() || it.twOneDay == "") {
+                                                    ("0").toString()
+                                                } else it.twOneDay) * 40)
+                                                .plus(Integer.parseInt(if (it.nwet.isNullOrEmpty() || it.nwet.isNullOrBlank() || it.nwet == "") {
+                                                    ("0").toString()
+                                                } else it.nwet) * 80)
+                                    }
+                                }
+                                .toList()
+                                .filterNot { it.second == 0 }
+                                .sortedByDescending { it.second }
 
 
-        val colors = ArrayList<Int>()
+                        setList(itemsCity)
 
-        for (c in ColorTemplate.VORDIPLOM_COLORS)
-            colors.add(c)
-
-        for (c in ColorTemplate.JOYFUL_COLORS)
-            colors.add(c)
-
-        for (c in ColorTemplate.COLORFUL_COLORS)
-            colors.add(c)
-
-        for (c in ColorTemplate.LIBERTY_COLORS)
-            colors.add(c)
-
-        for (c in ColorTemplate.PASTEL_COLORS)
-            colors.add(c)
-
-        colors.add(ColorTemplate.getHoloBlue())
-
-        dataSet.colors = colors
+                        val pieEntries = ArrayList<PieEntry>()
+                        for (i in 0 until rain.size) {
+                            val item = pairList?.get(i)
+                            pieEntries.add(PieEntry(item?.second?.toFloat()!!, item.first.toString()))
+                        }
+                        val dataSet = PieDataSet(pieEntries, "Each centers result")
 
 
-       val data = PieData(dataSet)
-        rootView.chart.data = data
-        rootView.chart.invalidate()
-        rootView.chart.setHoleColor(Color.WHITE)
-        data.setValueTextSize(16f)
-        data.setValueTextColor(Color.BLACK)
+                        val colors = ArrayList<Int>()
+
+                        for (c in ColorTemplate.VORDIPLOM_COLORS)
+                            colors.add(c)
+
+                        for (c in ColorTemplate.JOYFUL_COLORS)
+                            colors.add(c)
+
+                        for (c in ColorTemplate.COLORFUL_COLORS)
+                            colors.add(c)
+
+                        for (c in ColorTemplate.LIBERTY_COLORS)
+                            colors.add(c)
+
+                        for (c in ColorTemplate.PASTEL_COLORS)
+                            colors.add(c)
+
+                        colors.add(ColorTemplate.getHoloBlue())
+
+                        dataSet.colors = colors
+
+
+                        val data = PieData(dataSet)
+                        rootView.chart.data = data
+                        rootView.chart.invalidate()
+                        rootView.chart.setHoleColor(Color.WHITE)
+                        data.setValueTextSize(16f)
+                        data.setValueTextColor(Color.BLACK)
+
+                    }
+
+//                    if (querydocumentSnapshot.result!!.size() != 0) {
+////                            empty_individual_result_fragment.visibility = View.GONE
+//                        mLastQueriedDocument = querydocumentSnapshot.result!!.documents[querydocumentSnapshot.result!!.size() - 1]
+//                        adapter?.notifyDataSetChanged()
+//                    } else {
+////                            empty_individual_result_fragment.visibility = View.VISIBLE
+//                        adapter?.notifyDataSetChanged()
+//                    }
+                }
+
+
+
+
+
 
 //        var i = 0
 //       val pieEntries: ArrayList<PieEntry>? =null
@@ -137,6 +195,10 @@ class ChartFragment : Fragment() {
 //
 //           pieEntries.add()
 
+    }
+
+    fun setList(pairList: List<Pair<String?, Int>>) {
+        this.pairList = pairList
     }
 
     override fun onResume() {
