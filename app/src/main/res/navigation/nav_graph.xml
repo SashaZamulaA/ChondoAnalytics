@@ -28,6 +28,13 @@
         tools:layout="@layout/fragment_best_result" />
 
     <fragment
+        android:id="@+id/addChart"
+        android:name="com.zaleksandr.aleksandr.myapplication.ui.chart.ChartFragment"
+        android:label="Chart Fragment"
+        tools:layout="@layout/fragment_chart" />
+
+
+    <fragment
         android:id="@+id/addResultFragment"
         android:name="com.zaleksandr.aleksandr.myapplication.ui.addResult.AddResultFragment"
         android:label="First Fragment"

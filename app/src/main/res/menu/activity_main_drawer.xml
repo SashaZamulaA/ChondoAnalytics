@@ -12,8 +12,14 @@
             android:icon="@drawable/ic_star_border_black_24dp"
             />
 
-        <item android:id="@+id/individualResult"
+
+        <item android:id="@+id/chart"
             android:icon="@drawable/ic_home"
+            android:title="@string/chart"
+            />
+
+        <item android:id="@+id/individualResult"
+            android:icon="@drawable/ic_person_black_24dp"
             android:title="@string/individual_result"
             />
 
