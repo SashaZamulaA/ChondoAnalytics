@@ -1,12 +1,18 @@
 package com.zaleksandr.aleksandr.myapplication.ui.chart
 
 import android.graphics.Color
+import android.graphics.Color.RED
+import android.graphics.Typeface
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
+import android.text.style.RelativeSizeSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
@@ -15,6 +21,7 @@ import com.google.firebase.firestore.Query
 import com.zaleksandr.aleksandr.myapplication.model.City
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_chart.*
 import kotlinx.android.synthetic.main.fragment_chart.view.*
 
 
@@ -165,36 +172,38 @@ class ChartFragment : Fragment() {
                         dataSet.colors = colors
 
 
+
                         val data = PieData(dataSet)
-                        rootView.chart.data = data
-                        rootView.chart.invalidate()
-                        rootView.chart.setHoleColor(Color.WHITE)
+                        chart.data = data
+                        chart.invalidate()
+                       chart.setHoleColor(Color.WHITE)
+                        chart.setEntryLabelColor(Color.BLACK)
+
+
+                        val tf = Typeface.createFromAsset(context?.assets, "OpenSans-Light.ttf")
+
+                        chart.setCenterTextTypeface(tf)
+                        chart.setCenterTextSize(14f)
+                        chart.setCenterTextTypeface(tf)
+                        chart.holeRadius = 45f
+                        chart.transparentCircleRadius = 50f
+
+                        chart!!.animateXY(700, 700)
+                        chart.centerText = generateCenterText()
                         data.setValueTextSize(16f)
                         data.setValueTextColor(Color.BLACK)
 
+
+
                     }
-
-//                    if (querydocumentSnapshot.result!!.size() != 0) {
-////                            empty_individual_result_fragment.visibility = View.GONE
-//                        mLastQueriedDocument = querydocumentSnapshot.result!!.documents[querydocumentSnapshot.result!!.size() - 1]
-//                        adapter?.notifyDataSetChanged()
-//                    } else {
-////                            empty_individual_result_fragment.visibility = View.VISIBLE
-//                        adapter?.notifyDataSetChanged()
-//                    }
                 }
+    }
 
-
-
-
-
-
-//        var i = 0
-//       val pieEntries: ArrayList<PieEntry>? =null
-//       pieEntries?.forEach { rain ->
-//
-//           pieEntries.add()
-
+    fun generateCenterText(): SpannableString {
+        val s = SpannableString("Centers\nYear 2019")
+        s.setSpan(RelativeSizeSpan(2f), 0, 8, 0)
+        s.setSpan(ForegroundColorSpan(Color.GRAY), 8, s.length, 0)
+        return s
     }
 
     fun setList(pairList: List<Pair<String?, Int>>) {
@@ -205,5 +214,7 @@ class ChartFragment : Fragment() {
         super.onResume()
         (this.activity!!.toolbar as Toolbar).title = "Each center result"
     }
+
+
 }
 

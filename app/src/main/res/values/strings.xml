@@ -245,5 +245,6 @@
     <string name="add_guest">Add guest</string>
     <string name="phone_number">Phone number</string>
     <string name="bestResult">Best result</string>
-    <string name="chart">Chart</string>
+    <string name="chart">Charts</string>
+    <string name="best_centers_chart">Best centers chart</string>
 </resources>

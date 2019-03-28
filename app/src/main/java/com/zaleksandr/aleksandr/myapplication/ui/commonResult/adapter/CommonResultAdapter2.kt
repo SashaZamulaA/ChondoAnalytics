@@ -432,6 +432,7 @@ class CommonResultAdapter2(private var list: ArrayList<City>, private var fragme
             var sumTwent1 = 0
             var sumNwet = 0
             var sumAppr = 0
+            var sumTimeCenter = 0
             var sumTimeStr = 0
             var sumStrLect = 0
             var sumCenteLect = 0
@@ -478,6 +479,15 @@ class CommonResultAdapter2(private var list: ArrayList<City>, private var fragme
                     } else {
                         itemView.individual_approach.text = "0"
                     }
+
+                    if (!resultNote.timeCenter.isNullOrEmpty()) {
+                        val timeCenter = Math.round(resultNote.timeCenter.toFloat())
+                        sumTimeCenter += timeCenter
+                    } else {
+                        itemView.individual_time_center.text = "0"
+                    }
+
+
                     if (!resultNote.timeStr.isNullOrEmpty()) {
                         val timeStr = Integer.parseInt(resultNote.timeStr)
                         sumTimeStr += timeStr
@@ -531,6 +541,7 @@ class CommonResultAdapter2(private var list: ArrayList<City>, private var fragme
                 itemView.center_action_res.text = sumAction.toString()
                 itemView.each_center_21_day.text = sumTwent1.toString()
                 itemView.each_center_nwet.text = sumNwet.toString()
+                itemView.individual_time_center.text = sumTimeCenter.toString()
                 itemView.individual_time_str.text = sumTimeStr.toString()
                 itemView.individual_approach.text = sumAppr.toString()
                 itemView.individual_contact.text = sumStrLect.toString()
@@ -542,6 +553,7 @@ class CommonResultAdapter2(private var list: ArrayList<City>, private var fragme
 //              itemView.result_city.text = model.centers.toString()
                 itemView.each_center_intro.text = "0"
                 itemView.each_center_one_day_edittext.text = "0"
+                itemView.individual_time_center.text = "0"
                 itemView.each_center_two_day.text = "0"
                 itemView.each_center_21_day.text = "0"
                 itemView.individual_time_str.text = "0"

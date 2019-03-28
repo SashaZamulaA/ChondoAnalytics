@@ -4,6 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+    <TextView
+        android:layout_marginTop="@dimen/space_24"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Centers score"
+        android:gravity="center"
+        android:textSize="@dimen/space_36"
+        android:textColor="@color/text_primary_dark"/>
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/chart"
         android:layout_width="match_parent"
