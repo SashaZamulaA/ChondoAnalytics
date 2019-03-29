@@ -24,10 +24,9 @@ import com.zaleksandr.aleksandr.myapplication.model.City
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_chart.*
-import java.text.DecimalFormat
 
 
-class ChartFragment : Fragment() {
+class ChartFragment2 : Fragment() {
 
     var toolbar: Toolbar? = null
     private val rain: ArrayList<Float> = ArrayList()
@@ -40,14 +39,6 @@ class ChartFragment : Fragment() {
         val rootView = inflater.inflate(com.zaleksandr.aleksandr.myapplication.R.layout.fragment_chart, container, false)
 
 
-        rain.add(98.6F)
-        rain.add(94.6F)
-        rain.add(28.6F)
-        rain.add(198.6F)
-        rain.add(8.6F)
-        rain.add(98.6F)
-        rain.add(98.6F)
-
         monthNames.add("Kyiv")
         monthNames.add("Kharkiv")
         monthNames.add("Dnepr")
@@ -56,13 +47,38 @@ class ChartFragment : Fragment() {
         monthNames.add("Odessa")
         monthNames.add("Chernigov")
 
-        noteRefCollection.addSnapshotListener { queryDocumentSnapshots, _ ->
 
-            cityResult(queryDocumentSnapshots!!)
-        }
 
         setupPieChart(rootView)
 
+
+//        rootView.line_chart.apply {
+//            isDragEnabled = true
+//            setTouchEnabled(true)
+//            setScaleEnabled(false)
+//        }
+
+//        val yValue: ArrayList<Entry> = ArrayList()
+//        val set1: LineDataSet
+//
+//        yValue.add(Entry(0F, 60F))
+//        yValue.add(Entry(1F, 40F))
+//        yValue.add(Entry(2F, 60F))
+//        yValue.add(Entry(3F, 70F))
+//        yValue.add(Entry(4F, 20F))
+//        yValue.add(Entry(5F, 30F))
+//        set1 = LineDataSet(yValue, "Date Set 1")
+//        set1.fillAlpha
+//
+//        set1.color = Color.RED
+//        set1.lineWidth = 2F
+//        set1.valueTextSize = 12F
+//        set1.valueTextColor = Color.GREEN
+//
+//
+//        val dateSets: ArrayList<ILineDataSet> = ArrayList()
+//        dateSets.add(set1)
+//        rootView.chart.data
         return rootView
     }
 
@@ -105,10 +121,6 @@ class ChartFragment : Fragment() {
                     sumNwet += nwet
                 }
             }
-           val df = DecimalFormat("#.##")
-            chart_common_result.text = (sumIntro + sumOneD1*3 + sumTwoD1*12 + sumTwent1*40 + sumNwet*80).toString()
-
-            result_percent.text =((df.format((sumIntro + sumOneD1*3 + sumTwoD1*12 + sumTwent1*40 + sumNwet*80F)*100F/12620F)).toString())
 
             for (change in queryDocumentSnapshots.documentChanges) {
                 if (change.type == DocumentChange.Type.MODIFIED) {
@@ -127,7 +139,10 @@ class ChartFragment : Fragment() {
     fun setupPieChart(rootView: View) {
 
 
-
+//        noteRefCollection.addSnapshotListener { queryDocumentSnapshots, _ ->
+//
+//            cityResult(queryDocumentSnapshots!!)
+//        }
 
         noteRefCollection
                 .orderBy("time", Query.Direction.DESCENDING)
@@ -136,10 +151,10 @@ class ChartFragment : Fragment() {
 
                         val items = querydocumentSnapshot.result!!
                                 .map { it.toObject<City>(City::class.java) }
-//                                .filterNot {
-//                                    (it.name == "Kyiv Chondoso" || it.name == "Daniela Aldasoro ")
-//
-//                                }
+                                .filterNot {
+                                    (it.name == "Kyiv Chondoso" || it.name == "Daniela Aldasoro ")
+
+                                }
 
                         val itemsCity = items.groupBy {
                             it.centers
