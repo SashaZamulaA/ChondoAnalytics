@@ -1,4 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/common_result_fragment"
+
+    >
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinator_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/myAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:descendantFocusability="beforeDescendants"
+            android:focusableInTouchMode="true"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:elevation="0dp">
+        </com.google.android.material.appbar.AppBarLayout>
+
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -11,17 +37,25 @@
         android:layout_marginTop="@dimen/space_24"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/space_26"
+        android:layout_marginBottom="@dimen/space_20"
         android:text="Centers score"
+        android:layout_marginStart="@dimen/space_16"
+        android:layout_marginLeft="@dimen/space_16"
+        android:layout_marginRight="@dimen/space_16"
+        android:layout_marginEnd="@dimen/space_16"
         android:gravity="center"
-        android:textSize="@dimen/space_36"
+        android:textSize="@dimen/space_26"
         android:textColor="@color/text_primary_dark"/>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:gravity="center"
-        android:layout_marginBottom="@dimen/space12"
+        android:layout_marginStart="@dimen/space_16"
+        android:layout_marginLeft="@dimen/space_16"
+        android:layout_marginRight="@dimen/space_16"
+        android:layout_marginEnd="@dimen/space_16"
+        android:layout_marginBottom="8dp"
         android:layout_gravity="center_horizontal"
         android:layout_height="wrap_content">
 
@@ -34,9 +68,9 @@
             android:layout_marginStart="0dp"
             android:layout_marginLeft="0dp"
             android:gravity="center_vertical"
-            android:text="Common centers goal - "
+            android:text="Common goal - "
             android:textColor="@color/text_primary_dark"
-            android:textSize="@dimen/space_26" />
+            android:textSize="@dimen/space_20" />
 
         <TextView
             android:id="@+id/chart_common_goal"
@@ -45,7 +79,7 @@
             android:gravity="center"
             android:text="12620"
             android:textColor="@color/text_primary_dark"
-            android:textSize="@dimen/space_26" />
+            android:textSize="@dimen/space_20" />
 
     </LinearLayout>
 
@@ -54,6 +88,10 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:gravity="center"
+        android:layout_marginStart="@dimen/space_16"
+        android:layout_marginLeft="@dimen/space_16"
+        android:layout_marginRight="@dimen/space_16"
+        android:layout_marginEnd="@dimen/space_16"
         android:layout_gravity="center_horizontal"
         android:layout_height="wrap_content">
 
@@ -63,12 +101,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/center_score"
             android:layout_alignParentLeft="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginLeft="0dp"
             android:gravity="center_vertical"
-            android:text="Common centers score - "
+            android:text="Common score - "
             android:textColor="@color/text_primary_dark"
-            android:textSize="@dimen/space_26" />
+            android:textSize="@dimen/space_20" />
 
         <TextView
             android:id="@+id/chart_common_result"
@@ -77,7 +113,7 @@
             android:gravity="center"
             android:text="0"
             android:textColor="@color/text_primary_dark"
-            android:textSize="@dimen/space_26" />
+            android:textSize="@dimen/space_20" />
 
     </LinearLayout>
 
@@ -85,7 +121,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:gravity="center"
-        android:layout_marginTop="@dimen/space12"
+        android:layout_marginTop="8dp"
         android:layout_gravity="center_horizontal"
         android:layout_height="wrap_content">
 
@@ -97,14 +133,39 @@
             android:gravity="center"
             android:text="0"
             android:textColor="@color/text_primary_dark"
-            android:textSize="@dimen/space_26" />
+            android:textSize="@dimen/space_20" />
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text=" %"
+            android:textColor="@color/text_primary_dark"
+            android:textSize="@dimen/space_20" />
     </LinearLayout>
 
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/chart"
+        android:layout_marginStart="@dimen/space_16"
+        android:layout_marginLeft="@dimen/space_16"
+        android:layout_marginRight="@dimen/space_16"
+        android:layout_marginEnd="@dimen/space_16"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
     </com.github.mikephil.charting.charts.PieChart>
 
 </LinearLayout>
+
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation_chart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:itemBackground="@drawable/bottomnav_divider"
+            app:menu="@menu/bottom_navigation_best_result" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>
