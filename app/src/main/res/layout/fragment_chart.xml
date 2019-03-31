@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/common_result_fragment"
 
     >
@@ -144,6 +145,9 @@
             android:textSize="@dimen/space_20" />
     </LinearLayout>
 
+
+
+
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/chart"
         android:layout_marginStart="@dimen/space_16"
@@ -153,7 +157,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
     </com.github.mikephil.charting.charts.PieChart>
+
+
 
 </LinearLayout>
 

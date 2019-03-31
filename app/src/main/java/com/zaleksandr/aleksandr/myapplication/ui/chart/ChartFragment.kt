@@ -284,7 +284,7 @@ class ChartFragment : Fragment() {
                                     setList(itemsCity)
 
                                     val pieEntries = ArrayList<PieEntry>()
-                                    for (i in 0 until rain.size) {
+                                    for (i in 0 until itemsCity.size) {
                                         val item = pairList?.get(i)
                                         pieEntries.add(PieEntry(item?.second?.toFloat()!!, item.first.toString()))
                                     }
@@ -379,6 +379,7 @@ class ChartFragment : Fragment() {
 
                             result_percent.text = ((df.format((sumIntro + sumOneD1 * 3 + sumTwoD1 * 12 + sumTwent1 * 40 + sumNwet * 80F) * 100F / 12620F)).toString())
 
+                            chart_common_goal.text = "12620"
                             for (change in queryDocumentSnapshots.documentChanges) {
                                 if (change.type == DocumentChange.Type.MODIFIED) {
                                     Log.d(ContentValues.TAG, "data:" + change.document.data)
@@ -483,15 +484,21 @@ class ChartFragment : Fragment() {
                                     data.setValueTextSize(16f)
                                     data.setValueTextColor(Color.BLACK)
                                 }
+                                else
+                                {
+
+                                }
                             }
 
 
                     var sumIntro = 0
                     var sumOneD1 = 0
                     var sumTwoD1 = 0
-                    var sumTwent1 = 0
-                    var sumNwet = 0
-                    noteRefCollection.addSnapshotListener { queryDocumentSnapshots, _ ->
+
+                    noteRefCollection
+                            .whereGreaterThanOrEqualTo("time", startOfMonth())
+                            .whereLessThanOrEqualTo("time", endOfMonth())
+                            .addSnapshotListener { queryDocumentSnapshots, _ ->
 
                         cityResult(queryDocumentSnapshots!!)
                         if (!queryDocumentSnapshots.isEmpty) {
@@ -513,22 +520,14 @@ class ChartFragment : Fragment() {
                                     val twoDay = Integer.parseInt(resultNote.twoDayWS)
                                     sumTwoD1 += twoDay
                                 }
-
-                                if (!resultNote.twOneDay.isNullOrEmpty()) {
-                                    val twOneDay = Integer.parseInt(resultNote.twOneDay)
-                                    sumTwent1 += twOneDay
-                                }
-
-                                if (!resultNote.nwet.isNullOrEmpty()) {
-                                    val nwet = Integer.parseInt(resultNote.nwet)
-                                    sumNwet += nwet
-                                }
                             }
+
                             val df = DecimalFormat("#.##")
-                            chart_common_result.text = (sumIntro + sumOneD1 * 3 + sumTwoD1 * 12 + sumTwent1 * 40 + sumNwet * 80).toString()
+                            chart_common_result.text = (sumIntro + sumOneD1 * 3 + sumTwoD1 * 12).toString()
 
-                            result_percent.text = ((df.format((sumIntro + sumOneD1 * 3 + sumTwoD1 * 12 + sumTwent1 * 40 + sumNwet * 80F) * 100F / 12620F)).toString())
+                            result_percent.text = ((df.format((sumIntro + sumOneD1 * 3 + sumTwoD1 * 12 ) * 100F / 620F)).toString())
 
+                            chart_common_goal.text = "620"
                             for (change in queryDocumentSnapshots.documentChanges) {
                                 if (change.type == DocumentChange.Type.MODIFIED) {
                                     Log.d(ContentValues.TAG, "data:" + change.document.data)
@@ -639,9 +638,11 @@ class ChartFragment : Fragment() {
                     var sumIntro = 0
                     var sumOneD1 = 0
                     var sumTwoD1 = 0
-                    var sumTwent1 = 0
-                    var sumNwet = 0
-                    noteRefCollection.addSnapshotListener { queryDocumentSnapshots, _ ->
+
+                    noteRefCollection
+                            .whereGreaterThanOrEqualTo("time", startOfWeek())
+                            .whereLessThanOrEqualTo("time", endOfWeek())
+                            .addSnapshotListener { queryDocumentSnapshots, _ ->
 
                         cityResult(queryDocumentSnapshots!!)
                         if (!queryDocumentSnapshots.isEmpty) {
@@ -664,21 +665,13 @@ class ChartFragment : Fragment() {
                                     sumTwoD1 += twoDay
                                 }
 
-                                if (!resultNote.twOneDay.isNullOrEmpty()) {
-                                    val twOneDay = Integer.parseInt(resultNote.twOneDay)
-                                    sumTwent1 += twOneDay
-                                }
 
-                                if (!resultNote.nwet.isNullOrEmpty()) {
-                                    val nwet = Integer.parseInt(resultNote.nwet)
-                                    sumNwet += nwet
-                                }
                             }
                             val df = DecimalFormat("#.##")
-                            chart_common_result.text = (sumIntro + sumOneD1 * 3 + sumTwoD1 * 12 + sumTwent1 * 40 + sumNwet * 80).toString()
+                            chart_common_result.text = (sumIntro + sumOneD1 * 3 + sumTwoD1 * 12).toString()
 
-                            result_percent.text = ((df.format((sumIntro + sumOneD1 * 3 + sumTwoD1 * 12 + sumTwent1 * 40 + sumNwet * 80F) * 100F / 12620F)).toString())
-
+                            result_percent.text = ((df.format((sumIntro + sumOneD1 * 3 + sumTwoD1 * 12) * 100F / 143F)).toString())
+                            chart_common_goal.text = "143"
                             for (change in queryDocumentSnapshots.documentChanges) {
                                 if (change.type == DocumentChange.Type.MODIFIED) {
                                     Log.d(ContentValues.TAG, "data:" + change.document.data)
