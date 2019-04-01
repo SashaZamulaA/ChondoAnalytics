@@ -66,7 +66,7 @@ class ChartFragment : Fragment() {
 
         noteRefCollection.addSnapshotListener { queryDocumentSnapshots, _ ->
 
-            cityResult(queryDocumentSnapshots!!)
+            cityResult(queryDocumentSnapshots!!, rootView)
         }
 
         setupPieChart(rootView)
@@ -75,7 +75,7 @@ class ChartFragment : Fragment() {
     }
 
 
-    private fun cityResult(queryDocumentSnapshots: QuerySnapshot) {
+    private fun cityResult(queryDocumentSnapshots: QuerySnapshot, rootView: View) {
 
         var sumIntro = 0
         var sumOneD1 = 0
@@ -114,9 +114,9 @@ class ChartFragment : Fragment() {
                 }
             }
            val df = DecimalFormat("#.##")
-            chart_common_result.text = (sumIntro + sumOneD1*3 + sumTwoD1*12 + sumTwent1*40 + sumNwet*80).toString()
+            rootView.chart_common_result.text = (sumIntro + sumOneD1*3 + sumTwoD1*12 + sumTwent1*40 + sumNwet*80).toString()
 
-            result_percent.text =((df.format((sumIntro + sumOneD1*3 + sumTwoD1*12 + sumTwent1*40 + sumNwet*80F)*100F/12620F)).toString())
+            rootView.result_percent.text =((df.format((sumIntro + sumOneD1*3 + sumTwoD1*12 + sumTwent1*40 + sumNwet*80F)*100F/12620F)).toString())
 
             for (change in queryDocumentSnapshots.documentChanges) {
                 if (change.type == DocumentChange.Type.MODIFIED) {
@@ -133,6 +133,11 @@ class ChartFragment : Fragment() {
 
 
     fun setupPieChart(rootView: View) {
+
+        rootView.chart.visibility = View.VISIBLE
+        rootView.common_goal_zero.visibility = View.VISIBLE
+        rootView.chart_common_result_zero.visibility = View.VISIBLE
+        rootView.common_score_percent_zero.visibility = View.VISIBLE
 
         noteRefCollection
                 .orderBy("time", Query.Direction.DESCENDING)
@@ -207,17 +212,17 @@ class ChartFragment : Fragment() {
 
 
                         val data = PieData(dataSet)
-                        chart.data = data
-                        chart.invalidate()
-                        chart.setHoleColor(Color.WHITE)
-                        chart.setEntryLabelColor(Color.BLACK)
+                        rootView.chart.data = data
+                        rootView.chart.invalidate()
+                        rootView.chart.setHoleColor(Color.WHITE)
+                        rootView.chart.setEntryLabelColor(Color.BLACK)
 
 
                         val tf = Typeface.createFromAsset(context?.assets, "OpenSans-Light.ttf")
 
-                        chart.setCenterTextTypeface(tf)
-                        chart.setCenterTextSize(14f)
-                        chart.setCenterTextTypeface(tf)
+                        rootView.chart.setCenterTextTypeface(tf)
+                        rootView.chart.setCenterTextSize(14f)
+                        rootView.chart.setCenterTextTypeface(tf)
                         chart.holeRadius = 45f
                         chart.transparentCircleRadius = 50f
 
@@ -332,6 +337,11 @@ class ChartFragment : Fragment() {
                                     chart.centerText = generateCenterText()
                                     data.setValueTextSize(16f)
                                     data.setValueTextColor(Color.BLACK)
+
+                                    rootView.chart.visibility = View.VISIBLE
+                                    rootView.common_goal_zero.visibility = View.VISIBLE
+                                    rootView.chart_common_result_zero.visibility = View.VISIBLE
+                                    rootView.common_score_percent_zero.visibility = View.VISIBLE
                                 }
                             }
 
@@ -343,7 +353,7 @@ class ChartFragment : Fragment() {
                     var sumNwet = 0
                     noteRefCollection.addSnapshotListener { queryDocumentSnapshots, _ ->
 
-                        cityResult(queryDocumentSnapshots!!)
+                        cityResult(queryDocumentSnapshots!!, rootView)
                         if (!queryDocumentSnapshots.isEmpty) {
                             queryDocumentSnapshots.forEach { documentSnapshot ->
 
@@ -375,11 +385,11 @@ class ChartFragment : Fragment() {
                                 }
                             }
                             val df = DecimalFormat("#.##")
-                            chart_common_result.text = (sumIntro + sumOneD1 * 3 + sumTwoD1 * 12 + sumTwent1 * 40 + sumNwet * 80).toString()
+                            rootView.chart_common_result.text = (sumIntro + sumOneD1 * 3 + sumTwoD1 * 12 + sumTwent1 * 40 + sumNwet * 80).toString()
 
-                            result_percent.text = ((df.format((sumIntro + sumOneD1 * 3 + sumTwoD1 * 12 + sumTwent1 * 40 + sumNwet * 80F) * 100F / 12620F)).toString())
+                            rootView.result_percent.text = ((df.format((sumIntro + sumOneD1 * 3 + sumTwoD1 * 12 + sumTwent1 * 40 + sumNwet * 80F) * 100F / 12620F)).toString())
 
-                            chart_common_goal.text = "12620"
+                            rootView.chart_common_goal.text = "12620"
                             for (change in queryDocumentSnapshots.documentChanges) {
                                 if (change.type == DocumentChange.Type.MODIFIED) {
                                     Log.d(ContentValues.TAG, "data:" + change.document.data)
@@ -483,11 +493,21 @@ class ChartFragment : Fragment() {
                                     chart.centerText = generateCenterText()
                                     data.setValueTextSize(16f)
                                     data.setValueTextColor(Color.BLACK)
-                                }
-                                else
-                                {
+                                    rootView.chart.visibility = View.VISIBLE
+                                    rootView.common_goal_zero.visibility = View.VISIBLE
+                                    rootView.chart_common_result_zero.visibility = View.VISIBLE
+                                    rootView.common_score_percent_zero.visibility = View.VISIBLE
+
+                                    if(itemsCity.isEmpty()){
+                                        rootView.common_goal_zero.visibility = View.GONE
+                                        rootView.chart_common_result_zero.visibility = View.GONE
+                                        rootView.common_score_percent_zero.visibility = View.GONE
+                                        rootView.empty_chart.visibility = View.VISIBLE
+                                        rootView.chart.visibility = View.GONE
+                                    }
 
                                 }
+
                             }
 
 
@@ -500,7 +520,7 @@ class ChartFragment : Fragment() {
                             .whereLessThanOrEqualTo("time", endOfMonth())
                             .addSnapshotListener { queryDocumentSnapshots, _ ->
 
-                        cityResult(queryDocumentSnapshots!!)
+                        cityResult(queryDocumentSnapshots!!, rootView)
                         if (!queryDocumentSnapshots.isEmpty) {
                             queryDocumentSnapshots.forEach { documentSnapshot ->
 
@@ -523,11 +543,11 @@ class ChartFragment : Fragment() {
                             }
 
                             val df = DecimalFormat("#.##")
-                            chart_common_result.text = (sumIntro + sumOneD1 * 3 + sumTwoD1 * 12).toString()
+                            rootView.chart_common_result.text = (sumIntro + sumOneD1 * 3 + sumTwoD1 * 12).toString()
 
-                            result_percent.text = ((df.format((sumIntro + sumOneD1 * 3 + sumTwoD1 * 12 ) * 100F / 620F)).toString())
+                            rootView.result_percent.text = ((df.format((sumIntro + sumOneD1 * 3 + sumTwoD1 * 12 ) * 100F / 620F)).toString())
 
-                            chart_common_goal.text = "620"
+                            rootView.chart_common_goal.text = "620"
                             for (change in queryDocumentSnapshots.documentChanges) {
                                 if (change.type == DocumentChange.Type.MODIFIED) {
                                     Log.d(ContentValues.TAG, "data:" + change.document.data)
@@ -631,8 +651,24 @@ class ChartFragment : Fragment() {
                                     chart.centerText = generateCenterText()
                                     data.setValueTextSize(16f)
                                     data.setValueTextColor(Color.BLACK)
+                                    rootView.empty_chart.visibility = View.GONE
+                                    rootView.chart.visibility = View.VISIBLE
+                                    rootView.common_goal_zero.visibility = View.VISIBLE
+                                    rootView.chart_common_result_zero.visibility = View.VISIBLE
+                                    rootView.common_score_percent_zero.visibility = View.VISIBLE
+
+
+                                    if(itemsCity.isEmpty()){
+                                        rootView.common_goal_zero.visibility = View.GONE
+                                        rootView.chart_common_result_zero.visibility = View.GONE
+                                        rootView.common_score_percent_zero.visibility = View.GONE
+                                        rootView.empty_chart.visibility = View.VISIBLE
+                                        rootView.chart.visibility = View.GONE
+                                    }
+
+
                                 }
-                            }
+                                                          }
 
 
                     var sumIntro = 0
@@ -644,7 +680,7 @@ class ChartFragment : Fragment() {
                             .whereLessThanOrEqualTo("time", endOfWeek())
                             .addSnapshotListener { queryDocumentSnapshots, _ ->
 
-                        cityResult(queryDocumentSnapshots!!)
+                        cityResult(queryDocumentSnapshots!!, rootView)
                         if (!queryDocumentSnapshots.isEmpty) {
                             queryDocumentSnapshots.forEach { documentSnapshot ->
 
@@ -668,10 +704,10 @@ class ChartFragment : Fragment() {
 
                             }
                             val df = DecimalFormat("#.##")
-                            chart_common_result.text = (sumIntro + sumOneD1 * 3 + sumTwoD1 * 12).toString()
+                            rootView.chart_common_result.text = (sumIntro + sumOneD1 * 3 + sumTwoD1 * 12).toString()
 
-                            result_percent.text = ((df.format((sumIntro + sumOneD1 * 3 + sumTwoD1 * 12) * 100F / 143F)).toString())
-                            chart_common_goal.text = "143"
+                            rootView.result_percent.text = ((df.format((sumIntro + sumOneD1 * 3 + sumTwoD1 * 12) * 100F / 143F)).toString())
+                            rootView.chart_common_goal.text = "143"
                             for (change in queryDocumentSnapshots.documentChanges) {
                                 if (change.type == DocumentChange.Type.MODIFIED) {
                                     Log.d(ContentValues.TAG, "data:" + change.document.data)
