@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.item_common_result_list.view.*
 import java.util.*
 
 
-class CommonResultAdapter2(private var list: ArrayList<City>, private var fragmentCommunication: FragmentCommunication) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class CommonResultAdapter(private var list: ArrayList<City>, private var fragmentCommunication: FragmentCommunication) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     val settings: FirebaseFirestoreSettings = FirebaseFirestoreSettings.Builder().setPersistenceEnabled(true).build()
     private val db by lazy { FirebaseFirestore.getInstance() }
@@ -55,19 +55,19 @@ class CommonResultAdapter2(private var list: ArrayList<City>, private var fragme
     }
 
     var period = 0
-    fun perioSelected(periodSelected: CommonResultAdapter2.ClickByFilter) {
+    fun perioSelected(periodSelected: CommonResultAdapter.ClickByFilter) {
 
         when (periodSelected) {
-            CommonResultAdapter2.ClickByFilter.DAY -> {
+            CommonResultAdapter.ClickByFilter.DAY -> {
                 period = 1; notifyDataSetChanged()
             }
-            CommonResultAdapter2.ClickByFilter.WEEK -> {
+            CommonResultAdapter.ClickByFilter.WEEK -> {
                 period = 2; notifyDataSetChanged()
             }
-            CommonResultAdapter2.ClickByFilter.MONTH -> {
+            CommonResultAdapter.ClickByFilter.MONTH -> {
                 period = 3; notifyDataSetChanged()
             }
-            CommonResultAdapter2.ClickByFilter.YEAR -> {
+            CommonResultAdapter.ClickByFilter.YEAR -> {
                 period = 4; notifyDataSetChanged()
             }
         }

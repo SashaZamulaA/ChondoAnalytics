@@ -23,11 +23,9 @@ import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 import com.zaleksandr.aleksandr.myapplication.BottomNavigationViewBehavior
 import com.zaleksandr.aleksandr.myapplication.model.City
-import com.zaleksandr.aleksandr.myapplication.ui.bestResult.adapter.BestResultAdapter
 import com.zaleksandr.aleksandr.myapplication.util.*
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_best_result.view.*
 import kotlinx.android.synthetic.main.fragment_chart.*
 import kotlinx.android.synthetic.main.fragment_chart.view.*
 import java.text.DecimalFormat
@@ -74,7 +72,6 @@ class ChartFragment : Fragment() {
         return rootView
     }
 
-
     private fun cityResult(queryDocumentSnapshots: QuerySnapshot, rootView: View) {
 
         var sumIntro = 0
@@ -113,10 +110,10 @@ class ChartFragment : Fragment() {
                     sumNwet += nwet
                 }
             }
-           val df = DecimalFormat("#.##")
-            rootView.chart_common_result.text = (sumIntro + sumOneD1*3 + sumTwoD1*12 + sumTwent1*40 + sumNwet*80).toString()
+            val df = DecimalFormat("#.##")
+            rootView.chart_common_result.text = (sumIntro + sumOneD1 * 3 + sumTwoD1 * 12 + sumTwent1 * 40 + sumNwet * 80).toString()
 
-            rootView.result_percent.text =((df.format((sumIntro + sumOneD1*3 + sumTwoD1*12 + sumTwent1*40 + sumNwet*80F)*100F/12620F)).toString())
+            rootView.result_percent.text = ((df.format((sumIntro + sumOneD1 * 3 + sumTwoD1 * 12 + sumTwent1 * 40 + sumNwet * 80F) * 100F / 12620F)).toString())
 
             for (change in queryDocumentSnapshots.documentChanges) {
                 if (change.type == DocumentChange.Type.MODIFIED) {
@@ -253,10 +250,6 @@ class ChartFragment : Fragment() {
 
                                     val items = querydocumentSnapshot.result!!
                                             .map { it.toObject<City>(City::class.java) }
-//                                .filterNot {
-//                                    (it.name == "Kyiv Chondoso" || it.name == "Daniela Aldasoro ")
-//
-//                                }
 
                                     val itemsCity = items.groupBy {
                                         it.centers
@@ -427,7 +420,7 @@ class ChartFragment : Fragment() {
 
                                                     Integer.parseInt(if (it.intro.isNullOrEmpty() || it.intro.isNullOrBlank() || it.intro == "") {
                                                         ("0").toString()
-                                                    } else it.intro.toString())
+                                                    } else it.intro)
                                                             .plus(Integer.parseInt(if (it.onedayWS.isNullOrEmpty() || it.onedayWS.isNullOrBlank() || it.onedayWS == "") {
                                                                 ("0").toString()
                                                             } else it.onedayWS) * 3)
@@ -498,7 +491,7 @@ class ChartFragment : Fragment() {
                                     rootView.chart_common_result_zero.visibility = View.VISIBLE
                                     rootView.common_score_percent_zero.visibility = View.VISIBLE
 
-                                    if(itemsCity.isEmpty()){
+                                    if (itemsCity.isEmpty()) {
                                         rootView.common_goal_zero.visibility = View.GONE
                                         rootView.chart_common_result_zero.visibility = View.GONE
                                         rootView.common_score_percent_zero.visibility = View.GONE
@@ -520,46 +513,46 @@ class ChartFragment : Fragment() {
                             .whereLessThanOrEqualTo("time", endOfMonth())
                             .addSnapshotListener { queryDocumentSnapshots, _ ->
 
-                        cityResult(queryDocumentSnapshots!!, rootView)
-                        if (!queryDocumentSnapshots.isEmpty) {
-                            queryDocumentSnapshots.forEach { documentSnapshot ->
+                                cityResult(queryDocumentSnapshots!!, rootView)
+                                if (!queryDocumentSnapshots.isEmpty) {
+                                    queryDocumentSnapshots.forEach { documentSnapshot ->
 
-                                val resultNote = documentSnapshot.toObject(City::class.java)
+                                        val resultNote = documentSnapshot.toObject(City::class.java)
 
-                                if (!resultNote.intro.isNullOrEmpty()) {
-                                    val intro = (Integer.parseInt(resultNote.intro))
-                                    sumIntro += intro
-                                }
+                                        if (!resultNote.intro.isNullOrEmpty()) {
+                                            val intro = (Integer.parseInt(resultNote.intro))
+                                            sumIntro += intro
+                                        }
 
-                                if (!resultNote.onedayWS.isNullOrEmpty()) {
-                                    val onaDay = Integer.parseInt(resultNote.onedayWS)
-                                    sumOneD1 += onaDay
-                                }
+                                        if (!resultNote.onedayWS.isNullOrEmpty()) {
+                                            val onaDay = Integer.parseInt(resultNote.onedayWS)
+                                            sumOneD1 += onaDay
+                                        }
 
-                                if (!resultNote.twoDayWS.isNullOrEmpty()) {
-                                    val twoDay = Integer.parseInt(resultNote.twoDayWS)
-                                    sumTwoD1 += twoDay
+                                        if (!resultNote.twoDayWS.isNullOrEmpty()) {
+                                            val twoDay = Integer.parseInt(resultNote.twoDayWS)
+                                            sumTwoD1 += twoDay
+                                        }
+                                    }
+
+                                    val df = DecimalFormat("#.##")
+                                    rootView.chart_common_result.text = (sumIntro + sumOneD1 * 3 + sumTwoD1 * 12).toString()
+
+                                    rootView.result_percent.text = ((df.format((sumIntro + sumOneD1 * 3 + sumTwoD1 * 12) * 100F / 620F)).toString())
+
+                                    rootView.chart_common_goal.text = "620"
+                                    for (change in queryDocumentSnapshots.documentChanges) {
+                                        if (change.type == DocumentChange.Type.MODIFIED) {
+                                            Log.d(ContentValues.TAG, "data:" + change.document.data)
+                                        }
+                                        val source = if (queryDocumentSnapshots.metadata.isFromCache)
+                                            "local cache"
+                                        else
+                                            "server"
+                                        Log.d(ContentValues.TAG, "Data fetched from $source")
+                                    }
                                 }
                             }
-
-                            val df = DecimalFormat("#.##")
-                            rootView.chart_common_result.text = (sumIntro + sumOneD1 * 3 + sumTwoD1 * 12).toString()
-
-                            rootView.result_percent.text = ((df.format((sumIntro + sumOneD1 * 3 + sumTwoD1 * 12 ) * 100F / 620F)).toString())
-
-                            rootView.chart_common_goal.text = "620"
-                            for (change in queryDocumentSnapshots.documentChanges) {
-                                if (change.type == DocumentChange.Type.MODIFIED) {
-                                    Log.d(ContentValues.TAG, "data:" + change.document.data)
-                                }
-                                val source = if (queryDocumentSnapshots.metadata.isFromCache)
-                                    "local cache"
-                                else
-                                    "server"
-                                Log.d(ContentValues.TAG, "Data fetched from $source")
-                            }
-                        }
-                    }
                 }
                 com.zaleksandr.aleksandr.myapplication.R.id.menu_week -> {
                     noteRefCollection
@@ -571,10 +564,6 @@ class ChartFragment : Fragment() {
 
                                     val items = querydocumentSnapshot.result!!
                                             .map { it.toObject<City>(City::class.java) }
-//                                .filterNot {
-//                                    (it.name == "Kyiv Chondoso" || it.name == "Daniela Aldasoro ")
-//
-//                                }
 
                                     val itemsCity = items.groupBy {
                                         it.centers
@@ -658,19 +647,15 @@ class ChartFragment : Fragment() {
                                     rootView.common_score_percent_zero.visibility = View.VISIBLE
 
 
-                                    if(itemsCity.isEmpty()){
+                                    if (itemsCity.isEmpty()) {
                                         rootView.common_goal_zero.visibility = View.GONE
                                         rootView.chart_common_result_zero.visibility = View.GONE
                                         rootView.common_score_percent_zero.visibility = View.GONE
                                         rootView.empty_chart.visibility = View.VISIBLE
                                         rootView.chart.visibility = View.GONE
                                     }
-
-
                                 }
-                                                          }
-
-
+                            }
                     var sumIntro = 0
                     var sumOneD1 = 0
                     var sumTwoD1 = 0
@@ -680,46 +665,44 @@ class ChartFragment : Fragment() {
                             .whereLessThanOrEqualTo("time", endOfWeek())
                             .addSnapshotListener { queryDocumentSnapshots, _ ->
 
-                        cityResult(queryDocumentSnapshots!!, rootView)
-                        if (!queryDocumentSnapshots.isEmpty) {
-                            queryDocumentSnapshots.forEach { documentSnapshot ->
+                                cityResult(queryDocumentSnapshots!!, rootView)
+                                if (!queryDocumentSnapshots.isEmpty) {
+                                    queryDocumentSnapshots.forEach { documentSnapshot ->
 
-                                val resultNote = documentSnapshot.toObject(City::class.java)
+                                        val resultNote = documentSnapshot.toObject(City::class.java)
 
-                                if (!resultNote.intro.isNullOrEmpty()) {
-                                    val intro = (Integer.parseInt(resultNote.intro))
-                                    sumIntro += intro
+                                        if (!resultNote.intro.isNullOrEmpty()) {
+                                            val intro = (Integer.parseInt(resultNote.intro))
+                                            sumIntro += intro
+                                        }
+
+                                        if (!resultNote.onedayWS.isNullOrEmpty()) {
+                                            val onaDay = Integer.parseInt(resultNote.onedayWS)
+                                            sumOneD1 += onaDay
+                                        }
+
+                                        if (!resultNote.twoDayWS.isNullOrEmpty()) {
+                                            val twoDay = Integer.parseInt(resultNote.twoDayWS)
+                                            sumTwoD1 += twoDay
+                                        }
+                                    }
+                                    val df = DecimalFormat("#.##")
+                                    rootView.chart_common_result.text = (sumIntro + sumOneD1 * 3 + sumTwoD1 * 12).toString()
+
+                                    rootView.result_percent.text = ((df.format((sumIntro + sumOneD1 * 3 + sumTwoD1 * 12) * 100F / 143F)).toString())
+                                    rootView.chart_common_goal.text = "143"
+                                    for (change in queryDocumentSnapshots.documentChanges) {
+                                        if (change.type == DocumentChange.Type.MODIFIED) {
+                                            Log.d(ContentValues.TAG, "data:" + change.document.data)
+                                        }
+                                        val source = if (queryDocumentSnapshots.metadata.isFromCache)
+                                            "local cache"
+                                        else
+                                            "server"
+                                        Log.d(ContentValues.TAG, "Data fetched from $source")
+                                    }
                                 }
-
-                                if (!resultNote.onedayWS.isNullOrEmpty()) {
-                                    val onaDay = Integer.parseInt(resultNote.onedayWS)
-                                    sumOneD1 += onaDay
-                                }
-
-                                if (!resultNote.twoDayWS.isNullOrEmpty()) {
-                                    val twoDay = Integer.parseInt(resultNote.twoDayWS)
-                                    sumTwoD1 += twoDay
-                                }
-
-
                             }
-                            val df = DecimalFormat("#.##")
-                            rootView.chart_common_result.text = (sumIntro + sumOneD1 * 3 + sumTwoD1 * 12).toString()
-
-                            rootView.result_percent.text = ((df.format((sumIntro + sumOneD1 * 3 + sumTwoD1 * 12) * 100F / 143F)).toString())
-                            rootView.chart_common_goal.text = "143"
-                            for (change in queryDocumentSnapshots.documentChanges) {
-                                if (change.type == DocumentChange.Type.MODIFIED) {
-                                    Log.d(ContentValues.TAG, "data:" + change.document.data)
-                                }
-                                val source = if (queryDocumentSnapshots.metadata.isFromCache)
-                                    "local cache"
-                                else
-                                    "server"
-                                Log.d(ContentValues.TAG, "Data fetched from $source")
-                            }
-                        }
-                    }
                 }
 
                 else -> {

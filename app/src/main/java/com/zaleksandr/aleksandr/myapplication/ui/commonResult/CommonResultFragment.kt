@@ -1,22 +1,17 @@
 package com.zaleksandr.aleksandr.myapplication.ui.commonResult
 
-import android.R
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
 import androidx.coordinatorlayout.widget.CoordinatorLayout
-import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zaleksandr.aleksandr.myapplication.BottomNavigationViewBehavior
 import com.zaleksandr.aleksandr.myapplication.model.City
-import com.zaleksandr.aleksandr.myapplication.ui.commonResult.adapter.CommonResultAdapter2
+import com.zaleksandr.aleksandr.myapplication.ui.commonResult.adapter.CommonResultAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_common_result.view.*
 import java.io.Serializable
@@ -24,7 +19,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class CommonResultFragment : Fragment(), CommonResultAdapter2.FragmentCommunication, Serializable {
+class CommonResultFragment : Fragment(), CommonResultAdapter.FragmentCommunication, Serializable {
 
     override fun respond(position: Int) {
 //        items[position]
@@ -36,7 +31,7 @@ class CommonResultFragment : Fragment(), CommonResultAdapter2.FragmentCommunicat
     }
 
     //    var toolbar: Toolbar? = null
-    var adapter: CommonResultAdapter2? = null
+    var adapter: CommonResultAdapter? = null
     var city: City? = null
     private val items: ArrayList<City> = ArrayList()
 
@@ -54,7 +49,7 @@ class CommonResultFragment : Fragment(), CommonResultAdapter2.FragmentCommunicat
 //        toolbar = view?.findViewById(com.zamulaaleksandr.aleksandr.myapplication.R.currentUserId.toolbar)
 //        (activity as AppCompatActivity).setSupportActionBar(toolbar)
 
-        adapter?.perioSelected(CommonResultAdapter2.ClickByFilter.YEAR)
+        adapter?.perioSelected(CommonResultAdapter.ClickByFilter.YEAR)
 
 
 //        update(items)
@@ -76,17 +71,17 @@ class CommonResultFragment : Fragment(), CommonResultAdapter2.FragmentCommunicat
             when (item.itemId) {
                 com.zaleksandr.aleksandr.myapplication.R.id.menu_year -> {
 //                    showLoading()
-                    adapter?.perioSelected(CommonResultAdapter2.ClickByFilter.YEAR)
+                    adapter?.perioSelected(CommonResultAdapter.ClickByFilter.YEAR)
 //                    hideLoading()
                 }
                 com.zaleksandr.aleksandr.myapplication.R.id.menu_month -> {
-                    adapter?.perioSelected(CommonResultAdapter2.ClickByFilter.MONTH)
+                    adapter?.perioSelected(CommonResultAdapter.ClickByFilter.MONTH)
                 }
                 com.zaleksandr.aleksandr.myapplication.R.id.menu_week -> {
-                    adapter?.perioSelected(CommonResultAdapter2.ClickByFilter.WEEK)
+                    adapter?.perioSelected(CommonResultAdapter.ClickByFilter.WEEK)
                 }
                 com.zaleksandr.aleksandr.myapplication.R.id.menu_day -> {
-                    adapter?.perioSelected(CommonResultAdapter2.ClickByFilter.DAY)
+                    adapter?.perioSelected(CommonResultAdapter.ClickByFilter.DAY)
                 }
 //                com.zaleksandr.aleksandr.myapplication.R.currentUserId.menu_ind_res -> {
 //                  Navigation.findNavController(this.view!!).navigate(com.zaleksandr.aleksandr.myapplication.R.currentUserId.action_commonResultFragment_to_individualResultFragment2)
@@ -112,7 +107,7 @@ class CommonResultFragment : Fragment(), CommonResultAdapter2.FragmentCommunicat
         items.add(City("", "", "0", "0", "0","", "0", "Odessa", "0", "0","", "0","", "0", "0", Date(), 0, "", "", "", "", "", "", "",""))
         items.add(City("", "", "0", "0", "0","", "0", "Chernigov", "0", "0","", "0","", "0", "0", Date(), 0, "", "", "", "", "", "", "",""))
 
-        adapter = CommonResultAdapter2(items, this)
+        adapter = CommonResultAdapter(items, this)
         rootView.list_common_res_adapter.adapter = adapter
     }
 }
