@@ -19,6 +19,9 @@
         <argument
             android:name="intro"
             app:argType="boolean" />
+        <action
+            android:id="@+id/action_commonResultFragment_to_addNwetFragment"
+            app:destination="@id/addNwetFragment" />
     </fragment>
 
     <fragment
@@ -26,6 +29,12 @@
         android:name="com.zaleksandr.aleksandr.myapplication.ui.bestResult.BestResultFragment"
         android:label="Best10 Fragment"
         tools:layout="@layout/fragment_best_result" />
+
+    <fragment
+        android:id="@+id/addNwetFragment"
+        android:name="com.zaleksandr.aleksandr.myapplication.ui.guestNwet.NwetFragment"
+        android:label="Nwet Fragment"
+        tools:layout="@layout/fragment_nwet_guests" />
 
     <fragment
         android:id="@+id/addChart"

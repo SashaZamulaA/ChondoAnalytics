@@ -26,6 +26,7 @@ class CommonResultFragment : Fragment(), CommonResultAdapter.FragmentCommunicati
 
         val bundle = Bundle()
         bundle.putInt("pas", position)
+
         Navigation.findNavController(this.view!!).navigate(com.zaleksandr.aleksandr.myapplication.R.id.action_commonResultFragment_to_eachCenterFragment, bundle)
         items.clear()
     }
@@ -38,21 +39,13 @@ class CommonResultFragment : Fragment(), CommonResultAdapter.FragmentCommunicati
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(com.zaleksandr.aleksandr.myapplication.R.layout.fragment_common_result, container, false)
         items.clear()
-//        rootView.button_individual_result.setOnClickListener {
-//            Navigation.findNavController(it).navigate(com.zamulaaleksandr.aleksandr.myapplication.R.currentUserId.action_commonResultFragment_to_individualResultFragment2)
-//        }
-
 
         adapterInit(rootView)
         bottomMenuInit(rootView)
 
-//        toolbar = view?.findViewById(com.zamulaaleksandr.aleksandr.myapplication.R.currentUserId.toolbar)
-//        (activity as AppCompatActivity).setSupportActionBar(toolbar)
 
         adapter?.perioSelected(CommonResultAdapter.ClickByFilter.YEAR)
 
-
-//        update(items)
         return rootView
     }
 

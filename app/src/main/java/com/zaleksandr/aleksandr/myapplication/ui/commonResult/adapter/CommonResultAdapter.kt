@@ -5,14 +5,16 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.*
 import com.zaleksandr.aleksandr.myapplication.model.City
 import com.zaleksandr.aleksandr.myapplication.model.Goal
 import com.zaleksandr.aleksandr.myapplication.util.*
-import kotlinx.android.synthetic.main.item_common_goal_and_result_list2.view.*
+import kotlinx.android.synthetic.main.item_common_goal_and_result_list.view.*
 import kotlinx.android.synthetic.main.item_common_result_list.view.*
 import java.util.*
+import kotlin.coroutines.coroutineContext
 
 
 class CommonResultAdapter(private var list: ArrayList<City>, private var fragmentCommunication: FragmentCommunication) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -79,7 +81,7 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
                     parent, false)
             return CityHolder(v, fragmentCommunication)
         } else if (viewType == TYPE_HEADER) {
-            val v = LayoutInflater.from(parent.context).inflate(com.zaleksandr.aleksandr.myapplication.R.layout.item_common_goal_and_result_list2,
+            val v = LayoutInflater.from(parent.context).inflate(com.zaleksandr.aleksandr.myapplication.R.layout.item_common_goal_and_result_list,
                     parent, false)
             return VHHeader(v, fragmentCommunication)
         }
@@ -113,7 +115,13 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
         notifyDataSetChanged()
     }
 
-    inner class VHHeader(itemView: View, var fragmentCommunication: FragmentCommunication) : RecyclerView.ViewHolder(itemView) {
+    inner class VHHeader(itemView: View, var fragmentCommunication: FragmentCommunication) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+
+
+        override fun onClick(v: View?) {
+
+                    }
+
 
         fun bind2() {
             clickByFilterCommonResult(noteRefCollection, position, period).addOnSuccessListener { queryDocumentSnapshots ->
@@ -130,6 +138,10 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
 
         private fun commonGoal(queryDocumentSnapshots: DocumentSnapshot) {
 
+            itemView.nwet_common_result.setOnClickListener {
+                Navigation.findNavController(it).navigate(com.zaleksandr.aleksandr.myapplication.R.id.action_commonResultFragment_to_addNwetFragment)
+
+            }
 //year
             var sumIntroyear = 0
             var sumOneD1year = 0
