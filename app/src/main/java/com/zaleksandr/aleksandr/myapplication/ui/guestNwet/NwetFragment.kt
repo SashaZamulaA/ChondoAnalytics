@@ -54,26 +54,6 @@ class NwetFragment : Fragment() {
         Snackbar.make(this.view!!, message, Snackbar.LENGTH_SHORT).show()
     }
 
-    fun updateNote(city: City?) {
-
-        val db = FirebaseFirestore.getInstance()
-
-        val noteRef = db
-                .collection("NewCity")
-                .document(city?.id.toString())
-
-        noteRef.update(
-                "intro", city?.intro
-        ).addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                makeSnackBarMessage("Updated note")
-//                adapter?.updateNote(city!!)
-            } else {
-                makeSnackBarMessage("Failed. Check log.")
-            }
-        }
-    }
-
     private fun setUpRecyclerView(rootView: View) {
 
         rootView.list_nwet_adapter.layoutManager = LinearLayoutManager(this.context, LinearLayout.VERTICAL, false)
@@ -88,10 +68,8 @@ class NwetFragment : Fragment() {
         val notesCollectionRef = firestoreInstance.collection("Guest")
 
         notesCollectionRef
-                .whereEqualTo("currentUserId", if ("${FirebaseAuth.getInstance().uid}" == FirebaseAuth.getInstance().currentUser!!.uid) {
-                    FirebaseAuth.getInstance().uid
-                } else null)
-                .orderBy("time", Query.Direction.DESCENDING)
+                .whereEqualTo("nwet", true)
+                .orderBy("time", Query.Direction.ASCENDING)
 
                 .get().addOnCompleteListener { querydocumentSnapshot ->
                     if (querydocumentSnapshot.isSuccessful) {

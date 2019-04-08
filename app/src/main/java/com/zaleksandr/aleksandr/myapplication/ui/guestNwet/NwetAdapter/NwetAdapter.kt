@@ -5,20 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.zaleksandr.aleksandr.myapplication.R
 import com.zaleksandr.aleksandr.myapplication.model.Guest
 import com.zaleksandr.aleksandr.myapplication.ui.guestNwet.NwetFragment
 import com.zaleksandr.aleksandr.myapplication.util.StorageUtil
 import com.zaleksandr.aleksandr.tmbook.glade.GlideApp
-import kotlinx.android.synthetic.main.item_my_guest_list.view.*
+import kotlinx.android.synthetic.main.item_nwet_guest.view.*
 import java.util.*
 
-
 class NwetAdapter(private val context: Context,
-                     private var list: ArrayList<Guest>,
-                     private var fragmentCommunication: NwetFragment
+                  private var list: ArrayList<Guest>,
+                  private var fragmentCommunication: NwetFragment
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
 
     private val TYPE_HEADER = 0
     private val TYPE_ITEM = 1
@@ -30,7 +28,7 @@ class NwetAdapter(private val context: Context,
         return list.size
     }
 
-       override fun getItemViewType(position: Int): Int {
+    override fun getItemViewType(position: Int): Int {
         return if (position == 0) TYPE_HEADER else TYPE_ITEM
     }
 
@@ -57,30 +55,29 @@ class NwetAdapter(private val context: Context,
         override fun onClick(v: View?) {
             mSelectedNoteIndex = adapterPosition
 
-
         }
 
         init {
             itemView.setOnClickListener(this)
         }
 
-
         fun bind() {
-//            val item = list[position]
-////            itemView.individual_result_city.text = item.centers
-////            itemView.individual_time_city.text = formatDateAndTime(item.timestamp)
-//            if (!item.name.isNullOrEmpty()) itemView.guest_item_name.text = item.name else itemView.guest_item_name.text = "Mister X"
-//            if (!item.phoneNum.isNullOrEmpty()) itemView.my_guest_phone.text = item.phoneNum else itemView.my_guest_phone.text = "Empty"
-//
-//            if (!item.photo.isNullOrBlank()) {
-//                GlideApp.with(context)
-//                        .load(item.photo.let { StorageUtil.pathToReference(it) })
-//                        .circleCrop()
-//                        .diskCacheStrategy(DiskCacheStrategy.NONE)
-//                        .skipMemoryCache(true)
-//                        .into(itemView.guest_profile_picture)
-//            }
+            val item = list[adapterPosition]
 
+            itemView.guest_nwet_name.text = item.name
+            itemView.nwet_city.text = item.centers
+            itemView.nwet_birthday.text = item.birthday
+            itemView.nwet_invite.text = item.timeIntro
+            itemView.guest_invited_person.text = item.invitedPerson
+
+
+
+            if (!item.photo.isNullOrBlank()) {
+                GlideApp.with(context)
+                        .load(item.photo.let { StorageUtil.pathToReference(it) })
+                        .placeholder(R.drawable.com_facebook_profile_picture_blank_portrait)
+                        .into(itemView.nwet_guest_profile_picture)
+            }
         }
     }
 }
