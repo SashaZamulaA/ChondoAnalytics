@@ -16,25 +16,117 @@
         android:layout_height="match_parent">
 
         <TextView
+
+            android:id="@+id/common_center_intr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="@string/intro"
+            android:textColor="@color/text_primary_dark"
+            android:textSize="@dimen/body1_text_size"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/common_center_one_day"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/textView24"
+            app:layout_constraintTop_toBottomOf="@+id/common_name" />
+
+        <TextView
+
+            android:id="@+id/common_center_one_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="@string/one_day_easy"
+            android:textColor="@color/text_primary_dark"
+            android:textSize="@dimen/body1_text_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/common_center_intr"
+            app:layout_constraintEnd_toStartOf="@+id/common_goal_two_day"
+            app:layout_constraintTop_toTopOf="@+id/common_center_intr"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/common_goal_two_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="@string/two_day_easy"
+            android:textColor="@color/text_primary_dark"
+            android:textSize="@dimen/body1_text_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/common_center_one_day"
+            app:layout_constraintEnd_toStartOf="@+id/common_goal_act"
+            app:layout_constraintTop_toTopOf="@+id/common_center_one_day"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/common_goal_act"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="Act."
+            android:textColor="@color/text_primary_dark"
+            android:textSize="@dimen/body1_text_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/common_center_one_day"
+            app:layout_constraintEnd_toStartOf="@+id/common_goal_21"
+            app:layout_constraintTop_toTopOf="@+id/common_center_one_day"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/common_goal_21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="@string/day21_easy"
+            android:textColor="@color/text_primary_dark"
+            android:textSize="@dimen/body1_text_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/common_goal_two_day"
+            app:layout_constraintEnd_toStartOf="@+id/nwet_common_result"
+            app:layout_constraintTop_toTopOf="@+id/common_goal_two_day"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
             android:id="@+id/common_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:layout_marginEnd="8dp"
             android:text="@string/common_res_and_goal"
             android:textColor="@color/accent_darker"
-            android:textSize="16sp"
+            android:textSize="@dimen/space_16"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/nwet_common_result"
+            android:layout_width="wrap_content"
+            android:layout_height="21dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/nwet"
+            android:textColor="@color/text_primary_dark"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/common_goal_21"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/common_goal_21"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/textView16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:textColor="@color/text_primary_dark"
             android:layout_marginTop="8dp"
             android:text="@string/goal"
             app:layout_constraintStart_toStartOf="parent"
@@ -44,7 +136,6 @@
             android:id="@+id/textView24"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_primary_dark"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
@@ -55,7 +146,6 @@
 
         <TextView
             android:id="@+id/goal_intro"
-            style="@style/TextUniversalStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
@@ -66,40 +156,37 @@
 
         <TextView
             android:id="@+id/common_goal_one_day_sem"
-            style="@style/TextUniversalStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
-            app:layout_constraintBottom_toBottomOf="@+id/goal_intro"
+            app:layout_constraintBottom_toBottomOf="@+id/textView16"
             app:layout_constraintEnd_toEndOf="@+id/common_center_one_day"
             app:layout_constraintStart_toStartOf="@+id/common_center_one_day"
-            app:layout_constraintTop_toTopOf="@+id/goal_intro" />
+            app:layout_constraintTop_toTopOf="@+id/textView16" />
 
         <TextView
             android:id="@+id/common_goal_year_two_day_sem"
-            style="@style/TextUniversalStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
-            app:layout_constraintBottom_toBottomOf="@+id/common_goal_one_day_sem"
+            app:layout_constraintBottom_toBottomOf="@+id/textView16"
             app:layout_constraintEnd_toEndOf="@+id/common_goal_two_day"
             app:layout_constraintStart_toStartOf="@+id/common_goal_two_day"
-            app:layout_constraintTop_toTopOf="@+id/common_goal_one_day_sem" />
+            app:layout_constraintTop_toTopOf="@+id/textView16" />
 
         <TextView
             android:id="@+id/common_goal_year_act"
-            style="@style/TextUniversalStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
-            app:layout_constraintBottom_toBottomOf="@+id/common_goal_year_two_day_sem"
+            app:layout_constraintBottom_toBottomOf="@+id/textView16"
             app:layout_constraintEnd_toEndOf="@+id/common_goal_act"
             app:layout_constraintStart_toStartOf="@+id/common_goal_act"
-            app:layout_constraintTop_toTopOf="@+id/common_goal_year_two_day_sem" />
+            app:layout_constraintTop_toTopOf="@+id/textView16"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/common_goal_21_day"
-            style="@style/TextUniversalStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
@@ -110,7 +197,6 @@
 
         <TextView
             android:id="@+id/common_goal_year_nwet"
-            style="@style/TextUniversalStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
@@ -123,7 +209,6 @@
             android:id="@+id/common_result_intro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/TextUniversalStyle"
             android:text="0"
             app:layout_constraintBottom_toBottomOf="@+id/textView24"
             app:layout_constraintEnd_toEndOf="@+id/common_center_intr"
@@ -133,134 +218,54 @@
 
         <TextView
             android:id="@+id/common_one_d_result"
-            style="@style/TextUniversalStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
             app:layout_constraintBottom_toBottomOf="@+id/textView24"
-            app:layout_constraintEnd_toEndOf="@+id/common_goal_one_day_sem"
-            app:layout_constraintStart_toStartOf="@+id/common_goal_one_day_sem"
+            app:layout_constraintEnd_toEndOf="@+id/common_center_one_day"
+            app:layout_constraintStart_toStartOf="@+id/common_center_one_day"
             app:layout_constraintTop_toTopOf="@+id/textView24" />
 
         <TextView
             android:id="@+id/common_two_d_result"
-            style="@style/TextUniversalStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
             app:layout_constraintBottom_toBottomOf="@+id/textView24"
-            app:layout_constraintEnd_toEndOf="@+id/common_goal_year_two_day_sem"
-            app:layout_constraintStart_toStartOf="@+id/common_goal_year_two_day_sem"
+            app:layout_constraintEnd_toEndOf="@+id/common_goal_two_day"
+            app:layout_constraintStart_toStartOf="@+id/common_goal_two_day"
             app:layout_constraintTop_toTopOf="@+id/textView24" />
 
         <TextView
             android:id="@+id/common_act_result"
-            style="@style/TextUniversalStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
             app:layout_constraintBottom_toBottomOf="@+id/textView24"
-            app:layout_constraintEnd_toEndOf="@+id/common_goal_year_act"
-            app:layout_constraintStart_toStartOf="@+id/common_goal_year_act"
+            app:layout_constraintEnd_toEndOf="@+id/common_goal_act"
+            app:layout_constraintStart_toStartOf="@+id/common_goal_act"
             app:layout_constraintTop_toTopOf="@+id/textView24"
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/common_tw_one_d_result"
-            style="@style/TextUniversalStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
             app:layout_constraintBottom_toBottomOf="@+id/textView24"
-            app:layout_constraintEnd_toEndOf="@+id/common_goal_21_day"
-            app:layout_constraintStart_toStartOf="@+id/common_goal_21_day"
+            app:layout_constraintEnd_toEndOf="@+id/common_goal_21"
+            app:layout_constraintStart_toStartOf="@+id/common_goal_21"
             app:layout_constraintTop_toTopOf="@+id/textView24" />
 
         <TextView
             android:id="@+id/common_nwet_result"
-            style="@style/TextUniversalStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
             app:layout_constraintBottom_toBottomOf="@+id/textView24"
-            app:layout_constraintEnd_toEndOf="@+id/common_goal_year_nwet"
-            app:layout_constraintStart_toStartOf="@+id/common_goal_year_nwet"
+            app:layout_constraintEnd_toEndOf="@+id/nwet_common_result"
+            app:layout_constraintStart_toStartOf="@+id/nwet_common_result"
             app:layout_constraintTop_toTopOf="@+id/textView24" />
-
-        <Button
-            android:id="@+id/common_center_intr"
-            style="@style/ButtonFillGray"
-            android:layout_width="42dp"
-
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="2dp"
-            android:layout_marginRight="2dp"
-            android:text="Intr."
-
-            app:layout_constraintEnd_toStartOf="@+id/common_center_one_day"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/textView24"
-            app:layout_constraintTop_toBottomOf="@+id/common_name" />
-
-        <Button
-            android:id="@+id/common_center_one_day"
-            style="@style/ButtonFillGray"
-            android:layout_width="42dp"
-            android:layout_marginEnd="2dp"
-            android:layout_marginRight="2dp"
-            android:text="1-d"
-            app:layout_constraintBottom_toBottomOf="@+id/common_center_intr"
-            app:layout_constraintEnd_toStartOf="@+id/common_goal_two_day"
-            app:layout_constraintTop_toTopOf="@+id/common_center_intr" />
-
-        <Button
-            android:id="@+id/common_goal_two_day"
-            style="@style/ButtonFillGray"
-            android:layout_width="42dp"
-            android:layout_marginEnd="2dp"
-            android:layout_marginRight="2dp"
-            android:text="2-d"
-            app:layout_constraintBottom_toBottomOf="@+id/common_center_one_day"
-            app:layout_constraintEnd_toStartOf="@+id/common_goal_act"
-            app:layout_constraintTop_toTopOf="@+id/common_center_one_day" />
-
-        <Button
-            android:id="@+id/common_goal_act"
-            style="@style/ButtonFillGray"
-            android:layout_width="42dp"
-            android:layout_marginEnd="2dp"
-            android:layout_marginRight="2dp"
-            android:text="Act."
-            app:layout_constraintBottom_toBottomOf="@+id/common_goal_two_day"
-            app:layout_constraintEnd_toStartOf="@+id/common_goal_21"
-            app:layout_constraintTop_toTopOf="@+id/common_goal_two_day"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <Button
-            android:id="@+id/common_goal_21"
-            style="@style/ButtonFillGray"
-            android:layout_width="42dp"
-            android:layout_marginEnd="2dp"
-            android:layout_marginRight="2dp"
-            android:text="21-d"
-            app:layout_constraintBottom_toBottomOf="@+id/common_center_one_day"
-            app:layout_constraintEnd_toStartOf="@+id/nwet_common_result"
-            app:layout_constraintTop_toTopOf="@+id/common_center_one_day"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <Button
-            android:id="@+id/nwet_common_result"
-            style="@style/ButtonFillGray"
-            android:layout_width="42dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:text="@string/nwet"
-            app:layout_constraintBottom_toBottomOf="@+id/common_center_one_day"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/common_center_one_day"
-            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

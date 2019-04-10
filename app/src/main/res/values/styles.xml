@@ -21,9 +21,12 @@
     <style name="ButtonFillGray" parent="Widget.AppCompat.Button.Borderless">
         <item name="android:background">@drawable/button_background_gray_bordered</item>
         <item name="android:textAllCaps">true</item>
-        <item name="android:textSize">@dimen/body1_text_size</item>
+        <item name="android:foreground"></item>
+        android:background="@drawable/button_gray_ripple"
+        <item name="android:textSize">10sp</item>
+        <item name="android:layout_height">26dp</item>
         <item name="android:textColor">@color/foreground_text_color_dark</item>
-        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_height">26dp</item>
     </style>
 
     <style name="TextAppearance.AppCompat.Small.ErrorStyle">
@@ -116,6 +119,12 @@
         <item name="android:layout_marginLeft">2dp</item>
         <item name="android:layout_marginRight">2dp</item>
         <item name="android:textColor">@color/black_effective</item>
+    </style>
+
+    <style name="TextUniversalStyle">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/text_primary_dark</item>
+        <item name="android:gravity">center_horizontal</item>
     </style>
 
     <style name="TextStyle_Caption_Dark" parent="AppTheme">
