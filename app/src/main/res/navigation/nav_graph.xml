@@ -34,8 +34,12 @@
         android:id="@+id/addNwetFragment"
         android:name="com.zaleksandr.aleksandr.myapplication.ui.guestNwet.NwetFragment"
         android:label="Nwet Fragment"
-        tools:layout="@layout/fragment_nwet_guests" />
-
+        tools:layout="@layout/fragment_nwet_guests" >
+    <argument
+        android:name="people"
+        android:defaultValue="0"
+        app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/addChart"
         android:name="com.zaleksandr.aleksandr.myapplication.ui.chart.ChartFragment"

@@ -135,7 +135,7 @@ class ChartFragment : Fragment() {
         rootView.common_goal_zero.visibility = View.VISIBLE
         rootView.chart_common_result_zero.visibility = View.VISIBLE
         rootView.common_score_percent_zero.visibility = View.VISIBLE
-
+        rootView.empty_chart.visibility = View.GONE
         noteRefCollection
                 .orderBy("time", Query.Direction.DESCENDING)
                 .get().addOnCompleteListener { querydocumentSnapshot ->
@@ -335,6 +335,7 @@ class ChartFragment : Fragment() {
                                     rootView.common_goal_zero.visibility = View.VISIBLE
                                     rootView.chart_common_result_zero.visibility = View.VISIBLE
                                     rootView.common_score_percent_zero.visibility = View.VISIBLE
+                                    rootView.empty_chart.visibility = View.GONE
                                 }
                             }
 
@@ -481,7 +482,6 @@ class ChartFragment : Fragment() {
                                     chart.setCenterTextTypeface(tf)
                                     chart.holeRadius = 45f
                                     chart.transparentCircleRadius = 50f
-
                                     chart!!.animateXY(700, 700)
                                     chart.centerText = generateCenterText()
                                     data.setValueTextSize(16f)
@@ -498,6 +498,7 @@ class ChartFragment : Fragment() {
                                         rootView.empty_chart.visibility = View.VISIBLE
                                         rootView.chart.visibility = View.GONE
                                     }
+                                    else rootView.empty_chart.visibility = View.GONE
 
                                 }
 

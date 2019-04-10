@@ -1,6 +1,7 @@
 package com.zaleksandr.aleksandr.myapplication.ui.commonResult.adapter
 
 import android.content.ContentValues
+import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -138,9 +139,49 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
 
         private fun commonGoal(queryDocumentSnapshots: DocumentSnapshot) {
 
-            itemView.nwet_common_result.setOnClickListener {
-                Navigation.findNavController(it).navigate(com.zaleksandr.aleksandr.myapplication.R.id.action_commonResultFragment_to_addNwetFragment)
+            itemView.common_center_intr.setOnClickListener {
+                val bundle = Bundle()
+                bundle.putInt("people", 1)
 
+                Navigation.findNavController(it).navigate(com.zaleksandr.aleksandr.myapplication.R.id.action_commonResultFragment_to_addNwetFragment, bundle)
+            }
+
+
+            itemView.common_center_one_day.setOnClickListener {
+                val bundle = Bundle()
+                bundle.putInt("people", 2)
+
+                Navigation.findNavController(it).navigate(com.zaleksandr.aleksandr.myapplication.R.id.action_commonResultFragment_to_addNwetFragment, bundle)
+            }
+
+            itemView.common_goal_two_day.setOnClickListener {
+                val bundle = Bundle()
+                bundle.putInt("people", 3)
+
+                Navigation.findNavController(it).navigate(com.zaleksandr.aleksandr.myapplication.R.id.action_commonResultFragment_to_addNwetFragment, bundle)
+            }
+
+            itemView.common_goal_act.setOnClickListener {
+                val bundle = Bundle()
+                bundle.putInt("people", 4)
+
+                Navigation.findNavController(it).navigate(com.zaleksandr.aleksandr.myapplication.R.id.action_commonResultFragment_to_addNwetFragment, bundle)
+            }
+
+            itemView.common_goal_21.setOnClickListener {
+                val bundle = Bundle()
+                bundle.putInt("people", 5)
+
+                Navigation.findNavController(it).navigate(com.zaleksandr.aleksandr.myapplication.R.id.action_commonResultFragment_to_addNwetFragment, bundle)
+            }
+
+//year
+
+            itemView.nwet_common_result.setOnClickListener {
+                val bundle = Bundle()
+                bundle.putInt("people", 6)
+
+                Navigation.findNavController(it).navigate(com.zaleksandr.aleksandr.myapplication.R.id.action_commonResultFragment_to_addNwetFragment, bundle)
             }
 //year
             var sumIntroyear = 0

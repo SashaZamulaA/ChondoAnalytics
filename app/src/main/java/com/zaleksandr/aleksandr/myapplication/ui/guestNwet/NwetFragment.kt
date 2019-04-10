@@ -8,18 +8,14 @@ import android.widget.LinearLayout
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.firebase.auth.FirebaseAuth
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.zaleksandr.aleksandr.myapplication.DialogCompositeDisposable
-import com.zaleksandr.aleksandr.myapplication.model.City
-import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
-import com.google.android.material.snackbar.Snackbar
 import com.zaleksandr.aleksandr.myapplication.model.Guest
 import com.zaleksandr.aleksandr.myapplication.ui.guestNwet.NwetAdapter.NwetAdapter
+import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_my_guests.view.*
 import kotlinx.android.synthetic.main.fragment_nwet_guests.view.*
 
 
@@ -28,6 +24,7 @@ class NwetFragment : Fragment() {
     var toolbar: Toolbar? = null
     var adapter: NwetAdapter? = null
     private val noteRefCollection = firestoreInstance.collection("Guest")
+    var peopleCategory: Int = 0
     var city: Guest? = null
     private val items: ArrayList<Guest> = ArrayList()
     private var mLastQueriedDocument: DocumentSnapshot? = null
@@ -45,9 +42,15 @@ class NwetFragment : Fragment() {
     }
 
 
+    fun getPeopleCategory(peopleCategory: Int): Int {
+        this.peopleCategory = peopleCategory
+        return peopleCategory
+    }
+
+
     override fun onResume() {
         super.onResume()
-        (this.activity!!.toolbar as Toolbar).title = "My guests"
+        (this.activity!!.toolbar as Toolbar).title = "NWET Members"
     }
 
     private fun makeSnackBarMessage(message: String) {
@@ -67,10 +70,34 @@ class NwetFragment : Fragment() {
 
         val notesCollectionRef = firestoreInstance.collection("Guest")
 
-        notesCollectionRef
-                .whereEqualTo("nwet", true)
-                .orderBy("time", Query.Direction.ASCENDING)
 
+        val name = arguments?.getInt("people", 0)
+
+        if (name != null) {
+            getPeopleCategory(name)
+
+        }
+
+
+        notesCollectionRef
+                .whereEqualTo( when (name) {
+                    1 -> "intro"
+                    2 -> "onedayWS"
+                    3 -> "twoDayWS"
+                    4 -> "actionaiser"
+                    5 -> "twOneDay"
+                    6 -> "nwet"
+                    else -> ""
+                }, true)
+                .orderBy( when (name){
+                    1 -> "timeIntro"
+                    2 -> "timeOneDay"
+                    3 -> "timeTwoDay"
+                    4 -> "timeAct"
+                    5 -> "time21Day"
+                    6 -> "timeNwet"
+                    else -> "time"
+                }, Query.Direction.DESCENDING)
                 .get().addOnCompleteListener { querydocumentSnapshot ->
                     if (querydocumentSnapshot.isSuccessful) {
                         for (documentSnapshot in querydocumentSnapshot.result!!) {

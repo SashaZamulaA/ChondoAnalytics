@@ -182,6 +182,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:visibility="gone"
+            tools:visibility="visible"
             android:textSize="@dimen/space_16"
             android:text="You have no results"/>
 </FrameLayout>
