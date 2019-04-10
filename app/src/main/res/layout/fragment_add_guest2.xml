@@ -3,7 +3,6 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/scrollView2"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -48,8 +47,8 @@
                     android:id="@+id/guest_invited"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
                     android:layout_marginTop="16dp"
                     android:hint="Invited person"
                     android:inputType="phone"
@@ -66,8 +65,7 @@
                     android:id="@+id/add_guest_city"
                     android:layout_width="0dp"
                     android:layout_height="24dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
                     app:layout_constraintEnd_toEndOf="@+id/add_birthday_gues"
                     app:layout_constraintStart_toStartOf="parent"
@@ -86,22 +84,22 @@
                 <Button
 
                     android:id="@+id/guest_add_time_intro"
-                    style="@style/ButtonGuest"
-                    android:layout_marginTop="16dp"
+                    android:layout_width="60dp"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="24dp"
                     android:background="@drawable/button_green_bordered"
                     android:text="@string/data"
                     android:textColor="@color/text_secondary_dark"
                     android:textSize="@dimen/space_12"
-                    app:layout_constraintEnd_toEndOf="@+id/guest_invited"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="@+id/guest_invited"
-                    app:layout_constraintTop_toBottomOf="@+id/guest_invited" />
+                    app:layout_constraintBottom_toBottomOf="@+id/add_guest_intro"
+                    app:layout_constraintStart_toEndOf="@+id/add_guest_intro"
+                    app:layout_constraintTop_toTopOf="@+id/add_guest_intro" />
 
                 <Button
 
                     android:id="@+id/guest_add_time_one_day"
-                    style="@style/ButtonGuest"
-                    android:layout_marginTop="8dp"
+                    android:layout_width="60dp"
+                    android:layout_height="36dp"
                     android:layout_marginBottom="8dp"
                     android:background="@drawable/button_green_bordered"
                     android:text="@string/data"
@@ -111,7 +109,8 @@
                     app:layout_constraintEnd_toEndOf="@+id/guest_add_time_intro"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/guest_add_time_intro"
-                    app:layout_constraintTop_toBottomOf="@+id/guest_add_time_intro" />
+                    app:layout_constraintTop_toTopOf="@+id/add_guest_oneDay"
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <Button
 
@@ -164,12 +163,31 @@
                     app:layout_constraintTop_toTopOf="@+id/add_birthday_gues"
                     app:layout_constraintVertical_bias="0.411" />
 
+                <CheckBox
+                    android:id="@+id/add_guest_intro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/introdaction"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/guest_invited" />
+
+                <CheckBox
+                    android:id="@+id/add_guest_oneDay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/one_day_seminar"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/add_guest_intro" />
+
                 <ImageView
                     android:id="@+id/add_guest_photo"
                     android:layout_width="131dp"
                     android:layout_height="184dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -195,40 +213,10 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <RadioGroup
-                    android:id="@+id/radioGroup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginBottom="8dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/guest_add_time_intro"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/guest_invited">
-
-                    <RadioButton
-                        android:id="@+id/add_guest_intro"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:layout_marginBottom="8dp"
-                        android:text="@string/introdaction"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
-                        tools:layout_editor_absoluteX="16dp" />
-
-                    <RadioButton
-                        android:id="@+id/add_guest_oneDay"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/one_day_seminar"
-                        tools:layout_editor_absoluteX="16dp"
-                        tools:layout_editor_absoluteY="327dp" />
-                </RadioGroup>
-
+                    tools:layout_editor_absoluteX="283dp"
+                    tools:layout_editor_absoluteY="274dp" />
 
                 <!--<ScrollView-->
                 <!--android:layout_width="0dp"-->
@@ -262,24 +250,24 @@
                 android:id="@+id/textInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="8dp"
-                android:fillViewport="true">
+                android:fillViewport="true"
+                android:layout_marginEnd="8dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/guest_description_edittext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fillViewport="true"
-                    android:gravity="top|left"
                     android:hint="@string/description"
-                    android:lines="10"
-                    android:maxLines="150"
-                    android:minLines="5"
+                    android:gravity="top|left"
+                    android:fillViewport="true"
                     android:overScrollMode="always"
                     android:scrollbarStyle="insideInset"
-                    android:scrollbars="vertical" />
+                    android:scrollbars="vertical"
+                    android:lines="10"
+                    android:maxLines="150"
+                    android:minLines="5" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton

@@ -245,7 +245,7 @@ class AddGuestFragment : Fragment() {
         name = guest_name_edittext.text.toString()
 
         val center = add_guest_city.selectedItem.toString()
-        val intro = add_guest_intro.isChecked
+        var intro = add_guest_intro.isChecked
         val oneDayWS = add_guest_oneDay.isChecked
         val invitedPerson = guest_invited.text.toString()
         val twoDayWS = false

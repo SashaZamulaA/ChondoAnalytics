@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:tools="http://schemas.android.com/tools"
+<ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -29,8 +29,7 @@
                     android:id="@+id/birthday_edit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginLeft="24dp"
+                    android:layout_marginStart="16dp"
                     android:layout_marginEnd="8dp"
                     android:text="21 mart"
                     android:textColor="@color/braun"
@@ -43,9 +42,9 @@
                 <Button
 
                     android:id="@+id/update_birthday_gues"
-                    style="@style/ButtonGuest"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginLeft="12dp"
+                    android:layout_width="100dp"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/button_green_bordered"
                     android:text="@string/birthday"
@@ -58,8 +57,7 @@
                     android:id="@+id/guest_edit_phone"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginLeft="12dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="80dp"
                     android:hint="@string/phone_number"
@@ -77,8 +75,7 @@
                     android:id="@+id/guest_name_edit"
                     android:layout_width="0dp"
                     android:layout_height="46dp"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginLeft="12dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="24dp"
                     android:layout_marginEnd="8dp"
                     android:focusableInTouchMode="true"
@@ -104,95 +101,105 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginBottom="8dp"
                     android:text="Add information:"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/guest_nwet" />
 
                 <Button
 
                     android:id="@+id/guest_time_intro"
-                    style="@style/ButtonGuest"
-                    android:layout_marginTop="16dp"
+                    android:layout_width="60dp"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="140dp"
                     android:background="@drawable/button_green_bordered"
                     android:text="@string/data"
                     android:textColor="@color/text_secondary_dark"
                     android:textSize="@dimen/space_12"
-                    app:layout_constraintStart_toStartOf="@+id/update_birthday_gues"
-                    app:layout_constraintTop_toBottomOf="@+id/update_profile_pocture" />
+                    app:layout_constraintBottom_toBottomOf="@+id/guest_intro"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/guest_intro" />
 
                 <Button
 
                     android:id="@+id/guest_time_one_day"
-                    style="@style/ButtonGuest"
-                    android:layout_marginTop="12dp"
+                    android:layout_width="60dp"
+                    android:layout_height="36dp"
                     android:background="@drawable/button_green_bordered"
                     android:text="@string/data"
                     android:textColor="@color/text_secondary_dark"
                     android:textSize="@dimen/space_12"
+                    app:layout_constraintBottom_toBottomOf="@+id/guest_oneDay"
                     app:layout_constraintEnd_toEndOf="@+id/guest_time_intro"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/guest_time_intro"
-                    app:layout_constraintTop_toBottomOf="@+id/guest_time_intro" />
+                    app:layout_constraintTop_toTopOf="@+id/guest_oneDay"
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <Button
 
                     android:id="@+id/guest_time_two_day"
-                    style="@style/ButtonGuest"
-                    android:layout_marginTop="12dp"
+                    android:layout_width="60dp"
+                    android:layout_height="36dp"
                     android:background="@drawable/button_green_bordered"
                     android:text="@string/data"
                     android:textColor="@color/text_secondary_dark"
                     android:textSize="@dimen/space_12"
+                    app:layout_constraintBottom_toBottomOf="@+id/guest_twoDay"
                     app:layout_constraintEnd_toEndOf="@+id/guest_time_one_day"
                     app:layout_constraintStart_toStartOf="@+id/guest_time_one_day"
-                    app:layout_constraintTop_toBottomOf="@+id/guest_time_one_day" />
+                    app:layout_constraintTop_toTopOf="@+id/guest_twoDay" />
 
                 <Button
 
                     android:id="@+id/guest_time_act"
-                    style="@style/ButtonGuest"
-                    android:layout_marginTop="12dp"
+                    android:layout_width="60dp"
+                    android:layout_height="36dp"
                     android:background="@drawable/button_green_bordered"
                     android:text="@string/data"
                     android:textColor="@color/text_secondary_dark"
                     android:textSize="@dimen/space_12"
+                    app:layout_constraintBottom_toBottomOf="@+id/guest_act"
                     app:layout_constraintEnd_toEndOf="@+id/guest_time_two_day"
                     app:layout_constraintStart_toStartOf="@+id/guest_time_two_day"
-                    app:layout_constraintTop_toBottomOf="@+id/guest_time_two_day" />
+                    app:layout_constraintTop_toTopOf="@+id/guest_act" />
 
                 <Button
 
                     android:id="@+id/guest_time_21_day"
-                    style="@style/ButtonGuest"
-                    android:layout_marginTop="12dp"
+                    android:layout_width="60dp"
+                    android:layout_height="36dp"
                     android:background="@drawable/button_green_bordered"
                     android:text="@string/data"
                     android:textColor="@color/text_secondary_dark"
                     android:textSize="@dimen/space_12"
+                    app:layout_constraintBottom_toBottomOf="@+id/guest_21"
                     app:layout_constraintEnd_toEndOf="@+id/guest_time_act"
                     app:layout_constraintStart_toStartOf="@+id/guest_time_act"
-                    app:layout_constraintTop_toBottomOf="@+id/guest_time_act" />
+                    app:layout_constraintTop_toTopOf="@+id/guest_21"
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <Button
 
                     android:id="@+id/guest_time_nwet"
-                    style="@style/ButtonGuest"
-                    android:layout_marginTop="12dp"
+                    android:layout_width="60dp"
+                    android:layout_height="36dp"
                     android:background="@drawable/button_green_bordered"
                     android:text="@string/data"
                     android:textColor="@color/text_secondary_dark"
                     android:textSize="@dimen/space_12"
+                    app:layout_constraintBottom_toBottomOf="@+id/guest_nwet"
                     app:layout_constraintEnd_toEndOf="@+id/guest_time_21_day"
                     app:layout_constraintStart_toStartOf="@+id/guest_time_21_day"
-                    app:layout_constraintTop_toBottomOf="@+id/guest_time_21_day" />
+                    app:layout_constraintTop_toTopOf="@+id/guest_nwet" />
 
                 <TextView
                     android:id="@+id/guest_time_intro_edittext"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginLeft="24dp"
+                    android:layout_marginStart="16dp"
                     android:text="21 mart"
                     android:textColor="@color/braun"
                     app:layout_constraintBottom_toBottomOf="@+id/guest_time_intro"
@@ -255,91 +262,75 @@
                     app:layout_constraintStart_toStartOf="@+id/guest_time_21d"
                     app:layout_constraintTop_toTopOf="@+id/guest_time_nwet" />
 
+                <CheckBox
+                    android:id="@+id/guest_intro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/introdaction"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/update_profile_pocture" />
+
+                <CheckBox
+                    android:id="@+id/guest_oneDay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/one_day_seminar"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/guest_intro" />
+
+                <CheckBox
+                    android:id="@+id/guest_twoDay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/two_day_seminar"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/guest_oneDay" />
+
+                <CheckBox
+                    android:id="@+id/guest_act"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/actionizer"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/guest_twoDay" />
+
+                <CheckBox
+                    android:id="@+id/guest_21"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/day21_seminar"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/guest_act" />
+
+                <CheckBox
+                    android:id="@+id/guest_nwet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/nwet"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/guest_21" />
+
                 <ImageView
                     android:id="@+id/update_profile_pocture"
                     android:layout_width="131dp"
                     android:layout_height="183dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/com_facebook_profile_picture_blank_portrait" />
-
-                <RadioGroup
-                    android:id="@+id/radioGroup2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginBottom="32dp"
-                    app:layout_constraintBottom_toTopOf="@+id/textView19"
-                    app:layout_constraintEnd_toStartOf="@+id/guest_time_two_day"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/update_profile_pocture"
-                    app:layout_constraintTop_toBottomOf="@+id/update_profile_pocture"
-                    app:layout_constraintVertical_bias="0.0">
-
-                    <RadioButton
-                        android:id="@+id/guest_intro"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/introdaction"
-                        app:layout_constraintBottom_toBottomOf="@+id/radioGroup2"
-                        app:layout_constraintTop_toTopOf="@+id/radioGroup2"
-                        tools:layout_editor_absoluteX="8dp" />
-
-                    <RadioButton
-                        android:id="@+id/guest_oneDay"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="@string/one_day_seminar"
-                        app:layout_constraintTop_toBottomOf="@+id/radioGroup2"
-                        tools:layout_editor_absoluteX="16dp" />
-
-                    <RadioButton
-                        android:id="@+id/guest_twoDay"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="@string/two_day_seminar"
-                        tools:layout_editor_absoluteX="16dp"
-                        tools:layout_editor_absoluteY="304dp" />
-
-                    <RadioButton
-                        android:id="@+id/guest_act"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="@string/actionizer"
-                        tools:layout_editor_absoluteX="13dp"
-                        tools:layout_editor_absoluteY="352dp" />
-
-                    <RadioButton
-                        android:id="@+id/guest_21"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="@string/day21_seminar"
-                        tools:layout_editor_absoluteX="16dp"
-                        tools:layout_editor_absoluteY="402dp" />
-
-                    <RadioButton
-                        android:id="@+id/guest_nwet"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="@string/nwet"
-                        app:layout_constraintBottom_toTopOf="@+id/textView19"
-                        tools:layout_editor_absoluteX="27dp" />
-                </RadioGroup>
-
-
-
-
-
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </FrameLayout>

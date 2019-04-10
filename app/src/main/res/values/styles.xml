@@ -22,11 +22,17 @@
         <item name="android:background">@drawable/button_background_gray_bordered</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:foreground"></item>
-        android:background="@drawable/button_gray_ripple"
         <item name="android:textSize">10sp</item>
         <item name="android:layout_height">26dp</item>
         <item name="android:textColor">@color/foreground_text_color_dark</item>
         <item name="android:layout_height">26dp</item>
+    </style>
+
+    <style name="ButtonGuest" parent="Widget.AppCompat.Button.Borderless">
+
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_height">36dp</item>
+
     </style>
 
     <style name="TextAppearance.AppCompat.Small.ErrorStyle">

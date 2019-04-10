@@ -50,7 +50,7 @@ class NwetFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        (this.activity!!.toolbar as Toolbar).title = "NWET Members"
+        (this.activity!!.toolbar as Toolbar).title = "The guests"
     }
 
     private fun makeSnackBarMessage(message: String) {
@@ -75,6 +75,7 @@ class NwetFragment : Fragment() {
 
         if (name != null) {
             getPeopleCategory(name)
+            adapter?.addTypeGruest(name)
 
         }
 
@@ -103,6 +104,8 @@ class NwetFragment : Fragment() {
                         for (documentSnapshot in querydocumentSnapshot.result!!) {
                             val note = documentSnapshot.toObject<Guest>(Guest::class.java)
                             items.add(note)
+
+                            adapter?.addTypeGruest(name!!)
                         }
 
                         if (querydocumentSnapshot.result!!.size() != 0) {

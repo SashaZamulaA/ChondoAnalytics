@@ -433,7 +433,7 @@ class GuestEditFragment : Fragment(), MyGuestAdapter.FragmentCommunication {
 
                             guest_name_edit.setText(name.toString())
 
-                            if (note.photo != null) {
+                            if (!note.photo.isNullOrEmpty()) {
 
                                 GlideApp.with(this)
                                         .load(StorageUtil.pathToReference(note.photo))
