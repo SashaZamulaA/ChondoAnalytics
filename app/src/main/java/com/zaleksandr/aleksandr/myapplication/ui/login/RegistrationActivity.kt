@@ -62,28 +62,7 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
 //        }
         btn_signup.setOnClickListener {
 
-
-            val b = AlertDialog.Builder(this@RegistrationActivity)
-            b.setTitle("Please enter a password")
-            val input = EditText(this@RegistrationActivity)
-            b.setView(input)
-            b.setPositiveButton("OK") { _, _ ->
-                result = input.text.toString()
-                if (result == PASSWORDACCESS) {
-                    presenter.onValidateAndSave()
-                } else {
-                    val intentRegister = Intent(applicationContext, RegistrationActivity::class.java)
-                    startActivity(intentRegister)
-                    finish()
-                }
-            }
-            b.setNegativeButton("CANCEL") { _, _ ->
-                val intentRegister = Intent(applicationContext, RegistrationActivity::class.java)
-                startActivity(intentRegister)
-                finish()
-            }
-            b.show()
-
+            presenter.onValidateAndSave()
 
         }
 
@@ -115,6 +94,7 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
             IRegistrationActivity.InvalidValue.REPASSWORD_WRONG -> text_InputLayoutPassword.error = resources.getString(R.string.repassword_wrong)
 //            IRegistrationActivity.InvalidValue.CHECKBOX_DISABLE -> checkbox_gdpr_error.text = resources.getString(R.string.checkbox_gdpr)
             IRegistrationActivity.InvalidValue.NO_INTERNET -> resources.getString(R.string.no_internet)
+            else -> {}
         }
     }
 
@@ -127,28 +107,51 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
     }
 
     override fun onSignUpSuccess() {
-        val progressDialog = ProgressDialog(this@RegistrationActivity)
-        progressDialog.isIndeterminate = true
-        progressDialog.setMessage(resources.getString(R.string.signup_successful))
-        progressDialog.show()
+
         val email = input_email.text.toString().trim()
         val password = input_password.text.toString().trim()
         val name = input_name.text.toString().trim()
         val regId = mutableListOf<String>()
-        auth?.createUserWithEmailAndPassword(email, password)
-                ?.addOnCompleteListener(this@RegistrationActivity) { task ->
-                    progressDialog.dismiss()
-                    if (task.isSuccessful) {
 
-                        FirestoreUtil.initCurrentUserIfFirstTime {
-                            startActivity(Intent(this@RegistrationActivity, MainActivity::class.java))
-                            finish()
-                            val registrationToken = FirebaseInstanceId.getInstance().token
-                            MyFirebaseInstanceIDService.addTokenToFirestore(registrationToken)
+        val b = AlertDialog.Builder(this@RegistrationActivity)
+        b.setTitle("Please enter a password")
+        val input = EditText(this@RegistrationActivity)
+        b.setView(input)
+        b.setPositiveButton("OK") { _, _ ->
+            result = input.text.toString()
+            if (result == PASSWORDACCESS) {
+                val progressDialog = ProgressDialog(this@RegistrationActivity)
+                progressDialog.isIndeterminate = true
+                progressDialog.setMessage(resources.getString(R.string.signup_successful))
+                progressDialog.show()
+                auth?.createUserWithEmailAndPassword(email, password)
+                        ?.addOnCompleteListener(this@RegistrationActivity) { task ->
+                            progressDialog.dismiss()
+                            if (task.isSuccessful) {
+
+//                                if (adminAccess == true)
+                                Toast.makeText(applicationContext,"Please wait for confirmation of your account.",Toast.LENGTH_LONG).show()
+                                FirestoreUtil.initCurrentUserIfFirstTime {
+
+                                    val registrationToken = FirebaseInstanceId.getInstance().token
+                                    MyFirebaseInstanceIDService.addTokenToFirestore(registrationToken)
+                                }
+                                saveQuote()
+                            }
                         }
-                        saveQuote()
-                    }
-                }
+
+            } else {
+
+            }
+        }
+        b.setNegativeButton("CANCEL") { _, _ ->
+
+        }
+        b.show()
+
+
+
+
     }
 
     private fun saveQuote() {

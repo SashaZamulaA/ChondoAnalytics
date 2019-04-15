@@ -472,7 +472,9 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
                 else -> startOfDay(Date())
             }).addSnapshotListener { queryDocumentSnapshots, _ ->
 
-                cityResult(queryDocumentSnapshots!!)
+                if (queryDocumentSnapshots != null) {
+                    cityResult(queryDocumentSnapshots)
+                }
             }
         }
 

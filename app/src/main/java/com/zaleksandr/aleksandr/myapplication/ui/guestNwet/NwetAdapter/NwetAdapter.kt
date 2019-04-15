@@ -1,15 +1,25 @@
 package com.zaleksandr.aleksandr.myapplication.ui.guestNwet.NwetAdapter
 
+import android.content.ContentValues
 import android.content.Context
+import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.google.firebase.firestore.DocumentChange
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.QuerySnapshot
 import com.zaleksandr.aleksandr.myapplication.R
+import com.zaleksandr.aleksandr.myapplication.model.City
+import com.zaleksandr.aleksandr.myapplication.model.Goal
 import com.zaleksandr.aleksandr.myapplication.model.Guest
 import com.zaleksandr.aleksandr.myapplication.ui.guestNwet.NwetFragment
 import com.zaleksandr.aleksandr.myapplication.util.StorageUtil
+import com.zaleksandr.aleksandr.myapplication.util.clickByFilterCommonResult
 import com.zaleksandr.aleksandr.tmbook.glade.GlideApp
 import kotlinx.android.synthetic.main.item_nwet_guest.view.*
 import java.util.*
@@ -44,9 +54,32 @@ class NwetAdapter(private val context: Context,
     var period = 3
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val v = LayoutInflater.from(parent.context).inflate(com.zaleksandr.aleksandr.myapplication.R.layout.item_nwet_guest,
-                parent, false)
-        return IndividualHolder(v, fragmentCommunication)
+
+        if (viewType == TYPE_ITEM) {
+            val v = LayoutInflater.from(parent.context).inflate(com.zaleksandr.aleksandr.myapplication.R.layout.item_nwet_guest,
+                    parent, false)
+            return IndividualHolder(v, fragmentCommunication)
+        } else if (viewType == TYPE_HEADER) {
+            val v = LayoutInflater.from(parent.context).inflate(com.zaleksandr.aleksandr.myapplication.R.layout.item_nwet_guest_header,
+                    parent, false)
+            return VHHeader(v)
+        }
+        throw RuntimeException("there is no type that matches the type $viewType + make sure your using types correctly")
+
+    }
+
+    inner class VHHeader(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+
+
+        override fun onClick(v: View?) {
+
+        }
+
+        fun bind2() {
+
+        }
+
+
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {

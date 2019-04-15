@@ -153,7 +153,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             FirestoreUtil.currentUserDocRef.addSnapshotListener { documentSnapshot, _ ->
                 FirestoreUtil.getCurrentUser { user ->
                     if (documentSnapshot?.exists()!!) {
-                        val myQuote = documentSnapshot.toObject(User::class.java)
 
                         val quoteText = documentSnapshot.getString(QUOTE_KEY)
                         val authorText = documentSnapshot.getString(AUTHOR_KEY)

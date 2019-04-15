@@ -27,6 +27,7 @@ class EachCenterFragment : Fragment() {
     private val items: ArrayList<City> = ArrayList()
     private val itemsCenter: ArrayList<GoalCenter> = ArrayList()
     var adapter: EachCenterAdapter? = null
+    var num = 1
     private var mLastQueriedDocument: DocumentSnapshot? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(com.zaleksandr.aleksandr.myapplication.R.layout.fragment_each_senter, container, false)
@@ -78,9 +79,12 @@ class EachCenterFragment : Fragment() {
                                     || documentSnapshot["actionaiser"] != "" && documentSnapshot["actionaiser"] != "0" && documentSnapshot["actionaiser"] != null
                                     || documentSnapshot["twoDayWS"] != "" && documentSnapshot["twoDayWS"] != "0"
                                     || documentSnapshot["twOneDay"] != "" && documentSnapshot["twOneDay"] != "0"
-                            )
-                                items.add(note)
-                        }
+                            ) {
+
+                                num++
+                                if (num<12) items.add(note)
+                            }
+                            }
 
                         if (querydocumentSnapshot.result!!.size() != 0) {
                             mLastQueriedDocument = querydocumentSnapshot.result!!.documents[querydocumentSnapshot.result!!.size() - 1]
