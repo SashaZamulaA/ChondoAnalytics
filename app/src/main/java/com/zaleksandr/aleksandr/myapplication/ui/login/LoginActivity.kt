@@ -33,20 +33,19 @@ class LoginActivity : AppCompatActivity(), ILoginActivity {
         if (auth?.currentUser != null) {
 
             FirestoreUtil.currentUserDocRef.addSnapshotListener { documentSnapshot, _ ->
-                FirestoreUtil.getCurrentUser { user ->
+                if (documentSnapshot!!.exists()) {
+                    FirestoreUtil.getCurrentUser { user ->
+                        if (documentSnapshot.get("access") != null) {
+                            this.access = documentSnapshot["access"] as Boolean
+                            if (documentSnapshot.exists() && access) {
 
-                    if (documentSnapshot!!["access"] != null) {
-                        this.access = documentSnapshot["access"] as Boolean
-                        if (documentSnapshot.exists() && access) {
-
-                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                            startActivity(intent)
-                            finish()
-                        } else {
-                            Toast.makeText(applicationContext, "Please wait for confirmation of your account.", Toast.LENGTH_LONG).show()
+                                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                startActivity(intent)
+                                finish()
+                            } else {
+                                Toast.makeText(applicationContext, "Please wait for confirmation of your account.", Toast.LENGTH_LONG).show()
+                            }
                         }
-                    } else {
-                        Toast.makeText(applicationContext, "Please wait for confirmation of your account.", Toast.LENGTH_LONG).show()
                     }
                 }
             }
@@ -114,31 +113,34 @@ class LoginActivity : AppCompatActivity(), ILoginActivity {
                     if (!task.isSuccessful) {
                         progressDialog.dismiss()
 
+                        Toast.makeText(applicationContext, "Your password or email is not correct", Toast.LENGTH_LONG).show()
 
-                        showMaterialDialogOk(null, R.string.incorrect_sing_in.toString(), { onOk() })
+
 //                        progressDialog.isIndeterminate = true
 //                        progressDialog.setMessage("Diney...")
 //                        progressDialog.show()
                     } else {
                         FirestoreUtil.currentUserDocRef.addSnapshotListener { documentSnapshot, _ ->
-                            FirestoreUtil.getCurrentUser { user ->
+                            if (documentSnapshot!!.exists()) {
+                                FirestoreUtil.getCurrentUser { user ->
 
-                                if (documentSnapshot!!["access"] != null) {
-                                    this.access = documentSnapshot["access"] as Boolean
-                                    if (documentSnapshot.exists() && access) {
+                                    if (documentSnapshot["access"] != null) {
+                                        this.access = documentSnapshot["access"] as Boolean
+                                        if (documentSnapshot.exists() && access) {
 
-                                        val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                                        startActivity(intent)
-                                        finish()
+                                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                            startActivity(intent)
+                                            finish()
+                                        } else {
+                                            Toast.makeText(applicationContext, "Please wait for confirmation of your account.", Toast.LENGTH_LONG).show()
+                                        }
                                     } else {
                                         Toast.makeText(applicationContext, "Please wait for confirmation of your account.", Toast.LENGTH_LONG).show()
                                     }
-                                } else {
-                                    Toast.makeText(applicationContext, "Please wait for confirmation of your account.", Toast.LENGTH_LONG).show()
                                 }
                             }
+                            Toast.makeText(applicationContext, "Please wait for confirmation of your account.", Toast.LENGTH_LONG).show()
                         }
-
 
                     }
                 }
