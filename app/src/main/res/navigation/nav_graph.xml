@@ -39,6 +39,9 @@
         android:name="people"
         android:defaultValue="0"
         app:argType="integer" />
+        <action
+            android:id="@+id/action_addNwetFragment_to_commonResultFragment"
+            app:destination="@id/commonResultFragment" />
     </fragment>
     <fragment
         android:id="@+id/addChart"

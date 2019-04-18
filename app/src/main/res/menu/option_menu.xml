@@ -3,29 +3,41 @@
     <item
         android:id="@+id/menu_kyiv"
         android:title="@string/kyiv"
+        android:icon="@drawable/flag_u"
 />
     <item
         android:id="@+id/menu_kharkiv"
-        android:title="@string/kharkiv"/>
+        android:title="@string/kharkiv"
+        android:icon="@drawable/flag_u"
+        />
 
     <item
         android:id="@+id/menu_dnepr"
-        android:title="@string/dnepr"/>
+        android:title="@string/dnepr"
+        android:icon="@drawable/flag_u"
+        />
 
     <item
         android:id="@+id/menu_zhytomyr"
-        android:title="@string/zhytomyr"/>
+        android:title="@string/zhytomyr"
+        android:icon="@drawable/flag_u"
+        />
 
     <item
         android:id="@+id/menu_lviv"
-        android:title="@string/lviv"/>
+        android:title="@string/lviv"
+        android:icon="@drawable/flag_u"
+        />
 
     <item
         android:id="@+id/menu_odessa"
-        android:title="@string/odessa"/>
+        android:title="@string/odessa"
+        android:icon="@drawable/flag_u"
+        />
 
     <item
         android:id="@+id/menu_chernigov"
-        android:title="@string/chernigov"/>
+        android:title="@string/chernigov"
+        android:icon="@drawable/flag_u"/>
 
 </menu>

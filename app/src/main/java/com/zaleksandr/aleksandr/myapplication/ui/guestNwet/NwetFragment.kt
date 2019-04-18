@@ -9,6 +9,7 @@ import android.widget.LinearLayout
 import android.widget.PopupMenu
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.Query
@@ -38,13 +39,17 @@ class NwetFragment : Fragment() {
         rootView.list_nwet_adapter.setHasFixedSize(false)
         rootView.list_nwet_adapter.layoutManager = LinearLayoutManager(context)
 
-
         adapter = NwetAdapter(this.context!!, items, this)
+
+        rootView.button_back_guest.setOnClickListener {
+
+            Navigation.findNavController(this.view!!).navigate(R.id.action_addNwetFragment_to_commonResultFragment)
+
+        }
 
         rootView.list_nwet_adapter.adapter = adapter
         items.clear()
         setUpRecyclerView()
-
 
         rootView.popup.setOnClickListener {
             val popupMenu = PopupMenu(context, it)
@@ -107,7 +112,6 @@ class NwetFragment : Fragment() {
 
         return rootView
     }
-
 
     override fun onResume() {
         super.onResume()

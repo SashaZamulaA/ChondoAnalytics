@@ -52,7 +52,6 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="16dp"
                     android:hint="Invited person"
-                    android:inputType="phone"
                     android:selectAllOnFocus="true"
                     android:text=""
                     android:textAlignment="textStart"
