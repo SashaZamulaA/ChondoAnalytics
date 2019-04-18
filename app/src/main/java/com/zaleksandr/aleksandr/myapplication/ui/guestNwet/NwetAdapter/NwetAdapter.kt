@@ -43,9 +43,9 @@ class NwetAdapter(private val context: Context,
         this.name = name
     }
 
-    override fun getItemViewType(position: Int): Int {
-        return if (position == 0) TYPE_HEADER else TYPE_ITEM
-    }
+//    override fun getItemViewType(position: Int): Int {
+//        return if (position == 0) TYPE_HEADER else TYPE_ITEM
+//    }
 
     enum class ClickByFilter {
         MONTH, WEEK, YEAR
@@ -55,16 +55,16 @@ class NwetAdapter(private val context: Context,
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
-        if (viewType == TYPE_ITEM) {
+//        if (viewType == TYPE_ITEM) {
             val v = LayoutInflater.from(parent.context).inflate(com.zaleksandr.aleksandr.myapplication.R.layout.item_nwet_guest,
                     parent, false)
             return IndividualHolder(v, fragmentCommunication)
-        } else if (viewType == TYPE_HEADER) {
-            val v = LayoutInflater.from(parent.context).inflate(com.zaleksandr.aleksandr.myapplication.R.layout.item_nwet_guest_header,
-                    parent, false)
-            return VHHeader(v)
-        }
-        throw RuntimeException("there is no type that matches the type $viewType + make sure your using types correctly")
+//        } else if (viewType == TYPE_HEADER) {
+//            val v = LayoutInflater.from(parent.context).inflate(com.zaleksandr.aleksandr.myapplication.R.layout.item_nwet_guest_header,
+//                    parent, false)
+//            return VHHeader(v)
+//        }
+//        throw RuntimeException("there is no type that matches the type $viewType + make sure your using types correctly")
 
     }
 
@@ -100,7 +100,7 @@ class NwetAdapter(private val context: Context,
         }
 
         fun bind() {
-            val item = list[adapterPosition]
+            val item = list[position]
 
             itemView.guest_nwet_name.text = item.name
             itemView.nwet_city.text = item.centers

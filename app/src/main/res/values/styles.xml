@@ -11,6 +11,13 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="RadioButtonRipple">
+        <item name="android:background">?selectableItemBackground</item>
+        <item name="android:button">@null</item>
+        <item name="android:drawableLeft">?android:attr/listChoiceIndicatorSingle</item>
+        <item name="android:drawablePadding">16dp</item>
+
+    </style>
     <!--<style name="ButtonGreenBordered" parent="Widget.AppCompat.Button.Borderless">-->
         <!--<item name="android:background">@drawable/button_green_bordered</item>-->
         <!--<item name="android:textSize">@dimen/body1_text_size</item>-->

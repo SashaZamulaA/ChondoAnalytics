@@ -53,6 +53,7 @@ class CommonResultFragment : Fragment(), CommonResultAdapter.FragmentCommunicati
 
     override fun onResume() {
         super.onResume()
+        (this.activity!!.toolbar as Toolbar).visibility = View.VISIBLE
         (this.activity!!.toolbar as Toolbar).title = "Common result"
     }
 
@@ -60,6 +61,7 @@ class CommonResultFragment : Fragment(), CommonResultAdapter.FragmentCommunicati
     private fun bottomMenuInit(rootView: View) {
         val layoutParams = rootView.bottom_navigation.layoutParams as CoordinatorLayout.LayoutParams
         layoutParams.behavior = BottomNavigationViewBehavior()
+
         rootView.bottom_navigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 com.zaleksandr.aleksandr.myapplication.R.id.menu_year -> {

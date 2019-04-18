@@ -1,17 +1,18 @@
 package com.zaleksandr.aleksandr.myapplication.ui.guestNwet
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.PopupMenu
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.Query
-import com.zaleksandr.aleksandr.myapplication.DialogCompositeDisposable
+import com.zaleksandr.aleksandr.myapplication.R
 import com.zaleksandr.aleksandr.myapplication.model.Guest
 import com.zaleksandr.aleksandr.myapplication.ui.guestNwet.NwetAdapter.NwetAdapter
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
@@ -23,42 +24,16 @@ class NwetFragment : Fragment() {
 
     var toolbar: Toolbar? = null
     var adapter: NwetAdapter? = null
-    private val noteRefCollection = firestoreInstance.collection("Guest")
     var peopleCategory: Int = 0
     var city: Guest? = null
     private val items: ArrayList<Guest> = ArrayList()
     private var mLastQueriedDocument: DocumentSnapshot? = null
-    private val dialogDisposable = DialogCompositeDisposable()
+    var numberOfCity = 0
+    var name = 0
+    val notesCollectionRef = firestoreInstance.collection("Guest")
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(com.zaleksandr.aleksandr.myapplication.R.layout.fragment_nwet_guests, container, false)
-        val actions = listOf("Update", "Delete")
-
-        setUpRecyclerView(rootView)
-
-//        bottomMenuInit(rootView)
-
-        return rootView
-    }
-
-
-    fun getPeopleCategory(peopleCategory: Int): Int {
-        this.peopleCategory = peopleCategory
-        return peopleCategory
-    }
-
-
-    override fun onResume() {
-        super.onResume()
-        (this.activity!!.toolbar as Toolbar).title = "The guests"
-    }
-
-    private fun makeSnackBarMessage(message: String) {
-        Snackbar.make(this.view!!, message, Snackbar.LENGTH_SHORT).show()
-    }
-
-    private fun setUpRecyclerView(rootView: View) {
-
         rootView.list_nwet_adapter.layoutManager = LinearLayoutManager(this.context, LinearLayout.VERTICAL, false)
         rootView.list_nwet_adapter.setHasFixedSize(false)
         rootView.list_nwet_adapter.layoutManager = LinearLayoutManager(context)
@@ -67,81 +42,179 @@ class NwetFragment : Fragment() {
         adapter = NwetAdapter(this.context!!, items, this)
 
         rootView.list_nwet_adapter.adapter = adapter
+        items.clear()
+        setUpRecyclerView()
 
-        val notesCollectionRef = firestoreInstance.collection("Guest")
+
+        rootView.popup.setOnClickListener {
+            val popupMenu = PopupMenu(context, it)
+            popupMenu.setOnMenuItemClickListener { item ->
+                when (item.itemId) {
+                    R.id.menu_kyiv -> {
+                        items.clear()
+                        numberOfCity = 1; setUpRecyclerView()
+                        true
+                    }
+                    R.id.menu_kharkiv -> {
+                        items.clear()
+                        numberOfCity = 2; setUpRecyclerView()
+                        true
+                    }
+                    R.id.menu_dnepr -> {
+                        items.clear()
+                        numberOfCity = 3; setUpRecyclerView()
+                        true
+                    }
+                    R.id.menu_zhytomyr -> {
+                        items.clear()
+                        numberOfCity = 4; setUpRecyclerView()
+                        true
+                    }
+                    R.id.menu_lviv -> {
+                        items.clear()
+                        numberOfCity = 5; setUpRecyclerView()
+                        true
+                    }
+                    R.id.menu_odessa -> {
+                        items.clear()
+                        numberOfCity = 6; setUpRecyclerView()
+                        true
+                    }
+                    R.id.menu_chernigov -> {
+                        items.clear()
+                        numberOfCity = 7; setUpRecyclerView()
+                        true
+                    }
+                    else -> false
+                }
+            }
+
+            popupMenu.inflate(R.menu.option_menu)
+
+            try {
+                val fieldMPopup = PopupMenu::class.java.getDeclaredField("mPopup")
+                fieldMPopup.isAccessible = true
+                val mPopup = fieldMPopup.get(popupMenu)
+                mPopup.javaClass
+                        .getDeclaredMethod("setForceShowIcon", Boolean::class.java)
+                        .invoke(mPopup, true)
+            } catch (e: Exception) {
+                Log.e("Main", "Error showing menu icons.", e)
+            } finally {
+                popupMenu.show()
+            }
+        }
+
+        return rootView
+    }
 
 
-        val name = arguments?.getInt("people", 0)
+    override fun onResume() {
+        super.onResume()
+//        (this.activity!!.toolbar as Toolbar).title = "The guests"
+        (this.activity!!.toolbar as Toolbar).visibility = View.GONE
+    }
 
-        if (name != null) {
-            getPeopleCategory(name)
-            adapter?.addTypeGruest(name)
+    private fun setUpRecyclerView() {
 
+        name = arguments?.getInt("people", 0)!!
+
+        adapter?.addTypeGruest(name)
+
+        if (numberOfCity == 0) {
+
+            notesCollectionRef
+                    .whereEqualTo(when (name) {
+                        1 -> "intro"
+                        2 -> "onedayWS"
+                        3 -> "twoDayWS"
+                        4 -> "actionaiser"
+                        5 -> "twOneDay"
+                        6 -> "nwet"
+                        else -> ""
+                    }, true)
+                    .orderBy(when (name) {
+                        1 -> "timeIntro"
+                        2 -> "timeOneDay"
+                        3 -> "timeTwoDay"
+                        4 -> "timeAct"
+                        5 -> "time21Day"
+                        6 -> "timeNwet"
+                        else -> "time"
+                    }, Query.Direction.DESCENDING)
+                    .get().addOnCompleteListener { querydocumentSnapshot ->
+                        if (querydocumentSnapshot.isSuccessful) {
+                            for (documentSnapshot in querydocumentSnapshot.result!!) {
+                                val note = documentSnapshot.toObject<Guest>(Guest::class.java)
+                                items.add(note)
+
+
+                                adapter?.notifyDataSetChanged()
+                            }
+
+                            if (querydocumentSnapshot.result!!.size() != 0) {
+//                            empty_individual_result_fragment.visibility = View.GONE
+                                mLastQueriedDocument = querydocumentSnapshot.result!!.documents[querydocumentSnapshot.result!!.size() - 1]
+                                adapter?.notifyDataSetChanged()
+                            } else {
+//                            empty_individual_result_fragment.visibility = View.VISIBLE
+                                adapter?.notifyDataSetChanged()
+                            }
+                        } else {
+                        }
+                    }
+        } else {
+            notesCollectionRef
+                    .whereEqualTo(when (name) {
+                        1 -> "intro"
+                        2 -> "onedayWS"
+                        3 -> "twoDayWS"
+                        4 -> "actionaiser"
+                        5 -> "twOneDay"
+                        6 -> "nwet"
+                        else -> ""
+                    }, true)
+                    .whereEqualTo("centers", when (numberOfCity) {
+                        1 -> "Kyiv"
+                        2 -> "Kharkiv"
+                        3 -> "Dnepr"
+                        4 -> "Zhytomyr"
+                        5 -> "Lviv"
+                        6 -> "Odessa"
+                        7 -> "Chernigov"
+                        else -> ""
+                    })
+                    .orderBy(when (name) {
+                        1 -> "timeIntro"
+                        2 -> "timeOneDay"
+                        3 -> "timeTwoDay"
+                        4 -> "timeAct"
+                        5 -> "time21Day"
+                        6 -> "timeNwet"
+                        else -> "time"
+                    }, Query.Direction.DESCENDING)
+                    .get().addOnCompleteListener { querydocumentSnapshot ->
+                        if (querydocumentSnapshot.isSuccessful) {
+                            for (documentSnapshot in querydocumentSnapshot.result!!) {
+                                val note = documentSnapshot.toObject<Guest>(Guest::class.java)
+                                items.add(note)
+
+
+                            }
+
+                            if (querydocumentSnapshot.result!!.size() != 0) {
+//                            empty_individual_result_fragment.visibility = View.GONE
+                                mLastQueriedDocument = querydocumentSnapshot.result!!.documents[querydocumentSnapshot.result!!.size() - 1]
+                                adapter?.notifyDataSetChanged()
+                            } else {
+//                            empty_individual_result_fragment.visibility = View.VISIBLE
+                                adapter?.notifyDataSetChanged()
+                            }
+                        } else {
+                        }
+                    }
         }
 
 
-        notesCollectionRef
-                .whereEqualTo( when (name) {
-                    1 -> "intro"
-                    2 -> "onedayWS"
-                    3 -> "twoDayWS"
-                    4 -> "actionaiser"
-                    5 -> "twOneDay"
-                    6 -> "nwet"
-                    else -> ""
-                }, true)
-                .orderBy( when (name){
-                    1 -> "timeIntro"
-                    2 -> "timeOneDay"
-                    3 -> "timeTwoDay"
-                    4 -> "timeAct"
-                    5 -> "time21Day"
-                    6 -> "timeNwet"
-                    else -> "time"
-                }, Query.Direction.DESCENDING)
-                .get().addOnCompleteListener { querydocumentSnapshot ->
-                    if (querydocumentSnapshot.isSuccessful) {
-                        for (documentSnapshot in querydocumentSnapshot.result!!) {
-                            val note = documentSnapshot.toObject<Guest>(Guest::class.java)
-                            items.add(note)
-
-                            adapter?.addTypeGruest(name!!)
-                        }
-
-                        if (querydocumentSnapshot.result!!.size() != 0) {
-//                            empty_individual_result_fragment.visibility = View.GONE
-                            mLastQueriedDocument = querydocumentSnapshot.result!!.documents[querydocumentSnapshot.result!!.size() - 1]
-                            adapter?.notifyDataSetChanged()
-                        } else {
-//                            empty_individual_result_fragment.visibility = View.VISIBLE
-                            adapter?.notifyDataSetChanged()
-                        }
-                    } else {
-                    }
-                }
     }
 }
-
-//    private fun bottomMenuInit(rootView: View) {
-//        val layoutParams = rootView.bottom_navigation_person.layoutParams as CoordinatorLayout.LayoutParams
-//        layoutParams.behavior = BottomNavigationViewBehavior()
-//        rootView.bottom_navigation_person.setOnNavigationItemSelectedListener { item ->
-//            when (item.itemId) {
-//                com.zaleksandr.aleksandr.myapplication.R.currentUserId.menu_year -> {
-//                    adapter?.perioSelected(IndividualAdapter.ClickByFilter.YEAR)
-//                }
-//                com.zaleksandr.aleksandr.myapplication.R.currentUserId.menu_month -> {
-//                    adapter?.perioSelected(IndividualAdapter.ClickByFilter.MONTH)
-//                }
-//                com.zaleksandr.aleksandr.myapplication.R.currentUserId.menu_week -> {
-//                    adapter?.perioSelected(IndividualAdapter.ClickByFilter.WEEK)
-//                }
-//
-//                else -> {
-//                }
-//            }
-//            true
-//        }
-//    }
-//
-//}

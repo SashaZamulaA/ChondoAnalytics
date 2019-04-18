@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_kyiv"
+        android:title="@string/kyiv"
+/>
+    <item
+        android:id="@+id/menu_kharkiv"
+        android:title="@string/kharkiv"/>
+
+    <item
+        android:id="@+id/menu_dnepr"
+        android:title="@string/dnepr"/>
+
+    <item
+        android:id="@+id/menu_zhytomyr"
+        android:title="@string/zhytomyr"/>
+
+    <item
+        android:id="@+id/menu_lviv"
+        android:title="@string/lviv"/>
+
+    <item
+        android:id="@+id/menu_odessa"
+        android:title="@string/odessa"/>
+
+    <item
+        android:id="@+id/menu_chernigov"
+        android:title="@string/chernigov"/>
+
+</menu>

@@ -225,6 +225,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 //    }
 
 
+
+
     internal interface CustomDrawerListener : DrawerLayout.DrawerListener {
         override fun onDrawerSlide(drawerView: View, slideOffset: Float)
 

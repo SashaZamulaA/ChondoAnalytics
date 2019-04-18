@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:minWidth="168dp"
+    android:id="@+id/win"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/space8">
+
+    <TextView
+        android:id="@+id/tv_clear_ticket"
+        style="@style/TextStyle_Body2_Secondary_Dark"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="6dp"
+        android:duplicateParentState="true"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:paddingStart="@dimen/space12"
+        android:paddingEnd="16dp"
+        android:text="Sort by center" />
+
+    <RadioGroup
+        android:id="@+id/rdGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_clear_ticket"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/menu_name"
+            style="@style/RadioButtonRipple"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/button_gray_ripple"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:onClick="onRadioButtonClicked"
+            android:paddingStart="@dimen/space12"
+            android:paddingEnd="16dp"
+            android:text="@string/kyiv"
+            android:textSize="@dimen/body2_text_size" />
+
+        <RadioButton
+            android:id="@+id/menu_amount"
+            style="@style/RadioButtonRipple"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/button_gray_ripple"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:onClick="onRadioButtonClicked"
+            android:paddingStart="@dimen/space12"
+            android:paddingEnd="16dp"
+            android:text="@string/kharkiv"
+            android:textSize="@dimen/body2_text_size" />
+
+        <RadioButton
+            android:id="@+id/menu_employee"
+            style="@style/RadioButtonRipple"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/button_gray_ripple"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:onClick="onRadioButtonClicked"
+            android:paddingStart="@dimen/space12"
+            android:paddingEnd="@dimen/space_16"
+            android:text="@string/dnepr"
+            android:textSize="@dimen/body2_text_size" />
+
+        <RadioButton
+            android:id="@+id/menu_time"
+            style="@style/RadioButtonRipple"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/button_gray_ripple"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:onClick="onRadioButtonClicked"
+            android:paddingStart="@dimen/space12"
+            android:paddingEnd="16dp"
+            android:text="@string/zhytomyr"
+            android:textSize="@dimen/body2_text_size" />
+
+        <RadioButton
+            android:id="@+id/menu_employee"
+            style="@style/RadioButtonRipple"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/button_gray_ripple"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:onClick="onRadioButtonClicked"
+            android:paddingStart="@dimen/space12"
+            android:paddingEnd="@dimen/space_16"
+            android:text="@string/lviv"
+            android:textSize="@dimen/body2_text_size" />
+
+        <RadioButton
+            android:id="@+id/menu_employee"
+            style="@style/RadioButtonRipple"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/button_gray_ripple"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:onClick="onRadioButtonClicked"
+            android:paddingStart="@dimen/space12"
+            android:paddingEnd="@dimen/space_16"
+            android:text="@string/odessa"
+            android:textSize="@dimen/body2_text_size" />
+
+        <RadioButton
+            android:id="@+id/menu_employee"
+            style="@style/RadioButtonRipple"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/button_gray_ripple"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:onClick="onRadioButtonClicked"
+            android:paddingStart="@dimen/space12"
+            android:paddingEnd="@dimen/space_16"
+            android:text="@string/chernigov"
+            android:textSize="@dimen/body2_text_size" />
+
+
+    </RadioGroup>
+</RelativeLayout>
