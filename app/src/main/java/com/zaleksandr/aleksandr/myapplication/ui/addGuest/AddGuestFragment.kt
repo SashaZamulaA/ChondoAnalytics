@@ -213,7 +213,7 @@ class AddGuestFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        (this.activity!!.toolbar as Toolbar).title = "Add result"
+        (this.activity!!.toolbar as Toolbar).title = "Add guest"
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
