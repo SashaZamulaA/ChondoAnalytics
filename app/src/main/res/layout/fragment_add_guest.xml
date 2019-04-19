@@ -1,22 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/scrollView2"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
 
-    <LinearLayout
-
-        android:id="@+id/linearLayout"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_result"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="vertical">
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <ImageButton
+                android:id="@+id/button_back_from_guest_to_common_res"
+                style="@style/ButtonWithIcon"
+                android:layout_centerVertical="true"
+                android:background="@drawable/button_ripple_circle_green"
+                app:srcCompat="@drawable/ic_arrow_back_white" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                style="@style/TextStyle_Title_White"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="60dp"
+                android:layout_toStartOf="@+id/guest_fab_confirm_goal"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="Add guest" />
+
+            <Button
+                android:id="@+id/guest_fab_confirm_goal"
+                style="@style/ButtonToolbarWithStartEndPadding"
+                android:background="@drawable/button_ripple_circle_green"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="@string/save" />
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
 
 
-        <FrameLayout
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:id="@+id/scrollView2"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -247,50 +289,46 @@
                 <!--</ScrollView>-->
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </FrameLayout>
+        </ScrollView>
+    </FrameLayout>
 
-        <LinearLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom"
+        android:gravity="bottom"
+        android:orientation="vertical">
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="bottom"
-            android:gravity="bottom"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="8dp"
+            android:fillViewport="true">
 
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/guest_description_edittext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="8dp"
-                android:fillViewport="true">
+                android:fillViewport="true"
+                android:gravity="top|left"
+                android:hint="@string/description"
+                android:lines="10"
+                android:maxLines="150"
+                android:minLines="5"
+                android:overScrollMode="always"
+                android:scrollbarStyle="insideInset"
+                android:scrollbars="vertical" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/guest_description_edittext"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fillViewport="true"
-                    android:gravity="top|left"
-                    android:hint="@string/description"
-                    android:lines="10"
-                    android:maxLines="150"
-                    android:minLines="5"
-                    android:overScrollMode="always"
-                    android:scrollbarStyle="insideInset"
-                    android:scrollbars="vertical" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/guest_fab_confirm_goal"
-                style="@style/FloatingActionButton"
-                app:backgroundTint="@color/link_color"
-                app:srcCompat="@drawable/ic_check_black_24dp" />
-
-        </LinearLayout>
 
 
     </LinearLayout>
 
 
-</ScrollView>
+</LinearLayout>
+
+

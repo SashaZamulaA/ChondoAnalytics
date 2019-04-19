@@ -1,28 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-   >
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
 
-    <LinearLayout
-
-        android:id="@+id/linearLayout"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_result"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="vertical">
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-
-        <FrameLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            >
+
+            <ImageButton
+                android:id="@+id/button_back_from_update_guest_to_common_res"
+                style="@style/ButtonWithIcon"
+                android:layout_centerVertical="true"
+                android:background="@drawable/button_ripple_circle_green"
+                app:srcCompat="@drawable/ic_arrow_back_white" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                style="@style/TextStyle_Title_White"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="60dp"
+                android:layout_toStartOf="@+id/fab_update_guest"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="Update guest information" />
+
+            <Button
+                android:id="@+id/fab_update_guest"
+                style="@style/ButtonToolbarWithStartEndPadding"
+                android:background="@drawable/button_ripple_circle_green"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="@string/save" />
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:id="@+id/scrollView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
 
                 <TextView
@@ -103,12 +149,13 @@
                     style="@style/TextStyle_SubHeader_Accent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginLeft="28dp"
+                    android:layout_marginTop="8dp"
                     android:text="Add information:"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/guest_time_nwet" />
 
                 <Button
 
@@ -337,59 +384,58 @@
                 </RadioGroup>
 
 
-
-
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </FrameLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="bottom"
-            android:gravity="bottom"
-            android:orientation="vertical">
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="12dp"
-                android:fillViewport="true"
-                android:overScrollMode="always"
-                android:scrollbarStyle="insideInset"
-                android:scrollbars="vertical"
-                android:nestedScrollingEnabled="false"
-                android:layout_marginEnd="12dp"
-            >
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/guest_edit_description"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/des"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="top|left"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:fillViewport="true"
+
+                    android:nestedScrollingEnabled="false"
                     android:overScrollMode="always"
                     android:scrollbarStyle="insideInset"
                     android:scrollbars="vertical"
-                    android:nestedScrollingEnabled="false"
-                    android:hint="@string/description"
-                    android:fillViewport="true"
-                    android:lines="10"
-                    android:maxLines="150"
-                    android:minLines="5" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView19">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/guest_edit_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fillViewport="true"
+                        android:gravity="top|left"
+                        android:hint="@string/description"
+                        android:lines="10"
+                        android:maxLines="150"
+                        android:minLines="5"
+                        android:nestedScrollingEnabled="false"
+                        android:overScrollMode="always"
+                        android:scrollbarStyle="insideInset"
+                        android:scrollbars="vertical" />
+                </com.google.android.material.textfield.TextInputLayout>
 
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab_update_guest"
-                style="@style/FloatingActionButton"
-                app:backgroundTint="@color/link_color"
-                app:srcCompat="@drawable/ic_check_black_24dp" />
-        </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </FrameLayout>
+
+
+
+
+
+
+
+
+
+
 
 
     </LinearLayout>
 
 
-</ScrollView>

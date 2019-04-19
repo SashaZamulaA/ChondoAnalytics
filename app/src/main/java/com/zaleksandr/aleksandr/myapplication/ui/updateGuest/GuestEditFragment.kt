@@ -17,11 +17,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.Query
-import com.zaleksandr.aleksandr.myapplication.DialogCompositeDisposable
-import com.zaleksandr.aleksandr.myapplication.MainActivity
-import com.zaleksandr.aleksandr.myapplication.addTo
 import com.zaleksandr.aleksandr.myapplication.model.Guest
-import com.zaleksandr.aleksandr.myapplication.showMaterialDialogCancelDelete
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import com.zaleksandr.aleksandr.myapplication.util.StorageUtil
 import com.zaleksandr.aleksandr.myapplication.util.StorageUtil.currentUserRef
@@ -34,7 +30,10 @@ import java.text.DateFormat
 import java.util.*
 import android.view.MotionEvent
 import android.view.View.OnTouchListener
+import androidx.navigation.Navigation
+import com.zaleksandr.aleksandr.myapplication.*
 import com.zaleksandr.aleksandr.myapplication.ui.updateGuest.adapter.MyGuestAdapter
+
 
 
 class GuestEditFragment : Fragment(), MyGuestAdapter.FragmentCommunication {
@@ -68,6 +67,10 @@ class GuestEditFragment : Fragment(), MyGuestAdapter.FragmentCommunication {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(com.zaleksandr.aleksandr.myapplication.R.layout.fragment_update_guest, container, false)
+
+        rootView.button_back_from_update_guest_to_common_res.setOnClickListener {
+            Navigation.findNavController(this.view!!).navigate(R.id.action_updateMyGuestFragment_to_showMyGuestFragment)
+        }
 
         rootView.guest_edit_description.setOnTouchListener(OnTouchListener { v, event ->
             if (guest_edit_description.hasFocus()) {
@@ -117,7 +120,9 @@ class GuestEditFragment : Fragment(), MyGuestAdapter.FragmentCommunication {
             }
             startActivityForResult(Intent.createChooser(intent, " Select Image"), 2)
         }
-
+        rootView.button_back_from_update_guest_to_common_res.setOnClickListener {
+            Navigation.findNavController(this.view!!).navigate(R.id.action_updateMyGuestFragment_to_showMyGuestFragment)
+        }
         rootView.fab_update_guest.setOnClickListener {
 
             if (::selectImageBytes.isInitialized) {
@@ -273,8 +278,8 @@ class GuestEditFragment : Fragment(), MyGuestAdapter.FragmentCommunication {
 
     override fun onResume() {
         super.onResume()
-        (this.activity!!.toolbar as Toolbar).visibility = View.VISIBLE
-        (this.activity!!.toolbar as Toolbar).title = "My guests"
+        (this.activity!!.toolbar as Toolbar).visibility = View.GONE
+
     }
 
     private fun makeSnackBarMessage(message: String) {

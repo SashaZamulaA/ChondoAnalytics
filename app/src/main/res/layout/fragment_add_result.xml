@@ -33,15 +33,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="60dp"
-                android:layout_toStartOf="@+id/result_fab_confirm_goal"
+                android:layout_toStartOf="@+id/result_button"
                 android:ellipsize="end"
                 android:gravity="center_vertical"
                 android:singleLine="true"
-                android:textColor="@color/white"
-                tools:text="Add result" />
+                android:text="Add result" />
 
             <Button
-                android:id="@+id/result_fab_confirm_goal"
+                android:id="@+id/result_button"
                 style="@style/ButtonToolbarWithStartEndPadding"
                 android:background="@drawable/button_ripple_circle_green"
                 android:layout_width="wrap_content"

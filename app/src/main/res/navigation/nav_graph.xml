@@ -96,13 +96,20 @@
         <argument
             android:name="name"
             app:argType="string" />
+        <action
+            android:id="@+id/action_updateMyGuestFragment_to_showMyGuestFragment"
+            app:destination="@id/showMyGuestFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/addMyGuestFragment"
         android:name="com.zaleksandr.aleksandr.myapplication.ui.addGuest.AddGuestFragment"
         android:label="First Fragment"
-        tools:layout="@layout/fragment_add_guest" />
+        tools:layout="@layout/fragment_add_guest" >
+        <action
+            android:id="@+id/action_addMyGuestFragment_to_commonResultFragment"
+            app:destination="@id/commonResultFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/addIndividualGoalsFragment"

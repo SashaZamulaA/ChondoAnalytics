@@ -82,7 +82,7 @@ class AddResultFragment : Fragment() {
             showDatePickerDialog(this.context!!, String(), textViewDate)
         }
 
-        rootView.result_fab_confirm_goal.setOnClickListener {
+        rootView.result_button.setOnClickListener {
             addNote()
         }
         return rootView

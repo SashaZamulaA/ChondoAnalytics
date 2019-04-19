@@ -18,6 +18,7 @@ import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
@@ -70,6 +71,10 @@ class AddGuestFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(com.zaleksandr.aleksandr.myapplication.R.layout.fragment_add_guest, container, false)
 
+
+        rootView.button_back_from_guest_to_common_res.setOnClickListener {
+            Navigation.findNavController(this.view!!).navigate(R.id.action_addMyGuestFragment_to_commonResultFragment)
+        }
         rootView.guest_description_edittext.setOnTouchListener(View.OnTouchListener { v, event ->
             if (guest_description_edittext.hasFocus()) {
                 v.parent.requestDisallowInterceptTouchEvent(true)
@@ -213,8 +218,8 @@ class AddGuestFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        (this.activity!!.toolbar as Toolbar).visibility = View.VISIBLE
-        (this.activity!!.toolbar as Toolbar).title = "Add guest"
+        (this.activity!!.toolbar as Toolbar).visibility = View.GONE
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

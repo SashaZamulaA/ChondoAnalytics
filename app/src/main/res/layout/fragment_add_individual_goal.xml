@@ -915,7 +915,7 @@
 
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/result_fab_confirm_goal"
+                android:id="@+id/result_fab_indiv_goal"
                 style="@style/FloatingActionButton"
                 app:backgroundTint="@color/link_color"
                 app:srcCompat="@drawable/ic_check_black_24dp" />

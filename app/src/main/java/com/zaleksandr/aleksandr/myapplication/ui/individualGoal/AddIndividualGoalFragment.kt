@@ -18,6 +18,7 @@ import com.zaleksandr.aleksandr.myapplication.ui.individualGoal.model.Individual
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_add_individual_goal.*
+import kotlinx.android.synthetic.main.fragment_add_individual_goal.view.*
 import kotlinx.android.synthetic.main.fragment_add_result.view.*
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
@@ -38,7 +39,7 @@ class AddIndividualGoalFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(com.zaleksandr.aleksandr.myapplication.R.layout.fragment_add_individual_goal, container, false)
 
-        rootView.result_fab_confirm_goal.setOnClickListener {
+        rootView.result_fab_indiv_goal.setOnClickListener {
             addIndividualYearGoal()
             addIndividualMonthGoal()
             addIndividualWeekGoal()
