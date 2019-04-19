@@ -61,6 +61,7 @@ class GuestFragment : Fragment(), MyGuestAdapter.FragmentCommunication {
 
     override fun onResume() {
         super.onResume()
+        (this.activity!!.toolbar as Toolbar).visibility = View.VISIBLE
         (this.activity!!.toolbar as Toolbar).title = "My guests"
     }
 

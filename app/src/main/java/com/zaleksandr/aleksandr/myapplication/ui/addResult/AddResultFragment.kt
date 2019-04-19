@@ -13,12 +13,14 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.zaleksandr.aleksandr.myapplication.MainActivity
 import com.zaleksandr.aleksandr.myapplication.MainActivity.Companion.AUTHOR_KEY
 import com.zaleksandr.aleksandr.myapplication.MainActivity.Companion.SPINNER
+import com.zaleksandr.aleksandr.myapplication.R
 import com.zaleksandr.aleksandr.myapplication.model.City
 import com.zaleksandr.aleksandr.myapplication.model.CityAddInfo
 import com.zaleksandr.aleksandr.myapplication.model.EachCenter
@@ -26,6 +28,7 @@ import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_add_result.*
 import kotlinx.android.synthetic.main.fragment_add_result.view.*
+import kotlinx.android.synthetic.main.fragment_nwet_guests.view.*
 import java.text.DateFormat
 import java.util.*
 
@@ -57,6 +60,10 @@ class AddResultFragment : Fragment() {
         val currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.time)
         rootView.textViewDate.text = currentDateString
 
+
+        rootView.button_back_from_result_to_common_res.setOnClickListener {
+            Navigation.findNavController(this.view!!).navigate(R.id.action_addResultFragment_to_commonResultFragment)
+        }
         category2 = resources.getStringArray(com.zaleksandr.aleksandr.myapplication.R.array.City)
         @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
         val adapter2 = ArrayAdapter(context, android.R.layout.simple_dropdown_item_1line, category2)
@@ -105,7 +112,8 @@ class AddResultFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        (this.activity!!.toolbar as Toolbar).title = "Add result"
+        (this.activity!!.toolbar as Toolbar).visibility = View.GONE
+
     }
 
     private fun addNote() {

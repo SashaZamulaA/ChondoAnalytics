@@ -104,9 +104,8 @@ fun perioSelected(periodSelected: ClickByFilter) {
 
     override fun onResume() {
         super.onResume()
+        (this.activity!!.toolbar as Toolbar).visibility = View.VISIBLE
         (this.activity!!.toolbar as Toolbar).title = "Best result"
-
-
     }
 
     private fun setUpRecyclerView(rootView: View) {

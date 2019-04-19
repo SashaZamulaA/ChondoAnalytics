@@ -75,6 +75,7 @@ class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunica
 
     override fun onResume() {
         super.onResume()
+        (this.activity!!.toolbar as Toolbar).visibility = View.VISIBLE
         (this.activity!!.toolbar as Toolbar).title = "Individual result"
     }
 

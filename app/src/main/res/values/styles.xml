@@ -19,10 +19,10 @@
 
     </style>
     <!--<style name="ButtonGreenBordered" parent="Widget.AppCompat.Button.Borderless">-->
-        <!--<item name="android:background">@drawable/button_green_bordered</item>-->
-        <!--<item name="android:textSize">@dimen/body1_text_size</item>-->
-        <!--<item name="android:textColor">@color/foreground_text_color_accent_dark</item>-->
-        <!--<item name="android:layout_height">@dimen/button48_56_height</item>-->
+    <!--<item name="android:background">@drawable/button_green_bordered</item>-->
+    <!--<item name="android:textSize">@dimen/body1_text_size</item>-->
+    <!--<item name="android:textColor">@color/foreground_text_color_accent_dark</item>-->
+    <!--<item name="android:layout_height">@dimen/button48_56_height</item>-->
     <!--</style>-->
 
     <style name="ButtonFillGray" parent="Widget.AppCompat.Button.Borderless">
@@ -215,7 +215,6 @@
     </style>
 
     <style name="ButtonToolbarWithStartEndPadding" parent="Base.Widget.AppCompat.ActionButton">
-        <item name="android:background">@drawable/button_background_toolbar</item>
         <item name="android:textColor">@color/foreground_text_color_light</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:fontFamily" tools:ignore="NewApi">sans-serif-medium</item>

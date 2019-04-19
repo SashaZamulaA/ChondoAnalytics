@@ -1,29 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/white"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_result"
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark">
+        android:layout_height="@dimen/toolbar_height"
+        android:background="@color/colorPrimaryDark"
+        android:elevation="2dp"
+        app:contentInsetStart="0dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-           >
+            android:layout_height="wrap_content">
 
             <ImageButton
-                android:id="@+id/button_back_from_result_to_common_res"
+                android:id="@+id/button_back_trade_items_edit"
                 style="@style/ButtonWithIcon"
                 android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/space4"
                 android:background="@drawable/button_ripple_circle_green"
                 app:srcCompat="@drawable/ic_arrow_back_white" />
 
@@ -32,7 +34,7 @@
                 style="@style/TextStyle_Title_White"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="60dp"
+                android:layout_marginStart="@dimen/toolbar_margin_title"
                 android:layout_toStartOf="@+id/result_fab_confirm_goal"
                 android:ellipsize="end"
                 android:gravity="center_vertical"
@@ -43,7 +45,6 @@
             <Button
                 android:id="@+id/result_fab_confirm_goal"
                 style="@style/ButtonToolbarWithStartEndPadding"
-                android:background="@drawable/button_ripple_circle_green"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentEnd="true"
