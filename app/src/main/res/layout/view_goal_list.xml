@@ -1,0 +1,29 @@
+
+        <FrameLayout
+            android:id="@+id/fl_items_products_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/item_goal_list" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/in_empty_page"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <!--<include layout="@layout/view_items_empty" />-->
+        </FrameLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_add"
+            style="@style/FloatingActionButton_margin_24dp"
+            android:src="@drawable/ic_add_gray" />
+    </FrameLayout>
+</LinearLayout>
