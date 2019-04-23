@@ -152,6 +152,15 @@ class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunica
         var sumAct = 0
         var sumTwent1 = 0
         var sumNwet = 0
+        var sumCenterCh = 0
+        var sumLectInCenter = 0
+        var supLectOnStr = 0
+        var sumEduMat = 0
+        var sumDpKor=0
+        var sumDpUkr = 0
+        var sumDpRus = 0
+        var sumMob = 0
+        var sumHDH = 0
 
         val notesCollectionRef = firestoreInstance.collection("NewCity")
 
@@ -216,6 +225,41 @@ class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunica
                                 val nwet = Integer.parseInt(resultNote.nwet)
                                 sumNwet += nwet
                             }
+
+                            if (!resultNote.timeCenter.isNullOrEmpty()) {
+                                val timeCen = Integer.parseInt(resultNote.timeCenter)
+                                sumCenterCh += timeCen
+                            }
+
+                            if (!resultNote.lectCentr.isNullOrEmpty()) {
+                                val lectC = Integer.parseInt(resultNote.lectCentr)
+                                sumLectInCenter += lectC
+                            }
+
+                            if (!resultNote.lectOnStr.isNullOrEmpty()) {
+                                val lectStr = Integer.parseInt(resultNote.lectOnStr)
+                                supLectOnStr += lectStr
+                            }
+
+                            if (!resultNote.eduMat.isNullOrEmpty()) {
+                                val edu = Integer.parseInt(resultNote.eduMat)
+                                sumEduMat += edu
+                            }
+
+                            if (!resultNote.dpKor.isNullOrEmpty()) {
+                                val dpK = Integer.parseInt(resultNote.dpKor)
+                                sumDpKor += dpK
+                            }
+
+                            if (!resultNote.dp.isNullOrEmpty()) {
+                                val dpU = Integer.parseInt(resultNote.dp)
+                                sumDpUkr += dpU
+                            }
+                            if (!resultNote.mobilis.isNullOrEmpty()) {
+                                val mob = Integer.parseInt(resultNote.mobilis)
+                                sumMob += mob
+                            }
+
                         }
                         my_res_mmbk.text = sumMmbk.toString()
                         my_res_time_str.text = sumStr.toString()
@@ -227,6 +271,14 @@ class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunica
                         my_res_act.text = sumAct.toString()
                         my_res_21_day.text = sumTwent1.toString()
                         my_res_nwet.text = sumNwet.toString()
+                        my_res_center_ch.text = sumCenterCh.toString()
+                        my_res_center_lect.text = sumLectInCenter.toString()
+                        my_res_str_lect.text = supLectOnStr.toString()
+                        my_res_edu_mat.text = sumEduMat.toString()
+                        my_res_dp_kor.text = sumDpKor.toString()
+                        my_res_dp_ukr.text = sumDpUkr.toString()
+                        my_res_mob.text = sumMob.toString()
+
                     }
                                   }
 

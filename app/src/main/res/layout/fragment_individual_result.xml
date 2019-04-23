@@ -457,7 +457,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 app:layout_constraintBottom_toBottomOf="@+id/view10"
-                app:layout_constraintEnd_toStartOf="@+id/textView90"
+                app:layout_constraintEnd_toStartOf="@+id/my_res_center_ch"
                 app:layout_constraintStart_toEndOf="@+id/textView81"
                 app:layout_constraintTop_toTopOf="@+id/nwet_individual3"
                 app:layout_constraintVertical_bias="0.0" />
@@ -474,7 +474,7 @@
                 android:layout_marginRight="8dp"
                 app:layout_constraintBottom_toBottomOf="@+id/view10"
                 app:layout_constraintEnd_toStartOf="@+id/textView91"
-                app:layout_constraintStart_toEndOf="@+id/textView90"
+                app:layout_constraintStart_toEndOf="@+id/my_res_center_ch"
                 app:layout_constraintTop_toTopOf="@+id/nwet_individual3"
                 app:layout_constraintVertical_bias="0.0" />
 
@@ -630,11 +630,10 @@
                 app:layout_constraintTop_toTopOf="@+id/nwet_individual3" />
 
             <TextView
-                android:id="@+id/textView90"
+                android:id="@+id/my_res_center_ch"
                 style="@style/NumberStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:text="0"
                 app:layout_constraintBottom_toBottomOf="@+id/textView81"
                 app:layout_constraintEnd_toEndOf="@+id/my_res_nwet"
@@ -648,10 +647,10 @@
                 android:layout_height="wrap_content"
 
                 android:text="0"
-                app:layout_constraintBottom_toBottomOf="@+id/textView90"
+                app:layout_constraintBottom_toBottomOf="@+id/my_res_center_ch"
                 app:layout_constraintEnd_toEndOf="@+id/textView56"
                 app:layout_constraintStart_toStartOf="@+id/textView56"
-                app:layout_constraintTop_toTopOf="@+id/textView90" />
+                app:layout_constraintTop_toTopOf="@+id/my_res_center_ch" />
 
             <TextView
                 android:id="@+id/textView102"
@@ -660,10 +659,10 @@
                 android:layout_height="wrap_content"
 
                 android:text="0"
-                app:layout_constraintBottom_toBottomOf="@+id/textView109"
+                app:layout_constraintBottom_toBottomOf="@+id/my_res_hdh"
                 app:layout_constraintEnd_toEndOf="@+id/textView103"
                 app:layout_constraintStart_toStartOf="@+id/textView103"
-                app:layout_constraintTop_toTopOf="@+id/textView109" />
+                app:layout_constraintTop_toTopOf="@+id/my_res_hdh" />
 
             <TextView
                 android:id="@+id/textView103"
@@ -672,21 +671,20 @@
                 android:layout_height="wrap_content"
 
                 android:text="0"
-                app:layout_constraintBottom_toBottomOf="@+id/textView110"
+                app:layout_constraintBottom_toBottomOf="@+id/my_res_mob"
                 app:layout_constraintEnd_toEndOf="@+id/textView104"
                 app:layout_constraintStart_toStartOf="@+id/textView104"
-                app:layout_constraintTop_toTopOf="@+id/textView110" />
+                app:layout_constraintTop_toTopOf="@+id/my_res_mob" />
 
             <TextView
-                android:id="@+id/textView110"
+                android:id="@+id/my_res_mob"
                 style="@style/NumberStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:text="0"
                 app:layout_constraintBottom_toBottomOf="@+id/textView82"
-                app:layout_constraintEnd_toEndOf="@+id/textView93"
-                app:layout_constraintStart_toStartOf="@+id/textView93"
+                app:layout_constraintEnd_toEndOf="@+id/my_res_dp_ukr"
+                app:layout_constraintStart_toStartOf="@+id/my_res_dp_ukr"
                 app:layout_constraintTop_toTopOf="@+id/textView82" />
 
             <TextView
@@ -696,10 +694,10 @@
                 android:layout_height="wrap_content"
 
                 android:text="0"
-                app:layout_constraintBottom_toBottomOf="@+id/textView93"
+                app:layout_constraintBottom_toBottomOf="@+id/my_res_dp_ukr"
                 app:layout_constraintEnd_toEndOf="@+id/textView111"
                 app:layout_constraintStart_toStartOf="@+id/textView111"
-                app:layout_constraintTop_toTopOf="@+id/textView93" />
+                app:layout_constraintTop_toTopOf="@+id/my_res_dp_ukr" />
 
             <TextView
                 android:id="@+id/textView111"
@@ -720,10 +718,10 @@
                 android:layout_height="wrap_content"
 
                 android:text="0"
-                app:layout_constraintBottom_toBottomOf="@+id/textView95"
+                app:layout_constraintBottom_toBottomOf="@+id/my_res_dp_kor"
                 app:layout_constraintEnd_toEndOf="@+id/textView106"
                 app:layout_constraintStart_toStartOf="@+id/textView106"
-                app:layout_constraintTop_toTopOf="@+id/textView95" />
+                app:layout_constraintTop_toTopOf="@+id/my_res_dp_kor" />
 
             <TextView
                 android:id="@+id/textView106"
@@ -732,10 +730,10 @@
                 android:layout_height="wrap_content"
 
                 android:text="0"
-                app:layout_constraintBottom_toBottomOf="@+id/textView96"
+                app:layout_constraintBottom_toBottomOf="@+id/my_res_edu_mat"
                 app:layout_constraintEnd_toEndOf="@+id/textView107"
                 app:layout_constraintStart_toStartOf="@+id/textView107"
-                app:layout_constraintTop_toTopOf="@+id/textView96" />
+                app:layout_constraintTop_toTopOf="@+id/my_res_edu_mat" />
 
             <TextView
                 android:id="@+id/textView107"
@@ -744,10 +742,10 @@
                 android:layout_height="wrap_content"
 
                 android:text="0"
-                app:layout_constraintBottom_toBottomOf="@+id/textView97"
+                app:layout_constraintBottom_toBottomOf="@+id/my_res_str_lect"
                 app:layout_constraintEnd_toEndOf="@+id/textView108"
                 app:layout_constraintStart_toStartOf="@+id/textView108"
-                app:layout_constraintTop_toTopOf="@+id/textView97" />
+                app:layout_constraintTop_toTopOf="@+id/my_res_str_lect" />
 
             <TextView
                 android:id="@+id/textView108"
@@ -756,10 +754,10 @@
                 android:layout_height="wrap_content"
 
                 android:text="0"
-                app:layout_constraintBottom_toBottomOf="@+id/textView98"
+                app:layout_constraintBottom_toBottomOf="@+id/my_res_center_lect"
                 app:layout_constraintEnd_toEndOf="@+id/textView91"
                 app:layout_constraintStart_toStartOf="@+id/textView91"
-                app:layout_constraintTop_toTopOf="@+id/textView98" />
+                app:layout_constraintTop_toTopOf="@+id/my_res_center_lect" />
 
             <TextView
                 android:id="@+id/textView92"
@@ -769,28 +767,26 @@
 
                 android:text="0"
                 app:layout_constraintBottom_toBottomOf="@+id/textView89"
-                app:layout_constraintEnd_toEndOf="@+id/textView93"
-                app:layout_constraintStart_toStartOf="@+id/textView93"
+                app:layout_constraintEnd_toEndOf="@+id/my_res_dp_ukr"
+                app:layout_constraintStart_toStartOf="@+id/my_res_dp_ukr"
                 app:layout_constraintTop_toTopOf="@+id/textView89" />
 
             <TextView
-                android:id="@+id/textView109"
+                android:id="@+id/my_res_hdh"
                 style="@style/NumberStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:text="0"
                 app:layout_constraintBottom_toBottomOf="@+id/textView89"
-                app:layout_constraintEnd_toEndOf="@+id/textView93"
-                app:layout_constraintStart_toStartOf="@+id/textView93"
+                app:layout_constraintEnd_toEndOf="@+id/my_res_dp_ukr"
+                app:layout_constraintStart_toStartOf="@+id/my_res_dp_ukr"
                 app:layout_constraintTop_toTopOf="@+id/textView89" />
 
             <TextView
-                android:id="@+id/textView93"
+                android:id="@+id/my_res_dp_ukr"
                 style="@style/NumberStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:text="0"
                 app:layout_constraintBottom_toBottomOf="@+id/textView83"
                 app:layout_constraintEnd_toEndOf="@+id/textView94"
@@ -805,56 +801,53 @@
 
                 android:text="0"
                 app:layout_constraintBottom_toBottomOf="@+id/textView84"
-                app:layout_constraintEnd_toEndOf="@+id/textView95"
-                app:layout_constraintStart_toStartOf="@+id/textView95"
+                app:layout_constraintEnd_toEndOf="@+id/my_res_dp_kor"
+                app:layout_constraintStart_toStartOf="@+id/my_res_dp_kor"
                 app:layout_constraintTop_toTopOf="@+id/textView84" />
 
             <TextView
-                android:id="@+id/textView95"
+                android:id="@+id/my_res_dp_kor"
                 style="@style/NumberStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
                 android:text="0"
                 app:layout_constraintBottom_toBottomOf="@+id/textView85"
-                app:layout_constraintEnd_toEndOf="@+id/textView96"
-                app:layout_constraintStart_toStartOf="@+id/textView96"
+                app:layout_constraintEnd_toEndOf="@+id/my_res_edu_mat"
+                app:layout_constraintStart_toStartOf="@+id/my_res_edu_mat"
                 app:layout_constraintTop_toTopOf="@+id/textView85" />
 
             <TextView
-                android:id="@+id/textView96"
+                android:id="@+id/my_res_edu_mat"
                 style="@style/NumberStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:text="0"
                 app:layout_constraintBottom_toBottomOf="@+id/textView86"
-                app:layout_constraintEnd_toEndOf="@+id/textView97"
-                app:layout_constraintStart_toStartOf="@+id/textView97"
+                app:layout_constraintEnd_toEndOf="@+id/my_res_str_lect"
+                app:layout_constraintStart_toStartOf="@+id/my_res_str_lect"
                 app:layout_constraintTop_toTopOf="@+id/textView86" />
 
             <TextView
-                android:id="@+id/textView97"
+                android:id="@+id/my_res_str_lect"
                 style="@style/NumberStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:text="0"
                 app:layout_constraintBottom_toBottomOf="@+id/textView87"
-                app:layout_constraintEnd_toEndOf="@+id/textView98"
-                app:layout_constraintStart_toStartOf="@+id/textView98"
+                app:layout_constraintEnd_toEndOf="@+id/my_res_center_lect"
+                app:layout_constraintStart_toStartOf="@+id/my_res_center_lect"
                 app:layout_constraintTop_toTopOf="@+id/textView87" />
 
             <TextView
-                android:id="@+id/textView98"
+                android:id="@+id/my_res_center_lect"
                 style="@style/NumberStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:text="0"
                 app:layout_constraintBottom_toBottomOf="@+id/textView88"
-                app:layout_constraintEnd_toEndOf="@+id/textView90"
-                app:layout_constraintStart_toStartOf="@+id/textView90"
+                app:layout_constraintEnd_toEndOf="@+id/my_res_center_ch"
+                app:layout_constraintStart_toStartOf="@+id/my_res_center_ch"
                 app:layout_constraintTop_toTopOf="@+id/textView88" />
 
             <TextView
