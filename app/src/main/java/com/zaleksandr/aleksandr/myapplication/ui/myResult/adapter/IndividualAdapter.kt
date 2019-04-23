@@ -8,44 +8,40 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.QuerySnapshot
 import com.zaleksandr.aleksandr.myapplication.model.City
+import com.zaleksandr.aleksandr.myapplication.ui.individualGoal.model.AdditionalGoalsModel
 import com.zaleksandr.aleksandr.myapplication.ui.individualGoal.model.IndividualMonthGoalModel
 import com.zaleksandr.aleksandr.myapplication.ui.individualGoal.model.IndividualWeekGoalModel
 import com.zaleksandr.aleksandr.myapplication.ui.individualGoal.model.IndividualYearGoalModel
-import com.zaleksandr.aleksandr.myapplication.ui.individualResult.IndividualResultFragment
+import com.zaleksandr.aleksandr.myapplication.ui.myResult.IndividualResultFragment
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import com.zaleksandr.aleksandr.myapplication.util.clickByFilterIndividualGoal
 import com.zaleksandr.aleksandr.myapplication.util.clickByFilterIndividualResult
 import kotlinx.android.synthetic.main.item_individual_goal_and_result_for_person.view.*
-import kotlinx.android.synthetic.main.item_individual_result_list.view.*
+
+import java.text.DecimalFormat
 import java.util.*
 
 
-class IndividualAdapter2(context: Context,
-                         private var list: ArrayList<City>,
-                         private var fragmentCommunication: IndividualResultFragment) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
+class IndividualAdapter(context: Context,
+                        private var list: ArrayList<City>,
+                        private var fragmentCommunication: IndividualResultFragment) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val TYPE_HEADER = 0
     private val TYPE_ITEM = 1
-    private val TYPE_HEADER_ADD = 2
 
     var city: City? = null
     private var mSelectedNoteIndex: Int = 0
 
     override fun getItemCount(): Int {
-        return list.size + 2
+        return list.size + 1
     }
 
     private fun getItem(position: Int): City {
-        return list[position - 2]
+        return list[position - 1]
     }
 
     override fun getItemViewType(position: Int): Int {
-        return when (position) {
-            0 -> TYPE_HEADER
-            1 -> TYPE_HEADER_ADD
-            else -> TYPE_ITEM
-        }
+        return if (position == 0) TYPE_HEADER else TYPE_ITEM
     }
 
     private val noteRefCollection = firestoreInstance.collection("NewCity")
@@ -59,37 +55,33 @@ class IndividualAdapter2(context: Context,
     }
 
     var period = 3
-    fun perioSelected(periodSelected: IndividualAdapter2.ClickByFilter) {
+    fun perioSelected(periodSelected: IndividualAdapter.ClickByFilter) {
 
         when (periodSelected) {
 
-            IndividualAdapter2.ClickByFilter.WEEK -> {
+            IndividualAdapter.ClickByFilter.WEEK -> {
                 period = 1; notifyDataSetChanged()
             }
-            IndividualAdapter2.ClickByFilter.MONTH -> {
+            IndividualAdapter.ClickByFilter.MONTH -> {
                 period = 2; notifyDataSetChanged()
             }
-            IndividualAdapter2.ClickByFilter.YEAR -> {
+            IndividualAdapter.ClickByFilter.YEAR -> {
                 period = 3; notifyDataSetChanged()
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        if (viewType == TYPE_ITEM) {
-            val v = LayoutInflater.from(parent.context).inflate(com.zaleksandr.aleksandr.myapplication.R.layout.item_individual_result_list,
-                    parent, false)
-            return IndividualHolder(v, fragmentCommunication)
-        } else if (viewType == TYPE_HEADER) {
+//        if (viewType == TYPE_ITEM) {
+//            val v = LayoutInflater.from(parent.context).inflate(com.zaleksandr.aleksandr.myapplication.R.layout.item_individual_result_list,
+//                    parent, false)
+//            return IndividualHolder(v, fragmentCommunication)
+//        } else if (viewType == TYPE_HEADER) {
             val v = LayoutInflater.from(parent.context).inflate(com.zaleksandr.aleksandr.myapplication.R.layout.item_individual_goal_and_result_for_person,
                     parent, false)
             return IndividualGoalHolder(v)
-        } else if (viewType == TYPE_HEADER_ADD) {
-            val v = LayoutInflater.from(parent.context).inflate(com.zaleksandr.aleksandr.myapplication.R.layout.item_individual_goal_and_result_for_person2,
-                    parent, false)
-            return IndividualGoalHolderAddRes(v)
-        }
-        throw RuntimeException("there is no type that matches the type $viewType + make sure your using types correctly")
+//        }
+//        throw RuntimeException("there is no type that matches the type $viewType + make sure your using types correctly")
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -99,15 +91,13 @@ class IndividualAdapter2(context: Context,
         } else if (holder is IndividualGoalHolder) {
 
             holder.bind2()
-        } else if (holder is IndividualGoalHolderAddRes){
-            holder.bind3()
         }
     }
 
     inner class IndividualHolder(itemView: View, fragmentCommunication: IndividualResultFragment) : RecyclerView.ViewHolder(itemView), View.OnLongClickListener {
 
         override fun onLongClick(v: View?): Boolean {
-            mSelectedNoteIndex = adapterPosition - 2
+            mSelectedNoteIndex = adapterPosition - 1
             fragmentCommunication.respond(list[mSelectedNoteIndex])
             return false
         }
@@ -118,24 +108,25 @@ class IndividualAdapter2(context: Context,
 
 
         fun bind() {
-            val item = list[position - 2]
-            itemView.individual_result_city.text = item.centers
-            itemView.individual_time_city.text = formatDateAndTime(item.timestamp)
-            if (!item.contact.isNullOrEmpty()) itemView.individual_result_contacts.text = item.contact else itemView.individual_result_intro.text = "0"
-            if (!item.intro.isNullOrEmpty()) itemView.individual_result_intro.text = item.intro else itemView.individual_result_intro.text = "0"
-            if (!item.onedayWS.isNullOrEmpty()) itemView.individual_result_one_day.text = item.onedayWS else itemView.individual_result_one_day.text = "0"
-            if (!item.twoDayWS.isNullOrEmpty()) itemView.individual_result_two_day.text = item.twoDayWS else itemView.individual_result_two_day.text = "0"
-            if (!item.actionaiser.isNullOrEmpty()) itemView.individual_result_actioniser.text = item.actionaiser else itemView.individual_result_actioniser.text = "0"
-            if (!item.twOneDay.isNullOrEmpty()) itemView.individual_result_21_day.text = item.twOneDay else itemView.individual_result_21_day.text = "0"
-            if (!item.timeStr.isNullOrEmpty()) itemView.individual_result_time_str.text = item.timeStr else itemView.individual_result_time_str.text = "0"
-            if (!item.approach.isNullOrEmpty()) itemView.individual_result_approach.text = item.approach else itemView.individual_result_approach.text = "0"
-            if (!item.lectTraining.isNullOrEmpty()) itemView.individual_result_train_lect.text = item.lectTraining else itemView.individual_result_train_lect.text = "0"
-            if (!item.lectOnStr.isNullOrEmpty()) itemView.individual_result_street_lect.text = item.lectOnStr else itemView.individual_result_street_lect.text = "0"
-            if (!item.lectOnStr.isNullOrEmpty()) itemView.individual_result_lect_center.text = item.lectCentr else itemView.individual_result_lect_center.text = "0"
-            if (!item.nwet.isNullOrEmpty()) itemView.ind_result_nwet_num.text = item.nwet else itemView.ind_result_nwet_num.text = "0"
-//            if (!item.dpKor.isNullOrEmpty()) itemView.individual_result_dp_kor.text = item.dpKor else itemView.individual_result_dp_kor.text = "0"
-//            if (!item.dp.isNullOrEmpty()) itemView.ind_result_read_dp_num.text = item.dp else itemView.ind_result_read_dp_num.text = "0"
-            if (!item.mmbk.isNullOrEmpty()) itemView.individual_result_mmbk.text = item.mmbk else itemView.individual_result_mmbk.text = "0"
+            val item = list[position - 1]
+//            itemView.individual_result_city.text = item.centers
+//            itemView.individual_time_city.text = formatDateAndTime(item.timestamp)
+//            if (!item.contact.isNullOrEmpty()) itemView.individual_result_contacts.text = item.contact else itemView.individual_result_intro.text = "0"
+//            if (!item.intro.isNullOrEmpty()) itemView.individual_result_intro.text = item.intro else itemView.individual_result_intro.text = "0"
+//            if (!item.onedayWS.isNullOrEmpty()) itemView.individual_result_one_day.text = item.onedayWS else itemView.individual_result_one_day.text = "0"
+//            if (!item.twoDayWS.isNullOrEmpty()) itemView.individual_result_two_day.text = item.twoDayWS else itemView.individual_result_two_day.text = "0"
+//            if (!item.actionaiser.isNullOrEmpty()) itemView.individual_result_actioniser.text = item.actionaiser else itemView.individual_result_actioniser.text = "0"
+//            if (!item.twOneDay.isNullOrEmpty()) itemView.individual_result_21_day.text = item.twOneDay else itemView.individual_result_21_day.text = "0"
+//            if (!item.timeStr.isNullOrEmpty()) itemView.individual_result_time_str.text = item.timeStr else itemView.individual_result_time_str.text = "0"
+//            if (!item.approach.isNullOrEmpty()) itemView.individual_result_approach.text = item.approach else itemView.individual_result_approach.text = "0"
+//            if (!item.lectTraining.isNullOrEmpty()) itemView.individual_result_train_lect.text = item.lectTraining else itemView.individual_result_train_lect.text = "0"
+//            if (!item.lectOnStr.isNullOrEmpty()) itemView.individual_result_street_lect.text = item.lectOnStr else itemView.individual_result_street_lect.text = "0"
+//            if (!item.lectOnStr.isNullOrEmpty()) itemView.individual_result_lect_center.text = item.lectCentr else itemView.individual_result_lect_center.text = "0"
+//            if (!item.nwet.isNullOrEmpty()) itemView.ind_result_nwet_num.text = item.nwet else itemView.ind_result_nwet_num.text = "0"
+////            if (!item.dpKor.isNullOrEmpty()) itemView.individual_result_dp_kor.text = item.dpKor else itemView.individual_result_dp_kor.text = "0"
+////            if (!item.dp.isNullOrEmpty()) itemView.ind_result_read_dp_num.text = item.dp else itemView.ind_result_read_dp_num.text = "0"
+//            if (!item.mmbk.isNullOrEmpty()) itemView.individual_result_mmbk.text = item.mmbk else itemView.individual_result_mmbk.text = "0"
+//            if (!item.eduMat.isNullOrEmpty()) itemView.individual_result_edu_mat.text = item.eduMat else itemView.individual_result_edu_mat.text = "0"
 
         }
     }
@@ -146,6 +137,11 @@ class IndividualAdapter2(context: Context,
             clickByFilterIndividualResult(noteRefCollection, period).addOnSuccessListener { queryDocumentSnapshots ->
                 individualResult(queryDocumentSnapshots)
             }
+
+            clickByFilterIndividualGoal(refCollectionAdditionalGoal).addOnSuccessListener { querySnapshot ->
+                yearAddGoal(querySnapshot)
+            }
+
 
             if (period == 1) {
                 clickByFilterIndividualGoal(refCollectionWeekGoal).addOnSuccessListener { queryDocumentSnapshots ->
@@ -159,9 +155,24 @@ class IndividualAdapter2(context: Context,
 
                 clickByFilterIndividualGoal(refCollectionYearGoal).addOnSuccessListener { querySnapshot ->
                     yearIndividualGoal(querySnapshot)
+
                 }
             }
 
+        }
+
+        private fun yearAddGoal(queryDocumentSnapshots: QuerySnapshot) {
+
+
+            if (!queryDocumentSnapshots.isEmpty) {
+                queryDocumentSnapshots.forEach { documentSnapshot ->
+                    val individualGoalNote = documentSnapshot.toObject(AdditionalGoalsModel::class.java)
+
+                    if (!individualGoalNote.yearDPUkr.isNullOrEmpty()) {
+                        itemView.goal_dp_person.text = individualGoalNote.yearDPUkr
+                    }
+                }
+            }
         }
 
         private fun individualResult(queryDocumentSnapshots: QuerySnapshot) {
@@ -174,8 +185,10 @@ class IndividualAdapter2(context: Context,
             var sumTwent1 = 0
             var sumNwet = 0
             var sumMmbk = 0
-            var sumDp = 0
-
+            var sumDp = 0.0
+            var sumInDouble: Double = 1.0
+            var df = DecimalFormat("#.##")
+            var dpYear = ""
 
             if (!queryDocumentSnapshots.isEmpty) {
                 queryDocumentSnapshots.forEach { documentSnapshot ->
@@ -218,11 +231,16 @@ class IndividualAdapter2(context: Context,
                         sumMmbk += nwet
                     }
                     if (!resultNote.dp.isNullOrEmpty()) {
-                        val nwet = Integer.parseInt(resultNote.dp)
-                        sumDp += nwet
+                        val dp = Integer.parseInt(resultNote.dp)
+                        sumDp += dp
+                        sumInDouble = (sumDp / 455)
+
+                        df = DecimalFormat("#.##")
+                        dpYear = df.format(sumInDouble)
                     }
 
                 }
+                // year
                 if (period == 3) {
                     itemView.goal_cont_person_text2.visibility = View.GONE
                     itemView.goal_cont_person.visibility = View.GONE
@@ -233,7 +251,8 @@ class IndividualAdapter2(context: Context,
                     itemView.indiv_action_res.text = sumAct.toString()
                     itemView.indiv_tw_one_d_result.text = sumTwent1.toString()
                     itemView.nwet_result_person.text = sumNwet.toString()
-//                    itemView.dp_result_person.text = sumDp.toString()
+                    itemView.indiv_result_dp.text = dpYear
+                    //month
                 } else
                     if (period == 2) {
                         itemView.goal_cont_person_text2.visibility = View.GONE
@@ -245,7 +264,9 @@ class IndividualAdapter2(context: Context,
                         itemView.indiv_action_res.text = sumAct.toString()
                         itemView.indiv_tw_one_d_result.text = sumTwent1.toString()
                         itemView.nwet_result_person.text = sumNwet.toString()
-//                        itemView.dp_result_person.text = sumDp.toString()
+                        itemView.indiv_result_dp.text = sumInDouble.toString()
+                        itemView.indiv_result_dp.text = dpYear
+                        //week
                     } else
                         if (period == 1) {
                             itemView.goal_cont_person_text2.visibility = View.VISIBLE
@@ -257,7 +278,8 @@ class IndividualAdapter2(context: Context,
                             itemView.ind_two_d_result.text = sumTwoD1.toString()
                             itemView.indiv_action_res.text = sumAct.toString()
                             itemView.indiv_tw_one_d_result.text = sumMmbk.toString()
-//                            itemView.dp_result_person.text = sumDp.toString()
+                            itemView.indiv_result_dp.text = sumInDouble.toString()
+                            itemView.indiv_result_dp.text = dpYear
                         }
             }
 //                itemView.result_city.text = model.centers.toString()
@@ -324,6 +346,7 @@ class IndividualAdapter2(context: Context,
                 queryDocumentSnapshots.forEach { documentSnapshot ->
                     val individualGoalNote = documentSnapshot.toObject(IndividualMonthGoalModel::class.java)
 //month
+
 
                     if (!individualGoalNote.monthIntro.isNullOrEmpty()) {
                         itemView.goal_intro_person.text = individualGoalNote.monthIntro
@@ -409,31 +432,16 @@ class IndividualAdapter2(context: Context,
 //    }
 
     @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-    inner class IndividualGoalHolderAddRes(itemView: View) : RecyclerView.ViewHolder(itemView){
-        fun bind3() {
-
-//            clickByFilterIndividualResult(noteRefCollection, period).addOnSuccessListener { queryDocumentSnapshots ->
-//                individualResult(queryDocumentSnapshots)
-//            }
-//
-//            if (period == 1) {
-//                clickByFilterIndividualGoal(refCollectionWeekGoal).addOnSuccessListener { queryDocumentSnapshots ->
-//                    weekIndividualGoal(queryDocumentSnapshots)
-//                }
-//            } else if (period == 2) {
-//                clickByFilterIndividualGoal(refCollectionMonthGoal).addOnSuccessListener { queryDocumentSnapshots ->
-//                    monthIndividualGoal(queryDocumentSnapshots)
-//                }
-//            } else if (period == 3) {
-//
-//                clickByFilterIndividualGoal(refCollectionYearGoal).addOnSuccessListener { querySnapshot ->
-//                    yearIndividualGoal(querySnapshot)
-//                }
-//            }
-
+    inner class CityHolder(itemView: View, var fragmentCommunication: IndividualResultFragment) : RecyclerView.ViewHolder(itemView), View.OnLongClickListener {
+        override fun onLongClick(v: View?): Boolean {
+            mSelectedNoteIndex = adapterPosition
+            fragmentCommunication.respond(list[mSelectedNoteIndex])
+            return false
         }
 
-
+        init {
+            itemView.setOnLongClickListener(this)
+        }
     }
 
     interface FragmentCommunication {

@@ -68,7 +68,7 @@
 
     <fragment
         android:id="@+id/addIndividualFragment"
-        android:name="com.zaleksandr.aleksandr.myapplication.ui.individualResult.IndividualResultFragment"
+        android:name="com.zaleksandr.aleksandr.myapplication.ui.myResult.IndividualResultFragment"
         android:label="First Fragment"
         tools:layout="@layout/fragment_individual_result" />
 
@@ -131,7 +131,7 @@
 
     <fragment
         android:id="@+id/individualResultFragment"
-        android:name="com.zaleksandr.aleksandr.myapplication.ui.individualResult.IndividualResultFragment"
+        android:name="com.zaleksandr.aleksandr.myapplication.ui.myResult.IndividualResultFragment"
         android:label="First Fragment"
         tools:layout="@layout/fragment_add_result" >
         <action

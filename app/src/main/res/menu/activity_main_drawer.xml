@@ -20,7 +20,7 @@
 
         <item android:id="@+id/individualResult"
             android:icon="@drawable/ic_person_black_24dp"
-            android:title="@string/individual_result"
+            android:title="My result"
             />
 
         <item
