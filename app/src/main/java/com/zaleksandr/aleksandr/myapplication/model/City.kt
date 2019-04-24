@@ -27,6 +27,7 @@ data class City(
         val dp: String?,
         val mmbk: String?,
         val mobilis: String?,
+        val descriptionGoal: String?,
         val eduMat: String?
 
 ) {
@@ -54,6 +55,7 @@ data class City(
             dp = "",
             mmbk = "",
             mobilis = "",
+            descriptionGoal = "",
             eduMat = ""
     )
 

@@ -12,7 +12,7 @@ import com.zaleksandr.aleksandr.myapplication.ui.individualGoal.model.Additional
 import com.zaleksandr.aleksandr.myapplication.ui.individualGoal.model.IndividualMonthGoalModel
 import com.zaleksandr.aleksandr.myapplication.ui.individualGoal.model.IndividualWeekGoalModel
 import com.zaleksandr.aleksandr.myapplication.ui.individualGoal.model.IndividualYearGoalModel
-import com.zaleksandr.aleksandr.myapplication.ui.myResult.IndividualResultFragment
+import com.zaleksandr.aleksandr.myapplication.ui.myResult.MyResultFragment
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import com.zaleksandr.aleksandr.myapplication.util.clickByFilterIndividualGoal
 import com.zaleksandr.aleksandr.myapplication.util.clickByFilterIndividualResult
@@ -24,7 +24,7 @@ import java.util.*
 
 class IndividualAdapter(context: Context,
                         private var list: ArrayList<City>,
-                        private var fragmentCommunication: IndividualResultFragment) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+                        private var fragmentCommunication: MyResultFragment) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val TYPE_HEADER = 0
     private val TYPE_ITEM = 1
@@ -94,7 +94,7 @@ class IndividualAdapter(context: Context,
         }
     }
 
-    inner class IndividualHolder(itemView: View, fragmentCommunication: IndividualResultFragment) : RecyclerView.ViewHolder(itemView), View.OnLongClickListener {
+    inner class IndividualHolder(itemView: View, fragmentCommunication: MyResultFragment) : RecyclerView.ViewHolder(itemView), View.OnLongClickListener {
 
         override fun onLongClick(v: View?): Boolean {
             mSelectedNoteIndex = adapterPosition - 1
@@ -432,7 +432,7 @@ class IndividualAdapter(context: Context,
 //    }
 
     @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-    inner class CityHolder(itemView: View, var fragmentCommunication: IndividualResultFragment) : RecyclerView.ViewHolder(itemView), View.OnLongClickListener {
+    inner class CityHolder(itemView: View, var fragmentCommunication: MyResultFragment) : RecyclerView.ViewHolder(itemView), View.OnLongClickListener {
         override fun onLongClick(v: View?): Boolean {
             mSelectedNoteIndex = adapterPosition
             fragmentCommunication.respond(list[mSelectedNoteIndex])

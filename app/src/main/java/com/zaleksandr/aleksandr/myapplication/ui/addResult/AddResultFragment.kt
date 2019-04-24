@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
@@ -54,7 +55,21 @@ class AddResultFragment : Fragment() {
     private var category2: Array<String>? = null
     var calendarDate: Date? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val rootView = inflater.inflate(com.zaleksandr.aleksandr.myapplication.R.layout.fragment_add_result, container, false)
+        val rootView = inflater.inflate(R.layout.fragment_add_result, container, false)
+
+
+        rootView.goal_description.setOnTouchListener(View.OnTouchListener { v, event ->
+            if (goal_description.hasFocus()) {
+                v.parent.requestDisallowInterceptTouchEvent(true)
+                when (event.action and MotionEvent.ACTION_MASK) {
+                    MotionEvent.ACTION_SCROLL -> {
+                        v.parent.requestDisallowInterceptTouchEvent(false)
+                        return@OnTouchListener true
+                    }
+                }
+            }
+            false
+        })
 
         val c = Calendar.getInstance()
         val currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.time)
@@ -137,7 +152,7 @@ class AddResultFragment : Fragment() {
         val dp = result_DP_edittext.text.toString()
         val dpKor = result_DP_kor_edittext.text.toString()
         val mobilis = result_mobilisation_edittext.text.toString()
-
+        val descriptionGoal = goal_description.text.toString()
         val date: Date
 
         if (calendarDate == null) {
@@ -169,7 +184,7 @@ class AddResultFragment : Fragment() {
                         userPhotoPath = user.profilePicturePath
                     }
 
-                    noteRefCommonCollection.set(City(getId, id, intro, oneDayWS, twoDayWS, actionaiser, twOneDay, centers, approach, telCont, timeCenter, timeStr, lectTraining, lectOnStr, lectCentr, date, timestamp, userPhotoPath, name, nwet, dpKor, dp, mmbk, mobilis, eduMat))
+                    noteRefCommonCollection.set(City(getId, id, intro, oneDayWS, twoDayWS, actionaiser, twOneDay, centers, approach, telCont, timeCenter, timeStr, lectTraining, lectOnStr, lectCentr, date, timestamp, userPhotoPath, name, nwet, dpKor, dp, mmbk, mobilis,descriptionGoal, eduMat))
                     noteRefCommonCollectionForEachCenter.set(EachCenter(id, id, intro, oneDayWS, twoDayWS, actionaiser, twOneDay, centers, date, timestamp, userPhotoPath, name, nwet, mmbk))
 
                 } else {

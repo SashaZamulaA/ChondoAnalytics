@@ -4,7 +4,8 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="link_color">#1976D2</color>  <!--Blue 700-->
     <color name="blue">#0000FF</color>
-
+    #E74C3C
+    <color name="int_goal_color">#C0392B</color> <!--Red A400 87%-->
     <color name="text_error">#DEFF1744</color> <!--Red A400 87%-->
     <color name="best3_color">#ff3333</color> <!--Red A400 87%-->
     <color name="best10_color">#ff9999</color> <!--Red A400 87%-->

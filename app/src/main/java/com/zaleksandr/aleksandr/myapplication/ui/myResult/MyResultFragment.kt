@@ -24,7 +24,7 @@ import kotlinx.android.synthetic.main.fragment_individual_result.*
 import kotlinx.android.synthetic.main.fragment_individual_result.view.*
 
 
-class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunication {
+class MyResultFragment : Fragment(), IndividualAdapter.FragmentCommunication {
     override fun respond(city: City) {
 
         context?.showMaterialDialogCancelDelete(
@@ -156,9 +156,8 @@ class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunica
         var sumLectInCenter = 0
         var supLectOnStr = 0
         var sumEduMat = 0
-        var sumDpKor=0
+        var sumDpKor = 0
         var sumDpUkr = 0
-        var sumDpRus = 0
         var sumMob = 0
         var sumHDH = 0
 
@@ -176,6 +175,9 @@ class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunica
 
                             val resultNote = documentSnapshot.toObject(City::class.java)
 
+                            if (resultNote.descriptionGoal!!.isNotEmpty()) {
+                                goal_description.setText(resultNote.descriptionGoal)
+                            }
                             if (!resultNote.mmbk.isNullOrEmpty()) {
                                 val mmbk = (Integer.parseInt(resultNote.mmbk))
                                 sumMmbk += mmbk
@@ -205,52 +207,42 @@ class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunica
                                 val onaDay = Integer.parseInt(resultNote.onedayWS)
                                 sumOneD1 += onaDay
                             }
-
                             if (!resultNote.twoDayWS.isNullOrEmpty()) {
                                 val twoDay = Integer.parseInt(resultNote.twoDayWS)
                                 sumTwoD1 += twoDay
                             }
-
                             if (!resultNote.actionaiser.isNullOrEmpty()) {
                                 val act = Integer.parseInt(resultNote.actionaiser)
                                 sumAct += act
                             }
-
                             if (!resultNote.twOneDay.isNullOrEmpty()) {
                                 val twOneDay = Integer.parseInt(resultNote.twOneDay)
                                 sumTwent1 += twOneDay
                             }
-
                             if (!resultNote.nwet.isNullOrEmpty()) {
                                 val nwet = Integer.parseInt(resultNote.nwet)
                                 sumNwet += nwet
                             }
-
                             if (!resultNote.timeCenter.isNullOrEmpty()) {
                                 val timeCen = Integer.parseInt(resultNote.timeCenter)
                                 sumCenterCh += timeCen
                             }
-
                             if (!resultNote.lectCentr.isNullOrEmpty()) {
                                 val lectC = Integer.parseInt(resultNote.lectCentr)
                                 sumLectInCenter += lectC
                             }
-
                             if (!resultNote.lectOnStr.isNullOrEmpty()) {
                                 val lectStr = Integer.parseInt(resultNote.lectOnStr)
                                 supLectOnStr += lectStr
                             }
-
                             if (!resultNote.eduMat.isNullOrEmpty()) {
                                 val edu = Integer.parseInt(resultNote.eduMat)
                                 sumEduMat += edu
                             }
-
                             if (!resultNote.dpKor.isNullOrEmpty()) {
                                 val dpK = Integer.parseInt(resultNote.dpKor)
                                 sumDpKor += dpK
                             }
-
                             if (!resultNote.dp.isNullOrEmpty()) {
                                 val dpU = Integer.parseInt(resultNote.dp)
                                 sumDpUkr += dpU
@@ -261,6 +253,7 @@ class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunica
                             }
 
                         }
+
                         my_res_mmbk.text = sumMmbk.toString()
                         my_res_time_str.text = sumStr.toString()
                         my_res_appr.text = sumAppr.toString()
@@ -278,37 +271,31 @@ class IndividualResultFragment : Fragment(), IndividualAdapter.FragmentCommunica
                         my_res_dp_kor.text = sumDpKor.toString()
                         my_res_dp_ukr.text = sumDpUkr.toString()
                         my_res_mob.text = sumMob.toString()
-
                     }
-                                  }
-
-
-
-
-
+                }
     }
 
 
-private fun bottomMenuInit(rootView: View) {
-    val layoutParams = rootView.bottom_navigation_person.layoutParams as CoordinatorLayout.LayoutParams
-    layoutParams.behavior = BottomNavigationViewBehavior()
-    rootView.bottom_navigation_person.setOnNavigationItemSelectedListener { item ->
-        when (item.itemId) {
-            com.zaleksandr.aleksandr.myapplication.R.id.menu_year -> {
+    private fun bottomMenuInit(rootView: View) {
+        val layoutParams = rootView.bottom_navigation_person.layoutParams as CoordinatorLayout.LayoutParams
+        layoutParams.behavior = BottomNavigationViewBehavior()
+        rootView.bottom_navigation_person.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                com.zaleksandr.aleksandr.myapplication.R.id.menu_year -> {
 //                adapter?.perioSelected(IndividualAdapter.ClickByFilter.YEAR)
-            }
-            com.zaleksandr.aleksandr.myapplication.R.id.menu_month -> {
+                }
+                com.zaleksandr.aleksandr.myapplication.R.id.menu_month -> {
 //                adapter?.perioSelected(IndividualAdapter.ClickByFilter.MONTH)
-            }
-            com.zaleksandr.aleksandr.myapplication.R.id.menu_week -> {
+                }
+                com.zaleksandr.aleksandr.myapplication.R.id.menu_week -> {
 //                adapter?.perioSelected(IndividualAdapter.ClickByFilter.WEEK)
-            }
+                }
 
-            else -> {
+                else -> {
+                }
             }
+            true
         }
-        true
     }
-}
 
 }
