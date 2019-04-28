@@ -211,7 +211,7 @@
                 android:textSize="@dimen/body1_text_size"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/dp_person_text3" />
+                app:layout_constraintTop_toBottomOf="@+id/dp_person_text2" />
 
             <TextView
 
@@ -221,7 +221,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="54dp"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:singleLine="true"
@@ -233,24 +233,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/dp_person_text4"
                 app:layout_constraintVertical_bias="0.0" />
-
-            <TextView
-
-                android:id="@+id/dp_person_text3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:text="DP(ru.)"
-                android:textColor="@color/text_primary_dark"
-                android:textSize="@dimen/body1_text_size"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/dp_person_text2" />
 
             <TextView
 
@@ -535,7 +517,6 @@
                 style="@style/NumberStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:text="0"
                 app:layout_constraintBottom_toBottomOf="@+id/goal_intr_person_text2"
                 app:layout_constraintEnd_toEndOf="@+id/my_goal_appr"
@@ -600,8 +581,8 @@
 
                 android:text="0"
                 app:layout_constraintBottom_toBottomOf="@+id/goal_21_day_person_text"
-                app:layout_constraintEnd_toEndOf="@+id/textView16"
-                app:layout_constraintStart_toStartOf="@+id/textView16"
+                app:layout_constraintEnd_toEndOf="@+id/my_goal_act"
+                app:layout_constraintStart_toStartOf="@+id/my_goal_act"
                 app:layout_constraintTop_toTopOf="@+id/goal_21_day_person_text" />
 
             <TextView
@@ -648,8 +629,8 @@
 
                 android:text="0"
                 app:layout_constraintBottom_toBottomOf="@+id/my_res_center_ch"
-                app:layout_constraintEnd_toEndOf="@+id/textView56"
-                app:layout_constraintStart_toStartOf="@+id/textView56"
+                app:layout_constraintEnd_toEndOf="@+id/my_res_nwet_perc"
+                app:layout_constraintStart_toStartOf="@+id/my_res_nwet_perc"
                 app:layout_constraintTop_toTopOf="@+id/my_res_center_ch" />
 
             <TextView
@@ -672,8 +653,8 @@
 
                 android:text="0"
                 app:layout_constraintBottom_toBottomOf="@+id/my_res_mob"
-                app:layout_constraintEnd_toEndOf="@+id/textView104"
-                app:layout_constraintStart_toStartOf="@+id/textView104"
+                app:layout_constraintEnd_toEndOf="@+id/my_res_dp_ukr_perc"
+                app:layout_constraintStart_toStartOf="@+id/my_res_dp_ukr_perc"
                 app:layout_constraintTop_toTopOf="@+id/my_res_mob" />
 
             <TextView
@@ -682,37 +663,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
-                app:layout_constraintBottom_toBottomOf="@+id/textView82"
+                app:layout_constraintBottom_toBottomOf="@+id/goal_mob"
                 app:layout_constraintEnd_toEndOf="@+id/my_res_dp_ukr"
                 app:layout_constraintStart_toStartOf="@+id/my_res_dp_ukr"
-                app:layout_constraintTop_toTopOf="@+id/textView82" />
+                app:layout_constraintTop_toTopOf="@+id/goal_mob" />
 
             <TextView
-                android:id="@+id/textView104"
+                android:id="@+id/my_res_dp_ukr_perc"
                 style="@style/NumberStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:text="0"
                 app:layout_constraintBottom_toBottomOf="@+id/my_res_dp_ukr"
-                app:layout_constraintEnd_toEndOf="@+id/textView111"
-                app:layout_constraintStart_toStartOf="@+id/textView111"
+                app:layout_constraintEnd_toEndOf="@+id/perc_dp_cor"
+                app:layout_constraintStart_toStartOf="@+id/perc_dp_cor"
                 app:layout_constraintTop_toTopOf="@+id/my_res_dp_ukr" />
 
             <TextView
-                android:id="@+id/textView111"
-                style="@style/NumberStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:text="0"
-                app:layout_constraintBottom_toBottomOf="@+id/textView94"
-                app:layout_constraintEnd_toEndOf="@+id/textView105"
-                app:layout_constraintStart_toStartOf="@+id/textView105"
-                app:layout_constraintTop_toTopOf="@+id/textView94" />
-
-            <TextView
-                android:id="@+id/textView105"
+                android:id="@+id/perc_dp_cor"
                 style="@style/NumberStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -766,10 +734,10 @@
                 android:layout_height="wrap_content"
 
                 android:text="0"
-                app:layout_constraintBottom_toBottomOf="@+id/textView89"
-                app:layout_constraintEnd_toEndOf="@+id/my_res_dp_ukr"
-                app:layout_constraintStart_toStartOf="@+id/my_res_dp_ukr"
-                app:layout_constraintTop_toTopOf="@+id/textView89" />
+                app:layout_constraintBottom_toBottomOf="@+id/goal_hdh"
+                app:layout_constraintEnd_toEndOf="@+id/my_res_mob"
+                app:layout_constraintStart_toStartOf="@+id/my_res_mob"
+                app:layout_constraintTop_toTopOf="@+id/goal_hdh" />
 
             <TextView
                 android:id="@+id/my_res_hdh"
@@ -777,10 +745,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
-                app:layout_constraintBottom_toBottomOf="@+id/textView89"
-                app:layout_constraintEnd_toEndOf="@+id/my_res_dp_ukr"
-                app:layout_constraintStart_toStartOf="@+id/my_res_dp_ukr"
-                app:layout_constraintTop_toTopOf="@+id/textView89" />
+                app:layout_constraintBottom_toBottomOf="@+id/goal_hdh"
+                app:layout_constraintEnd_toEndOf="@+id/my_res_mob"
+                app:layout_constraintStart_toStartOf="@+id/my_res_mob"
+                app:layout_constraintTop_toTopOf="@+id/goal_hdh" />
 
             <TextView
                 android:id="@+id/my_res_dp_ukr"
@@ -788,22 +756,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
-                app:layout_constraintBottom_toBottomOf="@+id/textView83"
-                app:layout_constraintEnd_toEndOf="@+id/textView94"
-                app:layout_constraintStart_toStartOf="@+id/textView94"
-                app:layout_constraintTop_toTopOf="@+id/textView83" />
-
-            <TextView
-                android:id="@+id/textView94"
-                style="@style/NumberStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:text="0"
-                app:layout_constraintBottom_toBottomOf="@+id/textView84"
+                app:layout_constraintBottom_toBottomOf="@+id/my_goal_dp_ukr"
                 app:layout_constraintEnd_toEndOf="@+id/my_res_dp_kor"
                 app:layout_constraintStart_toStartOf="@+id/my_res_dp_kor"
-                app:layout_constraintTop_toTopOf="@+id/textView84" />
+                app:layout_constraintTop_toTopOf="@+id/my_goal_dp_ukr" />
 
             <TextView
                 android:id="@+id/my_res_dp_kor"
@@ -812,10 +768,10 @@
                 android:layout_height="wrap_content"
 
                 android:text="0"
-                app:layout_constraintBottom_toBottomOf="@+id/textView85"
+                app:layout_constraintBottom_toBottomOf="@+id/my_goal_dp_kor"
                 app:layout_constraintEnd_toEndOf="@+id/my_res_edu_mat"
                 app:layout_constraintStart_toStartOf="@+id/my_res_edu_mat"
-                app:layout_constraintTop_toTopOf="@+id/textView85" />
+                app:layout_constraintTop_toTopOf="@+id/my_goal_dp_kor" />
 
             <TextView
                 android:id="@+id/my_res_edu_mat"
@@ -851,59 +807,46 @@
                 app:layout_constraintTop_toTopOf="@+id/textView88" />
 
             <TextView
-                android:id="@+id/textView82"
+                android:id="@+id/goal_mob"
                 style="@style/NumberStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
                 android:text="0"
                 app:layout_constraintBottom_toBottomOf="@+id/dp_person_text4"
-                app:layout_constraintEnd_toEndOf="@+id/textView83"
-                app:layout_constraintStart_toStartOf="@+id/textView83"
+                app:layout_constraintEnd_toEndOf="@+id/my_goal_dp_ukr"
+                app:layout_constraintStart_toStartOf="@+id/my_goal_dp_ukr"
                 app:layout_constraintTop_toTopOf="@+id/dp_person_text4" />
 
             <TextView
-                android:id="@+id/textView89"
+                android:id="@+id/goal_hdh"
                 style="@style/NumberStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
                 android:text="0"
                 app:layout_constraintBottom_toBottomOf="@+id/dp_person_text5"
-                app:layout_constraintEnd_toEndOf="@+id/textView82"
-                app:layout_constraintStart_toStartOf="@+id/textView82"
+                app:layout_constraintEnd_toEndOf="@+id/goal_mob"
+                app:layout_constraintStart_toStartOf="@+id/goal_mob"
                 app:layout_constraintTop_toTopOf="@+id/dp_person_text5" />
 
             <TextView
-                android:id="@+id/textView83"
-                style="@style/NumberStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:text="0"
-                app:layout_constraintBottom_toBottomOf="@+id/dp_person_text3"
-                app:layout_constraintEnd_toEndOf="@+id/textView84"
-                app:layout_constraintStart_toStartOf="@+id/textView84"
-                app:layout_constraintTop_toTopOf="@+id/dp_person_text3" />
-
-            <TextView
-                android:id="@+id/textView84"
+                android:id="@+id/my_goal_dp_ukr"
                 style="@style/NumberStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
                 android:text="0"
                 app:layout_constraintBottom_toBottomOf="@+id/dp_person_text2"
-                app:layout_constraintEnd_toEndOf="@+id/textView85"
-                app:layout_constraintStart_toStartOf="@+id/textView85"
+                app:layout_constraintEnd_toEndOf="@+id/my_goal_dp_kor"
+                app:layout_constraintStart_toStartOf="@+id/my_goal_dp_kor"
                 app:layout_constraintTop_toTopOf="@+id/dp_person_text2" />
 
             <TextView
-                android:id="@+id/textView85"
+                android:id="@+id/my_goal_dp_kor"
                 style="@style/NumberStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:text="0"
                 app:layout_constraintBottom_toBottomOf="@+id/dp_person_text"
                 app:layout_constraintEnd_toEndOf="@+id/textView86"
@@ -965,7 +908,7 @@
                 style="@style/NumberStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="4"
+                android:text="0"
                 app:layout_constraintBottom_toBottomOf="@+id/goal_intr_person_text5"
                 app:layout_constraintEnd_toEndOf="@+id/textView16"
                 app:layout_constraintStart_toStartOf="@+id/textView16"
@@ -1151,7 +1094,7 @@
                 app:layout_constraintTop_toTopOf="@+id/goal_intr_person_text" />
 
             <TextView
-                android:id="@+id/textView52"
+                android:id="@+id/my_res_one_day_perc"
                 style="@style/NumberStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -1163,7 +1106,7 @@
                 app:layout_constraintTop_toTopOf="@+id/each_center_one_day" />
 
             <TextView
-                android:id="@+id/textView53"
+                android:id="@+id/my_res_teo_day_perc"
                 style="@style/NumberStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -1175,7 +1118,7 @@
                 app:layout_constraintTop_toTopOf="@+id/each_center_one_day5" />
 
             <TextView
-                android:id="@+id/textView54"
+                android:id="@+id/my_res_act_perc"
                 style="@style/NumberStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -1187,7 +1130,7 @@
                 app:layout_constraintTop_toTopOf="@+id/textView31" />
 
             <TextView
-                android:id="@+id/textView55"
+                android:id="@+id/my_res_21_perc"
                 style="@style/NumberStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -1199,7 +1142,7 @@
                 app:layout_constraintTop_toTopOf="@+id/goal_21_day_person_text" />
 
             <TextView
-                android:id="@+id/textView56"
+                android:id="@+id/my_res_nwet_perc"
                 style="@style/NumberStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -1247,13 +1190,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView112" />
 
             <TextView
-                android:id="@+id/textView114"
+                android:id="@+id/my_intern_res"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_marginLeft="4dp"
-                android:textColor="@color/best3_color"
-                android:text="5"
+                android:textColor="@color/int_goal_color"
+                android:text="0"
                 app:layout_constraintBottom_toBottomOf="@+id/textView113"
                 app:layout_constraintStart_toEndOf="@+id/textView113"
                 app:layout_constraintTop_toTopOf="@+id/textView113" />

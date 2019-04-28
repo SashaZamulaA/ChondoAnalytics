@@ -371,7 +371,7 @@
                     app:layout_constraintTop_toTopOf="@+id/textView2" />
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/result_time_street_edit_text2"
+                    android:id="@+id/result_internal_goal"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
@@ -592,7 +592,7 @@
                     app:layout_constraintTop_toTopOf="@+id/textView38" />
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/result_mobilisation_edittext2"
+                    android:id="@+id/result_hdh"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"

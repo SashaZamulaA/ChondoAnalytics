@@ -5,7 +5,7 @@ import java.util.*
 data class City(
         val getId: String?,
         val id: String?,
-        val intro: String,
+        val intro: String?,
         val onedayWS: String?,
         val twoDayWS: String?,
         val actionaiser: String?,
@@ -13,7 +13,7 @@ data class City(
         val centers: String?,
         val approach: String?,
         val contact: String?,
-        val timeCenter: String,
+        val timeCenter: String?,
         val timeStr: String?,
         val lectTraining: String?,
         val lectOnStr: String?,
@@ -28,7 +28,10 @@ data class City(
         val mmbk: String?,
         val mobilis: String?,
         val descriptionGoal: String?,
-        val eduMat: String?
+        val hdh: String?,
+        val eduMat: String?,
+        val gradeIntRes: String?
+
 
 ) {
     constructor() : this(getId = "",
@@ -56,7 +59,9 @@ data class City(
             mmbk = "",
             mobilis = "",
             descriptionGoal = "",
-            eduMat = ""
+            hdh = "",
+            eduMat = "",
+            gradeIntRes = ""
     )
 
 

@@ -168,9 +168,7 @@ class IndividualAdapter(context: Context,
                 queryDocumentSnapshots.forEach { documentSnapshot ->
                     val individualGoalNote = documentSnapshot.toObject(AdditionalGoalsModel::class.java)
 
-                    if (!individualGoalNote.yearDPUkr.isNullOrEmpty()) {
-                        itemView.goal_dp_person.text = individualGoalNote.yearDPUkr
-                    }
+
                 }
             }
         }

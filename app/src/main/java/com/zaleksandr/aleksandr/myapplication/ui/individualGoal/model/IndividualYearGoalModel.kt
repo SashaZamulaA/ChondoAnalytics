@@ -7,7 +7,11 @@ data class IndividualYearGoalModel(
         val yearTwoDay: String?,
         val yearTWOne: String?,
         val yearActionaiser: String,
-        val yearNWET: String?
+        val yearNWET: String?,
+        val yearDPUkr: String?,
+        val yearDPKor: String?,
+        val yearHDH: String,
+        val yearMobilisation: String
 
         ) {
     constructor() : this(
@@ -18,7 +22,12 @@ data class IndividualYearGoalModel(
             yearTwoDay = "0",
             yearTWOne = "0",
             yearActionaiser = "0",
-            yearNWET = "0"
+            yearNWET = "0",
+            yearDPUkr = "0",
+            yearDPKor = "0",
+            yearHDH = "0",
+            yearMobilisation = "0"
+
     )
 
     fun constructor() {

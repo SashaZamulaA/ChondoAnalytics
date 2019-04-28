@@ -4,7 +4,6 @@ data class AdditionalGoalsModel(
 
         val currentUserId: String?,
         val yearDPKor: String?,
-        val yearDPUkr: String?,
         val yearHDH:String?,
         val yearMobilisation: String?
 
@@ -13,7 +12,6 @@ data class AdditionalGoalsModel(
 
             currentUserId = "",
             yearDPKor = "",
-            yearDPUkr = "",
             yearHDH = "",
             yearMobilisation = ""
     )

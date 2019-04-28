@@ -1,7 +1,9 @@
 package com.zaleksandr.aleksandr.myapplication.ui.bestResult
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.appcompat.widget.Toolbar
 import androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -10,21 +12,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.Query
 import com.zaleksandr.aleksandr.myapplication.BottomNavigationViewBehavior
+import com.zaleksandr.aleksandr.myapplication.R
 import com.zaleksandr.aleksandr.myapplication.model.City
 import com.zaleksandr.aleksandr.myapplication.ui.bestResult.adapter.BestResultAdapter
 import com.zaleksandr.aleksandr.myapplication.util.*
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_best_result.view.*
-import android.view.MenuInflater
-import android.widget.ImageView
-import android.widget.PopupMenu
-import android.widget.Toast
-import com.zaleksandr.aleksandr.myapplication.R
 
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-class BestResultFragment : Fragment(){
+class BestResultFragment : Fragment() {
 
 
     var toolbar: Toolbar? = null
@@ -33,6 +31,7 @@ class BestResultFragment : Fragment(){
     var city: City? = null
     private var pairList: List<Pair<String?, Int>>? = ArrayList()
     var period = 3
+
     enum class ClickByFilter {
         MONTH, WEEK, YEAR
     }
@@ -49,13 +48,12 @@ class BestResultFragment : Fragment(){
     }
 
 
-
 //   fun onMenuItemSelect(item: MenuItem): Boolean {
 //        showPopup(view!!.findViewById(item.itemId))
 //        return true
 //    }
 
-//
+    //
 //    private fun showPopup(view: View) {
 //        val popup = PopupMenu(context, view)
 //        try {
@@ -79,28 +77,28 @@ class BestResultFragment : Fragment(){
 //        popup.setOnMenuItemClickListener(this@BestResultFragment)
 //        popup.show()
 //    }
-fun perioSelected(periodSelected: ClickByFilter) {
+    fun perioSelected(periodSelected: ClickByFilter) {
 
-    when (periodSelected) {
+        when (periodSelected) {
 
-        ClickByFilter.WEEK -> {
-            period = 1
-            adapter?.notifyDataSetChanged()
+            ClickByFilter.WEEK -> {
+                period = 1
+                adapter?.notifyDataSetChanged()
 
-        }
-        ClickByFilter.MONTH -> {
-            period = 2
-            adapter?.notifyDataSetChanged()
+            }
+            ClickByFilter.MONTH -> {
+                period = 2
+                adapter?.notifyDataSetChanged()
 
-        }
-        ClickByFilter.YEAR -> {
-            period = 3
-            adapter?.notifyDataSetChanged()
+            }
+            ClickByFilter.YEAR -> {
+                period = 3
+                adapter?.notifyDataSetChanged()
 
 
+            }
         }
     }
-}
 
     override fun onResume() {
         super.onResume()
@@ -142,13 +140,16 @@ fun perioSelected(periodSelected: ClickByFilter) {
                                                 } else it.onedayWS) * 3)
                                                 .plus(Integer.parseInt(if (it.twoDayWS.isNullOrEmpty() || it.twoDayWS.isNullOrBlank() || it.twoDayWS == "") {
                                                     ("0").toString()
-                                                } else it.twoDayWS) * 12)
+                                                } else it.twoDayWS) * 9)
+                                                .plus(Integer.parseInt(if (it.actionaiser.isNullOrEmpty() || it.actionaiser.isNullOrBlank() || it.actionaiser == "") {
+                                                    ("0").toString()
+                                                } else it.actionaiser) * 18)
                                                 .plus(Integer.parseInt(if (it.twOneDay.isNullOrEmpty() || it.twOneDay.isNullOrBlank() || it.twOneDay == "") {
                                                     ("0").toString()
-                                                } else it.twOneDay) * 40)
+                                                } else it.twOneDay) * 36)
                                                 .plus(Integer.parseInt(if (it.nwet.isNullOrEmpty() || it.nwet.isNullOrBlank() || it.nwet == "") {
                                                     ("0").toString()
-                                                } else it.nwet) * 80)
+                                                } else it.nwet) * 72)
                                     }
                                 }
                                 .toList()
@@ -182,7 +183,7 @@ fun perioSelected(periodSelected: ClickByFilter) {
         rootView.bottom_navigation_best_result_person.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
 
-                com.zaleksandr.aleksandr.myapplication.R.id.menu_year -> {
+                R.id.menu_year -> {
                     adapter?.perioSelected(BestResultAdapter.ClickByFilter.YEAR)
                     perioSelected(ClickByFilter.YEAR)
                     noteRefCollection
@@ -212,13 +213,16 @@ fun perioSelected(periodSelected: ClickByFilter) {
                                                             } else it.onedayWS) * 3)
                                                             .plus(Integer.parseInt(if (it.twoDayWS.isNullOrEmpty() || it.twoDayWS.isNullOrBlank() || it.twoDayWS == "") {
                                                                 ("0").toString()
-                                                            } else it.twoDayWS) * 12)
+                                                            } else it.twoDayWS) * 9)
+                                                            .plus(Integer.parseInt(if (it.actionaiser.isNullOrEmpty() || it.actionaiser.isNullOrBlank() || it.actionaiser == "") {
+                                                                ("0").toString()
+                                                            } else it.actionaiser) * 18)
                                                             .plus(Integer.parseInt(if (it.twOneDay.isNullOrEmpty() || it.twOneDay.isNullOrBlank() || it.twOneDay == "") {
                                                                 ("0").toString()
-                                                            } else it.twOneDay) * 40)
+                                                            } else it.twOneDay) * 36)
                                                             .plus(Integer.parseInt(if (it.nwet.isNullOrEmpty() || it.nwet.isNullOrBlank() || it.nwet == "") {
                                                                 ("0").toString()
-                                                            } else it.nwet) * 80)
+                                                            } else it.nwet) * 72)
                                                 }
                                             }
                                             .toList()
@@ -239,7 +243,7 @@ fun perioSelected(periodSelected: ClickByFilter) {
                                 }
                             }
                 }
-                com.zaleksandr.aleksandr.myapplication.R.id.menu_month -> {
+                R.id.menu_month -> {
                     adapter?.perioSelected(BestResultAdapter.ClickByFilter.MONTH)
                     perioSelected(ClickByFilter.MONTH)
                     noteRefCollection
@@ -270,13 +274,16 @@ fun perioSelected(periodSelected: ClickByFilter) {
                                                             } else it.onedayWS) * 3)
                                                             .plus(Integer.parseInt(if (it.twoDayWS.isNullOrEmpty() || it.twoDayWS.isNullOrBlank() || it.twoDayWS == "") {
                                                                 ("0").toString()
-                                                            } else it.twoDayWS) * 12)
+                                                            } else it.twoDayWS) * 9)
+                                                            .plus(Integer.parseInt(if (it.actionaiser.isNullOrEmpty() || it.actionaiser.isNullOrBlank() || it.actionaiser == "") {
+                                                                ("0").toString()
+                                                            } else it.actionaiser) * 18)
                                                             .plus(Integer.parseInt(if (it.twOneDay.isNullOrEmpty() || it.twOneDay.isNullOrBlank() || it.twOneDay == "") {
                                                                 ("0").toString()
-                                                            } else it.twOneDay) * 40)
+                                                            } else it.twOneDay) * 36)
                                                             .plus(Integer.parseInt(if (it.nwet.isNullOrEmpty() || it.nwet.isNullOrBlank() || it.nwet == "") {
                                                                 ("0").toString()
-                                                            } else it.nwet) * 80)
+                                                            } else it.nwet) * 72)
                                                 }
                                             }
                                             .toList()
@@ -302,7 +309,7 @@ fun perioSelected(periodSelected: ClickByFilter) {
                                 }
                             }
                 }
-                com.zaleksandr.aleksandr.myapplication.R.id.menu_week -> {
+                R.id.menu_week -> {
                     adapter?.perioSelected(BestResultAdapter.ClickByFilter.WEEK)
                     perioSelected(ClickByFilter.WEEK)
                     noteRefCollection
@@ -333,13 +340,16 @@ fun perioSelected(periodSelected: ClickByFilter) {
                                                             } else it.onedayWS) * 3)
                                                             .plus(Integer.parseInt(if (it.twoDayWS.isNullOrEmpty() || it.twoDayWS.isNullOrBlank() || it.twoDayWS == "") {
                                                                 ("0").toString()
-                                                            } else it.twoDayWS) * 12)
+                                                            } else it.twoDayWS) * 9)
+                                                            .plus(Integer.parseInt(if (it.actionaiser.isNullOrEmpty() || it.actionaiser.isNullOrBlank() || it.actionaiser == "") {
+                                                                ("0").toString()
+                                                            } else it.actionaiser) * 18)
                                                             .plus(Integer.parseInt(if (it.twOneDay.isNullOrEmpty() || it.twOneDay.isNullOrBlank() || it.twOneDay == "") {
                                                                 ("0").toString()
-                                                            } else it.twOneDay) * 40)
+                                                            } else it.twOneDay) * 36)
                                                             .plus(Integer.parseInt(if (it.nwet.isNullOrEmpty() || it.nwet.isNullOrBlank() || it.nwet == "") {
                                                                 ("0").toString()
-                                                            } else it.nwet) * 80)
+                                                            } else it.nwet) * 72)
                                                 }
                                             }
                                             .toList()

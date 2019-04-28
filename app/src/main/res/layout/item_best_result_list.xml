@@ -29,11 +29,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/best_res_act"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="0"
+            android:textColor="@color/text_secondary_dark"
+            android:textSize="@dimen/body1_text_size"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/textView13"
+            app:layout_constraintStart_toStartOf="@+id/textView13"
+            app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
         <ImageView
             android:id="@+id/best_profile_picture"
             android:layout_width="86dp"
             android:layout_height="86dp"
-            android:layout_marginStart="4dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:padding="@dimen/space_8"
@@ -47,7 +59,8 @@
             android:id="@+id/best_result_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
             android:layout_marginEnd="8dp"
             android:singleLine="true"
             android:text="Name"
@@ -64,14 +77,16 @@
             android:id="@+id/each_center_intr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
             android:layout_marginTop="12dp"
             android:ellipsize="end"
             android:maxLines="1"
             android:singleLine="true"
             android:text="@string/intro"
             android:textColor="@color/text_primary_dark"
-            android:textSize="@dimen/body1_text_size"
+            android:textSize="@dimen/caption_text_size"
+            android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/best_profile_picture"
             app:layout_constraintTop_toBottomOf="@+id/best_result_name" />
 
@@ -99,10 +114,11 @@
             android:layout_marginStart="8dp"
             android:ellipsize="end"
             android:maxLines="1"
+            android:textStyle="bold"
             android:singleLine="true"
             android:text="1-d"
             android:textColor="@color/text_primary_dark"
-            android:textSize="@dimen/body1_text_size"
+            android:textSize="@dimen/caption_text_size"
             app:layout_constraintBottom_toBottomOf="@+id/each_center_intr"
             app:layout_constraintStart_toEndOf="@+id/each_center_intr"
             app:layout_constraintTop_toTopOf="@+id/each_center_intr" />
@@ -113,8 +129,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="2-d"
+            android:textStyle="bold"
             android:textColor="@color/text_primary_dark"
-            android:textSize="@dimen/body1_text_size"
+            android:textSize="@dimen/caption_text_size"
             app:layout_constraintBottom_toBottomOf="@+id/each_center_one_day"
             app:layout_constraintStart_toEndOf="@+id/each_center_one_day"
             app:layout_constraintTop_toTopOf="@+id/each_center_one_day" />
@@ -176,11 +193,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="@string/nwet"
+            android:layout_marginLeft="8dp"
+            android:text="NWET"
+            android:textStyle="bold"
             android:textColor="@color/text_primary_dark"
-            android:textSize="@dimen/body1_text_size"
+            android:textSize="11sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView21"
-            app:layout_constraintStart_toEndOf="@+id/textView21"
+            app:layout_constraintStart_toEndOf="@+id/textView13"
             app:layout_constraintTop_toTopOf="@+id/textView21" />
 
         <TextView
@@ -207,10 +226,28 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="21-d"
+            android:textStyle="bold"
+            android:textSize="@dimen/caption_text_size"
             android:textColor="@color/text_primary_dark"
             app:layout_constraintBottom_toBottomOf="@+id/textView7"
             app:layout_constraintStart_toEndOf="@+id/textView7"
             app:layout_constraintTop_toTopOf="@+id/textView7" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="8dp"
+            android:textSize="@dimen/caption_text_size"
+            android:text="Act."
+            android:textStyle="bold"
+            android:textColor="@color/text_primary_dark"
+            app:layout_constraintBottom_toBottomOf="@+id/textView21"
+            app:layout_constraintStart_toEndOf="@+id/textView21"
+            app:layout_constraintTop_toTopOf="@+id/textView21"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/best_number_position"

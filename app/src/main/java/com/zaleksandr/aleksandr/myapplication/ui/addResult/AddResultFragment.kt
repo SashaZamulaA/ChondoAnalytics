@@ -153,6 +153,8 @@ class AddResultFragment : Fragment() {
         val dpKor = result_DP_kor_edittext.text.toString()
         val mobilis = result_mobilisation_edittext.text.toString()
         val descriptionGoal = goal_description.text.toString()
+        val hdh = result_hdh.text.toString()
+        val gradeIntGoal = result_internal_goal.text.toString()
         val date: Date
 
         if (calendarDate == null) {
@@ -184,7 +186,7 @@ class AddResultFragment : Fragment() {
                         userPhotoPath = user.profilePicturePath
                     }
 
-                    noteRefCommonCollection.set(City(getId, id, intro, oneDayWS, twoDayWS, actionaiser, twOneDay, centers, approach, telCont, timeCenter, timeStr, lectTraining, lectOnStr, lectCentr, date, timestamp, userPhotoPath, name, nwet, dpKor, dp, mmbk, mobilis,descriptionGoal, eduMat))
+                    noteRefCommonCollection.set(City(getId, id, intro, oneDayWS, twoDayWS, actionaiser, twOneDay, centers, approach, telCont, timeCenter, timeStr, lectTraining, lectOnStr, lectCentr, date, timestamp, userPhotoPath, name, nwet, dpKor, dp, mmbk, mobilis,descriptionGoal, hdh, eduMat, gradeIntGoal))
                     noteRefCommonCollectionForEachCenter.set(EachCenter(id, id, intro, oneDayWS, twoDayWS, actionaiser, twOneDay, centers, date, timestamp, userPhotoPath, name, nwet, mmbk))
 
                 } else {

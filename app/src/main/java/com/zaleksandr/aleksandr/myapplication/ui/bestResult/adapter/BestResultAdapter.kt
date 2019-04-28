@@ -87,6 +87,7 @@ class BestResultAdapter(private val context: Context,
             var sumIntro = 0
             var sumOneDay = 0
             var sumTwoDay = 0
+            var sumAct = 0
             var sumTwoOneDay = 0
             var sumNWET = 0
             var name = ""
@@ -125,6 +126,12 @@ class BestResultAdapter(private val context: Context,
                             if (resultNote.id == item.first) {
                                 val twoDay = (Integer.parseInt(resultNote.twoDayWS))
                                 sumTwoDay += twoDay
+                            }
+                        }
+                        if (!resultNote.actionaiser.isNullOrEmpty()) {
+                            if (resultNote.id == item.first) {
+                                val act = (Integer.parseInt(resultNote.actionaiser))
+                                sumAct += act
                             }
                         }
                         if (!resultNote.twOneDay.isNullOrEmpty()) {
@@ -168,6 +175,7 @@ class BestResultAdapter(private val context: Context,
                     itemView.best_res_intro.text = sumIntro.toString()
                     itemView.best_result_one_day.text = sumOneDay.toString()
                     itemView.best_res_two_day.text = sumTwoDay.toString()
+                    itemView.best_res_act.text = sumAct.toString()
                     itemView.best_res_twoOne_day.text = sumTwoOneDay.toString()
                     itemView.best_res_nwet.text = sumNWET.toString()
                 }

@@ -77,6 +77,7 @@ class ChartFragment : Fragment() {
         var sumIntro = 0
         var sumOneD1 = 0
         var sumTwoD1 = 0
+        var sumAct = 0
         var sumTwent1 = 0
         var sumNwet = 0
 
@@ -100,6 +101,10 @@ class ChartFragment : Fragment() {
                     sumTwoD1 += twoDay
                 }
 
+                if (!resultNote.actionaiser.isNullOrEmpty()) {
+                    val act = Integer.parseInt(resultNote.actionaiser)
+                    sumAct += act
+                }
                 if (!resultNote.twOneDay.isNullOrEmpty()) {
                     val twOneDay = Integer.parseInt(resultNote.twOneDay)
                     sumTwent1 += twOneDay
@@ -111,9 +116,9 @@ class ChartFragment : Fragment() {
                 }
             }
             val df = DecimalFormat("#.##")
-            rootView.chart_common_result.text = (sumIntro + sumOneD1 * 3 + sumTwoD1 * 12 + sumTwent1 * 40 + sumNwet * 80).toString()
+            rootView.chart_common_result.text = (sumIntro + sumOneD1 * 3 + sumTwoD1 * 9 + sumAct*18 + sumTwent1 * 36 + sumNwet * 72).toString()
 
-            rootView.result_percent.text = ((df.format((sumIntro + sumOneD1 * 3 + sumTwoD1 * 12 + sumTwent1 * 40 + sumNwet * 80F) * 100F / 12620F)).toString())
+            rootView.result_percent.text = ((df.format((sumIntro + sumOneD1 * 3 + sumTwoD1 * 9 + sumAct*18 + sumTwent1 * 36 + sumNwet * 72F) * 100F / 13270F)).toString())
 
             for (change in queryDocumentSnapshots.documentChanges) {
                 if (change.type == DocumentChange.Type.MODIFIED) {
@@ -162,13 +167,16 @@ class ChartFragment : Fragment() {
                                                 } else it.onedayWS) * 3)
                                                 .plus(Integer.parseInt(if (it.twoDayWS.isNullOrEmpty() || it.twoDayWS.isNullOrBlank() || it.twoDayWS == "") {
                                                     ("0").toString()
-                                                } else it.twoDayWS) * 12)
+                                                } else it.twoDayWS) * 9)
+                                                .plus(Integer.parseInt(if (it.actionaiser.isNullOrEmpty() || it.actionaiser.isNullOrBlank() || it.actionaiser == "") {
+                                                    ("0").toString()
+                                                } else it.actionaiser) * 18)
                                                 .plus(Integer.parseInt(if (it.twOneDay.isNullOrEmpty() || it.twOneDay.isNullOrBlank() || it.twOneDay == "") {
                                                     ("0").toString()
-                                                } else it.twOneDay) * 40)
+                                                } else it.twOneDay) * 36)
                                                 .plus(Integer.parseInt(if (it.nwet.isNullOrEmpty() || it.nwet.isNullOrBlank() || it.nwet == "") {
                                                     ("0").toString()
-                                                } else it.nwet) * 80)
+                                                } else it.nwet) * 72)
                                     }
                                 }
                                 .toList()
@@ -265,13 +273,16 @@ class ChartFragment : Fragment() {
                                                             } else it.onedayWS) * 3)
                                                             .plus(Integer.parseInt(if (it.twoDayWS.isNullOrEmpty() || it.twoDayWS.isNullOrBlank() || it.twoDayWS == "") {
                                                                 ("0").toString()
-                                                            } else it.twoDayWS) * 12)
+                                                            } else it.twoDayWS) * 9)
+                                                            .plus(Integer.parseInt(if (it.actionaiser.isNullOrEmpty() || it.actionaiser.isNullOrBlank() || it.actionaiser == "") {
+                                                                ("0").toString()
+                                                            } else it.actionaiser) * 18)
                                                             .plus(Integer.parseInt(if (it.twOneDay.isNullOrEmpty() || it.twOneDay.isNullOrBlank() || it.twOneDay == "") {
                                                                 ("0").toString()
-                                                            } else it.twOneDay) * 40)
+                                                            } else it.twOneDay) * 36)
                                                             .plus(Integer.parseInt(if (it.nwet.isNullOrEmpty() || it.nwet.isNullOrBlank() || it.nwet == "") {
                                                                 ("0").toString()
-                                                            } else it.nwet) * 80)
+                                                            } else it.nwet) * 72)
                                                 }
                                             }
                                             .toList()
@@ -343,6 +354,7 @@ class ChartFragment : Fragment() {
                     var sumIntro = 0
                     var sumOneD1 = 0
                     var sumTwoD1 = 0
+                    var sumAct = 0
                     var sumTwent1 = 0
                     var sumNwet = 0
                     noteRefCollection.addSnapshotListener { queryDocumentSnapshots, _ ->
@@ -368,6 +380,12 @@ class ChartFragment : Fragment() {
                                     sumTwoD1 += twoDay
                                 }
 
+                                if (!resultNote.actionaiser.isNullOrEmpty()) {
+                                    val act = Integer.parseInt(resultNote.actionaiser)
+                                    sumAct += act
+                                }
+
+
                                 if (!resultNote.twOneDay.isNullOrEmpty()) {
                                     val twOneDay = Integer.parseInt(resultNote.twOneDay)
                                     sumTwent1 += twOneDay
@@ -379,11 +397,11 @@ class ChartFragment : Fragment() {
                                 }
                             }
                             val df = DecimalFormat("#.##")
-                            rootView.chart_common_result.text = (sumIntro + sumOneD1 * 3 + sumTwoD1 * 12 + sumTwent1 * 40 + sumNwet * 80).toString()
+                            rootView.chart_common_result.text = (sumIntro + sumOneD1 * 3 + sumTwoD1 * 9 + sumAct*18 + sumTwent1 * 36 + sumNwet * 72).toString()
 
-                            rootView.result_percent.text = ((df.format((sumIntro + sumOneD1 * 3 + sumTwoD1 * 12 + sumTwent1 * 40 + sumNwet * 80F) * 100F / 12620F)).toString())
+                            rootView.result_percent.text = ((df.format((sumIntro + sumOneD1 * 3 + sumTwoD1 * 9 + sumAct*18 + sumTwent1 * 36 + sumNwet * 72F) * 100F / 13270F)).toString())
 
-                            rootView.chart_common_goal.text = "12620"
+                            rootView.chart_common_goal.text = "13270"
                             for (change in queryDocumentSnapshots.documentChanges) {
                                 if (change.type == DocumentChange.Type.MODIFIED) {
                                     Log.d(ContentValues.TAG, "data:" + change.document.data)
@@ -497,8 +515,7 @@ class ChartFragment : Fragment() {
                                         rootView.common_score_percent_zero.visibility = View.GONE
                                         rootView.empty_chart.visibility = View.VISIBLE
                                         rootView.chart.visibility = View.GONE
-                                    }
-                                    else rootView.empty_chart.visibility = View.GONE
+                                    } else rootView.empty_chart.visibility = View.GONE
 
                                 }
 
@@ -580,9 +597,7 @@ class ChartFragment : Fragment() {
                                                             } else it.onedayWS) * 3)
                                                             .plus(Integer.parseInt(if (it.twoDayWS.isNullOrEmpty() || it.twoDayWS.isNullOrBlank() || it.twoDayWS == "") {
                                                                 ("0").toString()
-                                                            } else it.twoDayWS) * 12)
-
-
+                                                            } else it.twoDayWS) * 9)
                                                 }
                                             }
                                             .toList()

@@ -43,7 +43,7 @@ class AddIndividualGoalFragment : Fragment() {
             addIndividualYearGoal()
             addIndividualMonthGoal()
             addIndividualWeekGoal()
-            addIndividualAdditionGoal()
+
         }
         return rootView
     }
@@ -64,11 +64,15 @@ class AddIndividualGoalFragment : Fragment() {
         val yearActionaiser = indivitual_action_goal.text.toString()
         val yearTWOne = individual_goal_day21_seminar_edittext.text.toString()
         val yearNWET = individual_goal_result_nwet_edittext.text.toString()
+        val yearDPUkr = ind_goal_dp_ukr.text.toString()
+        val yearDPKor = ind_goal_dp_kor.text.toString()
+        val yearHDH = ind_goal_hdh.text.toString()
+        val yearMobilisation = ind_goal_mobilisation.text.toString()
 
         FirestoreUtil.currentUserDocRef.addSnapshotListener { documentSnapshot, _ ->
             FirestoreUtil.getCurrentUser { user ->
                 if (documentSnapshot?.exists()!!) {
-                    refCollectionYearGoal.set(IndividualYearGoalModel(currentUserId, yearIntro, yearOneDay, yearTwoDay, yearTWOne, yearActionaiser, yearNWET))
+                    refCollectionYearGoal.set(IndividualYearGoalModel(currentUserId, yearIntro, yearOneDay, yearTwoDay, yearTWOne, yearActionaiser, yearNWET, yearDPUkr, yearDPKor, yearHDH, yearMobilisation))
                 }
             }
         }
@@ -85,6 +89,9 @@ class AddIndividualGoalFragment : Fragment() {
         val monthActioniser = month_action_goal.text.toString()
         val monthTWOne = individ_goal_21_month.text.toString()
         val monthNWET = ind_goal_nwet_month_edittext.text.toString()
+        val yearDPKor = ind_goal_dp_kor.text.toString()
+        val yearHDH = ind_goal_hdh.text.toString()
+        val yearMobilisation = ind_goal_mobilisation.text.toString()
 
         FirestoreUtil.currentUserDocRef.addSnapshotListener { documentSnapshot, _ ->
             FirestoreUtil.getCurrentUser { user ->
@@ -118,24 +125,20 @@ class AddIndividualGoalFragment : Fragment() {
         startActivity(Intent(context, MainActivity::class.java))
     }
 
-    private fun addIndividualAdditionGoal() {
-
-        val currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
-
-        val yearDPKor = ind_goal_dp_kor.text.toString()
-        val yearDPUkr = ind_goal_dp_ukr.text.toString()
-        val yearHDH = ind_goal_hdh.text.toString()
-        val yearMobilisation = ind_goal_mobilisation.text.toString()
-
-
-        FirestoreUtil.currentUserDocRef.addSnapshotListener { documentSnapshot, _ ->
-            FirestoreUtil.getCurrentUser { user ->
-                if (documentSnapshot?.exists()!!) {
-                    refCollectionAdditionalGoal.set(AdditionalGoalsModel(currentUserId, yearDPKor, yearDPUkr, yearHDH, yearMobilisation))
-                }
-            }
-        }
-        startActivity(Intent(context, MainActivity::class.java))
-    }
+//    private fun addIndividualAdditionGoal() {
+//
+//        val currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
+//
+//
+//
+//        FirestoreUtil.currentUserDocRef.addSnapshotListener { documentSnapshot, _ ->
+//            FirestoreUtil.getCurrentUser { user ->
+//                if (documentSnapshot?.exists()!!) {
+//                    refCollectionAdditionalGoal.set(AdditionalGoalsModel(currentUserId, yearDPKor, yearHDH, yearMobilisation))
+//                }
+//            }
+//        }
+//        startActivity(Intent(context, MainActivity::class.java))
+//    }
 
 }
