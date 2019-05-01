@@ -70,7 +70,13 @@
         android:id="@+id/addIndividualFragment"
         android:name="com.zaleksandr.aleksandr.myapplication.ui.myResult.MyResultFragment"
         android:label="First Fragment"
-        tools:layout="@layout/fragment_individual_result" />
+        tools:layout="@layout/fragment_my_result" />
+
+    <fragment
+        android:id="@+id/updateMyResultFragment"
+        android:name="com.zaleksandr.aleksandr.myapplication.ui.updateResult.UpdateMyResultFragment"
+        android:label="Update result fragment"
+        tools:layout="@layout/fragment_update_my_result" />
 
     <fragment
         android:id="@+id/showMyGuestFragment"
@@ -115,7 +121,7 @@
         android:id="@+id/addIndividualGoalsFragment"
         android:name="com.zaleksandr.aleksandr.myapplication.ui.individualGoal.AddIndividualGoalFragment"
         android:label="First Fragment"
-        tools:layout="@layout/fragment_individual_result" />
+        tools:layout="@layout/fragment_my_result" />
 
     <fragment
         android:id="@+id/settingsFragment"

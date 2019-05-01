@@ -247,4 +247,5 @@
     <string name="bestResult">Best result</string>
     <string name="chart">Charts</string>
     <string name="best_centers_chart">Best centers chart</string>
+    <string name="update_result">Update result</string>
 </resources>

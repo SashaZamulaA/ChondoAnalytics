@@ -7,42 +7,25 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.FirebaseFirestore
 import com.zaleksandr.aleksandr.myapplication.BottomNavigationViewBehavior
 import com.zaleksandr.aleksandr.myapplication.DialogCompositeDisposable
-import com.zaleksandr.aleksandr.myapplication.addTo
 import com.zaleksandr.aleksandr.myapplication.model.City
-import com.zaleksandr.aleksandr.myapplication.showMaterialDialogCancelDelete
-import com.zaleksandr.aleksandr.myapplication.ui.commonResult.adapter.IndividualAdapter
 import com.zaleksandr.aleksandr.myapplication.ui.individualGoal.model.IndividualMonthGoalModel
 import com.zaleksandr.aleksandr.myapplication.ui.individualGoal.model.IndividualWeekGoalModel
 import com.zaleksandr.aleksandr.myapplication.ui.individualGoal.model.IndividualYearGoalModel
+import com.zaleksandr.aleksandr.myapplication.ui.updateResult.adapter.IndividualAdapter
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import com.zaleksandr.aleksandr.myapplication.util.clickByFilterIndividualGoal
 import com.zaleksandr.aleksandr.myapplication.util.clickByFilterIndividualResult
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_individual_result.*
-import kotlinx.android.synthetic.main.fragment_individual_result.view.*
+import kotlinx.android.synthetic.main.fragment_my_result.*
+import kotlinx.android.synthetic.main.fragment_my_result.view.*
 import java.text.DecimalFormat
 import kotlin.math.roundToInt
 
 
-class MyResultFragment : Fragment(), IndividualAdapter.FragmentCommunication {
-    override fun respond(city: City) {
-
-        context?.showMaterialDialogCancelDelete(
-                title = resources.getText(com.zaleksandr.aleksandr.myapplication.R.string.delete_item_card_title).toString(),
-                message = resources.getText(com.zaleksandr.aleksandr.myapplication.R.string.delete_select_item).toString(),
-                onNoClick = {},
-                onYesClick = {
-                    deleteNote(city)
-                }
-        )?.addTo(dialogDisposable)
-
-    }
-
+class MyResultFragment : Fragment(){
 
     var toolbar: Toolbar? = null
     var adapter: IndividualAdapter? = null
@@ -96,7 +79,7 @@ class MyResultFragment : Fragment(), IndividualAdapter.FragmentCommunication {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val rootView = inflater.inflate(com.zaleksandr.aleksandr.myapplication.R.layout.fragment_individual_result, container, false)
+        val rootView = inflater.inflate(com.zaleksandr.aleksandr.myapplication.R.layout.fragment_my_result, container, false)
 
         setUpRecyclerView()
         res()
@@ -111,48 +94,6 @@ class MyResultFragment : Fragment(), IndividualAdapter.FragmentCommunication {
         super.onResume()
         (this.activity!!.toolbar as Toolbar).visibility = View.VISIBLE
         (this.activity!!.toolbar as Toolbar).title = "Individual result"
-    }
-
-    private fun deleteNote(city: City?) {
-        val db = FirebaseFirestore.getInstance()
-
-        val noteRef = db
-                .collection("NewCity")
-                .document(city?.getId.toString())
-
-        noteRef.delete().addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                if (city != null) {
-                    adapter?.removeNote(city)
-                }
-            } else {
-//                makeSnackBarMessage("Failed. Check log.")
-            }
-        }
-    }
-
-    private fun makeSnackBarMessage(message: String) {
-        Snackbar.make(this.view!!, message, Snackbar.LENGTH_SHORT).show()
-    }
-
-    fun updateNote(city: City?) {
-
-        val db = FirebaseFirestore.getInstance()
-
-        val noteRef = db
-                .collection("NewCity")
-                .document(city?.id.toString())
-
-        noteRef.update(
-                "intro", city?.intro
-        ).addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                makeSnackBarMessage("Updated note")
-//                adapter?.updateNote(city!!)
-            } else {
-                makeSnackBarMessage("Failed. Check log.")
-            }
-        }
     }
 
     private fun setUpRecyclerView() {

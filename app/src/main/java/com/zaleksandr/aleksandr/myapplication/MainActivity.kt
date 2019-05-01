@@ -104,6 +104,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                                 R.id.chart -> navController.navigate(R.id.addChart)
                                 R.id.add_guest -> navController.navigate(R.id.addMyGuestFragment)
                                 R.id.my_guests -> navController.navigate(R.id.showMyGuestFragment)
+                                R.id.update_result -> navController.navigate(R.id.updateMyResultFragment)
                                 R.id.individualResult -> navController.navigate(R.id.addIndividualFragment)
                                 R.id.add_individual_goals -> navController.navigate(R.id.addIndividualGoalsFragment)
                                 R.id.nav_settings -> navController.navigate(R.id.settingsFragment)

@@ -5,11 +5,14 @@
         <item android:id="@+id/commonResult"
             android:title="@string/common_result"
             android:icon="@drawable/ic_home_black_24dp"
+
+
             />
 
         <item android:id="@+id/individualResult"
             android:icon="@drawable/ic_person_black_24dp"
             android:title="My result"
+
             />
 
         <item
@@ -40,7 +43,10 @@
             android:icon="@drawable/ic_contact_phone_black_24dp"
             android:title="@string/add_guest" />
 
-
+        <item
+            android:id="@+id/update_result"
+            android:icon="@drawable/ic_cached_black_24dp"
+            android:title="@string/update_result" />
 
 
         <item
