@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginLeft="4dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             android:ellipsize="end"
             android:maxLines="1"
             android:singleLine="true"
@@ -110,15 +110,15 @@
 
             android:id="@+id/each_center_one_day"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textStyle="bold"
             android:singleLine="true"
             android:text="1-d"
             android:textColor="@color/text_primary_dark"
             android:textSize="@dimen/caption_text_size"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/each_center_intr"
             app:layout_constraintStart_toEndOf="@+id/each_center_intr"
             app:layout_constraintTop_toTopOf="@+id/each_center_intr" />
@@ -194,13 +194,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:text="NWET"
-            android:textStyle="bold"
+            android:text="NW"
             android:textColor="@color/text_primary_dark"
             android:textSize="11sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/textView21"
-            app:layout_constraintStart_toEndOf="@+id/textView13"
-            app:layout_constraintTop_toTopOf="@+id/textView21" />
+            app:layout_constraintStart_toEndOf="@+id/textView21"
+            app:layout_constraintTop_toTopOf="@+id/textView21"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/best_result"
@@ -225,13 +226,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:text="21-d"
-            android:textStyle="bold"
-            android:textSize="@dimen/caption_text_size"
             android:textColor="@color/text_primary_dark"
-            app:layout_constraintBottom_toBottomOf="@+id/textView7"
-            app:layout_constraintStart_toEndOf="@+id/textView7"
-            app:layout_constraintTop_toTopOf="@+id/textView7" />
+            android:textSize="@dimen/caption_text_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/textView13"
+            app:layout_constraintStart_toEndOf="@+id/textView13"
+            app:layout_constraintTop_toTopOf="@+id/textView13" />
 
         <TextView
             android:id="@+id/textView13"
@@ -239,14 +241,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginBottom="8dp"
-            android:textSize="@dimen/caption_text_size"
             android:text="Act."
-            android:textStyle="bold"
             android:textColor="@color/text_primary_dark"
-            app:layout_constraintBottom_toBottomOf="@+id/textView21"
-            app:layout_constraintStart_toEndOf="@+id/textView21"
-            app:layout_constraintTop_toTopOf="@+id/textView21"
+            android:textSize="@dimen/caption_text_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/textView7"
+            app:layout_constraintStart_toEndOf="@+id/textView7"
+            app:layout_constraintTop_toTopOf="@+id/textView7"
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView

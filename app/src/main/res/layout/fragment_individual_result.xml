@@ -385,11 +385,13 @@
                 android:layout_marginEnd="24dp"
                 android:layout_marginRight="24dp"
                 android:text="Goal"
+                android:textColor="@color/main_font_color"
                 app:layout_constraintEnd_toStartOf="@+id/textView18"
                 app:layout_constraintTop_toBottomOf="@+id/des" />
 
             <TextView
                 android:id="@+id/textView24"
+                style="@style/Procent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
@@ -492,11 +494,13 @@
 
             <TextView
                 android:id="@+id/textView18"
+                style="@style/ResStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="24dp"
                 android:layout_marginRight="24dp"
                 android:text="Result"
+
                 app:layout_constraintBottom_toBottomOf="@+id/textView16"
                 app:layout_constraintEnd_toStartOf="@+id/textView24"
                 app:layout_constraintTop_toTopOf="@+id/textView16" />
@@ -612,7 +616,7 @@
 
             <TextView
                 android:id="@+id/my_res_center_ch"
-                style="@style/NumberStyle"
+                style="@style/ResStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
@@ -623,7 +627,7 @@
 
             <TextView
                 android:id="@+id/textView91"
-                style="@style/NumberStyle"
+                style="@style/Procent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
@@ -635,7 +639,7 @@
 
             <TextView
                 android:id="@+id/textView102"
-                style="@style/NumberStyle"
+                style="@style/Procent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
@@ -647,7 +651,7 @@
 
             <TextView
                 android:id="@+id/textView103"
-                style="@style/NumberStyle"
+                style="@style/Procent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
@@ -659,7 +663,7 @@
 
             <TextView
                 android:id="@+id/my_res_mob"
-                style="@style/NumberStyle"
+                style="@style/ResStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
@@ -670,7 +674,7 @@
 
             <TextView
                 android:id="@+id/my_res_dp_ukr_perc"
-                style="@style/NumberStyle"
+                style="@style/Procent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
@@ -681,7 +685,7 @@
 
             <TextView
                 android:id="@+id/perc_dp_cor"
-                style="@style/NumberStyle"
+                style="@style/Procent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
@@ -693,7 +697,7 @@
 
             <TextView
                 android:id="@+id/textView106"
-                style="@style/NumberStyle"
+                style="@style/Procent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
@@ -705,7 +709,7 @@
 
             <TextView
                 android:id="@+id/textView107"
-                style="@style/NumberStyle"
+                style="@style/Procent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
@@ -717,7 +721,7 @@
 
             <TextView
                 android:id="@+id/textView108"
-                style="@style/NumberStyle"
+                style="@style/Procent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
@@ -741,7 +745,7 @@
 
             <TextView
                 android:id="@+id/my_res_hdh"
-                style="@style/NumberStyle"
+                style="@style/ResStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
@@ -752,7 +756,7 @@
 
             <TextView
                 android:id="@+id/my_res_dp_ukr"
-                style="@style/NumberStyle"
+                style="@style/ResStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
@@ -763,7 +767,7 @@
 
             <TextView
                 android:id="@+id/my_res_dp_kor"
-                style="@style/NumberStyle"
+                style="@style/ResStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
@@ -775,7 +779,7 @@
 
             <TextView
                 android:id="@+id/my_res_edu_mat"
-                style="@style/NumberStyle"
+                style="@style/ResStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
@@ -786,7 +790,7 @@
 
             <TextView
                 android:id="@+id/my_res_str_lect"
-                style="@style/NumberStyle"
+                style="@style/ResStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
@@ -797,7 +801,7 @@
 
             <TextView
                 android:id="@+id/my_res_center_lect"
-                style="@style/NumberStyle"
+                style="@style/ResStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
@@ -916,10 +920,9 @@
 
             <TextView
                 android:id="@+id/my_res_mmbk"
-                style="@style/NumberStyle"
+                style="@style/ResStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:text="0"
                 app:layout_constraintBottom_toBottomOf="@+id/goal_intr_person_text5"
                 app:layout_constraintEnd_toEndOf="@+id/textView18"
@@ -928,7 +931,7 @@
 
             <TextView
                 android:id="@+id/my_result_mmbk"
-                style="@style/NumberStyle"
+                style="@style/Procent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
@@ -939,7 +942,7 @@
 
             <TextView
                 android:id="@+id/my_res_time_str"
-                style="@style/NumberStyle"
+                style="@style/ResStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
@@ -952,7 +955,7 @@
 
             <TextView
                 android:id="@+id/my_res_appr"
-                style="@style/NumberStyle"
+                style="@style/ResStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
@@ -964,7 +967,7 @@
 
             <TextView
                 android:id="@+id/my_res_cont"
-                style="@style/NumberStyle"
+                style="@style/ResStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
@@ -976,22 +979,22 @@
 
             <TextView
                 android:id="@+id/my_res_intr"
-                style="@style/NumberStyle"
+                style="@style/ResStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:text="0"
-                app:layout_constraintBottom_toBottomOf="@+id/goal_intr_person_text"
-                app:layout_constraintEnd_toEndOf="@+id/textView18"
-                app:layout_constraintStart_toStartOf="@+id/textView18"
-                app:layout_constraintTop_toTopOf="@+id/goal_intr_person_text" />
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/my_goal_intro"
+                app:layout_constraintEnd_toEndOf="@+id/my_res_cont"
+                app:layout_constraintStart_toStartOf="@+id/my_res_cont"
+                app:layout_constraintTop_toTopOf="@+id/my_goal_intro" />
 
             <TextView
                 android:id="@+id/my_res_1_day"
-                style="@style/NumberStyle"
+                style="@style/ResStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
+                android:textStyle="bold"
                 android:text="0"
                 app:layout_constraintBottom_toBottomOf="@+id/each_center_one_day"
                 app:layout_constraintEnd_toEndOf="@+id/textView18"
@@ -1000,10 +1003,10 @@
 
             <TextView
                 android:id="@+id/my_res_2_day"
-                style="@style/NumberStyle"
+                style="@style/ResStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
+                android:textStyle="bold"
                 android:text="0"
                 app:layout_constraintBottom_toBottomOf="@+id/each_center_one_day5"
                 app:layout_constraintEnd_toEndOf="@+id/textView18"
@@ -1012,10 +1015,10 @@
 
             <TextView
                 android:id="@+id/my_res_act"
-                style="@style/NumberStyle"
+                style="@style/ResStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
+                android:textStyle="bold"
                 android:text="0"
                 app:layout_constraintBottom_toBottomOf="@+id/textView31"
                 app:layout_constraintEnd_toEndOf="@+id/my_res_2_day"
@@ -1024,21 +1027,22 @@
 
             <TextView
                 android:id="@+id/my_res_21_day"
-                style="@style/NumberStyle"
+                style="@style/ResStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
-                app:layout_constraintBottom_toBottomOf="@+id/goal_21_day_person_text"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/my_goal_21"
                 app:layout_constraintEnd_toEndOf="@+id/my_res_act"
                 app:layout_constraintStart_toStartOf="@+id/my_res_act"
-                app:layout_constraintTop_toTopOf="@+id/goal_21_day_person_text" />
+                app:layout_constraintTop_toTopOf="@+id/my_goal_21" />
 
             <TextView
                 android:id="@+id/my_res_nwet"
-                style="@style/NumberStyle"
+                style="@style/ResStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
+                android:textStyle="bold"
                 android:text="0"
                 app:layout_constraintBottom_toBottomOf="@+id/nwet_individual"
                 app:layout_constraintEnd_toEndOf="@+id/textView18"
@@ -1047,7 +1051,7 @@
 
             <TextView
                 android:id="@+id/my_result_street"
-                style="@style/NumberStyle"
+                style="@style/Procent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
@@ -1059,10 +1063,10 @@
 
             <TextView
                 android:id="@+id/textView49"
-                style="@style/NumberStyle"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
+                style="@style/Procent"
                 android:text="0"
                 app:layout_constraintBottom_toBottomOf="@+id/goal_intr_person_text4"
                 app:layout_constraintEnd_toEndOf="@+id/textView24"
@@ -1071,10 +1075,10 @@
 
             <TextView
                 android:id="@+id/my_result_contact"
-                style="@style/NumberStyle"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
+                style="@style/Procent"
                 android:text="0"
                 app:layout_constraintBottom_toBottomOf="@+id/goal_intr_person_text2"
                 app:layout_constraintEnd_toEndOf="@+id/textView24"
@@ -1083,7 +1087,7 @@
 
             <TextView
                 android:id="@+id/my_result_intr"
-                style="@style/NumberStyle"
+                style="@style/Procent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
@@ -1095,7 +1099,7 @@
 
             <TextView
                 android:id="@+id/my_res_one_day_perc"
-                style="@style/NumberStyle"
+                style="@style/Procent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
@@ -1107,7 +1111,7 @@
 
             <TextView
                 android:id="@+id/my_res_teo_day_perc"
-                style="@style/NumberStyle"
+                style="@style/Procent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
@@ -1119,19 +1123,19 @@
 
             <TextView
                 android:id="@+id/my_res_act_perc"
-                style="@style/NumberStyle"
+                style="@style/Procent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
                 android:text="0"
-                app:layout_constraintBottom_toBottomOf="@+id/textView31"
-                app:layout_constraintEnd_toEndOf="@+id/textView24"
-                app:layout_constraintStart_toStartOf="@+id/textView24"
-                app:layout_constraintTop_toTopOf="@+id/textView31" />
+                app:layout_constraintBottom_toBottomOf="@+id/my_res_act"
+                app:layout_constraintEnd_toEndOf="@+id/my_res_teo_day_perc"
+                app:layout_constraintStart_toStartOf="@+id/my_res_teo_day_perc"
+                app:layout_constraintTop_toTopOf="@+id/my_res_act" />
 
             <TextView
                 android:id="@+id/my_res_21_perc"
-                style="@style/NumberStyle"
+                style="@style/Procent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
@@ -1143,7 +1147,7 @@
 
             <TextView
                 android:id="@+id/my_res_nwet_perc"
-                style="@style/NumberStyle"
+                style="@style/Procent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 

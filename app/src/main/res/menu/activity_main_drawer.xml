@@ -7,6 +7,16 @@
             android:icon="@drawable/ic_home_black_24dp"
             />
 
+        <item android:id="@+id/individualResult"
+            android:icon="@drawable/ic_person_black_24dp"
+            android:title="My result"
+            />
+
+        <item
+            android:id="@+id/my_guests"
+            android:icon="@drawable/ic_child_care_black_24dp"
+            android:title="@string/my_guests" />
+
         <item android:id="@+id/best_result"
             android:title="@string/bestResult"
             android:icon="@drawable/ic_star_border_black_24dp"
@@ -18,10 +28,7 @@
             android:title="@string/chart"
             />
 
-        <item android:id="@+id/individualResult"
-            android:icon="@drawable/ic_person_black_24dp"
-            android:title="My result"
-            />
+
 
         <item
             android:id="@+id/add_result"
@@ -32,6 +39,9 @@
             android:id="@+id/add_guest"
             android:icon="@drawable/ic_contact_phone_black_24dp"
             android:title="@string/add_guest" />
+
+
+
 
         <item
             android:id="@+id/add_goal"
@@ -48,10 +58,7 @@
             android:icon="@drawable/ic_tag_faces_black_24dp"
             android:title="@string/add_individual_goals" />
 
-        <item
-            android:id="@+id/my_guests"
-            android:icon="@drawable/ic_child_care_black_24dp"
-            android:title="@string/my_guests" />
+
 
         <item
             android:id="@+id/nav_settings"

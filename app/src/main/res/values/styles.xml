@@ -134,6 +134,16 @@
         <item name="android:textColor">@color/black_effective</item>
     </style>
 
+    <style name="ResStyle">
+
+        <item name="android:textColor">@color/int_goal_color</item>
+    </style>
+
+    <style name="Procent">
+
+        <item name="android:textColor">@color/divider_spinner_color</item>
+    </style>
+
     <style name="NumberStyle">
         <item name="android:fontFamily" tools:ignore="NewApi">sans-serif</item>
         <item name="android:textSize">14sp</item>
