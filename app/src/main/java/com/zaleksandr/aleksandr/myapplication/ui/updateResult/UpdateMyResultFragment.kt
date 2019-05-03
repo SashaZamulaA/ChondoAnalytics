@@ -4,23 +4,27 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.appcompat.widget.Toolbar
-import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.zaleksandr.aleksandr.myapplication.DialogCompositeDisposable
 import com.zaleksandr.aleksandr.myapplication.addTo
 import com.zaleksandr.aleksandr.myapplication.model.City
 import com.zaleksandr.aleksandr.myapplication.showMaterialDialogCancelDelete
-import kotlinx.android.synthetic.main.fragment_my_result.view.*
 import com.google.android.material.snackbar.Snackbar
-import com.zaleksandr.aleksandr.myapplication.BottomNavigationViewBehavior
-import com.zaleksandr.aleksandr.myapplication.ui.updateResult.adapter.IndividualAdapter
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.Query
+import com.zaleksandr.aleksandr.myapplication.ui.updateResult.adapter.UpdateResultAdapter
+import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_update_my_result.*
+import kotlinx.android.synthetic.main.fragment_update_my_result.view.*
 
 
-class UpdateMyResultFragment : Fragment(), IndividualAdapter.FragmentCommunication {
+class UpdateMyResultFragment : Fragment(), UpdateResultAdapter.FragmentCommunication {
     override fun respond(city: City) {
 
         context?.showMaterialDialogCancelDelete(
@@ -35,7 +39,7 @@ class UpdateMyResultFragment : Fragment(), IndividualAdapter.FragmentCommunicati
     }
 
     var toolbar: Toolbar? = null
-    var adapter: IndividualAdapter? = null
+    var adapter: UpdateResultAdapter? = null
     var city: City? = null
     private val items: ArrayList<City> = ArrayList()
     private var mLastQueriedDocument: DocumentSnapshot? = null
@@ -117,38 +121,39 @@ class UpdateMyResultFragment : Fragment(), IndividualAdapter.FragmentCommunicati
 
     private fun setUpRecyclerView(rootView: View) {
 
-//        rootView.list_individual_result_adapter.layoutManager = LinearLayoutManager(this.context, LinearLayout.VERTICAL, false)
-//        rootView.list_individual_result_adapter.setHasFixedSize(false)
-//        rootView.list_individual_result_adapter.layoutManager = LinearLayoutManager(context)
-//
-//        adapter = IndividualAdapter(this.context!!, items, this)
-//        rootView.list_individual_result_adapter.adapter = adapter
-//
-//        val notesCollectionRef = firestoreInstance.collection("NewCity")
-//
-//        notesCollectionRef
-//                .whereEqualTo("id", if ("${FirebaseAuth.getInstance().uid}" == FirebaseAuth.getInstance().currentUser!!.uid) {
-//                    FirebaseAuth.getInstance().uid
-//                } else null)
-//                .orderBy("time", Query.Direction.DESCENDING)
-//
-//                .get().addOnCompleteListener { querydocumentSnapshot ->
-//                    if (querydocumentSnapshot.isSuccessful) {
-//                        for (documentSnapshot in querydocumentSnapshot.result!!) {
-//                            val note = documentSnapshot.toObject<City>(City::class.java)
-//                            items.add(note)
-//                        }
-//
-//                        if (querydocumentSnapshot.result!!.size() != 0) {
-//                            empty_individual_result_fragment.visibility = View.GONE
-//                            mLastQueriedDocument = querydocumentSnapshot.result!!.documents[querydocumentSnapshot.result!!.size()-1]
-//                            adapter?.notifyDataSetChanged()
-//                        } else {
-//                            empty_individual_result_fragment.visibility = View.VISIBLE
-//                            adapter?.notifyDataSetChanged()
-//                        }
-//                    } else {
-//                    }
-//                }
+        rootView.list_update_my_result_adapter.layoutManager = LinearLayoutManager(this.context, LinearLayout.VERTICAL, false)
+        rootView.list_update_my_result_adapter.setHasFixedSize(false)
+        rootView.list_update_my_result_adapter.layoutManager = LinearLayoutManager(context)
+
+        adapter = UpdateResultAdapter(this.context!!, items, this)
+        rootView.list_update_my_result_adapter.adapter = adapter
+
+        val notesCollectionRef = firestoreInstance.collection("NewCity")
+
+        notesCollectionRef
+                .whereEqualTo("id", if ("${FirebaseAuth.getInstance().uid}" == FirebaseAuth.getInstance().currentUser!!.uid) {
+                    FirebaseAuth.getInstance().uid
+                } else null)
+                .orderBy("time", Query.Direction.DESCENDING)
+                .limit(7)
+
+                .get().addOnCompleteListener { querydocumentSnapshot ->
+                    if (querydocumentSnapshot.isSuccessful) {
+                        for (documentSnapshot in querydocumentSnapshot.result!!) {
+                            val note = documentSnapshot.toObject<City>(City::class.java)
+                            items.add(note)
+                        }
+
+                        if (querydocumentSnapshot.result!!.size() != 0) {
+                            empty_individual_result_fragment.visibility = View.GONE
+                            mLastQueriedDocument = querydocumentSnapshot.result!!.documents[querydocumentSnapshot.result!!.size()-1]
+                            adapter?.notifyDataSetChanged()
+                        } else {
+                            empty_individual_result_fragment.visibility = View.VISIBLE
+                            adapter?.notifyDataSetChanged()
+                        }
+                    } else {
+                    }
+                }
     }
 }

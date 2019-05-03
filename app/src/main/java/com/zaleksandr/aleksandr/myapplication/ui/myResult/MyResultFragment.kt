@@ -14,7 +14,7 @@ import com.zaleksandr.aleksandr.myapplication.model.City
 import com.zaleksandr.aleksandr.myapplication.ui.individualGoal.model.IndividualMonthGoalModel
 import com.zaleksandr.aleksandr.myapplication.ui.individualGoal.model.IndividualWeekGoalModel
 import com.zaleksandr.aleksandr.myapplication.ui.individualGoal.model.IndividualYearGoalModel
-import com.zaleksandr.aleksandr.myapplication.ui.updateResult.adapter.IndividualAdapter
+import com.zaleksandr.aleksandr.myapplication.ui.updateResult.adapter.UpdateResultAdapter
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import com.zaleksandr.aleksandr.myapplication.util.clickByFilterIndividualGoal
 import com.zaleksandr.aleksandr.myapplication.util.clickByFilterIndividualResult
@@ -28,7 +28,7 @@ import kotlin.math.roundToInt
 class MyResultFragment : Fragment(){
 
     var toolbar: Toolbar? = null
-    var adapter: IndividualAdapter? = null
+    var adapter: UpdateResultAdapter? = null
     var city: City? = null
     private val items: ArrayList<City> = ArrayList()
     private var mLastQueriedDocument: DocumentSnapshot? = null

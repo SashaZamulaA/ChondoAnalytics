@@ -460,13 +460,13 @@ class GuestEditFragment : Fragment(), MyGuestAdapter.FragmentCommunication {
 //        rootView.bottom_navigation_person.setOnNavigationItemSelectedListener { item ->
 //            when (item.itemId) {
 //                com.zaleksandr.aleksandr.myapplication.R.currentUserId.menu_year -> {
-//                    adapter?.perioSelected(IndividualAdapter.ClickByFilter.YEAR)
+//                    adapter?.perioSelected(UpdateResultAdapter.ClickByFilter.YEAR)
 //                }
 //                com.zaleksandr.aleksandr.myapplication.R.currentUserId.menu_month -> {
-//                    adapter?.perioSelected(IndividualAdapter.ClickByFilter.MONTH)
+//                    adapter?.perioSelected(UpdateResultAdapter.ClickByFilter.MONTH)
 //                }
 //                com.zaleksandr.aleksandr.myapplication.R.currentUserId.menu_week -> {
-//                    adapter?.perioSelected(IndividualAdapter.ClickByFilter.WEEK)
+//                    adapter?.perioSelected(UpdateResultAdapter.ClickByFilter.WEEK)
 //                }
 //
 //                else -> {
