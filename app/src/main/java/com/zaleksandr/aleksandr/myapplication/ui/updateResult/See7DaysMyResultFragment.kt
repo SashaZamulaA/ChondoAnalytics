@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
@@ -24,7 +25,8 @@ import kotlinx.android.synthetic.main.fragment_update_my_result.*
 import kotlinx.android.synthetic.main.fragment_update_my_result.view.*
 
 
-class UpdateMyResultFragment : Fragment(), UpdateResultAdapter.FragmentCommunication {
+class See7DaysMyResultFragment : Fragment(), UpdateResultAdapter.FragmentCommunication {
+
     override fun respond(city: City) {
 
         context?.showMaterialDialogCancelDelete(
@@ -37,6 +39,17 @@ class UpdateMyResultFragment : Fragment(), UpdateResultAdapter.FragmentCommunica
         )?.addTo(dialogDisposable)
 
     }
+
+    override fun respondUpdate(city: City) {
+
+        val bundle = Bundle()
+        bundle.putString("getId", city.getId)
+
+                Navigation.findNavController(this.view!!).navigate(com.zaleksandr.aleksandr.myapplication.R.id.action_see_7_day_my_resultFragment_to_changeMyResultFragment, bundle)
+        items.clear()
+
+    }
+
 
     var toolbar: Toolbar? = null
     var adapter: UpdateResultAdapter? = null
@@ -51,25 +64,12 @@ class UpdateMyResultFragment : Fragment(), UpdateResultAdapter.FragmentCommunica
 
         setUpRecyclerView(rootView)
 
-
-//        rootView.button_individual_result_ind_res.setOnClickListener {
-//            Navigation.findNavController(it).navigate(com.zamulaaleksandr.aleksandr.myapplication.R.currentUserId.action_individualResultFragment_to_commonResultFragment3)
-//        }
-//        rootView.individual_button_back.setOnClickListener {
-//            Navigation.findNavController(it).navigate(com.zamulaaleksandr.aleksandr.myapplication.R.currentUserId.commonResultFragment)
-//        }
-
-//        toolbar = view?.findViewById(com.zamulaaleksandr.aleksandr.myapplication.R.currentUserId.toolbar)
-//        (activity as AppCompatActivity).setSupportActionBar(toolbar)
-//        (activity as AppCompatActivity).supportActionBar!!.hide()
         return rootView
     }
 
 
-    override fun onStop() {
-        super.onStop()
 
-    }
+
 
     override fun onResume() {
         super.onResume()

@@ -15,7 +15,6 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.Navigation.findNavController
 import com.google.android.material.navigation.NavigationView
-import com.zaleksandr.aleksandr.myapplication.ui.settings.model.User
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil
 import com.zaleksandr.aleksandr.myapplication.util.StorageUtil
 import com.zaleksandr.aleksandr.tmbook.glade.GlideApp
@@ -104,7 +103,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                                 R.id.chart -> navController.navigate(R.id.addChart)
                                 R.id.add_guest -> navController.navigate(R.id.addMyGuestFragment)
                                 R.id.my_guests -> navController.navigate(R.id.showMyGuestFragment)
-                                R.id.update_result -> navController.navigate(R.id.updateMyResultFragment)
+                                R.id.update_result -> navController.navigate(R.id.see_7_day_my_resultFragment)
                                 R.id.individualResult -> navController.navigate(R.id.addIndividualFragment)
                                 R.id.add_individual_goals -> navController.navigate(R.id.addIndividualGoalsFragment)
                                 R.id.nav_settings -> navController.navigate(R.id.settingsFragment)

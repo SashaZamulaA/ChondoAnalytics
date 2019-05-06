@@ -7,14 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.zaleksandr.aleksandr.myapplication.model.City
-import com.zaleksandr.aleksandr.myapplication.ui.updateResult.UpdateMyResultFragment
+import com.zaleksandr.aleksandr.myapplication.ui.updateResult.See7DaysMyResultFragment
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
 import kotlinx.android.synthetic.main.item_update_my_result.view.*
 import java.util.*
 
 class UpdateResultAdapter(context: Context,
                           private var list: ArrayList<City>,
-                          private var fragmentCommunication: UpdateMyResultFragment) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+                          private var fragmentCommunication: See7DaysMyResultFragment) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
     var city: City? = null
@@ -23,8 +23,6 @@ class UpdateResultAdapter(context: Context,
     override fun getItemCount(): Int {
         return list.size
     }
-
-
 
     private val noteRefCollection = firestoreInstance.collection("NewCity")
 
@@ -41,7 +39,16 @@ class UpdateResultAdapter(context: Context,
         }
     }
 
-    inner class IndividualHolder(itemView: View, fragmentCommunication: UpdateMyResultFragment) : RecyclerView.ViewHolder(itemView), View.OnLongClickListener {
+    inner class IndividualHolder(itemView: View, fragmentCommunication: See7DaysMyResultFragment) : RecyclerView.ViewHolder(itemView), View.OnLongClickListener, View.OnClickListener {
+
+        init {
+            itemView.setOnClickListener(this)
+        }
+
+        override fun onClick(v: View?) {
+            mSelectedNoteIndex = adapterPosition
+            fragmentCommunication.respondUpdate(list[mSelectedNoteIndex])
+        }
 
         override fun onLongClick(v: View?): Boolean {
             mSelectedNoteIndex = adapterPosition
@@ -52,7 +59,6 @@ class UpdateResultAdapter(context: Context,
         init {
             itemView.setOnLongClickListener(this)
         }
-
 
         fun bind() {
             val item = list[position]
@@ -101,19 +107,9 @@ class UpdateResultAdapter(context: Context,
 //    }
 
     @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-    inner class CityHolder(itemView: View, var fragmentCommunication: UpdateMyResultFragment) : RecyclerView.ViewHolder(itemView), View.OnLongClickListener {
-        override fun onLongClick(v: View?): Boolean {
-            mSelectedNoteIndex = adapterPosition
-            fragmentCommunication.respond(list[mSelectedNoteIndex])
-            return false
-        }
-
-        init {
-            itemView.setOnLongClickListener(this)
-        }
-    }
 
     interface FragmentCommunication {
         fun respond(city: City)
+        fun respondUpdate(city: City)
     }
 }

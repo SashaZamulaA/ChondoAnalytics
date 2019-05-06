@@ -115,10 +115,6 @@ class AddResultFragment : Fragment() {
             textViewDate.text = currentDateString
             timestamp = c.timeInMillis
 
-//            val dateFormat = SimpleDateFormat("yyyy-MM-dd")
-//            val parsedDate = dateFormat.parse(currentDateString).time
-
-
         }, c.get(Calendar.YEAR), c.get(Calendar.MONTH),
                 c.get(Calendar.DAY_OF_MONTH)).show()
 

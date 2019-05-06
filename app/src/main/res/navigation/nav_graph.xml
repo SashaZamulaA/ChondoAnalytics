@@ -73,10 +73,14 @@
         tools:layout="@layout/fragment_my_result" />
 
     <fragment
-        android:id="@+id/updateMyResultFragment"
-        android:name="com.zaleksandr.aleksandr.myapplication.ui.updateResult.UpdateMyResultFragment"
-        android:label="Update result fragment"
-        tools:layout="@layout/fragment_update_my_result" />
+        android:id="@+id/see_7_day_my_resultFragment"
+        android:name="com.zaleksandr.aleksandr.myapplication.ui.updateResult.See7DaysMyResultFragment"
+        android:label="See 7 day result fragment"
+        tools:layout="@layout/fragment_update_my_result" >
+        <action
+            android:id="@+id/action_see_7_day_my_resultFragment_to_changeMyResultFragment"
+            app:destination="@id/changeMyResultFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/showMyGuestFragment"
@@ -104,7 +108,17 @@
             app:argType="string" />
         <action
             android:id="@+id/action_updateMyGuestFragment_to_showMyGuestFragment"
-            app:destination="@id/showMyGuestFragment" />
+            app:destination="@id/showMyGuestFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/changeMyResultFragment"
+        android:name="com.zaleksandr.aleksandr.myapplication.ui.updateResult.EditResultFragment"
+        android:label="Update Result"
+        tools:layout="@layout/fragment_change_result">
+        <action
+            android:id="@+id/action_changeMyResultFragment_to_see_7_day_my_resultFragment"
+            app:destination="@id/see_7_day_my_resultFragment" />
     </fragment>
 
     <fragment
