@@ -333,32 +333,7 @@ class GuestEditFragment : Fragment(), MyGuestAdapter.FragmentCommunication {
 
     }
 
-    //    override fun onStart() {
-//        super.onStart()
-//        notesUpdateGuestRef
-//                .whereEqualTo("currentUserId", if ("${FirebaseAuth.getInstance().uid}" == FirebaseAuth.getInstance().currentUser!!.uid) {
-//                    FirebaseAuth.getInstance().uid
-//                } else null).orderBy("time", Query.Direction.DESCENDING)
-//                .whereEqualTo("name", name)
-//
-//                .get().addOnCompleteListener { querydocumentSnapshot ->
-//                    if (querydocumentSnapshot.isSuccessful) {
-//                        for (documentSnapshot in querydocumentSnapshot.result!!) {
-//                            val note = documentSnapshot.toObject<Guest>(Guest::class.java)
-//                            path = note.id.toString()
-//
-//                            if (note.photo != null) {
-//                                GlideApp.with(this)
-//                                        .load(StorageUtil.pathToReference(note.photo))
-//                                        .into(update_profile_pocture)
-//                            } else {
-//                            }
-//                        }
-//
-//                    }
-//                }
-//        }
-    private fun updateCurrentUser(name: String = "",
+      private fun updateCurrentUser(name: String = "",
                                   birthday: String,
                                   intro: Boolean,
                                   oneDay: Boolean,

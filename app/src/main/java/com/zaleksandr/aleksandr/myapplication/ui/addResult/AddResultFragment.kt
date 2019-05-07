@@ -131,7 +131,7 @@ class AddResultFragment : Fragment() {
 
         val centers = registration_city.selectedItem.toString()
         val intro = introduction_edittext.text.toString()
-        val oneDayWS = one_day_seminar_edittext.text.toString()
+        val onedayWS = one_day_seminar_edittext.text.toString()
         val twoDayWS = two_day_seminar_edittext.text.toString()
         val actionaiser = res_actionaiser_edittext.text.toString()
         val twOneDay = day21_seminar_edittext.text.toString()
@@ -182,8 +182,8 @@ class AddResultFragment : Fragment() {
                         userPhotoPath = user.profilePicturePath
                     }
 
-                    noteRefCommonCollection.set(City(getId, id, intro, oneDayWS, twoDayWS, actionaiser, twOneDay, centers, approach, telCont, timeCenter, timeStr, lectTraining, lectOnStr, lectCentr, date, timestamp, userPhotoPath, name, nwet, dpKor, dp, mmbk, mobilis,descriptionGoal, hdh, eduMat, gradeIntGoal))
-                    noteRefCommonCollectionForEachCenter.set(EachCenter(id, id, intro, oneDayWS, twoDayWS, actionaiser, twOneDay, centers, date, timestamp, userPhotoPath, name, nwet, mmbk))
+                    noteRefCommonCollection.set(City(getId, id, intro, onedayWS, twoDayWS, actionaiser, twOneDay, centers, approach, telCont, timeCenter, timeStr, lectTraining, lectOnStr, lectCentr, date, timestamp, userPhotoPath, name, nwet, dpKor, dp, mmbk, mobilis,descriptionGoal, hdh, eduMat, gradeIntGoal))
+                    noteRefCommonCollectionForEachCenter.set(EachCenter(id, id, intro, onedayWS, twoDayWS, actionaiser, twOneDay, centers, date, timestamp, userPhotoPath, name, nwet, mmbk))
 
                 } else {
                     noteRefAddCollection.set(CityAddInfo(getId, id, date, timestamp, dpKor, dp, mobilis))

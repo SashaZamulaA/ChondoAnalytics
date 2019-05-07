@@ -550,8 +550,8 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
                         itemView.individual_time_str.text = "0"
                     }
 
-                    if (!resultNote.contact.isNullOrEmpty()) {
-                        val lectOnStr = Integer.parseInt(resultNote.contact)
+                    if (!resultNote.telCont.isNullOrEmpty()) {
+                        val lectOnStr = Integer.parseInt(resultNote.telCont)
                         sumStrLect += lectOnStr
                     } else {
                         itemView.individual_contact.text = "0"

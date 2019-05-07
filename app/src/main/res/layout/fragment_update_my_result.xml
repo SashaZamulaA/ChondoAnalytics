@@ -36,7 +36,7 @@
                     android:id="@+id/list_update_my_result_adapter"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:listitem="@layout/item_update_my_result">
+                    tools:listitem="@layout/item_7_days_result">
 
                 </androidx.recyclerview.widget.RecyclerView>
 

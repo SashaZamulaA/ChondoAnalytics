@@ -330,8 +330,8 @@ class MyResultFragment : Fragment(){
                     }
 
 
-                    if (!resultNote.gradeIntRes.isNullOrEmpty()) {
-                        my_intern_res.text = resultNote.gradeIntRes
+                    if (!resultNote.gradeIntGoal.isNullOrEmpty()) {
+                        my_intern_res.text = resultNote.gradeIntGoal
                     }
                     if (!resultNote.descriptionGoal.isNullOrEmpty()) {
                         goal_description.setText(resultNote.descriptionGoal)
@@ -360,8 +360,8 @@ class MyResultFragment : Fragment(){
                         val approachTime = (Integer.parseInt(resultNote.approach))
                         sumAppr += approachTime
                     }
-                    if (!resultNote.contact.isNullOrEmpty()) {
-                        val contact = (Integer.parseInt(resultNote.contact))
+                    if (!resultNote.telCont.isNullOrEmpty()) {
+                        val contact = (Integer.parseInt(resultNote.telCont))
                         sumCont += contact
                     }
                     if (!resultNote.intro.isNullOrEmpty()) {

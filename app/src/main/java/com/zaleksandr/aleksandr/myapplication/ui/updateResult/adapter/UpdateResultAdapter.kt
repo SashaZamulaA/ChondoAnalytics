@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.zaleksandr.aleksandr.myapplication.model.City
 import com.zaleksandr.aleksandr.myapplication.ui.updateResult.See7DaysMyResultFragment
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstance
-import kotlinx.android.synthetic.main.item_update_my_result.view.*
+import kotlinx.android.synthetic.main.item_7_days_result.view.*
 import java.util.*
 
 class UpdateResultAdapter(context: Context,
@@ -27,7 +27,7 @@ class UpdateResultAdapter(context: Context,
     private val noteRefCollection = firestoreInstance.collection("NewCity")
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-            val v = LayoutInflater.from(parent.context).inflate(com.zaleksandr.aleksandr.myapplication.R.layout.item_update_my_result,
+            val v = LayoutInflater.from(parent.context).inflate(com.zaleksandr.aleksandr.myapplication.R.layout.item_7_days_result,
                     parent, false)
             return IndividualHolder(v, fragmentCommunication)
     }
@@ -64,7 +64,7 @@ class UpdateResultAdapter(context: Context,
             val item = list[position]
             itemView.individual_result_city.text = item.centers
             itemView.individual_time_city.text = formatDateAndTime(item.timestamp)
-            if (!item.contact.isNullOrEmpty()) itemView.individual_result_contacts.text = item.contact else itemView.individual_result_intro.text = "0"
+            if (!item.telCont.isNullOrEmpty()) itemView.individual_result_contacts.text = item.telCont else itemView.individual_result_intro.text = "0"
             if (!item.intro.isNullOrEmpty()) itemView.individual_result_intro.text = item.intro else itemView.individual_result_intro.text = "0"
             if (!item.onedayWS.isNullOrEmpty()) itemView.individual_result_one_day.text = item.onedayWS else itemView.individual_result_one_day.text = "0"
             if (!item.twoDayWS.isNullOrEmpty()) itemView.individual_result_two_day.text = item.twoDayWS else itemView.individual_result_two_day.text = "0"

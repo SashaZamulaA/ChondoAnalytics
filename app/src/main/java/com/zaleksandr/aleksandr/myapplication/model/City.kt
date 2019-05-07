@@ -12,7 +12,7 @@ data class City(
         val twOneDay: String?,
         val centers: String?,
         val approach: String?,
-        val contact: String?,
+        val telCont: String?,
         val timeCenter: String?,
         val timeStr: String?,
         val lectTraining: String?,
@@ -30,7 +30,7 @@ data class City(
         val descriptionGoal: String?,
         val hdh: String?,
         val eduMat: String?,
-        val gradeIntRes: String?
+        val gradeIntGoal: String?
 
 
 ) {
@@ -43,7 +43,7 @@ data class City(
             twOneDay = "0",
             centers = "",
             approach = "",
-            contact = "",
+            telCont = "",
             timeCenter = "",
             timeStr = "",
             lectTraining = "",
@@ -61,7 +61,7 @@ data class City(
             descriptionGoal = "",
             hdh = "",
             eduMat = "",
-            gradeIntRes = ""
+            gradeIntGoal = ""
     )
 
 

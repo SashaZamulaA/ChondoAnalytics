@@ -65,40 +65,7 @@
                 android:layout_height="match_parent">
 
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/des"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:fillViewport="true"
-                    android:nestedScrollingEnabled="false"
-                    android:overScrollMode="always"
-                    android:scrollbarStyle="insideInset"
-                    android:scrollbars="vertical"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView19">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/goal_description"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:fillViewport="true"
-                        android:gravity="top|left"
-                        android:hint="@string/description"
-                        android:lines="10"
-                        android:maxLines="5"
-                        android:minLines="1"
-                        android:nestedScrollingEnabled="false"
-                        android:overScrollMode="always"
-                        android:scrollbarStyle="insideInset"
-                        android:scrollbars="vertical" />
-                </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
 
@@ -278,7 +245,6 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/update_result_nwet_edittext"
-
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -332,25 +298,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="32dp"
                     android:text="Internal goal"
                     android:textColor="@color/int_goal_color"
                     android:textSize="@dimen/body1_text_size"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/buttonDate" />
+                    app:layout_constraintTop_toBottomOf="@+id/view5" />
 
                 <TextView
                     android:id="@+id/ind_res_time_in_center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="20dp"
-                    android:textColor="@color/braun"
+                    android:layout_marginTop="32dp"
                     android:text="@string/center_time"
+                    android:textColor="@color/braun"
                     app:layout_constraintStart_toEndOf="@+id/view"
-                    app:layout_constraintTop_toBottomOf="@+id/buttonDate" />
+                    app:layout_constraintTop_toBottomOf="@+id/view5" />
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/update_result_time_street_edit_text"
@@ -359,6 +324,7 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
                     android:hint="@string/minute"
+                    android:inputType="numberDecimal"
                     android:selectAllOnFocus="true"
                     android:text=""
                     android:textAlignment="center"
@@ -377,6 +343,7 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
                     android:hint="1-5"
+                    android:inputType="numberDecimal"
                     android:selectAllOnFocus="true"
                     android:text=""
                     android:textColor="@color/int_goal_color"
@@ -390,11 +357,13 @@
                     app:layout_constraintTop_toTopOf="@+id/textView27" />
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/update_result_time_center_edit_text2"
+                    android:id="@+id/update_result_time_center"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:hint="@string/minute"
+                    android:inputType="numberDecimal"
                     android:selectAllOnFocus="true"
                     android:text=""
                     android:textAlignment="center"
@@ -403,7 +372,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/ind_res_time_in_center"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toEndOf="@+id/textView2"
+                    app:layout_constraintStart_toEndOf="@+id/ind_res_time_in_center"
                     app:layout_constraintTop_toTopOf="@+id/ind_res_time_in_center" />
 
                 <TextView
@@ -726,16 +695,7 @@
                     app:layout_constraintStart_toEndOf="@+id/textView40"
                     app:layout_constraintTop_toTopOf="@+id/textView40" />
 
-                <TextView
-                    android:id="@+id/textView19"
-                    style="@style/TextStyle_SubHeader_Accent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="42dp"
-                    android:text="Internal goal:"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/ind_nwet" />
+
 
                 <TextView
                     android:id="@+id/textView17"
@@ -772,32 +732,6 @@
                     android:textColor="@color/braun"
                     app:layout_constraintStart_toEndOf="@+id/view"
                     app:layout_constraintTop_toBottomOf="@+id/textView38" />
-
-                <Button
-
-                    android:id="@+id/buttonDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="36dp"
-                    android:layout_marginStart="@dimen/space8"
-                    android:layout_marginTop="24dp"
-                    android:background="@drawable/button_green_bordered"
-                    android:text="Select date"
-                    android:textColor="@color/text_secondary_dark"
-                    android:textSize="@dimen/space_12"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/view5" />
-
-                <TextView
-                    android:id="@+id/update_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="21 mart"
-                    android:textColor="@color/braun"
-                    app:layout_constraintBottom_toBottomOf="@+id/buttonDate"
-                    app:layout_constraintEnd_toEndOf="@+id/update_result_internal_goal"
-                    app:layout_constraintStart_toStartOf="@+id/update_result_internal_goal"
-                    app:layout_constraintTop_toTopOf="@+id/buttonDate"
-                    app:layout_constraintVertical_bias="0.47" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
