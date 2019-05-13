@@ -214,43 +214,37 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
 //year
 
                 if (!goalNote?.yearIntro.isNullOrEmpty() && period == 4) {
-                    val intro = (Integer.parseInt(goalNote?.yearIntro))
-                    sumIntroyear += intro
-                    itemView.goal_intro.text = sumIntroyear.toString()
+
+                    itemView.goal_intro.text = "250"
                 }
 
 
                 if (!goalNote?.yearOneDay.isNullOrEmpty() && period == 4) {
-                    val intro = (Integer.parseInt(goalNote?.yearOneDay))
-                    sumOneD1year += intro
-                    itemView.common_goal_one_day_sem.text = sumOneD1year.toString()
+
+                    itemView.common_goal_one_day_sem.text = "80"
                 }
 
 
                 if (!goalNote?.yearTwoDay.isNullOrEmpty() && period == 4) {
-                    val intro = (Integer.parseInt(goalNote?.yearTwoDay))
-                    sumTwoD1year += intro
-                    itemView.common_goal_year_two_day_sem.text = sumTwoD1year.toString()
+
+                    itemView.common_goal_year_two_day_sem.text = "21"
                 }
 
                 if (!goalNote?.yearAct.isNullOrEmpty() && period == 4) {
-                    val intro = (Integer.parseInt(goalNote?.yearAct))
-                    sumActYear += intro
-                    itemView.common_goal_year_act.text = sumActYear.toString()
+
+                    itemView.common_goal_year_act.text = "10"
                 }
 
 
                 if (!goalNote?.yearTWOne.isNullOrEmpty() && period == 4) {
-                    val intro = (Integer.parseInt(goalNote?.yearTWOne))
-                    sumTwent1year += intro
-                    itemView.common_goal_21_day.text = sumTwent1year.toString()
+
+                    itemView.common_goal_21_day.text = "7"
                 }
 
 
                 if (!goalNote?.yearNWET.isNullOrEmpty() && period == 4) {
-                    val intro = (Integer.parseInt(goalNote?.yearNWET))
-                    sumNwetyear += intro
-                    itemView.common_goal_year_nwet.text = sumNwetyear.toString()
+
+                    itemView.common_goal_year_nwet.text = "3"
                 }
 
 
@@ -259,68 +253,61 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
                 if (!goalNote?.monthIntro.isNullOrEmpty() && period == 3) {
                     val intro = (Integer.parseInt(goalNote?.monthIntro))
                     sumIntromonth += intro
-                    itemView.goal_intro.text = sumIntromonth.toString()
+                    itemView.goal_intro.text = "21"
                 }
 
 
                 if (!goalNote?.monthOneDay.isNullOrEmpty() && period == 3) {
-                    val intro = (Integer.parseInt(goalNote?.monthOneDay))
-                    sumOneD1month += intro
-                    itemView.common_goal_one_day_sem.text = sumOneD1month.toString()
+
+                    itemView.common_goal_one_day_sem.text = "7"
                 }
 
 
                 if (!goalNote?.monthTwoDay.isNullOrEmpty() && period == 3) {
-                    val intro = (Integer.parseInt(goalNote?.monthTwoDay))
-                    sumTwoD1month += intro
-                    itemView.common_goal_year_two_day_sem.text = sumTwoD1month.toString()
+
+                    itemView.common_goal_year_two_day_sem.text = "2"
                 }
 
                 if (!goalNote?.monthAct.isNullOrEmpty() && period == 3) {
                     val intro = (Integer.parseInt(goalNote?.monthAct))
                     sumActMonth += intro
-                    itemView.common_goal_year_act.text = sumActMonth.toString()
+                    itemView.common_goal_year_act.text = "1"
                 }
 
                 if (!goalNote?.monthTWOne.isNullOrEmpty() && period == 3) {
                     val intro = (Integer.parseInt(goalNote?.monthTWOne))
                     sumTwent1month += intro
-                    itemView.common_goal_21_day.text = sumTwent1month.toString()
+                    itemView.common_goal_21_day.text = "1"
                 }
 
 
                 if (!goalNote?.monthNWET.isNullOrEmpty() && period == 3) {
-                    val intro = (Integer.parseInt(goalNote?.monthNWET))
-                    sumNwetmonth += intro
-                    itemView.common_goal_year_nwet.text = sumNwetmonth.toString()
+
+                    itemView.common_goal_year_nwet.text = "0"
                 }
 
 
 //week
                 if (!goalNote?.weekIntro.isNullOrEmpty() && period == 2) {
-                    val intro = (Integer.parseInt(goalNote?.weekIntro))
-                    sumIntroweek += intro
-                    itemView.goal_intro.text = sumIntroweek.toString()
+
+                    itemView.goal_intro.text = "5"
                 }
 
 
                 if (!goalNote?.weekOneDay.isNullOrEmpty() && period == 2) {
-                    val intro = (Integer.parseInt(goalNote?.weekOneDay))
-                    sumOneD1week += intro
-                    itemView.common_goal_one_day_sem.text = sumOneD1week.toString()
+
+                    itemView.common_goal_one_day_sem.text = "2"
                 }
 
 
                 if (!goalNote?.weekTwoDay.isNullOrEmpty() && period == 2) {
-                    val intro = (Integer.parseInt(goalNote?.weekTwoDay))
-                    sumTwoD1week += intro
-                    itemView.common_goal_year_two_day_sem.text = sumTwoD1week.toString()
+
+                    itemView.common_goal_year_two_day_sem.text = "1"
                 }
 
                 if (!goalNote?.weekAct.isNullOrEmpty() && period == 2) {
-                    val intro = (Integer.parseInt(goalNote?.weekAct))
-                    sumActWeek += intro
-                    itemView.common_goal_year_act.text = sumActWeek.toString()
+
+                    itemView.common_goal_year_act.text = "1"
                 }
 
 
@@ -332,23 +319,17 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
 //day
 
                 if (!goalNote?.dayIntro.isNullOrEmpty() && period == 1) {
-                    val intro = (Integer.parseInt(goalNote?.dayIntro))
-                    sumIntroDay += intro
-                    itemView.goal_intro.text = sumIntroDay.toString()
+                                    itemView.goal_intro.text = "1"
                 }
 
 
                 if (!goalNote?.dayOneDay.isNullOrEmpty() && period == 1) {
-                    val intro = (Integer.parseInt(goalNote?.dayOneDay))
-                    sumOneDDay += intro
-                    itemView.common_goal_one_day_sem.text = sumOneDDay.toString()
+                                    itemView.common_goal_one_day_sem.text = "1"
                 }
 
 
                 if (!goalNote?.dayTwoDay.isNullOrEmpty() && period == 1) {
-                    val intro = (Integer.parseInt(goalNote?.dayTwoDay))
-                    sumTwoDDay += intro
-                    itemView.common_goal_year_two_day_sem.text = sumTwoDDay.toString()
+                                    itemView.common_goal_year_two_day_sem.text = "0"
                 }
 
                 if (period == 1) {
@@ -377,32 +358,75 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
 
 
                     if (!resultNote.intro.isNullOrEmpty()) {
-                        val intro = (Integer.parseInt(resultNote.intro))
-                        sumIntro += intro
+                        if (resultNote.id == "75zm78KzceXAvHT7NlOeYmYqbyV2"
+                                || resultNote.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"
+                                || resultNote.id == "AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"
+                                || resultNote.id == "UwK9No4ZlYb4bpnMXbhGukPPg4t2"
+                                || resultNote.id == "J8n8rpR3DBTXLQK7MseiF346L7f1"
+                                || resultNote.id == "jlkJA9DdE9cKE4qDL7ru18Sfdis1") {
+                            val intro = (Integer.parseInt(resultNote.intro))
+                            sumIntro += intro
+                        }
                     }
                     if (!resultNote.onedayWS.isNullOrEmpty()) {
-                        val onaDay = Integer.parseInt(resultNote.onedayWS)
-                        sumOneD1 += onaDay
+                        if (resultNote.id == "75zm78KzceXAvHT7NlOeYmYqbyV2"
+                                || resultNote.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"
+                                || resultNote.id == "AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"
+                                || resultNote.id == "UwK9No4ZlYb4bpnMXbhGukPPg4t2"
+                                || resultNote.id == "J8n8rpR3DBTXLQK7MseiF346L7f1"
+                                || resultNote.id == "jlkJA9DdE9cKE4qDL7ru18Sfdis1") {
+                            val onaDay = Integer.parseInt(resultNote.onedayWS)
+                            sumOneD1 += onaDay
+                        }
                     }
                     if (!resultNote.twoDayWS.isNullOrEmpty()) {
-                        val twoDay = Integer.parseInt(resultNote.twoDayWS)
-                        sumTwoD1 += twoDay
+                        if (resultNote.id == "75zm78KzceXAvHT7NlOeYmYqbyV2"
+                                || resultNote.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"
+                                || resultNote.id == "AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"
+                                || resultNote.id == "UwK9No4ZlYb4bpnMXbhGukPPg4t2"
+                                || resultNote.id == "J8n8rpR3DBTXLQK7MseiF346L7f1"
+                                || resultNote.id == "jlkJA9DdE9cKE4qDL7ru18Sfdis1") {
+                            val twoDay = Integer.parseInt(resultNote.twoDayWS)
+                            sumTwoD1 += twoDay
+                        }
                     }
 
                     if (!resultNote.actionaiser.isNullOrEmpty()) {
-                        val twoDay = Integer.parseInt(resultNote.actionaiser)
-                        sumAct += twoDay
+                        if (resultNote.id == "75zm78KzceXAvHT7NlOeYmYqbyV2"
+                                || resultNote.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"
+                                || resultNote.id == "AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"
+                                || resultNote.id == "UwK9No4ZlYb4bpnMXbhGukPPg4t2"
+                                || resultNote.id == "J8n8rpR3DBTXLQK7MseiF346L7f1"
+                                || resultNote.id == "jlkJA9DdE9cKE4qDL7ru18Sfdis1") {
+                            val twoDay = Integer.parseInt(resultNote.actionaiser)
+                            sumAct += twoDay
+                        }
                     }
 
                     if (!resultNote.twOneDay.isNullOrEmpty()) {
-                        val twOneDay = Integer.parseInt(resultNote.twOneDay)
-                        sumTwent1 += twOneDay
+                        if (resultNote.id == "75zm78KzceXAvHT7NlOeYmYqbyV2"
+                                || resultNote.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"
+                                || resultNote.id == "AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"
+                                || resultNote.id == "UwK9No4ZlYb4bpnMXbhGukPPg4t2"
+                                || resultNote.id == "J8n8rpR3DBTXLQK7MseiF346L7f1"
+                                || resultNote.id == "jlkJA9DdE9cKE4qDL7ru18Sfdis1") {
+                            val twOneDay = Integer.parseInt(resultNote.twOneDay)
+                            sumTwent1 += twOneDay
+                        }
                     }
                     if (!resultNote.nwet.isNullOrEmpty()) {
-                        val approach = Integer.parseInt(resultNote.nwet)
-                        sumNwet += approach
+                        if (resultNote.id == "75zm78KzceXAvHT7NlOeYmYqbyV2"
+                                || resultNote.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"
+                                || resultNote.id == "AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"
+                                || resultNote.id == "UwK9No4ZlYb4bpnMXbhGukPPg4t2"
+                                || resultNote.id == "J8n8rpR3DBTXLQK7MseiF346L7f1"
+                                || resultNote.id == "jlkJA9DdE9cKE4qDL7ru18Sfdis1") {
+                            val approach = Integer.parseInt(resultNote.nwet)
+                            sumNwet += approach
+                        }
                     }
                 }
+
 
                 for (change in queryDocumentSnapshots.documentChanges) {
                     if (change.type == DocumentChange.Type.MODIFIED) {
@@ -500,80 +524,163 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
                     val resultNote = documentSnapshot.toObject(City::class.java)
 
                     if (!resultNote.intro.isNullOrEmpty()) {
-                        val intro = (Integer.parseInt(resultNote.intro))
-                        sumIntro += intro
-                    } else {
+                        if (resultNote.id == "75zm78KzceXAvHT7NlOeYmYqbyV2"
+                                || resultNote.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"
+                                || resultNote.id == "AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"
+                                || resultNote.id == "UwK9No4ZlYb4bpnMXbhGukPPg4t2"
+                                || resultNote.id == "J8n8rpR3DBTXLQK7MseiF346L7f1"
+                                || resultNote.id == "jlkJA9DdE9cKE4qDL7ru18Sfdis1") {
+                            val intro = (Integer.parseInt(resultNote.intro))
+                            sumIntro += intro
+                        }
+                    }else {
                         itemView.each_center_intro.text = "0"
                     }
                     if (!resultNote.onedayWS.isNullOrEmpty()) {
-                        val onaDay = Integer.parseInt(resultNote.onedayWS)
-                        sumOneD1 += onaDay
-                    } else {
+                        if (resultNote.id == "75zm78KzceXAvHT7NlOeYmYqbyV2"
+                                || resultNote.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"
+                                || resultNote.id == "AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"
+                                || resultNote.id == "UwK9No4ZlYb4bpnMXbhGukPPg4t2"
+                                || resultNote.id == "J8n8rpR3DBTXLQK7MseiF346L7f1"
+                                || resultNote.id == "jlkJA9DdE9cKE4qDL7ru18Sfdis1") {
+                            val onaDay = Integer.parseInt(resultNote.onedayWS)
+                            sumOneD1 += onaDay
+                        }
+                    }else {
                         itemView.each_center_one_day_edittext.text = "0"
                     }
                     if (!resultNote.twoDayWS.isNullOrEmpty()) {
-                        val twoDay = Integer.parseInt(resultNote.twoDayWS)
-                        sumTwoD1 += twoDay
+                        if (resultNote.id == "75zm78KzceXAvHT7NlOeYmYqbyV2"
+                                || resultNote.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"
+                                || resultNote.id == "AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"
+                                || resultNote.id == "UwK9No4ZlYb4bpnMXbhGukPPg4t2"
+                                || resultNote.id == "J8n8rpR3DBTXLQK7MseiF346L7f1"
+                                || resultNote.id == "jlkJA9DdE9cKE4qDL7ru18Sfdis1") {
+                            val twoDay = Integer.parseInt(resultNote.twoDayWS)
+                            sumTwoD1 += twoDay
+                        }
                     }
                     if (!resultNote.twOneDay.isNullOrEmpty()) {
-                        val twOneDay = Integer.parseInt(resultNote.twOneDay)
-                        sumTwent1 += twOneDay
+                        if (resultNote.id == "75zm78KzceXAvHT7NlOeYmYqbyV2"
+                                || resultNote.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"
+                                || resultNote.id == "AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"
+                                || resultNote.id == "UwK9No4ZlYb4bpnMXbhGukPPg4t2"
+                                || resultNote.id == "J8n8rpR3DBTXLQK7MseiF346L7f1"
+                                || resultNote.id == "jlkJA9DdE9cKE4qDL7ru18Sfdis1") {
+                            val twOneDay = Integer.parseInt(resultNote.twOneDay)
+                            sumTwent1 += twOneDay
+                        }
                     }
-
                     if (!resultNote.nwet.isNullOrEmpty()) {
-                        val nwet = Integer.parseInt(resultNote.nwet)
-                        sumNwet += nwet
-                    } else {
+                        if (resultNote.id == "75zm78KzceXAvHT7NlOeYmYqbyV2"
+                                || resultNote.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"
+                                || resultNote.id == "AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"
+                                || resultNote.id == "UwK9No4ZlYb4bpnMXbhGukPPg4t2"
+                                || resultNote.id == "J8n8rpR3DBTXLQK7MseiF346L7f1"
+                                || resultNote.id == "jlkJA9DdE9cKE4qDL7ru18Sfdis1") {
+                            val nwet = Integer.parseInt(resultNote.nwet)
+                            sumNwet += nwet
+                        }
+                    }else {
                         itemView.center_mmbk_res.text = "0"
                     }
 
 
                     if (!resultNote.approach.isNullOrEmpty()) {
-                        val approach = Integer.parseInt(resultNote.approach)
-                        sumAppr += approach
-                    } else {
+                        if (resultNote.id == "75zm78KzceXAvHT7NlOeYmYqbyV2"
+                                || resultNote.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"
+                                || resultNote.id == "AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"
+                                || resultNote.id == "UwK9No4ZlYb4bpnMXbhGukPPg4t2"
+                                || resultNote.id == "J8n8rpR3DBTXLQK7MseiF346L7f1"
+                                || resultNote.id == "jlkJA9DdE9cKE4qDL7ru18Sfdis1") {
+                            val approach = Integer.parseInt(resultNote.approach)
+                            sumAppr += approach
+                        }
+                    }else {
                         itemView.individual_approach.text = "0"
                     }
 
                     if (!resultNote.timeCenter.isNullOrEmpty()) {
-                        val timeCenter = Math.round(resultNote.timeCenter.toFloat())
-                        sumTimeCenter += timeCenter
-                    } else {
+                        if (resultNote.id == "75zm78KzceXAvHT7NlOeYmYqbyV2"
+                                || resultNote.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"
+                                || resultNote.id == "AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"
+                                || resultNote.id == "UwK9No4ZlYb4bpnMXbhGukPPg4t2"
+                                || resultNote.id == "J8n8rpR3DBTXLQK7MseiF346L7f1"
+                                || resultNote.id == "jlkJA9DdE9cKE4qDL7ru18Sfdis1") {
+                            val timeCenter = Math.round(resultNote.timeCenter.toFloat())
+                            sumTimeCenter += timeCenter
+                        }
+                    }else {
                         itemView.individual_time_center.text = "0"
                     }
 
 
                     if (!resultNote.timeStr.isNullOrEmpty()) {
-                        val timeStr = Integer.parseInt(resultNote.timeStr)
-                        sumTimeStr += timeStr
-                    } else {
+                        if (resultNote.id == "75zm78KzceXAvHT7NlOeYmYqbyV2"
+                                || resultNote.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"
+                                || resultNote.id == "AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"
+                                || resultNote.id == "UwK9No4ZlYb4bpnMXbhGukPPg4t2"
+                                || resultNote.id == "J8n8rpR3DBTXLQK7MseiF346L7f1"
+                                || resultNote.id == "jlkJA9DdE9cKE4qDL7ru18Sfdis1") {
+                            val timeStr = Integer.parseInt(resultNote.timeStr)
+                            sumTimeStr += timeStr
+                        }
+                    }else {
                         itemView.individual_time_str.text = "0"
                     }
 
                     if (!resultNote.telCont.isNullOrEmpty()) {
-                        val lectOnStr = Integer.parseInt(resultNote.telCont)
-                        sumStrLect += lectOnStr
-                    } else {
+                        if (resultNote.id == "75zm78KzceXAvHT7NlOeYmYqbyV2"
+                                || resultNote.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"
+                                || resultNote.id == "AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"
+                                || resultNote.id == "UwK9No4ZlYb4bpnMXbhGukPPg4t2"
+                                || resultNote.id == "J8n8rpR3DBTXLQK7MseiF346L7f1"
+                                || resultNote.id == "jlkJA9DdE9cKE4qDL7ru18Sfdis1") {
+                            val lectOnStr = Integer.parseInt(resultNote.telCont)
+                            sumStrLect += lectOnStr
+                        }
+                    }else {
                         itemView.individual_contact.text = "0"
                     }
                     if (!resultNote.lectCentr.isNullOrEmpty()) {
-                        val lectCentr = Integer.parseInt(resultNote.lectCentr)
-                        sumCenteLect += lectCentr
-                    } else {
+                        if (resultNote.id == "75zm78KzceXAvHT7NlOeYmYqbyV2"
+                                || resultNote.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"
+                                || resultNote.id == "AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"
+                                || resultNote.id == "UwK9No4ZlYb4bpnMXbhGukPPg4t2"
+                                || resultNote.id == "J8n8rpR3DBTXLQK7MseiF346L7f1"
+                                || resultNote.id == "jlkJA9DdE9cKE4qDL7ru18Sfdis1") {
+                            val lectCentr = Integer.parseInt(resultNote.lectCentr)
+                            sumCenteLect += lectCentr
+                        }
+                    }else {
                         itemView.individual_lect_center.text = "0"
                     }
 
                     if (!resultNote.actionaiser.isNullOrEmpty()) {
-                        val action = Integer.parseInt(resultNote.actionaiser)
-                        sumAction += action
-                    } else {
+                        if (resultNote.id == "75zm78KzceXAvHT7NlOeYmYqbyV2"
+                                || resultNote.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"
+                                || resultNote.id == "AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"
+                                || resultNote.id == "UwK9No4ZlYb4bpnMXbhGukPPg4t2"
+                                || resultNote.id == "J8n8rpR3DBTXLQK7MseiF346L7f1"
+                                || resultNote.id == "jlkJA9DdE9cKE4qDL7ru18Sfdis1") {
+                            val action = Integer.parseInt(resultNote.actionaiser)
+                            sumAction += action
+                        }
+                    }else {
                         itemView.center_action_res.text = "0"
                     }
 
                     if (!resultNote.mmbk.isNullOrEmpty()) {
-                        val mmbk = Integer.parseInt(resultNote.mmbk)
-                        sumMmbk += mmbk
-                    } else {
+                        if (resultNote.id == "75zm78KzceXAvHT7NlOeYmYqbyV2"
+                                || resultNote.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"
+                                || resultNote.id == "AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"
+                                || resultNote.id == "UwK9No4ZlYb4bpnMXbhGukPPg4t2"
+                                || resultNote.id == "J8n8rpR3DBTXLQK7MseiF346L7f1"
+                                || resultNote.id == "jlkJA9DdE9cKE4qDL7ru18Sfdis1") {
+                            val mmbk = Integer.parseInt(resultNote.mmbk)
+                            sumMmbk += mmbk
+                        }
+                    }else {
                         itemView.center_mmbk_res.text = "0"
                     }
 

@@ -1,7 +1,6 @@
 package com.zaleksandr.aleksandr.myapplication.ui.updateResult
 
-import android.app.DatePickerDialog
-import android.content.Context
+
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
@@ -22,8 +20,6 @@ import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstan
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_change_result.*
 import kotlinx.android.synthetic.main.fragment_change_result.view.*
-import java.text.DateFormat
-import java.util.*
 
 
 class EditResultFragment : Fragment() {
@@ -45,10 +41,6 @@ class EditResultFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_change_result, container, false)
 
-
-//        rootView.update_buttonDate.setOnClickListener {
-//            showDatePickerBirthdayDialog(this.context!!, String(), update_date)
-//        }
 
 
         category2 = resources.getStringArray(com.zaleksandr.aleksandr.myapplication.R.array.City)
