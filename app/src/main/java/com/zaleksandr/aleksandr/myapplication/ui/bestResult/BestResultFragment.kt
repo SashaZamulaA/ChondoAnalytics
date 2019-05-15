@@ -121,8 +121,13 @@ class BestResultFragment : Fragment() {
 
                         val items = querydocumentSnapshot.result!!
                                 .map { it.toObject<City>(City::class.java) }
-                                .filterNot {
-                                    (it.name == "Kyiv Chondoso" || it.name == "Daniela Aldasoro ")
+                                .filter {
+                                    (it.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"||
+                                            it.id =="75zm78KzceXAvHT7NlOeYmYqbyV2"||
+                                            it.id =="AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"||
+                                            it.id =="UwK9No4ZlYb4bpnMXbhGukPPg4t2"||
+                                            it.id =="J8n8rpR3DBTXLQK7MseiF346L7f1"||
+                                            it.id =="jlkJA9DdE9cKE4qDL7ru18Sfdis1")
 
                                 }
 
@@ -195,8 +200,14 @@ class BestResultFragment : Fragment() {
 
                                     val items = querydocumentSnapshot.result!!
                                             .map { it.toObject<City>(City::class.java) }
-                                            .filterNot {
-                                                (it.name == "Kyiv Chondoso" || it.name == "Daniela Aldasoro ")
+                                            .filter {
+                                                (it.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"||
+                                                        it.id =="75zm78KzceXAvHT7NlOeYmYqbyV2"||
+                                                        it.id =="AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"||
+                                                        it.id =="UwK9No4ZlYb4bpnMXbhGukPPg4t2"||
+                                                        it.id =="J8n8rpR3DBTXLQK7MseiF346L7f1"||
+                                                        it.id =="jlkJA9DdE9cKE4qDL7ru18Sfdis1")
+
                                             }
 
                                     val itemsToRv = items.groupBy {
@@ -255,8 +266,13 @@ class BestResultFragment : Fragment() {
 
                                     val items = querydocumentSnapshot.result!!
                                             .map { it.toObject<City>(City::class.java) }
-                                            .filterNot {
-                                                (it.name == "Kyiv Chondoso" || it.name == "Daniela Aldasoro ")
+                                            .filter {
+                                                (it.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"||
+                                                        it.id =="75zm78KzceXAvHT7NlOeYmYqbyV2"||
+                                                        it.id =="AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"||
+                                                        it.id =="UwK9No4ZlYb4bpnMXbhGukPPg4t2"||
+                                                        it.id =="J8n8rpR3DBTXLQK7MseiF346L7f1"||
+                                                        it.id =="jlkJA9DdE9cKE4qDL7ru18Sfdis1")
 
                                             }
 
@@ -321,8 +337,13 @@ class BestResultFragment : Fragment() {
 
                                     val items = querydocumentSnapshot.result!!
                                             .map { it.toObject<City>(City::class.java) }
-                                            .filterNot {
-                                                (it.name == "Kyiv Chondoso" || it.name == "Daniela Aldasoro ")
+                                            .filter {
+                                                (       it.id =="mwgvrSjiXmgA1wjSEDiu6lgkScs2"||
+                                                        it.id =="75zm78KzceXAvHT7NlOeYmYqbyV2"||
+                                                        it.id =="AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"||
+                                                        it.id =="UwK9No4ZlYb4bpnMXbhGukPPg4t2"||
+                                                        it.id =="J8n8rpR3DBTXLQK7MseiF346L7f1"||
+                                                        it.id =="jlkJA9DdE9cKE4qDL7ru18Sfdis1")
 
                                             }
 

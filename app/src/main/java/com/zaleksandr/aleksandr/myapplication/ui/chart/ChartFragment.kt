@@ -85,40 +85,79 @@ class ChartFragment : Fragment() {
             queryDocumentSnapshots.forEach { documentSnapshot ->
 
                 val resultNote = documentSnapshot.toObject(City::class.java)
-
-                if (!resultNote.intro.isNullOrEmpty()) {
+                if (
+                        resultNote.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"||
+                        resultNote.id =="75zm78KzceXAvHT7NlOeYmYqbyV2"||
+                        resultNote.id =="AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"||
+                        resultNote.id=="UwK9No4ZlYb4bpnMXbhGukPPg4t2"||
+                        resultNote.id =="J8n8rpR3DBTXLQK7MseiF346L7f1"||
+                        resultNote.id =="jlkJA9DdE9cKE4qDL7ru18Sfdis1")
+                if (!resultNote.intro.isNullOrEmpty()
+                     ) {
                     val intro = (Integer.parseInt(resultNote.intro))
                     sumIntro += intro
                 }
-
-                if (!resultNote.onedayWS.isNullOrEmpty()) {
+                if (
+                        resultNote.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"||
+                        resultNote.id =="75zm78KzceXAvHT7NlOeYmYqbyV2"||
+                        resultNote.id =="AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"||
+                        resultNote.id=="UwK9No4ZlYb4bpnMXbhGukPPg4t2"||
+                        resultNote.id =="J8n8rpR3DBTXLQK7MseiF346L7f1"||
+                        resultNote.id =="jlkJA9DdE9cKE4qDL7ru18Sfdis1")
+                if (!resultNote.onedayWS.isNullOrEmpty()
+                        ) {
                     val onaDay = Integer.parseInt(resultNote.onedayWS)
                     sumOneD1 += onaDay
                 }
-
+                if (
+                        resultNote.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"||
+                        resultNote.id =="75zm78KzceXAvHT7NlOeYmYqbyV2"||
+                        resultNote.id =="AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"||
+                        resultNote.id=="UwK9No4ZlYb4bpnMXbhGukPPg4t2"||
+                        resultNote.id =="J8n8rpR3DBTXLQK7MseiF346L7f1"||
+                        resultNote.id =="jlkJA9DdE9cKE4qDL7ru18Sfdis1")
                 if (!resultNote.twoDayWS.isNullOrEmpty()) {
                     val twoDay = Integer.parseInt(resultNote.twoDayWS)
                     sumTwoD1 += twoDay
                 }
-
+                if (
+                        resultNote.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"||
+                        resultNote.id =="75zm78KzceXAvHT7NlOeYmYqbyV2"||
+                        resultNote.id =="AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"||
+                        resultNote.id=="UwK9No4ZlYb4bpnMXbhGukPPg4t2"||
+                        resultNote.id =="J8n8rpR3DBTXLQK7MseiF346L7f1"||
+                        resultNote.id =="jlkJA9DdE9cKE4qDL7ru18Sfdis1")
                 if (!resultNote.actionaiser.isNullOrEmpty()) {
                     val act = Integer.parseInt(resultNote.actionaiser)
                     sumAct += act
                 }
+                if (
+                        resultNote.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"||
+                        resultNote.id =="75zm78KzceXAvHT7NlOeYmYqbyV2"||
+                        resultNote.id =="AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"||
+                        resultNote.id=="UwK9No4ZlYb4bpnMXbhGukPPg4t2"||
+                        resultNote.id =="J8n8rpR3DBTXLQK7MseiF346L7f1"||
+                        resultNote.id =="jlkJA9DdE9cKE4qDL7ru18Sfdis1")
                 if (!resultNote.twOneDay.isNullOrEmpty()) {
                     val twOneDay = Integer.parseInt(resultNote.twOneDay)
                     sumTwent1 += twOneDay
                 }
-
+                if (
+                        resultNote.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"||
+                        resultNote.id =="75zm78KzceXAvHT7NlOeYmYqbyV2"||
+                        resultNote.id =="AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"||
+                        resultNote.id=="UwK9No4ZlYb4bpnMXbhGukPPg4t2"||
+                        resultNote.id =="J8n8rpR3DBTXLQK7MseiF346L7f1"||
+                        resultNote.id =="jlkJA9DdE9cKE4qDL7ru18Sfdis1")
                 if (!resultNote.nwet.isNullOrEmpty()) {
                     val nwet = Math.round(Integer.parseInt(resultNote.nwet).toFloat())
                     sumNwet += nwet
                 }
             }
             val df = DecimalFormat("#.##")
-            rootView.chart_common_result.text = (sumIntro + sumOneD1 * 3 + sumTwoD1 * 9 + sumAct*18 + sumTwent1 * 36 + sumNwet * 72).toString()
+            rootView.chart_common_result.text = (sumIntro + sumOneD1 * 3 + sumTwoD1 * 9 + sumAct * 18 + sumTwent1 * 36 + sumNwet * 72).toString()
 
-            rootView.result_percent.text = ((df.format((sumIntro + sumOneD1 * 3 + sumTwoD1 * 9 + sumAct*18 + sumTwent1 * 36 + sumNwet * 72F) * 100F / 13270F)).toString())
+            rootView.result_percent.text = ((df.format((sumIntro + sumOneD1 * 3 + sumTwoD1 * 9 + sumAct * 18 + sumTwent1 * 36 + sumNwet * 72F) * 100F / 1327F)).toString())
 
             for (change in queryDocumentSnapshots.documentChanges) {
                 if (change.type == DocumentChange.Type.MODIFIED) {
@@ -148,14 +187,20 @@ class ChartFragment : Fragment() {
 
                         val items = querydocumentSnapshot.result!!
                                 .map { it.toObject<City>(City::class.java) }
-//                                .filterNot {
-//                                    (it.name == "Kyiv Chondoso" || it.name == "Daniela Aldasoro ")
-//
-//                                }
+                                .filter {
+                                    (it.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"||
+                                            it.id =="75zm78KzceXAvHT7NlOeYmYqbyV2"||
+                                            it.id =="AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"||
+                                            it.id =="UwK9No4ZlYb4bpnMXbhGukPPg4t2"||
+                                            it.id =="J8n8rpR3DBTXLQK7MseiF346L7f1"||
+                                            it.id =="jlkJA9DdE9cKE4qDL7ru18Sfdis1")
 
-                        val itemsCity = items.groupBy {
-                            it.centers
-                        }
+                                }
+
+                        val itemsCity = items
+                                .groupBy {
+                                    it.centers
+                                }
                                 .mapValues {
                                     it.value.sumBy {
 
@@ -187,9 +232,11 @@ class ChartFragment : Fragment() {
                         setList(itemsCity)
 
                         val pieEntries = ArrayList<PieEntry>()
-                        for (i in 0 until rain.size) {
+                        for (i in 0 until itemsCity.size) {
                             val item = pairList?.get(i)
-                            pieEntries.add(PieEntry(item?.second?.toFloat()!!, item.first.toString()))
+//                            if (!item?.first.isNullOrEmpty()) {
+                                pieEntries.add(PieEntry(item?.second?.toFloat()!!, item.first.toString()))
+//                            } else pieEntries.add(PieEntry( 0F, "Other"))
                         }
                         val dataSet = PieDataSet(pieEntries, "Each centers result")
 
@@ -258,7 +305,15 @@ class ChartFragment : Fragment() {
 
                                     val items = querydocumentSnapshot.result!!
                                             .map { it.toObject<City>(City::class.java) }
+                                            .filter {
+                                                (it.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"||
+                                                        it.id =="75zm78KzceXAvHT7NlOeYmYqbyV2"||
+                                                        it.id =="AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"||
+                                                        it.id =="UwK9No4ZlYb4bpnMXbhGukPPg4t2"||
+                                                        it.id =="J8n8rpR3DBTXLQK7MseiF346L7f1"||
+                                                        it.id =="jlkJA9DdE9cKE4qDL7ru18Sfdis1")
 
+                                            }
                                     val itemsCity = items.groupBy {
                                         it.centers
                                     }
@@ -286,7 +341,6 @@ class ChartFragment : Fragment() {
                                                 }
                                             }
                                             .toList()
-                                            .filterNot { it.second == 0 }
                                             .sortedByDescending { it.second }
 
 
@@ -364,44 +418,80 @@ class ChartFragment : Fragment() {
                             queryDocumentSnapshots.forEach { documentSnapshot ->
 
                                 val resultNote = documentSnapshot.toObject(City::class.java)
-
+                                if (
+                                        resultNote.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"||
+                                        resultNote.id =="75zm78KzceXAvHT7NlOeYmYqbyV2"||
+                                        resultNote.id =="AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"||
+                                        resultNote.id=="UwK9No4ZlYb4bpnMXbhGukPPg4t2"||
+                                        resultNote.id =="J8n8rpR3DBTXLQK7MseiF346L7f1"||
+                                        resultNote.id =="jlkJA9DdE9cKE4qDL7ru18Sfdis1")
                                 if (!resultNote.intro.isNullOrEmpty()) {
                                     val intro = (Integer.parseInt(resultNote.intro))
                                     sumIntro += intro
                                 }
-
+                                if (
+                                        resultNote.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"||
+                                        resultNote.id =="75zm78KzceXAvHT7NlOeYmYqbyV2"||
+                                        resultNote.id =="AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"||
+                                        resultNote.id=="UwK9No4ZlYb4bpnMXbhGukPPg4t2"||
+                                        resultNote.id =="J8n8rpR3DBTXLQK7MseiF346L7f1"||
+                                        resultNote.id =="jlkJA9DdE9cKE4qDL7ru18Sfdis1")
                                 if (!resultNote.onedayWS.isNullOrEmpty()) {
                                     val onaDay = Integer.parseInt(resultNote.onedayWS)
                                     sumOneD1 += onaDay
                                 }
-
+                                if (
+                                        resultNote.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"||
+                                        resultNote.id =="75zm78KzceXAvHT7NlOeYmYqbyV2"||
+                                        resultNote.id =="AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"||
+                                        resultNote.id=="UwK9No4ZlYb4bpnMXbhGukPPg4t2"||
+                                        resultNote.id =="J8n8rpR3DBTXLQK7MseiF346L7f1"||
+                                        resultNote.id =="jlkJA9DdE9cKE4qDL7ru18Sfdis1")
                                 if (!resultNote.twoDayWS.isNullOrEmpty()) {
                                     val twoDay = Integer.parseInt(resultNote.twoDayWS)
                                     sumTwoD1 += twoDay
                                 }
-
+                                if (
+                                        resultNote.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"||
+                                        resultNote.id =="75zm78KzceXAvHT7NlOeYmYqbyV2"||
+                                        resultNote.id =="AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"||
+                                        resultNote.id=="UwK9No4ZlYb4bpnMXbhGukPPg4t2"||
+                                        resultNote.id =="J8n8rpR3DBTXLQK7MseiF346L7f1"||
+                                        resultNote.id =="jlkJA9DdE9cKE4qDL7ru18Sfdis1")
                                 if (!resultNote.actionaiser.isNullOrEmpty()) {
                                     val act = Integer.parseInt(resultNote.actionaiser)
                                     sumAct += act
                                 }
 
-
+                                if (
+                                        resultNote.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"||
+                                        resultNote.id =="75zm78KzceXAvHT7NlOeYmYqbyV2"||
+                                        resultNote.id =="AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"||
+                                        resultNote.id=="UwK9No4ZlYb4bpnMXbhGukPPg4t2"||
+                                        resultNote.id =="J8n8rpR3DBTXLQK7MseiF346L7f1"||
+                                        resultNote.id =="jlkJA9DdE9cKE4qDL7ru18Sfdis1")
                                 if (!resultNote.twOneDay.isNullOrEmpty()) {
                                     val twOneDay = Integer.parseInt(resultNote.twOneDay)
                                     sumTwent1 += twOneDay
                                 }
-
+                                if (
+                                        resultNote.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"||
+                                        resultNote.id =="75zm78KzceXAvHT7NlOeYmYqbyV2"||
+                                        resultNote.id =="AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"||
+                                        resultNote.id=="UwK9No4ZlYb4bpnMXbhGukPPg4t2"||
+                                        resultNote.id =="J8n8rpR3DBTXLQK7MseiF346L7f1"||
+                                        resultNote.id =="jlkJA9DdE9cKE4qDL7ru18Sfdis1")
                                 if (!resultNote.nwet.isNullOrEmpty()) {
                                     val nwet = Integer.parseInt(resultNote.nwet)
                                     sumNwet += nwet
                                 }
                             }
                             val df = DecimalFormat("#.##")
-                            rootView.chart_common_result.text = (sumIntro + sumOneD1 * 3 + sumTwoD1 * 9 + sumAct*18 + sumTwent1 * 36 + sumNwet * 72).toString()
+                            rootView.chart_common_result.text = (sumIntro + sumOneD1 * 3 + sumTwoD1 * 9 + sumAct * 18 + sumTwent1 * 36 + sumNwet * 72).toString()
 
-                            rootView.result_percent.text = ((df.format((sumIntro + sumOneD1 * 3 + sumTwoD1 * 9 + sumAct*18 + sumTwent1 * 36 + sumNwet * 72F) * 100F / 13270F)).toString())
+                            rootView.result_percent.text = ((df.format((sumIntro + sumOneD1 * 3 + sumTwoD1 * 9 + sumAct * 18 + sumTwent1 * 36 + sumNwet * 72F) * 100F / 1327F)).toString())
 
-                            rootView.chart_common_goal.text = "13270"
+                            rootView.chart_common_goal.text = "1327"
                             for (change in queryDocumentSnapshots.documentChanges) {
                                 if (change.type == DocumentChange.Type.MODIFIED) {
                                     Log.d(ContentValues.TAG, "data:" + change.document.data)
@@ -426,10 +516,15 @@ class ChartFragment : Fragment() {
 
                                     val items = querydocumentSnapshot.result!!
                                             .map { it.toObject<City>(City::class.java) }
-//                                .filterNot {
-//                                    (it.name == "Kyiv Chondoso" || it.name == "Daniela Aldasoro ")
-//
-//                                }
+                                            .filter {
+                                                (it.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"||
+                                                        it.id =="75zm78KzceXAvHT7NlOeYmYqbyV2"||
+                                                        it.id =="AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"||
+                                                        it.id =="UwK9No4ZlYb4bpnMXbhGukPPg4t2"||
+                                                        it.id =="J8n8rpR3DBTXLQK7MseiF346L7f1"||
+                                                        it.id =="jlkJA9DdE9cKE4qDL7ru18Sfdis1")
+
+                                            }
 
                                     val itemsCity = items.groupBy {
                                         it.centers
@@ -536,17 +631,35 @@ class ChartFragment : Fragment() {
                                     queryDocumentSnapshots.forEach { documentSnapshot ->
 
                                         val resultNote = documentSnapshot.toObject(City::class.java)
-
+                                        if (
+                                                resultNote.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"||
+                                                resultNote.id =="75zm78KzceXAvHT7NlOeYmYqbyV2"||
+                                                resultNote.id =="AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"||
+                                                resultNote.id=="UwK9No4ZlYb4bpnMXbhGukPPg4t2"||
+                                                resultNote.id =="J8n8rpR3DBTXLQK7MseiF346L7f1"||
+                                                resultNote.id =="jlkJA9DdE9cKE4qDL7ru18Sfdis1")
                                         if (!resultNote.intro.isNullOrEmpty()) {
                                             val intro = (Integer.parseInt(resultNote.intro))
                                             sumIntro += intro
                                         }
-
+                                        if (
+                                                resultNote.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"||
+                                                resultNote.id =="75zm78KzceXAvHT7NlOeYmYqbyV2"||
+                                                resultNote.id =="AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"||
+                                                resultNote.id=="UwK9No4ZlYb4bpnMXbhGukPPg4t2"||
+                                                resultNote.id =="J8n8rpR3DBTXLQK7MseiF346L7f1"||
+                                                resultNote.id =="jlkJA9DdE9cKE4qDL7ru18Sfdis1")
                                         if (!resultNote.onedayWS.isNullOrEmpty()) {
                                             val onaDay = Integer.parseInt(resultNote.onedayWS)
                                             sumOneD1 += onaDay
                                         }
-
+                                        if (
+                                                resultNote.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"||
+                                                resultNote.id =="75zm78KzceXAvHT7NlOeYmYqbyV2"||
+                                                resultNote.id =="AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"||
+                                                resultNote.id=="UwK9No4ZlYb4bpnMXbhGukPPg4t2"||
+                                                resultNote.id =="J8n8rpR3DBTXLQK7MseiF346L7f1"||
+                                                resultNote.id =="jlkJA9DdE9cKE4qDL7ru18Sfdis1")
                                         if (!resultNote.twoDayWS.isNullOrEmpty()) {
                                             val twoDay = Integer.parseInt(resultNote.twoDayWS)
                                             sumTwoD1 += twoDay
@@ -556,9 +669,9 @@ class ChartFragment : Fragment() {
                                     val df = DecimalFormat("#.##")
                                     rootView.chart_common_result.text = (sumIntro + sumOneD1 * 3 + sumTwoD1 * 12).toString()
 
-                                    rootView.result_percent.text = ((df.format((sumIntro + sumOneD1 * 3 + sumTwoD1 * 12) * 100F / 620F)).toString())
+                                    rootView.result_percent.text = ((df.format((sumIntro + sumOneD1 * 3 + sumTwoD1 * 12) * 100F / 110F)).toString())
 
-                                    rootView.chart_common_goal.text = "620"
+                                    rootView.chart_common_goal.text = "110"
                                     for (change in queryDocumentSnapshots.documentChanges) {
                                         if (change.type == DocumentChange.Type.MODIFIED) {
                                             Log.d(ContentValues.TAG, "data:" + change.document.data)
@@ -582,7 +695,15 @@ class ChartFragment : Fragment() {
 
                                     val items = querydocumentSnapshot.result!!
                                             .map { it.toObject<City>(City::class.java) }
+                                            .filter {
+                                                (it.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"||
+                                                        it.id =="75zm78KzceXAvHT7NlOeYmYqbyV2"||
+                                                        it.id =="AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"||
+                                                        it.id =="UwK9No4ZlYb4bpnMXbhGukPPg4t2"||
+                                                        it.id =="J8n8rpR3DBTXLQK7MseiF346L7f1"||
+                                                        it.id =="jlkJA9DdE9cKE4qDL7ru18Sfdis1")
 
+                                            }
                                     val itemsCity = items.groupBy {
                                         it.centers
                                     }
@@ -686,17 +807,35 @@ class ChartFragment : Fragment() {
                                     queryDocumentSnapshots.forEach { documentSnapshot ->
 
                                         val resultNote = documentSnapshot.toObject(City::class.java)
-
+                                        if (
+                                                resultNote.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"||
+                                                resultNote.id =="75zm78KzceXAvHT7NlOeYmYqbyV2"||
+                                                resultNote.id =="AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"||
+                                                resultNote.id=="UwK9No4ZlYb4bpnMXbhGukPPg4t2"||
+                                                resultNote.id =="J8n8rpR3DBTXLQK7MseiF346L7f1"||
+                                                resultNote.id =="jlkJA9DdE9cKE4qDL7ru18Sfdis1")
                                         if (!resultNote.intro.isNullOrEmpty()) {
                                             val intro = (Integer.parseInt(resultNote.intro))
                                             sumIntro += intro
                                         }
-
+                                        if (
+                                                resultNote.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"||
+                                                resultNote.id =="75zm78KzceXAvHT7NlOeYmYqbyV2"||
+                                                resultNote.id =="AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"||
+                                                resultNote.id=="UwK9No4ZlYb4bpnMXbhGukPPg4t2"||
+                                                resultNote.id =="J8n8rpR3DBTXLQK7MseiF346L7f1"||
+                                                resultNote.id =="jlkJA9DdE9cKE4qDL7ru18Sfdis1")
                                         if (!resultNote.onedayWS.isNullOrEmpty()) {
                                             val onaDay = Integer.parseInt(resultNote.onedayWS)
                                             sumOneD1 += onaDay
                                         }
-
+                                        if (
+                                                resultNote.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"||
+                                                resultNote.id =="75zm78KzceXAvHT7NlOeYmYqbyV2"||
+                                                resultNote.id =="AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"||
+                                                resultNote.id=="UwK9No4ZlYb4bpnMXbhGukPPg4t2"||
+                                                resultNote.id =="J8n8rpR3DBTXLQK7MseiF346L7f1"||
+                                                resultNote.id =="jlkJA9DdE9cKE4qDL7ru18Sfdis1")
                                         if (!resultNote.twoDayWS.isNullOrEmpty()) {
                                             val twoDay = Integer.parseInt(resultNote.twoDayWS)
                                             sumTwoD1 += twoDay

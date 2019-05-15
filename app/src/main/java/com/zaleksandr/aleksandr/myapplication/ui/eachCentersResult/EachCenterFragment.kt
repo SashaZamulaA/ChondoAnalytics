@@ -73,13 +73,25 @@ class EachCenterFragment : Fragment() {
 
                         for (documentSnapshot in querydocumentSnapshot.result!!) {
                             val note = documentSnapshot.toObject<City>(City::class.java)
-                            if (documentSnapshot["intro"] != "" && documentSnapshot["intro"] != "0"
-                                    || documentSnapshot["mmbk"] != "" && documentSnapshot["mmbk"] != "0"
-                                    || documentSnapshot["onedayWS"] != "" && documentSnapshot["onedayWS"] != "0"
-                                    || documentSnapshot["actionaiser"] != "" && documentSnapshot["actionaiser"] != "0" && documentSnapshot["actionaiser"] != null
-                                    || documentSnapshot["twoDayWS"] != "" && documentSnapshot["twoDayWS"] != "0"
-                                    || documentSnapshot["twOneDay"] != "" && documentSnapshot["twOneDay"] != "0"
-                            ) {
+
+                            if (documentSnapshot["id"] == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"
+                                    || documentSnapshot["id"] == "75zm78KzceXAvHT7NlOeYmYqbyV2"
+                                    || documentSnapshot["id"] =="AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"
+                                    || documentSnapshot["id"] =="UwK9No4ZlYb4bpnMXbhGukPPg4t2"
+                                    || documentSnapshot["id"] =="J8n8rpR3DBTXLQK7MseiF346L7f1"
+                                    || documentSnapshot["id"] =="jlkJA9DdE9cKE4qDL7ru18Sfdis1"
+                            )
+                                if (documentSnapshot["intro"] != "" && documentSnapshot["intro"] != "0"
+                                        || documentSnapshot["mmbk"] != "" && documentSnapshot["mmbk"] != "0"
+                                        || documentSnapshot["onedayWS"] != "" && documentSnapshot["onedayWS"] != "0"
+                                        || documentSnapshot["actionaiser"] != "" && documentSnapshot["actionaiser"] != "0" && documentSnapshot["actionaiser"] != null
+                                        || documentSnapshot["twoDayWS"] != "" && documentSnapshot["twoDayWS"] != "0"
+                                        || documentSnapshot["twOneDay"] != "" && documentSnapshot["twOneDay"] != "0"
+                                )
+
+
+
+                            {
 
                                 num++
                                 if (num<12) items.add(note)

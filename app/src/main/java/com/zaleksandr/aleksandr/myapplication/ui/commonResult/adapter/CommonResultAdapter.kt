@@ -119,10 +119,7 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
     inner class VHHeader(itemView: View, var fragmentCommunication: FragmentCommunication) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
 
-        override fun onClick(v: View?) {
-
-                    }
-
+        override fun onClick(v: View?) {}
 
         fun bind2() {
             clickByFilterCommonResult(noteRefCollection, position, period).addOnSuccessListener { queryDocumentSnapshots ->
@@ -358,7 +355,7 @@ class CommonResultAdapter(private var list: ArrayList<City>, private var fragmen
 
 
                     if (!resultNote.intro.isNullOrEmpty()) {
-                        if (resultNote.id == "75zm78KzceXAvHT7NlOeYmYqbyV2"
+                        if (resultNote.id ==        "75zm78KzceXAvHT7NlOeYmYqbyV2"
                                 || resultNote.id == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"
                                 || resultNote.id == "AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"
                                 || resultNote.id == "UwK9No4ZlYb4bpnMXbhGukPPg4t2"

@@ -171,7 +171,8 @@ fun clickByFilterCommonResult(goalCollection: CollectionReference, position: Int
         3 -> startOfMonth()
         4 -> startOfYear()
         else -> startOfDay(Date())
-    }).whereLessThanOrEqualTo("time", when (value) {
+    })
+            .whereLessThanOrEqualTo("time", when (value) {
         1 -> endOfDay(Date())
         2 -> endOfWeek()
         3 -> endOfMonth()

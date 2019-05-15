@@ -150,6 +150,13 @@ class NwetFragment : Fragment() {
                         if (querydocumentSnapshot.isSuccessful) {
                             for (documentSnapshot in querydocumentSnapshot.result!!) {
                                 val note = documentSnapshot.toObject<Guest>(Guest::class.java)
+
+                                if (note.currentUserId == "75zm78KzceXAvHT7NlOeYmYqbyV2"
+                                        || note.currentUserId == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"
+                                        || note.currentUserId == "AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"
+                                        || note.currentUserId == "UwK9No4ZlYb4bpnMXbhGukPPg4t2"
+                                        || note.currentUserId == "J8n8rpR3DBTXLQK7MseiF346L7f1"
+                                        || note.currentUserId == "jlkJA9DdE9cKE4qDL7ru18Sfdis1")
                                 items.add(note)
 
 
@@ -201,6 +208,13 @@ class NwetFragment : Fragment() {
                         if (querydocumentSnapshot.isSuccessful) {
                             for (documentSnapshot in querydocumentSnapshot.result!!) {
                                 val note = documentSnapshot.toObject<Guest>(Guest::class.java)
+
+                                if (note.currentUserId == "75zm78KzceXAvHT7NlOeYmYqbyV2"
+                                        || note.currentUserId == "mwgvrSjiXmgA1wjSEDiu6lgkScs2"
+                                        || note.currentUserId == "AgQUDOJ23Ie0YlRhn4ThxPhSW6q2"
+                                        || note.currentUserId == "UwK9No4ZlYb4bpnMXbhGukPPg4t2"
+                                        || note.currentUserId == "J8n8rpR3DBTXLQK7MseiF346L7f1"
+                                        || note.currentUserId == "jlkJA9DdE9cKE4qDL7ru18Sfdis1")
                                 items.add(note)
 
 
