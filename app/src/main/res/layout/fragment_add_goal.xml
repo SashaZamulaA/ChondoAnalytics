@@ -158,7 +158,7 @@
                                         android:focusable="true"
                                         android:gravity="start"
                                         android:imeOptions="actionNext"
-                                        android:inputType="numberDecimal"
+                                        android:inputType="numberSigned"
                                         android:nextFocusDown="@+id/et_sku"
                                         android:nextFocusForward="@+id/et_sku"
                                         android:selectAllOnFocus="true"
@@ -202,7 +202,7 @@
                                         android:focusable="true"
                                         android:gravity="start"
                                         android:imeOptions="actionNext"
-                                        android:inputType="numberDecimal"
+                                        android:inputType="numberSigned"
                                         android:nextFocusDown="@+id/et_sku"
                                         android:nextFocusForward="@+id/et_sku"
                                         android:selectAllOnFocus="true"
@@ -250,7 +250,7 @@
                                         android:focusable="true"
                                         android:gravity="start"
                                         android:imeOptions="actionNext"
-                                        android:inputType="numberDecimal"
+                                        android:inputType="numberSigned"
                                         android:maxLines="1"
                                         android:nextFocusDown="@+id/et_sku"
                                         android:nextFocusForward="@+id/et_sku"
@@ -294,7 +294,7 @@
                                         android:focusable="true"
                                         android:gravity="start"
                                         android:imeOptions="actionNext"
-                                        android:inputType="numberDecimal"
+                                        android:inputType="numberSigned"
                                         android:maxLines="1"
                                         android:nextFocusDown="@+id/et_sku"
                                         android:nextFocusForward="@+id/et_sku"
@@ -341,7 +341,7 @@
                                         android:focusable="true"
                                         android:gravity="start"
                                         android:imeOptions="actionNext"
-                                        android:inputType="numberDecimal"
+                                        android:inputType="numberSigned"
                                         android:maxLines="1"
                                         android:nextFocusDown="@+id/et_sku"
                                         android:nextFocusForward="@+id/et_sku"
@@ -385,7 +385,7 @@
                                         android:focusable="true"
                                         android:gravity="start"
                                         android:imeOptions="actionNext"
-                                        android:inputType="numberDecimal"
+                                        android:inputType="numberSigned"
                                         android:maxLines="1"
                                         android:nextFocusDown="@+id/et_sku"
                                         android:nextFocusForward="@+id/et_sku"
@@ -429,7 +429,7 @@
                         <!--android:focusable="true"-->
                         <!--android:gravity="center_horizontal"-->
                         <!--android:imeOptions="actionNext"-->
-                        <!--android:inputType="numberDecimal"-->
+                        <!--android:inputType="numberSigned"-->
                         <!--android:maxLines="1"-->
                         <!--android:nextFocusDown="@+currentUserId/et_sku"-->
                         <!--android:nextFocusForward="@+currentUserId/et_sku"-->
@@ -523,7 +523,7 @@
                                         android:focusable="true"
                                         android:gravity="start"
                                         android:imeOptions="actionNext"
-                                        android:inputType="numberDecimal"
+                                        android:inputType="numberSigned"
                                         android:nextFocusDown="@+id/et_sku"
                                         android:nextFocusForward="@+id/et_sku"
                                         android:selectAllOnFocus="true"
@@ -567,7 +567,7 @@
                                         android:focusable="true"
                                         android:gravity="start"
                                         android:imeOptions="actionNext"
-                                        android:inputType="numberDecimal"
+                                        android:inputType="numberSigned"
                                         android:nextFocusDown="@+id/et_sku"
                                         android:nextFocusForward="@+id/et_sku"
                                         android:selectAllOnFocus="true"
@@ -615,7 +615,7 @@
                                         android:focusable="true"
                                         android:gravity="start"
                                         android:imeOptions="actionNext"
-                                        android:inputType="numberDecimal"
+                                        android:inputType="numberSigned"
                                         android:maxLines="1"
                                         android:nextFocusDown="@+id/et_sku"
                                         android:nextFocusForward="@+id/et_sku"
@@ -659,7 +659,7 @@
                                         android:focusable="true"
                                         android:gravity="start"
                                         android:imeOptions="actionNext"
-                                        android:inputType="numberDecimal"
+                                        android:inputType="numberSigned"
                                         android:maxLines="1"
                                         android:nextFocusDown="@+id/et_sku"
                                         android:nextFocusForward="@+id/et_sku"
@@ -706,7 +706,7 @@
                                         android:focusable="true"
                                         android:gravity="start"
                                         android:imeOptions="actionNext"
-                                        android:inputType="numberDecimal"
+                                        android:inputType="numberSigned"
                                         android:maxLines="1"
                                         android:nextFocusDown="@+id/et_sku"
                                         android:nextFocusForward="@+id/et_sku"
@@ -749,7 +749,7 @@
                                         android:focusable="true"
                                         android:gravity="start"
                                         android:imeOptions="actionNext"
-                                        android:inputType="numberDecimal"
+                                        android:inputType="numberSigned"
                                         android:maxLines="1"
                                         android:nextFocusDown="@+id/et_sku"
                                         android:nextFocusForward="@+id/et_sku"
@@ -793,7 +793,7 @@
                                     <!--android:focusable="true"-->
                                     <!--android:gravity="center_horizontal"-->
                                     <!--android:imeOptions="actionNext"-->
-                                    <!--android:inputType="numberDecimal"-->
+                                    <!--android:inputType="numberSigned"-->
                                     <!--android:maxLines="1"-->
                                     <!--android:nextFocusDown="@+currentUserId/et_sku"-->
                                     <!--android:nextFocusForward="@+currentUserId/et_sku"-->
@@ -885,7 +885,7 @@
                                         android:focusable="true"
                                         android:gravity="start"
                                         android:imeOptions="actionNext"
-                                        android:inputType="numberDecimal"
+                                        android:inputType="numberSigned"
                                         android:nextFocusDown="@+id/et_sku"
                                         android:nextFocusForward="@+id/et_sku"
                                         android:selectAllOnFocus="true"
@@ -929,7 +929,7 @@
                                         android:focusable="true"
                                         android:gravity="start"
                                         android:imeOptions="actionNext"
-                                        android:inputType="numberDecimal"
+                                        android:inputType="numberSigned"
                                         android:nextFocusDown="@+id/et_sku"
                                         android:nextFocusForward="@+id/et_sku"
                                         android:selectAllOnFocus="true"
@@ -977,7 +977,7 @@
                                         android:focusable="true"
                                         android:gravity="start"
                                         android:imeOptions="actionNext"
-                                        android:inputType="numberDecimal"
+                                        android:inputType="numberSigned"
                                         android:maxLines="1"
                                         android:nextFocusDown="@+id/et_sku"
                                         android:nextFocusForward="@+id/et_sku"
@@ -1022,7 +1022,7 @@
                                         android:focusable="true"
                                         android:gravity="start"
                                         android:imeOptions="actionNext"
-                                        android:inputType="numberDecimal"
+                                        android:inputType="numberSigned"
                                         android:maxLines="1"
                                         android:nextFocusDown="@+id/et_sku"
                                         android:nextFocusForward="@+id/et_sku"
@@ -1067,7 +1067,7 @@
                                     <!--android:focusable="true"-->
                                     <!--android:gravity="center_horizontal"-->
                                     <!--android:imeOptions="actionNext"-->
-                                    <!--android:inputType="numberDecimal"-->
+                                    <!--android:inputType="numberSigned"-->
                                     <!--android:maxLines="1"-->
                                     <!--android:nextFocusDown="@+currentUserId/et_sku"-->
                                     <!--android:nextFocusForward="@+currentUserId/et_sku"-->
@@ -1158,7 +1158,7 @@
                                         android:focusable="true"
                                         android:gravity="start"
                                         android:imeOptions="actionNext"
-                                        android:inputType="numberDecimal"
+                                        android:inputType="numberSigned"
                                         android:nextFocusDown="@+id/et_sku"
                                         android:nextFocusForward="@+id/et_sku"
                                         android:selectAllOnFocus="true"
@@ -1202,7 +1202,7 @@
                                         android:focusable="true"
                                         android:gravity="start"
                                         android:imeOptions="actionNext"
-                                        android:inputType="numberDecimal"
+                                        android:inputType="numberSigned"
                                         android:nextFocusDown="@+id/et_sku"
                                         android:nextFocusForward="@+id/et_sku"
                                         android:selectAllOnFocus="true"
@@ -1247,7 +1247,7 @@
                                     android:focusable="true"
                                     android:gravity="center_horizontal"
                                     android:imeOptions="actionNext"
-                                    android:inputType="numberDecimal"
+                                    android:inputType="numberSigned"
                                     android:maxLines="1"
                                     android:nextFocusDown="@+id/et_sku"
                                     android:nextFocusForward="@+id/et_sku"
