@@ -31,12 +31,15 @@
             android:title="@string/chart"
             />
 
-
-
         <item
             android:id="@+id/add_result"
             android:icon="@drawable/ic_create_black_24dp"
             android:title="@string/result_chondo" />
+
+        <item
+            android:id="@+id/add_weekly_result"
+            android:icon="@drawable/ic_filter_7_black_24dp"
+            android:title="@string/add_weekly_result" />
 
         <item
             android:id="@+id/add_guest"
@@ -51,7 +54,7 @@
 
         <item
             android:id="@+id/add_goal"
-            android:icon="@drawable/ic_filter_7_black_24dp"
+            android:icon="@drawable/ic_filter_center_focus_black_24dp"
             android:title="@string/add_all_centers_goal" />
 
         <item

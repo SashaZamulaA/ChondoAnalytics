@@ -61,6 +61,16 @@
     </fragment>
 
     <fragment
+        android:id="@+id/addWeekResultFragment"
+        android:name="com.zaleksandr.aleksandr.myapplication.ui.addWeekResult.AddWeekResultFragment"
+        android:label="Week result Fragment"
+        tools:layout="@layout/fragment_add_result" >
+        <action
+            android:id="@+id/action_addResultFragment_to_commonResultFragment"
+            app:destination="@id/commonResultFragment" />
+    </fragment>
+
+    <fragment
         android:id="@+id/addGoalEachCenterFragment"
         android:name="com.zaleksandr.aleksandr.myapplication.ui.addCentersGoal.GoalCentersFragment"
         android:label="First Fragment"

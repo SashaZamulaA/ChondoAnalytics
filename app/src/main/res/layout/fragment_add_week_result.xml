@@ -125,7 +125,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/result_nwet_edittext"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView5"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView27" />
@@ -578,6 +578,41 @@
                     app:layout_constraintTop_toTopOf="@+id/textView17" />
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/result_mobilisation_edittext"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:hint="count"
+                    android:inputType="numberSigned"
+                    android:selectAllOnFocus="true"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textSize="@dimen/body2_text_size"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView38"
+                    app:layout_constraintEnd_toEndOf="@+id/result_DP_edittext"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/textView38"
+                    app:layout_constraintTop_toTopOf="@+id/textView38" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/result_hdh"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:hint="count"
+                    android:inputType="numberSigned"
+                    android:selectAllOnFocus="true"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textSize="@dimen/body2_text_size"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView5"
+                    app:layout_constraintEnd_toEndOf="@+id/result_DP_edittext"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/textView5"
+                    app:layout_constraintTop_toTopOf="@+id/textView5" />
+
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/result_lectures_in_center_edittext"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
@@ -717,6 +752,30 @@
                     android:textColor="@color/braun"
                     app:layout_constraintStart_toEndOf="@+id/view"
                     app:layout_constraintTop_toBottomOf="@+id/ind_read_dp" />
+
+                <TextView
+                    android:id="@+id/textView38"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Mobilisation"
+                    android:textColor="@color/braun"
+                    app:layout_constraintStart_toEndOf="@+id/view"
+                    app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="HDH"
+                    android:textColor="@color/braun"
+                    app:layout_constraintStart_toEndOf="@+id/view"
+                    app:layout_constraintTop_toBottomOf="@+id/textView38" />
 
                 <Button
 

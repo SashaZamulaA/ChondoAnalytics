@@ -99,6 +99,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                                     (it.title)
                                 }
                                 R.id.add_result -> navController.navigate(R.id.addResultFragment)
+                                R.id.add_weekly_result -> navController.navigate(R.id.addWeekResultFragment)
                                 R.id.best_result -> navController.navigate(R.id.addBestResultsFragment)
                                 R.id.chart -> navController.navigate(R.id.addChart)
                                 R.id.add_guest -> navController.navigate(R.id.addMyGuestFragment)
