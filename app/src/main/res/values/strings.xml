@@ -104,6 +104,13 @@
         <item>Chernigov</item>
     </array>
 
+    <array name="Group">
+        <item>Tolik</item>
+        <item>Toms</item>
+        <item>Igor</item>
+        <item>Misha</item>
+    </array>
+
 
     <string name="city">City</string>
     <string name="signup_successful">Registration successful</string>
@@ -128,6 +135,7 @@
     <string name="action_settings">Settings</string>
     <string name="text_hello">Hello,</string>
     <string name="text_title">Android Tutorials Hub</string>
+    <string name="group">Group</string>
 
     // MENU
 
@@ -246,7 +254,15 @@
     <string name="add_guest">Add guest</string>
     <string name="phone_number">Phone number</string>
     <string name="bestResult">Best result</string>
+    <string name="bestHDHResult">Best HDH result</string>
+    <string name="mobilisation">Mob.</string>
+    <string name="hdh">HDH</string>
+    <string name="ss">SS</string>
     <string name="chart">Charts</string>
     <string name="best_centers_chart">Best centers chart</string>
     <string name="update_result">Update result</string>
+    <string name="farm">Farm</string>
+    <string name="night_miting">NM</string>
+    <string name="mob">Mob.</string>
+    <string name="crh">CRH</string>
 </resources>

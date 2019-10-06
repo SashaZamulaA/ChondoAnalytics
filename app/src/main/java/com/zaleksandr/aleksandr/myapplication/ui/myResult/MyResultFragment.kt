@@ -25,7 +25,7 @@ import java.text.DecimalFormat
 import kotlin.math.roundToInt
 
 
-class MyResultFragment : Fragment(){
+class MyResultFragment : Fragment() {
 
     var toolbar: Toolbar? = null
     var adapter: UpdateResultAdapter? = null
@@ -51,6 +51,7 @@ class MyResultFragment : Fragment(){
     private val refCollectionMonthGoal = firestoreInstance.collection("EachMemberMonthGoal")
     private val refCollectionWeekGoal = firestoreInstance.collection("EachMemberWeekGoal")
     var period = 3
+
     enum class ClickByFilter {
         MONTH, WEEK, YEAR
     }
@@ -185,12 +186,12 @@ class MyResultFragment : Fragment(){
                             percentTwoDayGoal = 0
                         }
                         if (!individualGoalNote.monthTWOne.isNullOrEmpty()) {
-                        my_goal_21.text = individualGoalNote.monthTWOne
-                        percentTwoOneDayGoal = (Integer.parseInt(individualGoalNote.monthTWOne))
-                    } else {
-                        my_goal_21.text = "0"
-                        percentTwoOneDayGoal = 0
-                    }
+                            my_goal_21.text = individualGoalNote.monthTWOne
+                            percentTwoOneDayGoal = (Integer.parseInt(individualGoalNote.monthTWOne))
+                        } else {
+                            my_goal_21.text = "0"
+                            percentTwoOneDayGoal = 0
+                        }
                         if (!individualGoalNote.monthNWET.isNullOrEmpty()) {
                             my_goal_nwet.text = individualGoalNote.monthNWET
                             percentNWETGoal = (Integer.parseInt(individualGoalNote.monthNWET))
@@ -288,9 +289,9 @@ class MyResultFragment : Fragment(){
             }
         }
 
-        }
+    }
 
-    fun res(){
+    fun res() {
         var sumMmbk = 0
         var sumAppr = 0
         var sumCont = 0
@@ -337,15 +338,6 @@ class MyResultFragment : Fragment(){
                         goal_description.setText(resultNote.descriptionGoal)
                     }
 
-                    if (!resultNote.mobilis.isNullOrEmpty()) {
-                        val mob = (Integer.parseInt(resultNote.mobilis))
-                        sumMob += mob
-                    }
-
-                    if (!resultNote.hdh.isNullOrEmpty()) {
-                        val hdh = (Integer.parseInt(resultNote.hdh))
-                        sumHDH += hdh
-                    }
                     if (!resultNote.mmbk.isNullOrEmpty()) {
                         val mmbk = (Integer.parseInt(resultNote.mmbk))
                         sumMmbk += mmbk
@@ -407,16 +399,6 @@ class MyResultFragment : Fragment(){
                     if (!resultNote.dpKor.isNullOrEmpty()) {
                         val dpK = Integer.parseInt(resultNote.dpKor)
                         sumDpKor += dpK
-                    }
-
-                    if (!resultNote.mobilis.isNullOrEmpty()) {
-                        val mob = Integer.parseInt(resultNote.mobilis)
-                        sumMob += mob
-                    }
-
-                    if (!resultNote.hdh.isNullOrEmpty()) {
-                        val mob = Integer.parseInt(resultNote.hdh)
-                        sumHDH += mob
                     }
                 }
             }
@@ -494,26 +476,26 @@ class MyResultFragment : Fragment(){
 
     }
 
-        private fun bottomMenuInit(rootView: View) {
-            val layoutParams = rootView.bottom_navigation_person.layoutParams as CoordinatorLayout.LayoutParams
-            layoutParams.behavior = BottomNavigationViewBehavior()
-            rootView.bottom_navigation_person.setOnNavigationItemSelectedListener { item ->
-                when (item.itemId) {
-                    com.zaleksandr.aleksandr.myapplication.R.id.menu_year -> {
-                        perioSelected(ClickByFilter.YEAR)
-                    }
-                    com.zaleksandr.aleksandr.myapplication.R.id.menu_month -> {
-                        perioSelected(ClickByFilter.MONTH)
-                    }
-                    com.zaleksandr.aleksandr.myapplication.R.id.menu_week -> {
-                        perioSelected(ClickByFilter.WEEK)
-                    }
-
-                    else -> {
-                    }
+    private fun bottomMenuInit(rootView: View) {
+        val layoutParams = rootView.bottom_navigation_person.layoutParams as CoordinatorLayout.LayoutParams
+        layoutParams.behavior = BottomNavigationViewBehavior()
+        rootView.bottom_navigation_person.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                com.zaleksandr.aleksandr.myapplication.R.id.menu_year -> {
+                    perioSelected(ClickByFilter.YEAR)
                 }
-                true
-            }
-        }
+                com.zaleksandr.aleksandr.myapplication.R.id.menu_month -> {
+                    perioSelected(ClickByFilter.MONTH)
+                }
+                com.zaleksandr.aleksandr.myapplication.R.id.menu_week -> {
+                    perioSelected(ClickByFilter.WEEK)
+                }
 
+                else -> {
+                }
+            }
+            true
+        }
     }
+
+}

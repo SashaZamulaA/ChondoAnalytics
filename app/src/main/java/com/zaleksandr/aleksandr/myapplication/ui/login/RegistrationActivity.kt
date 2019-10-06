@@ -130,13 +130,15 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
                             if (task.isSuccessful) {
 
 //                                if (adminAccess == true)
-                                Toast.makeText(applicationContext,"Please wait for confirmation of your account.",Toast.LENGTH_LONG).show()
+
                                 FirestoreUtil.initCurrentUserIfFirstTime {
 
                                     val registrationToken = FirebaseInstanceId.getInstance().token
                                     MyFirebaseInstanceIDService.addTokenToFirestore(registrationToken)
                                 }
                                 saveQuote()
+                                startActivity(Intent(this@RegistrationActivity, LoginActivity::class.java))
+                                finish()
                             }
                         }
 

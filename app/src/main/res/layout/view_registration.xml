@@ -66,16 +66,7 @@
             android:layout_marginBottom="@dimen/space_24"
             android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:layout_margin="@dimen/space_20"
-            android:text="@string/app_name2"
-            android:textAllCaps="true"
-            android:textStyle="bold" />
-
-        <LinearLayout
+            <LinearLayout
             android:id="@+id/banner_for_agree"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -104,7 +95,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/space_8"
             android:layout_marginStart="@dimen/space_16"
-            android:layout_marginTop="@dimen/space_8">
+            android:layout_marginEnd="@dimen/space_16"
+            android:layout_marginTop="24dp">
 
             <EditText
                 android:id="@+id/input_name"
@@ -148,6 +140,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/space_16"
+            android:layout_marginEnd="@dimen/space_16"
             android:layout_marginBottom="@dimen/space_8"
             android:layout_marginTop="@dimen/space_8">
 
@@ -163,7 +156,7 @@
             android:id="@+id/text_InputLayoutPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:layout_marginEnd="@dimen/space_16"
             android:layout_marginStart="@dimen/space_16"
             android:layout_marginBottom="@dimen/space_8"
             android:layout_marginTop="@dimen/space_8">
@@ -183,6 +176,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/space_16"
             android:layout_marginBottom="@dimen/space_8"
+            android:layout_marginEnd="@dimen/space_16"
             android:layout_marginTop="@dimen/space_8">
 
             <EditText
@@ -270,6 +264,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/space_24"
+            android:layout_marginStart="@dimen/space_16"
+            android:layout_marginEnd="@dimen/space_16"
             android:layout_marginTop="@dimen/space_36"
             android:padding="@dimen/space_12"
             android:text="@string/create_account" />

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_hdh"
+        android:icon="@mipmap/study"
+        android:title="@string/hdh" />
+    <item
+        android:id="@+id/menu_mobilisation"
+        android:icon="@mipmap/soldier1"
+        android:title="@string/mob" />
+    <item
+        android:id="@+id/menu_night_meeting"
+        android:icon="@mipmap/night2"
+        android:title="@string/crh" />
+
+    <item
+        android:id="@+id/menu_ss"
+        android:icon="@mipmap/presentation"
+        android:title="@string/ss" />
+    <item
+        android:id="@+id/menu_farm"
+        android:icon="@mipmap/vegetables2"
+        android:title="@string/farm" />
+
+    <!--<item-->
+        <!--android:currentUserId="@+currentUserId/menu_ind_res"-->
+        <!--android:icon="@drawable/ic_arrow_back_white"-->
+        <!--android:title="@string/day" />-->
+</menu>

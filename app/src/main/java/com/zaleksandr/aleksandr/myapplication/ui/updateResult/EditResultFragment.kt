@@ -214,8 +214,7 @@ class EditResultFragment : Fragment() {
                             update_result_DP_kor_edittext.setText(note.dpKor)
                             update_result_DP_edittext.setText(note.dp)
                             update_result_mmbk_edittext.setText(note.mmbk)
-                            update_result_mobilisation_edittext.setText(note.mobilis)
-                            update_result_hdh.setText(note.hdh)
+
                         }
                     }
                 }

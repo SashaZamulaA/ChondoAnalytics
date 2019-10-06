@@ -23,13 +23,11 @@ import com.zaleksandr.aleksandr.myapplication.MainActivity.Companion.AUTHOR_KEY
 import com.zaleksandr.aleksandr.myapplication.MainActivity.Companion.SPINNER
 import com.zaleksandr.aleksandr.myapplication.R
 import com.zaleksandr.aleksandr.myapplication.model.City
-import com.zaleksandr.aleksandr.myapplication.model.CityAddInfo
 import com.zaleksandr.aleksandr.myapplication.model.EachCenter
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_add_result.*
 import kotlinx.android.synthetic.main.fragment_add_result.view.*
-import kotlinx.android.synthetic.main.fragment_nwet_guests.view.*
 import java.text.DateFormat
 import java.util.*
 
@@ -147,9 +145,9 @@ class AddResultFragment : Fragment() {
         val eduMat = result_edu_mat_edittext.text.toString()
         val dp = result_DP_edittext.text.toString()
         val dpKor = result_DP_kor_edittext.text.toString()
-        val mobilis = result_mobilisation_edittext.text.toString()
+//        val mobilis = result_mobilisation_edittext.text.toString()
         val descriptionGoal = goal_description.text.toString()
-        val hdh = result_hdh.text.toString()
+//        val hdh = result_hdh.text.toString()
         val gradeIntGoal = result_internal_goal.text.toString()
         val date: Date
 
@@ -176,17 +174,15 @@ class AddResultFragment : Fragment() {
 
         FirestoreUtil.currentUserDocRef.addSnapshotListener { documentSnapshot, _ ->
             FirestoreUtil.getCurrentUser { user ->
-                if (documentSnapshot?.exists()!! && centers != "Other") {
+                if (documentSnapshot?.exists()!!) {
                     name = documentSnapshot.getString(AUTHOR_KEY) ?: ""
                     if (!pictureJustChange && user.profilePicturePath != null) {
                         userPhotoPath = user.profilePicturePath
                     }
 
-                    noteRefCommonCollection.set(City(getId, id, intro, onedayWS, twoDayWS, actionaiser, twOneDay, centers, approach, telCont, timeCenter, timeStr, lectTraining, lectOnStr, lectCentr, date, timestamp, userPhotoPath, name, nwet, dpKor, dp, mmbk, mobilis,descriptionGoal, hdh, eduMat, gradeIntGoal))
+                    noteRefCommonCollection.set(City(getId, id, intro, onedayWS, twoDayWS, actionaiser, twOneDay, centers, approach, telCont, timeCenter, timeStr, lectTraining, lectOnStr, lectCentr, date, timestamp, userPhotoPath, name, nwet, dpKor, dp, mmbk,descriptionGoal, eduMat, gradeIntGoal))
                     noteRefCommonCollectionForEachCenter.set(EachCenter(id, id, intro, onedayWS, twoDayWS, actionaiser, twOneDay, centers, date, timestamp, userPhotoPath, name, nwet, mmbk))
 
-                } else {
-                    noteRefAddCollection.set(CityAddInfo(getId, id, date, timestamp, dpKor, dp, mobilis))
                 }
             }
         }

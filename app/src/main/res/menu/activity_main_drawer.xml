@@ -25,6 +25,10 @@
             android:icon="@drawable/ic_star_border_black_24dp"
             />
 
+        <item android:id="@+id/best_hdh_result"
+            android:title="@string/bestHDHResult"
+            android:icon="@drawable/ic_import_contacts_black_24dp"
+            />
 
         <item android:id="@+id/chart"
             android:icon="@drawable/ic_home"

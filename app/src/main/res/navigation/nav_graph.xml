@@ -31,6 +31,12 @@
         tools:layout="@layout/fragment_best_result" />
 
     <fragment
+        android:id="@+id/addBestHDHResultsFragment"
+        android:name="com.zaleksandr.aleksandr.myapplication.ui.bestResultHdh.BestResultHDHFragment"
+        android:label="Best HDH Fragment"
+        tools:layout="@layout/fragment_best_result" />
+
+    <fragment
         android:id="@+id/addNwetFragment"
         android:name="com.zaleksandr.aleksandr.myapplication.ui.guestNwet.NwetFragment"
         android:label="Nwet Fragment"
@@ -62,7 +68,7 @@
 
     <fragment
         android:id="@+id/addWeekResultFragment"
-        android:name="com.zaleksandr.aleksandr.myapplication.ui.addWeekResult.AddWeekResultFragment"
+        android:name="com.zaleksandr.aleksandr.myapplication.ui.addHDHResult.AddHDHResultFragment"
         android:label="Week result Fragment"
         tools:layout="@layout/fragment_add_result" >
         <action
