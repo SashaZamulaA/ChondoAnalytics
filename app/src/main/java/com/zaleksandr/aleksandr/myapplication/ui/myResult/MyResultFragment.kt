@@ -324,11 +324,6 @@ class MyResultFragment : Fragment(){
                         val dp = Integer.parseInt(resultNote.dp)
                         sumDpUkr += dp
                     }
-                    if (!resultNote.dpKor.isNullOrEmpty()) {
-                        val dpKor = Integer.parseInt(resultNote.dpKor)
-                        sumDpKor += dpKor
-                    }
-
 
                     if (!resultNote.gradeIntGoal.isNullOrEmpty()) {
                         my_intern_res.text = resultNote.gradeIntGoal
@@ -337,15 +332,7 @@ class MyResultFragment : Fragment(){
                         goal_description.setText(resultNote.descriptionGoal)
                     }
 
-                    if (!resultNote.mobilis.isNullOrEmpty()) {
-                        val mob = (Integer.parseInt(resultNote.mobilis))
-                        sumMob += mob
-                    }
 
-                    if (!resultNote.hdh.isNullOrEmpty()) {
-                        val hdh = (Integer.parseInt(resultNote.hdh))
-                        sumHDH += hdh
-                    }
                     if (!resultNote.mmbk.isNullOrEmpty()) {
                         val mmbk = (Integer.parseInt(resultNote.mmbk))
                         sumMmbk += mmbk
@@ -404,20 +391,7 @@ class MyResultFragment : Fragment(){
                         val edu = Integer.parseInt(resultNote.eduMat)
                         sumEduMat += edu
                     }
-                    if (!resultNote.dpKor.isNullOrEmpty()) {
-                        val dpK = Integer.parseInt(resultNote.dpKor)
-                        sumDpKor += dpK
-                    }
 
-                    if (!resultNote.mobilis.isNullOrEmpty()) {
-                        val mob = Integer.parseInt(resultNote.mobilis)
-                        sumMob += mob
-                    }
-
-                    if (!resultNote.hdh.isNullOrEmpty()) {
-                        val mob = Integer.parseInt(resultNote.hdh)
-                        sumHDH += mob
-                    }
                 }
             }
 

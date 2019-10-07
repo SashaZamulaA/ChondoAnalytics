@@ -127,7 +127,9 @@ class EachCenterAdapter(private val context: Context,
             itemView.each_center_edu_material.text = if (!item.eduMat.isNullOrBlank()) item.eduMat else "0"
             itemView.each_center_read_dp.text = if (!item.dp.isNullOrBlank()) item.dp else "0"
 
-
+            itemView.each_center_time_on_street.text = if (!item.timeStr.isNullOrBlank()) item.timeStr else "0"
+            itemView.each_center_approach.text = if (!item.approach.isNullOrBlank()) item.approach else "0"
+            itemView.each_center_contact.text = if (!item.telCont.isNullOrBlank()) item.telCont else "0"
 
         }
     }
@@ -257,6 +259,11 @@ class EachCenterAdapter(private val context: Context,
                     if (period == 2) {
                         itemView.goal_21_day_center.text = "0"
                         itemView.goal_year_nwet_center.text = "0"
+                    }
+
+                    if (period == 3) {
+                        itemView.goal_21_day_center.text = "1"
+                        itemView.goal_year_nwet_center.text = "1"
                     }
                 }
             }

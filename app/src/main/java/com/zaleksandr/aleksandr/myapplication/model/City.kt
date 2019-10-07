@@ -23,12 +23,9 @@ data class City(
         val userPhotoPath: String?,
         val name: String?,
         val nwet: String?,
-        val dpKor: String?,
         val dp: String?,
         val mmbk: String?,
-        val mobilis: String?,
         val descriptionGoal: String?,
-        val hdh: String?,
         val eduMat: String?,
         val gradeIntGoal: String?
 
@@ -54,12 +51,9 @@ data class City(
             userPhotoPath = "",
             name = "",
             nwet = "",
-            dpKor = "",
             dp = "",
             mmbk = "",
-            mobilis = "",
             descriptionGoal = "",
-            hdh = "",
             eduMat = "",
             gradeIntGoal = ""
     )

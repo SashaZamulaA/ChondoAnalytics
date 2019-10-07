@@ -1,7 +1,5 @@
 package com.zaleksandr.aleksandr.myapplication.ui.updateResult
 
-import android.app.DatePickerDialog
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
@@ -22,8 +19,6 @@ import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil.firestoreInstan
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_change_result.*
 import kotlinx.android.synthetic.main.fragment_change_result.view.*
-import java.text.DateFormat
-import java.util.*
 
 
 class EditResultFragment : Fragment() {
@@ -181,7 +176,6 @@ class EditResultFragment : Fragment() {
 //    }
 
 
-
     private fun setUpResult() {
 
         val getId = arguments?.getString("getId")
@@ -211,11 +205,8 @@ class EditResultFragment : Fragment() {
                             update_result_lectures_on_street_edittext.setText(note.lectOnStr)
                             update_result_lectures_in_center_edittext.setText(note.lectCentr)
                             update_result_edu_mat_edittext.setText(note.eduMat)
-                            update_result_DP_kor_edittext.setText(note.dpKor)
                             update_result_DP_edittext.setText(note.dp)
                             update_result_mmbk_edittext.setText(note.mmbk)
-                            update_result_mobilisation_edittext.setText(note.mobilis)
-                            update_result_hdh.setText(note.hdh)
                         }
                     }
                 }

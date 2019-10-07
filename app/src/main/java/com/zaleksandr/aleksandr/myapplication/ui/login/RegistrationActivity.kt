@@ -1,26 +1,22 @@
 package com.zaleksandr.aleksandr.myapplication.ui.login
 
-import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
-import android.widget.EditText
-import androidx.appcompat.app.AppCompatActivity
 import android.widget.Toast
-import com.zaleksandr.aleksandr.myapplication.R
-import com.zaleksandr.aleksandr.myapplication.ui.settings.model.User
-import com.zaleksandr.aleksandr.myapplication.service.MyFirebaseInstanceIDService
-import com.zaleksandr.aleksandr.myapplication.setSimpleTextWatcher
-import com.zaleksandr.aleksandr.myapplication.ui.login.presenter.RegistrationPresenter
-import com.zaleksandr.aleksandr.myapplication.MainActivity
-import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.iid.FirebaseInstanceId
 import com.zaleksandr.aleksandr.myapplication.MainActivity.Companion.AUTHOR_KEY
-import com.zaleksandr.aleksandr.myapplication.MainActivity.Companion.PASSWORDACCESS
 import com.zaleksandr.aleksandr.myapplication.MainActivity.Companion.QUOTE_KEY
+import com.zaleksandr.aleksandr.myapplication.R
+import com.zaleksandr.aleksandr.myapplication.service.MyFirebaseInstanceIDService
+import com.zaleksandr.aleksandr.myapplication.setSimpleTextWatcher
+import com.zaleksandr.aleksandr.myapplication.ui.login.presenter.RegistrationPresenter
+import com.zaleksandr.aleksandr.myapplication.ui.settings.model.User
+import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil
 import kotlinx.android.synthetic.main.view_registration.*
 
 
@@ -66,11 +62,11 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
 
         }
 
-                button_back_registration.setOnClickListener {
-                    startActivity(Intent(applicationContext, LoginActivity::class.java))
-                    finish()
-                    overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out)
-                }
+        button_back_registration.setOnClickListener {
+            startActivity(Intent(applicationContext, LoginActivity::class.java))
+            finish()
+            overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out)
+        }
     }
 
     override fun onAttachedToWindow() {
@@ -94,7 +90,8 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
             IRegistrationActivity.InvalidValue.REPASSWORD_WRONG -> text_InputLayoutPassword.error = resources.getString(R.string.repassword_wrong)
 //            IRegistrationActivity.InvalidValue.CHECKBOX_DISABLE -> checkbox_gdpr_error.text = resources.getString(R.string.checkbox_gdpr)
             IRegistrationActivity.InvalidValue.NO_INTERNET -> resources.getString(R.string.no_internet)
-            else -> {}
+            else -> {
+            }
         }
     }
 
@@ -113,45 +110,40 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
         val name = input_name.text.toString().trim()
         val regId = mutableListOf<String>()
 
-        val b = AlertDialog.Builder(this@RegistrationActivity)
-        b.setTitle("Please enter a password")
-        val input = EditText(this@RegistrationActivity)
-        b.setView(input)
-        b.setPositiveButton("OK") { _, _ ->
-            result = input.text.toString()
-            if (result == PASSWORDACCESS) {
-                val progressDialog = ProgressDialog(this@RegistrationActivity)
-                progressDialog.isIndeterminate = true
-                progressDialog.setMessage(resources.getString(R.string.signup_successful))
-                progressDialog.show()
-                auth?.createUserWithEmailAndPassword(email, password)
-                        ?.addOnCompleteListener(this@RegistrationActivity) { task ->
-                            progressDialog.dismiss()
-                            if (task.isSuccessful) {
+//        val b = AlertDialog.Builder(this@RegistrationActivity)
+//        b.setTitle("Please enter a password")
+//        val input = EditText(this@RegistrationActivity)
+//        b.setView(input)
+//        b.setPositiveButton("OK") { _, _ ->
+//            result = input.text.toString()
+//            if (result == PASSWORDACCESS)
+//            {
+        val progressDialog = ProgressDialog(this@RegistrationActivity)
+        progressDialog.isIndeterminate = true
+        progressDialog.setMessage(resources.getString(R.string.signup_successful))
+        progressDialog.show()
+        auth?.createUserWithEmailAndPassword(email, password)
+                ?.addOnCompleteListener(this@RegistrationActivity) { task ->
+                    progressDialog.dismiss()
+                    if (task.isSuccessful) {
 
-//                                if (adminAccess == true)
-                                Toast.makeText(applicationContext,"Please wait for confirmation of your account.",Toast.LENGTH_LONG).show()
-                                FirestoreUtil.initCurrentUserIfFirstTime {
 
-                                    val registrationToken = FirebaseInstanceId.getInstance().token
-                                    MyFirebaseInstanceIDService.addTokenToFirestore(registrationToken)
-                                }
-                                saveQuote()
-                            }
+                        Toast.makeText(applicationContext, "Please wait for confirmation of your account.", Toast.LENGTH_LONG).show()
+                        FirestoreUtil.initCurrentUserIfFirstTime {
+
+                            val registrationToken = FirebaseInstanceId.getInstance().token
+                            MyFirebaseInstanceIDService.addTokenToFirestore(registrationToken)
+                            val intent = Intent(this@RegistrationActivity, LoginActivity::class.java)
+                            startActivity(intent)
+                            finish()
+
+
                         }
-
-            } else {
-
-            }
-        }
-        b.setNegativeButton("CANCEL") { _, _ ->
-
-        }
-        b.show()
-
-
-
-
+                        saveQuote()
+                    } else {
+                        Toast.makeText(applicationContext, "Please, try again", Toast.LENGTH_LONG).show()
+                    }
+                }
     }
 
     private fun saveQuote() {
@@ -165,7 +157,7 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
         dataToSave[AUTHOR_KEY] = authorText
         dataToSave[QUOTE_KEY] = quoteText
 
-            FirestoreUtil.currentUserDocRef.set(dataToSave)
+        FirestoreUtil.currentUserDocRef.set(dataToSave)
     }
 
 
@@ -174,6 +166,7 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationActivity {
                 .collection("messages")
                 .add(message)
     }
+
     private fun verifyEmail() {
         val mUser = auth!!.currentUser
         mUser!!.sendEmailVerification()

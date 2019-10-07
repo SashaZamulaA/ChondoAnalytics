@@ -7,9 +7,8 @@ data class CityAddInfo(
         val id: String?,
         val time: Date,
         val timestamp: Long,
-        val dpKor: String?,
-        val dp: String?,
-        val mobilis: String?
+        val dp: String?
+
 
 ) {
     constructor() : this(
@@ -17,10 +16,8 @@ data class CityAddInfo(
             id = "0",
             time = Date(),
             timestamp = 0,
-            dpKor = "",
-            dp = "",
-            mobilis = ""
-    )
+            dp = ""
+               )
 
     fun constructor() {
     }
