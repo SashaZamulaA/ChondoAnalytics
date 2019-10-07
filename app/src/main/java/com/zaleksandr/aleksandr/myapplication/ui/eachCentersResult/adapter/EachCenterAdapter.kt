@@ -118,6 +118,17 @@ class EachCenterAdapter(private val context: Context,
             itemView.each_center_21_day.text = if (!item.twOneDay.isNullOrBlank()) item.twOneDay else "0"
             itemView.each_center_actioniser.text = if (!item.actionaiser.isNullOrBlank()) item.actionaiser else "0"
             itemView.each_center_mmbk.text = if (!item.mmbk.isNullOrBlank()) item.mmbk else "0"
+            itemView.each_center_nwet.text = if (!item.nwet.isNullOrBlank()) item.nwet else "0"
+
+            itemView.each_center_time_in_center.text = if (!item.timeCenter.isNullOrBlank()) item.timeCenter else "0"
+            itemView.each_center_lect_training.text = if (!item.lectTraining.isNullOrBlank()) item.lectTraining else "0"
+            itemView.each_center_lect_on_str_.text = if (!item.lectOnStr.isNullOrBlank()) item.lectOnStr else "0"
+            itemView.each_center_lect_in_centr.text = if (!item.lectCentr.isNullOrBlank()) item.lectCentr else "0"
+            itemView.each_center_edu_material.text = if (!item.eduMat.isNullOrBlank()) item.eduMat else "0"
+            itemView.each_center_read_dp.text = if (!item.dp.isNullOrBlank()) item.dp else "0"
+
+
+
         }
     }
 

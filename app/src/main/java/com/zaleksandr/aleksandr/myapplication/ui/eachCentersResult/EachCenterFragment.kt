@@ -30,7 +30,7 @@ class EachCenterFragment : Fragment() {
     var num = 1
     private var mLastQueriedDocument: DocumentSnapshot? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val rootView = inflater.inflate(com.zaleksandr.aleksandr.myapplication.R.layout.fragment_each_senter, container, false)
+        val rootView = inflater.inflate(R.layout.fragment_each_senter, container, false)
 
         adapterInit(rootView)
         bottomMenuInit(rootView)
@@ -72,19 +72,10 @@ class EachCenterFragment : Fragment() {
                     if (querydocumentSnapshot.isSuccessful) {
 
                         for (documentSnapshot in querydocumentSnapshot.result!!) {
-                            val note = documentSnapshot.toObject<City>(City::class.java)
-                            if (documentSnapshot["intro"] != "" && documentSnapshot["intro"] != "0"
-                                    || documentSnapshot["mmbk"] != "" && documentSnapshot["mmbk"] != "0"
-                                    || documentSnapshot["onedayWS"] != "" && documentSnapshot["onedayWS"] != "0"
-                                    || documentSnapshot["actionaiser"] != "" && documentSnapshot["actionaiser"] != "0" && documentSnapshot["actionaiser"] != null
-                                    || documentSnapshot["twoDayWS"] != "" && documentSnapshot["twoDayWS"] != "0"
-                                    || documentSnapshot["twOneDay"] != "" && documentSnapshot["twOneDay"] != "0"
-                            ) {
-
-                                num++
-                                if (num<12) items.add(note)
-                            }
-                            }
+                            val note = documentSnapshot.toObject(City::class.java)
+                            num++
+                            if (num < 12) items.add(note)
+                        }
 
                         if (querydocumentSnapshot.result!!.size() != 0) {
                             mLastQueriedDocument = querydocumentSnapshot.result!!.documents[querydocumentSnapshot.result!!.size() - 1]
@@ -107,21 +98,15 @@ class EachCenterFragment : Fragment() {
         layoutParams.behavior = BottomNavigationViewBehavior()
         rootView.bottom_navigation_center.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
-                com.zaleksandr.aleksandr.myapplication.R.id.menu_year -> {
+                R.id.menu_year -> {
                     adapter?.perioSelected(EachCenterAdapter.ClickByFilter.YEAR)
-
                 }
-                com.zaleksandr.aleksandr.myapplication.R.id.menu_month -> {
-
+                R.id.menu_month -> {
                     adapter?.perioSelected(EachCenterAdapter.ClickByFilter.MONTH)
-
                 }
-                com.zaleksandr.aleksandr.myapplication.R.id.menu_week -> {
-
+                R.id.menu_week -> {
                     adapter?.perioSelected(EachCenterAdapter.ClickByFilter.WEEK)
-
                 }
-
                 else -> {
                 }
             }
