@@ -9,7 +9,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.zaleksandr.aleksandr.myapplication.MainActivity
 import com.zaleksandr.aleksandr.myapplication.R
 import com.zaleksandr.aleksandr.myapplication.setSimpleTextWatcher
-import com.zaleksandr.aleksandr.myapplication.showMaterialDialogOk
 import com.zaleksandr.aleksandr.myapplication.ui.login.presenter.LoginPresenter
 import com.zaleksandr.aleksandr.myapplication.util.FirestoreUtil
 import kotlinx.android.synthetic.main.view_login.*
@@ -23,9 +22,6 @@ class LoginActivity : AppCompatActivity(), ILoginActivity {
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.view_login)
-
-
-
 
         presenter = LoginPresenter(this, application)
         auth = FirebaseAuth.getInstance()
@@ -42,8 +38,6 @@ class LoginActivity : AppCompatActivity(), ILoginActivity {
                                 val intent = Intent(this@LoginActivity, MainActivity::class.java)
                                 startActivity(intent)
                                 finish()
-                            } else {
-                                Toast.makeText(applicationContext, "Please wait for confirmation of your account.", Toast.LENGTH_LONG).show()
                             }
                         }
                     }
@@ -106,15 +100,12 @@ class LoginActivity : AppCompatActivity(), ILoginActivity {
         progressDialog.show()
         val email = input_email_login.text.toString()
         val password = input_password_login.text.toString()
-
         auth?.signInWithEmailAndPassword(email, password)
                 ?.addOnCompleteListener(this@LoginActivity) { task ->
                     progressDialog.dismiss()
                     if (!task.isSuccessful) {
                         progressDialog.dismiss()
-
                         Toast.makeText(applicationContext, "Your password or email is not correct", Toast.LENGTH_LONG).show()
-
 
 //                        progressDialog.isIndeterminate = true
 //                        progressDialog.setMessage("Diney...")
@@ -131,17 +122,13 @@ class LoginActivity : AppCompatActivity(), ILoginActivity {
                                             val intent = Intent(this@LoginActivity, MainActivity::class.java)
                                             startActivity(intent)
                                             finish()
-                                        } else {
-                                            Toast.makeText(applicationContext, "Please wait for confirmation of your account.", Toast.LENGTH_LONG).show()
                                         }
                                     } else {
                                         Toast.makeText(applicationContext, "Please wait for confirmation of your account.", Toast.LENGTH_LONG).show()
                                     }
                                 }
                             }
-                            Toast.makeText(applicationContext, "Please wait for confirmation of your account.", Toast.LENGTH_LONG).show()
                         }
-
                     }
                 }
     }
