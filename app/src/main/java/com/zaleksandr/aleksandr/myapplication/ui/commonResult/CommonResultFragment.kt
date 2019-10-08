@@ -1,15 +1,19 @@
 package com.zaleksandr.aleksandr.myapplication.ui.commonResult
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zaleksandr.aleksandr.myapplication.BottomNavigationViewBehavior
+import com.zaleksandr.aleksandr.myapplication.R
 import com.zaleksandr.aleksandr.myapplication.model.City
 import com.zaleksandr.aleksandr.myapplication.ui.commonResult.adapter.CommonResultAdapter
 import kotlinx.android.synthetic.main.activity_main.*
@@ -20,15 +24,29 @@ import kotlin.collections.ArrayList
 
 
 class CommonResultFragment : Fragment(), CommonResultAdapter.FragmentCommunication, Serializable {
-
+    private var result: String? = null
+    val PASSWORD = "chondo"
     override fun respond(position: Int) {
 //        items[position]
 
         val bundle = Bundle()
         bundle.putInt("pas", position)
 
-        Navigation.findNavController(this.view!!).navigate(com.zaleksandr.aleksandr.myapplication.R.id.action_commonResultFragment_to_eachCenterFragment, bundle)
-        items.clear()
+            val b = AlertDialog.Builder(context)
+            b.setTitle("Please enter a password")
+            val input = EditText(context)
+            b.setView(input)
+            b.setPositiveButton("OK") { _, _ ->
+                result = input.text.toString()
+                if (result == PASSWORD) {
+                    Navigation.findNavController(this.view!!).navigate(R.id.action_commonResultFragment_to_eachCenterFragment, bundle)
+                    items.clear()
+                } else {
+                    Toast.makeText(context, "Wrong password", Toast.LENGTH_LONG).show()
+                }
+            }
+            b.setNegativeButton("CANCEL", null)
+            b.show()
     }
 
     //    var toolbar: Toolbar? = null
